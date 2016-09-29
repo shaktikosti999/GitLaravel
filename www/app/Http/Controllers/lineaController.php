@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\proveedor;
-class proveedorController extends Controller
+use App\Models\linea;
+
+class lineaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +18,9 @@ class proveedorController extends Controller
      */
     public function index(){
         $data = array(
-            'proveedores' => proveedor::all()
+            'lineas' => linea::all()
         );
-        return view('back.proveedor.index',$data);
+        return view('back.linea.index',$data);
     }
 
     /**
@@ -28,7 +29,7 @@ class proveedorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        return view('back.proveedor.create');
+        return view('back.linea.create');
     }
 
     /**
@@ -40,40 +41,38 @@ class proveedorController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'nombre' => 'required|string|max:50|min:1',
-            'link' => 'required|url|min:1|max:100',
             'archivo' => 'required|image'
         ]);
-        if($request->hasFile('archivo')){
-            $archivo = $request->file('archivo');
-            $ext = strtolower($archivo->getClientOriginalExtension());
-            $extValidas = ['jpg','jpeg','png'];
 
-            if(in_array($ext, $extValidas)){
-                $carpeta = 'assets/images/proveedores/';
-                if(!file_exists(public_path() . '/' . $carpeta))
-                    mkdir(public_path() . '/' . $carpeta,0777,true);
-                do{
-                    $nombre = "";
-                    $str = "abcdefghijklmnopqrstuvwxyz0123456789";
-                    for($i=0; $i<=16; $i++ ){
-                        $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
-                    }
-                }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
-                $nombre .= '.' . $ext;
-                if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
-                    $archivo = '/' . $carpeta . $nombre;
+        $archivo = $request->file('archivo');
+        $ext = strtolower($archivo->getClientOriginalExtension());
+        $extValidas = ['jpg','jpeg','png'];
 
-                    $evento = proveedor::store($request,$archivo);
-                    $evento = $evento[0];
-                    if(!$evento){
-                        return redirect(url('/administrador/proveedor.html'))->with('success','Proveedor agregado correctamente');
-                    }
-                    else{
-                        return redirect(url('/administrador/proveedor.html'))->with('error',$evento);
-                    }
+        if(in_array($ext, $extValidas)){
+            $carpeta = 'assets/images/lineadejuego/';
+            if(!file_exists(public_path() . '/' . $carpeta))
+                mkdir(public_path() . '/' . $carpeta,0777,true);
+            do{
+                $nombre = "";
+                $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                for($i=0; $i<=16; $i++ ){
+                    $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
                 }
-            }                    
-        }
+            }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+            $nombre .= '.' . $ext;
+            if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                $archivo = '/' . $carpeta . $nombre;
+
+                $evento = linea::store($request,$archivo);
+                $evento = $evento[0];
+                if(!$evento){
+                    return redirect(url('/administrador/linea.html'))->with('success','Linea de juego agregada correctamente');
+                }
+                else{
+                    return redirect(url('/administrador/linea.html'))->with('error',$evento);
+                }
+            }
+        }                    
     }
 
     /**
@@ -93,9 +92,9 @@ class proveedorController extends Controller
     public function edit($id){
         $data = array(
             'id'=>$id,
-            'proveedor' => proveedor::find($id)
+            'linea' => linea::find($id)
         );
-        return view('back.proveedor.edit',$data);
+        return view('back.linea.edit',$data);
     }
 
     /**
@@ -106,18 +105,20 @@ class proveedorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
+        // dd($request->all());
         $this->validate($request,[
             'nombre' => 'required|string|max:50|min:1',
-            'link' => 'required|url|min:1|max:100',
             'archivo' => 'image'
         ]);
+
         if($request->hasFile('archivo')){
+
             $archivo = $request->file('archivo');
             $ext = strtolower($archivo->getClientOriginalExtension());
             $extValidas = ['jpg','jpeg','png'];
 
             if(in_array($ext, $extValidas)){
-                $carpeta = 'assets/images/proveedores/';
+                $carpeta = 'assets/images/lineadejuego/';
                 if(!file_exists(public_path() . '/' . $carpeta))
                     mkdir(public_path() . '/' . $carpeta,0777,true);
                 do{
@@ -128,21 +129,21 @@ class proveedorController extends Controller
                     }
                 }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
                 $nombre .= '.' . $ext;
-                if($archivo->move(public_path() . '/' . $carpeta , $nombre))
+                if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
                     $archivo = '/' . $carpeta . $nombre;
-                else
-                    $archivo = false;
+
+                }
             }
         }
         else
             $archivo = false;
-        $evento = proveedor::update($id,$request,$archivo);
+        $evento = linea::update($id,$request,$archivo);
         $evento = $evento[0];
         if(!$evento){
-            return redirect(url('/administrador/proveedor.html'))->with('success','Proveedor modificado correctamente');
+            return redirect(url('/administrador/linea.html'))->with('success','Linea de juego agregada correctamente');
         }
         else{
-            return redirect(url('/administrador/proveedor.html'))->with('error',$evento);
+            return redirect(url('/administrador/linea.html'))->with('error',$evento);
         }
     }
 

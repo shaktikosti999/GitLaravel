@@ -19,28 +19,6 @@ class proveedor{
 		return proveedor::find($id);
 	}
 
-	static function get_file_name($id){
-		$file = \DB::table('alimento as a')
-			->select('archivo')
-			->where('id_alimento',$id)
-			->first();
-		if( $file !== null ){
-			$file = $file->archivo;
-			return $file;
-		}
-		return false;
-	}
-
-	static function get_food_type(){
-		$ft = \DB::table('tipo_alimento as ta')
-			->select('id_tipo as id','nombre')
-			->orderBy('nombre')
-			->get();
-		if(count($ft) > 0 )
-			return $ft;
-		return false;
-	}
-
 	static function store($request, $archivo){
 		$proveedor = new proveedor();
 		$proveedor->nombre = $request->input('nombre');

@@ -36,6 +36,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 		include_once('Routes/alimento.php');
 		include_once('Routes/proveedor.php');
+		include_once('Routes/newsletter.php');
+		include_once('Routes/contacto.php');
+		include_once('Routes/sucursal.php');
+		include_once('Routes/juego.php');
+		include_once('Routes/linea.php');
 
 	});
 });

@@ -120,6 +120,15 @@ class generalController extends Controller
                 case 'proveedor':
                     $modulo = \App\proveedor::find($id);
                     break;
+                case 'newsletter':
+                    $modulo = \App\newsletter::find($id);
+                    break;
+                case 'sucursal':
+                    $modulo = \App\sucursal::find($id);
+                    break;
+                case 'linea':
+                    $modulo = \App\linea::find($id);
+                    break;
                 default:
                     dd($modulo);
                 break;
@@ -201,6 +210,14 @@ class generalController extends Controller
 
                 case 'alimento':
                     $modulo = \App\alimento::find($id);
+                    break;
+
+                case 'sucursal':
+                    $modulo = \App\sucursal::find($id);
+                    break;
+                    
+                case 'linea':
+                    $modulo = \App\linea::find($id);
                     break;
 
                 default:
