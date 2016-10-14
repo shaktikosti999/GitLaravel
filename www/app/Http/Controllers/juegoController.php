@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\juego;
+use App\Models\juego_model as juego;
 
 class juegoController extends Controller
 {

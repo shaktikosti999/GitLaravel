@@ -35,12 +35,18 @@ Route::group(['middleware' => 'auth'], function () {
 		include_once('Routes/usuario.php');
 
 		include_once('Routes/alimento.php');
-		include_once('Routes/proveedor.php');
-		include_once('Routes/newsletter.php');
 		include_once('Routes/contacto.php');
-		include_once('Routes/sucursal.php');
 		include_once('Routes/juego.php');
 		include_once('Routes/linea.php');
+		include_once('Routes/newsletter.php');
+		include_once('Routes/proveedor.php');
+		include_once('Routes/sucursal.php');
+		include_once('Routes/sucursal_juego.php');
 
 	});
 });
+
+Route::get('/','front\indexController@index');
+Route::get('/lineas-de-juego/maquinas-de-juego/{sucursal?}','front\lineasController@maquinas');
+Route::get('/lineas-de-juego/mesas-de-juego/{sucursal?}','front\lineasController@mesas');
+Route::post('/contacto/newsletter','front\contactoController@newsletter');

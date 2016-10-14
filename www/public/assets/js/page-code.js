@@ -2,6 +2,8 @@ $(document).ready(function(){
 
 // FUNCIONES
 
+
+
 //----- Back image
 $('.image').replaceWith(function(i, v){
     return $('<figure/>', {
@@ -12,6 +14,34 @@ $('.image').replaceWith(function(i, v){
 
 //----- Stick launchers
 $(function(){
+
+        function validEmail( $email ) {
+
+  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  return emailReg.test( $email );
+
+}
+
+//-----> Procesamos formulario de news
+$("input.subscribe-btn").click( function( e ){
+
+    e.preventDefaut();
+
+    var $data = $(".subscribe-inner input[type=email]").val(); 
+
+    console.log( "Email: " + $data );
+
+    if( ! validEmail( $data ) ){
+
+        $(".subscribe-inner input[type=email]").css("border-color", "#ed1c1c");
+        return FALSE;
+
+    }
+
+
+
+} );
+
         // Check the initial Poistion of the Sticky Header
         var stickyHeaderTop = $('.mapa').offset().top;
  

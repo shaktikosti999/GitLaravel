@@ -5,25 +5,8 @@
 	@stop
 	@section('script')
 		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-		<script>
-			$(function(){
-				$('.activo').on('change', function(){
-					id=parseInt($(this).attr('data'));
-					$.ajax({
-						url:'/administrador/estatus/sucursal.html',
-						type:'POST',
-						data:{
-							_token:"{{csrf_token()}}",
-							id:id
-						},
-						success:function(data){
-							console.log(data);
-						}
-					});
-				});
-			});
-		</script>
 		<script src="{{asset('/assets/js/index.js')}}"></script>
+		<script src="{{asset('/assets/js/sucursal/index.js')}}"></script>
 	@stop
 
 	@section('contenido')
@@ -51,6 +34,7 @@
 												<th class="sorting_disabled" rowspan="1" colspan="1">Teléfono</th>
 												<th class="sorting_disabled" rowspan="1" colspan="1">Dirección</th>
 												<th class="sorting_disabled" rowspan="1" colspan="1">Estatus</th>
+												<th class="sorting_disabled" rowspan="1" colspan="1">Juegos</th>
 												<th class="sorting_disabled" rowspan="1" colspan="1">Opciones</th>
 											</tr>
 										</thead>
@@ -61,8 +45,18 @@
 												<td class="v-align-middle">{{$sucursal->telefono}}</td>
 												<td class="v-align-middle">{{$sucursal->direccion}}</td>
 												<td class="v-align-middle"><input type="checkbox" {{$sucursal->estatus == 1 ? "checked" : ""}} class="activo" data="{{$sucursal->id}}" data-toggle="toggle"></td>
+												<td class="v-align-middle"><h1 class="text-center">{{$sucursal->juegos}}</h1></td>
 												<td class="v-align-middle">
 													<div class="btn-group btn-group-justified">
+							                            <div class="btn-group">
+																<button type="button" role="button" class="btn btn-default game_btn" data-id="{{$sucursal->id}}" data-sucname="{{$sucursal->nombre}}">
+								                              		<span class="p-t-5 p-b-5">
+								                              			<i class="fa fa-gamepad fs-15"></i>
+								                              		</span>
+								                              		<br>
+								                              		<span class="fs-11 font-montserrat text-uppercase">Juegos</span>
+								                              	</button>
+							                            </div>
 							                            <div class="btn-group">
 							                              	<form action="{{url('/administrador/modificar/sucursal' . $sucursal->id . '.html')}}" method="post">
 																{!!csrf_field()!!}
@@ -103,5 +97,66 @@
 			</div>
 		</div>
 		<!-- Large modal -->
+		<div class="modal fade slide-up disable-scroll in" id="myModal" tabindex="-1" role="dialog" aria-hidden="false" style="display: none; padding-right: 17px;">
+			<div class="modal-dialog  modal-lg">
+				<div class="modal-content-wrapper">
+					<div class="modal-content">
+						<div class="modal-header clearfix text-left">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+							</button>
+							<h5>Juegos en <span class="semi-bold" id="nombre_sucursal"></span></h5>
+						</div>
+						<div class="modal-body">
+							<div class="row" style="height:150px;overflow-y:auto;" id="game_list">
+								<ul class="list-group">
+									<li class="list-group-item">Cras justo odio</li>
+									<li class="list-group-item">Dapibus ac facilisis in</li>
+									<li class="list-group-item">Morbi leo risus</li>
+									<li class="list-group-item">Porta ac consectetur ac</li>
+									<li class="list-group-item">Vestibulum at eros</li>
+								</ul>
+							</div>
+							<div class="row">
+								<form action="{{url('/administrador/agregar/juego.html')}}" enctype="multipart/form-data" method="post">
+									<input type="hidden" name="_method" value="patch">
+									<input type="hidden" name="add_sucursal" id="add_sucursal">
+									{{csrf_field()}}
+									<div class="form-group">
+										<label for="add_juego">Juego</label>
+										<select name="add_juego" id="add_juego" class="form-control">
+											@foreach($juegos as $val)
+											<option value="{{$val->id}}">{{$val->nombre}}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="add_desc">Descripción</label>
+										<textarea name="add_desc" id="add_desc" class="form-control"></textarea>
+									</div>
+									<div class="form-group">
+										<label for="add_archivo">Imagen</label>
+										<input type="file" name="add_archivo" id="add_archivo" >
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="add_disp">Disponibilidad</label>
+										<input type="text" name="add_disp" id="add_disp" class="form-control">
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="add_apuesta">Apuesta Mínima</label>
+										<input type="text" name="add_apuesta" id="add_apuesta" class="form-control">
+									</div>
+									<div class="form-group col-sm-4">
+										<label for="add_link">Enlace</label>
+										<input type="text" name="add_link" id="add_link" class="form-control">
+									</div>
+									<input type="submit" value="Guardar" class="btn btn-success">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		</div>
 
 	@stop
