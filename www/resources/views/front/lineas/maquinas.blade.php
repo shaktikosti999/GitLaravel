@@ -15,7 +15,7 @@
 		<div class="slider-clip">
 			<ul class="slides">
 				
-				@if( count( $slider ) )
+				@if( isset( $slider ) && count( $slider ) )
 
 					@foreach( $slider as $item )
 

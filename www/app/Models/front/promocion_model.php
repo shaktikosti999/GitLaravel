@@ -10,13 +10,19 @@ class promocion_model{
         $data = \DB::table('promocion as p')
                         ->orderByRaw('RAND()')
                         ->join('juego as j', 'p.id_juego', '=', 'j.id_juego')
-                        ->select("p.*");
+                        ->select("p.*", "j.id_linea");
 
         //-----> Aplicamos filtros
 
         if( isset( $parameters["linea"] ) && ! empty( $parameters["linea"] ) ){
 
         	$data = $data->where( "j.id_linea", "=", $parameters["linea"] );
+
+        }
+
+        if( isset( $parameters["id_linea"] ) && ! empty( $parameters["id_linea"] ) ){
+
+            $data = $data->where( "j.id_linea", "=", $parameters["id_linea"] );
 
         }
 

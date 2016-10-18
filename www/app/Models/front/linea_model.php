@@ -7,6 +7,7 @@ class linea_model{
 		
         $data = \DB::table('linea as l')
             			->select(
+                            'l.id_linea',
                             'l.nombre as linea',
                             'l.icono',
                             'l.slogan',
@@ -70,6 +71,38 @@ class linea_model{
 
             $data = $data->join("juego_sucursal as js", "j.id_juego", "=", "js.id_juego");
             $data = $data->where( "js.id_sucursal", "=", $parameters["id_sucursal"] );
+
+        }
+
+        $data = $data->get();
+
+
+        return $data;
+
+    }
+
+    static function find_all_tournaments( $parameters = [] ){
+        
+        $data = \DB::table('torneo as t')
+                        ->select(
+                            't.titulo',
+                            't.slug',
+                            't.fecha',
+                            't.archivo',
+                            't.link',
+                            's.nombre as sucursal',
+                            'tt.nombre as tipo'
+                        )
+                        ->where('t.estatus','=',1)
+                        ->where('t.eliminado','=',0)
+                        ->join("tipo_torneo as tt", "t.tipo_torneo", "=", "tt.id_tipo")
+                        ->join("sucursal as s", "t.id_sucursal", "=", "s.id_sucursal");
+
+        //-----> Aplicamos filtros
+
+        if( isset( $parameters["id_sucursal"] ) && ! empty( $parameters["id_sucursal"] ) ){
+
+            $data = $data->where( "s.id_sucursal", "=", $parameters["id_sucursal"] );
 
         }
 

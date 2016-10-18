@@ -48,11 +48,11 @@
 					<nav class="nav-access">
 						<ul>
 							<li>
-								<a href="#">Quíenes somos</a>
+								<a href="/quienes_somos">Quíenes somos</a>
 							</li>
 							
 							<li>
-								<a href="#">Contacto</a>
+								<a href="/contacto">Contacto</a>
 							</li>
 						</ul>
 					</nav><!-- /.nav-access -->
@@ -81,23 +81,23 @@
 								</li>
 								
 								<li>
-									<a href="#">promociones Y Eventos</a>
+									<a href="/promociones">promociones Y Eventos</a>
 								</li>
 								
 								<li>
-									<a href="#">ubicaciones</a>
+									<a href="/ubicaciones">ubicaciones</a>
 								</li>
 								
 								<li>
-									<a href="#">caliente Club</a>
+									<a href="/caliente_club">caliente Club</a>
 								</li>
 
 								<li class="desktop-hidden">
-									<a href="#">Quíenes somos</a>
+									<a href="/quienes_somos">Quíenes somos</a>
 								</li>
 								
 								<li class="desktop-hidden">
-									<a href="#">Contacto</a>
+									<a href="/contacto">Contacto</a>
 								</li>
 
 								<li class="desktop-hidden tablet-hidden">
@@ -213,7 +213,7 @@
 									</li>
 									
 									<li>
-										<a href="#">Alimentos Y Bebidas</a>
+										<a href="/alimentos-y-bebidas">Alimentos Y Bebidas</a>
 									</li>
 									
 									<li>

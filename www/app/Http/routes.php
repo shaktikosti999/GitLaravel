@@ -46,7 +46,18 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 });
 
+//-----> Homepage
 Route::get('/','front\indexController@index');
+
+//-----> Lineas
 Route::get('/lineas-de-juego/maquinas-de-juego/{sucursal?}','front\lineasController@maquinas');
 Route::get('/lineas-de-juego/mesas-de-juego/{sucursal?}','front\lineasController@mesas');
+
+//-----> Promociones
+Route::get('/promociones/{sucursal?}','front\promocionesController@index');
+Route::get('/promociones/detalle/{promocion}','front\promocionesController@detalle');
+
 Route::post('/contacto/newsletter','front\contactoController@newsletter');
+
+//-----> Alimentos y bebidas
+Route::get('/alimentos-y-bebidas','front\alimentosController@index');

@@ -375,71 +375,55 @@
 			</div><!-- /.shell -->
 		</section><!-- /.section-jackpots -->
 
-		<section class="section section-secondary">
-			<div class="shell">
-				<header class="section-head">
-					<h2>
-						Torneos
-					</h2>
-				</header><!-- /.section-head -->
+		@if( isset( $torneos ) )
 
-				<div class="section-body">
-					<div class="cols">
-						<div class="col col-1of2">
-							<article class="article-tournament" style="background-image: url(css/images/temp/tournament1.jpg)"> 
-								<span class="article-title">
-									Próximos torneos
-								</span><!-- /.article-title -->	
+			<section class="section section-secondary">
+				<div class="shell">
+					<header class="section-head">
+						<h2>
+							Torneos
+						</h2>
+					</header><!-- /.section-head -->
 
-								<div class="article-content">
-									<span class="article-label">
-										Final
-									</span><!-- /.article-label -->
-									
-									<h5>
-										Poker Texas Holdem
-									</h5>
+					<div class="section-body">
+						<div class="cols">
 
-									<p>
-										Marzo 26 - Tecamachalco
- 									</p>
+							@foreach( $torneos as $item )
 
- 									<a href="#" class="btn btn-red">
- 										Participar
- 									</a>
-								</div><!-- /.article-content -->
-							</article><!-- /.article-tournament -->
-						</div><!-- /.col col-1of2 -->
+								<div class="col col-1of2">
+									<article class="article-tournament" style="background-image: url('{{ $item->archivo }}')"> 
+										<span class="article-title">
+											{{ ( strtotime( $item->fecha ) > time() ) ? 'Próximos torneos' : 'Experiencias pasadas' }}
+										</span><!-- /.article-title -->	
 
-						<div class="col col-1of2">
-							<article class="article-tournament" style="background-image: url(css/images/temp/tournament2.jpg)"> 
-								<span class="article-title">
-									eXPERIENCIAS PASADAS
-								</span><!-- /.article-title -->	
+										<div class="article-content">
+											<span class="article-label">
+												{{ $item->tipo }}
+											</span><!-- /.article-label -->
+											
+											<h5>
+												{{ $item->titulo }}
+											</h5>
 
-								<div class="article-content">
-									<span class="article-label">
-										Torneo regional 
-									</span><!-- /.article-label -->
-									
-									<h5>
-										Poker Texas Holdem
-									</h5>
+											<p>
+												{{ date("M", strtotime( $item->fecha ) ) }} {{ date("d", strtotime( $item->fecha ) ) }} {{ date("Y", strtotime( $item->fecha ) ) }} - {{ $item->sucursal }}
+		 									</p>
 
-									<p>
-										Enero 17 - Morelia 
- 									</p>
+		 									<a href="{{ ( $item->link ) ? $item->link : '/torneos/' . $item->slug }}" class="btn btn-red">
+		 										Ver más
+		 									</a>
+										</div><!-- /.article-content -->
+									</article><!-- /.article-tournament -->
+								</div><!-- /.col col-1of2 -->
 
- 									<a href="#" class="btn btn-red">
- 										Ver más
- 									</a>
-								</div><!-- /.article-content -->
-							</article><!-- /.article-tournament -->
-						</div><!-- /.col col-1of2 -->
-					</div><!-- /.cols -->
-				</div><!-- /.section-body -->
-			</div><!-- /.shell -->
-		</section><!-- /.section section-secondary -->
+							@endforeach
+
+						</div><!-- /.cols -->
+					</div><!-- /.section-body -->
+				</div><!-- /.shell -->
+			</section><!-- /.section section-secondary -->
+
+		@endif
 
 		<section class="section-gray">
 			<div class="shell">

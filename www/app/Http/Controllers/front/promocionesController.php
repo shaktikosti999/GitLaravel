@@ -7,22 +7,22 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\front\index_model as index;
 use App\Models\front\linea_model as linea;
-use App\Models\front\sucursal_model as sucursal;
-use App\Models\front\slider_model as slider;
 use App\Models\front\promocion_model as promocion;
+use App\Models\front\sucursal_model as sucursal;
 
-class lineasController extends Controller
+class promocionesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function maquinas( $sucursal = null ){
+    public function index( $sucursal = null ){
         
         $data = [];
+
+        $data["id_linea"] = \Input::get('linea');
 
         $data["sucursal"] = $sucursal;
 
@@ -30,27 +30,18 @@ class lineasController extends Controller
         $data["sucursal_info"] = sucursal::find_by_slug( $sucursal );
         $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
 
-        //-----> Obtenemos los sliders
-        $data["slider"] = linea::find_gallery( 1 );
-
         //-----> Obtenemos promociones
-        $data["promociones"] = promocion::find_all( [ "linea" => 1, "id_sucursal" => $id_sucursal ] );
-
-        //-----> Obtenemos maquinas de juego
-        $data["maquinas"] = linea::find_all_games( [ "linea" => 1, "id_sucursal" => $id_sucursal ] );
-
-        //-----> Obtenemos los proveedores
-        $data["proveedores"] = linea::find_all_providers();
+        $data["promociones"] = promocion::find_all( [ "id_sucursal" => $id_sucursal, "id_linea" => $data["id_linea"] ] );
  
         //-----> Obtenemos otras opciones de diversión
-        $data["otras"] = linea::find_all( [ "not_in" => [ 1 ] ] );
+        $data["lineas"] = linea::find_all();
 
         //-----> Obtenemos todas las sucursales
         $data["sucursales"] = sucursal::find_all();
 
         //dd($data);
 
-        return view('front.lineas.maquinas',$data);
+        return view('front.promociones.index',$data);
     
     }
 
