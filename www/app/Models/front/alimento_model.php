@@ -3,10 +3,49 @@ namespace App\Models\front;
 
 class alimento_model{
     
-    static function find_all(){
+    static function find_all( $param = [] ){
+
+        $data = [];
 
         //-----> Obtenemos las categorias
-        
+        $categories = \DB::table('categoria_alimento as t1')
+                            ->select(
+                                't1.id',
+                                't1.nombre',
+                                't1.id_tipo_alimento'
+                            )->get();
+
+        if( $categories ){
+
+            foreach( $categories as $cat ){
+
+                $data[ $cat->id ]["categoria"]      = $cat->nombre;
+                $data[ $cat->id ]["tipo_alimento"]  = $cat->id_tipo_alimento;
+
+                $query = \DB::table('alimento as t1')->select("t1.*")->where('t1.categoria_alimento','=',$cat->id);
+
+                if( isset( $param["id_sucursal"] ) && $param["id_sucursal"] ){
+
+                    $query = $query->join("alimento_sucursal as t2", "t1.id_alimento", "=", "t2.id_alimento" )
+                                        ->where("t2.id_sucursal", "=", $param["id_sucursal"]);
+
+                }
+
+                $data[ $cat->id ]["alimentos"] = $query->get();
+
+            }
+
+        }
+
+        return $data;
+
+    }
+
+    static function find_all_types(){
+
+        $data = \DB::table('tipo_alimento')->get();
+
+        return $data;
 
     }
 

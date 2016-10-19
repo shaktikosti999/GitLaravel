@@ -60,4 +60,4 @@ Route::get('/promociones/detalle/{promocion}','front\promocionesController@detal
 Route::post('/contacto/newsletter','front\contactoController@newsletter');
 
 //-----> Alimentos y bebidas
-Route::get('/alimentos-y-bebidas','front\alimentosController@index');
+Route::get('/alimentos-y-bebidas/{sucursal?}','front\alimentosController@index');

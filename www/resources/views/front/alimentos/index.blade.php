@@ -6,20 +6,39 @@
 			<div class="shell">
 				<h1>Menú <br>Alimentos y bebidas</h1>
 				
-				<h2>Sucursal Tecamachalco</h2>
+				<h2>
+
+					@if( isset( $sucursal_info->nombre ) )
+										 			
+			 			Sucursal {{ $sucursal_info->nombre }}
+
+			 		@endif
+
+				</h2>
 				
 				<div class="intro-content-actions">
 					<div class="cols">
-						<div class="col col-1of2">
-							<div class="filter-secondary">
-								<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-								<select name="field-filter-secondary1" id="field-filter-secondary1" class="select">
-									<option value="">Cambiar sucursal</option>
-									<option value="">Cambiar sucursal 1</option>
-									<option value="">Cambiar sucursal 2 </option>
-								</select>
-							</div><!-- /.filter-secondary -->
-						</div><!-- /.col col-1of2 -->
+						
+						@if( isset( $sucursales ) && count( $sucursales ) )
+
+							<div class="col col-1of2">
+								<div class="filter-secondary">
+									<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+									<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
+										
+										<option value="-1">Selecciona una sucursal</option>
+
+										@foreach( $sucursales as $item )
+
+											<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
+
+										@endforeach
+
+									</select>
+								</div><!-- /.filter-secondary -->
+							</div><!-- /.col col-1of2 -->
+
+						@endif
 						
 						<div class="col col-1of2">
 							<p class="breadcrumbs">
@@ -42,202 +61,69 @@
 				<div class="section-body">
 					<div class="section-actions">
 						<ul class="list-filters">
-							<li class="current">
-								<a href="#">Alimentos</a>
-							</li>
+
+							<?php $c = 1; ?>
 							
-							<li>
-								<a href="#">Bebidas</a>
-							</li>
+							@if( isset( $tipos_alimentos ) && count( $tipos_alimentos ) )
+
+								@foreach( $tipos_alimentos as $t )
+
+									<li class="{{ ( $c++ == 1 ) ? '' : '' }}">
+										<a href="#" class="filtro-tipo-alimento" data-id="{{ $t->id_tipo }}">{{ $t->nombre }}</a>
+									</li>
+
+								@endforeach
+							
+							@endif
+
 						</ul><!-- /.list-filters -->
 					</div><!-- /.section-actions -->
 
 					<div class="section-inner">
-						<div class="section-head">
-							<h2>Platillos promocionales</h2>
-						</div><!-- /.section-head -->
 						
-						<div class="section-body-inner">
-							<div class="slider-games slider-games-menu">
-								<div class="slider-clip">
-									<ul class="slides">
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu1.jpg); ">
-												<div class="slide-caption">
-													<p>Dolor sit</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
+						@if( isset( $alimentos ) && count( $alimentos ) )
 
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu2.jpg); ">
-												<div class="slide-caption">
-													<p>Turpis molestie</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
+							@foreach( $alimentos as $alimento )
 
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu3.jpg); ">
-												<div class="slide-caption">
-													<p>Et eros</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
+								<?php if( ! isset( $alimento["alimentos"] ) || ! count( $alimento["alimentos"] ) ) continue; ?>
 
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu4.jpg); ">
-												<div class="slide-caption">
-													<p>Phasellus </p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
+								<div class="section-head item-tipo-alimento item-tipo-alimento-{{ $alimento['tipo_alimento'] }}">
+									<h2>{{ $alimento["categoria"] }}</h2>
+								</div><!-- /.section-head -->
+								
+								@if( isset( $alimento["alimentos"] ) && count( $alimento["alimentos"] ) )
 
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu2.jpg); ">
-												<div class="slide-caption">
-													<p>Turpis molestie</p>
+									<div class="section-body-inner item-tipo-alimento item-tipo-alimento-{{ $alimento['tipo_alimento'] }}">
+										<div class="slider-games slider-games-menu">
+											<div class="slider-clip">
+												<ul class="slides">
 													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-									</ul><!-- /.slides -->
-								</div><!-- /.slider-clip -->
-							</div><!-- /.slider-games -->
-						</div><!-- /.section-body-inner -->
+													@foreach( $alimento["alimentos"] as $item )
 
-						<div class="section-head">
-							<h2>Ofertas del mes</h2>
-						</div><!-- /.section-head -->
+														<li class="slide tipo-{{ $item->tipo_alimento }}">
+															<div class="slide-content" style="background-image: url('{{ $item->archivo }}'); ">
+																<div class="slide-caption">
+																	<p>{{ $item->nombre }}</p>
+																	
+																	<span>{{ $item->descripcion }}</span>
+																</div><!-- /.slide-caption -->
+															</div><!-- /.slide-content -->
+														</li><!-- /.slide -->
+
+													@endforeach
+
+												</ul><!-- /.slides -->
+											</div><!-- /.slider-clip -->
+										</div><!-- /.slider-games -->
+									</div><!-- /.section-body-inner -->
+
+								@endif
+
+							@endforeach
+
+						@endif
+
 						
-						<div class="section-body-inner">
-							<div class="slider-games slider-games-menu">
-								<div class="slider-clip">
-									<ul class="slides">
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu5.jpg); ">
-												<div class="slide-caption">
-													<p>Eleifend</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu6.jpg); ">
-												<div class="slide-caption">
-													<p>Sodales</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu7.jpg); ">
-												<div class="slide-caption">
-													<p>Quisque</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu8.jpg); ">
-												<div class="slide-caption">
-													<p>Tempor</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu6.jpg); ">
-												<div class="slide-caption">
-													<p>Sodales</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-									</ul><!-- /.slides -->
-								</div><!-- /.slider-clip -->
-							</div><!-- /.slider-games -->
-						</div><!-- /.section-body-inner -->
-
-						<div class="section-head">
-							<h2>Platillos regulares</h2>
-						</div><!-- /.section-head -->
-						
-						<div class="section-body-inner">
-							<div class="slider-games slider-games-menu">
-								<div class="slider-clip">
-									<ul class="slides">
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu9.jpg); ">
-												<div class="slide-caption">
-													<p>Integer</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu10.jpg); ">
-												<div class="slide-caption">
-													<p>Suspendisse</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu11.jpg); ">
-												<div class="slide-caption">
-													<p>Praesent</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu12.jpg); ">
-												<div class="slide-caption">
-													<p>Neque</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-
-										<li class="slide">
-											<div class="slide-content" style="background-image: url(css/images/temp/menu10.jpg); ">
-												<div class="slide-caption">
-													<p>Suspendisse</p>
-													
-													<span>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie.</span>
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-									</ul><!-- /.slides -->
-								</div><!-- /.slider-clip -->
-							</div><!-- /.slider-games -->
-						</div><!-- /.section-body-inner -->
 					</div><!-- /.section-inner -->
 				</div><!-- /.section-body -->
 			</div><!-- /.shell -->
@@ -289,15 +175,30 @@
 			$(".branch-filter").change( function(){
 
 				var $value = $( this ).val();
-				var $url   = "/lineas-de-juego/maquinas-de-juego";
+				var $url   = "/alimentos-y-bebidas";
 
 				if( $value != -1 ){
 
-					$url = "/lineas-de-juego/maquinas-de-juego/" + $value;
+					$url = "/alimentos-y-bebidas/" + $value;
 
 				}
 
 				$( location ).attr("href", $url);
+
+			} );
+
+			$(".filtro-tipo-alimento").click( function( e ){
+
+				e.preventDefault();
+
+				$(".list-filters li").removeClass("current");
+				$( this ).parent().addClass("current");
+
+				var $id = $( this ).data("id");
+
+				$(".item-tipo-alimento").hide();
+				$(".item-tipo-alimento-" + $id).show();
+
 
 			} );
 

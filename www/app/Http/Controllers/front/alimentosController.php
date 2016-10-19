@@ -32,7 +32,10 @@ class alimentosController extends Controller
         $data["sucursales"] = sucursal::find_all();
 
         //-----> Obtenemos los alimentos
-        $data["alimentos"] = alimento::find_all();
+        $data["alimentos"] = alimento::find_all( [ 'id_sucursal' => $id_sucursal ] );
+
+        //-----> Obtenemos los tipos de alimentos
+        $data["tipos_alimentos"] = alimento::find_all_types();
 
         //dd($data);
 
