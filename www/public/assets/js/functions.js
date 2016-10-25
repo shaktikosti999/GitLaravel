@@ -4,6 +4,46 @@
 
 	$doc.ready(function() {
 
+		// scrollChange
+		function scrollChange() {
+			var elScroll,
+				iconScroll;
+
+			function getScroll() {
+				elScroll = $( '.shell-btn' ).offset().top;
+				iconScroll = $( '.icon-wrapper' ).offset().top;
+				console.log( elScroll, iconScroll );
+
+				if ( elScroll >= ( iconScroll - 50 ) ) {
+					$( '.list-buttons' ).addClass( 'list-buttons--change' );
+				} else {
+					$( '.list-buttons' ).removeClass( 'list-buttons--change' );
+				}
+
+				if( elScroll >= iconScroll ) {
+					$( '.list-buttons' ).css({
+						opacity: 0,
+						display: 'none'
+					});
+				} else {
+					$( '.list-buttons' ).css({
+						opacity: 1,
+						display: 'block'
+					});
+				}
+			}
+
+			$( window ).on( 'scroll', getScroll );
+		}
+
+		scrollChange();
+
+		//close lightbox
+		$('.close').click(function(e){
+			e.preventDefault();
+			$('.lightbox--module').fadeOut();
+		});
+
 		function validEmail( $email ) {
 
 		  var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;

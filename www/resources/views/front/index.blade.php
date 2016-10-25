@@ -1,6 +1,209 @@
 @extends('layout.front')
 @section('contenido')
 
+<!-- BEGIN: LIGHTBOX ESTABLECIMIENTOS 
+        <section class="lightbox-etb2 lightbox--module">
+            <section class="modal-etb2 centerme">
+                <form class="modal-item">
+
+                        <div class="texto-etb">
+                            <h4>Ayúdanos a encontrar los establecimientos ideales para tí.</h4>
+                        </div>
+                        <div class="txt-select">
+							<p>Selecciona tu ciudad</p>
+						</div>
+                    	<div class="select btn--select">
+	                        <select name="ciudad">
+								<option>Ciudad de México</option>
+								<option>Ciudad de México</option>
+								<option>Ciudad de México</option>
+							</select>
+						</div>
+						<div class="txt-select">
+							<p>Selecciona tu sucursal</p>
+						</div>
+						<div class="select">
+							<select name="sucursal">
+								<option>Tecamachalco</option>
+								<option>Tecamachalco</option>
+								<option>Tecamachalco</option>
+							</select>
+						</div>
+
+                        <div class="texto">
+                           <button type="button" class="btn  btn-red large"><span>Buscar</span></button>
+                        </div>
+
+                        <div class="texto">
+                           <button type="button" class="btn  btn-border large"><span>Encontrar mi ubicación automaticamente</span></button>
+                        </div>
+
+                        <div class="texto">
+                        <a href="#" class="btn secundary-etb2">Cancelar</a> 
+                        </div>
+
+                </form>
+
+                <button type="button" class="close  js-close-lightbox">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button> 
+            </section>
+        </section>
+<!--END: LIGHTBOX ESTABLECIMIENTOS -->
+
+<!-- BEGIN: LIGHTBOX UBICACION CIUDAD -->
+        <section class="lightbox-etb lightbox--module">
+            <section class="modal centerme">
+                <form class="modal-item">
+
+                		<div class="texto-etb">
+                            <h4>Ciudad seleccionada</h4>
+                            <div class="select btn--select">
+		                        <select name="ciudad">
+									<option>Ciudad de México</option>
+									<option>Ciudad de México</option>
+									<option>Ciudad de México</option>
+								</select>
+							</div>
+                        </div>
+
+                        <div class="texto-etb">
+                            <h4>Selecciona tu sucursal</h4>
+                            <div class="select btn--select">
+		                        <select name="lineas de juego">
+									<option>Tecamachalco</option>
+									<option>Tecamachalco</option>
+									<option>Tecamachalco</option>
+								</select>
+							</div>
+                        </div>
+
+
+
+                        <div class="texto-etb">
+                            <h4>Selecciona tu línea de juego</h4>
+                            <div class="select btn--select">
+		                        <select name="ciudad">
+									<option>Máquinas de juego</option>
+									<option>Mesas de juego</option>
+									<option>Apuesta deportiva</option>
+									<option>Apuesta de carreras</option>
+								</select>
+							</div>
+                        </div>
+
+                        <div class="texto">
+                           <button type="button" class="btn  btn-red medium"><span>Continuar</span></button>
+                        </div>
+
+                        <div class="texto">
+                        <a href="#" class="btn secundary etb">Cancelar</a> 
+                        </div>
+
+                </form>
+
+                <button type="button" class="close  js-close-lightbox">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button> 
+            </section>
+        </section>
+<!--END: LIGHTBOX UBICACION CIUDAD -->
+
+
+<!-- BEGIN: LIGHTBOX ESTABLECIMIENTOS 
+        <section class="lightbox-etb lightbox--module">
+            <section class="modal centerme">
+                <form class="modal-item">
+
+                        <div class="texto-etb">
+                            <h4>Línea de juego seleccionada</h4>
+                            <div class="select btn--select">
+		                        <select name="lineas de juego">
+									<option>Máquinas de juego</option>
+									<option>Mesas de juego</option>
+									<option>Apuesta deportiva</option>
+									<option>Apuesta de carreras</option>
+								</select>
+							</div>
+                        </div>
+
+                        <div class="texto-etb">
+                            <h4>Selecciona tu ciudad</h4>
+                            <div class="select btn--select">
+		                        <select name="ciudad">
+									<option>México</option>
+									<option>México</option>
+									<option>México</option>
+								</select>
+							</div>
+                        </div>
+
+                        <div class="texto-etb">
+                            <h4>Selecciona tu sucursal</h4>
+                            <div class="select btn--select">
+		                        <select name="ciudad">
+									<option>Tecamachalco</option>
+									<option>Tecamachalco</option>
+									<option>Tecamachalco</option>
+								</select>
+							</div>
+                        </div>
+
+                      <div class="input">    input 
+                       		 <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <input class="input__input  required" type="text" name="name" placeholder="Tecamachalco" required>
+                        </div>
+
+                        <div class="input">
+                       		 <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <input class="input__input  required" type="text" name="name" placeholder="Aragón" required>
+                        </div>
+
+                        <div class="texto">
+                           <button type="button" class="btn  btn-red medium"><span>Continuar</span></button>
+                        </div>
+
+                        <div class="texto">
+                        <a href="#" class="btn secundary etb">Cancelar</a> 
+                        </div>
+
+                </form>
+
+                <button type="button" class="close  js-close-lightbox">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button> 
+            </section>
+        </section>
+END: LIGHTBOX ESTABLECIMIENTOS -->
+
+<!-- BEGIN: LIGHTBOX ATENCIÓN 
+        <section class="lightbox lightbox--module">
+            <section class="modal centerme">
+                <form class="modal-item">
+                		<div class="icon-texto">
+                			<i class="fa fa-map-marker" aria-hidden="true"></i>
+                		</div>
+                        <div class="texto">
+                            <h2>Atención</h2>
+                            <p>Calientecasino.com.mx requiere de tu concentimiento para activar el GPS para rastrear tu ubicación.</p>
+                        </div>
+
+                        <div class="texto">
+                        	<a href="#" class="btn secundary">No activar</a> 
+                        </div>
+
+                        <div class="texto">
+                           <button type="button" class="btn  btn-red primary"><span>Activar</span></button>
+                        </div>
+                </form>
+
+                <button type="button" class="close  js-close-lightbox">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button> 
+            </section>
+        </section>
+END: LIGHTBOX ATENCIÓN -->
+
 	@if( isset( $slider ) && count( $slider ) )
 
 		<div class="slider-intro anchor">
@@ -39,7 +242,7 @@
 		@if( isset( $lineas ) && count( $lineas ) )
 
 				<section class="button-section">
-					<div class="shell">
+					<div class="shell shell-btn">
 						<ul class="list-buttons">
 
 							@foreach( $lineas as $linea )
@@ -121,7 +324,7 @@
 										
 										<span class="feature-content">
 											<span class="icon-wrapper">
-												<i class="{{ $linea->icono }}-small"></i>
+												<i class="{{ $linea->icono }}"></i>
 											</span><!-- /.icon-wrapper -->
 											
 											<small>{{ $linea->linea }}</small>
@@ -150,7 +353,7 @@
 						</div><!-- /.subscribe-head -->
 
 						<div class="subscribe-wrapper">
-							<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>
+							<!--<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>-->
 
 							<div class="subscribe-body-hidden">
 								<div class="subscribe-inner">
@@ -197,6 +400,15 @@
 								<p>Sucursal</p>
 								
 								<h2>{{ $rand_sucursal->nombre }}</h2>
+
+								<div class="select btn-ubn"> <!-- BEGIN boton sucursal -->
+			                        <select name="ciudad">
+										<option>Ciudad de México</option>
+										<option>Ciudad de México</option>
+										<option>Ciudad de México</option>
+									</select> <!-- END boton sucursal -->
+								</div>
+
 							</div><!-- /.section-content-head -->
 									
 							<div class="section-content-body">
