@@ -7,6 +7,19 @@
 
 	}
 
+	<div class="wrapper">
+    
+    <div class="stick-nav"><!-- Stick nav -->
+        <ul>
+            <li><a href="#promociones"><img src="css/images/icons/icon-1.png"><span>Promociones</span></a></li>
+            <li><a href="#maquinas"><img src="css/images/icons/icon-2.png"><span>Máquinas</span></a></li>
+            <li><a href="#proveedores"><img src="css/images/icons/icon-3.png"><span>Proveedores</span></a></li>
+            <li><a href="#jackpot"><img src="css/images/icons/icon-4.png"><span>Jackpot</span></a></li>
+            <li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Sucursales</span></a></li>
+            <li><a href="#diversion"><img src="css/images/icons/icon-6.png"><span>Diversión</span></a></li>
+        </ul>
+    </div>
+
 	<div class="slider-secondary">
 		<a href="#" class="btn-menu">
 			<img src="css/images/btn-menu@2x.png" alt="">
@@ -360,7 +373,7 @@
 						</div><!-- /.subscribe-head -->
 
 						<div class="subscribe-wrapper">
-							<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>
+							<!--<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>-->
 
 							<div class="subscribe-body-hidden">
 								<div class="subscribe-inner">

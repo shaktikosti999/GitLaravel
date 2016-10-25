@@ -1,5 +1,18 @@
 @extends('layout.front')
 @section('contenido')
+	
+	<div class="wrapper">
+    
+    <div class="stick-nav"><!-- Stick nav -->
+        <ul>
+            <li><a href="#promociones"><img src="css/images/icons/icon-1.png"><span>Promociones</span></a></li>
+            <li><a href="#juegos"><img src="css/images/icons/icon-7.png"><span>Juegos</span></a></li>
+            <li><a href="#jackpot"><img src="css/images/icons/icon-4.png"><span>Jackpot</span></a></li>
+            <li><a href="#torneos"><img src="css/images/icons/icon-8.png"><span>Torneos</span></a></li>
+            <li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Sucursales</span></a></li>
+            <li><a href="#diversion"><img src="css/images/icons/icon-6.png"><span>Diversión</span></a></li>
+        </ul>
+    </div>
 
 	<div class="slider-secondary">
 		<div class="slider-clip">
@@ -434,7 +447,7 @@
 						</div><!-- /.subscribe-head -->
 
 						<div class="subscribe-wrapper">
-							<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>
+							<!--<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>-->
 
 							<div class="subscribe-body-hidden">
 								<div class="subscribe-inner">
