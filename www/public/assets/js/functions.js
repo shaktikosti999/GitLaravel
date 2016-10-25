@@ -4,6 +4,18 @@
 
 	$doc.ready(function() {
 
+
+
+		$win.on('scroll', function() {
+			var winT = $win.scrollTop();
+
+			if ( winT > + 20 ) {
+				$('.header').addClass('fixed')
+			} else {
+				$('.header').removeClass('fixed')
+			};
+		});
+
 		// scrollChange
 		function scrollChange() {
 			var elScroll,
@@ -279,21 +291,16 @@
 			$(this).addClass('hidden');
 		})
 
-		$win.on('scroll', function() {
-			var winT = $win.scrollTop();
-
-			if ( winT > + 20 ) {
-				$('.header').addClass('fixed')
-			} else {
-				$('.header').removeClass('fixed')
-			};
-		});
+		
 
 		//footer-socials fix dropdown on mobile (add class)
 		$('.socials-footer  > ul > li > a').on('click', function (event) {
 			event.preventDefault();
 			$(this).parent('li').toggleClass('active');
 		});
+
+
+
 	}); //jQuery end
 
 	$(function() {
@@ -515,3 +522,23 @@
 		}
 	});
 })(jQuery, window, document);
+
+$(function() {
+  // Generic selector to be used anywhere
+  $(".stick-nav ul li a").click(function(e) {
+
+    // Get the href dynamically
+    var destination = $(this).attr('href');
+
+    // Prevent href=“#” link from changing the URL hash (optional)
+    e.preventDefault();
+
+    // Animate scroll to destination
+    $('html, body').animate({
+      scrollTop: $(destination).offset().top
+    }, 500);
+  });
+});
+
+
+	

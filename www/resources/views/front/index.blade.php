@@ -431,14 +431,18 @@ END: LIGHTBOX ATENCIÓN -->
 									
 									<li>
 										<i class="ico-clock"></i>
-									
-										{!! $rand_sucursal->horario !!}
+
+										<p>
+											{!! $rand_sucursal->horario !!}
+										</p>
 									</li>
 									
 									<li>
 										<i class="ico-car"></i>
-									
-										{!! $rand_sucursal->instrucciones !!}
+
+										<p>
+											{!! $rand_sucursal->instrucciones !!}
+										</p>
 									</li>
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->

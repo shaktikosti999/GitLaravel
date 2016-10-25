@@ -92,6 +92,7 @@
 			<section class="section-promotions">
 				<div class="shell">
 					<header class="section-head">
+						<div class="stick--point" id="promociones"></div>
 						<h2>
 							Promociones
 						</h2>
@@ -149,6 +150,7 @@
 		<section class="section-games-available">
 			<div class="shell">
 				<div class="section-head">
+					<div class="stick--point" id="juegos"></div>
 					<h2>
 						Juegos disponibles
 					</h2>
@@ -354,6 +356,7 @@
 		<section class="section-jackpots secondary">
 			<div class="shell">
 				<header class="section-head">
+					<div class="stick--point" id="jackpot"></div>
 					<h2>
 						<small>Bad Beat</small>
 						Jackpot
@@ -393,6 +396,7 @@
 			<section class="section section-secondary">
 				<div class="shell">
 					<header class="section-head">
+						<div class="stick--point" id="torneos"></div>
 						<h2>
 							Torneos
 						</h2>
@@ -485,6 +489,7 @@
 					<div class="section-content">
 						<div class="shell">
 							<div class="section-content-head">
+								<div class="stick--point" id="sucursales"></div>
 								<p>Sucursal</p>
 								
 								<h2>{{ $sucursal_info->nombre }}</h2>
@@ -571,6 +576,7 @@
 			<section class="section section-simple">
 				<div class="shell">
 					<div class="section-head">
+						<div class="stick--point" id="diversion"></div>
 						<h2>
 							<small>Otras opciones de</small>
 							Diversión

@@ -7,6 +7,7 @@
 
 	}
 
+
 	<div class="wrapper">
     
     <div class="stick-nav"><!-- Stick nav -->
@@ -105,6 +106,7 @@
 			<section class="section-promotions">
 				<div class="shell">
 					<header class="section-head">
+						<div class="stick--point" id="promociones"></div>
 						<h2>
 							Promociones
 						</h2>
@@ -164,6 +166,7 @@
 			<section class="section-promotions">
 				<div class="shell">
 					<header class="section-head">
+						<div class="stick--point" id="maquinas"></div>
 						<h2>
 							Máquinas de juego disponibles
 						</h2>
@@ -236,6 +239,7 @@
 			<section class="section-providers">
 				<div class="shell">
 					<header class="section-head">
+						<div class="stick--point" id="proveedores"></div>
 						<h2>
 							Proveedores
 						</h2>
@@ -270,6 +274,7 @@
 		<section class="section-jackpots">
 			<div class="shell">
 				<header class="section-head">
+					<div class="stick--point" id="jackpot"></div>
 					<h2>
 						<small>Jackpot</small>
 						Acumulado
@@ -411,6 +416,7 @@
 					<div class="section-content">
 						<div class="shell">
 							<div class="section-content-head">
+								<div class="stick--point" id="sucursales"></div>
 								<p>Sucursal</p>
 								
 								<h2>{{ $sucursal_info->nombre }}</h2>
@@ -497,6 +503,7 @@
 			<section class="section section-simple">
 				<div class="shell">
 					<div class="section-head">
+						<div class="stick--point" id="diversion"></div>
 						<h2>
 							<small>Otras opciones de</small>
 							Diversión
