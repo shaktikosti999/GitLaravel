@@ -1,45 +1,42 @@
 @extends('layout.front')
 @section('contenido')
 
-<!-- BEGIN: LIGHTBOX ESTABLECIMIENTOS 
-        <section class="lightbox-etb2 lightbox--module">
-            <section class="modal-etb2 centerme">
+<!-- BEGIN: LIGHTBOX SUCURSAL 
+        <section class="lightbox-etb lightbox--module">
+            <section class="modal centerme">
                 <form class="modal-item">
 
                         <div class="texto-etb">
-                            <h4>Ayúdanos a encontrar los establecimientos ideales para tí.</h4>
+                            <h4>Selecciona tu sucursal</h4>
+                            <div class="select btn--select">
+		                        <select name="lineas de juego">
+									<option>Tecamachalco</option>
+									<option>Tecamachalco</option>
+									<option>Tecamachalco</option>
+								</select>
+							</div>
                         </div>
-                        <div class="txt-select">
-							<p>Selecciona tu ciudad</p>
-						</div>
-                    	<div class="select btn--select">
-	                        <select name="ciudad">
-								<option>Ciudad de México</option>
-								<option>Ciudad de México</option>
-								<option>Ciudad de México</option>
-							</select>
-						</div>
-						<div class="txt-select">
-							<p>Selecciona tu sucursal</p>
-						</div>
-						<div class="select">
-							<select name="sucursal">
-								<option>Tecamachalco</option>
-								<option>Tecamachalco</option>
-								<option>Tecamachalco</option>
-							</select>
-						</div>
 
-                        <div class="texto">
-                           <button type="button" class="btn  btn-red large"><span>Buscar</span></button>
+
+
+                        <div class="texto-etb">
+                            <h4>Selecciona tu línea de juego</h4>
+                            <div class="select btn--select">
+		                        <select name="ciudad">
+									<option>Máquinas de juego</option>
+									<option>Mesas de juego</option>
+									<option>Apuesta deportiva</option>
+									<option>Apuesta de carreras</option>
+								</select>
+							</div>
                         </div>
 
                         <div class="texto">
-                           <button type="button" class="btn  btn-border large"><span>Encontrar mi ubicación automaticamente</span></button>
+                           <button type="button" class="btn  btn-red medium"><span>Continuar</span></button>
                         </div>
 
                         <div class="texto">
-                        <a href="#" class="btn secundary-etb2">Cancelar</a> 
+                        <a href="#" class="btn secundary etb">Cancelar</a> 
                         </div>
 
                 </form>
@@ -49,9 +46,9 @@
                 </button> 
             </section>
         </section>
-<!--END: LIGHTBOX ESTABLECIMIENTOS -->
+<!--END: LIGHTBOX UBICACION CIUDAD -->
 
-<!-- BEGIN: LIGHTBOX UBICACION CIUDAD -->
+<!-- BEGIN: LIGHTBOX UBICACION CIUDAD 
         <section class="lightbox-etb lightbox--module">
             <section class="modal centerme">
                 <form class="modal-item">
@@ -149,16 +146,7 @@
 							</div>
                         </div>
 
-                      <div class="input">    input 
-                       		 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <input class="input__input  required" type="text" name="name" placeholder="Tecamachalco" required>
-                        </div>
-
-                        <div class="input">
-                       		 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <input class="input__input  required" type="text" name="name" placeholder="Aragón" required>
-                        </div>
-
+                      
                         <div class="texto">
                            <button type="button" class="btn  btn-red medium"><span>Continuar</span></button>
                         </div>
@@ -176,7 +164,7 @@
         </section>
 END: LIGHTBOX ESTABLECIMIENTOS -->
 
-<!-- BEGIN: LIGHTBOX ATENCIÓN 
+<!-- BEGIN: LIGHTBOX ATENCIÓN -->
         <section class="lightbox lightbox--module">
             <section class="modal centerme">
                 <form class="modal-item">
