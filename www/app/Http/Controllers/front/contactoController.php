@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\front\contact_model as contact;
-
+use App\Models\front\sucursal_model as sucursal;
 class contactoController extends Controller
 {
 
@@ -69,6 +69,14 @@ class contactoController extends Controller
         print json_encode( $response );
         exit();
 
+    }
+
+    public function contacto(){
+        $data=[
+            // -----> Listado de sucursales;
+            'sucursales' => sucursal::find_all(),
+        ];
+        return view('front.contacto.index',$data);
     }
    
 }

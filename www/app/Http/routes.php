@@ -61,3 +61,9 @@ Route::post('/contacto/newsletter','front\contactoController@newsletter');
 
 //-----> Alimentos y bebidas
 Route::get('/alimentos-y-bebidas/{sucursal?}','front\alimentosController@index');
+
+// -----> Ubicaciones
+Route::get('/ubicaciones','front\ubicacionesController@index');
+
+// -----> Contacto
+Route::get('/contacto','front\contactoController@contacto');

@@ -71,11 +71,11 @@
 
 									<ul class="dropdown">
 										<li>
-											<a href="http://casinocaliente.abardev.net/lineas-de-juego/maquinas-de-juego">Máquinas de juego</a>
+											<a href="{{url('lineas-de-juego/maquinas-de-juego')}}">Máquinas de juego</a>
 										</li>
 										
 										<li>
-											<a href="http://casinocaliente.abardev.net/lineas-de-juego/mesas-de-juego">Mesas de juego</a>
+											<a href="{{url('lineas-de-juego/mesas-de-juego')}}">Mesas de juego</a>
 										</li>		
 									</ul><!-- /.dropdown --> 
 								</li>
