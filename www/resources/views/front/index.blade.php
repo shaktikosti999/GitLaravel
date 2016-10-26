@@ -266,7 +266,9 @@ END: LIGHTBOX ATENCIÓN -->
 										<li class="slide"> 									
 											<div class="slide-content" style="background-image: url({{ $p->imagen }}); ">
 												<div class="slide-caption">
-													<p>{{ $p->nombre }}</p>
+													<a href="#">
+														<p>{{ $p->nombre }}</p>
+													</a>
 													
 													<!--span>Club&reg;</span-->
 												</div><!-- /.slide-caption -->

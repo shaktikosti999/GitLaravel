@@ -525,7 +525,7 @@
 
 $(function() {
   // Generic selector to be used anywhere
-  $(".stick-nav ul li a").click(function(e) {
+  $(".stick-nav ul li a, .btn-scroll").click(function(e) {
 
     // Get the href dynamically
     var destination = $(this).attr('href');

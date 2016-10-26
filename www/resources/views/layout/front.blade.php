@@ -196,9 +196,9 @@
 						<div class="col col-size2">
 							<nav class="nav-footer">
 								<ul>
-									<li>
+									<!--<li>
 										<a href="#">Líneas De Juego</a>
-									</li>
+									</li>-->
 									
 									<li>
 										<a href="#">Sucursales</a>
@@ -208,9 +208,9 @@
 										<a href="#">Promociones Y Eventos</a>
 									</li>
 									
-									<li>
+									<!--<li>
 										<a href="#">Opciones De Diversión</a>
-									</li>
+									</li>-->
 									
 									<li>
 										<a href="/alimentos-y-bebidas">Alimentos Y Bebidas</a>
@@ -242,9 +242,9 @@
 										<a href="#">Bolsa De Trabajo</a>
 									</li>
 									
-									<li>
+									<!--<li>
 										<a href="#">Ubicaciones</a>
-									</li>
+									</li>-->
 								</ul>
 							</nav><!-- /.nav-footer -->
 						</div><!-- /.col col-size3 -->

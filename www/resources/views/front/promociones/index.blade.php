@@ -1,11 +1,14 @@
 @extends('layout.front')
 @section('contenido')
 
-	<div class="slider-intro  slider-intro-secondary"> 
+	<div class="slider-intro  slider-intro-secondary slider-intro-promo"> 
+		<a href="#promociones" class="btn-scroll promo">
+			<i class="ico-mouse"></i>
+		</a>
 		<div class="slider-clip">
 			<ul class="slides">
 				<li class="slide fullscreen" style="background-image: url(css/images/temp/slider-intro-secondary.jpg);">
-					<div class="slide-content">
+					<div class="slide-content slide-promo">
 						<div class="shell">
 							<h2>
 								PROMOCIONES Y EVENTOS
@@ -81,6 +84,7 @@
 		 <section class="section-teritary">
 		 	<div class="shell">
 		 		<div class="section-head">
+		 		<div class="stick--point" id="promociones"></div>
 		 			<h2>
 		 				Selecciona tu promoción
 		 			</h2>
