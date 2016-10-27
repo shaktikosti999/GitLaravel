@@ -67,5 +67,6 @@ Route::get('/alimentos-y-bebidas/{sucursal?}','front\alimentosController@index')
 
 // -----> Contacto
 Route::get('/contacto','front\contactoController@contacto');
+Route::put('/contacto/guardar', 'contactoController@store');
 
 Route::get('{pagina}','front\paginaController@index')->where('pagina','.+');

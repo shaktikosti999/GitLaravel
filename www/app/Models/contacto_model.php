@@ -23,4 +23,18 @@ class contacto_model{
 		return $contacto;
 	}
 
+	static function store($request){
+		$contacto = new contacto;
+		$contacto->id_sucursal		=	$request->input('field-sucursal') !== null && $request->input('field-sucursal') > 0 ? $request->input('field-sucursal') : null;
+		$contacto->tipo_mensaje		=	$request->input('field-tipo');
+		$contacto->nombre			=	$request->input('field-name');
+		$contacto->email			=	$request->input('field-email');
+		$contacto->tarjeta			=	$request->input('field-card');
+		$contacto->telefono			=	$request->input('field-phone');
+		$contacto->mensaje			=	$request->input('field-message');
+		$contacto->promociones		=	$request->input('field-promo') !== null && $request->input('field-promo') != 0 ? 1 : 0;
+		return $contacto->save();
+
+	}
+
 };

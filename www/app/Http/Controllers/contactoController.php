@@ -37,7 +37,24 @@ class contactoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){}
+    public function store(Request $request){
+        $this->validate($request,[
+            "field-name" => "required|min:2|max:100",
+            "field-email" => "required|E-Mail",
+            "field-phone" => "string",
+            "field-card" => "required|string",
+            "field-tipo" => "required|integer|min:1|max:4",
+            "field-sucursal" => "integer",
+            "field-message" => "string",
+            "field-promo" => "integer"
+        ]);
+
+        // $request->input('field-promo') = isset($request->input('field-promo')) && $request->input('field-promo') != 0 ? 1 : 0;
+
+        if(contacto::store($request))
+            return redirect()->back()->with('success','Gracias por estar en contacto con nosotros');
+        return redirect()->back()->with('success','Ocurrió un evento inesperado, inténtelo de nuevo más tarde');
+    }
 
     /**
      * Display the specified resource.

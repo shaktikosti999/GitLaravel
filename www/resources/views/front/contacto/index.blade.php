@@ -26,9 +26,9 @@
 						
 						<div class="col col-1of2">
 							<p class="breadcrumbs">
-								<a href="#">Inicio</a>
+								<a href="{{url('/')}}">Inicio</a>
 								
-								<a href="#">Contacto</a>
+								<a href="{{url('/contacto')}}">Contacto</a>
 							</p><!-- /.breadcrumbs -->
 						</div><!-- /.col col-1of2 -->
 					</div><!-- /.cols -->
@@ -51,7 +51,9 @@
 
 				<div class="section-body">
 					<div class="form-contact">
-						<form action="?" method="post">
+						<form action="{{url('contacto/guardar')}}" method="post">
+							{{csrf_field()}}
+							<input type="hidden" name="_method" value="PUT">
 							<div class="form-body">
 								<div class="form-row">
 									<label for="field-name" class="form-label" hidden>*Nombre</label>
@@ -92,33 +94,33 @@
 										<ul class="list-checkboxes">
 											<li>
 												<div class="checkbox-primary">
-													<input type="checkbox" name="field-option1" id="field-option1">
+													<input type="radio" name="field-tipo" value="1" id="field-tipo1">
 													
-													<label class="form-label" for="field-option1">Duda</label>
+													<label class="form-label" for="field-tipo1">Duda</label>
 												</div><!-- /.checkbox -->
 											</li>
 											
 											<li>
 												<div class="checkbox-primary">
-													<input type="checkbox" name="field-option2" id="field-option2">
+													<input type="radio" name="field-tipo" value="2" id="field-tipo2">
 													
-													<label class="form-label" for="field-option2">Sugerencia</label>
+													<label class="form-label" for="field-tipo2">Sugerencia</label>
 												</div><!-- /.checkbox -->
 											</li>
 											
 											<li>
 												<div class="checkbox-primary">
-													<input type="checkbox" name="field-option3" id="field-option3">
+													<input type="radio" name="field-tipo" value="3" id="field-tipo3">
 													
-													<label class="form-label" for="field-option3">Felicitación</label>
+													<label class="form-label" for="field-tipo3">Felicitación</label>
 												</div><!-- /.checkbox -->
 											</li>
 											
 											<li>
 												<div class="checkbox-primary">
-													<input type="checkbox" name="field-option4" id="field-option4" checked>
+													<input type="radio" name="field-tipo" value="4" id="field-tipo4" checked>
 													
-													<label class="form-label" for="field-option4">Queja</label>
+													<label class="form-label" for="field-tipo4">Queja</label>
 												</div><!-- /.checkbox -->
 											</li>
 										</ul><!-- /.list-checkboxes -->
@@ -126,16 +128,24 @@
 								</div><!-- /.form-row -->
 
 								<div class="form-row select-wrapper">
-									<label for="field-select" class="form-label" hidden>Indique sucursal</label>
+									<label for="field-sucursal" class="form-label" hidden>Indique sucursal</label>
 									
+									@if( isset($sucursales) && count($sucursales) )
+
 									<div class="form-controls">
-										<select name="field-select" id="field-select" class="select">
+										<select name="field-sucursal" id="field-sucursal" class="select">
 											<option value="">Indique sucursal</option>
-											<option value="">Option 1</option>
-											<option value="">Option 2</option>
-											<option value="">Option 3</option>
+											@foreach( $sucursales as $item )
+
+												<option value="{{$item->id_sucursal}}">{{$item->nombre}}</option>
+
+											@endforeach
+
 										</select>
 									</div><!-- /.form-controls -->
+
+									@endif
+
 								</div><!-- /.form-row select-wrapper -->
 
 								<div class="form-row">
@@ -151,7 +161,7 @@
 								<ul class="list-checkboxes">
 									<li>
 										<div class="checkbox-primary checkbox-primary-small-right">
-											<input type="checkbox" name="field-promo" id="field-promo">
+											<input type="checkbox" name="field-promo" id="field-promo" value="1">
 											
 											<label class="form-label" for="field-promo">Quiero recibir promociones exclusivas de Caliente</label>
 										</div><!-- /.checkbox -->
