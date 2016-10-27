@@ -22,7 +22,7 @@
     </div>
 
 	<div class="slider-secondary">
-		<a href="#" class="btn-menu">
+		<a href="/alimentos-y-bebidas" class="btn-menu">
 			<img src="css/images/btn-menu@2x.png" alt="">
 		</a>
 
@@ -171,7 +171,7 @@
 							Máquinas de juego disponibles
 						</h2>
 
-						<a href="#" class="btn btn-red">
+						<a href="/aprende_a_jugar" class="btn btn-red">
 							Aprende a jugar
 						</a>
 					</header><!-- /.section-head -->

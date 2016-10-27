@@ -17,20 +17,24 @@ class paginaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+
         $slug = explode(url() . '/', \Request::url());
         $slug = end($slug);
 
         $pagina = pagina::get_page($slug);
 
         if(is_object($pagina)){
+
             $data = array(
-                'pagina' => $pagina,
-                'son' => pagina::get_sons($pagina->id_contenido),
-                'vinicolas' => pagina::get_attraction(null,['a.tipo_atraccion'=>1])
+                'pagina' => $pagina
             );
+
             return view('front.vino',$data);
+
         }
+
         abort(404);
+
     }
 
     public function arte(){

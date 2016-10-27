@@ -97,7 +97,7 @@
 							Promociones
 						</h2>
 
-						<a href="#" class="btn btn-black">
+						<a href="/promociones" class="btn btn-black">
 							consulta calendario completo
 						</a>
 					</header><!-- /.section-head -->
