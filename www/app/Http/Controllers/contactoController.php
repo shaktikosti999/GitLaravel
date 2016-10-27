@@ -20,8 +20,7 @@ class contactoController extends Controller
         $data = array(
             'contactos' => contacto::all()
         );
-        dd($data);
-        return view('back.contacto.index');
+        return view('back.contacto.index',$data);
     }
 
     /**
@@ -62,7 +61,12 @@ class contactoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){}
+    public function show($id){
+        if( \Request::ajax() )
+            echo contacto::find_message($id);
+        else
+            abort(500);
+    }
 
     /**
      * Show the form for editing the specified resource.

@@ -129,6 +129,9 @@ class generalController extends Controller
                 case 'linea':
                     $modulo = \App\linea::find($id);
                     break;
+                case 'contacto':
+                    $modulo = \App\contacto::find($id);
+                    break;
                 default:
                     dd($modulo);
                 break;

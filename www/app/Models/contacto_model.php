@@ -13,14 +13,30 @@ class contacto_model{
 				'c.telefono',
 				'c.nombre',
 				'c.email',
+				\DB::raw( // ----> Asignación del tipo de pregunta
+					'if(c.tipo_mensaje = 1, "Duda", 
+						if(c.tipo_mensaje=2 , "Sugerencia", 
+							if(c.tipo_mensaje=3,"Felicitación","Queja")
+						)
+					) as tipo'
+				),
 				'c.created_at as fecha'
 			)
-			->join('sucursal as s','s.id_sucursal','=','c.id_sucursal')
+			->leftJoin('sucursal as s','s.id_sucursal','=','c.id_sucursal')
+			->orderBy('c.created_at')
 			->orderBy('s.nombre')
 			->orderBy('c.nombre')
 			->where('c.eliminado',0)
 			->get();
 		return $contacto;
+	}
+
+	static function find_message($id){
+		$get = contacto::select('mensaje')
+			->find($id);
+
+		return $get->mensaje;
+
 	}
 
 	static function store($request){
