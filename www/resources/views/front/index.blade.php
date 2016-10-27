@@ -1,7 +1,7 @@
 @extends('layout.front')
 @section('contenido')
 
-<!-- BEGIN: LIGHTBOX SUCURSAL 
+<!-- BEGIN: LIGHTBOX SUCURSAL
         <section class="lightbox-etb lightbox--module">
             <section class="modal centerme">
                 <form class="modal-item">
@@ -164,7 +164,7 @@
         </section>
 END: LIGHTBOX ESTABLECIMIENTOS -->
 
-<!-- BEGIN: LIGHTBOX ATENCIÓN -->
+<!-- BEGIN: ¡¡¡¡¡LIGHTBOX ATENCIÓN ALTERNATIVA!!!!
         <section class="lightbox lightbox--module">
             <section class="modal centerme">
                 <form class="modal-item">
@@ -205,13 +205,16 @@ END: LIGHTBOX ATENCIÓN -->
 					@foreach( $slider as $s )
 
 						<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-							<div class="slide-content">
-								<div class="shell">
-									<h1>{{ $s->titulo }}</h1>
+							<div class="slide-content ">
+								<!--<div class="shell">
+									<h1>{{ $s->titulo }}</h1>-->
+									<h1>
+										Promociones y Eventos
+									</h1>
 									
 									<a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a>
 
-								</div><!-- /.shell -->
+								<!--</div> /.shell -->
 							</div><!-- /.slide-content -->
 						</li><!-- /.slide -->
 
@@ -266,7 +269,7 @@ END: LIGHTBOX ATENCIÓN -->
 										<li class="slide"> 									
 											<div class="slide-content" style="background-image: url({{ $p->imagen }}); ">
 												<div class="slide-caption">
-													<a href="#">
+													<a href="index.blade.php">
 														<p>{{ $p->nombre }}</p>
 													</a>
 													
