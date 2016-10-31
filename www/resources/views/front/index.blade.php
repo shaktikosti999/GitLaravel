@@ -107,7 +107,7 @@
 <!--END: LIGHTBOX UBICACION CIUDAD -->
 
 
-<!-- BEGIN: LIGHTBOX ESTABLECIMIENTOS 
+<!-- BEGIN: LIGHTBOX ESTABLECIMIENTOS -->
         <section class="lightbox-etb lightbox--module">
             <section class="modal centerme">
                 <form class="modal-item">
@@ -256,33 +256,39 @@ END: LIGHTBOX ATENCIÓN -->
 
 		<section class="section-slider">
 			<div class="shell">
+
 				
 				@if( isset( $promociones ) && count( $promociones ) )
 
+
 					<div class="section-body">
 						<div class="slider-games">
-							<div class="slider-clip">
-								<ul class="slides">
-									
-									@foreach( $promociones as $p )
+							<div class="section-head">
+								<h2>Promociones</h2>
+							
+								<div class="slider-clip">
+									<ul class="slides">
+										
+										@foreach( $promociones as $p )
 
-										<li class="slide"> 									
-											<div class="slide-content" style="background-image: url({{ $p->imagen }}); ">
-												<div class="slide-caption">
-													<a href="index.blade.php">
-														<p>{{ $p->nombre }}</p>
-													</a>
-													
-													<!--span>Club&reg;</span-->
-												</div><!-- /.slide-caption -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
+											<li class="slide"> 									
+												<div class="slide-content" style="background-image: url({{ $p->imagen }}); ">
+													<div class="slide-caption">
+														<a href="index.blade.php">
+															<p>{{ $p->nombre }}</p>
+														</a>
+														
+														<!--span>Club&reg;</span-->
+													</div><!-- /.slide-caption -->
+												</div><!-- /.slide-content -->
+											</li><!-- /.slide -->
 
-									@endforeach
+										@endforeach
 
-									
-								</ul><!-- /.slides -->
-							</div><!-- /.slider-clip -->
+										
+									</ul><!-- /.slides -->
+								</div><!-- /.slider-clip -->
+							</div>
 						</div><!-- /.slider-games -->
 					</div><!-- /.section-body -->
 
