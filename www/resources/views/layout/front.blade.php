@@ -120,7 +120,77 @@
 							</ul>
 						</nav><!-- /.nav -->
 
-						<div class="socials">
+						<div class="col col-size4 hdr-redes">
+							<div class="socials-footer">
+								<!--<h4>Síguenos</h4>-->
+
+								<ul>
+									<li>
+										<a href="#">
+											<i class="fa fa-facebook" aria-hidden="true"></i>
+										</a>
+
+										<ul class="socials-dropdown">
+											<li>
+												<a href="#">Lorem ipsum dolor.</a>
+											</li>
+											
+											<li>
+												<a href="#">Lorem ipsum dolor.</a>
+											</li>
+											
+											<li>
+												<a href="#">Lorem ipsum dolor.</a>
+											</li>
+										</ul><!-- /.socials-dropdown -->
+									</li>
+									
+									<li>
+										<a href="#">
+											<i class="fa fa-twitter" aria-hidden="true"></i>
+										</a>
+
+										<ul class="socials-dropdown">
+											<li>
+												<a href="#">Lorem ipsum dolor.</a>
+											</li>
+											
+											<li>
+												<a href="#">Lorem ipsum dolor.</a>
+											</li>
+											
+											<li>
+												<a href="#">Lorem ipsum dolor.</a>
+											</li>
+										</ul><!-- /.socials-dropdown -->
+									</li>
+									
+									<li>
+										<a href="#">
+											<i class="fa fa-youtube-play" aria-hidden="true"></i>
+										</a>
+
+										<ul class="socials-dropdown">
+											<li>
+												<a href="#">Lorem ipsum dolor.</a>
+											</li>
+											
+											<li>
+												<a href="#">Lorem ipsum dolor.</a>
+											</li>
+											
+											<li>
+												<a href="#">Lorem ipsum dolor.</a>
+											</li>
+										</ul><!-- /.socials-dropdown -->
+									</li>
+								</ul>
+							</div><!-- /.socials-footer -->
+						</div><!-- /.col col-size4 -->
+					</div><!-- /.cols -->
+
+
+						<!--<div class="socials">
 							<ul>
 								<li>
 									<a href="#">
@@ -140,8 +210,8 @@
 									</a>
 								</li>
 							</ul>
-						</div><!-- /.socials -->
-					</div><!-- /.header-content --> 
+						</div> /.socials 
+					</div> /.header-content --> 
 
 					<a href="#" class="btn-search"> 
 						<i class="ico-search"></i>	

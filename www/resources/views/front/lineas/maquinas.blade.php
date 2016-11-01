@@ -331,7 +331,7 @@
 							</span>
 
 							<a href="#">
-								Conoce más detalle
+								Conoce los pagados
 							</a>
 						</p>
 					</div><!-- /.section-entry -->

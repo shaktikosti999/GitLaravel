@@ -185,7 +185,7 @@
 						</div><!-- /.subscribe-head -->
 
 						<div class="subscribe-wrapper">
-							<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>
+							<!--<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>-->
 
 							<div class="subscribe-body-hidden">
 								<div class="subscribe-inner">
