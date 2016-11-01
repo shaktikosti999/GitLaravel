@@ -1546,7 +1546,8 @@ li:first-child { margin: 0;}
 /* ------------------------------------------------------------ *\
 	slider-games
 \* ------------------------------------------------------------ */
-.slider-games { position: relative; z-index: 99; margin-top: 470px; }
+.slider-games { position: relative; z-index: 99; margin-top: 0px; }
+.sldr-top {margin-top: 450px}
 .slider-games .slides { list-style: none; margin: 0 -15px; }
 .slider-games .slide-content { max-width: 263px; margin: 0 auto; height: 360px; background-size: cover; background-repeat: no-repeat; background-position: center center; border-bottom: 4px solid #ed1c24; position: relative; }
 .slider-games .slide-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 30px 20px; color: #fff; font-size: 30px; line-height: 1; }

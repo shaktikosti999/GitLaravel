@@ -262,7 +262,7 @@ END: LIGHTBOX ATENCIÓN -->
 
 
 					<div class="section-body">
-						<div class="slider-games">
+						<div class="slider-games sldr-top">
 							<div class="section-head">
 								<h2>Promociones</h2>
 							
