@@ -16,7 +16,7 @@
             <li><a href="#maquinas"><img src="css/images/icons/icon-2.png"><span>Máquinas</span></a></li>
             <li><a href="#proveedores"><img src="css/images/icons/icon-3.png"><span>Proveedores</span></a></li>
             <li><a href="#jackpot"><img src="css/images/icons/icon-4.png"><span>Jackpot</span></a></li>
-            <li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Sucursales</span></a></li>
+            <li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Ubicación</span></a></li>
             <li><a href="#diversion"><img src="css/images/icons/icon-6.png"><span>Diversión</span></a></li>
         </ul>
     </div>
