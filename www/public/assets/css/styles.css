@@ -2111,7 +2111,7 @@ li:first-child { margin: 0;}
 .slider-intro .promo,
 .slider-intro .slick-dots-wrapper {top: 370px; !important}
 
-/* --------------- apuestas, sucursales -----------------*/
+/* --------------- apuestas, sucursales, tutoriales -----------------*/
 
 .content {max-width: 1142px; margin: auto; float: right; width: 100%; padding: 15px;}
 .right-item {width: 50%; float: right; border: 2px solid #dfdfdf; padding: 2%;}
@@ -2156,6 +2156,11 @@ li:first-child { margin: 0;}
 .section-head.modif-section .btn {border: 2px solid #ed1c24; color: #ed1c24;}
 .section-head.modif-section .btn:hover {background: #000; color: #fff; border: 2px solid #fff;}
 
+.btn-tut {text-align: center;}
+.btn-tut a {margin-top: 50px;}
+.section-video {padding: 0 0 10px 0;}
+.item-video iframe {height: 315px; width: 560px;}
+
 @media (max-width: 1162px) {
 	.section-events { width: 100%;}
 	.content-serie {margin: 0;}
@@ -2166,11 +2171,21 @@ li:first-child { margin: 0;}
 @media (max-width: 767px) {
 	.serie-item h4 {font-size: 50px;}
 	.serie-item {padding: 24px;}
+	.btn-tut a {margin-top: 0px;}
 }
+@media (max-width: 920px) {
+	.item-video iframe {width: 100%; padding: 0 10px 50px 10px;}
+	.section .item-video {width: 100%;}
+	.btn-tut a {margin-top: 0;}
+}
+
 
 @media(max-width: 480px){
 	.serie-item h4 {font-size: 40px;}
 	.serie-item {width: 45%; padding: 27px;}
+	.section-secondary .col.item-video {margin: 0;}
+	.section-articles.content-video {padding-bottom: 0;}
+	.section-video:last-child {padding-bottom: 50px;}
 }
 
 
