@@ -85,7 +85,7 @@
 								</li>
 								
 								<li>
-									<a href="/ubicaciones">ubicaciones</a>
+									<a href="/ubicaciones">sucursales</a>
 								</li>
 								
 								<li>
