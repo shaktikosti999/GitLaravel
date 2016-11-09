@@ -748,6 +748,7 @@ blockquote:last-child { margin-bottom: 0; }
 	.btn-select:hover:after { border-color: #f00; }
 }
 .btn-black { border: none; background: #000; color: #fff; font-weight: 700; font-size: 18px; line-height: 54px; height: 54px; padding: 0 92px 0 95px; border-radius: 27px; transition: all .3s; }
+.btn-black.btn-calendar {display: none;}
 @media(min-width: 1025px){
 	.btn-black:hover { background: #f00; } 
 }
