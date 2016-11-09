@@ -121,7 +121,7 @@
 						</nav><!-- /.nav -->
 
 						<div class="col col-size4 hdr-redes">
-							<div class="socials-footer">
+							<div class="socials-footer hdr-btn">
 								<!--<h4>Síguenos</h4>-->
 
 								<ul>

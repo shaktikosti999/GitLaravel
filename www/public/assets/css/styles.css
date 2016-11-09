@@ -524,6 +524,7 @@ blockquote:last-child { margin-bottom: 0; }
 .header.fixed .btn-search { height: 79px; }
 .header.fixed .search-actions input { height: 94px; padding-top: 10px; }
 .hdr-redes {width: 100%;}
+
 @media(max-width: 1320px){
 	.header { padding-right: 42px; }
 	.header .nav { margin-left: 25px; }
@@ -557,6 +558,7 @@ blockquote:last-child { margin-bottom: 0; }
 	.header.nav-mobile-open .nav-trigger-wrapper a { top: -5px; }
 	.header.nav-mobile-open .btn-search { height: 71px; } 
 	.header.nav-mobile-open .socials { margin-top: 12px; } 
+	.socials-footer.hdr-btn {display: none;}
 }
 /* Mobile */
 @media (max-width: 767px) {
@@ -1066,7 +1068,7 @@ li:first-child { margin: 0;}
 }
 /* Small Desktop */
 @media (max-width: 1162px) {
-	.nav li a { font-size: 14px; padding-bottom: 10px; padding-top: 10px; }
+	.nav li a { font-size: 12px; padding-bottom: 10px; padding-top: 10px; }
 	.nav > ul > li + li { margin-left: 15px; }
 }
 @media (max-width: 1023px) { 	 
@@ -1764,12 +1766,15 @@ li:first-child { margin: 0;}
 .socials-footer > ul { list-style: none; font-size: 0; }
 .socials-footer > ul > li { display: inline-block; position: relative; }
 .socials-footer > ul > li + li { margin-left: 12px; }
+.socials-footer.hdr-btn > ul > li + li {margin-left: 8px;}
 .socials-footer > ul > li > a { font-size: 22px; border: 2px solid #808080; border-radius: 23px; display: inline-block; width: 68px; text-align: center; line-height: 46px; height: 47px; text-decoration: none; transition: all .3s; position: relative; }
 .socials-footer > ul > li > a:after { display: inline-block; content: ''; width: 10px; height: 10px; border: 2px solid #fff; border-width: 0 2px 2px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); position: relative; top: -5px; margin-left: 5px; }
 .socials-dropdown { font-size: 15px; position: absolute; top: 100%; right: 0; white-space: nowrap; list-style: none; padding: 20px; border: 2px solid #808080; border-radius: 23px 0 23px 23px; opacity: 0; visibility: hidden; overflow: hidden; transition: all .3s; pointer-events: none; }
 .socials-dropdown a { color: #808080; display: inline-block; text-decoration: none; transition: all .3s; }
 .socials-dropdown a:hover { color: #fff; }
 .socials-dropdown li + li { margin-top: 10px; }
+.socials-footer.hdr-btn {margin-top: 17px;}
+
 @media(min-width: 768px){
 	.socials-footer > ul > li:hover > a { border-radius: 23px 23px 0 0; }
 	.socials-footer > ul > li:hover > a:before { display: inline-block; content: ''; background: #000; position: absolute; bottom: -4px; height: 5px; width: 100%; right: 0; z-index: 10; }

@@ -107,7 +107,7 @@
 <!--END: LIGHTBOX UBICACION CIUDAD -->
 
 
-<!-- BEGIN: LIGHTBOX ESTABLECIMIENTOS -->
+<!-- BEGIN: LIGHTBOX ESTABLECIMIENTOS 
         <section class="lightbox-etb lightbox--module">
             <section class="modal centerme">
                 <form class="modal-item">
