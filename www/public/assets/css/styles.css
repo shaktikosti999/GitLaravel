@@ -2167,6 +2167,15 @@ li:first-child { margin: 0;}
 .section-video {padding: 0 0 10px 0;}
 .item-video iframe {height: 315px; width: 560px;}
 
+.sucursales {position: relative; width: 100%; float: left; display: inline-block; margin-bottom: 80px;}
+.sucursales li:nth-child(1) {float: left; position: relative; display: inline-block; width: 50%; padding: 0 14px;}
+.sucursales li:nth-child(2) {float: right; display: inline-block; width: 50%; position: absolute; padding: 0 14px;}
+.sucursales ul {list-style: none;}
+.sucursales h3 {color: #ed1d25;}
+.sucursales p {color: #4a4a4a; width: 190px; line-height: 25px;}
+.fs-dropdown.btn-city {float: right; padding-right: 50px;}
+.head-padding {padding-bottom: 0;}
+
 @media (max-width: 1162px) {
 	.section-events { width: 100%;}
 	.content-serie {margin: 0;}
@@ -2178,6 +2187,12 @@ li:first-child { margin: 0;}
 	.serie-item h4 {font-size: 50px;}
 	.serie-item {padding: 24px;}
 	.btn-tut a {margin-top: 0px;}
+
+	.sucursales {margin-bottom: 30px;}
+	.sucursales li {border-bottom: 1px solid #efefef;}
+	.sucursales li:nth-child(1) {width: 100%;}
+	.sucursales p {width: 100%;}
+	.sucursales p:last-child {margin-bottom: 30px;}
 }
 @media (max-width: 920px) {
 	.item-video iframe {width: 100%; padding: 0 10px 50px 10px;}
