@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
 		include_once('Routes/proveedor.php');
 		include_once('Routes/sucursal.php');
 		include_once('Routes/sucursal_juego.php');
+		include_once('Routes/red.php');
 
 	});
 });
@@ -55,7 +56,7 @@ Route::get('/lineas-de-juego/mesas-de-juego/{sucursal?}','front\lineasController
 
 //-----> Promociones
 Route::get('/promociones/{sucursal?}','front\promocionesController@index');
-Route::get('/promociones/detalle/{promocion}','front\promocionesController@detalle');
+Route::get('/promociones/detalle/{slug}','front\promocionesController@show');
 
 Route::post('/contacto/newsletter','front\contactoController@newsletter');
 
@@ -64,6 +65,9 @@ Route::get('/alimentos-y-bebidas/{sucursal?}','front\alimentosController@index')
 
 // -----> Ubicaciones
 //Route::get('/ubicaciones','front\ubicacionesController@index');
+
+// ----->Calendario
+Route::get('calendario','front\calendarioController@show');
 
 // -----> Contacto
 Route::get('/contacto','front\contactoController@contacto');

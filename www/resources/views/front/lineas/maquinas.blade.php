@@ -111,7 +111,7 @@
 							Promociones
 						</h2>
 
-						<a href="#" class="btn btn-black">
+						<a href="{{url('calendario')}}" class="btn btn-black">
 							consulta calendario completo
 						</a>
 					</header><!-- /.section-head -->
@@ -132,7 +132,7 @@
 										?>
 
 										<li class="slide">
-											<a href="#" class="slide-content" style="background-image: url('{{ $item->imagen }}'); ">
+											<a href="{{url('promociones/detalle/' . $item->slug)}}" class="slide-content" style="background-image: url('{{ $item->imagen }}'); ">
 												 <span class="slide-label">
 												 	Válido del {{ $start->format('d/m/y') }} al {{ @$end->format('d/m/y') }}
 												 </span>
@@ -203,13 +203,13 @@
 										<span class="jackpot">
 											<small>JACKPOT</small>
 											<strong>
-												$40,981.00
+												${{$item->acumulado}}
 											</strong>
 										</span>
 
 										<span class="game-title">
 											<strong>
-												{{ $item->juego }}
+												{{ $item->nombre }}
 											</strong>
 
 											<span>

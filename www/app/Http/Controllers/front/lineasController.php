@@ -37,7 +37,7 @@ class lineasController extends Controller
         $data["promociones"] = promocion::find_all( [ "linea" => 1, "id_sucursal" => $id_sucursal ] );
 
         //-----> Obtenemos maquinas de juego
-        $data["maquinas"] = linea::find_all_games( [ "linea" => 1, "id_sucursal" => $id_sucursal ] );
+        $data["maquinas"] = linea::get_games( [ "linea" => 1, "id_sucursal" => $id_sucursal ] );
 
         //-----> Obtenemos los proveedores
         $data["proveedores"] = linea::find_all_providers();
@@ -48,7 +48,7 @@ class lineasController extends Controller
         //-----> Obtenemos todas las sucursales
         $data["sucursales"] = sucursal::find_all();
 
-        //dd($data);
+        // dd($data);
 
         return view('front.lineas.maquinas',$data);
     
@@ -70,8 +70,8 @@ class lineasController extends Controller
         //-----> Obtenemos promociones
         $data["promociones"] = promocion::find_all( [ "linea" => 2, "id_sucursal" => $id_sucursal ] );
 
-        //-----> Obtenemos maquinas de juego
-        $data["maquinas"] = linea::find_all_games( [ "linea" => 2, "id_sucursal" => $id_sucursal ] );
+        //-----> Obtenemos mesas de juego
+        $data["mesas"] = linea::get_games( [ "linea" => 2, "id_sucursal" => $id_sucursal ] );
 
         //-----> Obtenemos los proveedores
         $data["torneos"] = linea::find_all_tournaments( [ "id_sucursal" => $id_sucursal ] );
@@ -84,7 +84,9 @@ class lineasController extends Controller
         //-----> Obtenemos todas las sucursales
         $data["sucursales"] = sucursal::find_all();
 
-        //dd($data);
+        // -----> Acumulado
+        $data['acumulado'] = linea::accumulated(['id_sucursal' => $id_sucursal,'linea' => 2]);
+        // dd($data);
 
         return view('front.lineas.mesas',$data);
     

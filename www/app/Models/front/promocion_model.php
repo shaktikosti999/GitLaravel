@@ -39,4 +39,11 @@ class promocion_model{
 
     }
 
+    static function find($args = []){
+        $get = \DB::table('promocion as p');
+        $get = isset($args['slug']) ? $get->where('slug',$args['slug']) : $get;
+        $get = $get->first();
+        return $get;
+    }
+
 }

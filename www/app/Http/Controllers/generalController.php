@@ -132,6 +132,9 @@ class generalController extends Controller
                 case 'contacto':
                     $modulo = \App\contacto::find($id);
                     break;
+                case 'red':
+                    $modulo = \App\red_social::find($id);
+                    break;
                 default:
                     dd($modulo);
                 break;
@@ -221,6 +224,10 @@ class generalController extends Controller
                     
                 case 'linea':
                     $modulo = \App\linea::find($id);
+                    break;
+
+                case 'red':
+                    $modulo = \App\red_social::find($id);
                     break;
 
                 default:

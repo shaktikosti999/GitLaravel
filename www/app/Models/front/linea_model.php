@@ -3,6 +3,18 @@ namespace App\Models\front;
 
 class linea_model{
 
+    static function accumulated( $args = [] ){
+        $get  = \DB::table('juego_sucursal as js');
+        if( array_key_exists('linea', $args) && $args['linea'] !== null ){
+            $get = $get->join('juego as j','j.id_juego','=','js.id_juego')
+                ->where('j.id_linea',$args['linea']);
+        }
+        if( array_key_exists('id_sucursal', $args) && $args['id_sucursal'] !== null )
+            $get = $get->where('id_sucursal',$args['id_sucursal']);
+        $get = $get->sum('acumulado');
+        return $get;
+    }
+
 	static function find_all( $parameters = [] ){
 		
         $data = \DB::table('linea as l')
@@ -30,23 +42,6 @@ class linea_model{
 		return $data;
 
 	}
-
-    static function find_gallery( $id_linea ){
-
-        if( ! $id_linea )
-            throw new Exception("Ingrese un id de linea correcto", 1);
-            
-        
-        $data = \DB::table('linea_galeria as lg')
-                        ->select(
-                            'lg.imagen'
-                        )
-                        ->where('lg.id_linea','=',$id_linea)
-                        ->get();
-
-        return $data;
-
-    }
 
     static function find_all_games( $parameters = [] ){
         
@@ -81,6 +76,23 @@ class linea_model{
 
     }
 
+    static function find_all_providers( $parameters = [] ){
+        
+        $data = \DB::table('proveedor as p')
+                        ->select(
+                            'p.nombre',
+                            'p.archivo',
+                            'p.link'
+                        )
+                        ->where('p.estatus','=',1)
+                        ->where('p.eliminado','=',0);
+
+        $data = $data->get();
+
+
+        return $data;
+
+    }
     static function find_all_tournaments( $parameters = [] ){
         
         $data = \DB::table('torneo as t')
@@ -113,24 +125,45 @@ class linea_model{
 
     }
 
+    static function find_gallery( $id_linea ){
 
-    static function find_all_providers( $parameters = [] ){
+        if( ! $id_linea )
+            throw new Exception("Ingrese un id de linea correcto", 1);
+            
         
-        $data = \DB::table('proveedor as p')
+        $data = \DB::table('linea_galeria as lg')
                         ->select(
-                            'p.nombre',
-                            'p.archivo',
-                            'p.link'
+                            'lg.imagen'
                         )
-                        ->where('p.estatus','=',1)
-                        ->where('p.eliminado','=',0);
-
-        $data = $data->get();
-
+                        ->where('lg.id_linea','=',$id_linea)
+                        ->get();
 
         return $data;
 
+    }  
+
+    static function get_games($args = []){
+        $get = \DB::table('juego as j')
+            ->select(
+                'j.nombre',
+                'j.titulo',
+                'j.imagen',
+                'j.resumen',
+                'js.link',
+                'js.acumulado',
+                'js.apuesta_minima',
+                'js.descripcion',
+                'js.disponibles'
+            )
+            ->join('juego_sucursal AS js','js.id_juego','=','j.id_juego')
+            ->where('j.estatus',1)
+            ->where('j.eliminado',0);
+        if(array_key_exists('id_linea', $args) && $args['id_linea'] !== null)
+            $get = $get->where('j.id_linea',$args['id_linea']);
+        if(array_key_exists('id_sucursal', $args) && $args['id_sucursal'] !== null)
+            $get = $get->where('js.id_sucursal',$args['id_sucursal']);
+        $get = $get->get();
+        return $get;
     }
 
-    
 }

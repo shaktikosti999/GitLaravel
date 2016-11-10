@@ -44,11 +44,12 @@ class papeleraController extends Controller
         $tabla = $tabla[0]->tabla;
         $tbl = \DB::select("SHOW INDEX FROM `" . $tabla . "` WHERE `Key_name` = 'PRIMARY';");
         $key = $tbl[0]->Column_name;
+        $nombre = $tabla == 'red_social' ? 'link' : 'nombre';
         $elemento = \DB::table('sys_papelera as p')
             ->select(
                 'p.id_papelera as id_papelera',
                 'md.' . $key .' as id',
-                'md.nombre',
+                'md.' . $nombre .' as nombre',
                 \DB::raw('CONCAT(u.nombre," ",u.apellido) as elimino'),
                 'p.created_at as eliminado',
                 'm.slug as modulo'

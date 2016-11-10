@@ -28,6 +28,7 @@ class indexController extends Controller
         $data["slider"]         = slider::find_all();
         $data["lineas"]         = linea::find_all();
         $data["rand_sucursal"]  = sucursal::find_random();
+        $data["sucursales"]     = sucursal::find_all();
 
         return view('front.index',$data);
     

@@ -118,7 +118,7 @@
 										?>
 
 										<li class="slide">
-											<a href="#" class="slide-content" style="background-image: url('{{ $item->imagen }}'); ">
+											<a href="{{url('promociones/detalle/' . $item->slug )}}" class="slide-content" style="background-image: url('{{ $item->imagen }}'); ">
 												 <span class="slide-label">
 												 	Válido del {{ $start->format('d/m/y') }} al {{ @$end->format('d/m/y') }}
 												 </span>
@@ -147,6 +147,8 @@
 
 		@endif
 
+		@if(isset($mesas) && count($mesas))
+
 		<section class="section-games-available">
 			<div class="shell">
 				<div class="section-head">
@@ -161,12 +163,13 @@
 						<article class="article-game-available large">
 				 			<div class="article-content">
 				 				<div class="article-image" style="background-image: url(css/images/temp/article-game-available-large-bg.jpg)">  
+				 					@if(isset(current($mesas)->apuesta_minima) && !empty(current($mesas)->apuesta_minima))
 				 					<div class="article-label">
 				 						<span> Apuesta Mínima DESDE </span>
 
-				 						<strong> 40 </strong>
+				 						<strong> {{current($mesas)->apuesta_minima}} </strong>
 				 					</div><!-- /.article-label -->
-
+				 					@endif
 				 					<div class="article-max-price">
 				 						CONSULTA MONTOS MÁXIMOS DE APUESTA EN EL CASINO
 				 					</div><!-- /.article-max-price -->
@@ -174,14 +177,14 @@
 
 				 				<div class="article-entry">
 				 					<h4 class="article-title">
-				 						Ruelta
+				 						{{current($mesas)->nombre}}
 				 						<small>
-				 							2 mesas
+				 							{{current($mesas)->disponibles}} mesas
 				 						</small>
 				 					</h4><!-- /.article-title -->
 
 									<p>
-										Candy jelly beans ice cream candy tootsie roll. Cotton candy pudding dragée sesame snaps chupa chups cupcake chocolate bar powder.  
+										{{current($mesas)->resumen}}
 									</p>
 
 									<ul class="list-links">
@@ -204,85 +207,25 @@
 
 					<div class="section-content">
 						<div class="slider-games-available">
-						<div class="slider-clip">
-							<ul class="slides">
-								<li class="slide">
-									 <div class="slide-content">  
-										 	<div class="cols">
-												<div class="col col-1of2">
-													<article class="article-game-available small">
-														<h6>
-															Blackjack
-
-															<span class="plus"></span>
-														</h6>
-													
-													<div class="article-image" style="background-image: url(css/images/temp/.article-game-available.small1.jpg)"> </div><!-- /.article-image -->
-
-													<a href="#" class="link-more">
-														Ver más
-													</a>
-													</article><!-- /.article-game-available small -->
-												</div><!-- /.col col-1of2 -->
-
-												<div class="col col-1of2">
-													<article class="article-game-available small">
-														<h6>
-															Poker Texas holdem 
-
-															<span class="plus"></span>
-														</h6>
-													
-													<div class="article-image" style="background-image: url(css/images/temp/.article-game-available.small2.jpg)"> </div><!-- /.article-image -->
-
-													<a href="#" class="link-more">
-														Ver más
-													</a>
-													</article><!-- /.article-game-available small -->
-												</div><!-- /.col col-1of2 -->
-
-												<div class="col col-1of2">
-													<article class="article-game-available small">
-														<h6>
-															Ruleta
-
-															<span class="plus"></span>
-														</h6>
-													
-													<div class="article-image" style="background-image: url(css/images/temp/.article-game-available.small3.jpg)"> </div><!-- /.article-image -->
-
-													<a href="#" class="link-more">
-														Ver más
-													</a>
-													</article><!-- /.article-game-available small -->
-												</div><!-- /.col col-1of2 -->
-
-												<div class="col col-1of2">
-													<article class="article-game-available small">
-														<h6>
-															Baccarat
-
-															<span class="plus"></span>
-														</h6>
-													
-													<div class="article-image" style="background-image: url(css/images/temp/.article-game-available.small4.jpg)"> </div><!-- /.article-image -->
-
-													<a href="#" class="link-more">
-														Ver más
-													</a>
-													</article><!-- /.article-game-available small -->
-												</div><!-- /.col col-1of2 -->
-										 	</div><!-- /.cols -->
-										 </div><!-- /.slide-content -->
+							<div class="slider-clip">
+								<!-- vik0x -->
+								<ul class="slides">
+									<?php next($mesas);$c = 0;?>
+									@foreach($mesas as $mesa)
+									@if( ($c % 4) == 0 && $c > 0 )
+											</div><!-- /.cols -->
+										</div><!-- /.slide-content -->
 									</li><!-- /.slide -->
-
+									@endif
+									@if( ($c % 4) == 0 )
 									<li class="slide">
-										 <div class="slide-content"> 
+									 	<div class="slide-content">  
 										 	<div class="cols">
+									@endif
 												<div class="col col-1of2">
 													<article class="article-game-available small">
 														<h6>
-															Blackjack
+															{{$mesa->nombre}} HH
 
 															<span class="plus"></span>
 														</h6>
@@ -295,63 +238,23 @@
 													</article><!-- /.article-game-available small -->
 												</div><!-- /.col col-1of2 -->
 
-												<div class="col col-1of2">
-													<article class="article-game-available small">
-														<h6>
-															Poker Texas holdem 
-
-															<span class="plus"></span>
-														</h6>
-													
-													<div class="article-image" style="background-image: url(css/images/temp/.article-game-available.small2.jpg)"> </div><!-- /.article-image -->
-
-													<a href="#" class="link-more">
-														Ver más
-													</a>
-													</article><!-- /.article-game-available small -->
-												</div><!-- /.col col-1of2 -->
-
-												<div class="col col-1of2">
-													<article class="article-game-available small">
-														<h6>
-															Ruleta
-
-															<span class="plus"></span>
-														</h6>
-													
-													<div class="article-image" style="background-image: url(css/images/temp/.article-game-available.small3.jpg)"> </div><!-- /.article-image -->
-
-													<a href="#" class="link-more">
-														Ver más
-													</a>
-													</article><!-- /.article-game-available small -->
-												</div><!-- /.col col-1of2 -->
-
-												<div class="col col-1of2">
-													<article class="article-game-available small">
-														<h6>
-															Baccarat
-
-															<span class="plus"></span>
-														</h6>
-													
-													<div class="article-image" style="background-image: url(css/images/temp/.article-game-available.small4.jpg)"> </div><!-- /.article-image -->
-
-													<a href="#" class="link-more">
-														Ver más
-													</a>
-													</article><!-- /.article-game-available small -->
-												</div><!-- /.col col-1of2 -->
+										<?php $c++; ?>
+									@endforeach
+									@if( ($c % 4) != 1 )
 										 	</div><!-- /.cols -->
-										 </div><!-- /.slide-content -->
+										</div><!-- /.slide-content -->
 									</li><!-- /.slide -->
+									@endif
 								</ul><!-- /.slides -->
+								<!-- vik0x -->
 							</div><!-- /.slider-clip -->
 						</div><!-- /.slider-games-available -->
 					</div><!-- /.section-content --> 
 				</div><!-- /.section-body -->
 			</div><!-- /.shell -->
 		</section><!-- /.section-games-available -->
+
+		@endif
 
 		<section class="section-jackpots secondary">
 			<div class="shell">
@@ -381,7 +284,7 @@
 							<article class="article-jackpot">
 								<div class="article-content"> 
 									<p>
-										$293,939.93
+										${{$acumulado}}
 									</p>
 								</div><!-- /.article-content -->
 							</article><!-- /.article-jackpot -->

@@ -10,6 +10,7 @@ class sucursal_model{
         $data = \DB::table('sucursal as s')
                         ->where('s.estatus','=',1)
                         ->where('s.eliminado','=',0)
+                        ->orderBy('s.nombre')
                         ->get();
 
         //-----> Obtenemos la galeria de la sucursal

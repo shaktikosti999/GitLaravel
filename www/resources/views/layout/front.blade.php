@@ -392,6 +392,8 @@
 				</div><!-- /.shell -->
 			</footer><!-- /.footer -->
 		</div><!-- /.wrapper -->
+		@yield('js')
 	</body>
 </html>
 
+ 
