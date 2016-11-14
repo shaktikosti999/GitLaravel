@@ -17,6 +17,14 @@
 	<!-- App Styles -->
 	<link rel="stylesheet" href="css/style.css" />
 
+	   <!-- Calendario -->
+
+	  <!-- include your less or built css files  -->
+	  <!-- 
+	  bootstrap-datetimepicker-build.less will pull in "../bootstrap/variables.less" and "bootstrap-datetimepicker.less";
+	  or
+	  <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
+
 	<!-- Vendor JS -->
 	<script src="vendor/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript" src="vendor/slick-1.6.0/slick/slick.min.js"></script>
@@ -24,6 +32,11 @@
 	<script src="vendor/formstone/core.js"></script>
 	<script src="vendor/formstone/touch.js"></script>
 	<script src="vendor/formstone/dropdown.js"></script>
+	<script src="js/bootstrap-datepicker.js"></script>
+
+	<!-- Calendario -->
+
+
 
 	<!-- App JS -->
 	<script src="js/functions.js"></script>
@@ -150,7 +163,7 @@
 						<div class="shell"> 		 
 							 <div class="slide-content">
 							 	<h1>
-							 		APUESTA DE CARRERAS
+							 		APUESTAS DE CARRERAS
 							 	</h1>
 
 							 	<h3>
@@ -306,8 +319,16 @@
 					</h2>
 				</div><!-- /.section-head -->
 
-				<section class="content">	
+				<section class="content programas">	
+
+					<div class="left-item"> <!-- calendario -->
+						<div class="calendar-module" data-date="12/03/2016">
+
+						</div>
+					</div>
+
 					<div class="right-item"> <!-- cuadro derecha -->
+
 						<h3>Programas</h3>
 						<ul>	
 							<li class="txt-left"">
@@ -407,7 +428,6 @@
 									</div>
 								</div>
 							</li>
-
 							<li>
 								<img src="css/images/temp/carreras.jpg">
 

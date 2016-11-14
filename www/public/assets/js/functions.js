@@ -4,6 +4,8 @@
 
 	$doc.ready(function() {
 
+		// date picker
+		$( '[data-date]' ).datepicker();
 
 
 		$win.on('scroll', function() {
