@@ -213,7 +213,7 @@
 								<!--<div class="shell">
 									<h1>{{ $s->titulo }}</h1>-->
 									<h1>
-										Promociones y Eventos
+										Navidad Excepcional
 									</h1>
 									
 									<a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a>
