@@ -5,7 +5,7 @@
 	$doc.ready(function() {
 
 		// date picker
-		$( '[data-date]' ).datepicker();
+		//$( '[data-date]' ).datepicker();
 
 
 		$win.on('scroll', function() {
