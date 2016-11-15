@@ -497,11 +497,18 @@
 				</div><!-- /.section-head -->
 
 				<div class="section-entry">
-					<p>Sweet roll bonbon icing. Macaroon chocolate cake sweet jelly beans. Sugar plum caramels macaroon. Chocolate bar danish dessert danish sweet roll marzipan.</p>
+					<p>En Caliente Casino® nuestra vocación es el entretenimiento de juegos de azar, por lo que nos dedicamos a concebir, desarrollar y ejecutar experiencias superiores e inigualables para aquellos que son verdaderos apasionados de este tipo de entretenimiento.</p>
+
+					<p>Tenemos la más completa oferta de entretenimiento. Diviértete jugando los mejores y más novedosos títulos de máquinas de juego, tanto de bingo, como de rodillos; contamos con las mejores marcas.</p>
+
+					<p>Vive al máximo tu deporte favorito apostando en nuestros Race & Sports Books. Contamos con la oferta de apuestas más completa en los mejores eventos deportivos de México y el mundo, o si lo prefieres, emociónate apostando y disfrutando las carreras de los más importantes hipódromos y galgódromos.</p>
+
+					<p>Reta tu suerte en las divertidas Mesas de Juego. Nuestra oferta es 100% legal y contamos con una gran variedad de juegos como: Blackjack, Ruleta, Craps, Baccarat, Texas Hold’em y más.</p>
+
+					<p>Sabemos la emoción que da gritar ¡Bingo!. Pasa un rato agradable en nuestras 2 salas de Bingo Tradicional, ¿y por qué no?, tal vez hoy te toque gritar.</p>
+
+					<p>Aquí encontrarás información de todos los juegos, las promociones vigentes y las ubicaciones de nuestros Casinos. Muchas gracias por tu visita.</p>
 					
-					<p>Cake croissant cheesecake jelly lollipop cotton candy gingerbread biscuit ice cream. Macaroon candy oat cake lemon drops danish. Pastry marzipan danish jujubes chupa chups donut topping. Apple pie liquorice dragée liquorice marzipan gummi bears.</p>
-					
-					<p>Pastry tootsie roll topping macaroon macaroon dragée gummies. Marzipan ice cream cheesecake fruitcake. Caramels topping candy lemon drops soufflé biscuit. Jelly-o apple pie chocolate tart oat cake gummies. Soufflé pudding icing bear claw.</p>
 				</div><!-- /.section-entry -->
 			</div><!-- /.shell -->
 		</section><!-- /.section-gallery -->
