@@ -103,134 +103,13 @@
 
 		@if( isset( $promociones ) && count( $promociones ) )
 
-			<section class="section-promotions">
-				<div class="shell">
-					<header class="section-head">
-						<div class="stick--point" id="promociones"></div>
-						<h2>
-							Promociones
-						</h2>
-
-						<a href="{{url('calendario')}}" class="btn btn-black">
-							consulta calendario completo
-						</a>
-					</header><!-- /.section-head -->
-					
-					<div class="section-body">
-						<div class="slider-games slider-promotions">
-							<div class="slider-clip">
-								
-								<ul class="slides">
-									
-									@foreach( $promociones as $item )
-
-										<?php
-
-											$start = new DateTime( $item->fecha_inicio );
-											$end   = new DateTime( $item->fecha_fin );
-
-										?>
-
-										<li class="slide">
-											<a href="{{url('promociones/detalle/' . $item->slug)}}" class="slide-content" style="background-image: url('{{ $item->imagen }}'); ">
-												 <span class="slide-label">
-												 	Válido del {{ $start->format('d/m/y') }} al {{ @$end->format('d/m/y') }}
-												 </span>
-
-												 <span class="slide-inner">
-												 	<span class="slide-inner-entry">
-												 		<strong>{{ $item->nombre }}</strong>
-												 	</span>
-
-												 	<span class="slide-inner-price">
-												 		{{ $item->resumen }}
-												 	</span>
-												 </span>
-											</a><!-- /.slide-content -->
-										</li><!-- /.slide -->
-
-									@endforeach
-
-								</ul><!-- /.slides -->
-
-							</div><!-- /.slider-clip -->
-						</div><!-- /.slider-games -->
-					</div><!-- /.section-body -->	
-				</div><!-- /.shell -->
-			</section><!-- /.section-promotions -->
-
+			@include('front.includes.promotions',['promociones' => $promociones])
+			
 		@endif
 
 		@if( isset( $maquinas ) && count( $maquinas ) )
 
-			<section class="section-promotions">
-				<div class="shell">
-					<header class="section-head">
-						<div class="stick--point" id="maquinas"></div>
-						<h2>
-							Máquinas de juego disponibles
-						</h2>
-
-						<a href="/aprende_a_jugar" class="btn btn-red">
-							Aprende a jugar
-						</a>
-					</header><!-- /.section-head -->
-					
-					<div class="section-body">
-						<ul class="games-filters">
-							<li>
-								<span>Selecciona</span>
-							</li>
-
-							<li>
-							 	<div class="games-filter-select">
-							 		<label for="field-games-filter-select1" class="form-label hidden">games-filter-select1</label>
-							 		<select name="field-games-filter-select1" id="field-games-filter-select1" class="select">
-							 			<option value="">Populares</option>
-							 			<option value="">Populares</option>
-							 			<option value="">Populares</option>
-							 		</select>
-							 	</div><!-- /.form-controls -->
-							</li>
-						</ul><!-- /.games-filters -->
-						
-						<ul class="games">
-							
-							@foreach( $maquinas as $item )
-
-								<li class="game">
-									<a href="#" style="background-image: url('{{ $item->imagen }}')"> 
-										<span class="jackpot">
-											<small>JACKPOT</small>
-											<strong>
-												${{$item->acumulado}}
-											</strong>
-										</span>
-
-										<span class="game-title">
-											<strong>
-												{{ $item->nombre }}
-											</strong>
-
-											<span>
-												{{ $item->resumen }} 
-											</span>
-										</span>
-									</a>
-								</li><!-- /.game -->
-
-							@endforeach
-							
-						</ul><!-- /.games -->
-					</div><!-- /.section-body -->	
-
-					<div class="section-foot">
-						<a href="#" class="btn btn-border">
-							Conoce más maquinas
-						</a>
-					</div><!-- /.section-foot -->
-				</div><!-- /.shell -->
-			</section><!-- /.section-promotions -->
+			@include('front.includes.game_machine',['maquinas' => $maquinas])
 
 		@endif 
 

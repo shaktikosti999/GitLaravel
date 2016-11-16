@@ -3,7 +3,7 @@
 	<head>
 		<base href="{{asset('/assets/')}}/">
 		<meta charset="utf-8" />
-
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<title>@yield('titulo','Casino Caliente')</title>
@@ -17,6 +17,7 @@
 
 		<!-- App Styles -->
 		<link rel="stylesheet" href="css/styles.css" />
+		@yield('css')
 
 		<!-- Vendor JS -->
 		<script src="vendor/jquery-1.12.4.min.js"></script>

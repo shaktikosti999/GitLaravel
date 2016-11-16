@@ -1,4 +1,9 @@
 @extends('layout.front')
+
+@section('js')
+	<script src="js/front/index.js"></script>
+@stop
+
 @section('contenido')
 
 	<!-- BEGIN: LIGHTBOX SUCURSAL
@@ -114,11 +119,11 @@
 
 	                        <div class="texto-etb">
 	                            <h4>Línea de juego seleccionada</h4>
-	                            <div class="select_linea_de_juegos btn--select">
+	                            <div class="select select_linea_de_juegos btn--select">
 			                        <select name="lineas_de_juego">
 			                        	@if( isset($lineas) && count($lineas) )
 			                        		@foreach($lineas as $linea)
-												<option value="/lineas-de-juego/{{$linea->slug}}">{{$linea->linea}}</option>
+												<option value="/lineas-de-juego/{{$linea->slug}}" data-id="{{$linea->id_linea}}">{{$linea->linea}}</option>
 											@endforeach
 										@endif
 									</select>
@@ -127,29 +132,21 @@
 
 	                        <div class="texto-etb">
 	                            <h4>Selecciona tu ciudad</h4>
-	                            <div class="select btn--select">
+	                            <div class="select select_ciudad btn--select">
 			                        <select name="linea_ciudad">
-										<option>México</option>
-										<option>México</option>
-										<option>México</option>
+			                        	<option value="">Seleccione Ciudad</option>
 									</select>
 								</div>
 	                        </div>
 
-                        	@if( isset($sucursales) && count($sucursales) )
-		                        <div class="texto-etb">
-		                            <h4>Selecciona tu sucursal</h4>
-		                            <div class="select select_linea_sucursal btn--select">
-				                        <select name="linea_sucursal">
-				                        	<option value="">Seleccione sucursal</option>
-				                        	@foreach($sucursales as $sucursal)
-												<option value="{{$sucursal->slug}}">{{$sucursal->nombre}}</option>
-											@endforeach
-										</select>
-									</div>
-		                        </div>
-	                      	@endif
-
+	                        <div class="texto-etb">
+	                            <h4>Selecciona tu sucursal</h4>
+	                            <div class="select select_linea_sucursal btn--select">
+			                        <select name="linea_sucursal">
+			                        	<option value="">Seleccione sucursal</option>
+									</select>
+								</div>
+	                        </div>
 	                      
 	                        <div class="texto">
 	                           <a role="button" class="btn  btn-red medium" id="establecimiento_go" data-sucursal=""><span>Continuar</span></a>
@@ -514,7 +511,4 @@
 		</section><!-- /.section-gallery -->
 	</div><!-- /.main -->
 
-@stop
-@section('js')
-<script src="js/front/index.js"></script>
 @stop

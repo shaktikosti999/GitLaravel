@@ -71,5 +71,4 @@ class indexController extends Controller
         else
             abort(503);
     }
-   
 }

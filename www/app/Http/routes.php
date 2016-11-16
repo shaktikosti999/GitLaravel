@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 include_once('Routes/auth.php');
 Route::group(['middleware' => 'auth'], function () {
 
@@ -65,6 +64,12 @@ Route::get('/alimentos-y-bebidas/{sucursal?}','front\alimentosController@index')
 
 // -----> Ubicaciones
 //Route::get('/ubicaciones','front\ubicacionesController@index');
+
+// -----> Sucursales
+Route::get('/sucursal/{slug}','front\sucursalesController@index');
+// ajax para modales
+Route::patch('/sucursales','front\api\indexModalsController@sucursales');
+Route::patch('/ciudades_sucursal','front\api\indexModalsController@ciudades');
 
 // ----->Calendario
 Route::get('calendario','front\calendarioController@show');

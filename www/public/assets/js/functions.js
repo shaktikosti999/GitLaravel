@@ -6,6 +6,11 @@
 
 		// date picker
 		//$( '[data-date]' ).datepicker();
+		$.ajaxSetup({
+		    headers: {
+		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		    }
+		});
 
 
 		$win.on('scroll', function() {
