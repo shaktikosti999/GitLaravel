@@ -63,9 +63,6 @@
 						
 						<nav class="nav">
 							<ul>
-								<li>
-									<a href="/">Inicio</a>
-								</li>
 								
 								<li class="has-dropdown">
 									<a href="{{url('lineas-de-juego')}}">opciones De Diversión</a>

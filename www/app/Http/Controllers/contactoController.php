@@ -37,16 +37,34 @@ class contactoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        $this->validate($request,[
+        $error_msg = [
+            'field-name.required' => 'Debe de escribir un nombre',
+            'field-name.min' => 'El nombre debe de contener por lo menos 2 caracteres',
+            'field-name.max' => 'El nombre debe de tener máximo 100 caracteres',
+
+            'field-email.required' => 'Debe de escribir un email',
+            'field-email.email' => 'Debe de escribir un email válido',
+
+            'field-card.required' => 'Debe de escribir su número de tarjeta',
+
+            'field-tipo.required' => 'Falta el tipo de mensaje',
+            'field-tipo.integer' => 'Tipo demensaje no válido',
+            'field-tipo.min' => 'Tipo demensaje no válido',
+            'field-tipo.max' => 'Tipo demensaje no válido',
+        ];
+        $validate = \Validator::make($request->all(),[
             "field-name" => "required|min:2|max:100",
-            "field-email" => "required|E-Mail",
+            "field-email" => "required|email",
             "field-phone" => "string",
             "field-card" => "required|string",
             "field-tipo" => "required|integer|min:1|max:4",
             "field-sucursal" => "integer",
             "field-message" => "string",
             "field-promo" => "integer"
-        ]);
+        ],$error_msg);
+
+        if( $validate->fails())
+            return redirect()->back()->withErrors($validate);
 
         // $request->input('field-promo') = isset($request->input('field-promo')) && $request->input('field-promo') != 0 ? 1 : 0;
 
