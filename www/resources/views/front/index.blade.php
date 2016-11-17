@@ -207,11 +207,11 @@
 
 						<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
 							<div class="slide-content ">
-								<!--<div class="shell">
-									<h1>{{ $s->titulo }}</h1>-->
-									<h1>
+								<!--<div class="shell"-->
+									<h1>{{ $s->titulo }}</h1>
+									<!--h1>
 										Navidad Excepcional
-									</h1>
+									</h1-->
 									
 									<a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a>
 
