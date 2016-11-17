@@ -73,15 +73,7 @@
 
 									 </div><!-- /.slide-content -->
 
-									 <div class="slide-inner">
-									 	<p class="breadcrumbs">
-											<a href="#">Inicio</a>
-
-											<a href="#">Máquinas de juego</a>
-
-											<a href="#">Sucursal Tecamachalco</a>
-										</p><!-- /.breadcrumbs -->
-									 </div><!-- /.slide-inner --> 
+									@include('front.includes.breadcrumbs')
 								</div><!-- /.shell -->
 							</div><!-- /.slide-body -->
 						</li><!-- /.slide -->

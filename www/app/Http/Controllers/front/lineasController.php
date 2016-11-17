@@ -21,7 +21,6 @@ class lineasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function maquinas( $sucursal = null ){
-        
         $data = [];
 
         $data["sucursal"] = $sucursal;
