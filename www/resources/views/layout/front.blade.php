@@ -68,7 +68,7 @@
 								</li>
 								
 								<li class="has-dropdown">
-									<a href="#">opciones De Diversión</a>
+									<a href="{{url('lineas-de-juego')}}">opciones De Diversión</a>
 
 									<ul class="dropdown">
 										<li>
@@ -86,7 +86,7 @@
 								</li>
 								
 								<li>
-									<a href="/ubicaciones">sucursales</a>
+									<a href="{{url('sucursal')}}">sucursales</a>
 								</li>
 								
 								<li>
@@ -272,11 +272,11 @@
 									</li>-->
 									
 									<li>
-										<a href="#">Sucursales</a>
+										<a href="{{url('sucursal')}}">Sucursales</a>
 									</li>
 									
 									<li>
-										<a href="#">Promociones Y Eventos</a>
+										<a href="{{url('promociones')}}">Promociones Y Eventos</a>
 									</li>
 									
 									<!--<li>
@@ -284,11 +284,11 @@
 									</li>-->
 									
 									<li>
-										<a href="/alimentos-y-bebidas">Alimentos Y Bebidas</a>
+										<a href="{{url('alimentos-y-bebidas')}}">Alimentos Y Bebidas</a>
 									</li>
 									
 									<li>
-										<a href="#">Juego Responsable</a>
+										<a href="{{url('juego_responsable')}}">Juego Responsable</a>
 									</li>
 								</ul>
 							</nav><!-- /.nav-footer -->
@@ -298,19 +298,19 @@
 							<nav class="nav-footer">
 								<ul>
 									<li>
-										<a href="#">Quiénes Somos</a>
+										<a href="{{url('quienes_somos')}}">Quiénes Somos</a>
 									</li>
 									
 									<li>
-										<a href="#">Contacto</a>
+										<a href="{{url('contacto')}}">Contacto</a>
 									</li>
 									
 									<li>
-										<a href="#">Aviso De Privacidad</a>
+										<a href="{{url('aviso_de_privacidad')}}">Aviso De Privacidad</a>
 									</li>
 									
 									<li>
-										<a href="#">Bolsa De Trabajo</a>
+										<a href="{{url('bolsa_de_trabajo')}}">Bolsa De Trabajo</a>
 									</li>
 									
 									<!--<li>

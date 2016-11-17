@@ -41,13 +41,7 @@
 						@endif
 						
 						<div class="col col-1of2">
-							<p class="breadcrumbs">
-								<a href="#">Inicio</a>
-								
-								<a href="#">Mesas de juego</a>
-								
-								<a href="#">Menú alimentos y bebidas</a>
-							</p><!-- /.breadcrumbs -->
+							@include('front.includes.breadcrumbs')
 						</div><!-- /.col col-1of2 -->
 					</div><!-- /.cols -->
 				</div><!-- /.intro-content-actions -->
