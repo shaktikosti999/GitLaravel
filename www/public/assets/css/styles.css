@@ -2182,6 +2182,7 @@ li:first-child { margin: 0;}
 .fs-dropdown.btn-city {float: right; padding-right: 50px;}
 .head-padding {padding-bottom: 0;}
 .shell .btn-action {margin-bottom: 30px;}
+.main .btn-ciudades {width: 40%; float: right; position: relative; margin-top: 0;}
 
 .left-item {width: calc(50% - 30px); float: left; position: relative; border: 2px solid #dfdfdf; padding: 2%;}
 .calendar-module th.datepicker-switch  {font-size: 40px;}
@@ -2207,6 +2208,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.serie-item h4 {font-size: 50px;}
 	.serie-item {padding: 24px;}
 	.btn-tut a {margin-top: 0px;}
+	.main .btn-ciudades {width: 100%;}
 
 	.sucursales {margin-bottom: 30px;}
 	.sucursales li {border-bottom: 1px solid #efefef;}
