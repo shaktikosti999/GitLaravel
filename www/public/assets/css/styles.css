@@ -1511,9 +1511,9 @@ li:first-child { margin: 0;}
 	.slider-intro-promo {height: 440px;}	
 }
 .slider-intro.anchor + .main.anchor { margin-top: -400px; z-index: 200; position: relative; }
-@media (max-width: 1023px) {
+/*@media (max-width: 1023px) {
 	.slider-intro.anchor + .main.anchor { margin-top: -200px; }
-}
+}*/
 @media (max-width: 767px) { 
 	.slider-intro.anchor + .main.anchor { margin-top: 0; }
 }
