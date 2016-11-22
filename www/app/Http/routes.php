@@ -78,4 +78,6 @@ Route::get('calendario','front\calendarioController@show');
 Route::get('/contacto','front\contactoController@contacto');
 Route::put('/contacto/guardar', 'contactoController@store');
 
+// -----> Torneos
+Route::get('/torneos/{slug?}','front\torneosController@index');
 Route::get('{pagina}','front\paginaController@index')->where('pagina','.+');
