@@ -1669,7 +1669,7 @@ li:first-child { margin: 0;}
 }
 /* Tablet Portrait */
 @media (max-width: 1023px) {
-	.slider-secondary { margin-bottom: 30px; }
+	/*.slider-secondary { margin-bottom: 30px; }*/
 	.slider-secondary .slides { height: auto; min-height: 400px; }
 	.slider-secondary .slide { height: auto; min-height: 400px; }
 	.slider-secondary .slide-body { position: static; padding: 120px 0 80px; font-size: 15px; text-align: center; }
