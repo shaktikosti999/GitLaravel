@@ -5,7 +5,7 @@
 	$doc.ready(function() {
 
 		// date picker
-		//$( '[data-date]' ).datepicker();
+		$( '[data-date]' ).datepicker();
 		$.ajaxSetup({
 		    headers: {
 		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
