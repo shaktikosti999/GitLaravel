@@ -2173,7 +2173,7 @@ li:first-child { margin: 0;}
 .section-video {padding: 0 0 10px 0;}
 .item-video iframe {height: 315px; width: 560px;}
 
-.sucursales {position: relative; width: 100%; float: left; display: inline-block; margin-bottom: 80px;}
+.sucursales {position: relative; width: 100%; float: left; display: inline-block; margin-bottom: 80px; margin-top: 60px;}
 .sucursales li:nth-child(1) {float: left; position: relative; display: inline-block; width: 50%; padding: 0 14px;}
 .sucursales li:nth-child(2) {float: right; display: inline-block; width: 50%; position: absolute; padding: 0 14px;}
 .sucursales ul {list-style: none;}
@@ -2181,6 +2181,7 @@ li:first-child { margin: 0;}
 .sucursales p {color: #4a4a4a; width: 190px; line-height: 25px;}
 .fs-dropdown.btn-city {float: right; padding-right: 50px;}
 .head-padding {padding-bottom: 0;}
+.shell .btn-action {margin-bottom: 30px;}
 
 .left-item {width: calc(50% - 30px); float: left; position: relative; border: 2px solid #dfdfdf; padding: 2%;}
 .calendar-module th.datepicker-switch  {font-size: 40px;}
