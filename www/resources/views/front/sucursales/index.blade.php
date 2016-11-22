@@ -11,17 +11,17 @@
 					<div class="slide-body">
 						<div class="shell"> 		 
 							 <div class="slide-content">
-							 	<h1>
-							 		Sucursal Tecamachalco
-							 	</h1>
-							 <div class="filter-secondary">
-								<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-								<select name="field-filter-secondary1" id="field-filter-secondary1" class="select">
-									@foreach($sucursales as $item)
-										<option value="{{$item->id_sucursal}}">Cambiar a Sucursal {{$item->nombre}}</option>
-									@endforeach
-								</select>
-							</div><!-- /.filter-secondary -->
+							 	{!! isset( $sucursal ) ? '<h1>' . $sucursal->nombre . '</h1>' : '' !!}
+								@if( isset($sucursales) && count($sucursales) )
+									<div class="filter-secondary">
+										<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+										<select name="field-filter-secondary1" id="field-filter-secondary1" class="select">
+											@foreach($sucursales as $item)
+												<option value="{{$item->id_sucursal}}">Cambiar a Sucursal {{$item->nombre}}</option>
+											@endforeach
+										</select>
+									</div><!-- /.filter-secondary -->
+								@endif
 							 </div><!-- /.slide-content -->
 
 							 @include('front.includes.breadcrumbs')
@@ -495,62 +495,64 @@
 			</div><!-- /.shell -->
 		</section><!-- /.section-gray -->
 
-		<section class="section-map no-top-padding"> 
-			<div class="section-body">
-				<div id="googlemap" data-lng="{{$sucursal->longitud}}" data-lat="{{$sucursal->latitud}}"></div><!-- /#googlemap --> 
-			
-				<div class="section-content">
-					<div class="shell">
-						<div class="section-content-head">
-                            <div class="stick--point" id="sucursales"></div>
-							<p>Sucursal</p>
-							
-							<h2>{{$sucursal->nombre}}</h2>
-						</div><!-- /.section-content-head -->
+		@if( isset($sucursal) )
+			<section class="section-map no-top-padding"> 
+				<div class="section-body">
+					<div id="googlemap" data-lng="{{$sucursal->longitud}}" data-lat="{{$sucursal->latitud}}"></div><!-- /#googlemap --> 
+				
+					<div class="section-content">
+						<div class="shell">
+							<div class="section-content-head">
+	                            <div class="stick--point" id="sucursales"></div>
+								<p>Sucursal</p>
 								
-						<div class="section-content-body">
-							<ul class="list-contacts">
-								<li>
-									<i class="ico-map"></i>
-								
-									<p>
-										{!!$sucursal->direccion!!}
-									</p>
-								</li>
-								
-								<li>
-									<i class="ico-phone"></i>
-								
-									<p>
-										{!!$sucursal->telefono!!}
-									</p>
-								</li>
-								
-								<li>
-									<i class="ico-clock"></i>
-								
-									<p>{!!$sucursal->horario!!}</p>
-								</li>
-								
-								<li>
-									<i class="ico-car"></i>
-								
-									<p>{!!$sucursal->instrucciones!!}</p>
-								</li>
-							</ul><!-- /.list-contacts -->
-						</div><!-- /.section-content-body -->
-					</div><!-- /.shell -->
-					
-					<div class="section-actions">
-						<a href="#" class="btn btn-red btn-red-small">
-							<i class="ico-human"></i>
+								<h2>{{$sucursal->nombre}}</h2>
+							</div><!-- /.section-content-head -->
+									
+							<div class="section-content-body">
+								<ul class="list-contacts">
+									<li>
+										<i class="ico-map"></i>
+									
+										<p>
+											{!!$sucursal->direccion!!}
+										</p>
+									</li>
+									
+									<li>
+										<i class="ico-phone"></i>
+									
+										<p>
+											{!!$sucursal->telefono!!}
+										</p>
+									</li>
+									
+									<li>
+										<i class="ico-clock"></i>
+									
+										<p>{!!$sucursal->horario!!}</p>
+									</li>
+									
+									<li>
+										<i class="ico-car"></i>
+									
+										<p>{!!$sucursal->instrucciones!!}</p>
+									</li>
+								</ul><!-- /.list-contacts -->
+							</div><!-- /.section-content-body -->
+						</div><!-- /.shell -->
+						
+						<div class="section-actions">
+							<a href="#" class="btn btn-red btn-red-small">
+								<i class="ico-human"></i>
 
-							Cómo llegar aquí
-						</a>
-					</div><!-- /.section-actions -->
-				</div><!-- /.section-content --> 
-			</div><!-- /.section-body -->
-		</section><!-- /.section-map -->
+								Cómo llegar aquí
+							</a>
+						</div><!-- /.section-actions -->
+					</div><!-- /.section-content --> 
+				</div><!-- /.section-body -->
+			</section><!-- /.section-map -->
+		@endif
 
 		@if( isset($galeria) && count($galeria) )
 			<section class="section-gallery secondary gll-btm">
@@ -572,5 +574,4 @@
 				</div><!-- /.shell -->
 			</section><!-- /.section-gallery -->
 		@endif
-		<?php print_r($sn); ?>
 @stop

@@ -19,15 +19,25 @@ class sucursalesController extends Controller
      */
     public function index($slug = null){
         $sucursal = sucursal::find_by_slug($slug);
-        $data = [
-            'sucursal' => $sucursal,
-            'sucursales' => sucursal::find_all(),
-            'galeria' => sucursal::get_gallery($sucursal->id_sucursal),
-            'promociones' => promocion::find_all(['id_sucursal' => $sucursal->id_sucursal]),
-            'juegos' => linea::get_games(['id_sucursal' => $sucursal->id_sucursal]),
-            'torneos' => linea::find_all_tournaments(['id_sucursal' => $sucursal->id_sucursal])
+        if($slug !== null){
+            $data = [
+                'sucursal' => $sucursal,
+                'sucursales' => sucursal::find_all(),
+                'galeria' => sucursal::get_gallery($sucursal->id_sucursal),
+                'promociones' => promocion::find_all(['id_sucursal' => $sucursal->id_sucursal]),
+                'juegos' => linea::get_games(['id_sucursal' => $sucursal->id_sucursal]),
+                'torneos' => linea::find_all_tournaments(['id_sucursal' => $sucursal->id_sucursal])
 
-        ];
+            ];
+        }
+        else{
+            $data = [
+                'sucursales' => sucursal::find_all(),
+                'promociones' => promocion::find_all(),
+                'juegos' => linea::get_games(),
+                'torneos' => linea::find_all_tournaments()
+            ];
+        }
 
         // dd($data);
         return view('front.sucursales.index',$data);
