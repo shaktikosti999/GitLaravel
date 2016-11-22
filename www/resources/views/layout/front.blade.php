@@ -214,7 +214,7 @@
 					</a>
 
 					<div class="search">
-						<form action="?" method="get"> 
+						<form action="{{url('/resultados')}}" method="get"> 
 							<div class="search-actions">
 								<label for="q" class="hidden">Search</label> 
 

@@ -80,4 +80,8 @@ Route::put('/contacto/guardar', 'contactoController@store');
 
 // -----> Torneos
 Route::get('/torneos/{slug?}','front\torneosController@index');
+
+// -----> Búsqueda
+Route::get('/resultados','front\indexController@search');
+
 Route::get('{pagina}','front\paginaController@index')->where('pagina','.+');

@@ -12,6 +12,7 @@ use App\Models\front\linea_model as linea;
 use App\Models\front\sucursal_model as sucursal;
 use App\Models\front\slider_model as slider;
 use App\Models\front\promocion_model as promocion;
+use App\Models\front\search_model as search;
 
 class indexController extends Controller
 {
@@ -70,5 +71,16 @@ class indexController extends Controller
         }
         else
             abort(503);
+    }
+
+    /**
+    ** Buscar
+    ** sucursales, lineas de juego, promociones, comida
+    **/
+    public function search(Request $request){
+        // $this->validate(regexp)
+        $q = ($request->input('q'));
+        $data = search::all($q);
+        return view('front.resultados.index',['result' => $data]);
     }
 }
