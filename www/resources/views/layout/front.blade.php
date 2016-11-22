@@ -26,6 +26,7 @@
 		<script src="vendor/formstone/core.js"></script>
 		<script src="vendor/formstone/touch.js"></script>
 		<script src="vendor/formstone/dropdown.js"></script>
+		<script src="js/bootstrap-datepicker.js"></script>
 
 		<!-- App JS -->
 		<script src="js/functions.js"></script>
