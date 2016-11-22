@@ -17,7 +17,9 @@
 		                    	<ul>
 		                    		@if( count($val) )
 			                    		@foreach($val as $res)
-				                    		<li>{{$res->nombre}}</li>
+				                    		<li>{{$res->nombre}}
+				                    		{!!isset($res->descripcion) ? '<br>' . $res->descripcion : ''!!}
+				                    		</li>
 			                    		@endforeach
 			                    	@else
 			                    		<li>No existen resultados</li>
