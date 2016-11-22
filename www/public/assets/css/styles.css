@@ -1647,7 +1647,7 @@ li:first-child { margin: 0;}
 .slider-secondary .slide { height: 598px; position: relative; background-size: cover; background-position: center; }
 .slider-secondary .slide .shell:after { content: ''; line-height: 0; display: table; clear: both; }
 .slider-secondary .slide { position: relative; }
-.slider-secondary .slide:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0, 0, 0, .5); z-index: -1;}
+.slider-secondary .slide:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0, 0, 0, .5);}
 .slider-secondary .slide-body { position: absolute; bottom: 0; left: 0; width: 100%; padding: 55px 0; }
 .slider-secondary .slide-content { position: relative; z-index: 30; float: left; width: 50%; }
 .slider-secondary .slide-content h1 { font-size: 50px; margin-bottom: 5px; line-height: 1; font-size: 45px;font-weight: 700; margin-right: -50%; }
