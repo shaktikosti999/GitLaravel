@@ -1516,6 +1516,7 @@ li:first-child { margin: 0;}
 }*/
 @media (max-width: 767px) { 
 	.slider-intro.anchor + .main.anchor { margin-top: 0; }
+	.sldr-top {margin-top: 0;}
 }
 /* ------------------------------------------------------------ *\
 	slider-intro Secondary
