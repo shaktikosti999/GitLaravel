@@ -444,11 +444,9 @@
 												{{ $item->fecha }} - {{$item->sucursal}}
 		 									</p>
 
-		 									@if( strtotime($item->fecha) > time() )
-			 									<a href="{{$item->slug}}" class="btn btn-red">
-			 										Participar
-			 									</a>
-			 								@endif
+		 									<a href="{{url('/torneos/' . $item->slug)}}" class="btn btn-red">
+		 										{{strtotime($item->fecha) > time() ? 'Participar' : 'Detalles'}}
+		 									</a>
 										</div><!-- /.article-content -->
 									</article><!-- /.article-tournament -->
 								</div><!-- /.col col-1of2 -->
@@ -574,4 +572,5 @@
 				</div><!-- /.shell -->
 			</section><!-- /.section-gallery -->
 		@endif
+		<?php print_r($sn); ?>
 @stop

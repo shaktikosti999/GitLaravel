@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //Breadcrumbs
         $url = \Request::url();
         $url = explode(url('/').'/', $url);
         $breadcrumbs = [];
@@ -32,7 +32,21 @@ class AppServiceProvider extends ServiceProvider
                 ];
             }
         // array_pop($breadcrumbs);
+
+        //Redes Sociales
+
+        $rs = \DB::table('red_social as rs')
+            ->select('rs.link','rs.tipo','s.nombre')
+            ->join('sucursal as s','s.id_sucursal','=','rs.id_sucursal')
+            ->get();
+
+        $sn = array();
+        foreach($rs as $val)
+            $sn[$val->tipo][] = (object)['link'=>$val->link,'nombre'=>$val->nombre];
+
         view()->share('breadcrumbs',$breadcrumbs);
+        if( count($sn) )
+            view()->share('sn',$sn);
     }
 
     /**

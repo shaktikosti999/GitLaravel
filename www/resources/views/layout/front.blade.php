@@ -123,66 +123,61 @@
 							<div class="socials-footer hdr-btn">
 								<!--<h4>Síguenos</h4>-->
 
+
 								<ul>
+									@if( isset($sn[1]) && count($sn[1]) )
 									<li>
 										<a href="#">
 											<i class="fa fa-facebook" aria-hidden="true"></i>
 										</a>
 
 										<ul class="socials-dropdown">
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
 											
+											@foreach( $sn[1] as $val )
 											<li>
-												<a href="#">Lorem ipsum dolor.</a>
+												<a href="{{($val->link)}}">{{$val->nombre}}<a>
 											</li>
+											@endforeach
 											
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
+											
+											
 										</ul><!-- /.socials-dropdown -->
 									</li>
-									
+									@endif
+									@if( isset($sn[2]) && count($sn[2]) )
 									<li>
 										<a href="#">
 											<i class="fa fa-twitter" aria-hidden="true"></i>
 										</a>
 
 										<ul class="socials-dropdown">
+											@foreach( $sn[2] as $val )
 											<li>
-												<a href="#">Lorem ipsum dolor.</a>
+												<a href="{{($val->link)}}">{{$val->nombre}}<a>
 											</li>
+											@endforeach
 											
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
 											
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
 										</ul><!-- /.socials-dropdown -->
 									</li>
-									
+									@endif
+									@if( isset($sn[3]) && count($sn[3]) )
 									<li>
 										<a href="#">
 											<i class="fa fa-youtube-play" aria-hidden="true"></i>
 										</a>
 
 										<ul class="socials-dropdown">
+											@foreach( $sn[3] as $val )
 											<li>
-												<a href="#">Lorem ipsum dolor.</a>
+												<a href="{{($val->link)}}">{{$val->nombre}}<a>
 											</li>
+											@endforeach
 											
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
 											
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
 										</ul><!-- /.socials-dropdown -->
 									</li>
+									@endif
 								</ul>
 							</div><!-- /.socials-footer -->
 						</div><!-- /.col col-size4 -->
@@ -323,65 +318,59 @@
 								<h4>Síguenos</h4>
 
 								<ul>
+									@if( isset($sn[1]) && count($sn[1]) )
 									<li>
 										<a href="#">
 											<i class="fa fa-facebook" aria-hidden="true"></i>
 										</a>
 
 										<ul class="socials-dropdown">
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
 											
+											@foreach( $sn[1] as $val )
 											<li>
-												<a href="#">Lorem ipsum dolor.</a>
+												<a href="{{($val->link)}}">{{$val->nombre}}<a>
 											</li>
+											@endforeach
 											
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
+											
+											
 										</ul><!-- /.socials-dropdown -->
 									</li>
-									
+									@endif
+									@if( isset($sn[2]) && count($sn[2]) )
 									<li>
 										<a href="#">
 											<i class="fa fa-twitter" aria-hidden="true"></i>
 										</a>
 
 										<ul class="socials-dropdown">
+											@foreach( $sn[2] as $val )
 											<li>
-												<a href="#">Lorem ipsum dolor.</a>
+												<a href="{{($val->link)}}">{{$val->nombre}}<a>
 											</li>
+											@endforeach
 											
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
 											
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
 										</ul><!-- /.socials-dropdown -->
 									</li>
-									
+									@endif
+									@if( isset($sn[3]) && count($sn[3]) )
 									<li>
 										<a href="#">
 											<i class="fa fa-youtube-play" aria-hidden="true"></i>
 										</a>
 
 										<ul class="socials-dropdown">
+											@foreach( $sn[3] as $val )
 											<li>
-												<a href="#">Lorem ipsum dolor.</a>
+												<a href="{{($val->link)}}">{{$val->nombre}}<a>
 											</li>
+											@endforeach
 											
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
 											
-											<li>
-												<a href="#">Lorem ipsum dolor.</a>
-											</li>
 										</ul><!-- /.socials-dropdown -->
 									</li>
+									@endif
 								</ul>
 							</div><!-- /.socials-footer -->
 						</div><!-- /.col col-size4 -->
