@@ -135,7 +135,7 @@
 											
 											@foreach( $sn[1] as $val )
 											<li>
-												<a href="{{($val->link)}}">{{$val->nombre}}<a>
+												<a href="{{($val->link)}}">{{$val->nombre}}</a>
 											</li>
 											@endforeach
 											
@@ -153,7 +153,7 @@
 										<ul class="socials-dropdown">
 											@foreach( $sn[2] as $val )
 											<li>
-												<a href="{{($val->link)}}">{{$val->nombre}}<a>
+												<a href="{{($val->link)}}">{{$val->nombre}}</a>
 											</li>
 											@endforeach
 											
@@ -170,7 +170,7 @@
 										<ul class="socials-dropdown">
 											@foreach( $sn[3] as $val )
 											<li>
-												<a href="{{($val->link)}}">{{$val->nombre}}<a>
+												<a href="{{($val->link)}}">{{$val->nombre}}</a>
 											</li>
 											@endforeach
 											
@@ -328,7 +328,7 @@
 											
 											@foreach( $sn[1] as $val )
 											<li>
-												<a href="{{($val->link)}}">{{$val->nombre}}<a>
+												<a href="{{($val->link)}}">{{$val->nombre}}</a>
 											</li>
 											@endforeach
 											
@@ -346,7 +346,7 @@
 										<ul class="socials-dropdown">
 											@foreach( $sn[2] as $val )
 											<li>
-												<a href="{{($val->link)}}">{{$val->nombre}}<a>
+												<a href="{{($val->link)}}">{{$val->nombre}}</a>
 											</li>
 											@endforeach
 											
@@ -363,7 +363,7 @@
 										<ul class="socials-dropdown">
 											@foreach( $sn[3] as $val )
 											<li>
-												<a href="{{($val->link)}}">{{$val->nombre}}<a>
+												<a href="{{($val->link)}}">{{$val->nombre}}</a>
 											</li>
 											@endforeach
 											
