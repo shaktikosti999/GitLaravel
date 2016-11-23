@@ -34,7 +34,7 @@
 				@foreach( $maquinas as $item )
 
 					<li class="game">
-						<a href="#" style="background-image: url('{{ $item->imagen }}')"> 
+						<a href="{{ url('/maquinas-de-juego/detalle/'.$item->slug) }}" style="background-image: url('{{ $item->imagen }}')"> 
 							<span class="jackpot">
 								<small>JACKPOT</small>
 								<strong>

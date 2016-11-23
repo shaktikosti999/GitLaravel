@@ -12,6 +12,7 @@ use App\Models\front\linea_model as linea;
 use App\Models\front\sucursal_model as sucursal;
 use App\Models\front\slider_model as slider;
 use App\Models\front\promocion_model as promocion;
+use App\Models\front\juego_model as juego;
 
 class lineasController extends Controller
 {
@@ -51,6 +52,16 @@ class lineasController extends Controller
 
         return view('front.lineas.maquinas',$data);
     
+    }
+
+    public function maquinas_show($slug){
+        $juego = juego::find(['slug' => $slug]);
+
+        $data = [
+            'juego' => $juego
+        ];
+
+        return view('front.juegos.show',$data);
     }
 
     public function mesas( $sucursal = null ){

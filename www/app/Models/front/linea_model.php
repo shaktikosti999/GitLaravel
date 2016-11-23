@@ -149,6 +149,7 @@ class linea_model{
                 'j.titulo',
                 'j.imagen',
                 'j.resumen',
+                'j.slug',
                 'js.link',
                 'js.acumulado',
                 'js.apuesta_minima',

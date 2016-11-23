@@ -56,6 +56,7 @@ Route::get('/lineas-de-juego/mesas-de-juego/{sucursal?}','front\lineasController
 //-----> Promociones
 Route::get('/promociones/{sucursal?}','front\promocionesController@index');
 Route::get('/promociones/detalle/{slug}','front\promocionesController@show');
+Route::get('/maquinas-de-juego/detalle/{slug}','front\lineasController@maquinas_show');
 
 Route::post('/contacto/newsletter','front\contactoController@newsletter');
 

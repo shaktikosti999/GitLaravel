@@ -5,6 +5,8 @@ use App\Events\dotask;
 use Event;
 
 use App\juego;
+use Illuminate\Support\Str;
+
 class juego_model{
 	static function all(){
 		$sucursal = \DB::table('juego as j')
@@ -49,6 +51,7 @@ class juego_model{
 		$sucursal->resumen = $request->resumen;
 		$sucursal->aprender = $request->aprender;
 		$sucursal->reglas = $request->reglas;
+		$sucursal->slug = Str::slug($request->nombre, '-');
 		$evento = Event::fire(new dotask($sucursal));
 		return $evento;
 	}
@@ -61,6 +64,7 @@ class juego_model{
 		$sucursal->resumen = $request->resumen;
 		$sucursal->aprender = $request->aprender;
 		$sucursal->reglas = $request->reglas;
+		$sucursal->slug = Str::slug($request->nombre, '-');
 		$evento = Event::fire(new dotask($sucursal));
 		return $evento;
 	}

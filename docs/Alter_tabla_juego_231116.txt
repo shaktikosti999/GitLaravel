@@ -1,0 +1,37 @@
+/*23-11-2016*/
+ALTER TABLE juego add slug VARCHAR(50) NOT NULL AFTER nombre;
+
+-- ----------------------------
+-- Table structure for juego
+-- ----------------------------
+DROP TABLE IF EXISTS `juego`;
+CREATE TABLE `juego` (
+  `id_juego` int(3) NOT NULL AUTO_INCREMENT,
+  `id_linea` int(2) NOT NULL,
+  `nombre` varchar(50) NOT NULL,
+  `slug` varchar(50) NOT NULL,
+  `titulo` varchar(50) NOT NULL,
+  `imagen` varchar(100) NOT NULL,
+  `resumen` text NOT NULL,
+  `aprender` text,
+  `reglas` text,
+  `estatus` tinyint(1) NOT NULL DEFAULT '1',
+  `eliminado` tinyint(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id_juego`),
+  KEY `id_linea` (`id_linea`) USING BTREE,
+  CONSTRAINT `juego_ibfk_1` FOREIGN KEY (`id_linea`) REFERENCES `linea` (`id_linea`) ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of juego
+-- ----------------------------
+INSERT INTO `juego` VALUES ('1', '1', 'Premium Roulette', 'premium-roulette', 'Premium Roulette', 'css/images/temp/game-machine1.jpg', '15 giros GRATIS con multiplicador de desmoronamiento de carretes.\r\n', 'Aprender Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', 'Reglas Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', '1', '0', '2016-08-30 16:48:42', '2016-11-23 17:25:56');
+INSERT INTO `juego` VALUES ('2', '1', 'Perfect Black Jack', 'perfect-black-jack', 'Perfect Black Jack', 'css/images/temp/game-machine2.jpg', '12 giros GRATIS el multiplicador se aplica al giro en curso . El multiplicador baja un nivel en los giros en los que no aparece símbolo.', 'Aprender Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', 'Reglas Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', '1', '0', '2016-08-30 16:48:42', '2016-11-23 17:25:30');
+INSERT INTO `juego` VALUES ('3', '1', 'Casino Hold ‘Em', 'casino-hold-em', 'Casino Hold ‘Em', 'css/images/temp/game-machine3.jpg', 'Todas las ganancias en partidas gratis serán triplicadas.', 'Aprender Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', 'Reglas Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', '1', '0', '2016-08-30 16:48:42', '2016-11-23 17:26:12');
+INSERT INTO `juego` VALUES ('4', '1', 'White King', 'white-king', 'White King', 'css/images/temp/game-machine4.jpg', '15 partidas GRATIS con el multiplicador x3.', 'Aprender Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', 'Reglas Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', '1', '0', '2016-08-30 16:48:42', '2016-11-23 17:26:27');
+INSERT INTO `juego` VALUES ('5', '2', 'Ruleta', 'ruleta', 'Ruleta', 'css/images/temp/game-machine1.jpg', '15 giros GRATIS con multiplicador de desmoronamiento de carretes.\r\n', 'Aprender Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', 'Reglas Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', '1', '0', '2016-08-30 16:48:42', '2016-11-23 17:26:43');
+INSERT INTO `juego` VALUES ('6', '2', 'Blackjack', 'blackjack', 'Blackjack', 'css/images/temp/game-machine1.jpg', '15 giros GRATIS con multiplicador de desmoronamiento de carretes.\r\n', 'Aprender Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', 'Reglas Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', '1', '0', '2016-08-30 16:48:42', '2016-11-23 17:23:59');
+INSERT INTO `juego` VALUES ('7', '2', 'Baccarat', 'baccarat', 'Baccarat', 'css/images/temp/game-machine1.jpg', '15 giros GRATIS con multiplicador de desmoronamiento de carretes.\r\n', 'Aprender Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', 'Reglas Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum turpis nec diam dapibus porttitor sed sodales quam. Aliquam sit amet accumsan justo. Duis fermentum quis dui id vestibulum.', '1', '0', '2016-08-30 16:48:42', '2016-11-23 17:27:02');
+INSERT INTO `juego` VALUES ('8', '4', 'Carreras', 'carreras', 'Carreras de caballos', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\r\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\r\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\r\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\r\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\r\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '1', '0', '2016-11-22 18:06:45', '2016-11-23 17:25:07');
