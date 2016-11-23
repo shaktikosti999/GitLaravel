@@ -79,12 +79,16 @@
 		var id_get = $('[name="sucursal_modal2"]>option:contains("' + $(this).parent().children()[1].innerText + '")').val();
 		option_data(id_get,'/lineas_ciudades',$('[name="linea_modal2"]'));
 		$('#establecimiento_go2').attr('data-sucursal',id_get);
+		$('#establecimiento_go2').attr('href','/sucursal');
 	});
 
 	$('.select_linea_modal2').on('change', function(){
 		var id_get = $('[name="linea_modal2"]>option:contains("' + $(this).parent().children()[1].innerText + '")').val();
 		$('#establecimiento_go2').attr('href','');
-		$('#establecimiento_go2').attr('href','/lineas-de-juego/'+id_get);
+		if (id_get == "")
+			$('#establecimiento_go2').attr('href','/sucursal');
+		else
+			$('#establecimiento_go2').attr('href','/lineas-de-juego/'+id_get);
 	});	
 
 	$('#establecimiento_go2').on('click', function(){
