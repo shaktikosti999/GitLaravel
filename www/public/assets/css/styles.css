@@ -1244,7 +1244,7 @@ li:first-child { margin: 0;}
 	.section-teritary .row > .col { width: 100%; margin-bottom: 30px; }
 
 	.section-filters { text-align: center; }
-	.section-filters li { padding: 0 10px; width: 33.33%; display: inline-block; float: none; margin-bottom: 20px; }
+	.section-filters li { padding: 0 10px; display: inline-block; margin-bottom: 20px; }
 	.section-filters li strong { max-width: 100%; }
 	.section-filters li span { font-size: 12px; }
 }
@@ -2235,13 +2235,15 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 }
 
 @media(max-width: 992px){
-
-	.section-filters li {width: 19.33%;}
 	.slider-intro .slide {min-height: 500px;}
 	.nav-trigger {width: 29px;}
 	.slider-intro-secondary .slide-content {padding-top: 190px;}
-	.slider-games .slide-content {max-width: 250px; height: 310px;}
-	.section-filters li a {padding: 25px;}
+	.slider-games .slide-content {max-width: 250px; height: 310px;}	
+}
+@media(max-width: 767px){
+	.section-filters li {padding-right: 0;}
+	.section-filters li {float: none; padding-right: 0;}
+
 }
 
 
