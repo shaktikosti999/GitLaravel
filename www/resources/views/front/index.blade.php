@@ -382,7 +382,7 @@
 			</div><!-- /.shell -->
 		</section><!-- /.section-gray -->
 
-		@if( isset( $rand_sucursal ) ){
+		@if( isset( $rand_sucursal ) )<!--{-->
 
 			<section class="section-map">
 				<div class="section-head">
