@@ -225,8 +225,8 @@
 		});
 
 		$('.slider-secondary .slides').slick({
-			dots: true, 
-			arrows: false,
+			dots: false, 
+			arrows: true,
 			centerMode:true,
 			centerPadding: '0',
 			slidesToShow: 1,
@@ -237,8 +237,8 @@
 		$('.slider-secondary .slick-dots').wrap('<div class="slick-dots-wrapper"><div class="shell"></div></div>');
 
 		$('.slider-providers .slides').slick({
-			dots: true, 
-			arrows: false,
+			dots: false, 
+			arrows: true,
 			infinite: true,
 			touchMove: false,
 			swipeToSlide: false,
