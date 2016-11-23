@@ -2233,6 +2233,9 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.section-articles.content-video {padding-bottom: 0;}
 	.section-video:last-child {padding-bottom: 50px;}
 }
+@media(max-width: 1088px){ 
+	.section-filters li {padding: 0 10px;}
+}
 
 @media(max-width: 992px){
 	.slider-intro .slide {min-height: 500px;}
@@ -2243,10 +2246,11 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 @media(max-width: 767px){
 	.section-filters li {padding-right: 0;}
 	.section-filters li {float: none; padding-right: 0;}
+	.slider-intro .slide {min-height: 430px !important;}
 
 }
 
-
+    
 
 
 
