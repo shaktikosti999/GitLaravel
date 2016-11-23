@@ -1358,7 +1358,7 @@ li:first-child { margin: 0;}
 /* ------------------------------------------------------------ *\
 	Section Promotion
 \* ------------------------------------------------------------ */
-.section-promotions { padding-bottom: 50px; }
+.section-promotions { padding-bottom: 50px;}
 .section-promotions.secondary { padding-bottom: 65px; }
 .section-promotions .section-head { padding: 74px 0 20px; position: relative; }
 .section-promotions + .section-promotions { padding-bottom: 40px; }
@@ -1374,7 +1374,8 @@ li:first-child { margin: 0;}
 @media (max-width: 767px) {
 	.section-promotions .section-head { text-align: center; padding: 30px 0; }
 	.section-promotions .section-head h2 { float: none; display: block; width: 100%; }
-	.section-promotions .section-head .btn { float: none; display: block; margin-bottom: 30px; } 	
+	.section-promotions .section-head .btn { float: none; display: block; margin-bottom: 30px; }
+	.section-promotions { padding-top: 50px;} 	
 }
 /* ------------------------------------------------------------ *\
 	Section providers
