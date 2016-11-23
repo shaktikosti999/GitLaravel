@@ -65,6 +65,19 @@ class sucursal_model{
         return $data;
     }
 
+    static function get_by_sucursal( $sucursal_slug ){
+        $data = \DB::table('sucursal as s')
+            ->select(\DB::raw('distinct l.slug as id'),'l.nombre')
+            ->join('juego_sucursal as js','s.id_sucursal','=','js.id_sucursal')
+            ->join('juego as j','js.id_juego','=','j.id_juego')
+            ->join('linea as l','j.id_linea','=','l.id_linea')
+            ->where('l.estatus','=',1)
+            ->where('l.eliminado','=',0)
+            ->where('s.slug','=', $sucursal_slug)
+            ->get();
+        return $data;
+    }
+
     static function get_cities($id){
         $get = \DB::table('ciudad AS c')
             ->select(

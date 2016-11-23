@@ -26,4 +26,12 @@ class indexModalsController extends Controller
         else
         abort(403);
     }
+
+    public function lineas(Request $request){
+        if($request->ajax()){
+            echo json_encode(sucursal::get_by_sucursal($request->input('id')));
+        }
+        else
+        abort(403);
+    }
 }

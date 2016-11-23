@@ -53,53 +53,50 @@
 	        </section>
 	<!--END: LIGHTBOX UBICACION CIUDAD -->
 
-	<!-- BEGIN: LIGHTBOX UBICACION CIUDAD 
-	        <section class="lightbox-etb lightbox--module">
+	<!-- BEGIN: LIGHTBOX UBICACION CIUDAD -->
+	        <section class="lightbox-etb lightbox--module modal_ciudades" style="display:none;">
 	            <section class="modal centerme">
 	                <form class="modal-item">
-
 	                		<div class="texto-etb">
 	                            <h4>Ciudad seleccionada</h4>
-	                            <div class="select btn--select">
-			                        <select name="ciudad">
-										<option>Ciudad de México</option>
-										<option>Ciudad de México</option>
-										<option>Ciudad de México</option>
+	                            <div class="select select_ciudad_modal2 btn--select">
+			                        <select name="ciudad_modal2">
+										@if( isset($ciudades) && count($ciudades) )
+			                        		@foreach($ciudades as $ciudad)
+												<option value="{{$ciudad->ciudad}}" data-id="{{$ciudad->id_ciudad}}">{{$ciudad->ciudad}}</option>
+											@endforeach 
+										@endif
 									</select>
 								</div>
+
 	                        </div>
 
 	                        <div class="texto-etb">
 	                            <h4>Selecciona tu sucursal</h4>
-	                            <div class="select btn--select">
-			                        <select name="lineas de juego">
-										<option>Tecamachalco</option>
-										<option>Tecamachalco</option>
-										<option>Tecamachalco</option>
+	                            <div class="select select_sucursal_modal2 btn--select">
+			                        <select name="sucursal_modal2">
+										<option value="">Seleccione sucursal</option>
 									</select>
 								</div>
 	                        </div>
-
-
 
 	                        <div class="texto-etb">
 	                            <h4>Selecciona tu línea de juego</h4>
-	                            <div class="select btn--select">
-			                        <select name="ciudad">
-										<option>Máquinas de juego</option>
-										<option>Mesas de juego</option>
-										<option>Apuesta deportiva</option>
-										<option>Apuesta de carreras</option>
+	                            <div class="select select_linea_modal2 btn--select">
+			                        <select name="linea_modal2" required>
+										<option value="">Seleccione línea</option>
 									</select>
 								</div>
 	                        </div>
-
+							
+							<div id="message"></div>
+							
 	                        <div class="texto">
-	                           <button type="button" class="btn  btn-red medium"><span>Continuar</span></button>
+	                           <a role="button" class="btn  btn-red medium" id="establecimiento_go2" data-sucursal=""><span>Continuar</span></a>
 	                        </div>
 
 	                        <div class="texto">
-	                        <a href="#" class="btn secundary etb">Cancelar</a> 
+	                        <a class="btn secundary etb modal_ciudad_btn_cancelar">Cancelar</a> 
 	                        </div>
 
 	                </form>
@@ -401,11 +398,14 @@
 								
 								<h2>{{ $rand_sucursal->nombre }}</h2>
 
-								<div class="select btn-ubn"> <!-- BEGIN boton sucursal -->
-			                        <select name="ciudad">
-										<option>Ciudad de México</option>
-										<option>Ciudad de México</option>
-										<option>Ciudad de México</option>
+								<div class="select btn-ubn select_ciudad_mapa"> <!-- BEGIN boton sucursal -->
+			                        <select name="ciudad_mapa">
+										<option value="">Seleccione la ciudad</option>
+										@if( isset($ciudades) && count($ciudades) )
+			                        		@foreach($ciudades as $ciudad)
+												<option data-id="{{$ciudad->id_ciudad}}" data-ciudad="{{$ciudad->ciudad}}">{{$ciudad->ciudad}}</option>
+											@endforeach 
+										@endif
 									</select> <!-- END boton sucursal -->
 								</div>
 

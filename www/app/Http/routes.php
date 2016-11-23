@@ -70,6 +70,7 @@ Route::get('/sucursal/{slug?}','front\sucursalesController@index');
 // ajax para modales
 Route::patch('/sucursales','front\api\indexModalsController@sucursales');
 Route::patch('/ciudades_sucursal','front\api\indexModalsController@ciudades');
+Route::patch('/lineas_ciudades','front\api\indexModalsController@lineas');
 
 // ----->Calendario
 Route::get('calendario','front\calendarioController@show');

@@ -58,4 +58,47 @@
 			}
 		});
 	}
+
+	$('.select_ciudad_mapa').on('change', function(){		
+		var ciudad = $('[name="ciudad_mapa"]>option:contains("' + $(this).parent().children()[1].innerText + '")').attr('data-ciudad');
+		$('#message').text('');
+		$('.select_ciudad_modal2').val(ciudad).trigger('change');
+		$('[name="sucursal_modal2"]').html('<option value=""> Seleccione sucursal</option>');
+		$('[name="linea_modal2"]').html('<option value=""> Seleccione línea</option>');
+		$('[name="sucursal_modal2"]').parent().dropdown('update');
+		$('[name="linea_modal2"]').parent().dropdown('update');
+		$('.modal_ciudades').fadeIn();
+	});
+
+	$('.select_ciudad_modal2').on('change', function(){
+		var id_get = $('[name="ciudad_modal2"]>option:contains("' + $(this).parent().children()[1].innerText + '")').attr('data-id');
+		option_data(id_get,'/sucursales',$('[name="sucursal_modal2"]'));
+	});
+
+	$('.select_sucursal_modal2').on('change', function(){
+		var id_get = $('[name="sucursal_modal2"]>option:contains("' + $(this).parent().children()[1].innerText + '")').val();
+		option_data(id_get,'/lineas_ciudades',$('[name="linea_modal2"]'));
+		$('#establecimiento_go2').attr('data-sucursal',id_get);
+	});
+
+	$('.select_linea_modal2').on('change', function(){
+		var id_get = $('[name="linea_modal2"]>option:contains("' + $(this).parent().children()[1].innerText + '")').val();
+		$('#establecimiento_go2').attr('href','');
+		$('#establecimiento_go2').attr('href','/lineas-de-juego/'+id_get);
+	});	
+
+	$('#establecimiento_go2').on('click', function(){
+		if($(this).attr('href') == undefined)
+			$('#message').text('Seleccione la sucursal y la línea de juego');
+		else
+		{
+			$('#message').text('');
+			$(this).attr('href',$(this).attr('href') + "/" + $(this).attr('data-sucursal'));
+		}
+	});
+
+	$('.modal_ciudad_btn_cancelar').on('click', function(){
+		$('.modal_ciudades').fadeOut();
+	});
+	
 });

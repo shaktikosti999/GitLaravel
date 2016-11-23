@@ -13,6 +13,7 @@ use App\Models\front\sucursal_model as sucursal;
 use App\Models\front\slider_model as slider;
 use App\Models\front\promocion_model as promocion;
 use App\Models\front\search_model as search;
+use App\Models\front\ciudad_model as ciudad;
 
 class indexController extends Controller
 {
@@ -30,6 +31,7 @@ class indexController extends Controller
         $data["lineas"]         = linea::find_all();
         $data["rand_sucursal"]  = sucursal::find_random();
         $data["sucursales"]     = sucursal::find_all();
+        $data["ciudades"]       = ciudad::find_all();
 
         return view('front.index',$data);
     
