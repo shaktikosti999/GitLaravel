@@ -1069,7 +1069,7 @@ li:first-child { margin: 0;}
 }
 /* Small Desktop */
 @media (max-width: 1162px) {
-	.nav li a { font-size: 12px; padding-bottom: 10px; padding-top: 10px; }
+	.nav li a { padding-bottom: 10px; padding-top: 10px; }
 	.nav > ul > li + li { margin-left: 15px; }
 }
 @media (max-width: 1023px) { 	 
