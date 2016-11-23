@@ -1,11 +1,11 @@
 @extends('layout.front')
 @section('contenido')
 
-	@{
+	<!--@{
 
 
 
-	}
+	}-->
 
 
 	<div class="wrapper">
