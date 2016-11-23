@@ -5,6 +5,10 @@
 	$('.modal_linea').on('click', function(){
 		$('.select_linea_de_juegos').val($(this).attr('data-href')).trigger('change');
 		$('#establecimiento_go').attr('href',$(this).attr('data-href'));
+		$('[name="linea_ciudad"]').html('<option value=""> Seleccione una opción </option>');
+		$('[name="linea_sucursal"]').html('<option value=""> Seleccione una opción </option>');
+		$('[name="linea_ciudad"]').parent().dropdown('update');
+		$('[name="linea_sucursal"]').parent().dropdown('update');
 		$('.modal_establecimiento').fadeIn();
 	});
 
