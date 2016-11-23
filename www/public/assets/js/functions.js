@@ -152,8 +152,8 @@
 
 		//slider intro
 		$('.slider-intro .slides').slick({
-			dots: true,
-			arrows: false,
+			dots: false,
+			arrows: true,
 			slidesToShow: 1,
 			slidesToScroll: 1,
 			swipeToSlide: true,
