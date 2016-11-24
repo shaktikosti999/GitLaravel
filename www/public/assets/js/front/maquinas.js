@@ -50,12 +50,12 @@
 										+'</a>'
 									+'</li>';
 					});
-
 					$("#games").append(maquinas);
 					$('#mas').show();
 				}else{ 
 					$('#mas').hide();					
-					return false
+					if (ids_maquinas == null)
+						$("#games").empty();
 				}
 			},
 			error: function () {									
