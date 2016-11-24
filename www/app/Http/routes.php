@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth'], function () {
 		include_once('Routes/sucursal.php');
 		include_once('Routes/sucursal_juego.php');
 		include_once('Routes/red.php');
+		include_once('Routes/carrerapdf.php');
 
 	});
 });

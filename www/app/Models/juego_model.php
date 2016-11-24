@@ -8,7 +8,7 @@ use App\juego;
 use Illuminate\Support\Str;
 
 class juego_model{
-	static function all(){
+	static function all($args = []){
 		$sucursal = \DB::table('juego as j')
 			->select(
 				'j.id_juego as id',
@@ -18,9 +18,11 @@ class juego_model{
 				'l.nombre as linea'
 			)
 			->join('linea as l','l.id_linea','=','j.id_linea')
-			->where('j.eliminado',0)
+			->where('j.eliminado',0);
 			// ->where('l.eliminado',0)
-			->get();
+			if( isset($args['id_linea']) )
+				$sucursal = $sucursal->where('j.id_linea',$args['id_linea']);
+			$sucursal = $sucursal->get();
 		return $sucursal;
 	}
 

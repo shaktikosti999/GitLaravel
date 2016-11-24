@@ -135,6 +135,9 @@ class generalController extends Controller
                 case 'red':
                     $modulo = \App\red_social::find($id);
                     break;
+                case 'pdfcarrera':
+                    $modulo = \App\carrerapdf::find($id);
+                    break;
                 default:
                     dd($modulo);
                 break;
