@@ -202,9 +202,7 @@
 					
 					@foreach( $slider as $s )
 					
-						<button>
-							<i class="fa fa-angle-right" aria-hidden="true"></i>
-						</button>
+						
 						
 						<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
 							<div class="slide-content ">
