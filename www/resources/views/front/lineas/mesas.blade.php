@@ -179,7 +179,7 @@
 							<aside class="section-aside">
 								<article class="article-game-available large">
 						 			<div class="article-content">
-						 				<div class="article-image" style="background-image: url(css/images/temp/article-game-available-large-bg.jpg)">  
+						 				<div class="article-image" style="background-image: url({{current($mesas)->imagen}})">  
 						 					@if(isset(current($mesas)->apuesta_minima) && !empty(current($mesas)->apuesta_minima))
 						 					<div class="article-label">
 						 						<span> Apuesta Mínima DESDE </span>
@@ -229,38 +229,38 @@
 										<ul class="slides">
 											<?php next($mesas);$c = 0;?>
 											@foreach($mesas as $mesa)
-											@if( ($c % 4) == 0 && $c > 0 )
-													</div><!-- /.cols -->
-												</div><!-- /.slide-content -->
-											</li><!-- /.slide -->
-											@endif
-											@if( ($c % 4) == 0 )
-											<li class="slide">
-											 	<div class="slide-content">  
-												 	<div class="cols">
-											@endif
-														<div class="col col-1of2">
-															<article class="article-game-available small">
-																<h6>
-																	{{$mesa->nombre}} HH
+												@if( ($c % 4) == 0 && $c > 0 )
+															</div><!-- /.cols -->
+														</div><!-- /.slide-content -->
+													</li><!-- /.slide -->
+												@endif
+												@if( ($c % 4) == 0 )
+													<li class="slide">
+													 	<div class="slide-content">  
+														 	<div class="cols">
+												@endif
+																<div class="col col-1of2">
+																	<article class="article-game-available small">
+																		<h6>
+																			{{$mesa->nombre}}
 
-																	<span class="plus"></span>
-																</h6>
-															
-															<div class="article-image" style="background-image: url(css/images/temp/.article-game-available.small1.jpg)"> </div><!-- /.article-image -->
+																			<span class="plus"></span>
+																		</h6>
+																	
+																	<div class="article-image" style="background-image: url({{$mesa->imagen}})"> </div><!-- /.article-image -->
 
-															<a href="#" class="link-more">
-																Ver más
-															</a>
-															</article><!-- /.article-game-available small -->
-														</div><!-- /.col col-1of2 -->
+																	<a href="#" class="link-more">
+																		Ver más
+																	</a>
+																	</article><!-- /.article-game-available small -->
+																</div><!-- /.col col-1of2 -->
 
-												<?php $c++; ?>
+													<?php $c++; ?>
 											@endforeach
 											@if( ($c % 4) != 1 )
-												 	</div><!-- /.cols -->
-												</div><!-- /.slide-content -->
-											</li><!-- /.slide -->
+													 	</div><!-- /.cols -->
+													</div><!-- /.slide-content -->
+												</li><!-- /.slide -->
 											@endif
 										</ul><!-- /.slides -->
 										<!-- vik0x -->
