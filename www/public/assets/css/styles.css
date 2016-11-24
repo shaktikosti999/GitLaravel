@@ -1487,7 +1487,12 @@ li:first-child { margin: 0;}
 .slider-intro .slick-arrow {right: 5%; width: 40px; position: absolute; z-index: 2; color: #fff; background-color: transparent; border: none;}
 .slider-intro .slick-arrow i {font-size: 30px;}
 .slider-intro .slick-next {top: 310px;}
-.slider-intro button
+
+.slider-secondary .slick-prev {top: 350px; border-bottom: 1px solid #ebebeb !important; padding-bottom: 10px; background-color: transparent; border: none;}
+.slider-secondary .slick-arrow {right: 5%; width: 40px; position: absolute; z-index: 2; color: #fff; background-color: transparent; border: none;}
+.slider-secondary .slick-arrow i {font-size: 30px;}
+.slider-secondary .slick-next {top: 410px;}
+
 
 @media(min-width: 1024px) and (max-height: 1024px){
 	/*.slider-intro .slide { height: 1024px; }*/
