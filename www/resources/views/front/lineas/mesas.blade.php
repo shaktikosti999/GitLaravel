@@ -290,9 +290,9 @@
 									Por pagar
 								</span>
 
-								<a href="#">
+								{{-- <a href="#">
 									Ver más
-								</a>
+								</a> --}}
 							</p>
 						</div><!-- /.section-entry -->
 
