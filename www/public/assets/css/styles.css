@@ -588,7 +588,7 @@ blockquote:last-child { margin-bottom: 0; }
 \* ------------------------------------------------------------ */
 .article-head h2:after { display: inline-block; content: ''; width: 50px; height: 2px; background: #f00; vertical-align: middle; margin-left: 35px; position: relative; top: -2px; }
 .article-head { padding-top: 43px; padding-bottom: 23px; }
-.article-entry { padding-bottom: 41px; }
+.article-entry { padding-bottom: 41px; padding-top: 41px; }
 .article-entry p { margin: 0; line-height: 1.4; }
 .article-entry p + p { margin-top: 21px; }
 .article-image img { width: 100%; height: auto; }

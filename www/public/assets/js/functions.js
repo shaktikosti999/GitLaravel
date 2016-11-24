@@ -239,8 +239,8 @@
 		$('.slider-secondary .slick-dots').wrap('<div class="slick-dots-wrapper"><div class="shell"></div></div>');
 
 		$('.slider-providers .slides').slick({
-			dots: false, 
-			arrows: true,
+			dots: true, 
+			arrows: false,
 			infinite: true,
 			touchMove: false,
 			swipeToSlide: false,
