@@ -6,26 +6,34 @@
 		option_data(id_categoria, slug_sucursal);
 	});
 
-	option_data = function(id_categoria, slug_sucursal){
+	option_data = function(id_categoria, slug_sucursal, ids_maquinas = null){
+
+		ids_maquinas != null ? limit = 2 : limit = 4;
+
 		$.ajax({
 			type:'post',
 			url:'/filtro-maquinas',
 			data:{
 				_method:'PATCH',
 				id_categoria:id_categoria,
-				slug_sucursal:slug_sucursal
+				slug_sucursal:slug_sucursal,
+				ids_maquinas:ids_maquinas,
+				limit:limit
 			},
 			success: function(data){
-
-				if(data != ""){
-					$("#games").empty();
+				
+				if(data.length > 2){					
 					data = JSON.parse(data);
 					size = data.length;
 					maquinas = '';
+					if (ids_maquinas == null)
+					{
+						$("#games").empty();						
+					}
 
 					$.each(data, function(index, val){
 
-						maquinas += '<li class="game">'
+						maquinas += '<li class="game posts-data" data-id="'+val.id+'">'
 										+'<a href="/maquinas-de-juego/detalle/'+val.slug+'" style="background-image: url('+val.imagen+')">' 
 											+'<span class="jackpot">'
 												+'<small>JACKPOT</small>'
@@ -44,15 +52,38 @@
 										+'</a>'
 									+'</li>';
 					});
+
+					$("#games").append(maquinas);
+					$('#mas').show();
+				}else{ 
+					$('#mas').hide();					
+					return false
 				}
-				$("#games").append(maquinas);
-				if ( size <= 4 ){
-					$('#mas').css('display','none');
-				}else{
-					$('#mas').css('display','block');
-				}
-			}
+			},
+			error: function () {									
+				$('#mas').hide();					
+				return false
+			  }
 		});
+	}
+
+	$(".view_more").click(function(e){
+		e.preventDefault();
+		getposts();
+	});
+
+	getposts = function(){
+
+		slug_sucursal = $('#field-filter-secondary1').val(); 
+		id_categoria = $('#field-games-filter-select1').val();
+		var ids_maquinas =[];
+
+		var num_posts = $('.posts-data').size();
+		$(".posts-data").each(function(){
+			ids_maquinas.push($(this).data('id'));
+		}); 
+
+		option_data(id_categoria, slug_sucursal, ids_maquinas);
 	}
 
 });

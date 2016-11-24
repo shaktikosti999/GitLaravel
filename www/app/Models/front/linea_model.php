@@ -145,6 +145,7 @@ class linea_model{
     static function get_games($args = []){
         $get = \DB::table('juego as j')
             ->select(
+                'j.id_juego as id',
                 'j.nombre',
                 'j.titulo',
                 'j.imagen',
@@ -165,6 +166,12 @@ class linea_model{
             $get = $get->where('js.id_sucursal',$args['id_sucursal']);
         if(array_key_exists('id_categoria', $args) && $args['id_categoria'] !== null)
             $get = $get->where('j.id_categoria',$args['id_categoria']);
+        if(array_key_exists('limit', $args) && $args['limit'] !== null)
+            $get = $get->limit($args['limit']);
+        else
+            $get = $get->limit(4);
+        if(array_key_exists('not_id', $args) && $args['not_id'] !== null)
+            $get = $get->whereNotIn('j.id_juego',$args['not_id']);
         $get = $get->get();
         return $get;
     }
