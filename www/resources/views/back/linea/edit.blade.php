@@ -23,14 +23,38 @@
 			      	<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="slug">Slug</label>
+			            		<input type="text" id="slug" class="form-control required" name="slug" value="{{$linea->slug}}" required="required" aria-required="true" aria-invalid="true">
+			          		</div>
+			        	</div>
+			      	</div>
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="slogan">Eslogan</label>
+			            		<input type="text" id="slogan" class="form-control required" name="slogan" value="{{$linea->slogan}}" required="required" aria-required="true" aria-invalid="true">
+			          		</div>
+			        	</div>
+			      	</div>
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="icono">Ícono</label>
+			            		<input type="text" id="icono" class="form-control required" name="icono" value="{{$linea->icono}}" required="required" aria-required="true" aria-invalid="true">
+			          		</div>
+			        	</div>
+			      	</div>
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="archivo">Imagen</label>
-			            		<img src="{{$linea->archivo}}" class="img-responsive img_alimento">
+			            		<img src="{{$linea->imagen}}" class="img-responsive img_alimento">
 			            		<input type="file" id="archivo" class="form-control required" name="archivo" required="required" aria-required="true" aria-invalid="true" style="display:none">
 			          		</div>
 			        	</div>
 			      	</div>
 			      	<div class="clearfix"></div>
-			      	<input class="btn btn-primary" type="submit" value="Agregar Sección">
+			      	<input class="btn btn-primary" type="submit" value="Modificar Linea">
 			    </form>
 		  	</div>
 		</div>

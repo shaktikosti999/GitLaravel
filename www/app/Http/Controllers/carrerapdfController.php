@@ -107,7 +107,7 @@ class carrerapdfController extends Controller
         $data = [
             'id'=>$id,
             'carrera' => carrera::find($id),
-            'juegos' => \App\Models\juego_model::all(),
+            'juegos' => \App\Models\juego_model::all(['id_linea'=>4]),
             'sucursales' => \App\Models\sucursal_model::all(),
         ];
         return view('back.carrerapdf.edit',$data);

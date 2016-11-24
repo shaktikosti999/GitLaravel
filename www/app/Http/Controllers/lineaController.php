@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\linea;
+use App\Models\linea_model as linea;
 
 class lineaController extends Controller
 {
@@ -41,6 +41,9 @@ class lineaController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'nombre' => 'required|string|max:50|min:1',
+            'slug' => 'required|string',
+            'slogan' => 'required|string',
+            'icono' => 'required|string',
             'archivo' => 'required|image'
         ]);
 
@@ -105,10 +108,12 @@ class lineaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        // dd($request->all());
         $this->validate($request,[
             'nombre' => 'required|string|max:50|min:1',
-            'archivo' => 'image'
+            'slug' => 'required|string',
+            'slogan' => 'required|string',
+            'icono' => 'required|string',
+            'archivo' => 'required|image'
         ]);
 
         if($request->hasFile('archivo')){

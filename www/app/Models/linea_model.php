@@ -11,6 +11,8 @@ class linea_model{
 			->select(
 				'id_linea as id',
 				'nombre',
+				'slogan',
+				'slug',
 				'estatus'
 			)
 			->where('eliminado',0)
@@ -33,8 +35,11 @@ class linea_model{
 
 	static function store($request,$archivo){
 		$linea = new linea;
-		$linea->nombre = $request->nombre;
-		$linea->archivo = $archivo;
+		$linea->nombre = $request->input('nombre');
+		$linea->slug = $request->input('slug');
+		$linea->slogan = $request->input('slogan');
+		$linea->icono = $request->input('icono');
+		$linea->imagen = $archivo;
 		$evento = Event::fire(new dotask($linea));
 		return $evento;
 	}
@@ -42,9 +47,12 @@ class linea_model{
 	static function update($id, $request,$archivo = false){
 		$linea = linea::find($id);
 		$linea->nombre = $request->nombre;
-		if($archivo !== false && is_file(getcwd() . $linea->archivo)){
-			unlink(getcwd() . $linea->archivo);
-			$linea->archivo = $archivo;
+		$linea->slug = $request->input('slug');
+		$linea->slogan = $request->input('slogan');
+		$linea->icono = $request->input('icono');
+		if($archivo !== false && is_file(getcwd() . $linea->imagen)){
+			unlink(getcwd() . $linea->imagen);
+			$linea->imagen = $archivo;
 		}
 		$evento = Event::fire(new dotask($linea));
 		return $evento;
