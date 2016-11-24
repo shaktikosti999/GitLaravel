@@ -167,4 +167,14 @@ class linea_model{
         return $get;
     }
 
+    static function get_categories()
+    {
+        $data = \DB::table('categoria_juego as cj')
+            ->select(
+                'cj.id',
+                'cj.nombre'
+            )->get();
+        return $data;
+    }
+
 }

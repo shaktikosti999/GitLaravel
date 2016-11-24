@@ -52,11 +52,12 @@ Route::get('/','front\indexController@index');
 //-----> Lineas
 Route::get('/lineas-de-juego/maquinas-de-juego/{sucursal?}','front\lineasController@maquinas');
 Route::get('/lineas-de-juego/mesas-de-juego/{sucursal?}','front\lineasController@mesas');
+Route::get('/maquinas-de-juego/detalle/{slug}','front\lineasController@maquinas_show');
+Route::get('/maquinas/filtro','front\lineasController@filtro_maquinas');
 
 //-----> Promociones
 Route::get('/promociones/{sucursal?}','front\promocionesController@index');
 Route::get('/promociones/detalle/{slug}','front\promocionesController@show');
-Route::get('/maquinas-de-juego/detalle/{slug}','front\lineasController@maquinas_show');
 
 Route::post('/contacto/newsletter','front\contactoController@newsletter');
 

@@ -21,9 +21,10 @@
 				 	<div class="games-filter-select">
 				 		<label for="field-games-filter-select1" class="form-label hidden">games-filter-select1</label>
 				 		<select name="field-games-filter-select1" id="field-games-filter-select1" class="select">
-				 			<option value="">Populares</option>
-				 			<option value="">Populares</option>
-				 			<option value="">Populares</option>
+				 			<option value="">Todos</option>
+					 		@foreach ($categorias as $categoria)
+					 			<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+					 		@endforeach				 			
 				 		</select>
 				 	</div><!-- /.form-controls -->
 				</li>
