@@ -48,6 +48,7 @@ class juego_model{
 	static function store($request){
 		$sucursal = new juego;
 		$sucursal->id_linea = $request->linea;
+		$sucursal->id_categoria = $request->categoria == 'null' ? null : $request->categoria;
 		$sucursal->nombre = $request->nombre;
 		$sucursal->titulo = $request->titulo;
 		$sucursal->resumen = $request->resumen;
@@ -61,6 +62,7 @@ class juego_model{
 	static function update($id, $request){
 		$sucursal = juego::find($id);
 		$sucursal->id_linea = $request->linea;
+		$sucursal->id_categoria = $request->categoria == 'null' ? null : $request->categoria;
 		$sucursal->nombre = $request->nombre;
 		$sucursal->titulo = $request->titulo;
 		$sucursal->resumen = $request->resumen;

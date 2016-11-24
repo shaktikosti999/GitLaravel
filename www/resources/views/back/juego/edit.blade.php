@@ -48,6 +48,19 @@
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
+			            		<label for="categoria">Categoría</label>
+			            		<select id="categoria" class="form-control" name="categoria">
+			            			<option value="null">Seleccione una...</option>
+			            			@foreach($categorias as $val)
+			            			<option value="{{$val->id}}" {{$val->id == $juego->id_categoria  ? "selected" : ""}}>{{$val->nombre}}</option>
+			            			@endforeach
+			            		</select>
+			          		</div>
+			          	</div>
+			      	</div>
+			      	<div class="row">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default">
 			            		<label for="resumen">Resumen</label>
 			            		<textarea id="resumen" class="form-control" name="resumen" aria-required="true" aria-invalid="true">{{$juego->resumen}}</textarea>
 			          		</div>

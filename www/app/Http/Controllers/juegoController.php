@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\juego_model as juego;
+use App\Models\front\linea_model as linea;
 
 class juegoController extends Controller
 {
@@ -30,7 +31,8 @@ class juegoController extends Controller
      */
     public function create(){
         $data = array(
-            'lineas' => juego::get_game_lines()
+            'lineas' => juego::get_game_lines(),
+            'categorias' => linea::get_categories()
         );
         if(count($data['lineas']) < 1)
             return redirect()->back()->with('danger','No existen lineas de juego');
@@ -82,7 +84,8 @@ class juegoController extends Controller
         $data = array(
             'id' => $id,
             'lineas' => juego::get_game_lines(),
-            'juego' => juego::find($id)
+            'juego' => juego::find($id),
+            'categorias' => linea::get_categories()
         );
         return view('back.juego.edit',$data);
     }
