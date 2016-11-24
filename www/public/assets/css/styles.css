@@ -489,10 +489,10 @@ blockquote:last-child { margin-bottom: 0; }
 @media (max-width: 1023px) {
 	.footer .cols { display: block; margin-bottom: 40px; }
 	.footer .cols:after { content: ''; line-height: 0; display: table; clear: both; }
-	.footer .col-size1 { width: 50%; float: left; padding: 0 10px; border: 0; }
+	.footer .col-size1 { width: 50%; float: left; padding: 0 60px; border: 0; }
 	.footer .col-size2 { width: 50%; float: left; padding: 0 10px; border: 0; }
 	.footer .col-size3 { width: 50%; float: left; padding: 0 10px; border: 0; }	
-	.footer .col-size4 { width: 50%; float: left; padding: 0 10px; border: 0; }	
+	.footer .col-size4 { width: 50%; float: left; padding: 0 60px; border: 0; }	
 
 	.footer .socials-footer { float: left; text-align: left; }
 }
