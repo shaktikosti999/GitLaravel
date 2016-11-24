@@ -27,9 +27,7 @@
 					size = data.length;
 					maquinas = '';
 					if (ids_maquinas == null)
-					{
-						$("#games").empty();						
-					}
+						$("#games").empty();	
 
 					$.each(data, function(index, val){
 
@@ -76,7 +74,7 @@
 
 		slug_sucursal = $('#field-filter-secondary1').val(); 
 		id_categoria = $('#field-games-filter-select1').val();
-		var ids_maquinas =[];
+		var ids_maquinas = [];
 
 		var num_posts = $('.posts-data').size();
 		$(".posts-data").each(function(){
