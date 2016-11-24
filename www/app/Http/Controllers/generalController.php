@@ -138,6 +138,9 @@ class generalController extends Controller
                 case 'pdfcarrera':
                     $modulo = \App\carrerapdf::find($id);
                     break;
+                case 'juego':
+                    $modulo = \App\juego::find($id);
+                    break;
                 default:
                     dd($modulo);
                 break;
@@ -231,6 +234,10 @@ class generalController extends Controller
 
                 case 'red':
                     $modulo = \App\red_social::find($id);
+                    break;
+
+                case 'juego':
+                    $modulo = \App\juego::find($id);
                     break;
 
                 default:

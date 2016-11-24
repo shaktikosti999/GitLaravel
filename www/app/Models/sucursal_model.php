@@ -15,11 +15,12 @@ class sucursal_model{
 				's.direccion',
 				's.telefono',
 				's.estatus',
-				\DB::raw('if(COUNT(s.id_sucursal) != NULL,COUNT(s.id_sucursal),0) as juegos')
+				\DB::raw('if(COUNT(s.id_sucursal) = NULL,0,COUNT(s.id_sucursal)) as juegos')
 			)
 			->leftJoin('juego_sucursal as j','j.id_sucursal','=','s.id_sucursal')
 			->where('eliminado',0)
 			->groupBy('s.id_sucursal')
+			->orderBy('s.nombre')
 			->get();
 		return $get;
 	}

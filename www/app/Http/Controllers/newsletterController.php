@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\newsletter;
+use App\Models\newsletter_model as newsletter;
 class newsletterController extends Controller
 {
     /**

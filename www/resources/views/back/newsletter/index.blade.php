@@ -23,11 +23,10 @@
 								<table class="table table-hover table-condensed table-detailed dataTable no-footer" id="detailedTable" role="grid">
 									<thead>
 										<tr role="row">
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Nombre</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Correo</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:10%">Teléfono</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Sucursal</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:30%">Opciones</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:35%">Nombre</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:35%">Correo</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Teléfono</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:10%">Opciones</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -36,19 +35,9 @@
 											<td class="v-align-middle">{{$newsletter->nombre}}</td>
 											<td class="v-align middle">{{$newsletter->mail}}</td>
 											<td class="v-align middle">{{$newsletter->telefono}}</td>
-											<td class="v-align middle">{{$newsletter->sucursal}}</td>
 											<!--<td class="v-align-middle"><input type="checkbox" {{$newsletter->estatus == 1 ? "checked" : ""}} class="activo" data="{{$newsletter->id}}" data-toggle="toggle"></td>-->
 											<td class="v-align-middle">
 												<div class="btn-group btn-group-justified">
-						                            <div class="btn-group">
-						                            	<a data-href="{{url('/administrador/mostrar/newsletter' . $newsletter->id . '.html')}}" data-id="{{$newsletter->id}}" class="btn btn-default mostrar">
-						                              		<span class="p-t-5 p-b-5">
-						                              			<i class="fa fa-eye fs-15"></i>
-						                              		</span>
-						                              		<br>
-						                              		<span class="fs-11 font-montserrat text-uppercase">Mostrar</span>
-						                              	</a>
-						                            </div>
 						                            <div class="btn-group">
 						                            	<form action="{{url('/administrador/eliminar/newsletter' . $newsletter->id . '.html')}}" method="post" class="del_element">
 															{!!csrf_field()!!}

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use \App\Models\alimento;
+use \App\Models\alimento_model as alimento;
 
 class alimentoController extends Controller
 {
@@ -151,7 +151,10 @@ class alimentoController extends Controller
                 }
             }
         }
-        $evento = alimento::update($id,$request,$archivo);
+        if( isset($archivo) )
+            $evento = alimento::update($id,$request,$archivo);
+        else
+            $evento = alimento::update($id,$request);
         $evento = $evento[0];
         if(!$evento){
             return redirect(url('/administrador/alimento.html'))->with('success','Alimento modificado correctamente');

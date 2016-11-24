@@ -5,7 +5,7 @@ use App\Events\dotask;
 use Event;
 
 use App\linea;
-class linea{
+class linea_model{
 	static function all(){
 		$sucursal = \DB::table('linea')
 			->select(

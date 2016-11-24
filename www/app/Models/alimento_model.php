@@ -4,25 +4,18 @@ namespace App\Models;
 use App\Events\dotask;
 use Event;
 
-use App\newsletter;
-class newsletter{
+use App\alimento;
+class alimento_model{
 	static function all(){
-		$newsletter = \DB::table('newsletter as n')
-			->select('n.id_newsletter as id',
-				's.nombre as sucursal',
-				'n.telefono',
-				'n.nombre',
-				'n.mail',
-				'n.estatus',
-				'n.created_at as fecha'
-			)
-			->join('newsletter_sucursal as ns','ns.id_newsletter','=','n.id_newsletter')
-			->join('sucursal as s','s.id_sucursal','=','ns.id_sucursal')
-			->orderBy('s.nombre')
-			->orderBy('n.nombre')
-			->where('n.eliminado',0)
+		$alimento = \DB::table('alimento as a')
+			->select('a.id_alimento as id','a.nombre as nombre','ta.nombre as tipo','a.estatus')
+			->join('tipo_alimento as ta','ta.id_tipo','=','a.tipo_alimento')
+			->orderBy('ta.nombre')
+			->orderBy('a.nombre')
+			// ->where('a.estatus',1)
+			->where('a.eliminado',0)
 			->get();
-		return $newsletter;
+		return $alimento;
 	}
 
 	static function find($id){
@@ -32,7 +25,7 @@ class newsletter{
 	static function get_file_name($id){
 		$file = \DB::table('alimento as a')
 			->select('archivo')
-			->where('id_newsletter',$id)
+			->where('id_alimento',$id)
 			->first();
 		if( $file !== null ){
 			$file = $file->archivo;

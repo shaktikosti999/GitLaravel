@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\proveedor;
+use App\Models\proveedor_model as proveedor;
 class proveedorController extends Controller
 {
     /**
@@ -40,7 +40,7 @@ class proveedorController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'nombre' => 'required|string|max:50|min:1',
-            'link' => 'required|url|min:1|max:100',
+            'link' => 'required|string|min:1|max:100',
             'archivo' => 'required|image'
         ]);
         if($request->hasFile('archivo')){
@@ -108,7 +108,7 @@ class proveedorController extends Controller
     public function update(Request $request, $id){
         $this->validate($request,[
             'nombre' => 'required|string|max:50|min:1',
-            'link' => 'required|url|min:1|max:100',
+            'link' => 'required|string|min:1|max:100',
             'archivo' => 'image'
         ]);
         if($request->hasFile('archivo')){

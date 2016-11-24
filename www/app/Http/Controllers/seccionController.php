@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\seccion;
+use App\seccion;
+// use App\Models\seccion_model as seccion;
 
 class seccionController extends Controller
 {
@@ -23,7 +24,7 @@ class seccionController extends Controller
         $data = array(
             // 'secciones' => \App\seccion::where('eliminado',0)
             //     ->get(),
-            'secciones' => \App\Models\seccion::all()
+            'secciones' => \App\Models\seccion_model::all()
         );
         return view('back.seccion.index',$data);
     }

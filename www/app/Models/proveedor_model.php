@@ -5,7 +5,7 @@ use App\Events\dotask;
 use Event;
 
 use App\proveedor;
-class proveedor{
+class proveedor_model{
 	static function all(){
 		$all = \DB::table('proveedor')
 			->select('id_proveedor as id','nombre','link','estatus')

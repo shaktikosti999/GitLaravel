@@ -5,7 +5,7 @@ use App\Events\dotask;
 use Event;
 
 use App\juego;
-class juego{
+class juego_model{
 	static function all(){
 		$sucursal = \DB::table('juego as j')
 			->select(
@@ -17,7 +17,7 @@ class juego{
 			)
 			->join('linea as l','l.id_linea','=','j.id_linea')
 			->where('j.eliminado',0)
-			// ->where('l.eliminado',0)
+			->orderBy('j.nombre')
 			->get();
 		return $sucursal;
 	}
@@ -32,6 +32,13 @@ class juego{
 
 	static function find($id){
 		return juego::find($id);
+	}
+
+	static function list_games(){
+		$get = \DB::table('juego')
+			->select('id_juego as id', 'nombre')
+			->get();
+		return $get;
 	}
 
 	static function store($request){
