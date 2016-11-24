@@ -38,6 +38,9 @@ class sucursalesController extends Controller
                 'torneos' => linea::find_all_tournaments()
             ];
         }
+        
+        //-----> Obtenemos las categorías de los juegos
+        $data["categorias"] = linea::get_categories();
 
         // dd($data);
         return view('front.sucursales.index',$data);
