@@ -163,6 +163,8 @@ class linea_model{
             $get = $get->where('j.id_linea',$args['id_linea']);
         if(array_key_exists('id_sucursal', $args) && $args['id_sucursal'] !== null)
             $get = $get->where('js.id_sucursal',$args['id_sucursal']);
+        if(array_key_exists('id_categoria', $args) && $args['id_categoria'] !== null)
+            $get = $get->where('j.id_categoria',$args['id_categoria']);
         $get = $get->get();
         return $get;
     }

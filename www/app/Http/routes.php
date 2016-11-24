@@ -53,7 +53,7 @@ Route::get('/','front\indexController@index');
 Route::get('/lineas-de-juego/maquinas-de-juego/{sucursal?}','front\lineasController@maquinas');
 Route::get('/lineas-de-juego/mesas-de-juego/{sucursal?}','front\lineasController@mesas');
 Route::get('/maquinas-de-juego/detalle/{slug}','front\lineasController@maquinas_show');
-Route::get('/maquinas/filtro','front\lineasController@filtro_maquinas');
+Route::patch('/filtro-maquinas','front\api\filtroController@filtro_maquinas');
 
 //-----> Promociones
 Route::get('/promociones/{sucursal?}','front\promocionesController@index');

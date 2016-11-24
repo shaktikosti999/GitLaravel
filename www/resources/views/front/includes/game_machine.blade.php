@@ -30,7 +30,7 @@
 				</li>
 			</ul><!-- /.games-filters -->
 			
-			<ul class="games">
+			<ul class="games" id="games">
 				
 				@foreach( $maquinas as $item )
 

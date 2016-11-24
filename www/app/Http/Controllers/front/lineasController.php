@@ -67,6 +67,11 @@ class lineasController extends Controller
         return view('front.juegos.show',$data);
     }
 
+    public function filtro_maquinas()
+    {
+        
+    }
+
     public function mesas( $sucursal = null ){
         
         $data = [];

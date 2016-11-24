@@ -1,29 +1,48 @@
  $(document).on('ready', function(){
 
 	$('#field-games-filter-select1').on('change', function(){
-		sucursal = $('#field-filter-secondary1').val(); 
+		slug_sucursal = $('#field-filter-secondary1').val(); 
 		id_categoria = $(this).val();
-		option_data(id_categoria, sucursal);
+		option_data(id_categoria, slug_sucursal);
 	});
 
-	option_data = function(id_categoria, sucursal){
+	option_data = function(id_categoria, slug_sucursal){
 		$.ajax({
 			type:'post',
-			url:url,
+			url:'/filtro-maquinas',
 			data:{
 				_method:'PATCH',
 				id_categoria:id_categoria,
-				sucursal:sucursal
+				slug_sucursal:slug_sucursal
 			},
 			success: function(data){
-				element.html('<option value="">Seleccione una opción...</option>');
 				if(data != ""){
+					$("#games").empty();
 					data = JSON.parse(data);
+					maquinas = '';
 					$.each(data, function(index, val){
-						element.append('<option value="' + val.id + '">' + val.nombre + '</option>')
+
+						maquinas += '<li class="game">'
+										+'<a href="/maquinas-de-juego/detalle/'+val.slug+'" style="background-image: url('+val.imagen+')">' 
+											+'<span class="jackpot">'
+												+'<small>JACKPOT</small>'
+												+'<strong>'
+													+"$"+val.acumulado
+												+'</strong>'
+											+'</span>'
+											+'<span class="game-title">'
+												+'<strong>'
+													+val.nombre
+												+'</strong>'
+												+'<span>'
+													+val.resumen
+												+'</span>'
+											+'</span>'
+										+'</a>'
+									+'</li>';
 					});
 				}
-				element.parent().dropdown("update")
+				$("#games").append(maquinas);
 			}
 		});
 	}

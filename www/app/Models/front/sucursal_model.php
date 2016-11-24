@@ -112,4 +112,12 @@ class sucursal_model{
 
     }
 
+    static function get_sucursal( $sucursal_slug ){
+        $data = \DB::table('sucursal as s')
+            ->select('s.id_sucursal')            
+            ->where('s.slug','=', $sucursal_slug)
+            ->get();
+        return $data;
+    }
+
 }
