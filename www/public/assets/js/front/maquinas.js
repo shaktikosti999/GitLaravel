@@ -16,10 +16,13 @@
 				slug_sucursal:slug_sucursal
 			},
 			success: function(data){
+
 				if(data != ""){
 					$("#games").empty();
 					data = JSON.parse(data);
+					size = data.length;
 					maquinas = '';
+
 					$.each(data, function(index, val){
 
 						maquinas += '<li class="game">'
@@ -43,6 +46,11 @@
 					});
 				}
 				$("#games").append(maquinas);
+				if ( size <= 4 ){
+					$('#mas').css('display','none');
+				}else{
+					$('#mas').css('display','block');
+				}
 			}
 		});
 	}

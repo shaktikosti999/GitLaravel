@@ -60,7 +60,7 @@
 			</ul><!-- /.games -->
 		</div><!-- /.section-body -->	
 
-		<div class="section-foot">
+		<div class="section-foot" id="mas">
 			<a href="#" class="btn btn-border">
 				Conoce más maquinas
 			</a>
