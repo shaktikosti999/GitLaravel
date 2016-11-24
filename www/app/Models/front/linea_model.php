@@ -10,9 +10,7 @@ class linea_model{
                 ->where('j.id_linea',$args['linea']);
         }
         if( array_key_exists('id_sucursal', $args) && $args['id_sucursal'] !== null )
-        {
             $get = $get->where('id_sucursal',$args['id_sucursal']);
-        }
         $get = $get->sum('acumulado');
         return $get;
     }
