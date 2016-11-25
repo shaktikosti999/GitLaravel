@@ -25,10 +25,10 @@ class sucursalesController extends Controller
                 'sucursales' => sucursal::find_all(),
                 'galeria' => sucursal::get_gallery($sucursal->id_sucursal),
                 'promociones' => promocion::find_all(['id_sucursal' => $sucursal->id_sucursal]),
-                'juegos' => linea::get_games(['id_sucursal' => $sucursal->id_sucursal, 'limit' => 4]),
+                'maquinas' => linea::get_games([ 'linea' => 1, 'id_sucursal' => $sucursal->id_sucursal, 'limit' => 4]),
                 'torneos' => linea::find_all_tournaments(['id_sucursal' => $sucursal->id_sucursal]),
-                'maquinas_acumulado' => linea::get_games( [ "linea" => 1, "id_sucursal" => $sucursal->id_sucursal] )
-
+                'maquinas_acumulado' => linea::get_games( [ "linea" => 1, "id_sucursal" => $sucursal->id_sucursal] ),
+                'mesas' => linea::get_games([ 'linea' => 2, 'id_sucursal' => $sucursal->id_sucursal ])
             ];
         }
         else{
@@ -36,9 +36,10 @@ class sucursalesController extends Controller
                 'sucursal' => $slug,
                 'sucursales' => sucursal::find_all(),
                 'promociones' => promocion::find_all(),
-                'juegos' => linea::get_games(['limit' => 4]),
+                'maquinas' => linea::get_games(['linea' => 1,'limit' => 4]),
                 'torneos' => linea::find_all_tournaments(),
-                'maquinas_acumulado' => linea::get_games( [ "linea" => 1 ] )
+                'maquinas_acumulado' => linea::get_games( [ "linea" => 1 ] ),
+                'mesas' => linea::get_games([ 'linea' => 2 ])                
             ];
         }
         
