@@ -26,7 +26,8 @@ class sucursalesController extends Controller
                 'galeria' => sucursal::get_gallery($sucursal->id_sucursal),
                 'promociones' => promocion::find_all(['id_sucursal' => $sucursal->id_sucursal]),
                 'juegos' => linea::get_games(['id_sucursal' => $sucursal->id_sucursal, 'limit' => 4]),
-                'torneos' => linea::find_all_tournaments(['id_sucursal' => $sucursal->id_sucursal])
+                'torneos' => linea::find_all_tournaments(['id_sucursal' => $sucursal->id_sucursal]),
+                'maquinas_acumulado' => linea::get_games( [ "linea" => 1, "id_sucursal" => $sucursal->id_sucursal] )
 
             ];
         }
@@ -36,7 +37,8 @@ class sucursalesController extends Controller
                 'sucursales' => sucursal::find_all(),
                 'promociones' => promocion::find_all(),
                 'juegos' => linea::get_games(['limit' => 4]),
-                'torneos' => linea::find_all_tournaments()
+                'torneos' => linea::find_all_tournaments(),
+                'maquinas_acumulado' => linea::get_games( [ "linea" => 1 ] )
             ];
         }
         
