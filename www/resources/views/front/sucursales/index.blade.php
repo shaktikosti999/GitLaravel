@@ -265,7 +265,7 @@
 				 		</article><!-- /.article-game-available large -->
 					</aside><!-- /.section-aside -->
 					
-					<?php $c = 0; $x = 0; ?>
+					<?php array_shift($mesas); $c = 0; $x = 0; ?>
 					<div class="section-content">
 						<div class="slider-games-available">
 							<div class="slider-clip">
