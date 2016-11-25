@@ -101,4 +101,19 @@
 
 	} );
 
+	$(".branch-filter2").change( function(){
+
+		var $value = $( this ).val();
+		var $url   = "/sucursal";
+
+		if( $value != -1 ){
+
+			$url = "/sucursal/" + $value;
+
+		}
+
+		$( location ).attr("href", $url);
+
+	} );
+
 });

@@ -16,14 +16,16 @@
 								@if( isset( $sucursales ) && count( $sucursales ) )
 
 									<div class="filter-secondary">
-										<label for="sucursales" class="form-label hidden">filter-secondary1</label>
-										<select name="sucursales" id="sucursales" class="select branch-filter">
+										<label for="selec_sucursales" class="form-label hidden">filter-secondary1</label>
+										<input type="hidden" name="sucursales" id="sucursales" value="{{$slug_sucursal}}">
+
+										<select name="selec_sucursales" id="selec_sucursales" class="select branch-filter2">
 											
 											<option value="-1">Selecciona una sucursal</option>
 
 											@foreach( $sucursales as $item )
 
-												<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>Cambiar a Sucursal {{ $item->nombre }}</option>
+												<option value="{{ $item->slug }}" <?php ( $slug_sucursal && $slug_sucursal == $item->slug ) ? print "selected" : print "" ?>>Sucursal {{ $item->nombre }}</option>
 
 											@endforeach
 											
@@ -216,95 +218,96 @@
 						Juegos disponibles
 					</h2>
 				</div><!-- /.section-head -->
+				
+				@if(isset($mesas) && count($mesas))
+					<div class="section-body">					
+						<aside class="section-aside">
+							<article class="article-game-available large">
+					 			<div class="article-content">
+					 				<div class="article-image" style="background-image: url({{current($mesas)->imagen}})">  
+					 					@if(isset(current($mesas)->apuesta_minima) && !empty(current($mesas)->apuesta_minima))
+					 					<div class="article-label">
+					 						<span> Apuesta Mínima DESDE </span>
 
-				<div class="section-body">
-					
-					<aside class="section-aside">
-						<article class="article-game-available large">
-				 			<div class="article-content">
-				 				<div class="article-image" style="background-image: url({{current($mesas)->imagen}})">  
-				 					@if(isset(current($mesas)->apuesta_minima) && !empty(current($mesas)->apuesta_minima))
-				 					<div class="article-label">
-				 						<span> Apuesta Mínima DESDE </span>
+					 						<strong> {{current($mesas)->apuesta_minima}} </strong>
+					 					</div><!-- /.article-label -->
+					 					@endif
+					 					<div class="article-max-price">
+					 						CONSULTA MONTOS MÁXIMOS DE APUESTA EN EL CASINO
+					 					</div><!-- /.article-max-price -->
+					 				</div><!-- /.article-image -->
 
-				 						<strong> {{current($mesas)->apuesta_minima}} </strong>
-				 					</div><!-- /.article-label -->
-				 					@endif
-				 					<div class="article-max-price">
-				 						CONSULTA MONTOS MÁXIMOS DE APUESTA EN EL CASINO
-				 					</div><!-- /.article-max-price -->
-				 				</div><!-- /.article-image -->
+					 				<div class="article-entry">
+					 					<h4 class="article-title">
+					 						{{current($mesas)->nombre}}
+					 						<small>
+					 							{{current($mesas)->disponibles}} mesas
+					 						</small>
+					 					</h4><!-- /.article-title -->
 
-				 				<div class="article-entry">
-				 					<h4 class="article-title">
-				 						{{current($mesas)->nombre}}
-				 						<small>
-				 							{{current($mesas)->disponibles}} mesas
-				 						</small>
-				 					</h4><!-- /.article-title -->
+										<p>
+											{{current($mesas)->resumen}}
+										</p>
 
-									<p>
-										{{current($mesas)->resumen}}
-									</p>
+										<ul class="list-links">
+											<li>
+												<a href="{{url('aprende_a_jugar')}}" class="btn btn-border">
+													Aprende a jugar
+												</a>
+											</li>
 
-									<ul class="list-links">
-										<li>
-											<a href="{{url('aprende_a_jugar')}}" class="btn btn-border">
-												Aprende a jugar
-											</a>
-										</li>
+											<li>
+												<a href="{{url('reglas')}}" class="btn btn-border btn-border-grey">
+													Reglas
+												</a>
+											</li>
+										</ul><!-- /.list-links -->
+					 				</div><!-- /.article-entry -->
+					 			</div><!-- /.article-content -->
+					 		</article><!-- /.article-game-available large -->
+						</aside><!-- /.section-aside -->
+						
+						<?php array_shift($mesas); $c = 0; $x = 0; ?>
+						<div class="section-content">
+							<div class="slider-games-available">
+								<div class="slider-clip">
+									<ul class="slides">									
+										@foreach($mesas as $mesa)										
+											@if( ($c % 4) == 0 )											
+												<li class="slide">
+												 	<div class="slide-content">  
+													 	<div class="cols">
+											@endif
+															<div class="col col-1of2">
+																<article class="article-game-available small">
+																	<h6>
+																		{{$mesa->nombre}}
 
-										<li>
-											<a href="{{url('reglas')}}" class="btn btn-border btn-border-grey">
-												Reglas
-											</a>
-										</li>
-									</ul><!-- /.list-links -->
-				 				</div><!-- /.article-entry -->
-				 			</div><!-- /.article-content -->
-				 		</article><!-- /.article-game-available large -->
-					</aside><!-- /.section-aside -->
-					
-					<?php array_shift($mesas); $c = 0; $x = 0; ?>
-					<div class="section-content">
-						<div class="slider-games-available">
-							<div class="slider-clip">
-								<ul class="slides">									
-									@foreach($mesas as $mesa)										
-										@if( ($c % 4) == 0 )											
-											<li class="slide">
-											 	<div class="slide-content">  
-												 	<div class="cols">
+																		<span class="plus"></span>
+																	</h6>
+																
+																<div class="article-image" style="background-image: url({{$mesa->imagen}})"> </div><!-- /.article-image -->
+
+																<a href="#" class="link-more">
+																	Ver más
+																</a>
+																</article><!-- /.article-game-available small -->
+															</div><!-- /.col col-1of2 -->
+
+												<?php $c++; $x = $c - 1; ?>
+										@endforeach
+										@if( ($x % 4) == 0 )
+												 	</div><!-- /.cols -->
+												</div><!-- /.slide-content -->
+											</li><!-- /.slide -->
 										@endif
-														<div class="col col-1of2">
-															<article class="article-game-available small">
-																<h6>
-																	{{$mesa->nombre}}
+									</ul><!-- /.slides -->
+								</div><!-- /.slider-clip -->
+							</div><!-- /.slider-games-available -->
+						</div><!-- /.section-content --> 
+					</div><!-- /.section-body -->
+				@endif				
 
-																	<span class="plus"></span>
-																</h6>
-															
-															<div class="article-image" style="background-image: url({{$mesa->imagen}})"> </div><!-- /.article-image -->
-
-															<a href="#" class="link-more">
-																Ver más
-															</a>
-															</article><!-- /.article-game-available small -->
-														</div><!-- /.col col-1of2 -->
-
-											<?php $c++; $x = $c - 1; ?>
-									@endforeach
-									@if( ($x % 4) == 0 )
-											 	</div><!-- /.cols -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-									@endif
-								</ul><!-- /.slides -->
-							</div><!-- /.slider-clip -->
-						</div><!-- /.slider-games-available -->
-					</div><!-- /.section-content --> 
-
-				</div><!-- /.section-body -->
 			</div><!-- /.shell -->
 		</section><!-- /.section-games-available -->
 

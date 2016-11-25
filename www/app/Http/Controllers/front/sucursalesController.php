@@ -22,6 +22,7 @@ class sucursalesController extends Controller
         if($slug !== null){
             $data = [
                 'sucursal' => $sucursal,
+                'slug_sucursal' => $slug,
                 'sucursales' => sucursal::find_all(),
                 'galeria' => sucursal::get_gallery($sucursal->id_sucursal),
                 'promociones' => promocion::find_all(['id_sucursal' => $sucursal->id_sucursal]),
@@ -33,7 +34,7 @@ class sucursalesController extends Controller
         }
         else{
             $data = [
-                'sucursal' => $slug,
+                'slug_sucursal' => $slug,
                 'sucursales' => sucursal::find_all(),
                 'promociones' => promocion::find_all(),
                 'maquinas' => linea::get_games(['linea' => 1,'limit' => 4]),
