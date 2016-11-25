@@ -37,7 +37,7 @@ class lineasController extends Controller
         $data["promociones"] = promocion::find_all( [ "linea" => 1, "id_sucursal" => $id_sucursal ] );
 
         //-----> Obtenemos maquinas de juego
-        $data["maquinas"] = linea::get_games( [ "linea" => 1, "id_sucursal" => $id_sucursal ] );
+        $data["maquinas"] = linea::get_games( [ "linea" => 1, "id_sucursal" => $id_sucursal, "limit" => 4 ] );
 
         //-----> Obtenemos las categorías de los juegos
         $data["categorias"] = linea::get_categories();
@@ -67,11 +67,6 @@ class lineasController extends Controller
         return view('front.juegos.show',$data);
     }
 
-    public function filtro_maquinas()
-    {
-        
-    }
-
     public function mesas( $sucursal = null ){
         
         $data = [];
@@ -89,7 +84,7 @@ class lineasController extends Controller
         $data["promociones"] = promocion::find_all( [ "linea" => 2, "id_sucursal" => $id_sucursal ] );
 
         //-----> Obtenemos mesas de juego
-        $data["mesas"] = linea::get_games( [ "linea" => 2, "id_sucursal" => $id_sucursal ] );
+        $data["mesas"] = linea::get_games( [ "linea" => 2, "id_sucursal" => $id_sucursal] );
 
         //-----> Obtenemos los proveedores
         $data["torneos"] = linea::find_all_tournaments( [ "id_sucursal" => $id_sucursal ] );

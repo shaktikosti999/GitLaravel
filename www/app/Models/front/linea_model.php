@@ -160,16 +160,14 @@ class linea_model{
             ->join('juego_sucursal AS js','js.id_juego','=','j.id_juego')
             ->where('j.estatus',1)
             ->where('j.eliminado',0);
-        if(array_key_exists('id_linea', $args) && $args['id_linea'] !== null)
-            $get = $get->where('j.id_linea',$args['id_linea']);
+        if(array_key_exists('linea', $args) && $args['linea'] !== null)
+            $get = $get->where('j.id_linea',$args['linea']);
         if(array_key_exists('id_sucursal', $args) && $args['id_sucursal'] !== null)
             $get = $get->where('js.id_sucursal',$args['id_sucursal']);
         if(array_key_exists('id_categoria', $args) && $args['id_categoria'] !== null)
             $get = $get->where('j.id_categoria',$args['id_categoria']);
         if(array_key_exists('limit', $args) && $args['limit'] !== null)
             $get = $get->limit($args['limit']);
-        else
-            $get = $get->limit(4);
         if(array_key_exists('not_id', $args) && $args['not_id'] !== null)
             $get = $get->whereNotIn('j.id_juego',$args['not_id']);
         $get = $get->get();
