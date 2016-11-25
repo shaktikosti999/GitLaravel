@@ -39,12 +39,17 @@
 
 							 @include('front.includes.breadcrumbs')
 							 
-							 <div class="section-actions">
-								<a href="#" class="btn btn-red btn-red-small sldr-btn">
-									<i class="ico-human"></i>
-									Cómo llegar aquí
-								</a>
-							</div><!-- /.section-actions -->
+							 @if (isset($sucursal))
+							 	
+							 	<div class="section-actions">
+									<a href="http://www.google.com/maps/place/{{ $sucursal->latitud . "," . $sucursal->longitud }}" target="_blank" class="btn btn-red btn-red-small sldr-btn">
+										<i class="ico-human"></i>
+										Cómo llegar aquí
+									</a>
+								</div><!-- /.section-actions -->
+
+							 @endif							 
+
 						</div><!-- /.shell -->
 
 					</div><!-- /.slide-body -->
@@ -60,15 +65,21 @@
 							 	</h1>
 
 							 	<h3>
-							 		Sucursal Tecamachalco
+							 		Sucursal {!! isset( $sucursal ) ? $sucursal->nombre : '' !!}
 							 	</h3>
 
 							 <div class="filter-secondary">
 								<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-								<select name="field-filter-secondary1" id="field-filter-secondary1" class="select">
-									<option value="">Cambiar sucursal</option>
-									<option value="">Cambiar sucursal 1</option>
-									<option value="">Cambiar sucursal 2 </option>
+								<select name="selec_sucursales2" id="selec_sucursales2" class="select branch-filter2">
+											
+									<option value="-1">Selecciona una sucursal</option>
+
+									@foreach( $sucursales as $item )
+
+										<option value="{{ $item->slug }}" <?php ( $slug_sucursal && $slug_sucursal == $item->slug ) ? print "selected" : print "" ?>>Sucursal {{ $item->nombre }}</option>
+
+									@endforeach
+									
 								</select>
 							</div><!-- /.filter-secondary -->
 							 </div><!-- /.slide-content -->
@@ -87,15 +98,21 @@
 							 	</h1>
 
 							 	<h3>
-							 		Sucursal Tecamachalco
+							 		Sucursal {!! isset( $sucursal ) ? $sucursal->nombre : '' !!}
 							 	</h3>
 
 							 <div class="filter-secondary">
 								<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-								<select name="field-filter-secondary1" id="field-filter-secondary1" class="select">
-									<option value="">Cambiar sucursal</option>
-									<option value="">Cambiar sucursal 1</option>
-									<option value="">Cambiar sucursal 2 </option>
+								<select name="selec_sucursales3" id="selec_sucursales3" class="select branch-filter2">
+											
+									<option value="-1">Selecciona una sucursal</option>
+
+									@foreach( $sucursales as $item )
+
+										<option value="{{ $item->slug }}" <?php ( $slug_sucursal && $slug_sucursal == $item->slug ) ? print "selected" : print "" ?>>Sucursal {{ $item->nombre }}</option>
+
+									@endforeach
+									
 								</select>
 							</div><!-- /.filter-secondary -->
 							 </div><!-- /.slide-content -->
