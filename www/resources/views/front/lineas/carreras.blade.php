@@ -77,26 +77,26 @@
 		</div><!-- /.slider-secondary -->
 
 		<div class="main"> 
-			<section class="section-promotions secondary">
-				<div class="shell">
-					<header class="section-head modif-section">
-	                    <div class="stick--point" id="promociones"></div>
-						<h2>
-							Calendario de carreras
-						</h2>
+			@if( isset($carreras) )
+				<section class="section-promotions secondary">
+					<div class="shell">
+						<header class="section-head modif-section">
+		                    <div class="stick--point" id="promociones"></div>
+							<h2>
+								Calendario de carreras
+							</h2>
 
-						<a href="{{url('/como-apostar')}}" class="btn btn-border">
-							Cómo apostar
-						</a>
-					</header><!-- /.section-head -->
+							<a href="{{url('/como-apostar')}}" class="btn btn-border">
+								Cómo apostar
+							</a>
+						</header><!-- /.section-head -->
 					
-					@if( isset($carreras) )
 						<div class="calendar-content">	
 							<div class="list-btn">
 								<ul class="section-btn">
 									@foreach( $carreras as $item )
-									<li class="btn-carreras active">
-										<a href="#">
+									<li class="btn-carreras {{ \Request::path() == 'lineas-de-juego/apuesta-de-carreras' . $item->slug ? 'active' : ''}}">
+										<a href="{{url('apuesta-de-carreras/detalle/' . $item->slug)}}">
 											{!! $item->archivo !== null ? '<img src="' . $item->archivo .'">' : '' !!}
 											<span>{{$item->titulo}}</span> 
 										</a>
@@ -105,9 +105,9 @@
 								</ul>
 							</div>
 						</div>
-					@endif
-				</div><!-- /.shell -->
-			</section><!-- /.section-promotions -->
+					</div><!-- /.shell -->
+				</section><!-- /.section-promotions -->
+			@endif
 
 			<section class="section-games-available">
 				<div class="shell">
@@ -121,65 +121,28 @@
 					<section class="content programas">	
 
 						<div class="left-item"> <!-- calendario -->
-							<div class="calendar-module" data-date="12/03/2016">
+							<div class="calendar-module" data-date="{{date('m/d/Y')}}">
 
 							</div>
 						</div>
 
 						<div class="right-item"> <!-- cuadro derecha -->
 
-							<h3>Programas</h3>
-							<ul>	
-								<li class="txt-left">
-									<h5>Serie 30 Caballos Edición Centenario</h5>
-										<a href="#"> 
-											<img src="css/images/icons/download.png">
-											Descargar programa
-										</a>
-								</li>
-								<li class="txt-left">
-									<h5>Serie 30 Caballos Edición Centenario</h5>
-										<a href="#"> 
-											<img src="css/images/icons/download.png">
-											Descargar programa
-										</a>
-								</li>
-								<li class="txt-left">
-									<h5>Serie 30 Caballos Edición Centenario</h5>
-										<a href="#"> 
-											<img src="css/images/icons/download.png">
-											Descargar programa
-										</a>
-								</li>
-								<li class="txt-left">
-									<h5>Serie 30 Caballos Edición Centenario</h5>
-										<a href="#"> 
-											<img src="css/images/icons/download.png">
-											Descargar programa
-										</a>
-								</li>
-								<li class="txt-left">
-									<h5>Serie 30 Caballos Edición Centenario</h5>
-										<a href="#"> 
-											<img src="css/images/icons/download.png">
-											Descargar programa
-										</a>
-								</li>
-								<li class="txt-left">
-									<h5>Serie 30 Caballos Edición Centenario</h5>
-										<a href="#"> 
-											<img src="css/images/icons/download.png">
-											Descargar programa
-										</a>
-								</li>
-								<li class="txt-left">
-									<h5>Serie 30 Caballos Edición Centenario</h5>
-										<a href="#"> 
-											<img src="css/images/icons/download.png">
-											Descargar programa
-										</a>
-								</li>
-							</ul>
+							@if( isset($programas) && count($programas) )
+								<h3>Programas</h3>
+								<ul>	
+								@foreach($programas as $item)
+									<li class="txt-left">
+										<h5>{{$item->titulo}}</h5>
+											<a href="{{$item->archivo}}" target="_blank"> 
+												<img src="{{$item->imagen}}">
+												Descargar programa
+											</a>
+									</li>
+										
+								@endforeach
+								</ul>
+							@endif
 						</div>
 					</section>	
 				</div><!-- /.shell -->

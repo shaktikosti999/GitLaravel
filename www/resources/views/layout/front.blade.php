@@ -75,6 +75,10 @@
 										
 										<li>
 											<a href="{{url('lineas-de-juego/mesas-de-juego')}}">Mesas de juego</a>
+										</li>
+
+										<li>
+											<a href="{{url('lineas-de-juego/apuesta-de-carreras')}}">Apuesta decarreras</a>
 										</li>		
 									</ul><!-- /.dropdown --> 
 								</li>

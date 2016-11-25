@@ -60,7 +60,7 @@ class lineasController extends Controller
     
     }
 
-    public function maquinas_show($slug){
+    public function detalle_juego($slug_maquina,$slug){
         $juego = juego::find(['slug' => $slug]);
 
         $data = [
@@ -108,5 +108,42 @@ class lineasController extends Controller
     
     }
 
+    public function carreras( $sucursal = null ){
+        
+        $data = [];
+
+        $data["sucursal"] = $sucursal;
+
+        //-----> Obtenemos detalle de sucursal seleccionada
+        $data["sucursal_info"] = sucursal::find_by_slug( $sucursal );
+        $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
+
+        //-----> Obtenemos los sliders
+        $data["slider"] = linea::find_gallery( 2 );
+
+        //-----> Obtenemos mesas de juego
+        $data["carreras"] = linea::get_races();
+
+        //-----> Obtenemos documentos
+        $data["programas"] = linea::get_programs( [ "id_sucursal" => $id_sucursal ] );
+
+        //-----> Obtenemos los proveedores
+        $data["torneos"] = linea::find_all_tournaments( [ "id_sucursal" => $id_sucursal ] );
+
+        //dd( $data["torneos"] );
+ 
+        //-----> Obtenemos otras opciones de diversión
+        $data["otras"] = linea::find_all( [ "not_in" => [ 2 ] ] );
+
+        //-----> Obtenemos todas las sucursales
+        $data["sucursales"] = sucursal::find_all();
+
+        // -----> Acumulado
+        $data['acumulado'] = linea::accumulated(['id_sucursal' => $id_sucursal,'linea' => 2]);
+        // dd($data);
+
+        return view('front.lineas.carreras',$data);
+    
+    }
    
 }

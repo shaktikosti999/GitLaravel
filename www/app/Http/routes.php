@@ -54,7 +54,8 @@ Route::get('/','front\indexController@index');
 //-----> Lineas
 Route::get('/lineas-de-juego/maquinas-de-juego/{sucursal?}','front\lineasController@maquinas');
 Route::get('/lineas-de-juego/mesas-de-juego/{sucursal?}','front\lineasController@mesas');
-Route::get('/maquinas-de-juego/detalle/{slug}','front\lineasController@maquinas_show');
+Route::get('/lineas-de-juego/apuesta-de-carreras/{sucursal?}','front\lineasController@carreras');
+Route::get('/{slug_maquina}/detalle/{slug}','front\lineasController@detalle_juego');
 Route::patch('/filtro-maquinas','front\api\filtroController@filtro_maquinas');
 
 //-----> Promociones

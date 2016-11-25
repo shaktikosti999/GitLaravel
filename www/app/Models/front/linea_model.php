@@ -40,7 +40,6 @@ class linea_model{
         $data = $data->get();
 
 		return $data;
-
 	}
 
     static function find_all_games( $parameters = [] ){
@@ -73,7 +72,6 @@ class linea_model{
 
 
         return $data;
-
     }
 
     static function find_all_providers( $parameters = [] ){
@@ -91,8 +89,8 @@ class linea_model{
 
 
         return $data;
-
     }
+
     static function find_all_tournaments( $parameters = [] ){
         
         $data = \DB::table('torneo as t')
@@ -122,7 +120,6 @@ class linea_model{
 
 
         return $data;
-
     }
 
     static function find_gallery( $id_linea ){
@@ -139,8 +136,16 @@ class linea_model{
                         ->get();
 
         return $data;
-
     }  
+
+    static function get_categories(){
+        $data = \DB::table('categoria_juego as cj')
+            ->select(
+                'cj.id',
+                'cj.nombre'
+            )->get();
+        return $data;
+    }
 
     static function get_games($args = []){
         $get = \DB::table('juego as j')
@@ -174,14 +179,36 @@ class linea_model{
         return $get;
     }
 
-    static function get_categories()
-    {
-        $data = \DB::table('categoria_juego as cj')
+    static function get_programs($args = [] ){
+        $data = \DB::table('carrerapdf as c')
             ->select(
-                'cj.id',
-                'cj.nombre'
-            )->get();
+                'c.titulo',
+                'c.fecha',
+                'j.nombre',
+                'c.archivo',
+                'j.imagen'
+            )
+            ->join('juego as j','j.id_juego','=','c.id_juego');
+        if( isset($args['id_sucursal']) )
+            $data = $data->where('c.id_sucursal',$args['id_sucursal']);
+        $data = $data->get();
         return $data;
     }
+
+    static function get_races($args = []){
+        $data = \DB::table('juego as j')
+            ->select(
+                'js.archivo',
+                'j.nombre as titulo',
+                'j.slug'
+            )
+            ->leftJoin('juego_sucursal as js','js.id_juego','=','j.id_juego')
+            ->where('id_linea',4)
+            ->orderByRaw("RAND()")
+            ->get();
+        return $data;
+    }
+
+   
 
 }
