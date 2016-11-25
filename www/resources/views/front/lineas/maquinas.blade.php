@@ -171,33 +171,23 @@
 					</div><!-- /.section-entry -->
 
 					<div class="cols">
-						<div class="col col-1of2">
-							<article class="article-jackpot">
-								<div class="article-content">
-									<h6>
-										MÁquina rodillo A 
-									</h6>
+						
+						@foreach ($maquinas_acumulado as $maquina)
+							<div class="col col-1of2">
+								<article class="article-jackpot">
+									<div class="article-content">
+										<h6>
+											{{$maquina->nombre}} 
+										</h6>
 
-									<p>
-										$293,939.93
-									</p>
-								</div><!-- /.article-content -->
-							</article><!-- /.article-jackpot -->
-						</div><!-- /.col col-1of2 -->
-
-						<div class="col col-1of2">
-							<article class="article-jackpot">
-								<div class="article-content">
-									<h6>
-										MÁquina bingo A 
-									</h6>
-
-									<p>
-										$562,241.62 									
-									</p>
-								</div><!-- /.article-content -->
-							</article><!-- /.article-jackpot -->
-						</div><!-- /.col col-1of2 -->
+										<p>
+											${{$maquina->acumulado}}
+										</p>
+									</div><!-- /.article-content -->
+								</article><!-- /.article-jackpot -->
+							</div><!-- /.col col-1of2 -->
+						@endforeach
+						
 					</div><!-- /.cols -->
 
 					<div class="section-entry">
