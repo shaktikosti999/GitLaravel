@@ -141,6 +141,9 @@ class generalController extends Controller
                 case 'juego':
                     $modulo = \App\juego::find($id);
                     break;
+                case 'torneo':
+                    $modulo = \App\torneo::find($id);
+                    break;
                 default:
                     dd($modulo);
                 break;
@@ -238,6 +241,10 @@ class generalController extends Controller
 
                 case 'juego':
                     $modulo = \App\juego::find($id);
+                    break;
+
+                case 'torneo':
+                    $modulo = \App\torneo::find($id);
                     break;
 
                 default:

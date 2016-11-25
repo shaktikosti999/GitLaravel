@@ -45,6 +45,7 @@ class papeleraController extends Controller
         $tbl = \DB::select("SHOW INDEX FROM `" . $tabla . "` WHERE `Key_name` = 'PRIMARY';");
         $key = $tbl[0]->Column_name;
         $nombre = $tabla == 'red_social' ? 'link' : 'nombre';
+        $nombre = $tabla == 'torneo' ? 'titulo' : 'nombre';
         $elemento = \DB::table('sys_papelera as p')
             ->select(
                 'p.id_papelera as id_papelera',

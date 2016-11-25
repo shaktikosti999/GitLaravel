@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Models\carrerapdf_model as carrera;
+use App\Models\torneo_model as torneo;
 
-class carrerapdfController extends Controller
+class torneoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,15 +17,17 @@ class carrerapdfController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $carrera = carrera::all();
-        $carreras = [];
-        foreach($carrera as $val)
-            $carreras[$val->id_sucursal][] = $val;
+        $torneo = torneo::all();
+        $torneos = [];
+
+        foreach($torneo as $val)
+            $torneos[$val->id_sucursal][] = $val;
 
         $data = [
-            'carreras' => $carreras
+            'torneos' => $torneos
         ];
-        return view('back.carrerapdf.index',$data);
+
+        return view('back.torneo.index',$data);
     }
 
     /**
@@ -35,11 +37,10 @@ class carrerapdfController extends Controller
      */
     public function create(){
         $data = [
-            'juegos' => \App\Models\juego_model::all(['id_linea'=>4]),
-            'sucursales' => \App\Models\sucursal_model::all(),
+            'tipos' => torneo::get_tournament_types(),
+            'sucursales' =>\App\Models\sucursal_model::all()
         ];
-        // dd($data);
-        return view('back.carrerapdf.create',$data);
+        return view('back.torneo.create',$data);
     }
 
     /**
@@ -50,19 +51,22 @@ class carrerapdfController extends Controller
      */
     public function store(Request $request){
         $this->validate($request,[
-            'titulo' => 'required|string',
-            'juego' => 'required|integer',
-            'sucursal' => 'required|integer',
-            'fecha' => 'required|date|after:tomorrow',
-            'archivo' => 'required|mimes:pdf'
+            "titulo" => 'required|string',
+            "slug" => 'required|string',
+            "tipo" => 'required|integer|min:1',
+            "sucursal" => 'required|integer|min:1',
+            "descripcion" => 'required|string',
+            "fecha" => 'required|date|after:tomorrow',
+            "link" => 'string|url',
+            "archivo" => 'required|image'
         ]);
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
             $ext = strtolower($archivo->getClientOriginalExtension());
-            $extValidas = ['pdf'];
+            $extValidas = ['jpg','jpeg','png'];
 
             if(in_array($ext, $extValidas)){
-                $carpeta = 'assets/images/carreras/' . $request->input('sucursal') . '/' . $request->input('juego') . '/';
+                $carpeta = 'assets/images/torneo/' . $request->input('sucursal') . '/';
                 if(!file_exists(public_path() . '/' . $carpeta))
                     mkdir(public_path() . '/' . $carpeta,0777,true);
                 do{
@@ -76,13 +80,13 @@ class carrerapdfController extends Controller
                 if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
                     $archivo = '/' . $carpeta . $nombre;
 
-                    $evento = carrera::store($request,$archivo);
+                    $evento = torneo::store($request,$archivo);
                     $evento = $evento[0];
                     if(!$evento){
-                        return redirect(url('/administrador/pdfcarrera.html'))->with('success','Archivo guardado correctamente');
+                        return redirect(url('/administrador/torneo.html'))->with('success','Torneo registrado');
                     }
                     else{
-                        return redirect(url('/administrador/pdfcarrera.html'))->with('error',$evento);
+                        return redirect(url('/administrador/torneo.html'))->with('error',$evento);
                     }
                 }
             }                    
@@ -105,12 +109,12 @@ class carrerapdfController extends Controller
      */
     public function edit($id){
         $data = [
-            'id'=>$id,
-            'carrera' => carrera::find($id),
-            'juegos' => \App\Models\juego_model::all(['id_linea'=>4]),
-            'sucursales' => \App\Models\sucursal_model::all(),
+            'id' => $id,
+            'torneo' => \App\torneo::find($id),
+            'tipos' => torneo::get_tournament_types(),
+            'sucursales' =>\App\Models\sucursal_model::all()
         ];
-        return view('back.carrerapdf.edit',$data);
+        return view('back.torneo.edit',$data);
     }
 
     /**
@@ -122,19 +126,22 @@ class carrerapdfController extends Controller
      */
     public function update(Request $request, $id){
         $this->validate($request,[
-            'titulo' => 'required|string',
-            'juego' => 'required|integer',
-            'sucursal' => 'required|integer',
-            'fecha' => 'required|date|after:tomorrow',
-            'archivo' => 'mimes:pdf'
+            "titulo" => 'required|string',
+            "slug" => 'required|string',
+            "tipo" => 'required|integer|min:1',
+            "sucursal" => 'required|integer|min:1',
+            "descripcion" => 'required|string',
+            "fecha" => 'required|date|after:tomorrow',
+            "link" => 'string|url',
+            "archivo" => 'image'
         ]);
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
             $ext = strtolower($archivo->getClientOriginalExtension());
-            $extValidas = ['pdf'];
+            $extValidas = ['jpg','jpeg','png'];
 
             if(in_array($ext, $extValidas)){
-                $carpeta = 'assets/carreras/' . $request->input('sucursal') . '/' . $request->input('juego') . '/';
+                $carpeta = 'assets/images/torneo/' . $request->input('sucursal') . '/';
                 if(!file_exists(public_path() . '/' . $carpeta))
                     mkdir(public_path() . '/' . $carpeta,0777,true);
                 do{
@@ -147,20 +154,19 @@ class carrerapdfController extends Controller
                 $nombre .= '.' . $ext;
                 if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
                     $archivo = '/' . $carpeta . $nombre;
-
                 }
             }                    
         }
         if( isset($archivo) )
-            $evento = carrera::update($id,$request,$archivo);
+            $evento = torneo::update($id,$request,$archivo);
         else
-            $evento = carrera::update($id,$request);
+            $evento = torneo::update($id,$request);
         $evento = $evento[0];
         if(!$evento){
-            return redirect(url('/administrador/pdfcarrera.html'))->with('success','Archivo modificado correctamente');
+            return redirect(url('/administrador/torneo.html'))->with('success','Torneo modificado correctamente');
         }
         else{
-            return redirect(url('/administrador/pdfcarrera.html'))->with('error',$evento);
+            return redirect(url('/administrador/torneo.html'))->with('error',$evento);
         }
     }
 
