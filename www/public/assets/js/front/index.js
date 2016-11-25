@@ -104,5 +104,20 @@
 	$('.modal_ciudad_btn_cancelar').on('click', function(){
 		$('.modal_ciudades').fadeOut();
 	});
+
+	$(".branch-filter").change( function(){
+
+		var $value = $( this ).val();
+		var $url   = "/lineas-de-juego/maquinas-de-juego";
+
+		if( $value != -1 ){
+
+			$url = "/lineas-de-juego/maquinas-de-juego/" + $value;
+
+		}
+
+		$( location ).attr("href", $url);
+
+	} );
 	
 });

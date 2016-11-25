@@ -13,7 +13,9 @@ use App\Models\front\sucursal_model as sucursal;
 class filtroController extends Controller
 {
     public function filtro_maquinas(Request $request){
+        
         if($request->ajax()){
+
             $id_categoria = $request->input('id_categoria');
             $id_categoria == "" ? $id_categoria = null : $id_categoria = $id_categoria;
 
@@ -24,6 +26,9 @@ class filtroController extends Controller
             $ids_maquinas == "" ? $ids_maquinas = null : $ids_maquinas = $ids_maquinas;
 
             $limit = $request->input('limit');
+            
+            $linea = $request->input('linea');
+            $linea == "" ? $linea = null : $linea = $linea;
 
             if ($slug_sucursal == null) {
                 $id_sucursal = null;
@@ -32,7 +37,7 @@ class filtroController extends Controller
                 $id_sucursal = $suc[0]->id_sucursal;                       
             }   
 
-            echo json_encode(linea::get_games( [ "linea" => 1, "id_sucursal" => $id_sucursal, "id_categoria" => $id_categoria, "not_id" => $ids_maquinas, "limit" => $limit ] ) );
+            echo json_encode(linea::get_games( [ "linea" => $linea, "id_sucursal" => $id_sucursal, "id_categoria" => $id_categoria, "not_id" => $ids_maquinas, "limit" => $limit ] ) );
         }
         else
         abort(403);

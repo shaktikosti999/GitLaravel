@@ -1,12 +1,12 @@
  $(document).on('ready', function(){
 
-	$('#field-games-filter-select1').on('change', function(){
-		slug_sucursal = $('#field-filter-secondary1').val(); 
+	$('#categorias').on('change', function(){
+		slug_sucursal = $('#sucursales').val(); 
 		id_categoria = $(this).val();
 		option_data(id_categoria, slug_sucursal);
 	});
 
-	option_data = function(id_categoria, slug_sucursal, ids_maquinas = null){
+	option_data = function(id_categoria, slug_sucursal, ids_maquinas = null, linea = null){
 
 		ids_maquinas != null ? limit = 2 : limit = 4;
 
@@ -18,7 +18,8 @@
 				id_categoria:id_categoria,
 				slug_sucursal:slug_sucursal,
 				ids_maquinas:ids_maquinas,
-				limit:limit
+				limit:limit,
+				linea:linea
 			},
 			success: function(data){
 				
@@ -72,8 +73,9 @@
 
 	getposts = function(){
 
-		slug_sucursal = $('#field-filter-secondary1').val(); 
-		id_categoria = $('#field-games-filter-select1').val();
+		slug_sucursal = $('#sucursales').val(); 
+		id_categoria = $('#categorias').val();
+		linea = $('#linea').val(); 
 		var ids_maquinas = [];
 
 		var num_posts = $('.posts-data').size();
@@ -81,7 +83,22 @@
 			ids_maquinas.push($(this).data('id'));
 		}); 
 
-		option_data(id_categoria, slug_sucursal, ids_maquinas);
+		option_data(id_categoria, slug_sucursal, ids_maquinas, linea);
 	}
+
+	$(".branch-filter").change( function(){
+
+		var $value = $( this ).val();
+		var $url   = "/lineas-de-juego/maquinas-de-juego";
+
+		if( $value != -1 ){
+
+			$url = "/lineas-de-juego/maquinas-de-juego/" + $value;
+
+		}
+
+		$( location ).attr("href", $url);
+
+	} );
 
 });

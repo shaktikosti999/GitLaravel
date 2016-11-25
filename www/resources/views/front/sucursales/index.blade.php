@@ -12,16 +12,27 @@
 						<div class="shell"> 		 
 							 <div class="slide-content">
 							 	{!! isset( $sucursal ) ? '<h1>' . $sucursal->nombre . '</h1>' : '' !!}
-								@if( isset($sucursales) && count($sucursales) )
+
+								@if( isset( $sucursales ) && count( $sucursales ) )
+
 									<div class="filter-secondary">
-										<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-										<select name="field-filter-secondary1" id="field-filter-secondary1" class="select">
-											@foreach($sucursales as $item)
-												<option value="{{$item->id_sucursal}}">Cambiar a Sucursal {{$item->nombre}}</option>
+										<label for="sucursales" class="form-label hidden">filter-secondary1</label>
+										<select name="sucursales" id="sucursales" class="select branch-filter">
+											
+											<option value="-1">Selecciona una sucursal</option>
+
+											@foreach( $sucursales as $item )
+
+												<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>Cambiar a Sucursal {{ $item->nombre }}</option>
+
 											@endforeach
+											
 										</select>
 									</div><!-- /.filter-secondary -->
+
 								@endif
+
+
 							 </div><!-- /.slide-content -->
 
 							 @include('front.includes.breadcrumbs')
@@ -103,7 +114,8 @@
 		@if( isset($promociones) && count($promociones) )
 			@include('front.includes.promotions',['promociones'=>$promociones])
 		@endif
-
+	
+		<input type="hidden" name="linea" id="linea" value="1">
 		@if( isset($juegos) && count($juegos) )
 			@include('front.includes.game_machine',['maquinas'=>$juegos])
 		@endif

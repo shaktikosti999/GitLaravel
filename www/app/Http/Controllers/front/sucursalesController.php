@@ -25,16 +25,17 @@ class sucursalesController extends Controller
                 'sucursales' => sucursal::find_all(),
                 'galeria' => sucursal::get_gallery($sucursal->id_sucursal),
                 'promociones' => promocion::find_all(['id_sucursal' => $sucursal->id_sucursal]),
-                'juegos' => linea::get_games(['id_sucursal' => $sucursal->id_sucursal]),
+                'juegos' => linea::get_games(['id_sucursal' => $sucursal->id_sucursal, 'limit' => 4]),
                 'torneos' => linea::find_all_tournaments(['id_sucursal' => $sucursal->id_sucursal])
 
             ];
         }
         else{
             $data = [
+                'sucursal' => $slug,
                 'sucursales' => sucursal::find_all(),
                 'promociones' => promocion::find_all(),
-                'juegos' => linea::get_games(),
+                'juegos' => linea::get_games(['limit' => 4]),
                 'torneos' => linea::find_all_tournaments()
             ];
         }

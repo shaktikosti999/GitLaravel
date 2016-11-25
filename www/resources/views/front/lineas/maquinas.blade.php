@@ -1,9 +1,4 @@
 @extends('layout.front')
-
-@section('js')
-	<script src="js/front/maquinas.js"></script>
-@stop
-
 @section('contenido')
 
 	<!--@{
@@ -59,8 +54,8 @@
 									@if( isset( $sucursales ) && count( $sucursales ) )
 
 										<div class="filter-secondary">
-											<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-											<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
+											<label for="sucursales" class="form-label hidden">filter-secondary1</label>
+											<select name="sucursales" id="sucursales" class="select branch-filter">
 												
 												<option value="-1">Selecciona una sucursal</option>
 
@@ -103,7 +98,8 @@
 			@include('front.includes.promotions',['promociones' => $promociones])
 			
 		@endif
-
+		
+		<input type="hidden" name="linea" id="linea" value="1">
 		@if( isset( $maquinas ) && count( $maquinas ) )
 
 			@include('front.includes.game_machine',['maquinas' => $maquinas])
@@ -402,28 +398,4 @@
 		@endif
 
 	</div><!-- /.main -->
-
-	<script>
-
-		$( function(){
-
-			$(".branch-filter").change( function(){
-
-				var $value = $( this ).val();
-				var $url   = "/lineas-de-juego/maquinas-de-juego";
-
-				if( $value != -1 ){
-
-					$url = "/lineas-de-juego/maquinas-de-juego/" + $value;
-
-				}
-
-				$( location ).attr("href", $url);
-
-			} );
-
-		} )
-
-	</script>
-
 @stop

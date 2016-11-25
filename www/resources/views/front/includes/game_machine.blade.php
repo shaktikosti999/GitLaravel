@@ -1,3 +1,6 @@
+@section('js')
+	<script src="js/front/maquinas.js"></script>
+@stop
 <section class="section-promotions">
 	<div class="shell">
 		<header class="section-head">
@@ -19,8 +22,8 @@
 
 				<li>
 				 	<div class="games-filter-select">
-				 		<label for="field-games-filter-select1" class="form-label hidden">games-filter-select1</label>
-				 		<select name="field-games-filter-select1" id="field-games-filter-select1" class="select">
+				 		<label for="categorias" class="form-label hidden">games-filter-select1</label>
+				 		<select name="categorias" id="categorias" class="select">
 				 			<option value="">Todos</option>
 					 		@foreach ($categorias as $categoria)
 					 			<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
