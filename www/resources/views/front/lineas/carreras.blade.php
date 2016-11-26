@@ -1,4 +1,5 @@
 @extends('layout.front')
+
 	@section('contenido')
 		<div class="wrapper">
 	    
@@ -121,7 +122,7 @@
 					<section class="content programas">	
 
 						<div class="left-item"> <!-- calendario -->
-							<div class="calendar-module" data-date="{{date('m/d/Y')}}">
+							<div id="datepicker" class="calendar-module" data-date="{{date('m/d/Y')}}">
 
 							</div>
 						</div>
@@ -265,151 +266,141 @@
 				</div><!-- /.shell -->
 			</section><!-- /.section-gray -->
 
-			<section class="section-map no-top-padding"> 
-				<div class="section-body">
-					<div id="googlemap" data-lng="-97.727616" data-lat="18.884188"></div><!-- /#googlemap --> 
-				
-					<div class="section-content">
-						<div class="shell">
-							<div class="section-content-head">
-	                            <div class="stick--point" id="sucursales"></div>
-								<p>Sucursal</p>
-								
-								<h2>Tecamachalco</h2>
-							</div><!-- /.section-content-head -->
+			@if( isset( $sucursal_info ) && $sucursal_info )
+
+				<section class="section-map no-top-padding"> 
+					<div class="section-body">
+						<div id="googlemap" data-lng="-97.727616" data-lat="18.884188"></div><!-- /#googlemap --> 
+					
+						<div class="section-content">
+							<div class="shell">
+								<div class="section-content-head">
+									<div class="stick--point" id="sucursales"></div>
+									<p>Sucursal</p>
 									
-							<div class="section-content-body">
-								<ul class="list-contacts">
-									<li>
-										<i class="ico-map"></i>
-									
-										<p>
-											Calle Fuente del molino <br>#49-BCol. San Miguel <br>Tecamachalco Naucalpan, Edo. <br>de México C.P. 53970
-										</p>
-									</li>
-									
-									<li>
-										<i class="ico-phone"></i>
-									
-										<p>
-											Teléfono: <a href="tel:0155123456789">01 + 55 123456789</a><br>
-											Teléfono: <a href="tel:04555123456789">045 + 55 123456789</a><br>
-											Teléfono: <a href="tel:77955123456789">779 + 55 123456789</a>
-										</p>
-									</li>
-									
-									<li>
-										<i class="ico-clock"></i>
-									
-										<p>Horario : 13:00 pm - 00:00 am <br>Lunes - Domingo</p>
-									</li>
-									
-									<li>
-										<i class="ico-car"></i>
-									
-										<p>Horario : 13:00 pm - 00:00 am <br>Lunes - Domingo</p>
-									</li>
-								</ul><!-- /.list-contacts -->
-							</div><!-- /.section-content-body -->
-						</div><!-- /.shell -->
+									<h2>{{ $sucursal_info->nombre }}</h2>
+								</div><!-- /.section-content-head -->
+										
+								<div class="section-content-body">
+									<ul class="list-contacts">
+										<li>
+											<i class="ico-map"></i>
+										
+											<p>
+												{!! $sucursal_info->direccion !!}
+											</p>
+										</li>
+										
+										<li>
+											<i class="ico-phone"></i>
+										
+											<p>
+												{!! $sucursal_info->telefono !!}
+											</p>
+										</li>
+										
+										<li>
+											<i class="ico-clock"></i>
+										
+											{!! $sucursal_info->horario !!}
+										</li>
+										
+										<li>
+											<i class="ico-car"></i>
+										
+											{!! $sucursal_info->instrucciones !!}
+										</li>
+									</ul><!-- /.list-contacts -->
+								</div><!-- /.section-content-body -->
+							</div><!-- /.shell -->
+							
+							<div class="section-actions">
+								<a target="_blank" href="http://www.google.com/maps/place/{{ $sucursal_info->latitud . "," . $sucursal_info->longitud }}" class="btn btn-red btn-red-small">
+									<i class="ico-human"></i>
+
+									Cómo llegar aquí
+								</a>
+							</div><!-- /.section-actions -->
+						</div><!-- /.section-content --> 
+					</div><!-- /.section-body -->
+				</section><!-- /.section-map -->
+
+				<section class="section-gallery secondary">
+					<div class="shell">
 						
-						<div class="section-actions">
-							<a href="#" class="btn btn-red btn-red-small">
-								<i class="ico-human"></i>
+						@if( isset( $sucursal_info->galeria ) && is_array( $sucursal_info->galeria ) && count( $sucursal_info->galeria ) )
 
-								Cómo llegar aquí
-							</a>
-						</div><!-- /.section-actions -->
-					</div><!-- /.section-content --> 
-				</div><!-- /.section-body -->
-			</section><!-- /.section-map -->
+							<div class="slider-gallery">
+								<div class="slider-clip">
+									
+									<ul class="slides">
+										
+										@foreach( $sucursal_info->galeria as $g )
 
-			<section class="section-gallery secondary">
-				<div class="shell">
-					<div class="slider-gallery">
-						<div class="slider-clip">
-							<ul class="slides">
-								<li class="slide">
-									<div class="slide-image">
-										<img src="css/images/temp/gallery1.jpg" alt="">
-									</div><!-- /.slide-image -->
-								</li><!-- /.slide -->
+											<li class="slide">
+												<div class="slide-image">
+													<img src="{{ $g->imagen }}" alt="">
+												</div><!-- /.slide-image -->
+											</li><!-- /.slide -->
 
-								<li class="slide">
-									<div class="slide-image">
-										<img src="css/images/temp/gallery2.jpg" alt="">
-									</div><!-- /.slide-image -->
-								</li><!-- /.slide -->
+										@endforeach
+									
+									</ul><!-- /.slides -->
+								
+								</div><!-- /.slider-clip -->
+							</div><!-- /.slider-gallery -->
 
-								<li class="slide">
-									<div class="slide-image">
-										<img src="css/images/temp/gallery3.jpg" alt="">
-									</div><!-- /.slide-image -->
-								</li><!-- /.slide -->
+						@endif
 
-								<li class="slide">
-									<div class="slide-image">
-										<img src="css/images/temp/gallery1.jpg" alt="">
-									</div><!-- /.slide-image -->
-								</li><!-- /.slide -->
-							</ul><!-- /.slides -->
-						</div><!-- /.slider-clip -->
-					</div><!-- /.slider-gallery --> 
+					</div><!-- /.shell -->
+				</section><!-- /.section-gallery -->
 
-				</div><!-- /.shell -->
-			</section><!-- /.section-gallery -->
+			@endif
 
-			<section class="section section-simple">
-				<div class="shell">
-					<div class="section-head">
-	                    <div class="stick--point" id="diversion"></div>
-						<h2>
-							<small>Otras opciones de</small>
-							Diversión
-						</h2>
-					</div><!-- /.section-head -->
+			@if( isset( $otras ) && count( $otras ) )
 
-					<div class="section-content">
-						<div class="cols">
-							<div class="col col-1of3">
-								<article class="article-fun">
-									<a href="#" style="background-image: url(css/images/temp/article-fun1.jpg)"> 
-										<strong>
-											Mesas de juego
-											<span>Chupa chups chocolate bar jelly beans tart caramels cupcake powder. Wafer tiramisu tiramisu. </span>	
-										</strong>
-									</a>
-								</article>
-							</div><!-- /.col col-1of3 -->
+				<section class="section section-simple">
+					<div class="shell">
+						<div class="section-head">
+							<div class="stick--point" id="diversion"></div>
+							<h2>
+								<small>Otras opciones de</small>
+								Diversión
+							</h2>
+						</div><!-- /.section-head -->
 
-							<div class="col col-1of3">
-								<article class="article-fun">
-									<a href="#" style="background-image: url(css/images/temp/article-fun2.jpg)">
-										<strong>
-											Apuesta deportiva 
-											<span>
-												Chupa chups chocolate bar jelly beans tart caramels cupcake powder. Wafer tiramisu tiramisu.  
-											</span>	
-										</strong>
-									</a>
-								</article>
-							</div><!-- /.col col-1of3 -->
+						<div class="section-content">
+							<div class="cols">
+								
+								@foreach( $otras as $item )
 
-							<div class="col col-1of3">
-								<article class="article-fun">
-									<a href="#" style="background-image: url(css/images/temp/article-fun3.jpg)">
-										<strong>
-											Apuesta de carreras
-											<span>
-												Chupa chups chocolate bar jelly beans tart caramels cupcake powder. Wafer tiramisu tiramisu.  
-											</span>	
-										</strong>
-									</a>
-								</article>
-							</div><!-- /.col col-1of3 -->
-						</div><!-- /.cols -->
-					</div><!-- /.section-content -->
-				</div><!-- /.shell -->
-			</section><!-- /.section-entry -->
+									<div class="col col-1of3">
+										<article class="article-fun">
+											<a href="{{ '/lineas-de-juego/' . $item->slug }}" style="background-image: url('{{ $item->imagen }}')"> 
+												<strong>
+													{{ $item->linea }}
+													<span>{{ $item->slogan }}</span>	
+												</strong>
+											</a>
+										</article>
+									</div><!-- /.col col-1of3 -->
+
+								@endforeach
+
+							</div><!-- /.cols -->
+						</div><!-- /.section-content -->
+					</div><!-- /.shell -->
+				</section><!-- /.section-entry -->
+
+			@endif
+		
 		</div><!-- /.main -->
 	@stop
+
+	<style type="text/css">
+		.active{
+			color: red;
+		}
+	</style>
+
+	
