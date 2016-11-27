@@ -4,30 +4,11 @@
 
 	$doc.ready(function() {
 
-	var dates = ["11-1-2016","11-9-2016"];
-
 		// date picker
 		$( '[data-date]' ).datepicker({
-    beforeShowDay: function (date){
-        var year = date.getFullYear(), month = date.getMonth(), day = date.getDate();
-        // for (var i=0; i < dates.length; ++i)
-        //     if (year == dates[i][2] && month == dates[i][0] - 1 &&  day == dates[i][1])
-        //         return [false, 'ui-state-highlight ui-state-active gior-occ'];
-
-        for (var i=0; i < dates.length; ++i)
-        {
-			if($.inArray((month+1) + '-' + day + '-' + year, dates) != -1) {
-				// alert(dates[i]); 
-				console.log('bad:  ' + (month+1) + '-' + day + '-' + year + ' / ' + dates[i]);
-				return [true, "active"];
-			}
-		}
-        
-        return [false];
-    }
-});
-
-
+			dateFormat: 'mm/dd/yyyy',
+		    beforeShowDay: activeDays
+		}).datepicker("setDate", null);
 
 		$.ajaxSetup({
 		    headers: {

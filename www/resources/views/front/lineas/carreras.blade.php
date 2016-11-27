@@ -403,4 +403,41 @@
 		}
 	</style>
 
+	@section('js')
+		
+		<!--Muestra las fechas activas de los programas en el calendario-->
+		<script>
+
+			var dates = [];   
+    
+		    <?php if( isset($programas) && count($programas) ){ ?>
+		    
+			    var arrayJS=<?php echo json_encode($programas); ?>;    
+			    
+			    for(var i=0; i<arrayJS.length; i++){
+
+			    	var valores = new Array();
+		      		var fech = arrayJS[i]['fecha']; 		          
+		          	var separada = fech.split("-");
+		          	valores[0] = separada[1]+'/'+separada[2]+'/'+separada[0];		          
+		          	dates.push(valores);
+			    }
+
+		   	<?php } ?> 
+
+			// var dates = ["11/1/2016","11/9/2016"];
+			function activeDays(date) {
+			    for (var i = 0; i < dates.length; i++) {
+			        if (new Date(dates[i]).toString() == date.toString()) {             
+			            return {
+			                classes: 'active'
+			            };
+			        }
+			    }
+			    return [false,''];
+			 } 
+		</script>
+
+	@stop
+
 	
