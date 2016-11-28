@@ -4,19 +4,22 @@
 
 	$doc.ready(function() {
 
-	var dates = ["11-1-2016","11-9-2016"];
 
 		// date picker
-		$( '[data-date]' ).datepicker({
-      		dateFormat: 'mm/dd/yyyy',
-      		beforeShowDay: activeDays
-      	}).datepicker("setDate", null);
+		if (typeof activeDays != "undefined" ) {
+			$( '[data-date]' ).datepicker({
+	      		dateFormat: 'mm/dd/yyyy',
+	      		beforeShowDay: activeDays
+	      	}).datepicker("setDate", null);
+		}
+				
 
 		$.ajaxSetup({
 		    headers: {
 		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		    }
 		});
+
 
 		$win.on('scroll', function() {
 			var winT = $win.scrollTop();
