@@ -425,7 +425,7 @@
 
 		   	<?php } ?> 
 
-			// var dates = ["11/1/2016","11/9/2016"];
+
 			function activeDays(date) {
 			    for (var i = 0; i < dates.length; i++) {
 			        if (new Date(dates[i]).toString() == date.toString()) {             
@@ -436,6 +436,23 @@
 			    }
 			    return [false,''];
 			 } 
+		</script>
+
+		<script>
+			$(".branch-filter").change( function(){
+
+				var $value = $( this ).val();
+				var $url   = "/lineas-de-juego/apuesta-de-carreras";
+
+				if( $value != -1 ){
+
+					$url = "/lineas-de-juego/apuesta-de-carreras/" + $value;
+
+				}
+
+				$( location ).attr("href", $url);
+
+			} );
 		</script>
 
 	@stop

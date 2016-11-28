@@ -8,31 +8,15 @@
 
 		// date picker
 		$( '[data-date]' ).datepicker({
-    beforeShowDay: function (date){
-        var year = date.getFullYear(), month = date.getMonth(), day = date.getDate();
-        // for (var i=0; i < dates.length; ++i)
-        //     if (year == dates[i][2] && month == dates[i][0] - 1 &&  day == dates[i][1])
-        //         return [false, 'ui-state-highlight ui-state-active gior-occ'];
-
-        for (var i=0; i < dates.length; ++i)
-        {
-			if($.inArray((month+1) + '-' + day + '-' + year, dates) != -1) {
-				// alert(dates[i]); 
-				console.log('bad:  ' + (month+1) + '-' + day + '-' + year + ' / ' + dates[i]);
-				return [true, "active"];
-			}
-		}
-        
-        return [false];
-    }
-});
+      		dateFormat: 'mm/dd/yyyy',
+      		beforeShowDay: activeDays
+      	}).datepicker("setDate", null);
 
 		$.ajaxSetup({
 		    headers: {
 		        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 		    }
 		});
-
 
 		$win.on('scroll', function() {
 			var winT = $win.scrollTop();
