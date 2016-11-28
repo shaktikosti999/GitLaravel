@@ -763,7 +763,7 @@ blockquote:last-child { margin-bottom: 0; }
 	.btn-red.subscribe-btn { font-size: 15px; }
 	.btn-black { font-size: 15px; }
 
-	.btn-white { height: auto; line-height: 1; padding: 20px 30px; margin: 111px 0 0 0; }
+	.btn-white { height: auto; line-height: 1; padding: 20px 30px; margin: 81px 0 0 0; }
 	.btn-border { height: auto; line-height: 1; padding: 20px 30px; }
 	.btn-border i { -webkit-transform: scale(.8); -ms-transform: scale(.8); transform: scale(.8); }
 	.btn-red { height: auto; line-height: 1; padding: 20px 30px; }
@@ -1193,7 +1193,7 @@ li:first-child { margin: 0;}
 @media (max-width: 767px) {
 	.section-head h2 { line-height: 1.2; text-align: center; }
 	.section-head h2:after { display: none; } 
-	.section-slider  { padding-top: 50px; }
+	.section-slider  { padding-top: 30px; }
 	.section-slider .section-actions { padding: 50px 0; }
 }
 /* ------------------------------------------------------------ *\
@@ -1267,7 +1267,9 @@ li:first-child { margin: 0;}
 .section-features .section-head { margin-bottom: 24px; }
 /* Mobile */
 @media (max-width: 767px) {
-	.section-features { padding-bottom: 50px; } 
+	.section-features { padding-bottom: 0; } 
+	.section-map {padding-top: 32px !important;}
+	.section-gallery .section-head {padding-bottom: 13px !important;}
 }
 /* ------------------------------------------------------------ *\
 	section-gray
@@ -1308,7 +1310,6 @@ li:first-child { margin: 0;}
 .section-gallery { padding-bottom: 112px; }
 .section-gallery.secondary { padding-bottom: 0px; }
 .section-gallery .section-head { padding-bottom: 33px; }
-.section-gallery .section-entry   { padding-bottom: 50px; }
 .section-gallery .section-entry p { margin: 0; }
 .section-gallery .section-entry p + p { margin-top: 16px; }
 .section-gallery .slider-gallery { margin-top: -102px; z-index: 99; margin-bottom: 24px; }
@@ -1471,7 +1472,7 @@ li:first-child { margin: 0;}
 .slider-intro { position: relative; }
 .slider-intro .btn-scroll { position: absolute; top: 49vh; left: 50%; z-index: 50; margin-left: -12px; }
 .slider-intro .slides { list-style: none outside none; }
-.slider-intro .slide { background-size: cover; background-repeat: no-repeat; background-position: center center; width: 100%; height: 720px; }
+.slider-intro .slide { background-size: cover; background-repeat: no-repeat; background-position: center center; width: 100%; height: 620px; }
 /*.slider-intro-promo {height: 70vh;}*/
 .slider-intro-promo .slide {height: 720px;}
 .slider-intro .slick-dots-wrapper { position: absolute; top: 51vh; z-index: 20; left: 0; right: 0; text-align: right; }
@@ -1498,7 +1499,7 @@ li:first-child { margin: 0;}
 	/*.slider-intro .slide { height: 1024px; }*/
 	.slider-intro .slide-content { padding-top: 164px; }
 	.slider-intro .btn-scroll,
-	.slider-intro .slick-dots-wrapper { top: 50%; z-index: 2;}
+	.slider-intro .slick-dots-wrapper { top: 57%; z-index: 2;}
 	.slider-intro .promo, .slider-intro .slick-dots-wrapper {z-index: 40;}
 
 	.slider-intro-promo {height: 680px}
@@ -1507,8 +1508,8 @@ li:first-child { margin: 0;}
 }
 /* Tablet Portrait */
 @media (max-width: 1023px) { 
-	.slider-intro .slide { height: auto; min-height: 557px; } 
-	.slider-intro .slide-content { text-align: center; padding-top: 180px; }
+	.slider-intro .slide { height: auto; min-height: 387px; } 
+	.slider-intro .slide-content { text-align: center; padding-top: 118px; }
 	.slider-intro .slick-dots-wrapper { text-align: center; top: auto; bottom: 220px; right: auto; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); }
 	.slider-intro .slick-dots-wrapper .shell { padding: 0; }
 	.slider-intro .slick-dots-wrapper .slick-dots { float: none; }
@@ -1645,7 +1646,7 @@ li:first-child { margin: 0;}
 /* Mobile */
 @media (max-width: 767px) {
 	
-	.slider-gallery .slide-image { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); padding: 80px; }
+	.slider-gallery .slide-image { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); padding: 80px; padding-top: 40px; padding-bottom: 40px; }
 	.slider-gallery .slick-center .slide-image { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } 
 }
 /* ------------------------------------------------------------ *\
@@ -1658,7 +1659,7 @@ li:first-child { margin: 0;}
 .slider-secondary .slick-slider .slick-track, 
 .slider-secondary .slick-slider .slick-list { overflow: visible; }
 .slider-secondary .slides.slick-initialized { overflow: visible; }
-.slider-secondary .slide { height: 598px; position: relative; background-size: cover; background-position: center; }
+.slider-secondary .slide { height: 598px; position: relative; background-size: cover; background-position: center center; background-repeat: no-repeat; }
 .slider-secondary .slide .shell:after { content: ''; line-height: 0; display: table; clear: both; }
 .slider-secondary .slide { position: relative; }
 .slider-secondary .slide:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0, 0, 0, .5);}
@@ -1882,7 +1883,7 @@ li:first-child { margin: 0;}
 /* ------------------------------------------------------------ *\
 	Botones scroll
 \* ------------------------------------------------------------ */
-.shell-btn { position: fixed; width: 100%; left: 50%; transform: translateX(-50%); margin-top: -279px; padding: 0; z-index: 10000000;}
+.shell-btn { position: fixed; width: 100%; left: 50%; transform: translateX(-50%); margin-top: -199px; padding: 0; z-index: 10000000;}
 /* ------------------------------------------------------------ *\
 	Forma Botones
 \* ------------------------------------------------------------ */
@@ -2251,7 +2252,6 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 }
 
 @media(max-width: 992px){
-	.slider-intro .slide {min-height: 500px;}
 	.nav-trigger {width: 29px;}
 	.slider-intro-secondary .slide-content {padding-top: 190px;}
 	.slider-games .slide-content {max-width: 250px; height: 310px;}	
@@ -2259,8 +2259,10 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 @media(max-width: 767px){
 	.section-filters li {padding-right: 0;}
 	.section-filters li {float: none; padding-right: 0;}
-	.slider-intro .slide {min-height: 430px !important;}
-
+	.slider-intro .slide {min-height: 330px !important;}
+	.btn-white {margin: 71px 0 0 0;}
+	.section-gallery .section-entry   { padding-bottom: 50px; }
+	.section-simple {padding-bottom: 60px;}
 }
 
     
