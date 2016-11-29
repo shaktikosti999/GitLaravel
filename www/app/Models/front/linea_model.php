@@ -119,7 +119,10 @@ class linea_model{
                 ->where('j.id_juego',$parameters['id_juego']);
         }
 
-        $data = $data->get();
+        $data = $data
+            ->where('fecha_inicio','>',date('Y-m-d'))
+            ->orderBy('fecha_inicio')
+            ->paginate(2);
 
         return $data;
     }

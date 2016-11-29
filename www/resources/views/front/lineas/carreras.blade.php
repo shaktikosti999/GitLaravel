@@ -251,7 +251,7 @@
 												</ul>
 											</div>
 										<div class="red-middle">
-											<h5>HOY</h5>
+											<h5>{{date('Ymd') < date('Ymd',strtotime($item->fecha_inicio)) ? date('d/m',strtotime($item->fecha_inicio)) : 'Hoy'}}</h5>
 										</div>
 											<div class="serie-item item-two">
 												<ul>

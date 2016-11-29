@@ -192,7 +192,7 @@
 								Pagado
 							</span>
 
-							<a href="#">
+							<a href="{{url('/pagados')}}">
 								Conoce los pagados
 							</a>
 						</p>
