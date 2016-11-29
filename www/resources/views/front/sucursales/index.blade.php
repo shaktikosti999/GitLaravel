@@ -344,7 +344,7 @@
 								<div class="col col-1of2">
 									<article class="article-tournament" style="background-image: url({{$item->archivo}})"> 
 										<span class="article-title">
-											{{strtotime($item->fecha) > time() ? "Próximos torneos" : "Experiencias Pasadas"}}
+											{{strtotime($item->fecha_inicio) > time() ? "Próximos torneos" : "Experiencias Pasadas"}}
 										</span><!-- /.article-title -->	
 
 										<div class="article-content">
@@ -357,11 +357,11 @@
 											</h5>
 
 											<p>
-												{{ $item->fecha }} - {{$item->sucursal}}
+												{{ $item->fecha_inicio }} - {{$item->sucursal}}
 		 									</p>
 
 		 									<a href="{{url('/torneos/' . $item->slug)}}" class="btn btn-red">
-		 										{{strtotime($item->fecha) > time() ? 'Participar' : 'Detalles'}}
+		 										{{strtotime($item->fecha_inicio) > time() ? 'Participar' : 'Detalles'}}
 		 									</a>
 										</div><!-- /.article-content -->
 									</article><!-- /.article-tournament -->

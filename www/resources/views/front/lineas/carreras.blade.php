@@ -246,12 +246,12 @@
 														<h4>{{date('H:i',strtotime($item->fecha_inicio))}}</h4>
 													</li>
 													<li>
-														<p>Inicio</p>
+														<p>{{date('d/m/Y',strtotime($item->fecha_inicio))}}</p>
 													</li>
 												</ul>
 											</div>
 										<div class="red-middle">
-											<h5>{{date('Ymd') < date('Ymd',strtotime($item->fecha_inicio)) ? date('d/m',strtotime($item->fecha_inicio)) : 'Hoy'}}</h5>
+											<h5>AL</h5>
 										</div>
 											<div class="serie-item item-two">
 												<ul>
@@ -259,7 +259,7 @@
 														<h4>{{date('H:i',strtotime($item->fecha_fin))}}</h4>
 													</li>
 													<li>
-														<p>Finalizada</p>
+														<p>{{date('d/m/Y',strtotime($item->fecha_fin))}}</p>
 													</li>
 												</ul>
 											</div>

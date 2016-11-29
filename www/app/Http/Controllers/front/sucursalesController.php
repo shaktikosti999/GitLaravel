@@ -57,6 +57,13 @@ class sucursalesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function general(){
-        return view('front.sucursales.general');
+        $id_ciudad = \Request::all();
+        $id_ciudad = isset( $id_ciudad['city'] ) ? $id_ciudad['city'] : null;
+        $data = [
+            'id_ciudad' => $id_ciudad,
+            'ciudades' => \App\Models\front\ciudad_model::find_all(),
+            'sucursales' => sucursal::find_all(['id_ciudad'=>$id_ciudad])
+        ];
+        return view('front.sucursales.general',$data);
     }
 }

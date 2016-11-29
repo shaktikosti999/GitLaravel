@@ -4,15 +4,18 @@ namespace App\Models\front;
 class sucursal_model{
 
 
-    static function find_all(){
+    static function find_all($args = []){
 
         $data = [];
 
         $data = \DB::table('sucursal as s')
-                        ->where('s.estatus','=',1)
-                        ->where('s.eliminado','=',0)
-                        ->orderBy('s.nombre')
-                        ->get();
+            ->where('s.estatus','=',1)
+            ->where('s.eliminado','=',0);
+        if(isset($args['id_ciudad']) && !empty($args['id_ciudad']) ){
+            $data = $data->where('id_ciudad',$args['id_ciudad']);
+        }
+            $data = $data->orderBy('s.nombre')
+            ->get();
 
         //-----> Obtenemos la galeria de la sucursal
         //self::get_branch_gallery( $data );

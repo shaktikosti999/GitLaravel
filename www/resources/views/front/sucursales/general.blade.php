@@ -1,8 +1,24 @@
 @extends('layout.front')
+	@section('js')
+		<script>
+			$( function(){
+				$(".btn-ciudades").change( function(){
+					var $value = $('.fs-dropdown-item_selected').attr('data-value');
+					if( $value != "" ){
+						var $url   = "/sucursal?city=" + $value;
+					}
+					else{
+						var $url   = "/sucursal";
+					}
+
+						$( location ).attr("href", $url);
+				} );
+			} )
+		</script>
+	@stop
 	@section('contenido')
 		<div class="intro-gray"></div><!-- /.intro-gray -->
-
-
+		@if( isset($ciudades) && count($ciudades) )
 		<div class="main">
 			<section class="section-articles head-padding">
 				<div class="shell">
@@ -12,144 +28,55 @@
 							<div class="fs-dropdown btn-ciudades" tabindex="-1"><!-- BEGIN boton sucursal -->
 								<div class="select btn-ubn fs-dropdown-element" tabindex="-1"> 
 			                        <select name="ciudad">
-										<option value="Ciudad de México">Ciudad de México</option>
-										<option value="Ciudad de México">Ciudad de México</option>
-										<option value="Ciudad de México">Ciudad de México</option>
+			                        	<option value="">Seleccione una ciudad</option>
+										@foreach( $ciudades as $item )
+											<option value="{{$item->id_ciudad}}" {{isset($id_ciudad) && $item->id_ciudad == $id_ciudad ? "selected" : ""}}>{{$item->ciudad}}</option>
+										@endforeach
 									</select> <!-- END boton sucursal -->
 								</div>
-							<button type="button" class="fs-dropdown-selected fs-touch-element">Ciudad de México</button><div class="fs-dropdown-options">
+							<!-- <button type="button" class="fs-dropdown-selected fs-touch-element">Ciudad de México</button><div class="fs-dropdown-options">
 							<button type="button" class="fs-dropdown-item fs-dropdown-item_selected" data-value="Ciudad de México">Ciudad de México</button>
 							<button type="button" class="fs-dropdown-item" data-value="Ciudad de México">Ciudad de México</button>
-							<button type="button" class="fs-dropdown-item" data-value="Ciudad de México">Ciudad de México</button>
+							<button type="button" class="fs-dropdown-item" data-value="Ciudad de México">Ciudad de México</button> -->
 							</div>
 						</div><!-- END boton sucursal -->
-						</div><!-- /.article-head -->
 					</article>
-				</div>
+				</div><!-- /.article-head -->
 			</section>
 		</div>
+		@endif
 
-		<div class="shell">
-			<div class="sucursales">
-				<ul>
-					<li>
-						<h3>Tecamachalco</h3>
-						<div class="section-actions btn-action">
-							<a href="#" class="btn btn-red btn-red-small">
-								<i class="ico-human"></i>
-
-								Cómo llegar aquí
-							</a>
-						</div>
-						<h6>Dirección</h6>
-						<p>Calle Fuente del molino #49-B Col. San Miguel Tecamachalco Naucalpan, Edo. de México C.P. 53970</p>
-						<h6>Teléfonos</h6>
-						<p>01 + 55 123456789</p>
-						<p>045 + 55 123456789</p>
-						<p>779 + 55 123456789</p>
-					</li>
-
-					<li>
-						<h3>Bosques de Aragón</h3>
-						<div class="section-actions btn-action">
-							<a href="#" class="btn btn-red btn-red-small">
-								<i class="ico-human"></i>
-
-								Cómo llegar aquí
-							</a>
-						</div>
-						<h6>Dirección</h6>
-						<p>Av. Carlos Hank González, interior Multiplaza San Juan, Col. Bosques de Aragón, Nezahualcóyotl. Estado de México  57170</p>
-						<h6>Teléfonos</h6>
-						<p>01 + 55 123456789</p>
-						<p>045 + 55 123456789</p>
-						<p>779 + 55 123456789</p>
-					</li>
-				</ul>
+		@if( isset($sucursales) && count($sucursales) )
+			<?php $c=0; ?>
+			@foreach( $sucursales as $item )
+				@if( ($c%2) == 0 && $c > 0)
+					</ul>
+				</div>
 			</div>
-		</div>
+				@endif
+				@if( ($c%2) == 0 )
+			<div class="shell">
+				<div class="sucursales">
+					<ul>
+				@endif
+						<li>
+							<h3><a href="{{url('sucursal/' . $item->slug)}}">{{$item->nombre}}</a></h3>
+							<div class="section-actions btn-action">
+								<a href="http://www.google.com/maps/place/{{ $item->latitud . "," . $item->longitud }}" target="_blank" class="btn btn-red btn-red-small">
+									<i class="ico-human"></i>
 
-		<div class="shell">
-			<div class="sucursales">
-				<ul>
-					<li>
-						<h3>Naucalpan</h3>
-						<div class="section-actions btn-action">
-							<a href="#" class="btn btn-red btn-red-small">
-								<i class="ico-human"></i>
-
-								Cómo llegar aquí
-							</a>
-						</div>
-						<h6>Dirección</h6>
-						<p>Blvd. Toluca No. 117, Col. San Andrés Atoto, Naucalpan, Estado de México 53300</p>
-						<h6>Teléfonos</h6>
-						<p>01 + 55 123456789</p>
-						<p>045 + 55 123456789</p>
-						<p>779 + 55 123456789</p>
-					</li>
-
-					<li>
-						<h3>Bosque de Duraznos</h3>
-						<div class="section-actions btn-action">
-							<a href="#" class="btn btn-red btn-red-small">
-								<i class="ico-human"></i>
-
-								Cómo llegar aquí
-							</a>
-						</div>
-						<h6>Dirección</h6>
-						<p>Calle Bosque de Duraznos No. 67-5, Col. Bosques de las Lomas, Delegación Miguel Hidalgo México, D.F.  11700</p>
-						<h6>Teléfonos</h6>
-						<p>01 + 55 123456789</p>
-						<p>045 + 55 123456789</p>
-						<p>779 + 55 123456789</p>
-					</li>
-				</ul>
+									Cómo llegar aquí
+								</a>
+							</div>
+							<h6>Dirección</h6>
+							{!!$item->direccion!!}
+						</li>
+				<?php $c++; ?>
+			@endforeach
+					</ul>
+				</div>
 			</div>
-		</div>
-
-		<div class="shell">
-			<div class="sucursales">
-				<ul>
-					<li>
-						<h3>Tecamachalco</h3>
-						<div class="section-actions btn-action">
-							<a href="#" class="btn btn-red btn-red-small">
-								<i class="ico-human"></i>
-
-								Cómo llegar aquí
-							</a>
-						</div>
-						<h6>Dirección</h6>
-						<p>Calle Fuente del molino #49-B Col. San Miguel Tecamachalco Naucalpan, Edo. de México C.P. 53970</p>
-						<h6>Teléfonos</h6>
-						<p>01 + 55 123456789</p>
-						<p>045 + 55 123456789</p>
-						<p>779 + 55 123456789</p>
-					</li>
-
-					<li>
-						<h3>Tecamachalco</h3>
-						<div class="section-actions btn-action">
-							<a href="#" class="btn btn-red btn-red-small">
-								<i class="ico-human"></i>
-
-								Cómo llegar aquí
-							</a>
-						</div>
-						<h6>Dirección</h6>
-						<p>Calle Fuente del molino #49-B Col. San Miguel Tecamachalco Naucalpan, Edo. de México C.P. 53970</p>
-						<h6>Teléfonos</h6>
-						<p>01 + 55 123456789</p>
-						<p>045 + 55 123456789</p>
-						<p>779 + 55 123456789</p>
-					</li>
-				</ul>
-			</div>
-		</div>
-
-
+		@endif
 
 			<section class="section-gray">
 				<div class="shell">
