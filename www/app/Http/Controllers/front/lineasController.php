@@ -70,6 +70,20 @@ class lineasController extends Controller
         return view('front.juegos.show',$data);
     }
 
+    public function learn_to_play($slug){
+        $data = [
+            'juego'=>juego::find(['slug'=>$slug])
+        ];
+        return view('front.juegos.aprender',$data);
+    }
+
+    public function rules_for_game($slug){
+        $data = [
+            'juego'=>juego::find(['slug'=>$slug])
+        ];
+        return view('front.juegos.reglas',$data);
+    }
+
     public function mesas( $sucursal = null ){
         
         $data = [];
@@ -141,6 +155,8 @@ class lineasController extends Controller
 
         // -----> Acumulado
         $data['acumulado'] = linea::accumulated(['id_sucursal' => $id_sucursal,'linea' => 2]);
+
+        $data['game'] = ( isset($request['game']) ) ? $request['game'] : null;
         // dd($data);
 
         return view('front.lineas.carreras',$data);

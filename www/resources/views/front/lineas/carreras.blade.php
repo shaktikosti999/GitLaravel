@@ -155,21 +155,21 @@
 						<div class="calendar-content">	
 							<div class="list-btn">
 								<ul class="section-btn">
-									<li class="btn-carreras active">
+									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}">
 											<img src="css/images/icons/horse.png">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
-									<li>
 										<?php next($carreras); ?>
+									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" class="btn-carreras">
 											<img src="css/images/icons/galgo_black.png">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
-									<li>
 										<?php next($carreras); ?>
+									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" class="btn-carreras">
 											<img src="css/images/icons/dog_black.png">
 											<span>{{current($carreras)->titulo}}</span> 

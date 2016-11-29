@@ -206,13 +206,13 @@
 
 											<ul class="list-links">
 												<li>
-													<a href="{{url('aprende_a_jugar')}}" class="btn btn-border">
+													<a href="{{url('aprende_a_jugar/' . current($mesas)->slug)}}" class="btn btn-border">
 														Aprende a jugar
 													</a>
 												</li>
 
 												<li>
-													<a href="{{url('reglas')}}" class="btn btn-border btn-border-grey">
+													<a href="{{url('reglas/' . current($mesas)->slug)}}" class="btn btn-border btn-border-grey">
 														Reglas
 													</a>
 												</li>

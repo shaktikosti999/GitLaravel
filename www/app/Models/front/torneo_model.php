@@ -10,7 +10,8 @@ class torneo_model{
             ->select(
                 't.titulo',
                 't.descripcion',
-                't.fecha',
+                't.fecha_inicio as fecha',
+                't.fecha_fin',
                 't.link',
                 't.archivo',
                 'tt.nombre as tipo'

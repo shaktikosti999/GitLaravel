@@ -69,7 +69,9 @@ Route::get('/alimentos-y-bebidas/{sucursal?}','front\alimentosController@index')
 
 // -----> Ubicaciones
 //Route::get('/ubicaciones','front\ubicacionesController@index');
-
+// -----> Juegos
+Route::get('/aprende_a_jugar/{slug?}','front\lineasController@learn_to_play');
+Route::get('/reglas/{slug?}','front\lineasController@rules_for_game');
 // -----> Sucursales
 Route::get('/sucursal','front\sucursalesController@general');
 Route::get('/sucursal/{slug}','front\sucursalesController@index');
