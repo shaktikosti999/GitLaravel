@@ -2,12 +2,21 @@
 	@section('script')
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="{{asset('/assets/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script>
+		<script src="{{asset('assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js')}}"></script>
 		<script>
 		$(function(){
 			$('#form-agregar').validate();
-			$('[name="fecha"]').datepicker();
+			$('[name="fecha_inicio"]').datepicker();
+			$('[name="fecha_fin"]').datepicker();
+			$('[name="hora_inicio"]').timepicker({showMeridian:false,defaultTime:false});
+			$('[name="hora_fin"]').timepicker({showMeridian:false,defaultTime:false});
 		});
 		</script>
+	@stop
+
+	@section('css')
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+		<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css')}}">
 	@stop
 
 	@section('contenido')
@@ -59,6 +68,18 @@
 		                    	</div>
 		                	</div>
 		                </div>
+		                <div class="row">
+		        			<div class="col-sm-12">
+		        				<div class="form-group form-group-default">
+		        					<label for="juego">Juego</label>
+					      			<select class="cs-select cs-skin-slide" data-init-plugin="cs-select" name="juego" id="juego">
+					      				@foreach($juegos as $juego)
+				                      	<option value="{{$juego->id}}">{{$juego->nombre}}</option>
+				                      	@endforeach
+		                    		</select>
+		                    	</div>
+		                	</div>
+		                </div>
 		                <div class="row clearfix">
 				        	<div class="col-sm-12">
 				          		<div class="form-group form-group-default" aria-required="true">
@@ -68,13 +89,33 @@
 				        	</div>
 				      	</div>
 		                <div class="row clearfix">
-				        	<div class="col-sm-12">
-				          		<div class="form-group form-group-default" aria-required="true">
-				            		<label for="fecha">Fecha</label>
-				            		<input type="text" id="fecha" class="form-control required" name="fecha" required="required" aria-required="true" aria-invalid="true">
-				          		</div>
-				        	</div>
-				      	</div>
+					        	<div class="col-sm-6">
+					          		<div class="form-group form-group-default" aria-required="true">
+					            		<label for="fecha_inicio">Inicio</label>
+					            		<input type="text" id="fecha_inicio" class="form-control required" name="fecha_inicio" required="required" aria-required="true" aria-invalid="true">
+					          		</div>
+					        	</div>
+					        	<div class="col-sm-6">
+					          		<div class="form-group form-group-default" aria-required="true">
+					            		<label for="hora_inicio">Hora</label>
+					            		<input type="text" id="hora_inicio" class="form-control required" name="hora_inicio" required="required" aria-required="true" aria-invalid="true">
+					          		</div>
+					        	</div>
+					      	</div>
+					      	<div class="row clearfix">
+					        	<div class="col-sm-6">
+					          		<div class="form-group form-group-default" aria-required="true">
+					            		<label for="fecha_fin">Fin</label>
+					            		<input type="text" id="fecha_fin" class="form-control required" name="fecha_fin" required="required" aria-required="true" aria-invalid="true">
+					          		</div>
+					        	</div>
+					        	<div class="col-sm-6">
+					          		<div class="form-group form-group-default" aria-required="true">
+					            		<label for="hora_fin">Hora</label>
+					            		<input type="text" id="hora_fin" class="form-control required" name="hora_fin" required="required" aria-required="true" aria-invalid="true">
+					          		</div>
+					        	</div>
+					      	</div>
 				      	<div class="row clearfix">
 				        	<div class="col-sm-12">
 				          		<div class="form-group form-group-default" aria-required="true">
@@ -106,8 +147,4 @@
 	        @endif
 			<!-- END PANEL -->
 		</div>
-	@stop
-
-	@section('css')
-		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	@stop

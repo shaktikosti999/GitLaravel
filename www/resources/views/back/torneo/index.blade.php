@@ -2,8 +2,10 @@
 
 	@section('css')
 		<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="plugins/bootstrap-timepicker/bootstrap-timepicker.min.css">
 	@stop
 	@section('script')
+		<script src="plugins/bootstrap-timepicker/bootstrap-timepicker.min.js"></script>
 		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 		<script>
 			$(function(){
@@ -60,7 +62,8 @@
 															<th class="sorting_disabled" rowspan="1" colspan="1">Nombre</th>
 															<th class="sorting_disabled" rowspan="1" colspan="1">Sucursal</th>
 															<th class="sorting_disabled" rowspan="1" colspan="1">Tipo</th>
-															<th class="sorting_disabled" rowspan="1" colspan="1">Fecha</th>
+															<th class="sorting_disabled" rowspan="1" colspan="1">Inicio</th>
+															<th class="sorting_disabled" rowspan="1" colspan="1">Fin</th>
 															<th class="sorting_disabled" rowspan="1" colspan="1">Estatus</th>
 															<th class="sorting_disabled" rowspan="1" colspan="1">Opciones</th>
 														</tr>
@@ -71,8 +74,8 @@
 															<td class="v-align-middle">{{$carrera->nombre}}</td>
 															<td class="v-align-middle">{{$carrera->sucursal}}</td>
 															<td class="v-align-middle">{{$carrera->tipo}}</td>
-															<td class="v-align middle">{{$carrera->fecha}}</td>
-															<td class="v-align middle">{{$carrera->fecha}}</td>
+															<td class="v-align middle">{{$carrera->fecha_inicio}}</td>
+															<td class="v-align middle">{{$carrera->fecha_fin}}</td>
 															<td class="v-align-middle">
 																<div class="btn-group btn-group-justified">
 																	

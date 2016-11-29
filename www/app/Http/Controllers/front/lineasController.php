@@ -110,7 +110,8 @@ class lineasController extends Controller
 
     public function carreras( $sucursal = null ){
         
-        $data = [];
+        $request = \Request::all();
+        $id_juego = ( isset($request['game']) ) ? juego::id_by_slug($request['game']) : null;
 
         $data["sucursal"] = $sucursal;
 
@@ -125,10 +126,10 @@ class lineasController extends Controller
         $data["carreras"] = linea::get_races();
 
         //-----> Obtenemos documentos
-        $data["programas"] = linea::get_programs( [ "id_sucursal" => $id_sucursal ] );
+        $data["programas"] = linea::get_programs( [ "id_sucursal" => $id_sucursal, 'id_juego' => $id_juego ] );
 
         //-----> Obtenemos los proveedores
-        $data["torneos"] = linea::find_all_tournaments( [ "id_sucursal" => $id_sucursal ] );
+        $data["torneos"] = linea::find_all_tournaments( [ "id_sucursal" => $id_sucursal, 'id_juego' => $id_juego ] );
 
         //dd( $data["torneos"] );
  

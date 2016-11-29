@@ -94,30 +94,32 @@ class linea_model{
     static function find_all_tournaments( $parameters = [] ){
         
         $data = \DB::table('torneo as t')
-                        ->select(
-                            't.titulo',
-                            't.slug',
-                            't.fecha',
-                            't.archivo',
-                            't.link',
-                            's.nombre as sucursal',
-                            'tt.nombre as tipo'
-                        )
-                        ->where('t.estatus','=',1)
-                        ->where('t.eliminado','=',0)
-                        ->join("tipo_torneo as tt", "t.tipo_torneo", "=", "tt.id_tipo")
-                        ->join("sucursal as s", "t.id_sucursal", "=", "s.id_sucursal");
+            ->select(
+                't.titulo',
+                't.slug',
+                't.fecha_inicio',
+                't.fecha_fin',
+                't.archivo',
+                't.link',
+                's.nombre as sucursal',
+                'tt.nombre as tipo'
+            )
+            ->where('t.estatus','=',1)
+            ->where('t.eliminado','=',0)
+            ->join("tipo_torneo as tt", "t.tipo_torneo", "=", "tt.id_tipo")
+            ->join("sucursal as s", "t.id_sucursal", "=", "s.id_sucursal");
 
         //-----> Aplicamos filtros
 
-        if( isset( $parameters["id_sucursal"] ) && ! empty( $parameters["id_sucursal"] ) ){
-
+        if( isset( $parameters["id_sucursal"] ) && ! empty( $parameters["id_sucursal"] ) )
             $data = $data->where( "s.id_sucursal", "=", $parameters["id_sucursal"] );
 
+        if( isset($parameters['id_juego'] )&& ! empty( $parameters["id_juego"] ) ){
+            $data->join('juego as j','j.id_juego','=','t.id_juego')
+                ->where('j.id_juego',$parameters['id_juego']);
         }
 
         $data = $data->get();
-
 
         return $data;
     }
@@ -191,6 +193,8 @@ class linea_model{
             ->join('juego as j','j.id_juego','=','c.id_juego');
         if( isset($args['id_sucursal']) )
             $data = $data->where('c.id_sucursal',$args['id_sucursal']);
+        if( isset($args['id_juego']) )
+            $data = $data->where('j.id_juego',$args['id_juego']);
         $data = $data->get();
         return $data;
     }
@@ -204,7 +208,6 @@ class linea_model{
             )
             ->leftJoin('juego_sucursal as js','js.id_juego','=','j.id_juego')
             ->where('id_linea',4)
-            ->orderByRaw("RAND()")
             ->get();
         return $data;
     }

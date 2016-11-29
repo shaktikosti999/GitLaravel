@@ -38,7 +38,8 @@ class torneoController extends Controller
     public function create(){
         $data = [
             'tipos' => torneo::get_tournament_types(),
-            'sucursales' =>\App\Models\sucursal_model::all()
+            'sucursales' =>\App\Models\sucursal_model::all(),
+            'juegos' => \App\Models\juego_model::all()
         ];
         return view('back.torneo.create',$data);
     }
@@ -54,11 +55,19 @@ class torneoController extends Controller
             "titulo" => 'required|string',
             "slug" => 'required|string',
             "tipo" => 'required|integer|min:1',
+            "juego" => 'required|integer|min:1',
             "sucursal" => 'required|integer|min:1',
             "descripcion" => 'required|string',
-            "fecha" => 'required|date|after:tomorrow',
+            "fecha_inicio" => 'required|date|after:tomorrow',
+            "fecha_fin" => 'required|date|after:tomorrow',
+            "hora_inicio" => 'required',
+            "hora_fin" => 'required',
             "link" => 'string|url',
             "archivo" => 'required|image'
+        ]);
+        $request->merge([
+            'fecha_inicio' => $request->fecha_inicio . " " . $request->hora_inicio,
+            'fecha_fin' => $request->fecha_fin . " " . $request->hora_fin
         ]);
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
@@ -112,7 +121,8 @@ class torneoController extends Controller
             'id' => $id,
             'torneo' => \App\torneo::find($id),
             'tipos' => torneo::get_tournament_types(),
-            'sucursales' =>\App\Models\sucursal_model::all()
+            'sucursales' =>\App\Models\sucursal_model::all(),
+            'juegos' => \App\Models\juego_model::all()
         ];
         return view('back.torneo.edit',$data);
     }
@@ -129,11 +139,19 @@ class torneoController extends Controller
             "titulo" => 'required|string',
             "slug" => 'required|string',
             "tipo" => 'required|integer|min:1',
+            "juego" => 'required|integer|min:1',
             "sucursal" => 'required|integer|min:1',
             "descripcion" => 'required|string',
-            "fecha" => 'required|date|after:tomorrow',
+            "fecha_inicio" => 'required|date|after:tomorrow',
+            "fecha_fin" => 'required|date|after:tomorrow',
+            "hora_inicio" => 'required',
+            "hora_fin" => 'required',
             "link" => 'string|url',
             "archivo" => 'image'
+        ]);
+        $request->merge([
+            'fecha_inicio' => $request->fecha_inicio . " " . $request->hora_inicio,
+            'fecha_fin' => $request->fecha_fin . " " . $request->hora_fin
         ]);
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');

@@ -1,4 +1,64 @@
 @extends('layout.front')
+	@section('css')
+		<style type="text/css">
+			.active{
+				color: red;
+			}
+		</style>
+	@stop
+
+	@section('js')
+		
+		<!--Muestra las fechas activas de los programas en el calendario-->
+		<script>
+
+			var dates = [];   
+    
+		    <?php if( isset($programas) && count($programas) ){ ?>
+		    
+			    var arrayJS=<?php echo json_encode($programas); ?>;    
+			    
+			    for(var i=0; i<arrayJS.length; i++){
+
+			    	var valores = new Array();
+		      		var fech = arrayJS[i]['fecha']; 		          
+		          	var separada = fech.split("-");
+		          	valores[0] = separada[1]+'/'+separada[2]+'/'+separada[0];		          
+		          	dates.push(valores);
+			    }
+
+		   	<?php } ?> 
+
+
+			function activeDays(date) {
+			    for (var i = 0; i < dates.length; i++) {
+			        if (new Date(dates[i]).toString() == date.toString()) {             
+			            return {
+			                classes: 'active'
+			            };
+			        }
+			    }
+			    return [false,''];
+			 } 
+		</script>
+
+		<script>
+			$(".branch-filter").change( function(){
+
+				var $value = $( this ).val();
+				var $url   = "/lineas-de-juego/apuesta-de-carreras";
+
+				if( $value != -1 ){
+
+					$url = "/lineas-de-juego/apuesta-de-carreras/" + $value;
+
+				}
+
+				$( location ).attr("href", $url);
+
+			} );
+		</script>
+	@stop
 
 	@section('contenido')
 		<div class="wrapper">
@@ -95,14 +155,26 @@
 						<div class="calendar-content">	
 							<div class="list-btn">
 								<ul class="section-btn">
-									@foreach( $carreras as $item )
-									<li class="btn-carreras {{ \Request::path() == 'lineas-de-juego/apuesta-de-carreras' . $item->slug ? 'active' : ''}}">
-										<a href="{{url('apuesta-de-carreras/detalle/' . $item->slug)}}">
-											{!! $item->archivo !== null ? '<img src="' . $item->archivo .'">' : '' !!}
-											<span>{{$item->titulo}}</span> 
+									<li class="btn-carreras active">
+										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}">
+											<img src="css/images/icons/horse.png">
+											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
-									@endforeach
+									<li>
+										<?php next($carreras); ?>
+										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" class="btn-carreras">
+											<img src="css/images/icons/galgo_black.png">
+											<span>{{current($carreras)->titulo}}</span> 
+										</a>
+									</li>
+									<li>
+										<?php next($carreras); ?>
+										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" class="btn-carreras">
+											<img src="css/images/icons/dog_black.png">
+											<span>{{current($carreras)->titulo}}</span> 
+										</a>
+									</li>
 								</ul>
 							</div>
 						</div>
@@ -136,7 +208,7 @@
 									<li class="txt-left">
 										<h5>{{$item->titulo}}</h5>
 											<a href="{{$item->archivo}}" target="_blank"> 
-												<img src="{{$item->imagen}}">
+												<img src="css/images/icons/download.png">
 												Descargar programa
 											</a>
 									</li>
@@ -158,72 +230,47 @@
 						</h2>
 					</header><!-- /.section-head -->
 
-					<div class="event-container">
-						<div class="section-events">
-							<ul>
-								<li>
-									<img src="css/images/temp/carreras.jpg">
+					@if( isset($torneos) && count($torneos) )
+						<div class="event-container">
+							<div class="section-events">
+								<ul>
+									@foreach( $torneos as $item )
+									<li>
+										<img src="{{$item->archivo}}">
 
-									<div class="content-serie">
-										<h5>Serie mundial no.30</h5>
-										<div class="serie-item">
-											<ul>
-												<li>
-													<h4>3:30</h4>
-												</li>
-												<li>
-													<p>Inicio</p>
-												</li>
-											</ul>
+										<div class="content-serie">
+											<h5>{{$item->titulo}}</h5>
+											<div class="serie-item">
+												<ul>
+													<li>
+														<h4>{{date('H:i',strtotime($item->fecha_inicio))}}</h4>
+													</li>
+													<li>
+														<p>Inicio</p>
+													</li>
+												</ul>
+											</div>
+										<div class="red-middle">
+											<h5>HOY</h5>
 										</div>
-									<div class="red-middle">
-										<h5>HOY</h5>
-									</div>
-										<div class="serie-item item-two">
-											<ul>
-												<li>
-													<h4>6:25</h4>
-												</li>
-												<li>
-													<p>Finalizada</p>
-												</li>
-											</ul>
+											<div class="serie-item item-two">
+												<ul>
+													<li>
+														<h4>{{date('H:i',strtotime($item->fecha_fin))}}</h4>
+													</li>
+													<li>
+														<p>Finalizada</p>
+													</li>
+												</ul>
+											</div>
 										</div>
-									</div>
-								</li>
-								<li>
-									<img src="css/images/temp/carreras.jpg">
-
-									<div class="content-serie below-content">
-										<h5>Serie mundial no.30</h5>
-										<div class="serie-item">
-											<ul>
-												<li>
-													<h4>3:30</h4>
-												</li>
-												<li>
-													<p>Inicio</p>
-												</li>
-											</ul>
-										</div>
-									<div class="red-middle">
-										<h5>HOY</h5>
-									</div>
-										<div class="serie-item item-two">
-											<ul>
-												<li>
-													<h4>6:25</h4>
-												</li>
-												<li>
-													<p>Finalizada</p>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</li>
-							</ul>
+									</li>
+									@endforeach
+									
+								</ul>
+							</div>
 						</div>
-					</div>
+					@endif
 
 				</div><!-- /.shell -->
 			</section><!-- /.section section-secondary -->
@@ -396,65 +443,3 @@
 		
 		</div><!-- /.main -->
 	@stop
-
-	<style type="text/css">
-		.active{
-			color: red;
-		}
-	</style>
-
-	@section('js')
-		
-		<!--Muestra las fechas activas de los programas en el calendario-->
-		<script>
-
-			var dates = [];   
-    
-		    <?php if( isset($programas) && count($programas) ){ ?>
-		    
-			    var arrayJS=<?php echo json_encode($programas); ?>;    
-			    
-			    for(var i=0; i<arrayJS.length; i++){
-
-			    	var valores = new Array();
-		      		var fech = arrayJS[i]['fecha']; 		          
-		          	var separada = fech.split("-");
-		          	valores[0] = separada[1]+'/'+separada[2]+'/'+separada[0];		          
-		          	dates.push(valores);
-			    }
-
-		   	<?php } ?> 
-
-
-			function activeDays(date) {
-			    for (var i = 0; i < dates.length; i++) {
-			        if (new Date(dates[i]).toString() == date.toString()) {             
-			            return {
-			                classes: 'active'
-			            };
-			        }
-			    }
-			    return [false,''];
-			 } 
-		</script>
-
-		<script>
-			$(".branch-filter").change( function(){
-
-				var $value = $( this ).val();
-				var $url   = "/lineas-de-juego/apuesta-de-carreras";
-
-				if( $value != -1 ){
-
-					$url = "/lineas-de-juego/apuesta-de-carreras/" + $value;
-
-				}
-
-				$( location ).attr("href", $url);
-
-			} );
-		</script>
-
-	@stop
-
-	

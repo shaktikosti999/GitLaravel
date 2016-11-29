@@ -10,4 +10,12 @@ class juego_model{
         return $get;
     }
 
+    static function id_by_slug($slug){
+    	$data = \DB::table('juego as j')
+    		->select('id_juego as id')
+    		->where('slug',$slug)
+    		->first();
+    	return isset( $data->id ) ? $data->id : null;
+    }
+
 }

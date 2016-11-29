@@ -12,7 +12,8 @@ class torneo_model{
 				't.id_torneo as id',
 				't.titulo as nombre',
 				't.slug',
-				't.fecha',
+				't.fecha_inicio',
+				't.fecha_fin',
 				't.estatus',
 				's.nombre as sucursal',
 				's.id_sucursal',
@@ -35,9 +36,11 @@ class torneo_model{
 		$data->titulo = $request->input('titulo');
 		$data->slug = $request->input('slug');
 		$data->tipo_torneo = $request->input('tipo');
+		$data->id_juego = $request->input('juego');
 		$data->id_sucursal = $request->input('sucursal');
 		$data->descripcion = $request->input('descripcion');
-		$data->fecha = date('Y-m-d',strtotime($request->input('fecha')));
+		$data->fecha_inicio = date('Y-m-d H:i:s',strtotime($request->input('fecha_inicio')));
+		$data->fecha_fin = date('Y-m-d H:i:s',strtotime($request->input('fecha_fin')));
 		$data->link = $request->input('link');
 		$data->archivo = $archivo;
 		$evento = Event::fire(new dotask($data));
@@ -49,9 +52,11 @@ class torneo_model{
 		$data->titulo = $request->input('titulo');
 		$data->slug = $request->input('slug');
 		$data->tipo_torneo = $request->input('tipo');
+		$data->id_juego = $request->input('juego');
 		$data->id_sucursal = $request->input('sucursal');
 		$data->descripcion = $request->input('descripcion');
-		$data->fecha = date('Y-m-d',strtotime($request->input('fecha')));
+		$data->fecha_inicio = date('Y-m-d H:i:s',strtotime($request->input('fecha_inicio')));
+		$data->fecha_fin = date('Y-m-d H:i:s',strtotime($request->input('fecha_fin')));
 		$data->link = $request->input('link');
 		if($archivo !== null)
 			$data->archivo = $archivo;
