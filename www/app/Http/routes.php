@@ -71,7 +71,8 @@ Route::get('/alimentos-y-bebidas/{sucursal?}','front\alimentosController@index')
 //Route::get('/ubicaciones','front\ubicacionesController@index');
 
 // -----> Sucursales
-Route::get('/sucursal/{slug?}','front\sucursalesController@index');
+Route::get('/sucursal','front\sucursalesController@general');
+Route::get('/sucursal/{slug}','front\sucursalesController@index');
 // ajax para modales
 Route::patch('/sucursales','front\api\indexModalsController@sucursales');
 Route::patch('/ciudades_sucursal','front\api\indexModalsController@ciudades');
