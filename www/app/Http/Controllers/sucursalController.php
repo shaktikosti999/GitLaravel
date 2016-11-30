@@ -29,7 +29,10 @@ class sucursalController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        return view('back.sucursal.create');
+        $data = [
+            'ciudades' => \App\Models\front\ciudad_model::find_all()
+        ];
+        return view('back.sucursal.create',$data);
     }
 
     /**
@@ -41,7 +44,11 @@ class sucursalController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'nombre' => 'required|string|max:50|min:1',
+            'ciudad' => 'required|integer|min:1',
             'direccion' => 'required|string|min:5|max:255',
+            'slug' => 'required|string',
+            'latitud' => 'string',
+            'longitud' => 'string',
             'horario' => 'required|string',
             'instrucciones' => 'required|string',
             'telefono' => 'required|string'
@@ -73,6 +80,7 @@ class sucursalController extends Controller
     public function edit($id){
         $data=array(
             'id' => $id,
+            'ciudades' => \App\Models\front\ciudad_model::find_all(),
             'sucursal' => sucursal::find($id)
         );
         return view('back.sucursal.edit',$data);
@@ -88,7 +96,11 @@ class sucursalController extends Controller
     public function update(Request $request, $id){
         $this->validate($request,[
             'nombre' => 'required|string|max:50|min:1',
+            'ciudad' => 'required|integer|min:1',
             'direccion' => 'required|string|min:5|max:255',
+            'slug' => 'required|string',
+            'latitud' => 'string',
+            'longitud' => 'string',
             'horario' => 'required|string',
             'instrucciones' => 'required|string',
             'telefono' => 'required|string'
@@ -125,6 +137,15 @@ class sucursalController extends Controller
             $juegos = sucursal::list_sucursal_games($request->input('sucursal'));
             echo json_encode($juegos);
         }
+    }
+
+    public function infogames(Request $request){
+        $this->validate($request,[
+            'sucursal' => 'required|integer',
+            'id' => 'required|integer'
+        ]);
+        $juegos = sucursal::info_game($request->input('sucursal'),$request->input('id'));
+        echo json_encode($juegos);
     }
 
     /**
@@ -173,5 +194,62 @@ class sucursalController extends Controller
         else{
             return redirect(url('/administrador/sucursal.html'))->with('error','Los datos no fueron almacenados');
         }
+    }
+
+    public function gamesUpdate(Request $request){
+        // dd($request->all());
+        $this->validate($request,[
+            'add_juego' => 'required|integer',
+            'add_desc' => 'required|string',
+            'add_disp' => 'required|integer',
+            'add_apuesta' => 'required|integer',
+            'add_link' => 'required',
+            'add_archivo' => 'image',
+            'add_sucursal' => 'required|integer'
+        ]);
+        //subir imagen
+        if($request->hasFile('add_archivo')){
+            $archivo = $request->file('add_archivo');
+            $ext = strtolower($archivo->getClientOriginalExtension());
+            $extValidas = ['jpg','jpeg','png'];
+
+            if(in_array($ext, $extValidas)){
+                $carpeta = 'assets/images/juegos/';
+                if(!file_exists(public_path() . '/' . $carpeta))
+                    mkdir(public_path() . '/' . $carpeta,0777,true);
+                do{
+                    $nombre = "";
+                    $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                    for($i=0; $i<=16; $i++ ){
+                        $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
+                    }
+                }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+                $nombre .= '.' . $ext;
+                if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                    $archivo = '/' . $carpeta . $nombre;
+                }
+            }                    
+        }
+        else
+            $archivo = null;
+        $evento = sucursal::updateGame($request,$archivo);
+        if($evento !== false){
+            return redirect(url('/administrador/sucursal.html'))->with('success','Juego modificado correctamente');
+        }
+        else{
+            return redirect(url('/administrador/sucursal.html'))->with('error','Los datos no fueron modificados');
+        }
+    }
+
+    public function gameDelete(Request $request){
+        if($request->ajax()){
+            $this->validate($request,[
+                'id_juego' => 'required|integer',
+                'id_sucursal' => 'required|integer',
+            ]);
+            sucursal::deleteGame($request->input('id_juego'),$request->input('id_sucursal'));
+        }
+        else
+            abort(503);
     }
 }

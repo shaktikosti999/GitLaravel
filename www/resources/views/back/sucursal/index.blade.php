@@ -108,16 +108,15 @@
 						</div>
 						<div class="modal-body">
 							<div class="row" style="height:150px;overflow-y:auto;" id="game_list">
-								<ul class="list-group">
-									<li class="list-group-item">Cras justo odio</li>
-									<li class="list-group-item">Dapibus ac facilisis in</li>
-									<li class="list-group-item">Morbi leo risus</li>
-									<li class="list-group-item">Porta ac consectetur ac</li>
-									<li class="list-group-item">Vestibulum at eros</li>
-								</ul>
+								<ul class="list-group"></ul>
+							</div>
+							<div class="row" style="display:none">
+							  	<div class="col-sm-2 col-sm-offset-5 thumbnail">
+										<img src="" alt="" class="img-responsive" id="add_imagen">
+							  	</div>
 							</div>
 							<div class="row">
-								<form action="{{url('/administrador/agregar/juego.html')}}" enctype="multipart/form-data" method="post">
+								<form action="{{url('/administrador/agregar/juego.html')}}" enctype="multipart/form-data" method="post" id="modal_form">
 									<input type="hidden" name="_method" value="patch">
 									<input type="hidden" name="add_sucursal" id="add_sucursal">
 									{{csrf_field()}}
@@ -133,9 +132,13 @@
 										<label for="add_desc">Descripción</label>
 										<textarea name="add_desc" id="add_desc" class="form-control"></textarea>
 									</div>
-									<div class="form-group">
+									<div class="form-group col-sm-6">
 										<label for="add_archivo">Imagen</label>
 										<input type="file" name="add_archivo" id="add_archivo" >
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="add_link">Enlace</label>
+										<input type="text" name="add_link" id="add_link" class="form-control">
 									</div>
 									<div class="form-group col-sm-4">
 										<label for="add_disp">Disponibilidad</label>
@@ -146,8 +149,8 @@
 										<input type="text" name="add_apuesta" id="add_apuesta" class="form-control">
 									</div>
 									<div class="form-group col-sm-4">
-										<label for="add_link">Enlace</label>
-										<input type="text" name="add_link" id="add_link" class="form-control">
+										<label for="add_acumulado">Acumulado</label>
+										<input type="text" name="add_acumulado" id="add_acumulado" class="form-control">
 									</div>
 									<input type="submit" value="Guardar" class="btn btn-success">
 								</form>

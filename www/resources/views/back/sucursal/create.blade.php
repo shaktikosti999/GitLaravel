@@ -24,6 +24,19 @@
 			          		</div>
 			        	</div>
 			      	</div>
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="ciudad">Ciudad</label>
+			            		<select id="ciudad" class="form-control" name="ciudad" aria-required="true" aria-invalid="true">
+			            			<option value="">Seleccione una...</option>
+			            			@foreach( $ciudades as $item)
+			            			<option value="{{$item->id_ciudad}}">{{$item->ciudad}}</option>
+			            			@endforeach
+			            		</select>
+			          		</div>
+			        	</div>
+			      	</div>
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -31,6 +44,30 @@
 			            		<input type="text" id="direccion" class="form-control required" name="direccion" aria-required="true" aria-invalid="true" >
 			          		</div>
 			          	</div>
+			      	</div>
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="slug">Slug</label>
+			            		<input type="text" id="slug" class="form-control required" name="slug" required="required" aria-required="true" aria-invalid="true">
+			          		</div>
+			        	</div>
+			      	</div>
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="latitud">Latitud</label>
+			            		<input type="text" id="latitud" class="form-control required" name="latitud" required="required" aria-required="true" aria-invalid="true">
+			          		</div>
+			        	</div>
+			      	</div>
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="longitud">Longitud</label>
+			            		<input type="text" id="longitud" class="form-control required" name="longitud" required="required" aria-required="true" aria-invalid="true">
+			          		</div>
+			        	</div>
 			      	</div>
 			      	<div class="row">
 			        	<div class="col-sm-12">
