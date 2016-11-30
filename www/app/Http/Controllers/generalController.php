@@ -144,6 +144,9 @@ class generalController extends Controller
                 case 'torneo':
                     $modulo = \App\torneo::find($id);
                     break;
+                case 'slider':
+                    $modulo = \App\slider::find($id);
+                    break;
                 default:
                     dd($modulo);
                 break;
@@ -245,6 +248,10 @@ class generalController extends Controller
 
                 case 'torneo':
                     $modulo = \App\torneo::find($id);
+                    break;
+
+                case 'slider':
+                    $modulo = \App\slider::find($id);
                     break;
 
                 default:

@@ -38,14 +38,12 @@ class papeleraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($modulo,$id){
-        echo $id;
-        echo $modulo;
         $tabla = \DB::table('sys_modulo')->select('tabla')->where('id_modulo',$id)->get();
         $tabla = $tabla[0]->tabla;
         $tbl = \DB::select("SHOW INDEX FROM `" . $tabla . "` WHERE `Key_name` = 'PRIMARY';");
         $key = $tbl[0]->Column_name;
         $nombre = $tabla == 'red_social' ? 'link' : 'nombre';
-        $nombre = $tabla == 'torneo' ? 'titulo' : 'nombre';
+        $nombre = $tabla == 'torneo' || $tabla == 'slider' ? 'titulo' : 'nombre';
         $elemento = \DB::table('sys_papelera as p')
             ->select(
                 'p.id_papelera as id_papelera',
