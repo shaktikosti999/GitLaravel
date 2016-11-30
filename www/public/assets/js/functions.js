@@ -278,6 +278,14 @@
 			swipeToSlide: true 
 		}); 
 		
+		// slider promociones apuesta
+   		$('.slider-bet').slick({
+		  dots: true,
+		  infinite: true,
+		  speed: 300,
+		  slidesToShow: 1,
+		  adaptiveHeight: true
+		});
    
 		// $('.slider-gallery .slide').each(function() {
 		// 	var imageSrc = $(this).find('img').attr('src'); 
@@ -318,7 +326,13 @@
 			event.preventDefault();
 			$(this).parent('li').toggleClass('active');
 		});
-
+	
+	// Image
+		    $('.image-back').replaceWith(function(i, v){
+		        return $('<figure/>', {
+		            style: 'background-image: url('+this.src+')',
+		        }) 
+		    });
 
 
 	}); //jQuery end
