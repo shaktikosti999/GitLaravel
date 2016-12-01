@@ -54,6 +54,8 @@ class lineasController extends Controller
         //-----> Obtenemos todas las sucursales
         $data["sucursales"] = sucursal::find_all();
 
+        $data['pagados'] = sucursal::get_paid(['id_sucursal' => $id_sucursal]);
+
         // dd($data);
 
         return view('front.lineas.maquinas',$data);

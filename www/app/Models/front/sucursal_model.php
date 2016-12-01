@@ -112,7 +112,23 @@ class sucursal_model{
 			                        ->where('s.estatus','=',1)
 			                        ->where('s.eliminado','=',0)
 			                        ->get();
+    }
 
+    static function get_paid($args = []){
+        $data = \DB::table('juego_sucursal as js')
+            ->select('j.nombre as juego','js.pagado')
+            ->join('juego as j','j.id_juego','=','js.id_juego')
+            ->join('sucursal as s','s.id_sucursal','=','js.id_sucursal')
+            ->where('js.estatus',1)
+            ->where('j.estatus',1)
+            ->where('s.estatus',1)
+            ->where('s.eliminado',0)
+            ->where('j.eliminado',0)
+            ->where('js.pagado','>',0);
+        if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
+            $data = $data->where('js.id_sucursal',$args['id_sucursal']);
+        $data = $data->get();
+        return $data;
     }
 
     static function get_sucursal( $sucursal_slug ){

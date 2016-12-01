@@ -160,6 +160,7 @@ class sucursalController extends Controller
             'add_desc' => 'required|string',
             'add_disp' => 'required|integer',
             'add_apuesta' => 'required|integer',
+            'add_pagado' => 'integer',
             'add_link' => 'required',
             'add_archivo' => 'required|image',
             'add_sucursal' => 'required|integer'
@@ -197,12 +198,11 @@ class sucursalController extends Controller
     }
 
     public function gamesUpdate(Request $request){
-        // dd($request->all());
         $this->validate($request,[
-            'add_juego' => 'required|integer',
             'add_desc' => 'required|string',
             'add_disp' => 'required|integer',
             'add_apuesta' => 'required|integer',
+            'add_pagado' => 'integer',
             'add_link' => 'required',
             'add_archivo' => 'image',
             'add_sucursal' => 'required|integer'

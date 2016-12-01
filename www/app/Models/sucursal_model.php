@@ -26,6 +26,19 @@ class sucursal_model{
 		return $get;
 	}
 
+	static function deleteGame($id_juego,$id_sucursal){
+		$imagen = \DB::table('juego_sucursal')
+			->where('id_juego',$id_juego)
+			->where('id_sucursal',$id_sucursal)
+			->first();
+		if( file_exists(public_path() . $imagen->archivo) && is_file(public_path() . $imagen->archivo) )
+			unlink(public_path() . $imagen->archivo);
+		return \DB::table('juego_sucursal')
+			->where('id_juego',$id_juego)
+			->where('id_sucursal',$id_sucursal)
+			->delete();
+	}
+
 	static function find($id){
 		return sucursal::find($id);
 	}
@@ -38,7 +51,8 @@ class sucursal_model{
 				'js.link',
 				'js.disponibles',
 				'js.apuesta_minima',
-				'js.acumulado'
+				'js.acumulado',
+				'js.pagado'
 			)
 			->join('juego_sucursal as js','js.id_juego','=','j.id_juego')
 			->where('js.id_juego',$id)
@@ -84,6 +98,7 @@ class sucursal_model{
 			'archivo' => $archivo,
 			'disponibles' => $request->input('add_disp'),
 			'apuesta_minima' => $request->input('add_apuesta'),
+			'pagado' => $request->input('add_pagado'),
 			'link' => $request->input('add_link')
 		);
 		return \DB::table('juego_sucursal')->insert($data);
@@ -110,8 +125,10 @@ class sucursal_model{
 			'acumulado' => $request->input('add_acumulado'),
 			'disponibles' => $request->input('add_disp'),
 			'apuesta_minima' => $request->input('add_apuesta'),
+			'pagado' => $request->input('add_pagado'),
 			'link' => $request->input('add_link')
 		);
+		
 		if( isset($archivo) && !empty($archivo) ){
 			$imagen = \DB::table('juego_sucursal')
 				->where('id_juego',$request->input('add_juego'))
@@ -126,17 +143,5 @@ class sucursal_model{
 			->where('id_sucursal',$request->input('add_sucursal'))
 			->update($data);
 	}
-
-	static function deleteGame($id_juego,$id_sucursal){
-		$imagen = \DB::table('juego_sucursal')
-			->where('id_juego',$id_juego)
-			->where('id_sucursal',$id_sucursal)
-			->first();
-		if( file_exists(public_path() . $imagen->archivo) && is_file(public_path() . $imagen->archivo) )
-			unlink(public_path() . $imagen->archivo);
-		return \DB::table('juego_sucursal')
-			->where('id_juego',$id_juego)
-			->where('id_sucursal',$id_sucursal)
-			->delete();
-	}
+	
 };

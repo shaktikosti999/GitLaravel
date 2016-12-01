@@ -67,9 +67,10 @@ $(document).ready(function(){
 					$('#add_disp').val(data.disponibles);
 					$('#add_apuesta').val(data.apuesta_minima);
 					$('#add_acumulado').val(data.acumulado);
+					$('#add_pagado').val(data.pagado);
 
 					$('#add_imagen').attr('src',data.archivo);
-					$('#add_juego').attr('disabled',true);
+					$('#add_juego').attr('readonly',true);
 					$('#modal_form').attr('action','/administrador/modificar/juego.html');
 					$('#game_list').hide();
 					$('#add_imagen').parent().parent().show();
@@ -104,9 +105,10 @@ $(document).ready(function(){
 		$('#add_disp').val('');
 		$('#add_apuesta').val('');
 		$('#add_acumulado').val('');
+		$('#add_pagado').val('');
 
 		$('#add_imagen').attr('src','');
-		$('#add_juego').attr('disabled',false);
+		$('#add_juego').attr('readonly',false);
 		$('#modal_form').attr('action','/administrador/agregar/juego.html');
 		$('#game_list').show();
 		$('#add_imagen').parent().parent().hide();

@@ -186,6 +186,7 @@
 						
 					</div><!-- /.cols -->
 
+					@if( isset($pagados) && count($pagados) )
 					<div class="section-entry">
 						<p>
 							<span>
@@ -199,34 +200,23 @@
 					</div><!-- /.section-entry -->
 
 					<div class="cols">
+						@foreach($pagados as $pagado)
 						<div class="col col-1of2">
 							<article class="article-jackpot">
 								<div class="article-content">
 									<h6>
-										MÁquina rodillo A 
+										{{ucfirst($pagado->juego)}} 
 									</h6>
 
 									<p>
-										$293,939.93
+										${{$pagado->pagado}}
 									</p>
 								</div><!-- /.article-content -->
 							</article><!-- /.article-jackpot -->
 						</div><!-- /.col col-1of2 -->
-
-						<div class="col col-1of2">
-							<article class="article-jackpot">
-								<div class="article-content">
-									<h6>
-										MÁquina bingo A 
-									</h6>
-
-									<p>
-										$562,241.62 									
-									</p>
-								</div><!-- /.article-content -->
-							</article><!-- /.article-jackpot -->
-						</div><!-- /.col col-1of2 -->
+						@endforeach
 					</div><!-- /.cols -->
+					@endif
 				</div><!-- /.section-content --> 
 			</div><!-- /.shell -->
 		</section><!-- /.section-jackpots -->

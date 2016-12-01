@@ -96,7 +96,6 @@ class sucursal_model{
 			                        ->where('s.estatus','=',1)
 			                        ->where('s.eliminado','=',0)
 			                        ->get();
-
     }
 
 }

@@ -140,17 +140,21 @@
 										<label for="add_link">Enlace</label>
 										<input type="text" name="add_link" id="add_link" class="form-control">
 									</div>
-									<div class="form-group col-sm-4">
+									<div class="form-group col-sm-3">
 										<label for="add_disp">Disponibilidad</label>
 										<input type="text" name="add_disp" id="add_disp" class="form-control">
 									</div>
-									<div class="form-group col-sm-4">
+									<div class="form-group col-sm-3">
 										<label for="add_apuesta">Apuesta Mínima</label>
 										<input type="text" name="add_apuesta" id="add_apuesta" class="form-control">
 									</div>
-									<div class="form-group col-sm-4">
+									<div class="form-group col-sm-3">
 										<label for="add_acumulado">Acumulado</label>
 										<input type="text" name="add_acumulado" id="add_acumulado" class="form-control">
+									</div>
+									<div class="form-group col-sm-3">
+										<label for="add_pagado">Pagado</label>
+										<input type="text" name="add_pagado" id="add_pagado" class="form-control">
 									</div>
 									<input type="submit" value="Guardar" class="btn btn-success">
 								</form>
