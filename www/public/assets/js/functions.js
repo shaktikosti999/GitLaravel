@@ -78,6 +78,14 @@
 
 		}
 
+		$('.date input').datepicker({
+			language: "es",
+		    autoclose: true,
+		    todayHighlight: true,
+		    toggleActive: true,
+		    maxViewMode: 1,
+		});
+
 		//-----> Procesamos formulario de news
 		$("input.subscribe-btn").click( function( e ){
 
@@ -278,6 +286,33 @@
 			swipeToSlide: true 
 		}); 
 		
+		//carousel sport calendar
+   		$('.sport-calendar').slick({
+			  infinite: false,
+			  slidesToShow: 6,
+			  slidesToScroll: 1,
+			  responsive: [
+			    {
+			      breakpoint: 1023,
+			      settings: {
+			        slidesToShow: 4
+			      }
+			    },
+			    {
+			      breakpoint: 767,
+			      settings: {
+			        slidesToShow: 3
+			      }
+			  	},
+			      {
+			      breakpoint: 540,
+			      settings: {
+			        slidesToShow: 2
+			      }
+			    }
+			  ]
+			});
+
 		// slider promociones apuesta
    		$('.slider-bet').slick({
 		  dots: true,

@@ -1622,8 +1622,8 @@ li:first-child { margin: 0;}
 .slider-promotions .slide-inner { position: absolute; bottom: 0; left: 0; padding: 20px 30px; }
 .slider-promotions .slide-inner-entry { font-size: 30px; color: #fff; display: block; line-height: 1.2; margin-bottom: 10px; }
 .slider-promotions .slide-inner-price { font-size: 18px; color: #ed1c24; display: block; line-height: 1.2; }
-.slider-promotions .slick-arrow { background: url(../css/images/ico-arrow-gray@2x.png) no-repeat 0 0; background-size: 60px 60px; bottom: 50%; margin-bottom: -30px; }
-.slider-promotions .slick-next { background: url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0; background-size: 60px 60px; }
+.slider-promotions .slick-arrow { background: url(../css/images/ico-arrow-gray@2x.png) no-repeat 0 0; background-size: 60px 60px; bottom: 50%; margin-bottom: -30px; background-color: #fff; }
+.slider-promotions .slick-next { background: url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0; background-size: 60px 60px; background-color: #fff; }
 .slider-promotions .slick-arrow:hover { background-color: #fff; opacity: .7; }
 /* Tablet Portrait */
 @media (max-width: 1023px) {
@@ -2221,21 +2221,162 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .btn-sport a:nth-child(2) {float: right; border: 2px solid #ed1c24; color: #ed1c24;}
 .btn-sport a:hover:nth-child(2) {background: #000; color: #fff; border: 2px solid #fff;}
 .btn-sport img{padding-right: 20px;}
+
 .btn-sport .btn-calendar-sport {border: 2px solid #ed1c24; color: #ed1c24;}
 .btn-sport .btn-calendar-sport:hover {background: #000; color: #fff; border: 2px solid #fff;}
 .btn-sport .btn-calendar-sport:hover img{display: none;}
 .btn-sport .btn-calendar-sport:hover img.calendar-off {display: inline-block;position: relative;left: inherit;top: inherit;}
+
 .btn-sport .calendar-off {display: none; position: absolute; left: 38px; top: 131px;}
 .btn-sport .calendar-off:hover {display: inline-block; left: 38px; top: 131px;}
+
+.btn-calendar2 {position: relative; width: 100%; padding-bottom: 80px;}
+.btn-calendar2 .input-group {position: absolute; float: right; display: inline-block; width: 50%; right: 0; top: 8px;}
+.btn-calendar2 .btn-black {padding: 0 32px 0 32px;}
+.btn-calendar2 .btn-black:after {display: inline-block; content: ''; width: 10px; height: 10px; border: 2px solid #f00; border-width: 0 2px 2px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); position: relative; top: -3px; margin-left: 19px;}
+.btn-calendar2 .btn-black:hover:after {display: inline-block; content: ''; width: 10px; height: 10px; border: 2px solid #fff; border-width: 0 2px 2px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); position: relative; top: -3px; margin-left: 19px;}
+.btn-calendar2 a:nth-child(2) {margin-left: 20px;}
+
+
+/* input calendario */
+
+.datepicker.datepicker-dropdown {position: absolute;}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    list-style: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+    background-clip: padding-box;
+}
+.datepicker {
+    border-radius: 4px;
+    direction: ltr;
+}
+.datepicker-dropdown {
+    top: 0;
+    left: 0;
+    padding: 4px;
+}
+.datepicker-dropdown.datepicker-orient-top:before {
+    bottom: -7px;
+    border-bottom: 0;
+    border-top: 7px solid rgba(0,0,0,.15);
+}
+.datepicker-dropdown:after {
+    content: '';
+    display: inline-block;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #fff;
+    border-top: 0;
+    position: absolute;
+}
+.datepicker-dropdown.datepicker-orient-left:before {
+    left: 6px;
+}
+.datepicker-dropdown:before {
+    content: '';
+    display: inline-block;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid rgba(0,0,0,.15);
+    border-top: 0;
+    border-bottom-color: rgba(0,0,0,.2);
+    position: absolute;
+}
+.datepicker-dropdown.datepicker-orient-top:after {
+    bottom: -6px;
+    border-bottom: 0;
+    border-top: 6px solid #fff;
+}
+.datepicker-dropdown.datepicker-orient-left:after {
+    left: 7px;
+}
+.datepicker table {
+    margin: 0;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.datepicker table tr td, .datepicker table tr th {
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    border: none;
+}
+.table-condensed>thead>tr>th, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>tbody>tr>td, .table-condensed>tfoot>tr>td {
+    padding: 5px;
+}
+.datepicker table tr td.new, .datepicker table tr td.old {
+    color: #777;
+}
+.datepicker table tr td.day:hover, .datepicker table tr td.focused {
+    background: #eee;
+    cursor: pointer;
+}
+.datepicker table tr td.today {
+    color: #fff;
+    background-color: #fa5e5e;
+    border-color: #f67c7c;
+}	
+.datepicker table tr td.today:hover {
+    color: #fff;
+    background-color: #ff0000;
+    border-color: #f59e00;
+}
+.datepicker-dropdown th.datepicker-switch:after {display: none;}
+.input-group input{
+    display: block;
+    width: 60%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555;
+    vertical-align: middle;
+    background-color: transparent;
+    background-image: none;
+    border: 2px solid #7f7e7e;
+    border-radius: 4px;
+    float: right;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.input-group img {position: absolute; right: 20px; top: 6px; border-left: 2px solid #7f7e7e; padding-left: 20px;}
 .sport-calendar {max-width: 1142px; margin: auto;height: 180px;border: 2px solid #dfdfdf;width: 100%;padding: 18px; /*overflow: hidden;*/ margin-bottom: 70px;}
 .sport-calendar .slick-slider {margin: 30px auto 50px;}
 .list-calendar.active {background: #ff0000; color: #fff;}
 .list-calendar {float: left;width: 14%;text-align: center;background: #fff;display: block;margin: 0 1% 30px 1%;padding: 24px;transition: all .3s;border-radius: 10px;height: 140px;}
 .list-calendar span {text-transform: uppercase; margin: 10px 0 0; font-size: 18px; font-weight: 600; display: block;}
 .list-calendar a {text-decoration: none;}
+
 .sport-calendar .slick-slide img {display: inline-block;}
 .sport-calendar .slick-arrow { background: url(../css/images/ico-arrow-gray@2x.png) no-repeat 0 0; background-size: 60px 60px; bottom: 50%; margin-bottom: -30px; }
-.sport-calendar .slick-next { background: url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0; background-size: 60px 60px; }
+.sport-calendar .slick-next { background: url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0; background-size: 60px 60px;    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8); }
 .sport-calendar .slick-arrow:hover { background-color: #fff; opacity: .7; }
 .slider-bet {padding-top: 70px;}
 .slider-bet-item {position: relative;}
@@ -2252,6 +2393,9 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .txt-bet h2 {margin-bottom: 9px;}
 .slider-bet button.slick-next.slick-arrow {display: none !important;}
 .slider-bet button.slick-prev.slick-arrow {display: none !important;}
+.sport-calendar .slick-arrow { display: inline-block; border: none; background-color: transparent; width: 60px; height: 60px; background: #fff url(../css/images/ico-arrow-gray@2x.png) no-repeat 0 0; background-size: 60px 60px; font-size: 0; line-height: 0; text-indent: -4004px; position: absolute; left: -74px; border-radius: 50%; transition: all .3s; opacity: 1; top: 50%; margin-top: -30px; z-index: 20; }
+.sport-calendar .slick-arrow:hover { opacity: .7; }
+.sport-calendar .slick-next { left: auto; right: -74px; -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg); transform: rotate(180deg); }
 
 /* back module */
 .back-module  {
@@ -2302,15 +2446,16 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 }
 
 @media(max-width: 768px){
-	.sport-calendar .slick-arrow { -webkit-transform: scale(.8); -ms-transform: scale(.8); transform: scale(.8); } 
+	.sport-calendar .slick-arrow { -webkit-transform: scale(.8); -ms-transform: scale(.8); transform: scale(.8); -webkit-transform: rotateZ(180deg);}
+	.sport-calendar .slick-prev {-webkit-transform: rotateZ(0deg) !important;} 
 }
 
 @media (max-width: 767px) {
 	.btn-sport .btn-calendar-sport {width: 100%; margin-bottom: 40px;}
 	.btn-sport {padding-top: 50px;}
 	.btn-sport a:nth-child(2) {width: 100%; position: absolute;}
-	.sport-calendar {top: 60px; margin-bottom: 120px;}
-	.txt-bet {padding: 150px 60px 59px 40px;}
+	.sport-calendar {top: 60px; margin-bottom: 85px;}
+	.txt-bet {padding: 37px 60px 59px 40px;}
 	.section-filters li {padding-right: 0;}
 	.section-filters li {float: none; padding-right: 0;}
 	.slider-intro .slide {min-height: 330px !important;}
@@ -2326,6 +2471,16 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.sucursales li:nth-child(1) {width: 100%;}
 	.sucursales p {width: 100%;}
 	.sucursales p:last-child {margin-bottom: 30px;}
+	.btn-calendar2 {padding-bottom: 100px;}
+	.btn-calendar2 .btn-black {width: 100%}
+	.btn-calendar2 a:nth-child(1) {margin-bottom: 30px;}
+	.btn-calendar2 a:nth-child(2) {margin-left: 0;}
+	.btn-calendar2 .input-group {top: 170px; width: 100%;}
+	.input-group input {width: 100%;}
+	.dropdown-menu {min-width: 320px;}
+	.slider-bet ul.slick-dots {top: 334px;}
+	.slider-bet {padding-top: 40px;}
+	.slider-bet .slick-dots li button {width: 15px; height: 15px;}
 }
 
 @media(max-width: 480px){
