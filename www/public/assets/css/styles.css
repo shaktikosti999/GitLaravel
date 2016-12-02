@@ -633,10 +633,10 @@ blockquote:last-child { margin-bottom: 0; }
 \* ------------------------------------------------------------ */
 .article-game-available.large { min-height: 470px; border: 2px solid #dfdfdf; padding: 18px; }
 .article-game-available.large .article-image { height: 230px; background-size: cover; background-position: center; position: relative; text-align: center; }
-.article-game-available.large .article-image .article-label { position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); display: inline-block; background: #fff; border-radius: 40px; padding: 10px 20px; width: 190px; }
+.article-game-available.large .article-image .article-label { position: relative; top: 50%; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); display: inline-block; background: #fff; border-radius: 40px; padding: 10px 20px; width: 234px; }
 .article-game-available.large .article-image .article-label:after { content: ''; line-height: 0; display: table; clear: both; }
 .article-game-available.large .article-image .article-label span { float: left; display: block; width: calc(100% - 40px); text-align: left; text-transform: uppercase; font-size: 15px; }
-.article-game-available.large .article-image .article-label strong { float: left; display: block; width: 40px; font-size: 30px; font-weight: 900; }
+.article-game-available.large .article-image .article-label strong {float: left; display: block; width: 90px; font-size: 30px; font-weight: 900; position: absolute; left: 133px; }
 .article-game-available.large .article-image .article-max-price { position: absolute; bottom: 0; left: 0; width: 100%; color: #fff; text-align: center; padding: 0 0 15px; }
 .article-game-available.large .article-entry { padding: 0; }
 .article-game-available.large .article-content { text-align: center; }
