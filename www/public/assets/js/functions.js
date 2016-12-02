@@ -270,21 +270,6 @@
 			slidesToScroll: 1,
 			swipeToSlide: true 
 		});
-
-		$('.slider-games-available .slides').slick({
-			dots: false, 
-			arrows: true,
-			infinite: true,
-			touchMove: false,
-			swipeToSlide: false,
-			initialSlide: 1,
-			swipe : false,
-			centerMode:true,
-			centerPadding: '0',
-			slidesToShow: 1,
-			slidesToScroll: 1,
-			swipeToSlide: true 
-		}); 
 		
 		//carousel sport calendar
    		$('.sport-calendar').slick({
