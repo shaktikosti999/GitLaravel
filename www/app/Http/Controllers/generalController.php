@@ -147,6 +147,9 @@ class generalController extends Controller
                 case 'slider':
                     $modulo = \App\slider::find($id);
                     break;
+                case 'promocion':
+                    $modulo = \App\promocion::find($id);
+                    break;
                 default:
                     dd($modulo);
                 break;
@@ -252,6 +255,10 @@ class generalController extends Controller
 
                 case 'slider':
                     $modulo = \App\slider::find($id);
+                    break;
+
+                case 'promocion':
+                    $modulo = \App\promocion::find($id);
                     break;
 
                 default:

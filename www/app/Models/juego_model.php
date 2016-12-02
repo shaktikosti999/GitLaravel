@@ -18,8 +18,9 @@ class juego_model{
 				'l.nombre as linea'
 			)
 			->join('linea as l','l.id_linea','=','j.id_linea')
-			->where('j.eliminado',0);
-			// ->where('l.eliminado',0)
+			->where('l.eliminado',0)
+			->where('j.eliminado',0)
+			->orderBy('j.nombre');
 			if( isset($args['id_linea']) )
 				$sucursal = $sucursal->where('j.id_linea',$args['id_linea']);
 			$sucursal = $sucursal->get();
