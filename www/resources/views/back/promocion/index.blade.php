@@ -24,6 +24,7 @@
 			});
 		</script>
 		<script src="{{asset('/assets/js/index.js')}}"></script>
+		<script src="{{asset('/assets/js/promocion/index.js')}}"></script>
 	@stop
 
 	@section('contenido')
@@ -46,11 +47,12 @@
 								<table class="table table-hover table-condensed table-detailed dataTable no-footer" id="detailedTable" role="grid">
 									<thead>
 										<tr role="row">
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Nombre</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Juego</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Slug</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:10%">Estatus</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:30%">Opciones</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1">Nombre</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1">Juego</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1">Slug</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1">Estatus</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1">Sucursales</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:25%">Opciones</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -61,8 +63,18 @@
 											<td class="v-align middle">{{$promocion->juego}}</td>
 											<td class="v-align middle">{{$promocion->slug}}</td>
 											<td class="v-align-middle"><input type="checkbox" {{$promocion->estatus == 1 ? "checked" : ""}} class="activo" data="{{$promocion->id}}" data-toggle="toggle"></td>
+											<td class="v-align-middle">{{$promocion->sucursales}}</td>
 											<td class="v-align-middle">
 												<div class="btn-group btn-group-justified">
+						                            <div class="btn-group">
+															<button type="button" role="button" class="btn btn-default promocion_btn" data-id="{{$promocion->id}}" data-promoname="{{$promocion->nombre}}">
+							                              		<span class="p-t-5 p-b-5">
+							                              			<i class="fa fa-fort-awesome" aria-hidden="true"></i>
+							                              		</span>
+							                              		<br>
+							                              		<span class="fs-11 font-montserrat text-uppercase">Sucursales</span>
+							                              	</button>
+						                            </div>
 						                            <div class="btn-group">
 						                              	<form action="{{url('/administrador/modificar/promocion' . $promocion->id . '.html')}}" method="post">
 															{!!csrf_field()!!}
@@ -100,6 +112,59 @@
 					</div>
 				</div>
 				<!-- END PANEL -->
+			</div>
+		</div>
+		<div class="modal fade slide-up disable-scroll in" id="myModal" tabindex="-1" role="dialog" aria-hidden="false" style="display: none; padding-right: 17px;">
+			<div class="modal-dialog  modal-lg">
+				<div class="modal-content-wrapper">
+					<div class="modal-content">
+						<div class="modal-header clearfix text-left">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+							</button>
+							<h5>Sucursales con la promoción <span class="semi-bold" id="nombre_sucursal"></span></h5>
+						</div>
+						<div class="modal-body">
+							<div class="row" style="height:150px;overflow-y:auto;" id="promo_list">
+								<ul class="list-group"></ul>
+							</div>
+							<div class="row" style="display:none">
+							  	<div class="col-sm-2 col-sm-offset-5 thumbnail">
+										<img src="" alt="" class="img-responsive" id="add_imagen">
+							  	</div>
+							</div>
+							<div class="row">
+								<form action="{{url('/administrador/agregar/promocion.html')}}" enctype="multipart/form-data" method="post" id="modal_form">
+									<input type="hidden" name="_method" value="patch">
+									<input type="hidden" name="add_promocion" id="add_promocion">
+									{{csrf_field()}}
+									<div class="form-group">
+										<label for="add_sucursal">Sucursales</label>
+										<select name="add_sucursal" id="add_sucursal" class="form-control">
+											<option value="">Elija una opción</option>
+											@foreach($sucursales as $val)
+											<option value="{{$val->id}}">{{$val->nombre}}</option>
+											@endforeach
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="add_desc">Descripción</label>
+										<textarea name="add_desc" id="add_desc" class="form-control"></textarea>
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="add_archivo">Imagen</label>
+										<input type="file" name="add_archivo" id="add_archivo" >
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="add_link">Enlace</label>
+										<input type="text" name="add_link" id="add_link" class="form-control">
+									</div>
+									<input type="submit" value="Guardar" class="btn btn-success">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.modal-content -->
 			</div>
 		</div>
 	@stop

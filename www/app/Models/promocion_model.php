@@ -8,16 +8,56 @@ use App\promocion;
 class promocion_model{
 	static function all(){
 		$data = \DB::table('promocion as p')
-			->select('p.id_promocion as id','j.nombre as juego','p.nombre','p.slug','p.estatus')
+			->select(
+				'p.id_promocion as id',
+				'j.nombre as juego',
+				'p.nombre',
+				'p.slug',
+				'p.estatus',
+				\DB::raw('IF (s.id_sucursal is null,0,COUNT(s.id_sucursal)) AS sucursales')
+			)
+			->leftJoin('promocion_sucursal as s','s.id_promocion','=','p.id_promocion')
 			->join('juego as j','j.id_juego','=','p.id_juego')
 			->orderBy('p.nombre')
 			->where('p.eliminado',0)
+			->groupBy('s.id_promocion')
 			->get();
 		return $data;
 	}
 
+	static function addBranchPromotion($request,$archivo=null){
+		$data = [
+			'id_promocion' => $request->input('add_promocion'),
+			'id_sucursal' => $request->input('add_sucursal'),
+			'descripcion' => $request->input('add_desc') !== null ?  $request->input('add_desc'): '',
+			'archivo' => $archivo !== null ?  $archivo : '',
+			'link' => $request->input('add_archivo') !== null ? $request->input('add_archivo') : ''
+		];
+		return \DB::table('promocion_sucursal')->insert($data);
+	}
+
 	static function find($id){
 		return promocion::find($id);
+	}
+
+	static function get_promotions($args){
+		$data = \DB::table('promocion_sucursal as ps')
+			->select(
+				\DB::raw('IF (ps.descripcion != "",ps.descripcion,p.descripcion) AS descripcion'),
+				\DB::raw('IF (ps.archivo != "",ps.archivo,CONCAT("/assets/",p.imagen) ) AS archivo'),
+				\DB::raw('IF (ps.link != "",ps.link,p.slug) AS link'),
+				'ps.id_promocion',
+				'ps.id_sucursal',
+				's.nombre'
+			)
+			->join('promocion as p','p.id_promocion','=','ps.id_promocion')
+			->join('sucursal as s','s.id_sucursal','=','ps.id_sucursal');
+		if( isset($args['id_promocion']) && !empty($args['id_promocion']) )
+			$data = $data->where('ps.id_promocion',$args['id_promocion']);
+		if( isset($args['id_sucursal']) && !empty($args['id_sucursal']) )
+			$data = $data->where('ps.id_sucursal',$args['id_sucursal']);
+		$data = $data->get();
+		return $data;
 	}
 
 	static function store($request, $archivo){
@@ -54,4 +94,47 @@ class promocion_model{
 		// dd($evento,$data);
 		return $evento;
 	}
+
+	static function updateBranchPromotion($request,$archivo=null){
+		$data = [
+			'descripcion' => $request->input('add_desc') !== null ?  $request->input('add_desc'): '',
+			'link' => $request->input('add_link') !== null ? $request->input('add_link') : '',
+			'archivo' => $archivo !== null ? $archivo : ''
+		];
+
+		$imagen = \DB::table('promocion_sucursal')
+			->select('archivo')
+			->where('id_promocion',$request->input('add_promocion'))
+			->where('id_sucursal',$request->input('add_sucursal'))
+			->first();
+		$imagen = public_path() . $imagen->archivo;
+		if( file_exists($imagen) && is_file($imagen) && $archivo !== null)
+			unlink($imagen);
+
+		$query = \DB::table('promocion_sucursal')
+			->where('id_promocion',$request->input('add_promocion'))
+			->where('id_sucursal',$request->input('add_sucursal'))
+			->update($data);
+
+		return $query;
+	}
+
+	static function destroy_promotion($id_promocion,$id_sucursal){
+		$imagen = \DB::table('promocion_sucursal')
+			->select('archivo')
+			->where('id_promocion',$id_promocion)
+			->where('id_sucursal',$id_sucursal)
+			->first();
+		$imagen = public_path() . $imagen->archivo;
+		if( file_exists($imagen) && is_file($imagen) )
+			unlink($imagen);
+
+		$query = \DB::table('promocion_sucursal')
+			->where('id_promocion',$id_promocion)
+			->where('id_sucursal',$id_sucursal)
+			->delete();
+
+		return $query;
+	}
+
 };

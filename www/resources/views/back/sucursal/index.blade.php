@@ -35,7 +35,7 @@
 												<th class="sorting_disabled" rowspan="1" colspan="1">Dirección</th>
 												<th class="sorting_disabled" rowspan="1" colspan="1">Estatus</th>
 												<th class="sorting_disabled" rowspan="1" colspan="1">Juegos</th>
-												<th class="sorting_disabled" rowspan="1" colspan="1">Opciones</th>
+												<th class="sorting_disabled" rowspan="1" colspan="1" style="width:30%">Opciones</th>
 											</tr>
 										</thead>
 										<tbody>

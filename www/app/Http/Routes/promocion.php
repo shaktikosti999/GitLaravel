@@ -6,3 +6,10 @@ Route::post('/administrador/modificar/promocion{id}.html','promocionController@e
 Route::patch('/administrador/modificar/promocion{id}.html','promocionController@update');
 Route::put('/administrador/agregar/promocion.html','promocionController@store');
 Route::delete('/administrador/eliminar/promocion{id}.html','promocionController@destroy');
+
+// -----> Relacion promoción-sucursal
+Route::post('/administrador/promocion.html','promocionController@getPromos');
+Route::patch('/administrador/agregar/promocion.html','promocionController@addPromotion');
+Route::patch('/administrador/promocion.html','promocionController@getPromoDetail');
+Route::patch('/administrador/modificar/promocion.html','promocionController@editPromotion');
+Route::delete('/administrador/promocion.html','promocionController@destroyPromotion');
