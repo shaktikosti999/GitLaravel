@@ -113,7 +113,7 @@ class lineaController extends Controller
             'slug' => 'required|string',
             'slogan' => 'required|string',
             'icono' => 'required|string',
-            'archivo' => 'required|image'
+            'archivo' => 'image'
         ]);
 
         if($request->hasFile('archivo')){
