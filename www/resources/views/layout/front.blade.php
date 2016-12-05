@@ -78,7 +78,7 @@
 										</li>
 
 										<li>
-											<a href="{{url('lineas-de-juego/apuesta-de-carreras')}}">Apuesta de Carreras</a>
+											<a href="{{url('lineas-de-juego/apuesta-de-carreras?game=caballos')}}">Apuesta de Carreras</a>
 										</li>		
 									</ul><!-- /.dropdown --> 
 								</li>

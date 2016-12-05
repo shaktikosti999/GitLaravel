@@ -13,14 +13,22 @@ use App\sesion;
 class loginController extends Controller{
     
     public function index(Request $request){
+
         if(Auth::check()){
             if(Auth::user()->id_rol == 1) { 
-                return "HOLA";
-                // return redirect('/administrador');
+                return redirect('/cerrar.html');
             }
             return redirect('/administrador');
         }
-        return view('back.login.index');
+        $data = [];
+        if( file_exists(config_path('site/config.json')) && is_file(config_path('site/config.json')) ){
+            $data = file_get_contents(config_path('site/config.json'));
+            $data = json_decode($data);
+            // dd($data);
+            $data = $data->login;
+            $data = ['config_page'=>$data];
+        }
+        return view('back.login.index',$data);
     }
 
     public function create(){
