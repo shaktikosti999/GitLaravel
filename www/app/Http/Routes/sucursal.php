@@ -6,3 +6,7 @@ Route::post('/administrador/modificar/sucursal{id}.html','sucursalController@edi
 Route::patch('/administrador/modificar/sucursal{id}.html','sucursalController@update');
 Route::put('/administrador/agregar/sucursal.html','sucursalController@store');
 Route::delete('/administrador/eliminar/sucursal{id}.html','sucursalController@destroy');
+
+// -----> Galerías
+Route::post('/administrador/sucursal.html','sucursalController@getGallery');
+Route::patch('/administrador/agregar/sucursal.html','sucursalController@saveGallery');

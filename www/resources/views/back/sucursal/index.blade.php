@@ -3,6 +3,7 @@
 	@section('css')
 		<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
 	@stop
+
 	@section('script')
 		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 		<script src="{{asset('/assets/js/index.js')}}"></script>
@@ -35,6 +36,7 @@
 												<th class="sorting_disabled" rowspan="1" colspan="1">Dirección</th>
 												<th class="sorting_disabled" rowspan="1" colspan="1">Estatus</th>
 												<th class="sorting_disabled" rowspan="1" colspan="1">Juegos</th>
+												<th class="sorting_disabled" rowspan="1" colspan="1">Imágenes</th>
 												<th class="sorting_disabled" rowspan="1" colspan="1" style="width:30%">Opciones</th>
 											</tr>
 										</thead>
@@ -46,6 +48,7 @@
 												<td class="v-align-middle">{{$sucursal->direccion}}</td>
 												<td class="v-align-middle"><input type="checkbox" {{$sucursal->estatus == 1 ? "checked" : ""}} class="activo" data="{{$sucursal->id}}" data-toggle="toggle"></td>
 												<td class="v-align-middle"><h1 class="text-center">{{$sucursal->juegos}}</h1></td>
+												<td class="v-align-middle gallery_images" data-id="{{$sucursal->id}}"><h1 class="text-center">{{$sucursal->galeria}}</h1></td>
 												<td class="v-align-middle">
 													<div class="btn-group btn-group-justified">
 							                            <div class="btn-group">
@@ -96,7 +99,7 @@
 				<!-- END PANEL -->
 			</div>
 		</div>
-		<!-- Large modal -->
+		<!-- MODAL PARA JUEGOS -->
 		<div class="modal fade slide-up disable-scroll in" id="myModal" tabindex="-1" role="dialog" aria-hidden="false" style="display: none; padding-right: 17px;">
 			<div class="modal-dialog  modal-lg">
 				<div class="modal-content-wrapper">
@@ -165,5 +168,42 @@
 				<!-- /.modal-content -->
 			</div>
 		</div>
+		<!-- END MODAL PARA JUEGOS -->
 
+		<!-- MODAL PARA GALERÍA -->
+		<!-- Large modal -->
+		<div class="modal fade slide-up disable-scroll in" id="gallery_modal" tabindex="-1" role="dialog" aria-hidden="false" style="display: none; padding-right: 17px;">
+			<div class="modal-dialog  modal-lg">
+				<div class="modal-content-wrapper">
+					<div class="modal-content">
+						<div class="modal-header clearfix text-left">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+							</button>
+							<h5>Galería</h5>
+						</div>
+						<div class="modal-body">
+							<div class="row" style="height:300px;overflow-y:auto;" id="list_gallery">
+								<ul class="list-group"></ul>
+							</div>
+							<div class="row">
+								<form action="{{url('/administrador/agregar/sucursal.html')}}" enctype="multipart/form-data" method="post" id="modal_form_gallery">
+									<input type="hidden" name="_method" value="patch">
+									<input type="hidden" name="add_sucursal" id="add_sucursal_gallery">
+									{{csrf_field()}}
+									
+									<div class="form-group">
+										<label for="add_archivo">Imagen</label>
+										<input type="file" name="add_archivo[]" multiple id="add_archivo" >
+									</div>
+									
+									<input type="submit" value="Guardar" class="btn btn-success">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		</div>
+		<!-- END MODAL PARA GALERÍA -->
 	@stop
