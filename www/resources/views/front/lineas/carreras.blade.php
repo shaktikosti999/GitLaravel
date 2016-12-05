@@ -205,7 +205,7 @@
 								<h3>Programas</h3>
 								<ul>	
 								@foreach($programas as $item)
-									<li class="txt-left">
+									<li class="txt-left" data-fecha="{{$item->fecha}}">
 										<h5>{{$item->titulo}}</h5>
 											<a href="{{$item->archivo}}" target="_blank"> 
 												<img src="css/images/icons/download.png">
