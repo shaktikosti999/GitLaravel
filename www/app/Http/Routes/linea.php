@@ -6,3 +6,7 @@ Route::post('/administrador/modificar/linea{id}.html','lineaController@edit');
 Route::patch('/administrador/modificar/linea{id}.html','lineaController@update');
 Route::put('/administrador/agregar/linea.html','lineaController@store');
 Route::delete('/administrador/eliminar/linea{id}.html','lineaController@destroy');
+
+// -----> Galerías
+Route::post('/administrador/linea.html','lineaController@getGallery');
+Route::patch('/administrador/agregar/linea.html','lineaController@saveGallery');

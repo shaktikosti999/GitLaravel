@@ -171,7 +171,6 @@
 		<!-- END MODAL PARA JUEGOS -->
 
 		<!-- MODAL PARA GALERÍA -->
-		<!-- Large modal -->
 		<div class="modal fade slide-up disable-scroll in" id="gallery_modal" tabindex="-1" role="dialog" aria-hidden="false" style="display: none; padding-right: 17px;">
 			<div class="modal-dialog  modal-lg">
 				<div class="modal-content-wrapper">

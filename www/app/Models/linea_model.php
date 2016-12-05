@@ -7,15 +7,17 @@ use Event;
 use App\linea;
 class linea_model{
 	static function all(){
-		$sucursal = \DB::table('linea')
+		$sucursal = \DB::table('linea as l')
 			->select(
 				'id_linea as id',
 				'nombre',
 				'slogan',
 				'slug',
-				'estatus'
+				'estatus',
+				\DB::raw('IF(g.cantidad IS NULL,0,g.cantidad) as galeria')
 			)
 			->where('eliminado',0)
+			->leftJoin('count_gallery_line_view as g', 'g.id','=','l.id_linea')
 			// ->where('l.eliminado',0)
 			->get();
 		return $sucursal;

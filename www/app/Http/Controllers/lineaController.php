@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\linea_model as linea;
-
+use \App\Models\gallery_line_model as galeria;
 class lineaController extends Controller
 {
     /**
@@ -159,4 +159,47 @@ class lineaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){}
+
+    public function getGallery(Request $request){
+        if( $request->ajax() ){
+            $this->validate($request,[
+                'id'=>'required|integer|min:1'
+            ]);
+            $data = galeria::all(['id_linea'=>$request->input('id')]);
+            echo json_encode($data);
+        }
+    }
+
+    public function saveGallery(Request $request){
+        if($request->hasFile('add_archivo')){
+            $archivos = [];
+            foreach( $request->file('add_archivo') as $archivo){
+                $ext = strtolower($archivo->getClientOriginalExtension());
+                $extValidas = ['jpg','jpeg','png'];
+
+                if(in_array($ext, $extValidas)){
+                    $carpeta = 'assets/images/lineadejuego/galeria/';
+                    if(!file_exists(public_path() . '/' . $carpeta))
+                        mkdir(public_path() . '/' . $carpeta,0777,true);
+                    do{
+                        $nombre = "";
+                        $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                        for($i=0; $i<=16; $i++ ){
+                            $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
+                        }
+                    }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+                    $nombre .= '.' . $ext;
+                    if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                        $archivos[] = '/' . $carpeta . $nombre;
+                    }
+                }                    
+            }
+        }
+        else
+            $archivos = null;
+        if( galeria::store($request->input('add_linea'),['new'=>$archivos,'delete'=>$request->input('delete')]) )
+            return redirect('administrador/linea.html')->with('success','Galería actualizada');
+        return redirect('administrador/linea.html')->with('warning','Hubo error al hacer los cambios');
+    }
+    
 }
