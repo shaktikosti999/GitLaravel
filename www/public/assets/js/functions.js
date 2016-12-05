@@ -10,17 +10,7 @@
 			$( '[data-date]' ).datepicker({
 	      		dateFormat: 'mm/dd/yyyy',
 	      		beforeShowDay: activeDays
-	      	}).datepicker("setDate", null).on('changeDate',function(e){
-	      		date = new Date( e.date );
-	      		date = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
-	      		$('[data-fecha]').show();
-	      		if( $('[data-fecha="' + date + '"]').length > 0 ){
-		      		$('[data-fecha]').addClass('hide_program');
-	      			$('[data-fecha="' + date + '"]').removeClass('hide_program');
-	      		}
-	      		$('.hide_program').hide();
-	      		$('[data-fecha]').removeClass('hide_program');
-	      	});
+	      	}).datepicker("setDate", null);
 		}
 				
 
@@ -280,7 +270,7 @@
 			slidesToScroll: 1,
 			swipeToSlide: true 
 		});
-		
+
 		//carousel sport calendar
    		$('.sport-calendar').slick({
 			  infinite: false,
@@ -307,7 +297,7 @@
 			    }
 			  ]
 			});
-
+		
 		// slider promociones apuesta
    		$('.slider-bet').slick({
 		  dots: true,
