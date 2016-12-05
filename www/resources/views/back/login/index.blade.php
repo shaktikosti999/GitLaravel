@@ -40,14 +40,13 @@
       <!-- START Login Background Pic Wrapper-->
       <div class="bg-pic">
         <!-- START Background Pic-->
-        <img src="{{asset('/assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg')}}" data-src="{{asset('/assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg')}}" data-src-retina="{{asset('/assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg')}}" alt="" class="lazy">
+        <img src="{{isset($config_page->background) && trim($config_page->background) != "" ? asset($config_page->background) : asset('/assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg')}}" data-src="{{isset($config_page->background) && trim($config_page->background) != "" ? asset($config_page->background) : asset('/assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg')}}" data-src-retina="{{isset($config_page->background) && trim($config_page->background) != "" ? asset($config_page->background) : asset('/assets/img/demo/new-york-city-buildings-sunrise-morning-hd-wallpaper.jpg')}}" alt="" class="lazy">
         <!-- END Background Pic-->
         <!-- START Background Caption-->
         <div class="bg-caption pull-bottom sm-pull-bottom text-white p-l-20 m-b-20">
-          <h2 class="semi-bold text-white">
-					Pages make it easy to enjoy what matters the most in the life</h2>
+          <h2 class="semi-bold text-white">{{isset($config_page->principal_text->primary) && trim($config_page->principal_text->primary) != "" ? $config_page->principal_text->primary : ""}}</h2>
           <p class="small">
-            images Displayed are solely for representation purposes only, All work copyright of respective owner, otherwise © 2013-2014 REVOX.
+            {{isset($config_page->principal_text->secondary) && trim($config_page->principal_text->secondary) != "" ? $config_page->principal_text->secondary : ""}}
           </p>
         </div>
         <!-- END Background Caption-->
@@ -57,7 +56,7 @@
       <div class="login-container bg-white">
         <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
           <img src="{{asset('/assets/img/logo.png')}}" alt="logo" data-src="{{asset('/assets/img/logo.png')}}" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
-          <p class="p-t-35">Sign into your pages account</p>
+          <p class="p-t-35">Iniciar Sesión</p>
           <!-- START Login Form -->
           <form id="form-login" class="p-t-15" role="form" action="{{url('validar/session.html')}}" method="post">
             {{csrf_field()}}
@@ -85,12 +84,12 @@
                   <label for="checkbox1">Mantener Sesión</label>
                 </div>
               </div>
-              <div class="col-md-6 text-right">
+              <!-- <div class="col-md-6 text-right">
                 <a href="#" class="text-info small">Help? Contact Support</a>
-              </div>
+              </div> -->
             </div>
             <!-- END Form Control-->
-            <button class="btn btn-primary btn-cons m-t-10" type="submit">Sign in</button>
+            <button class="btn btn-primary btn-cons m-t-10" type="submit">Iniciar Sesión</button>
           </form>
           <!--END Login Form-->
           <div class="pull-bottom sm-pull-bottom">
@@ -101,10 +100,8 @@
               <div class="col-sm-9 no-padding m-t-10">
                 <p>
                   <small>
-									Create a pages account. If you have a facebook account, log into it for this
-									process. Sign in with <a href="#" class="text-info">Facebook</a> or <a href="#"
-									                                                                       class="text-info">Google</a>
-								</small>
+  									{{isset($config_page->form_footer->text) && trim($config_page->form_footer->text) != "" ? $config_page->form_footer->text : ""}}
+								  </small>
                 </p>
               </div>
             </div>

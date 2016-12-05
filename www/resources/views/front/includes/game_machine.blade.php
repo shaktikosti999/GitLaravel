@@ -9,7 +9,7 @@
 				@yield('head-title','Máquinas de juego disponibles')
 			</h2>
 
-			<a href="/aprende_a_jugar" class="btn btn-red">
+			<a href="/aprende_como_jugar" class="btn btn-red">
 				Aprende a jugar
 			</a>
 		</header><!-- /.section-head -->

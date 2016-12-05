@@ -4,6 +4,22 @@
 			.active{
 				color: red;
 			}
+			.alert {
+			    padding: 20px;
+			    background-color: rgba(255 ,0 ,0 ,0.35);
+			    color: white;
+			    border-radius: 12px
+			}
+
+			.closebtn {
+			    margin-left: 15px;
+			    color: white;
+			    font-weight: bold;
+			    float: right;
+			    font-size: 22px;
+			    line-height: 20px;
+			    cursor: pointer;
+			}
 		</style>
 	@stop
 
@@ -203,6 +219,10 @@
 
 							@if( isset($programas) && count($programas) )
 								<h3>Programas</h3>
+									<div class="alert" role="alert" style="display:none">
+										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+										No hemos encontrado eventos para esta fecha, pero te podrían interesar los siguientes
+									</div>
 								<ul>	
 								@foreach($programas as $item)
 									<li class="txt-left" data-fecha="{{$item->fecha}}">
