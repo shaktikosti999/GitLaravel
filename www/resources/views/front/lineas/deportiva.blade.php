@@ -536,14 +536,13 @@
 
 	
 
-<!--
 	<div class="main"> 
-		@if( isset( $promociones ) && count( $promociones ) )
+		@if( isset( $promociones ) && count( $promociones ) && 1==2 )
 
 			@include('front.includes.promotions',['promociones' => $promociones])
 			
 		@endif
--->	
+
 
 		<section class="section-gray">
 			<div class="shell">
