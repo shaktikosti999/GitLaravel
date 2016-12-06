@@ -10,7 +10,9 @@ class promocion_model{
         $data = \DB::table('promocion as p')
                         ->orderByRaw('RAND()')
                         ->join('juego as j', 'p.id_juego', '=', 'j.id_juego')
-                        ->select("p.*", "j.id_linea");
+                        ->select("p.*", "j.id_linea")
+                        ->where('p.estatus',1)
+                        ->where('p.eliminado',0);
 
         //-----> Aplicamos filtros
 
