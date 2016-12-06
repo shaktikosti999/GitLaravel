@@ -492,7 +492,9 @@
 					<table>
 						<tr>
 							<td>5402</td>
-							<td>Tigres</td>
+							<td>
+								<p>Tigres</p>
+							</td>
 							<td>Even</td>
 						</tr>
 						<tr class="white-space">
@@ -500,7 +502,9 @@
 						</tr>
 						<tr>
 							<td>5403</td>
-							<td>America</td>
+							<td>
+								<p>America</p>
+							</td>
 							<td>2/1</td>
 						</tr>
 						<tr class="white-space">
@@ -508,7 +512,9 @@
 						</tr>
 						<tr>
 							<td>5409</td>
-							<td>Leon</td>
+							<td>
+								<p>Leon</p>
+							</td>
 							<td>3/1</td>
 						</tr>
 						<tr class="white-space">
@@ -516,7 +522,9 @@
 						</tr>
 						<tr>
 							<td>5418</td>
-							<td>Necaxa</td>
+							<td>
+								<p>Necaxa</p>
+							</td>
 							<td>3/1</td>
 						</tr>
 					</table>
