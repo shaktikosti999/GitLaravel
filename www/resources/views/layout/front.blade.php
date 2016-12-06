@@ -92,7 +92,7 @@
 								</li>
 								
 								<li>
-									<a href="{{url('sucursal')}}">sucursales</a>
+									<a href="{{url('sucursal')}}">ubicaciones</a>
 								</li>
 								
 								<li>
