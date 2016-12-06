@@ -173,7 +173,7 @@
 								<ul class="section-btn">
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}">
-											<img src="css/images/icons/horse.png">
+											<img src="css/images/icons/horse_black.png">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>

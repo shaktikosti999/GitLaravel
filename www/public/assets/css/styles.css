@@ -1191,11 +1191,13 @@ li:first-child { margin: 0;}
 \* ------------------------------------------------------------ */
 .section-head h2:after { display: inline-block; content: ''; width: 50px; height: 2px; background: #f00; vertical-align: middle; margin-left: 44px; }
 .section-slider .section-actions { text-align: center; padding: 100px 0 74px; }
+.section-slider .section-head h2 {margin-bottom: 30px;}
 @media (max-width: 767px) {
 	.section-head h2 { line-height: 1.2; text-align: center; }
 	.section-head h2:after { display: none; } 
 	.section-slider  { padding-top: 30px; }
 	.section-slider .section-actions { padding: 50px 0; }
+	.section-slider .section-head h2 {margin-bottom: 30px;}
 }
 /* ------------------------------------------------------------ *\
 	Section Secondary
@@ -1322,7 +1324,7 @@ li:first-child { margin: 0;}
 /* Mobile */
 @media (max-width: 767px) {
 	.section-gallery .slider-gallery { margin-bottom: 0; }
-
+	.section-gallery .section-entry {margin-bottom: 60px;}
 	.section-gallery { padding-bottom: 0px; }
 	.section-gallery .slider-gallery { margin-top: 0; } 
 }
@@ -1376,9 +1378,9 @@ li:first-child { margin: 0;}
 .section-promotions .section-foot .btn { width: 100%; max-width: 360px; }
 @media (max-width: 767px) {
 	.section-promotions .section-head { text-align: center; padding: 30px 0; }
-	.section-promotions .section-head h2 { float: none; display: block; width: 100%; }
+	.section-promotions .section-head h2 { float: none; display: block; width: 100%; padding-top: 30px; }
 	.section-promotions .section-head .btn { float: none; display: block; margin-bottom: 30px; }
-	.section-promotions { padding-top: 50px;} 	
+	.section-promotions { padding-top: 50px; padding-top: 0;} 	
 }
 /* ------------------------------------------------------------ *\
 	Section providers
@@ -2193,13 +2195,14 @@ li:first-child { margin: 0;}
 .section-video {padding: 0 0 10px 0;}
 .item-video iframe {height: 315px; width: 560px;}
 
-.sucursales {position: relative; width: 100%; float: left; display: inline-block; margin-bottom: 80px; margin-top: 60px;}
+.sucursales {position: relative; width: 100%; float: left; display: inline-block; margin-bottom: 80px; margin-top: 30px;}
 .sucursales li:nth-child(1) {float: left; position: relative; display: inline-block; width: 50%; padding: 0 14px;}
 .sucursales li:nth-child(2) {float: right; display: inline-block; width: 50%; position: absolute; padding: 0 14px;}
 .sucursales ul {list-style: none;}
 .sucursales h3 {color: #ed1d25;}
 .sucursales p {color: #4a4a4a; width: 190px; line-height: 25px;}
 .sucursales a {text-decoration: none;}
+.sucursales h6 {color: #000;}
 .fs-dropdown.btn-city {float: right; padding-right: 50px;}
 .head-padding {padding-bottom: 0;}
 .shell .btn-action {margin-bottom: 30px;}
@@ -2513,6 +2516,10 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.sucursales p:last-child {margin-bottom: 30px;}
 	.slider-bet .slider-bet-item {height: 330px;}
 	.table-list {line-height: 25px;}
+	.calendar-content {width: 100%;}
+	.list-btn li {width: 100%;}
+	.section-btn li a {max-width: 100%; margin-bottom: 18px;}
+	.calendar-content .section-btn li a:nth-child(3) {margin-bottom: 0;}
 }
 
 @media(max-width: 768px){
