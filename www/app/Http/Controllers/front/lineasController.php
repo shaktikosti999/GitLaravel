@@ -59,7 +59,6 @@ class lineasController extends Controller
         // dd($data);
 
         return view('front.lineas.maquinas',$data);
-    
     }
 
     public function detalle_juego($slug_maquina,$slug){
@@ -87,7 +86,7 @@ class lineasController extends Controller
     }
 
     public function mesas( $sucursal = null ){
-        
+    
         $data = [];
 
         $data["sucursal"] = $sucursal;
@@ -121,7 +120,6 @@ class lineasController extends Controller
         // dd($data);
 
         return view('front.lineas.mesas',$data);
-    
     }
 
     public function carreras( $sucursal = null ){
@@ -162,7 +160,21 @@ class lineasController extends Controller
         // dd($data);
 
         return view('front.lineas.carreras',$data);
-    
     }
    
+    public function deportivas( $sucursal = null){
+        $data = [];
+
+        $data["sucursal"] = $sucursal;
+
+        //-----> Obtenemos detalle de sucursal seleccionada
+        $data["sucursal_info"] = sucursal::find_by_slug( $sucursal );
+        $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
+
+        $data['slider'] = linea::find_gallery( 2 ); //Obtener Sliders
+        $data['promociones'] = promocion::find_all( [ "linea" => 2, "id_sucursal" => $id_sucursal ] ); //Obtener promociones
+        $data["otras"] = linea::find_all( [ "not_in" => [ 3 ] ] ); // Obtenemos otras opciones de diversión
+
+        return view('front.lineas.deportiva',$data);
+    }
 }

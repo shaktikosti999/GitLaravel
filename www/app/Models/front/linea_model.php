@@ -33,7 +33,8 @@ class linea_model{
 
         if( isset( $parameters["not_in"] ) && count( $parameters["not_in"] ) ){
 
-            $data = $data->whereNotIn( 'id_linea', $parameters["not_in"] );
+            $data = $data->orderByRaw("RAND()")
+                ->whereNotIn( 'id_linea', $parameters["not_in"] );
 
         }
 
