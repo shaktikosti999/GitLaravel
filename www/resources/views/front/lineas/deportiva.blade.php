@@ -486,9 +486,47 @@
 				</div>
 			</div>
 
+			<div class="table-sport">
+				<div class="shell">
+					<h2>Resultados</h2>
+					<table>
+						<tr>
+							<td>5402</td>
+							<td>Tigres</td>
+							<td>Even</td>
+						</tr>
+						<tr class="white-space">
+							<td colspan="3"></td>
+						</tr>
+						<tr>
+							<td>5403</td>
+							<td>America</td>
+							<td>2/1</td>
+						</tr>
+						<tr class="white-space">
+							<td colspan="3"></td>
+						</tr>
+						<tr>
+							<td>5409</td>
+							<td>Leon</td>
+							<td>3/1</td>
+						</tr>
+						<tr class="white-space">
+							<td colspan="3"></td>
+						</tr>
+						<tr>
+							<td>5418</td>
+							<td>Necaxa</td>
+							<td>3/1</td>
+						</tr>
+					</table>
+				</div>
+			</div>
 
 		</div>
 	</div>
+
+	
 
 
 	<div class="main"> 
