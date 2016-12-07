@@ -18,14 +18,8 @@ class redController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $red = red::all();
-        $redes = [];
-
-        foreach($red as $val)
-            $redes[$val->n][] = $val;
-
         $data = array(
-            'redes' => $redes
+            'redes' => red::all()
         );
 
         // dd($data);
@@ -41,7 +35,7 @@ class redController extends Controller
     public function create(){
         $data = array(
             'redes' => red::social_networks(),
-            'sucursales' => sucursal::all()
+            // 'sucursales' => sucursal::all()
         );
         // dd($data);
 
@@ -57,7 +51,7 @@ class redController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'red' => 'required|integer|min:1',
-            'sucursal' => 'required|integer|min:1',
+            'texto' => 'required|string',
             'url' => 'required|string',
         ]);
         $evento = red::store($request);
@@ -88,7 +82,6 @@ class redController extends Controller
         $data = array(
             'redes' => red::social_networks(),
             'red' => red::find($id),
-            'sucursales' => sucursal::all(),
             'id' => $id
         );
         return view('back.redsoc.edit',$data);
@@ -104,7 +97,7 @@ class redController extends Controller
     public function update(Request $request, $id){
         $this->validate($request,[
             'red' => 'required|integer|min:1',
-            'sucursal' => 'required|integer|min:1',
+            'texto' => 'required|string',
             'url' => 'required|string',
         ]);
         $evento = red::update($request, $id);

@@ -32,15 +32,11 @@
 			      	</div>
 			      	<div class="row">
 	        			<div class="col-sm-12">
-	        				<div class="form-group form-group-default">
-	        					<label for="sucursal">Sucursal</label>
-				      			<select class="cs-select cs-skin-slide" data-init-plugin="cs-select" name="sucursal" id="sucursal">
-				      				@foreach($sucursales as $sucursal)
-			                      	<option value="{{$sucursal->id}}" {{$red->id_sucursal == $sucursal->id ? "selected" : ""}}>{{$sucursal->nombre}}</option>
-			                      	@endforeach
-	                    		</select>
-	                    	</div>
-	                	</div>
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="texto">Texto</label>
+			            		<textarea id="texto" class="form-control required" name="texto" required="required" aria-required="true" aria-invalid="true">{{$red->texto}} </textarea>
+			          		</div>
+			        	</div>
 	                </div>
 	                <div class="row clearfix">
 			        	<div class="col-sm-12">

@@ -11,14 +11,12 @@ class red_social_model{
 		$get = \DB::table('red_social as r')
 			->select(
 				'r.id_red as id',
-				'r.id_sucursal as n',
 				'r.link as url',
 				'r.estatus',
-				's.nombre as sucursal',
+				'r.texto as sucursal',
 				't.nombre as red'
 			)
 			->join('tipo_red as t','t.id_tipo','=','r.tipo')
-			->join('sucursal as s','s.id_sucursal','=','r.id_sucursal')
 			->where('r.eliminado',0)
 			->get();
 		return $get;
@@ -40,7 +38,7 @@ class red_social_model{
 	static function store($request){
 		$data = new red_social;
 		$data->tipo = $request->red;
-		$data->id_sucursal = $request->sucursal;
+		$data->texto = $request->texto;
 		$data->link = $request->url;
 		$evento = Event::fire(new dotask($data));
 		return $evento;
@@ -49,7 +47,7 @@ class red_social_model{
 	static function update($request,$id){
 		$data = red_social::find($id);
 		$data->tipo = $request->red;
-		$data->id_sucursal = $request->sucursal;
+		$data->texto = $request->texto;
 		$data->link = $request->url;
 		$evento = Event::fire(new dotask($data));
 		return $evento;

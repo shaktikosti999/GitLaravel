@@ -42,7 +42,7 @@
 					
 					{{isset($sucursal) ? '<h2>Sucursal Tecamachalco</h2>' :''}}
 					
-					@if( isset( $sucursales ) && count( $sucursales ) )
+					@if( isset( $sucursales ) && count( $sucursales ) && 1==2)
 
 					<div class="intro-content-actions">
 						<div class="cols">
@@ -70,14 +70,13 @@
 				</div><!-- /.shell -->
 			</div><!-- /.intro-content -->
 		</div><!-- /.intro -->
-
 		<div class="main">
 			<section class="section-contacts">
 				<div class="shell">
 					<div class="section-head">
 						<h2>Tu opinón es importante</h2>
 						
-						<p>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie. Cheesecake powder marshmallow cupcake marzipan jelly. Powder cake macaroon gingerbread tart. Bear claw lemon drops pastry gingerbread wafer dessert cheesecake carrot cake. Biscuit apple pie carrot cake tiramisu.</p>
+						<!-- <p>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie. Cheesecake powder marshmallow cupcake marzipan jelly. Powder cake macaroon gingerbread tart. Bear claw lemon drops pastry gingerbread wafer dessert cheesecake carrot cake. Biscuit apple pie carrot cake tiramisu.</p> -->
 					</div><!-- /.section-head -->
 
 					<div class="section-body">
@@ -189,6 +188,7 @@
 								</div><!-- /.form-body -->
 								
 								<div class="form-actions">
+									<?php /*
 									<ul class="list-checkboxes">
 										<li>
 											<div class="checkbox-primary checkbox-primary-small-right">
@@ -197,7 +197,8 @@
 												<label class="form-label" for="field-promo">Quiero recibir promociones exclusivas de Caliente</label>
 											</div><!-- /.checkbox -->
 										</li>
-									</ul><!-- /.list-checkboxes -->
+									</ul><!-- /.list-checkboxes -->*/
+									?>
 
 									<input type="submit" value="Enviar" class="form-btn btn btn-black">
 								</div><!-- /.form-actions -->

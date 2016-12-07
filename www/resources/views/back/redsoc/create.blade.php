@@ -31,20 +31,16 @@
 			      	</div>
 			      	<div class="row">
 	        			<div class="col-sm-12">
-	        				<div class="form-group form-group-default">
-	        					<label for="sucursal">Sucursal</label>
-				      			<select class="cs-select cs-skin-slide" data-init-plugin="cs-select" name="sucursal" id="sucursal">
-				      				@foreach($sucursales as $sucursal)
-			                      	<option value="{{$sucursal->id}}">{{$sucursal->nombre}}</option>
-			                      	@endforeach
-	                    		</select>
-	                    	</div>
+	        				<div class="form-group form-group-default" aria-required="true">
+			            		<label for="texto">Texto</label>
+			            		<input type="text" id="texto" class="form-control required" name="texto" required="required" aria-required="true" aria-invalid="true">
+			          		</div>
 	                	</div>
 	                </div>
 	                <div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
-			            		<label for="link">URL</label>
+			            		<label for="url">URL</label>
 			            		<input type="text" id="url" class="form-control required" name="url" required="required" aria-required="true" aria-invalid="true">
 			          		</div>
 			        	</div>

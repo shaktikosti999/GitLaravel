@@ -36,8 +36,9 @@ class AppServiceProvider extends ServiceProvider
         //Redes Sociales
 
         $rs = \DB::table('red_social as rs')
-            ->select('rs.link','rs.tipo','s.nombre')
-            ->join('sucursal as s','s.id_sucursal','=','rs.id_sucursal')
+            ->select('rs.link','rs.tipo','rs.texto as nombre')
+            ->where('rs.estatus',1)
+            ->where('rs.eliminado',0)
             ->get();
 
         $sn = array();
