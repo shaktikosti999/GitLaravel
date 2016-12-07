@@ -1223,7 +1223,7 @@ li:first-child { margin: 0;}
 	Section Teritary
 \* ------------------------------------------------------------ */
 .section-teritary .section-head { padding: 40px 0; position: relative; }
-.section-teritary .section-head h2 { font-weight: 700; }
+.section-teritary .section-head h2 { font-weight: 700; padding-bottom: 30px;}
 .section-teritary .section-actions { text-align: center; padding: 35px 0 100px; }
 .section-teritary .section-actions .btn { width: 100%; max-width: 360px; }
 .section-teritary .row { margin: 0 -15px 30px; }
@@ -1499,7 +1499,7 @@ li:first-child { margin: 0;}
 .slider-intro .slick-next {top: 310px;}
 
 .slider-secondary .slick-prev {top: 350px; border-bottom: 1px solid #ebebeb !important; padding-bottom: 10px; background-color: transparent; border: none;}
-.slider-secondary .slick-arrow {right: 5%; width: 40px; position: absolute; z-index: 2; color: #fff; background-color: transparent; border: none;}
+.slider-secondary .slick-arrow {right: 5%; width: 40px; position: absolute; z-index: 1000; color: #fff; background-color: transparent; border: none;}
 .slider-secondary .slick-arrow i {font-size: 30px;}
 .slider-secondary .slick-next {top: 410px;}
 
@@ -1526,6 +1526,9 @@ li:first-child { margin: 0;}
 	.slider-intro .btn-scroll { top: 60%; }
 	.slider-intro .slick-prev {top: 150px;}
 	.slider-intro .slick-next {top: 210px;}
+	.slider-secondary .slick-prev {top: 160px;}
+	.slider-secondary .slick-next {top: 220px;}
+
 }
 /* Mobile */
 @media (max-width: 767px) {
@@ -2231,7 +2234,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .content.programas {padding: 0;}
 
 /*--------------- Calendario deportivo -------------------*/
-.gray-sport {background-color: #e5e5e5; height: auto;}
+.gray-sport {background-color: #e5e5e5; height: auto; margin-bottom: 60px;}
 .btn-sport {padding: 70px 0 30px 0; position: relative;}
 .btn-calendar-sport {padding: 0 32px 0 36px;}
 .btn-sport .btn-border  {float: right; border: 2px solid #ed1c24; color: #ed1c24;}
