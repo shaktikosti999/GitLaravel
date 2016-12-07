@@ -492,23 +492,10 @@
 				@endif
 
 				<div class="section-head">
-					<h2>Caliente</h2>
+					<h2>{{$footer_text->titulo}}</h2>
 				</div><!-- /.section-head -->
 
-				<div class="section-entry">
-					<p>En Caliente Casino® nuestra vocación es el entretenimiento de juegos de azar, por lo que nos dedicamos a concebir, desarrollar y ejecutar experiencias superiores e inigualables para aquellos que son verdaderos apasionados de este tipo de entretenimiento.</p>
-
-					<p>Tenemos la más completa oferta de entretenimiento. Diviértete jugando los mejores y más novedosos títulos de máquinas de juego, tanto de bingo, como de rodillos; contamos con las mejores marcas.</p>
-
-					<p>Vive al máximo tu deporte favorito apostando en nuestros Race & Sports Books. Contamos con la oferta de apuestas más completa en los mejores eventos deportivos de México y el mundo, o si lo prefieres, emociónate apostando y disfrutando las carreras de los más importantes hipódromos y galgódromos.</p>
-
-					<p>Reta tu suerte en las divertidas Mesas de Juego. Nuestra oferta es 100% legal y contamos con una gran variedad de juegos como: Blackjack, Ruleta, Craps, Baccarat, Texas Hold’em y más.</p>
-
-					<p>Sabemos la emoción que da gritar ¡Bingo!. Pasa un rato agradable en nuestras 2 salas de Bingo Tradicional, ¿y por qué no?, tal vez hoy te toque gritar.</p>
-
-					<p>Aquí encontrarás información de todos los juegos, las promociones vigentes y las ubicaciones de nuestros Casinos. Muchas gracias por tu visita.</p>
-					
-				</div><!-- /.section-entry -->
+				<div class="section-entry">{!!$footer_text->texto!!}</div><!-- /.section-entry -->
 			</div><!-- /.shell -->
 		</section><!-- /.section-gallery -->
 	</div><!-- /.main -->

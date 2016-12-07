@@ -32,6 +32,7 @@ class indexController extends Controller
         $data["rand_sucursal"]  = sucursal::find_random();
         $data["sucursales"]     = sucursal::find_all();
         $data["ciudades"]       = ciudad::find_all();
+        $data["footer_text"]    = \DB::table('text_footer')->where('id',1)->first();
 
         return view('front.index',$data);
     
