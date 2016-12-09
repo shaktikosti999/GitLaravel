@@ -17,7 +17,7 @@
 		</script>
 	@stop
 	@section('contenido')
-		<div class="intro-gray"></div><!-- /.intro-gray -->
+		<div class="intro-gray" style="background-color:rgba(0,0,0,0.5)"></div><!-- /.intro-gray -->
 		@if( isset($ciudades) && count($ciudades) )
 		<div class="main">
 			<section class="section-articles head-padding">

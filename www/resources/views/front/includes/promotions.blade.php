@@ -6,9 +6,9 @@
 				@yield('promo-head','Promociones')
 			</h2>
 
-			<a href="#" class="btn btn-black">
+			<!-- <a href="#" class="btn btn-black">
 						consulta calendario completo
-					</a>
+					</a> -->
 		</header><!-- /.section-head -->
 
 		<div class="section-body">

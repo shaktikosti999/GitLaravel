@@ -285,10 +285,6 @@
 									</li>-->
 									
 									<li>
-										<a href="{{url('alimentos-y-bebidas')}}">Alimentos Y Bebidas</a>
-									</li>
-									
-									<li>
 										<a href="{{url('juego_responsable')}}">Juego Responsable</a>
 									</li>
 								</ul>
@@ -308,10 +304,6 @@
 									
 									<li>
 										<a href="{{url('aviso_de_privacidad')}}">Aviso De Privacidad</a>
-									</li>
-									
-									<li>
-										<a href="{{url('bolsa_de_trabajo')}}">Bolsa De Trabajo</a>
 									</li>
 									
 									<!--<li>

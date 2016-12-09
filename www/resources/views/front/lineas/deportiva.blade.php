@@ -537,7 +537,7 @@
 	
 
 	<div class="main"> 
-		@if( isset( $promociones ) && count( $promociones ) && 1==2 )
+		@if( isset( $promociones ) && count( $promociones ) )
 
 			@include('front.includes.promotions',['promociones' => $promociones])
 			

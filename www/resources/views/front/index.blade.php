@@ -193,9 +193,9 @@
 	@if( isset( $slider ) && count( $slider ) )
 
 		<div class="slider-intro anchor">
-			<a href="#" class="btn-scroll">
+			<!-- <a href="#" class="btn-scroll">
 				<i class="ico-mouse"></i>
-			</a>
+			</a> -->
 
 			<div class="slider-clip">
 				<ul class="slides">
@@ -212,7 +212,7 @@
 										Navidad Excepcional
 									</h1-->
 									
-									<a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a>
+									<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
 
 								<!--</div> /.shell -->
 							</div><!-- /.slide-content -->
@@ -304,7 +304,7 @@
 			</div><!-- /.shell -->
 		</section><!-- /.section-slider -->
 
-		@if( isset( $lineas ) && count( $lineas ) )
+		@if( isset( $lineas ) && count( $lineas ) && 1==2 )
 
 			<section class="section-features">
 				<div class="shell">
