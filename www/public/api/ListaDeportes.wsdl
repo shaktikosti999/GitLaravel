@@ -1,0 +1,49 @@
+<wsdl:definitions targetNamespace='http://soa.jboss.org/Deportes' xmlns:esbns1='http://www.caliente.com.mx/ApuestaRemota' xmlns:esbns2='http://www.caliente.com.mx/ApuestaRemota' xmlns:esbns3='http://www.caliente.com.mx/ApuestaRemota' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://soa.jboss.org/Deportes' xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'>
+ <wsdl:types>
+  <xs:schema targetNamespace='http://www.caliente.com.mx/ApuestaRemota' version='1.0' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:include schemaLocation='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp;resource=tipos/req-lista-deportes-type.xsd'/>
+  </xs:schema>
+  <xs:schema targetNamespace='http://www.caliente.com.mx/ApuestaRemota' version='1.0' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:include schemaLocation='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp;resource=tipos/resp-lista-deportes-type.xsd'/>
+  </xs:schema>
+  <xs:schema targetNamespace='http://www.caliente.com.mx/ApuestaRemota' version='1.0' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:include schemaLocation='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp;resource=fault.xsd'/>
+  </xs:schema>
+ </wsdl:types>
+ <wsdl:message name='ListaDeportesFault1'>
+  <wsdl:part element='esbns3:aprFalla' name='fault1'></wsdl:part>
+ </wsdl:message>
+ <wsdl:message name='ListaDeportesReq'>
+  <wsdl:part element='esbns3:listaDeportes' name='in'></wsdl:part>
+ </wsdl:message>
+ <wsdl:message name='ListaDeportesRes'>
+  <wsdl:part element='esbns3:respListaDeportes' name='out'></wsdl:part>
+ </wsdl:message>
+ <wsdl:portType name='ListaDeportesPortType'>
+  <wsdl:operation name='ListaDeportesOp'>
+   <wsdl:input message='tns:ListaDeportesReq' name='ListaDeportesReq'></wsdl:input>
+   <wsdl:output message='tns:ListaDeportesRes' name='ListaDeportesRes'></wsdl:output>
+   <wsdl:fault message='tns:ListaDeportesFault1' name='fault1'></wsdl:fault>
+  </wsdl:operation>
+ </wsdl:portType>
+ <wsdl:binding name='ListaDeportesBinding' type='tns:ListaDeportesPortType'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <wsdl:operation name='ListaDeportesOp'>
+   <soap:operation soapAction='http://soa.jboss.org/Deportes/ListaDeportesOp'/>
+   <wsdl:input name='ListaDeportesReq'>
+    <soap:body use='literal'/>
+   </wsdl:input>
+   <wsdl:output name='ListaDeportesRes'>
+    <soap:body use='literal'/>
+   </wsdl:output>
+   <wsdl:fault name='fault1'>
+    <soap:fault name='fault1' use='literal'/>
+   </wsdl:fault>
+  </wsdl:operation>
+ </wsdl:binding>
+ <wsdl:service name='ListaDeportesService'>
+  <wsdl:port binding='tns:ListaDeportesBinding' name='ListaDeportesPortType'>
+   <soap:address location='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes'/>
+  </wsdl:port>
+ </wsdl:service>
+</wsdl:definitions>

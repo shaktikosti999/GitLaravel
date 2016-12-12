@@ -10,6 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/prueba_ws','soapController@index');
+Route::get('/server.md5','soapController@serv');
 include_once('Routes/auth.php');
 Route::group(['middleware' => 'auth'], function () {
 
