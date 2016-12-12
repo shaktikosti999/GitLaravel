@@ -47,10 +47,11 @@
 									<thead>
 										<tr role="row">
 											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Título</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Botón</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Link</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Subtítulo</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:15%">Tipo</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:15%">Link</th>
 											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:10%">Estatus</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:30%">Opciones</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Opciones</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -58,7 +59,8 @@
 										@foreach($sliders as $slider)
 										<tr role="row" class="">
 											<td class="v-align-middle">{{$slider->titulo}}</td>
-											<td class="v-align middle">{{$slider->texto_boton}}</td>
+											<td class="v-align middle">{{$slider->subtitulo}}</td>
+											<td class="v-align middle">{{$slider->tipo == 1 ? 'Home' : 'Quiniela'}}</td>
 											<td class="v-align middle">{{$slider->link}}</td>
 											<td class="v-align-middle"><input type="checkbox" {{$slider->estatus == 1 ? "checked" : ""}} class="activo" data="{{$slider->id}}" data-toggle="toggle"></td>
 											<td class="v-align-middle">

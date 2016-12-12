@@ -585,41 +585,23 @@
 							</div><!-- /.slider-clip -->
 						</div><!-- /.slider-games -->
 					</div><!-- /.section-body -->	
-					<div class="slider-bet"> <!-- Slider Quiniela -->
-						<div class="slider-bet-item back-module">
-							<div class="txt-bet">
-								<h2>Quiniela</h2>
-								<h6>Inicia tu quiniela gratis</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
-								<a href="#" class="btn btn-red btn-red-small btn-red-medium">
-									MI QUINIELA
-								</a>
+					@if( isset($quinielas) && count($quinielas) )
+						@foreach($quinielas as $item)
+							<div class="slider-bet"> <!-- Slider Quiniela -->
+								<div class="slider-bet-item back-module">
+									<div class="txt-bet">
+										<h2>{{$item->titulo}}</h2>
+										{!! isset($item->subtitulo) && !empty($item->subtitulo) ? '<h6>' . $item->subtitulo . '</h6>' : '' !!}
+										<p>{{$item->texto}}</p>
+										<a href="{{$item->link}}" class="btn btn-red btn-red-small btn-red-medium">
+											{{$item->texto_boton}}
+										</a>
+									</div>
+									<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
+								</div>
 							</div>
-							<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
-						</div>
-						<div class="slider-bet-item back-module">
-						<div class="txt-bet">
-								<h2>Quiniela</h2>
-								<h6>Inicia tu quiniela gratis</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
-								<a href="#" class="btn btn-red btn-red-small btn-red-medium">
-									MI QUINIELA
-								</a>
-							</div>
-							<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
-						</div>
-						<div class="slider-bet-item back-module">
-						<div class="txt-bet">
-								<h2>Quiniela</h2>
-								<h6>Inicia tu quiniela gratis</h6>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
-								<a href="#" class="btn btn-red btn-red-small btn-red-medium">
-									MI QUINIELA
-								</a>
-							</div>
-							<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
-						</div>	
-					</div>
+						@endforeach
+					@endif
 				</div><!-- /.shell -->
 			</section><!-- /.section-promotions -->
 			

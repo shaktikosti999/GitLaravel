@@ -174,6 +174,7 @@ class lineasController extends Controller
         $data['slider'] = linea::find_gallery( 2 ); //Obtener Sliders
         $data['promociones'] = promocion::find_all( [ "linea" => 2, "id_sucursal" => $id_sucursal ] ); //Obtener promociones
         $data["otras"] = linea::find_all( [ "not_in" => [ 3 ] ] ); // Obtenemos otras opciones de diversión
+        $data['quinielas'] = slider::football_pools();// Obtenemos las quinielas
 
         return view('front.lineas.deportiva',$data);
     }

@@ -30,6 +30,36 @@
 			      	<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="subtitulo">subtítulo</label>
+			            		<input type="text" id="subtitulo" class="form-control required" name="subtitulo" required="required" aria-required="true" aria-invalid="true">
+			          		</div>
+			        	</div>
+			      	</div>
+
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="tipo">Tipo</label>
+			            		<select id="tipo" class="form-control required" name="tipo" required="required" aria-required="true" aria-invalid="true">
+			            			<option value="1">Home</option>
+			            			<option value="0">Quiniela</option>
+			            		</select>
+			          		</div>
+			        	</div>
+			      	</div>
+
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="texto">Descripción</label>
+			            		<input type="text" id="texto" class="form-control required" name="texto" required="required" aria-required="true" aria-invalid="true">
+			          		</div>
+			        	</div>
+			      	</div>
+
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="texto_boton">Texto del botón</label>
 			            		<input type="text" id="texto_boton" class="form-control required" name="texto_boton" required="required" aria-required="true" aria-invalid="true">
 			          		</div>

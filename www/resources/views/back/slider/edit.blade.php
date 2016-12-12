@@ -30,6 +30,24 @@
 			      	<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="subtitulo">Subtítulo</label>
+			            		<input type="text" id="subtitulo" class="form-control" name="subtitulo" value="{{$slider->subtitulo}}" aria-required="true" aria-invalid="true">
+			          		</div>
+			        	</div>
+			      	</div>
+
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="texto">Descripción</label>
+			            		<textarea id="texto" class="form-control" name="texto" aria-required="true" aria-invalid="true">{{$slider->texto}}</textarea>
+			          		</div>
+			        	</div>
+			      	</div>
+
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="texto_boton">Texto del botón</label>
 			            		<input type="text" id="texto_boton" class="form-control required" name="texto_boton" value="{{$slider->texto_boton}}" required="required" aria-required="true" aria-invalid="true">
 			          		</div>
@@ -56,7 +74,7 @@
 			      	</div>
 
 			      	<div class="clearfix"></div>
-			      	<input class="btn btn-primary" type="submit" value="Agregar slider">
+			      	<input class="btn btn-primary" type="submit" value="Modificar slider">
 			    </form>
 		  	</div>
 		</div>
