@@ -16,7 +16,7 @@
 								<div class="shell"> 		 
 									 <div class="slide-content">
 									 	<h1>
-									 		mÁquinas de juego
+									 		Apuesta Deportiva
 									 	</h1>
 										 	
 										 	<h3>
@@ -631,6 +631,44 @@
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->
 						</div><!-- /.shell -->
+
+						<div class="slider-bet"> <!-- Slider Quiniela -->
+						<div class="slider-bet-item back-module">
+							<div class="txt-bet">
+								<h2>Quiniela</h2>
+								<h6>Inicia tu quiniela gratis</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
+								<a href="#" class="btn btn-red btn-red-small btn-red-medium">
+									MI QUINIELA
+								</a>
+							</div>
+							<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
+						</div>
+						<div class="slider-bet-item back-module">
+						<div class="txt-bet">
+								<h2>Quiniela</h2>
+								<h6>Inicia tu quiniela gratis</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
+								<a href="#" class="btn btn-red btn-red-small btn-red-medium">
+									MI QUINIELA
+								</a>
+							</div>
+							<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
+						</div>
+						<div class="slider-bet-item back-module">
+						<div class="txt-bet">
+								<h2>Quiniela</h2>
+								<h6>Inicia tu quiniela gratis</h6>
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem.  Aliquam erat volutpat. Donec placerat nisl magna, et faucibus arcu condimentum sed.</p>
+								<a href="#" class="btn btn-red btn-red-small btn-red-medium">
+									MI QUINIELA
+								</a>
+							</div>
+							<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
+						</div>	
+
+					</div>
+
 						
 						<div class="section-actions">
 							<a target="_blank" href="http://www.google.com/maps/place/{{ $sucursal_info->latitud . "," . $sucursal_info->longitud }}" class="btn btn-red btn-red-small">

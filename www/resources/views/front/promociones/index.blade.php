@@ -2,9 +2,9 @@
 @section('contenido')
 
 	<div class="slider-intro  slider-intro-secondary slider-intro-promo"> 
-		<a href="#promociones" class="btn-scroll promo">
+		<!--<a href="#promociones" class="btn-scroll promo">
 			<i class="ico-mouse"></i>
-		</a>
+		</a>-->
 		<div class="slider-clip">
 			<ul class="slides">
 				<li class="slide fullscreen" style="background-image: url(css/images/temp/slider-intro-secondary.jpg);">
@@ -56,6 +56,7 @@
 				<div class="shell">
 					<div class="section-body">
 						<div class="slider-games reset-margin">
+							<h2>Promociones</h2>
 							<div class="slider-clip">
 								<ul class="slides">								
 
