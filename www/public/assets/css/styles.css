@@ -1394,7 +1394,8 @@ li:first-child { margin: 0;}
 .section-providers .section-head { padding: 0px 0 20px; position: relative; }
 /* Mobile */
 @media (max-width: 767px) {
-	.section-providers .section-head { padding-bottom: 40px; } 
+	.section-providers .section-head { padding-bottom: 40px; }
+	.section-promotions .top-promotions {padding: 0;} 
 }
 /* ------------------------------------------------------------ *\
 	Section jackpots
