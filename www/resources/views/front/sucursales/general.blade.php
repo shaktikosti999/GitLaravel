@@ -17,7 +17,75 @@
 		</script>
 	@stop
 	@section('contenido')
-		<div class="intro-gray" style="background-color:rgba(0,0,0,0.5)"></div><!-- /.intro-gray -->
+	<div class="slider-secondary secondary-margin">
+		<!--<a href="#" class="btn-menu">
+			<img src="css/images/btn-menu@2x.png" alt="">-->
+		</a>
+
+		<div class="slider-clip">
+			<ul class="slides">
+				@if( isset( $slider ) && count( $slider ) )
+
+					@foreach( $slider as $item )
+
+						<li class="slide" style="background-image: url({{ $item->imagen }})">
+							<div class="slide-body">
+								<div class="shell"> 		 
+									 <div class="slide-content">
+									 	<h1>
+									 		Apuesta Deportiva
+									 	</h1>
+										 	
+										 	<h3>
+										 		@if( isset( $sucursal_info->nombre ) )
+										 			
+										 			Sucursal {{ $sucursal_info->nombre }}
+
+										 		@endif
+										 	</h3>
+									 	
+									 	
+
+									@if( isset( $sucursales ) && count( $sucursales ) )
+
+										<div class="filter-secondary">
+											<label for="sucursales" class="form-label hidden">filter-secondary1</label>
+											<select name="sucursales" id="sucursales" class="select branch-filter">
+												
+												<option value="-1">Selecciona una sucursal</option>
+
+												@foreach( $sucursales as $item )
+
+													<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
+
+												@endforeach
+												
+											</select>
+										</div><!-- /.filter-secondary -->
+
+									@endif
+
+
+									 </div><!-- /.slide-content -->
+
+									@include('front.includes.breadcrumbs')
+								</div><!-- /.shell -->
+							</div><!-- /.slide-body -->
+						</li><!-- /.slide -->
+
+					@endforeach
+
+				@endif
+			</ul><!-- /.slides -->
+		</div><!-- /.slider-clip -->
+
+		<!--<div class="slider-label red-label large">
+			<i class="ico-deportiva"></i>
+		</div><!-- /.slider-label -->
+	</div><!-- /.slider-secondary -->
+
+
+		<!--<div class="intro-gray" style="background-color:rgba(0,0,0,0.5)"></div><!-- /.intro-gray -->
 		@if( isset($ciudades) && count($ciudades) )
 		<div class="main">
 			<section class="section-articles head-padding">

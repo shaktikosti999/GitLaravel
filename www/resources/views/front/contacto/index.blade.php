@@ -39,6 +39,7 @@
 			<div class="intro-content">
 				<div class="shell">
 					<h1 class="intro-title">Contacto</h1>
+					<p></p>	
 					
 					{{isset($sucursal) ? '<h2>Sucursal Tecamachalco</h2>' :''}}
 					
