@@ -1,11 +1,17 @@
 @extends('layout.admin')
 	@section('script')
 		<script src="{{asset('/assets/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script>
+		<script src="{{asset('/assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
 		<script>
 		$(function(){
 			$('#form-agregar').validate();
+			$('#direccion').wysihtml5();
 		});
 		</script>
+	@stop
+
+	@section('css')
+		<link rel="stylesheet" href="{{asset('/assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
 	@stop
 
 	@section('contenido')
@@ -41,7 +47,7 @@
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
 			            		<label for="direccion">Dirección</label>
-			            		<input type="text" id="direccion" class="form-control required" name="direccion" aria-required="true" aria-invalid="true" >
+			            		<textarea id="direccion" class="form-control required" name="direccion" style="height: 350px" aria-required="true" aria-invalid="true" ></textarea>
 			          		</div>
 			          	</div>
 			      	</div>
