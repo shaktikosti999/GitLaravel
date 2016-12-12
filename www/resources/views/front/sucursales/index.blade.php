@@ -8,7 +8,7 @@
 		<div class="slider-clip">
 			<ul class="slides">
 				<li class="slide" style="background-image: url(css/images/temp/slider-secondary1.jpg)">
-					<div class="slide-body">
+					<!--<div class="slide-body">
 						<div class="shell"> 		 
 							 <div class="slide-content">
 							 	{!! isset( $sucursal ) ? '<h1>' . $sucursal->nombre . '</h1>' : '' !!}
@@ -57,7 +57,7 @@
 
 
 				<li class="slide" style="background-image: url(css/images/temp/slider-secondary1.jpg)">
-					<div class="slide-body">
+					<!--<div class="slide-body">
 						<div class="shell"> 	 
 							 <div class="slide-content">
 							 	<h1>
@@ -81,16 +81,16 @@
 									@endforeach
 									
 								</select>
-							</div><!-- /.filter-secondary -->
-							 </div><!-- /.slide-content -->
+							</div><!-- /.filter-secondary 
+							 </div><!-- /.slide-content 
 
 							 @include('front.includes.breadcrumbs')
-						</div><!-- /.shell -->
+						</div><!-- /.shell 
 					</div><!-- /.slide-body -->
 				</li><!-- /.slide -->
 
 				<li class="slide" style="background-image: url(css/images/temp/slider-secondary1.jpg)">
-					<div class="slide-body">
+					<!--<div class="slide-body">
 						<div class="shell"> 	 
 							 <div class="slide-content">
 							 	<h1>
@@ -114,11 +114,11 @@
 									@endforeach
 									
 								</select>
-							</div><!-- /.filter-secondary -->
-							 </div><!-- /.slide-content -->
+							</div><!-- /.filter-secondary 
+							 </div><!-- /.slide-content -
 
 							 @include('front.includes.breadcrumbs')
-						</div><!-- /.shell -->
+						</div><!-- /.shell 
 					</div><!-- /.slide-body -->
 				</li><!-- /.slide -->
 			</ul><!-- /.slides -->

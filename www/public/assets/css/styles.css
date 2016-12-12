@@ -1382,7 +1382,7 @@ li:first-child { margin: 0;}
 .section-promotions .section-foot { text-align: center; padding: 25px 0 10px; }
 .section-promotions .section-foot .btn { width: 100%; max-width: 360px; }
 @media (max-width: 767px) {
-	.section-promotions .section-head { text-align: center; /*padding: 30px 0;*/ }
+	.section-promotions .section-head { text-align: center; padding-top: 50px; }
 	.section-promotions .section-head h2 { float: none; display: block; width: 100%; padding-top: 30px; padding-bottom: 30px;}
 	.section-promotions .section-head .btn { float: none; display: block; margin-bottom: 30px; }
 	.section-promotions { padding-top: 50px; padding-top: 0;}
