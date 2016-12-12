@@ -39,7 +39,7 @@
 			<div class="intro-content">
 				<div class="shell">
 					<h1 class="intro-title">Contacto</h1>
-					<p></p>	
+					<p>Nulla sem justo, maximus in mattis ac, sodales a orci. Vivamus aliquet dolor ut sem consectetur porta. Aliquam vel elementum enim, nec feugiat sem. Mauris a consectetur nisl. Pellentesque tellus ex, maximus sit amet cursus vel, elementum ut mi. Etiam sed risus turpis. Etiam vitae dui dolor. Integer sed mauris ligula. </p>	
 					
 					{{isset($sucursal) ? '<h2>Sucursal Tecamachalco</h2>' :''}}
 					

@@ -1194,6 +1194,7 @@ li:first-child { margin: 0;}
 .section-head h2:after { display: inline-block; content: ''; width: 50px; height: 2px; background: #f00; vertical-align: middle; margin-left: 44px; }
 .section-slider .section-actions { text-align: center; padding: 100px 0 74px; }
 .section-slider .section-head h2 {margin-bottom: 30px;}
+.section-promotions .top-promotions {padding: 0;}
 @media (max-width: 767px) {
 	.section-head h2 { line-height: 1.2; text-align: center; }
 	.section-head h2:after { display: none; } 
@@ -1369,7 +1370,7 @@ li:first-child { margin: 0;}
 \* ------------------------------------------------------------ */
 .section-promotions { padding-bottom: 50px;}
 .section-promotions.secondary { padding-bottom: 65px; }
-.section-promotions .section-head { padding: 0 0 20px; position: relative; }
+.section-promotions .section-head { padding: 74px 0 20px; position: relative; }
 .section-promotions + .section-promotions { padding-bottom: 40px; }
 .section-promotions + .section-promotions .section-head { padding: 25px 0 20px; }
 .section-promotions .games-filters { margin-top: -20px; position: relative; top: -10px; }
@@ -1506,7 +1507,7 @@ li:first-child { margin: 0;}
 
 @media(min-width: 1024px) and (max-height: 1024px){
 	/*.slider-intro .slide { height: 1024px; }*/
-	.slider-intro .slide-content { padding-top: 164px; }
+	.slider-intro .slide-content { padding-top: 274px; }
 	.slider-intro .btn-scroll,
 	.slider-intro .slick-dots-wrapper { top: 57%; z-index: 2;}
 	.slider-intro .promo, .slider-intro .slick-dots-wrapper {z-index: 40;}
@@ -2238,7 +2239,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .content.programas {padding: 0;}
 
 /*--------------- Calendario deportivo -------------------*/
-.gray-sport {background-color: #e5e5e5; height: auto; margin-bottom: 60px;}
+.gray-sport {background-color: #e5e5e5; height: auto;}
 .btn-sport {padding: 70px 0 30px 0; position: relative;}
 .btn-calendar-sport {padding: 0 32px 0 36px;}
 .btn-sport .btn-border  {float: right; border: 2px solid #ed1c24; color: #ed1c24;}

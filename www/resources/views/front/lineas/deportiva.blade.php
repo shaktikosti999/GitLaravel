@@ -762,7 +762,7 @@
 
 			<section class="section section-simple">
 				<div class="shell">
-					<div class="section-head">
+					<div class="section-head top-promotions">
 						<div class="stick--point" id="diversion"></div>
 						<h2>
 							<small>Otras opciones de</small>
