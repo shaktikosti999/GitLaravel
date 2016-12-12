@@ -541,7 +541,7 @@
 
 			<section class="section-promotions">
 				<div class="shell">
-					<header class="section-head">
+					<header class="section-head top-promotions">
 						<div class="stick--point" id="promociones"></div>
 						<h2>
 							@yield('promo-head','Promociones')
