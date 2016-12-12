@@ -29,120 +29,39 @@
 
 				<div class="slider-clip">
 					<ul class="slides">
-						<li class="slide" style="background-image: url(css/images/temp/slider-secondary1.jpg)">
-							<div class="slide-body">
-								<div class="shell"> 		 
-									 <div class="slide-content">
-									 	{!! isset( $sucursal ) ? '<h1>' . $sucursal->nombre . '</h1>' : '' !!}
-
-										@if( isset( $sucursales ) && count( $sucursales ) )
-
-											<div class="filter-secondary">
-												<label for="selec_sucursales" class="form-label hidden">filter-secondary1</label>
-												
-
-												<select name="selec_sucursales" id="selec_sucursales" class="select branch-filter2">
-													
-													<option value="-1">Selecciona una sucursal</option>
-
-													@foreach( $sucursales as $item )
-
-														<option value="{{ $item->slug }}">Sucursal {{ $item->nombre }}</option>
-
-													@endforeach
-													
-												</select>
-											</div><!-- /.filter-secondary -->
-
-										@endif
-
-
-									 </div><!-- /.slide-content -->
-
-									 @include('front.includes.breadcrumbs')
-									 
-									 @if (isset($sucursal))
-									 	
-									 	<div class="section-actions">
-											<a href="http://www.google.com/maps/place/{{ $sucursal->latitud . "," . $sucursal->longitud }}" target="_blank" class="btn btn-red btn-red-small sldr-btn">
-												<i class="ico-human"></i>
-												Cómo llegar aquí
-											</a>
-										</div><!-- /.section-actions -->
-
-									 @endif							 
-
-								</div><!-- /.shell -->
-
-							</div><!-- /.slide-body -->
-						</li><!-- /.slide -->
-
-
-						<li class="slide" style="background-image: url(css/images/temp/slider-secondary1.jpg)">
-							<div class="slide-body">
-								<div class="shell"> 	 
-									 <div class="slide-content">
-									 	<h1>
-									 		mÁquinas de juego
-									 	</h1>
-
-									 	<h3>
-									 		Sucursal {!! isset( $sucursal ) ? $sucursal->nombre : '' !!}
-									 	</h3>
-
-									 <div class="filter-secondary">
-										<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-										<select name="selec_sucursales2" id="selec_sucursales2" class="select branch-filter2">
-													
-											<option value="-1">Selecciona una sucursal</option>
-
-											@foreach( $sucursales as $item )
-
-												<option value="{{ $item->slug }}">Sucursal {{ $item->nombre }}</option>
-
-											@endforeach
-											
-										</select>
-									</div><!-- /.filter-secondary -->
-									 </div><!-- /.slide-content -->
-
-									 @include('front.includes.breadcrumbs')
-								</div><!-- /.shell -->
-							</div><!-- /.slide-body -->
-						</li><!-- /.slide -->
-
-						<li class="slide" style="background-image: url(css/images/temp/slider-secondary1.jpg)">
-							<div class="slide-body">
-								<div class="shell"> 	 
-									 <div class="slide-content">
-									 	<h1>
-									 		mÁquinas de juego
-									 	</h1>
-
-									 	<h3>
-									 		Sucursal {!! isset( $sucursal ) ? $sucursal->nombre : '' !!}
-									 	</h3>
-
-									 <div class="filter-secondary">
-										<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-										<select name="selec_sucursales3" id="selec_sucursales3" class="select branch-filter2">
-													
-											<option value="-1">Selecciona una sucursal</option>
-
-											@foreach( $sucursales as $item )
-
-												<option value="{{ $item->slug }}">Sucursal {{ $item->nombre }}</option>
-
-											@endforeach
-											
-										</select>
-									</div><!-- /.filter-secondary -->
-									 </div><!-- /.slide-content -->
-
-									 @include('front.includes.breadcrumbs')
-								</div><!-- /.shell -->
-							</div><!-- /.slide-body -->
-						</li><!-- /.slide -->
+						@if( isset($sucursales) && count($sucursales) )
+							@foreach($sucursales as $value)
+								<li class="slide" style="background-image: url(css/images/temp/slider-secondary1.jpg)">
+									<div class="slide-body">
+										<div class="shell"> 		 
+											 <div class="slide-content">
+											 	<?php /*{!! isset( $sucursal ) ? '<h1>' . $sucursal->nombre . '</h1>' : '' !!}
+												@if( isset( $sucursales ) && count( $sucursales ) )
+													<div class="filter-secondary">
+														<label for="selec_sucursales" class="form-label hidden">filter-secondary1</label>
+														<select name="selec_sucursales" id="selec_sucursales" class="select branch-filter2">
+															<option value="-1">Selecciona una sucursal</option>
+															@foreach( $sucursales as $item )
+																<option value="{{ $item->slug }}">Sucursal {{ $item->nombre }}</option>
+															@endforeach
+														</select>
+													</div><!-- /.filter-secondary -->
+												@endif*/?>
+											 </div><!-- /.slide-content -->
+											 @include('front.includes.breadcrumbs')
+											 @if (isset($sucursal))
+											 	<div class="section-actions">
+													<a href="http://www.google.com/maps/place/{{ $sucursal->latitud . "," . $sucursal->longitud }}" target="_blank" class="btn btn-red btn-red-small sldr-btn">
+														<i class="ico-human"></i>
+														Cómo llegar aquí
+													</a>
+												</div><!-- /.section-actions -->
+											 @endif							 
+										</div><!-- /.shell -->
+									</div><!-- /.slide-body -->
+								</li><!-- /.slide -->
+							@endforeach
+						@endif
 					</ul><!-- /.slides -->
 				</div><!-- /.slider-clip -->
 
