@@ -1687,7 +1687,7 @@ li:first-child { margin: 0;}
 .slider-secondary .slide-content { position: relative; z-index: 30; float: left; width: 50%; }
 .slider-secondary .slide-content h1 { font-size: 50px; margin-bottom: 5px; line-height: 1; font-size: 45px;font-weight: 700; margin-right: -50%; }
 .slider-secondary .slide-content h3 { font-size: 40px; color: #fff; font-weight: 400; margin-bottom: 10px; font-size: 38px; }
-.slider-secondary .slide-inner { position: relative; z-index: 30; float: left; width: 50%; }
+.slider-secondary .slide-inner { position: relative; z-index: 30; float: right; width: 50%; }
 .slider-secondary .slide-inner .breadcrumbs { padding-top: 105px; padding-right: 5px; }
 .slider-secondary .slick-dots-wrapper { position: absolute; bottom: 60px; left: 50%; -webkit-transform: translateX(-50%); -ms-transform: translateX(-50%); transform: translateX(-50%); width: auto; text-align: center; z-index: 0; }
 .slider-secondary .slick-dots { list-style: none; padding: 4px 17px 5px 20px; background: #f0f0f0; border-radius: 12px; line-height: 1; }
@@ -2249,7 +2249,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .btn-sport .btn-border:hover {background: #000; color: #fff; border: 2px solid #fff;}
 .btn-sport img{padding-right: 20px;}
 
-.btn-sport .btn-calendar-sport {border: 2px solid #ed1c24; color: #ed1c24;}
+.btn-sport .btn-calendar-sport {border: 2px solid #ed1c24; color: #ed1c24; float: left;}
 .btn-sport .btn-calendar-sport:hover {background: #000; color: #fff; border: 2px solid #fff;}
 .btn-sport .btn-calendar-sport:hover img{display: none;}
 .btn-sport .btn-calendar-sport:hover img.calendar-off {display: inline-block;position: relative;left: inherit;top: inherit;}

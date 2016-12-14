@@ -76,14 +76,15 @@
 										<li>
 											<a href="{{url('lineas-de-juego/mesas-de-juego')}}">Mesas de Juego</a>
 										</li>
+										<li>
+											<a href="{{url('lineas-de-juego/apuesta-deportiva')}}">Apuesta Deportiva</a>
+										</li>	
 
 										<li>
 											<a href="{{url('lineas-de-juego/apuesta-de-carreras?game=caballos')}}">Apuesta de Carreras</a>
 										</li>
 
-										<li>
-											<a href="{{url('lineas-de-juego/apuesta-deportiva')}}">Apuesta Deportiva</a>
-										</li>		
+											
 									</ul><!-- /.dropdown --> 
 								</li>
 								
