@@ -2515,6 +2515,9 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.table-list h2 {font-size: 40px;}
 	.table-list {line-height: 19px;}
 	.table-content h5 {font-size: 25px;}
+	.btn-sport .btn-calendar-sport {height: auto;
+    line-height: 1;
+    padding: 20px 30px;}
 }
 
 @media (max-width: 920px) {
@@ -2526,7 +2529,8 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 @media (max-width: 767px) {
 	.btn-sport .btn-calendar-sport {width: 100%; margin-bottom: 40px;}
 	.btn-sport {padding-top: 50px;}
-	.btn-sport .btn-border {width: 100%; position: absolute;}
+	.btn-sport .btn-border {width: 100%; }
+	.btn-sport .btn-calendar-sport {font-size: 14px; padding: 15px 20px;}
 	.sport-calendar {margin-bottom: 45px;}
 	.txt-bet {padding: 37px 60px 59px 40px;}
 	.btn-calendar2 {padding-bottom: 100px;}

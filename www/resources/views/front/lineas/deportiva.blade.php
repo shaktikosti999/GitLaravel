@@ -75,7 +75,7 @@
 					<img class="calendar-off" src="css/images/icons/calendar-white.png">
 					Calendario deportivo
 				</a>
-				<a href="http://casinocaliente.abardev.net/como-apostar" class="btn btn-border">
+				<a href="http://casinocaliente.abardev.net/como-apostar" class="btn btn-border btn-calendar-sport2">
 					Cómo apostar
 				</a>
 			</div>
