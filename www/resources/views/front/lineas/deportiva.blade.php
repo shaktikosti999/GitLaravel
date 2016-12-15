@@ -70,7 +70,7 @@
 	<div class="gray-sport">
 		<div class="shell">
 			<div class="btn-sport">
-				<a href="http://casinocaliente.abardev.net/como-apostar" class="btn btn-border btn-calendar-sport">
+				<a href="http://casinocaliente.abardev.net/calendario-deportivo" class="btn btn-border btn-calendar-sport">
 					<img src="css/images/icons/calendar.png">
 					<img class="calendar-off" src="css/images/icons/calendar-white.png">
 					Calendario deportivo
