@@ -15,7 +15,8 @@ class juego_model{
 				'j.nombre',
 				'j.titulo',
 				'j.estatus',
-				'l.nombre as linea'
+				'l.nombre as linea',
+				'l.id_linea'
 			)
 			->join('linea as l','l.id_linea','=','j.id_linea')
 			->where('l.eliminado',0)

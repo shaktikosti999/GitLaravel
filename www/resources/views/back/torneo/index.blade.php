@@ -42,6 +42,7 @@
 			              	</div>
 		                </div>
 					</div>
+					</br>
 					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 						@foreach($torneos as $val => $sucursal)
 							<div class="panel panel-default">

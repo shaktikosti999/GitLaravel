@@ -18,9 +18,17 @@ class juegoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+        
+        $juego = juego::all();
+        $juegos = [];
+
+        foreach($juego as $val)
+            $juegos[$val->id_linea][] = $val;
+
         $data = array(
-            'juegos' => juego::all()
+            'juegos' => $juegos
         );
+
         return view('back.juego.index',$data);
     }
 
