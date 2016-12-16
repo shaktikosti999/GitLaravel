@@ -121,11 +121,10 @@ class linea_model{
         }
 
         $data = $data
-            // ->where('fecha_inicio','>',date('Y-m-d'))
+            ->where('fecha_inicio','>',date('Y-m-d'))
             ->orderBy('fecha_inicio')
-            ->get();
+            ->paginate(2);
 
-        // dd($data);
         return $data;
     }
 
@@ -164,13 +163,12 @@ class linea_model{
                 'j.resumen',
                 'j.slug',
                 'js.link',
-                'js.archivo',
                 'js.acumulado',
                 'js.apuesta_minima',
                 'js.descripcion',
                 'js.disponibles'
             )
-            ->join('juego_sucursal AS js','js.id_juego','=','j.id_juego')
+            ->leftjoin('juego_sucursal AS js','js.id_juego','=','j.id_juego')
             ->where('j.estatus',1)
             ->where('j.eliminado',0);
         if(array_key_exists('linea', $args) && $args['linea'] !== null)
