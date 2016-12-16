@@ -92,18 +92,20 @@ class sucursal_model{
 	}
 
 	static function storeGame($request,$archivo){
-		$data = array(
-			'id_juego' => $request->input('add_juego'),
-			'id_sucursal' => $request->input('add_sucursal'),
-			'descripcion' => $request->input('add_desc'),
-			'acumulado' => $request->input('add_acumulado'),
-			'archivo' => $archivo,
-			'disponibles' => $request->input('add_disp'),
-			'apuesta_minima' => $request->input('add_apuesta'),
-			'pagado' => $request->input('add_pagado'),
-			'link' => $request->input('add_link')
-		);
-		return \DB::table('juego_sucursal')->insert($data);
+		$juego_sucursal = new juego_sucursal;
+
+		$juego_sucursal->id_juego = $request->input('add_juego');
+		$juego_sucursal->id_sucursal = $request->input('add_sucursal');
+		$juego_sucursal->descripcion = $request->input('add_desc');
+		$juego_sucursal->acumulado = $request->input('add_acumulado');
+		$juego_sucursal->archivo = $archivo;
+		$juego_sucursal->disponibles = $request->input('add_disp'); 
+		$juego_sucursal->apuesta_minima = $request->input('add_apuesta');
+		$juego_sucursal->pagado = $request->input('add_pagado');
+		$juego_sucursal->link = $request->input('add_link');
+
+		$evento = Event::fire(new dotask($juego_sucursal));
+		return $evento;
 	}
 
 	static function update($id, $request){

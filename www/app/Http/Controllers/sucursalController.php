@@ -163,9 +163,11 @@ class sucursalController extends Controller
             'add_apuesta' => 'required|integer',
             'add_pagado' => 'integer',
             'add_link' => 'required',
-            'add_archivo' => 'required|image',
+            'add_archivo' => 'image',
             'add_sucursal' => 'required|integer'
         ]);
+        
+        $archivo = '';
         //subir imagen
         if($request->hasFile('add_archivo')){
             $archivo = $request->file('add_archivo');

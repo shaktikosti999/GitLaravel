@@ -133,27 +133,27 @@
 									</div>
 									<div class="form-group">
 										<label for="add_desc">Descripción</label>
-										<textarea name="add_desc" id="add_desc" class="form-control"></textarea>
+										<textarea name="add_desc" id="add_desc" class="form-control" required></textarea>
 									</div>
 									<div class="form-group col-sm-6">
 										<label for="add_archivo">Imagen</label>
-										<input type="file" name="add_archivo" id="add_archivo" >
+										<input type="file" name="add_archivo" id="add_archivo">
 									</div>
 									<div class="form-group col-sm-6">
 										<label for="add_link">Enlace</label>
-										<input type="text" name="add_link" id="add_link" class="form-control">
+										<input type="text" name="add_link" id="add_link" class="form-control" required>
 									</div>
 									<div class="form-group col-sm-3">
 										<label for="add_disp">Disponibilidad</label>
-										<input type="text" name="add_disp" id="add_disp" class="form-control">
+										<input type="text" name="add_disp" id="add_disp" class="form-control" required>
 									</div>
 									<div class="form-group col-sm-3">
 										<label for="add_apuesta">Apuesta Mínima</label>
-										<input type="text" name="add_apuesta" id="add_apuesta" class="form-control">
+										<input type="text" name="add_apuesta" id="add_apuesta" class="form-control" required>
 									</div>
 									<div class="form-group col-sm-3">
 										<label for="add_acumulado">Acumulado</label>
-										<input type="text" name="add_acumulado" id="add_acumulado" class="form-control">
+										<input type="text" name="add_acumulado" id="add_acumulado" class="form-control" required>
 									</div>
 									<div class="form-group col-sm-3">
 										<label for="add_pagado">Pagado</label>
