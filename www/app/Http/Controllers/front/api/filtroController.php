@@ -12,7 +12,8 @@ use App\Models\front\sucursal_model as sucursal;
 
 class filtroController extends Controller
 {
-    public function filtro_maquinas(Request $request){
+    public function filtro_maquinas(Request $request)
+    {
         
         if($request->ajax()){
 
@@ -40,6 +41,21 @@ class filtroController extends Controller
             echo json_encode(linea::get_games( [ "linea" => $linea, "id_sucursal" => $id_sucursal, "id_categoria" => $id_categoria, "not_id" => $ids_maquinas, "limit" => $limit ] ) );
         }
         else
-        abort(403);
+            abort(403);
+    }
+
+    public function get_mesa(Request $request)
+    {
+        if($request->ajax())
+        {
+            $id_mesa = $request->input('id_mesa');
+            $id_mesa == "" ? $id_mesa = null : $id_mesa = $id_mesa;
+
+            echo json_encode( linea::get_games( [ "id" => $id_mesa ] ) );
+
+        }
+        else
+            abort(403);
+
     }
 }
