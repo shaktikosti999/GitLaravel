@@ -59,7 +59,7 @@
 				        	<div class="col-sm-12">
 				          		<div class="form-group form-group-default" aria-required="true">
 				            		<label for="fecha">Fecha</label>
-				            		<input type="text" id="fecha" class="form-control required" name="fecha" required="required" value="{{$carrera->fecha}}" aria-required="true" aria-invalid="true">
+				            		<input type="text" id="fecha" class="form-control required" name="fecha" required="required" value="{{ date('m/d/Y',strtotime($carrera->fecha)) }}" aria-required="true" aria-invalid="true">
 				          		</div>
 				        	</div>
 				      	</div>

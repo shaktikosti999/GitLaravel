@@ -261,6 +261,10 @@ class generalController extends Controller
                     $modulo = \App\promocion::find($id);
                     break;
 
+                case 'proveedor':
+                    $modulo = \App\proveedor::find($id);
+                    break;
+
                 default:
                     dd($modulo);
                     break;
