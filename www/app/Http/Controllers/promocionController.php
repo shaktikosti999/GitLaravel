@@ -32,7 +32,7 @@ class promocionController extends Controller
      */
     public function create(){
         $data = [
-        'juegos' => \App\Models\juego_model::all()
+        'juegos' => \App\Models\linea_model::all()
         ];
         return view('back.promocion.create',$data);
     }
@@ -103,7 +103,7 @@ class promocionController extends Controller
         $data = [
             'id' => $id,
             'promocion' => \App\promocion::find($id),
-            'juegos' => \App\Models\juego_model::all()
+            'juegos' => \App\Models\linea_model::all()
         ];
         return view('back.promocion.edit',$data);
     }

@@ -33,7 +33,7 @@
 			<!-- START PANEL -->
 				<div class="panel panel-transparent">
 					<div class="panel-heading">
-						<div class="panel-title">Alimnetos
+						<div class="panel-title">Promociones
 						</div>
 						<div class="pull-right">
 							<div class="col-xs-12">

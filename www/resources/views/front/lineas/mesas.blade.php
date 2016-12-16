@@ -179,7 +179,7 @@
 							<aside class="section-aside">
 								<article class="article-game-available large">
 						 			<div class="article-content">
-						 				<div class="article-image" style="background-image: url({{current($mesas)->imagen}})">  
+						 				<div class="article-image" style="background-image: url({{isset(current($mesas)->archivo) && current($mesas)->archivo !== null ? current($mesas)->archivo : current($mesas)->imagen}})">  
 						 					@if(isset(current($mesas)->apuesta_minima) && !empty(current($mesas)->apuesta_minima))
 						 					<div class="article-label">
 						 						<span> Apuesta Mínima DESDE </span>
@@ -201,7 +201,7 @@
 						 					</h4><!-- /.article-title -->
 
 											<p>
-												{{current($mesas)->resumen}}
+												{{isset( current($mesas)->descripcion ) && trim(current($mesas)->descripcion) != "" ? current($mesas)->descripcion : current($mesas)->resumen}}
 											</p>
 
 											<ul class="list-links">
@@ -246,8 +246,7 @@
 
 																			<span class="plus"></span>
 																		</h6>
-																	
-																	<div class="article-image" style="background-image: url({{$mesa->imagen}})"> </div><!-- /.article-image -->
+																	<div class="article-image" style="background-image: url({{ isset($mesas->archivo) && $mesas->archivo !== null ? $mesas->imagen : $mesa->archivo}})"> </div><!-- /.article-image -->
 
 																	<a href="#" class="link-more">
 																		Ver más

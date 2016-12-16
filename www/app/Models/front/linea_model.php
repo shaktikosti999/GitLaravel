@@ -121,10 +121,11 @@ class linea_model{
         }
 
         $data = $data
-            ->where('fecha_inicio','>',date('Y-m-d'))
+            // ->where('fecha_inicio','>',date('Y-m-d'))
             ->orderBy('fecha_inicio')
-            ->paginate(2);
+            ->get();
 
+        // dd($data);
         return $data;
     }
 
@@ -163,6 +164,7 @@ class linea_model{
                 'j.resumen',
                 'j.slug',
                 'js.link',
+                'js.archivo',
                 'js.acumulado',
                 'js.apuesta_minima',
                 'js.descripcion',

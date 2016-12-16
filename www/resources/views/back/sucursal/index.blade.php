@@ -190,9 +190,14 @@
 									<input type="hidden" name="add_sucursal" id="add_sucursal_gallery">
 									{{csrf_field()}}
 									
-									<div class="form-group">
-										<label for="add_archivo">Imagen</label>
+									<div class="form-group col-lg-6">
+										<label for="add_archivo">Galería</label>
 										<input type="file" name="add_archivo[]" multiple id="add_archivo" >
+									</div>
+
+									<div class="form-group col-lg-6">
+										<label for="add_galeria">Slider</label>
+										<input type="file" name="add_galeria[]" multiple id="add_galeria" >
 									</div>
 									
 									<input type="submit" value="Guardar" class="btn btn-success">

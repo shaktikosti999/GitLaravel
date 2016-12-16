@@ -10,14 +10,14 @@ class promocion_model{
 		$data = \DB::table('promocion as p')
 			->select(
 				'p.id_promocion as id',
-				'j.nombre as juego',
+				'l.nombre as juego',
 				'p.nombre',
 				'p.slug',
 				'p.estatus',
 				\DB::raw('IF (s.id_sucursal is null,0,COUNT(s.id_sucursal)) AS sucursales')
 			)
 			->leftJoin('promocion_sucursal as s','s.id_promocion','=','p.id_promocion')
-			->join('juego as j','j.id_juego','=','p.id_juego')
+			->join('linea as l','l.id_linea','=','p.id_juego')
 			->orderBy('p.nombre')
 			->where('p.eliminado',0)
 			->groupBy('s.id_promocion')
@@ -77,14 +77,14 @@ class promocion_model{
 		return $evento;
 	}
 
-	static function update($id, $request, $archivo = false){
+	static function update($id, $request, $archivo = null){
 		$data = promocion::find($id);
 		
 		$data->id_juego = $request->input('juego');
 		$data->nombre = $request->input('nombre');
 		$data->slug = $request->input('slug');
 		$data->resumen = $request->input('resumen');
-		if($archivo !== false)
+		if($archivo !== null)
 			$data->imagen = $archivo;
 		$data->descripcion = $request->input('descripcion');
 		$data->fecha_inicio = $request->input('fecha_inicio');
@@ -99,17 +99,19 @@ class promocion_model{
 		$data = [
 			'descripcion' => $request->input('add_desc') !== null ?  $request->input('add_desc'): '',
 			'link' => $request->input('add_link') !== null ? $request->input('add_link') : '',
-			'archivo' => $archivo !== null ? $archivo : ''
 		];
+		if( $archivo !== null && !empty($archivo) && trim($archivo) != "" ){
+			$data['archivo'] = $archivo;
 
-		$imagen = \DB::table('promocion_sucursal')
-			->select('archivo')
-			->where('id_promocion',$request->input('add_promocion'))
-			->where('id_sucursal',$request->input('add_sucursal'))
-			->first();
-		$imagen = public_path() . $imagen->archivo;
-		if( file_exists($imagen) && is_file($imagen) && $archivo !== null)
-			unlink($imagen);
+			$imagen = \DB::table('promocion_sucursal')
+				->select('archivo')
+				->where('id_promocion',$request->input('add_promocion'))
+				->where('id_sucursal',$request->input('add_sucursal'))
+				->first();
+			$imagen = public_path() . $imagen->archivo;
+			if( file_exists($imagen) && is_file($imagen) && $archivo !== null)
+				unlink($imagen);
+		}
 
 		$query = \DB::table('promocion_sucursal')
 			->where('id_promocion',$request->input('add_promocion'))

@@ -9,8 +9,8 @@ class promocion_model{
 
         $data = \DB::table('promocion as p')
                         ->orderByRaw('RAND()')
-                        ->join('juego as j', 'p.id_juego', '=', 'j.id_juego')
-                        ->select("p.*", "j.id_linea")
+                        ->join('linea as l', 'p.id_juego', '=', 'l.id_linea')
+                        ->select("p.*", "l.id_linea")
                         ->where('p.estatus',1)
                         ->where('p.eliminado',0);
 
@@ -18,13 +18,13 @@ class promocion_model{
 
         if( isset( $parameters["linea"] ) && ! empty( $parameters["linea"] ) ){
 
-        	$data = $data->where( "j.id_linea", "=", $parameters["linea"] );
+        	$data = $data->where( "l.id_linea", "=", $parameters["linea"] );
 
         }
 
         if( isset( $parameters["id_linea"] ) && ! empty( $parameters["id_linea"] ) ){
 
-            $data = $data->where( "j.id_linea", "=", $parameters["id_linea"] );
+            $data = $data->where( "l.id_linea", "=", $parameters["id_linea"] );
 
         }
 

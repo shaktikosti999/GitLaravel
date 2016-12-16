@@ -106,12 +106,13 @@ class sucursal_model{
     }
 
     static function get_branch_gallery( & $branch ){
+        if( $branch !== null ) 
+            $branch->galeria = \DB::table('sucursal_galeria as s')
+                ->where('s.id_sucursal','=',$branch->id_sucursal)
+                ->where('s.estatus','=',1)
+                ->where('s.eliminado','=',0)
+                ->get();
 
-        $branch->galeria = \DB::table('sucursal_galeria as s')
-			                        ->where('s.id_sucursal','=',$branch->id_sucursal)
-			                        ->where('s.estatus','=',1)
-			                        ->where('s.eliminado','=',0)
-			                        ->get();
     }
 
     static function get_paid($args = []){
