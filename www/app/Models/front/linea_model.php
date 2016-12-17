@@ -121,7 +121,7 @@ class linea_model{
         }
 
         $data = $data
-            // ->where('fecha_inicio','>',date('Y-m-d'))
+            ->where('fecha_inicio','>',date('Y-m-d'))
             ->orderBy('fecha_inicio')
             // ->paginate(2);
             ->get();

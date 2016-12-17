@@ -259,7 +259,7 @@
 										<img src="{{$item->archivo}}">
 
 										<div class="content-serie">
-											<h5>{{$item->titulo}}</h5>
+											<h5>{{ $item->titulo }}</h5>
 											<div class="serie-item">
 												<ul>
 													<li>
