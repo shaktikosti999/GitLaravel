@@ -233,6 +233,10 @@ class generalController extends Controller
                     $modulo = \App\alimento::find($id);
                     break;
 
+                case 'proveedor':
+                    $modulo = \App\proveedor::find($id);
+                    break;
+
                 case 'sucursal':
                     $modulo = \App\sucursal::find($id);
                     break;

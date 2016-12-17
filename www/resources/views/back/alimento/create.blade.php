@@ -17,6 +17,7 @@
 			    <form id="form-agregar" role="form" autocomplete="off" method="POST" action="{{url('/administrador/agregar/alimento.html')}}" enctype="multipart/form-data">
 			    	{!!csrf_field()!!}
 			    	<input type="hidden" name="_method" value="PUT">
+
 		      		<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
@@ -25,6 +26,20 @@
 			          		</div>
 			        	</div>
 			      	</div>
+
+			      	<div class="row">
+	        			<div class="col-sm-12">
+	        				<div class="form-group form-group-default">
+	        					<label for="tipo_alimento">Categoría</label>
+				      			<select class="cs-select cs-skin-slide" data-init-plugin="cs-select" name="categoria_alimento" id="categoria_alimento">
+				      				@foreach($categoria_alimento as $categoria)
+			                      	<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+			                      	@endforeach
+	                    		</select>
+	                    	</div>
+	                	</div>
+	                </div>
+
 			      	<div class="row">
 	        			<div class="col-sm-12">
 	        				<div class="form-group form-group-default">
@@ -37,6 +52,20 @@
 	                    	</div>
 	                	</div>
 	                </div>
+
+	                <div class="row">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default">
+			            		<label for="linea">Sucursales</label>
+			            		<select multiple id="sucursales" class="form-control" name="sucursales[]" aria-required="true" aria-invalid="true">
+			            			@foreach($sucursales as $val)
+			            			<option value="{{$val->id}}">{{$val->nombre}}</option>
+			            			@endforeach
+			            		</select>
+			          		</div>
+			          	</div>
+			      	</div>
+
 	                <div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
@@ -45,6 +74,7 @@
 			          		</div>
 			        	</div>
 			      	</div>
+
 			      	<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
@@ -53,6 +83,7 @@
 			          		</div>
 			        	</div>
 			      	</div>
+
 			      	<div class="clearfix"></div>
 			      	<input class="btn btn-primary" type="submit" value="Agregar Alimento">
 			    </form>

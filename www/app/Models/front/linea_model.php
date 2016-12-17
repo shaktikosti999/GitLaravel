@@ -163,6 +163,7 @@ class linea_model{
                 'j.titulo',
                 'j.imagen',
                 'j.resumen',
+                'js.archivo',
                 'j.slug',
                 'js.link',
                 'js.archivo',

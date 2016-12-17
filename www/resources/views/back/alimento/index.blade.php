@@ -47,6 +47,7 @@
 									<thead>
 										<tr role="row">
 											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Nombre</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Categoría</th>
 											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:20%">Tipo</th>
 											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:10%">Estatus</th>
 											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:30%">Opciones</th>
@@ -56,6 +57,7 @@
 										@foreach($alimentos as $alimento)
 										<tr role="row" class="">
 											<td class="v-align-middle">{{$alimento->nombre}}</td>
+											<td class="v-align middle">{{$alimento->categoria}}</td>
 											<td class="v-align middle">{{$alimento->tipo}}</td>
 											<td class="v-align-middle"><input type="checkbox" {{$alimento->estatus == 1 ? "checked" : ""}} class="activo" data="{{$alimento->id}}" data-toggle="toggle"></td>
 											<td class="v-align-middle">

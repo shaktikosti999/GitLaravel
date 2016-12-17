@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use \App\Models\alimento_model as alimento;
+use \App\Models\sucursal_model as sucursal;
 
 class alimentoController extends Controller
 {
@@ -30,7 +31,9 @@ class alimentoController extends Controller
      */
     public function create(){
         $data = array(
-            'tipo_alimento' => alimento::get_food_type()
+            'sucursales' => sucursal::all(),
+            'tipo_alimento' => alimento::get_food_type(),
+            'categoria_alimento' => alimento::get_category_type()
         );
         if($data['tipo_alimento'] !== false)
             return view('back.alimento.create',$data);
@@ -46,6 +49,7 @@ class alimentoController extends Controller
         $this->validate($request,[
             'nombre' => 'required|string|max:100|min:3',
             'tipo_alimento' => 'required|integer|min:1|max:9',
+            'categoria_alimento' => 'required|integer|min:1',
             'descripcion' => 'string',
             'archivo' => 'required|image'
         ]);
@@ -99,7 +103,10 @@ class alimentoController extends Controller
         $data = array(
             'id' => $id,
             'alimento' => alimento::find($id),
-            'tipo_alimento' => alimento::get_food_type()
+            'sucursales' => sucursal::all(),
+            'sucursal_alimento' => alimento::get_branches_id($id),
+            'tipo_alimento' => alimento::get_food_type(),
+            'categoria_alimento' => alimento::get_category_type()
         );
         // dd($data);
         if($data['alimento'] !== null)
@@ -118,6 +125,7 @@ class alimentoController extends Controller
         $this->validate($request,[
             'nombre' => 'required|string|max:100|min:3',
             'tipo_alimento' => 'required|integer|min:1|max:9',
+            'categoria_alimento' => 'required|integer|min:1',
             'descripcion' => 'string',
             'archivo' => 'image'
         ]);
