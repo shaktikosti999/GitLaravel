@@ -49,6 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 		include_once('Routes/slider.php');
 		include_once('Routes/promocion.php');
 		include_once('Routes/textfooter.php');
+		include_once('Routes/pagina_contenido.php');
 
 	});
 });

@@ -43,7 +43,7 @@ class registertask
         }
 
         $slug = explode(".",end($url));
-        $slug = preg_replace('/[^a-zA-Z]/i', "", current($slug));
+        $slug = preg_replace('/[^a-zA-Z_]/i', "", current($slug));
 
         $mod = \DB::table('sys_modulo')->where('estatus',1)->where('eliminado',0)->where('slug',$slug)->get();
         if(count($mod) != 1){

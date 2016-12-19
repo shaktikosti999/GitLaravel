@@ -150,6 +150,10 @@ class generalController extends Controller
                 case 'promocion':
                     $modulo = \App\promocion::find($id);
                     break;
+                case 'pagina_de_contenido':
+                    $modulo = \App\pagina_contenido::find($id);
+                    $mod = 32;
+                    break;
                 default:
                     dd($modulo);
                 break;
@@ -267,6 +271,11 @@ class generalController extends Controller
 
                 case 'proveedor':
                     $modulo = \App\proveedor::find($id);
+                    break;
+
+                case 'pagina_de_contenido':
+                    $modulo = \App\pagina_contenido::find($id);
+                    $mod = 32;
                     break;
 
                 default:
