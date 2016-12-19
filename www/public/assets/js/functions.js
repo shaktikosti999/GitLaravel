@@ -280,9 +280,10 @@
 			swipeToSlide: false,
 			initialSlide: 1,
 			swipe : true,
-			centerMode:true,
+			centerMode: true,
 			centerPadding: '0',
 			slidesToShow: 3,
+			infinite: true,
 			slidesToScroll: 1,
 			swipeToSlide: true 
 		});
@@ -327,6 +328,8 @@
 		// 	var imageSrc = $(this).find('img').attr('src'); 
 		// 	$(this).find('.slide-image').css('background-image','url(' + imageSrc + ')')
 		// });
+
+	
 
 		//scroll to next section
 		$('.btn-scroll').click(function (e) {
