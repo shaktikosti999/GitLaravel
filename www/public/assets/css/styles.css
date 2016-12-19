@@ -2500,7 +2500,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 @media (max-width: 1162px) {
 	.section-events { width: 100%;}
 	.content-serie {margin: 0;}
-	.section-events img {padding: 30px 0 30px 0; width: 100%; height: 490px;}
+	.section-events img {padding: 30px 20% 30px 20%; width: 100%; height: 490px;}
 	.serie-item {width: 47%;}
 }
 
@@ -2561,7 +2561,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.section-btn .btn-carreras li a:nth-child(3) {margin-bottom: 0 !important;}
 	.table-sport table {font-size: 20px;}
 	.table-sport table td p {font-size: 20px;}
-	.section-events img {height: 390px;}
+	.section-events img {height: auto;}
 }
 
 @media(max-width: 768px){
