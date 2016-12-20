@@ -151,9 +151,10 @@ class paginaController extends Controller
         $menu_inferior = trim($request->input('menu_inferior'));
         $orden = $request->input('orden');
         $link = trim($request->input('link'));
+        $elimina_imagen = $request->input('eliminada');
         
         $pagina = \App\pagina_contenido::find($id);
-        $img_principal_anterior = $pagina->imagen_principal;
+        $img_principal_anterior = $pagina->archivo;
         $slug_anterior = $pagina->slug;
         $imagen_principal = "";
 
@@ -164,7 +165,7 @@ class paginaController extends Controller
 
             if(in_array($ext, $extValidas)){  
                 $carpeta = 'assets/img/paginas/';            
-                if($img_principal_anterior!="")
+                if($img_principal_anterior != "")
                 {                    
                     $elimina = File::delete(public_path(). $img_principal_anterior); //Elimina imagen anterior                    
                 }else{
@@ -192,8 +193,16 @@ class paginaController extends Controller
             }                    
         }
         else{
-          $imagen_principal = $img_principal_anterior;
+
+            if($elimina_imagen == 1)
+            {                    
+                $elimina = File::delete(public_path(). $img_principal_anterior); //Elimina imagen anterior  
+                $imagen_principal = '';                  
+            }else{
+              $imagen_principal = $img_principal_anterior;
+            }          
         }
+        
         $data_pagina = array(
                               'id_padre' => $padre,
                               'titulo' => $titulo,

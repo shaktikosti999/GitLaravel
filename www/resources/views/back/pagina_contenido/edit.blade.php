@@ -2,7 +2,7 @@
 	@section('script')
 		<script src="{{asset('/assets/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('/assets/js/notify.min.js')}}"></script>
-		<script src="{{asset('/assets/js/pagina_contenido/create.js')}}"></script>
+		<script src="{{asset('/assets/js/paginas/edit.js')}}"></script>
 	@stop
 	@section('contenido')
 		<!--Campos ocultos-->
@@ -42,23 +42,29 @@
 				          	</div>
 				      	</div>
 				      	<div class="row clearfix">
-				        	<div class="col-sm-12">
+				        	<div class="col-sm-10">
 				          		<div class="form-group form-group-default">
 				            		<label for="img_principal">Imagen Principal</label>
 				            		<input type="file" id="img_principal" class="form-control" name="img_principal" aria-invalid="true">
 				          		</div>
 				          	</div>
+				          	<div class="col-sm-2">
+				            	<button class="btn btn-danger" id="elimina_img">Eliminar</button>
+				          	</div>
 				      	</div>
 				      	@if($pagina->imagen_principal != "")
 					      	<div class="row clearfix" id="img_p">
 					      		<div class="col-sm-12">			      		
-					      			<div class="col-xs-6 col-md-3">
+					      			<div class="col-xs-6 col-md-3" id="imagen_principal">
+					      				<button id="elimina_imagen">Elimina imagen</button>
 								  		<img src="{{$pagina->imagen_principal}}" class="img-responsive" alt="" data-toggle="tooltip" data-placement="top">
 								  	</div>		
 					      		</div>		      		
 					      	</div>
 					      	<br/>
 				      	@endif
+
+				      	<input type="hidden" name="eliminada" value="0" id="eliminada">
 
 						<div class="row clearfix">
 				        	<div class="col-sm-12">

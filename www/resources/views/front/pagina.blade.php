@@ -12,12 +12,12 @@
                     </div><!-- /.article-head -->
 
                     <div class="article-image">
-                        <img src="{{ $pagina->archivo }}" alt="">
+                        <img src="{{ $pagina->archivo }}" alt="" class="img-responsive">
                     </div><!-- /.article-image -->
                     
                     <div class="article-entry">
                     
-                        {{ $pagina->contenido }}
+                        {!! $pagina->contenido !!}
 
                     </div><!-- /.article-entry -->
                     
