@@ -52,6 +52,8 @@ foreach($privs as $key => $priv){
     <!--[if lte IE 9]>
   <link href="assets/plugins/codrops-dialogFx/dialog.ie.css" rel="stylesheet" type="text/css" media="screen" />
   <![endif]-->
+  <!--Textarea de Texto enriquecido-->
+  <link href="{{asset('/assets/plugins/summernote/css/summernote.css')}}" rel="stylesheet" type="text/css" media="screen">
   @yield('css')
   </head>
   <body class="fixed-header">
@@ -1751,6 +1753,20 @@ foreach($privs as $key => $priv){
     <script type="text/javascript" src="{{asset('/assets/js/layout/admin.js')}}"></script>
     <!--Para la carga de archivos-->
     <script src="{{asset('/assets/js/jquery.uploadfile.min.js')}}"></script>
+
+     <!--Textarea de texto enriquecido-->
+    <script src="{{asset('/assets/plugins/summernote/js/summernote.min.js')}}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('.summernote').summernote({
+            height: 200,
+            onfocus: function(e) {
+                $('body').addClass('overlay-disabled');
+            },
+            onblur: function(e) {
+                $('body').removeClass('overlay-disabled');
+            }
+        });
+    </script>
     
     @yield('script')
     @if(session()->has('error'))

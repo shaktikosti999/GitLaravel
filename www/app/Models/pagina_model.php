@@ -9,121 +9,120 @@ use Illuminate\Support\Str;
 
 class pagina_model{
 
-	static function all(){
-		$data = \DB::table('pagina_contenido as padre')
+    static function all(){
+        $data = \DB::table('contenido_simple as padre')
             ->select(
-                'padre.id_pagina as id',
+                'padre.id_contenido as id',
                 'padre.estatus',
                 'padre.link',
                 'padre.contenido',
-                'hijo.nombre as hijo',
-                'padre.nombre as titulo_padre',
+                'hijo.titulo as hijo',
+                'padre.titulo as titulo_padre',
                 'padre.id_padre',
                 \DB::raw('20 as modulo')                    
             )
-            ->leftjoin('pagina_contenido as hijo','padre.id_pagina','=','hijo.id_padre')
-            ->where('padre.eliminado',0)                
-            ->orderBy('padre.orden','ASC')
+            ->leftjoin('contenido_simple as hijo','padre.id_contenido','=','hijo.id_padre')
+            ->where('padre.eliminado',0)  
+            ->orderBy('padre.titulo','ASC')
             ->get();
-		return $data;
-	}
+        return $data;
+    }
 
-	static function store($request, $archivo)
-	{
-		$padre = $request->input('padre');
-        $titulo = trim($request->input('titulo'));
-        $slug = Str::slug($titulo, '-');
-        $contenido = $request->input('contenido');
+    static function store($request, $archivo)
+    {
+        $padre          = $request->input('padre');
+        $titulo         = trim($request->input('titulo'));
+        $slug           = trim($request->input('slug'));
+        $contenido      = $request->input('contenido');
         $menu_principal = trim($request->input('menu_principal'));
-        $menu_inferior = trim($request->input('menu_inferior'));
-        $orden = $request->input('orden');
-        $link = trim($request->input('link'));
+        $menu_inferior  = trim($request->input('menu_inferior'));
+        $orden          = $request->input('orden');
+        $link           = trim($request->input('link'));
        
-        $verifica_slug = \DB::table('pagina_contenido')
+        $verifica_slug = \DB::table('contenido_simple')
                     ->where('slug', '=', $slug)
                     ->count();
 
         while($verifica_slug >= 1)
         {
             $slug = $slug.mt_rand(1, 1000); 
-            $verifica_slug = \DB::table('pagina_contenido')
+            $verifica_slug = \DB::table('contenido_simple')
                     ->where('slug', '=', $slug)
                     ->count();
         }
 
-		$pagina = new pagina_contenido;
+        $pagina = new pagina_contenido;
 
-        $pagina->id_padre = $padre;
-        $pagina->nombre = $titulo;
-        $pagina->slug = $slug;
-        $pagina->contenido = $contenido;
+        $pagina->id_padre       = $padre;
+        $pagina->titulo         = $titulo;
+        $pagina->slug           = $slug;
+        $pagina->archivo        = $archivo;
+        $pagina->contenido      = $contenido;
+        $pagina->orden          = $orden;
         $pagina->menu_principal = $menu_principal;
-        $pagina->menu_inferior = $menu_inferior;
-        $pagina->orden = $orden;
-        $pagina->link = $link;
-        $pagina->imagen_principal = $archivo;
+        $pagina->menu_inferior  = $menu_inferior;
+        $pagina->link           = $link;        
 
         $evento = Event::fire(new dotask($pagina));
 
         return $evento;
 
-	}
+    }
 
-	static function get_padres()
-	{
-		$data = \DB::table('pagina_contenido')
-                ->orderBy('nombre')
+    static function get_padres()
+    {
+        $data = \DB::table('contenido_simple')
+                ->orderBy('titulo')
                 ->where('id_padre',0)
                 ->where('estatus',1)
-                ->select('id_pagina as id','nombre as titulo')
+                ->select('id_contenido as id','titulo')
                 ->get();
 
         return $data;
-	}
+    }
 
-	static function show($id)
-	{
-		$data = \DB::table('pagina_contenido as pc')
+    static function show($id)
+    {
+        $data = \DB::table('contenido_simple as pc')
                 ->select('pc.*',
-                        'p.nombre as titulo_padre'
+                        'p.titulo as titulo_padre'
                         )
-                ->where('pc.id_pagina','=',$id)
-                ->leftjoin('pagina_contenido as p','pc.id_padre','=','p.id_pagina')
-                ->groupBy('pc.id_pagina')
+                ->where('pc.id_contenido','=',$id)
+                ->leftjoin('contenido_simple as p','pc.id_padre','=','p.id_contenido')
+                ->groupBy('pc.id_contenido')
                 ->first();
         return $data;
-	}
+    }
 
-	static function edit($id)
-	{
-		$data = \DB::table('pagina_contenido as pc')
-                ->select('pc.id_pagina','pc.id_padre','pc.nombre as titulo','pc.imagen_principal','pc.contenido',
-                        'pc.orden','pc.menu_principal','pc.menu_inferior','pc.link')
-                ->where('pc.id_pagina',$id)                
+    static function edit($id)
+    {
+        $data = \DB::table('contenido_simple as pc')
+                ->select('pc.id_contenido','pc.id_padre','pc.titulo','pc.archivo as imagen_principal','pc.contenido','pc.orden','pc.slug','pc.menu_principal','pc.menu_inferior','pc.link')
+                ->where('pc.id_contenido',$id)                
                 ->first();
 
         return $data;
-	}
+    }
 
-	static function paginas($id)
-	{
-		$data = \DB::table('pagina_contenido')
-                ->orderBy('nombre')
-                ->select('id_pagina as id','nombre as titulo')
-                ->where('id_pagina','!=',$id)
+    static function paginas($id)
+    {
+        $data = \DB::table('contenido_simple')
+                ->orderBy('titulo')
+                ->select('id_contenido as id','titulo')
+                ->where('id_contenido','!=',$id)
                 ->where('id_padre','=',0)
                 ->get();
 
         return $data;
-	}	
+    }   
 
-	static function actualiza($data, $id)
-	{
-		$actualiza = \DB::table('pagina_contenido')
-                        ->where('pagina_contenido.id_pagina',$id)
+    static function actualiza($data, $id)
+    {
+        $actualiza = \DB::table('contenido_simple')
+                        ->where('contenido_simple.id_contenido',$id)
                         ->update($data);
 
         return $actualiza;
-	}
+    }
 
 };

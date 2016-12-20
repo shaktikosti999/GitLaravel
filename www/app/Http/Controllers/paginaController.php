@@ -108,7 +108,7 @@ class paginaController extends Controller
     public function show($id){
         $pagina = pagina::show($id);
         ?>
-        <h5>Título: <small><?php echo $pagina->nombre; ?></small></h5>
+        <h5>Título: <small><?php echo $pagina->titulo; ?></small></h5>
         <h5>Padre: <small><?php echo $pagina->titulo_padre; ?></small></h5>
         <h5>Link: <small><?php echo $pagina->link; ?></small></h5>
         <h5>Orden: <small><?php echo $pagina->orden; ?></small></h5>
@@ -145,7 +145,7 @@ class paginaController extends Controller
     {        
         $padre = $request->input('padre');
         $titulo = trim($request->input('titulo'));
-        $slug = Str::slug($titulo, '-');
+        $slug = trim($request->input('slug'));
         $contenido = $request->input('contenido');
         $menu_principal = trim($request->input('menu_principal'));
         $menu_inferior = trim($request->input('menu_inferior'));
@@ -196,9 +196,9 @@ class paginaController extends Controller
         }
         $data_pagina = array(
                               'id_padre' => $padre,
-                              'nombre' => $titulo,
+                              'titulo' => $titulo,
                               'slug' => $slug,  
-                              'imagen_principal' => $imagen_principal,  
+                              'archivo' => $imagen_principal,  
                               'contenido' => $contenido,   
                               'menu_principal' => $menu_principal,
                               'menu_inferior' => $menu_inferior,

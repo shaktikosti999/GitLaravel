@@ -50,7 +50,7 @@
 				        	<div class="col-sm-12">
 				          		<div class="form-group" aria-required="true" >
 				            		<label for="contenido">Contenido</label>
-				            		<textarea id="contenido" class="form-control required" name="contenido" aria-invalid="true" rows="10"></textarea>
+				            		<textarea id="contenido" class="form-control required summernote" name="contenido" aria-invalid="true" rows="10"></textarea>
 				          		</div>
 				        	</div>
 				      	</div>
@@ -73,6 +73,14 @@
 				          		</div>
 				        	</div>
 				      	</div>	
+				      	<div class="row clearfix">
+				        	<div class="col-sm-12">
+				          		<div class="form-group form-group-default" aria-required="true">
+				            		<label for="slug">Slug</label>
+				            		<input type="text" id="slug" class="form-control" name="slug" aria-invalid="true" value="">
+				          		</div>
+				        	</div>
+				      	</div>
 				      	<div class="row clearfix">
 				        	<div class="col-sm-12">
 				          		<div class="form-group form-group-default" aria-required="true">

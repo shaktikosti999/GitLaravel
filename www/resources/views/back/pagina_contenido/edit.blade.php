@@ -13,7 +13,7 @@
 			<!-- START PANEL -->
 			<div class="panel panel-transparent">
 		  		<div class="panel-body">
-				    <form id="form-agregar" role="form" autocomplete="off" method="POST" action="{{url('/administrador/modificar/pagina_de_contenido'. $pagina->id_pagina . '.html')}}" enctype="multipart/form-data">
+				    <form id="form-agregar" role="form" autocomplete="off" method="POST" action="{{url('/administrador/modificar/pagina_de_contenido'. $pagina->id_contenido . '.html')}}" enctype="multipart/form-data">
 				    	{!!csrf_field()!!}
 				    	<input type="hidden" name="_method" value="PATCH">
 			      		<div class="row clearfix">
@@ -64,7 +64,7 @@
 				        	<div class="col-sm-12">
 				          		<div class="form-group" aria-required="true" >
 				            		<label for="contenido">Contenido</label>
-				            		<textarea id="contenido" class="form-control required" name="contenido" aria-invalid="true" rows="10">{{$pagina->contenido}}</textarea>
+				            		<textarea id="contenido" class="form-control required summernote" name="contenido" aria-invalid="true" rows="10">{{$pagina->contenido}}</textarea>
 				          		</div>
 				        	</div>
 				      	</div>
@@ -84,6 +84,14 @@
 									    	Menú inferior
 									  	</label>
 									</div>
+				          		</div>
+				        	</div>
+				      	</div>
+				      	<div class="row clearfix">
+				        	<div class="col-sm-12">
+				          		<div class="form-group form-group-default" aria-required="true">
+				            		<label for="slug">Slug</label>
+				            		<input type="text" id="slug" class="form-control" name="slug" aria-invalid="true" value="{{$pagina->slug}}">
 				          		</div>
 				        	</div>
 				      	</div>
