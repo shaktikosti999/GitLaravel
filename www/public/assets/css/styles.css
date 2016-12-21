@@ -1133,6 +1133,7 @@ li:first-child { margin: 0;}
 \* ------------------------------------------------------------ */
 .promotions { list-style: none; }
 .promotion { margin-bottom: 14px; background: #ebebeb; border-radius: 4px 0px 4px 4px; overflow: hidden; position: relative; }
+.section-body li.promotion  {margin-bottom: 14px;}
 .promotion:after { content: ''; line-height: 0; display: table; clear: both; }
 .promotion .promotion-date { width: 312px; float: left; }
 .promotion .promotion-date:before { content: ''; position: absolute; top: 0; left: 0; bottom: -3px; width: 5px; background: #2fa600; }
@@ -1218,7 +1219,7 @@ li:first-child { margin: 0;}
 .section-secondary.section-gray { padding-bottom: 20px; }
 .section-secondary.section-gray .section-head { padding: 35px 0 34px; }
 .section-secondary.section-gray .section-head h2 { margin-bottom: 8px; }
-.section-secondary.section-gray .section-body p { margin-bottom: 25px; }
+.section-secondary.section-gray .section-body p { margin-bottom: 25px; color: #000; }
 /* ------------------------------------------------------------ *\
 	Section Teritary
 \* ------------------------------------------------------------ */
