@@ -273,9 +273,9 @@
 		$('.slider-secondary .slick-dots').wrap('<div class="slick-dots-wrapper"><div class="shell"></div></div>');
 
 		$('.slider-providers .slides').slick({
-			dots: true, 
+			dots: true,
 			arrows: false,
-			infinite: true,
+			infinite: false,
 			touchMove: false,
 			swipeToSlide: false,
 			initialSlide: 1,
@@ -283,10 +283,10 @@
 			centerMode: true,
 			centerPadding: '0',
 			slidesToShow: 3,
-			infinite: true,
 			slidesToScroll: 1,
 			swipeToSlide: true 
 		});
+
 
 		//carousel sport calendar
    		$('.sport-calendar').slick({
@@ -328,7 +328,6 @@
 		// 	var imageSrc = $(this).find('img').attr('src'); 
 		// 	$(this).find('.slide-image').css('background-image','url(' + imageSrc + ')')
 		// });
-
 	
 
 		//scroll to next section
