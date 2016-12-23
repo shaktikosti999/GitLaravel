@@ -2,9 +2,13 @@
 
 	@section('css')
 		<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+		<script src="{{asset('assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css')}}"></script>
+		<script src="{{asset('assets/plugins/bootstrap-datepicker/css/datepicker3.css')}}"></script>
 	@stop
 	@section('script')
 		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+		<script src="{{asset('assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.js')}}"></script>
+		<script src="{{asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js')}}"></script>
 		<script>
 			$(function(){
 				$('.activo').on('change', function(){
@@ -52,7 +56,7 @@
 											<th class="sorting_disabled" rowspan="1" colspan="1">Slug</th>
 											<th class="sorting_disabled" rowspan="1" colspan="1">Estatus</th>
 											<th class="sorting_disabled" rowspan="1" colspan="1">Sucursales</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:25%">Opciones</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:35%">Opciones</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -66,6 +70,15 @@
 											<td class="v-align-middle">{{$promocion->sucursales}}</td>
 											<td class="v-align-middle">
 												<div class="btn-group btn-group-justified">
+													<div class="btn-group">
+															<button type="button" role="button" class="btn btn-default pay_btn" data-id="{{$promocion->id}}" data-promoname="{{$promocion->nombre}}">
+							                              		<span class="p-t-5 p-b-5">
+							                              			<i class="fa fa-usd" aria-hidden="true"></i>
+							                              		</span>
+							                              		<br>
+							                              		<span class="fs-11 font-montserrat text-uppercase">Pagos</span>
+							                              	</button>
+						                            </div>
 						                            <div class="btn-group">
 															<button type="button" role="button" class="btn btn-default promocion_btn" data-id="{{$promocion->id}}" data-promoname="{{$promocion->nombre}}">
 							                              		<span class="p-t-5 p-b-5">
@@ -158,6 +171,65 @@
 										<label for="add_link">Enlace</label>
 										<input type="text" name="add_link" id="add_link" class="form-control">
 									</div>
+									<input type="submit" value="Guardar" class="btn btn-success">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		</div>
+		<!-- Modal para la dinámica de pagos -->
+		<div class="modal fade slide-down disable-scroll in" id="payModal" tabindex="-1" role="dialog" aria-hidden="false" style="display: none; padding-right: 17px;">
+			<div class="modal-dialog  modal-lg">
+				<div class="modal-content-wrapper">
+					<div class="modal-content">
+						<div class="modal-header clearfix text-left">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+							</button>
+							<h5>Sucursales con la promoción <span class="semi-bold" id="nombre_sucursal"></span></h5>
+						</div>
+						<div class="modal-body">
+							<div class="row" style="height:80px;overflow-y:auto;" id="pay_list">
+								<ul class="list-group"></ul>
+							</div>
+							<div class="row">
+								<form action="{{url('/administrador/agregar/pago_promocion.html')}}" method="post" id="modal_pay_form">
+									<input type="hidden" name="_method" value="put">
+									<input type="hidden" name="pay_id_promocion" id="pay_id_promocion">
+									{{csrf_field()}}
+
+									<div class="form-group">
+										<label for="pay_titulo">Título</label>
+										<input type="text" name="pay_titulo" id="pay_titulo" class="form-control">
+									</div>
+
+									<div class="form-group">
+										<label for="pay_sucursal">Sucursales</label>
+										<select name="pay_sucursal[]" id="pay_sucursal" class="form-control" multiple></select>
+									</div>
+
+									<div class="form-group">
+										<label for="pay_desc">Descripción</label>
+										<textarea name="pay_desc" id="pay_desc" class="form-control"></textarea>
+									</div>
+
+									<div class="form-group">
+										<label for="pay_date">Fecha</label>
+										<input type="text" name="pay_date" id="pay_date" class="form-control">
+									</div>
+
+									<div class="form-group col-lg-6">
+										<label for="pay_date1">Inicio</label>
+										<input type="text" name="pay_date1" id="pay_date1" class="form-control">
+									</div>
+
+									<div class="form-group col-lg-6">
+										<label for="pay_date2">Fin</label>
+										<input type="text" name="pay_date2" id="pay_date2" class="form-control">
+									</div>
+
 									<input type="submit" value="Guardar" class="btn btn-success">
 								</form>
 							</div>

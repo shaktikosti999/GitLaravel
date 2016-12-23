@@ -48,4 +48,18 @@ class promocion_model{
         return $get;
     }
 
+    static function find_valid_branch($id){
+        $data = \DB::table('sucursal as s')
+            ->select('s.nombre','s.slug','s.id_sucursal as id')
+            ->join('promocion_sucursal as sp','sp.id_sucursal','=','s.id_sucursal')
+            ->where('sp.id_promocion',$id)
+            ->get();
+        return $data;
+    }
+
+    static function get_dynamic($id){
+        $data = \DB::table('pago_promocion as pp')->where('pp.id_promocion',$id)->get();
+        return $data;
+    }
+
 }

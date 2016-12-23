@@ -19,6 +19,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/administrador', function () {return view('layout.admin');});
 	Route::patch('/administrador/listar/{modulo}.html','generalController@listar')->where(['modulo'=>'[a-zA-Z]+[a-zA-Z_]*']);
 
+	// Asignar Dinámica a promoción y sucursal
+	include_once('Routes/dinamica.php');
+
 	Route::group(['middleware' => 'permisos'], function() {
 		Route::post('/administrador/estatus/{modulo}.html','generalController@estatus');
 		Route::delete('/administrador/eliminar/{modulo}{id}.html','generalController@destroy')->where(['modulo'=>'[a-zA-Z]+[a-zA-Z_]*','id'=>'[1-9]+[0-9]*']);
@@ -58,6 +61,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/','front\indexController@index');
 
 //-----> Promociones
+// Route::get('/promociones', function(){
+	// return view('front.promociones.promotions');
+// });
 Route::get('/promociones/{sucursal?}','front\promocionesController@index');
 Route::get('/promociones/detalle/{slug}','front\promocionesController@show');
 

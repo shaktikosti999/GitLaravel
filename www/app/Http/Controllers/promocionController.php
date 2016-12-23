@@ -305,4 +305,35 @@ class promocionController extends Controller
             abort(503);
     }
 
+    // ----->Dinmámicas de juego
+    public function get_branches(Request $request){
+        $id = $request->input('id');
+        $data = [
+            'sucursales' => promocion::get_branches($id),
+            'dinamicas' => promocion::get_dynamics($id)
+        ];
+        if( isset($data['sucursales']) && count($data['sucursales']) )
+            return json_encode($data);
+        return null;
+    }
+
+    public function store_dinamica(Request $request){
+        $this->validate($request,[
+            "pay_id_promocion" => "required|integer|min:1",
+            "pay_titulo" => "required|string",
+            "pay_desc" => "required|string",
+            "pay_sucursal" => "required",
+            "pay_date" => "required",
+            "pay_date1" => "required",
+            "pay_date2" => "required"
+        ]);
+        $sucursal = $request->input('pay_sucursal');
+        if( is_array($sucursal) && count($sucursal) ){
+            if(promocion::store_dinamica($request)){
+                return redirect('/administrador/promocion.html')->with('success','Dinámica asignada correctamente');
+            }
+            return redirect('/administrador/promocion.html')->with('error','Hubo un error al almacenar la dinámica para esta promoción');
+        }
+    }
+
 }

@@ -89,9 +89,13 @@ class promocionesController extends Controller
         $promocion = promocion::find(['slug' => $slug]);
 
         $data = [
-            'promocion' => $promocion
+            'promocion' => $promocion,
+            'slider' => [1,2,3],
+            'suc_validas' => promocion::find_valid_branch($promocion->id_promocion),
+            'dinamica' => promocion::get_dynamic($promocion->id_promocion)
         ];
+        // DD($data);
 
-        return view('front.promociones.show',$data);
+        return view('front.promociones.promotions',$data);
     }
 }

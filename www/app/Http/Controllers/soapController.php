@@ -19,11 +19,57 @@ class soapController extends Controller
      */
     public function index()
     {
-        $client = new SoapClient('http://casinocaliente.abardev.net/api/SignOnSitio.wsdl?wsdl');
-        // $client = new SoapClient('http://casinocaliente.abardev.net/api/IAA.svc?wsdl');
-        // $results = $client->GetLicenseVerification( 'MY_USERNAME' , 'MY_PASSS' , '......' , '......' , 1 );
+        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl&amp');
+        $res = $soap->__soapCall('SignOnSitioOp',[[
+            'ip'=>'10.100.240.2',
+            'idSitio'=>1
+        ]]);
 
-        print_r($client->__getFunctions());
+        // // regresa array con error de sesión 4
+        // $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaEventosDeportes?wsdl');
+        // $res2 = $soap->__soapCall('ListaEventosDeportesOp',[[
+        //     'numDeporte'=>$res->sesion,
+        //     'numLiga'=>$res->sesion,
+        //     'idAgrupador'=>$res->sesion
+        // ]]);
+
+        // No regresa información 2
+        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp');
+        // $res2 = $soap->__soapCall('ListaDeportesOp',['listaDeportesType']);
+        // $res2 = $soap->__soapCall('ListaDeportesOp',[['listaDeportesType']]);
+        // $res2 = $soap->__soapCall('ListaDeportesOp',['listaDeportesType'=>1]);
+        // $res2 = $soap->__soapCall('ListaDeportesOp',[['listaDeportesType']]);
+        // $res2 = $soap->__soapCall('ListaDeportesOp',[['listaDeportesType'=>1]]);
+        // $res2 = $soap->__soapCall('ListaDeportesOp',[1]);
+        // $res2 = $soap->__soapCall('ListaDeportesOp',[[1]]);
+        // $res2 = $soap->__soapCall('ListaDeportesOp',[]);
+        // $res2 = $soap->__soapCall('ListaDeportesOp',[[]]);
+        // $res2 = $soap->__soapCall('ListaDeportesOp');
+
+        // No regresa información 3
+        // $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl');
+        // $res2 = $soap->__soapCall('ListaAgrupadoresDeportesOp',[
+        //     'numDeporte'=>1
+        // ]);
+
+        // Prueba inicial
+        // dd($res);
+
+        echo '<pre>';
+        echo '<h2>Types:</h2>';
+        $types = $soap->__getTypes();
+        foreach ($types as $type) {
+            $type = preg_replace(
+                array('/(\w+) ([a-zA-Z0-9]+)/', '/\n /'),
+                array('<font color="green">${1}</font> <font color="blue">${2}</font>', "\n\t"),
+                $type
+            );
+            echo $type;
+            echo "\n\n";
+        }
+        echo '</pre>';
+        dd($soap->__getFunctions());
+
         
     }
 

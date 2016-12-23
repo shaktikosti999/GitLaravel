@@ -111,4 +111,74 @@ $(document).ready(function(){
 		$('#add_imagen').parent().parent().hide();
 		$('[type="submit"]').val('Agregar');
 	});
+
+	$('#pay_date1').timepicker({
+        template: false,
+        showInputs: false,
+        minuteStep: 5
+    });
+	$('#pay_date2').timepicker({
+        template: false,
+        showInputs: false,
+        minuteStep: 5
+    });
+
+	$('#pay_date').datepicker();
+
+	$('.pay_btn').on('click', function(){
+		var id = $(this).attr('data-id');
+		context = $(this);
+
+		$('#pay_id_promocion').val(id);
+		$.ajax({
+			url:'/promociones/branches',
+			type:'post',
+			data:{
+				'id':id,
+				'_method':'PATCH'
+			},
+			success:function(data){
+				if( data.trim() != "" ){
+					data = JSON.parse(data);
+					console.log(data);
+					$.each(data.sucursales, function(index,item){
+						$('#pay_sucursal').append('<option value="' + item.id + '">' + item.nombre + '</option>')
+					});
+					$.each(data.dinamicas, function(index,item){
+						$('#pay_list').append('\
+							<li class="list-group-item" data-text="' + item.descripcion + '" data-inicio="' + item.inicio + '" data-fin="' + item.fin + '">' + item.titulo + '\
+								<span class="btn btn-default badge" onClick="game_delete(' + item.id_sucursal + ',' + id + ')">\
+									<i class="fa fa-trash" aria-hidden="true"></i>\
+								</span>\
+								<span class="btn btn-default badge" onClick="game_edit(' + item.id_sucursal + ',' + id + ')">\
+									<i class="fa fa-pencil" aria-hidden="true"></i>\
+								</span>\
+							</li>');
+					});
+					$('#payModal').modal('show');
+				}
+				else{
+					$.notify(
+					  "No hay sucursales asignadas a la promoción", 
+					  {
+					    globalPosition:"top center",
+					    className:"warning",
+					  }
+					);
+				}
+			}
+		});
+	});
+
+	$('#payModal').on('hidden.bs.modal', function(){
+		$('#pay_id_promocion').val('');
+		$('#pay_titulo').val('');
+		$('#pay_desc').val('');
+		$('#pay_sucursal').val('');
+		$('#pay_date').val('');
+		$('#pay_date1').val('');
+		$('#pay_date2').val('');
+		$('#pay_sucursal').html('');
+		$('#pay_list').html('');
+	});
 });

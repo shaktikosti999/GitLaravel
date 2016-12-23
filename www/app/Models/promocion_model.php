@@ -40,6 +40,33 @@ class promocion_model{
 		return promocion::find($id);
 	}
 
+	static function get_branches($id){
+		
+		$data = \DB::table('promocion_sucursal as ps')
+			->select(
+				's.id_sucursal as id',
+				's.nombre'
+			)
+			->join('sucursal as s','s.id_sucursal','=','ps.id_sucursal')
+			->where('ps.id_promocion',$id)
+			->get();
+		return $data;
+	}
+
+	static function get_dynamics($id){
+		$data = \DB::table('pago_promocion as pp')
+			->select(
+				'id_sucursal',
+				'titulo',
+				'descripcion',
+				'inicio',
+				'fin'
+			)
+			->where('id_promocion',$id)
+			->get();
+		return $data;
+	}
+
 	static function get_promotions($args){
 		$data = \DB::table('promocion_sucursal as ps')
 			->select(
@@ -75,6 +102,21 @@ class promocion_model{
 		$evento = Event::fire(new dotask($data));
 		// dd($evento,$data);
 		return $evento;
+	}
+
+	static function store_dinamica($request){
+		$promocion = $request->input('pay_id_promocion');
+		foreach($request->input('pay_sucursal') as $item){
+			$data[] = [
+				'id_promocion' => $promocion,
+				'id_sucursal' => $item,
+				'titulo' => $request->input('pay_titulo'),
+				'descripcion' => $request->input('pay_desc'),
+				'inicio' => date('Y-m-d H:i:s', strtotime($request->input('pay_date') . ' ' . $request->input('pay_date1'))),
+				'fin' => date('Y-m-d H:i:s', strtotime($request->input('pay_date') . ' ' . $request->input('pay_date2')))
+			];
+		}
+		return \DB::table('pago_promocion')->insert($data);
 	}
 
 	static function update($id, $request, $archivo = null){
