@@ -116,13 +116,26 @@ class pagina_model{
         return $data;
     }   
 
-    static function actualiza($data, $id)
-    {
-        $actualiza = \DB::table('contenido_simple')
-                        ->where('contenido_simple.id_contenido',$id)
-                        ->update($data);
-
-        return $actualiza;
+    static function actualiza($id,$request,$archivo = null){
+        $pagina = pagina_contenido::find($id);
+        if( $request->eliminada == 1 || $archivo !== null){
+            $borrar = public_path() . $pagina->archivo;
+            if( file_exists($borrar) && is_file($borrar) )
+                unlink($borrar);
+            if( $archivo !== null )
+                $pagina->archivo = $archivo;
+            else
+                $pagina->archivo = '';
+        }
+        $pagina->titulo = $request->input('titulo');
+        $pagina->slug = $request->input('slug');
+        $pagina->orden = $request->input('orden') !== null ? $request->input('orden') : '';
+        $pagina->contenido = $request->input('contenido');
+        $pagina->menu_principal = $request->input('menu_principal') !== null ? $request->input('menu_principal') : '';
+        $pagina->menu_inferior = $request->input('menu_inferior') !== null ? $request->input('menu_inferior') : '';
+        $pagina->link = $request->input('link') !== null ? $request->input('link') : '';
+        $evento = Event::fire(new dotask($pagina));
+        return $evento;
     }
 
 };

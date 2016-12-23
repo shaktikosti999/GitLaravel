@@ -38,14 +38,11 @@
 				          	</div>
 				      	</div>
 				      	<div class="row clearfix">
-				        	<div class="col-sm-10">
+				        	<div class="col-sm-12">
 				          		<div class="form-group form-group-default">
 				            		<label for="img_principal">Imagen Principal</label>
 				            		<input type="file" id="img_principal" class="form-control" name="img_principal" aria-invalid="true">
 				          		</div>
-				          	</div>
-				          	<div class="col-sm-2">
-				            	<button class="btn btn-danger" id="elimina_img">Eliminar</button>
 				          	</div>
 				      	</div>	
 				      	

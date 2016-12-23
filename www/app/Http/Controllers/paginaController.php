@@ -141,90 +141,47 @@ class paginaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {        
-        $padre = $request->input('padre');
-        $titulo = trim($request->input('titulo'));
-        $slug = trim($request->input('slug'));
-        $contenido = $request->input('contenido');
-        $menu_principal = trim($request->input('menu_principal'));
-        $menu_inferior = trim($request->input('menu_inferior'));
-        $orden = $request->input('orden');
-        $link = trim($request->input('link'));
-        $elimina_imagen = $request->input('eliminada');
-        
-        $pagina = \App\pagina_contenido::find($id);
-        $img_principal_anterior = $pagina->archivo;
-        $slug_anterior = $pagina->slug;
-        $imagen_principal = "";
+    public function update(Request $request, $id){
+      $this->validate($request,[
+          "titulo" => "required|string",
+          "eliminada" => "required|int",
+          "contenido" => "required|string",
+          "slug" => "required|string"
+      ]);
+      // dd($request->all());
+      if($request->hasFile('img_principal')){
+          $archivo = $request->file('img_principal');
+          $ext = strtolower($archivo->getClientOriginalExtension());
+          $extValidas = ['jpg','jpeg','png'];
 
-        if($request->hasFile('img_principal')){
-            $archivo = $request->file('img_principal');
-            $ext = strtolower($archivo->getClientOriginalExtension());
-            $extValidas = ['jpg','jpeg','png'];
+          if(in_array($ext, $extValidas)){
+              $carpeta = 'assets/images/alimentos/';
+              if(!file_exists(public_path() . '/' . $carpeta))
+                  mkdir(public_path() . '/' . $carpeta,0777,true);
+              do{
+                  $nombre = "";
+                  $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                  for($i=0; $i<=16; $i++ ){
+                      $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
+                  }
+              }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+              $nombre .= '.' . $ext;
+              if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                  $archivo = '/' . $carpeta . $nombre;
 
-            if(in_array($ext, $extValidas)){  
-                $carpeta = 'assets/img/paginas/';            
-                if($img_principal_anterior != "")
-                {                    
-                    $elimina = File::delete(public_path(). $img_principal_anterior); //Elimina imagen anterior                    
-                }else{
-                    $elimina = 1;
-                }
-                if($elimina == 1)
-                {
-                    if(!file_exists(public_path() . '/' . $carpeta))
-                        mkdir(public_path() . '/' . $carpeta,0777,true);
-                    do{
-                        $nombre = "";
-                        $str = "abcdefghijklmnopqrstuvwxyz0123456789";
-                        for($i=0; $i<=16; $i++ ){
-                            $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
-                        }
-                    }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
-                    $nombre .= '.' . $ext;
-
-                    if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
-                        $imagen_principal = '/' . $carpeta . $nombre;                           
-                    }
-                }else{
-                    return redirect(url('/administrador/pagina_de_contenido.html'))->with('error','Error al eliminar la imagen principal anterior');
-                }
-            }                    
-        }
-        else{
-
-            if($elimina_imagen == 1)
-            {                    
-                $elimina = File::delete(public_path(). $img_principal_anterior); //Elimina imagen anterior  
-                $imagen_principal = '';                  
-            }else{
-              $imagen_principal = $img_principal_anterior;
-            }          
-        }
-        
-        $data_pagina = array(
-                              'id_padre' => $padre,
-                              'titulo' => $titulo,
-                              'slug' => $slug,  
-                              'archivo' => $imagen_principal,  
-                              'contenido' => $contenido,   
-                              'menu_principal' => $menu_principal,
-                              'menu_inferior' => $menu_inferior,
-                              'link' => $link,
-                              'orden' => $orden,
-                              'updated_at' => date('Y-m-d H:i:s')
-                          ); 
-
-        $actualiza = pagina::actualiza($data_pagina, $id);            
-
-        if($actualiza == 1){
-            return redirect(url('/administrador/pagina_de_contenido.html'))->with('success','Pagina modificada correctamente');
-        }
-        else{
-            return redirect(url('/administrador/pagina_de_contenido.html'))->with('error','Error al actualizar, vuelve a intentarlo');
-        }  
-
+              }
+          }                    
+      }
+      else
+        $archivo = null;
+      $evento = pagina::actualiza($id,$request,$archivo);
+      $evento = $evento[0];
+      if(!$evento){
+          return redirect(url('/administrador/pagina_de_contenido.html'))->with('success','Página modificada correctamente');
+      }
+      else{
+          return redirect(url('/administrador/pagina_de_contenido.html'))->with('error',$evento);
+      }
     }
 
     /**

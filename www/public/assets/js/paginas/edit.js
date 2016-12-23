@@ -1,11 +1,10 @@
 $(document).ready(function(){
 
-	//En editar
-  	$( "#elimina_imagen" ).click(function( e ) {
-  		e.preventDefault();
+  //En editar
+    $( "#elimina_imagen" ).on('click', function(){
   		$('#imagen_principal').remove();
+      $('#img_principal').show();
   		$('#eliminada').val('1');
-  		return false;
   	}); 
 
   	//En agregar

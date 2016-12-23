@@ -42,26 +42,20 @@
 				          	</div>
 				      	</div>
 				      	<div class="row clearfix">
-				        	<div class="col-sm-10">
+				        	<div class="col-sm-12">
 				          		<div class="form-group form-group-default">
 				            		<label for="img_principal">Imagen Principal</label>
-				            		<input type="file" id="img_principal" class="form-control" name="img_principal" aria-invalid="true">
+				            		<input type="file" id="img_principal" class="form-control" {{trim($pagina->imagen_principal) != "" ? 'style=display:none;' : ''}} name="img_principal" aria-invalid="true">
 				          		</div>
-				          	</div>
-				          	<div class="col-sm-2">
-				            	<button class="btn btn-danger" id="elimina_img">Eliminar</button>
 				          	</div>
 				      	</div>
 				      	@if($pagina->imagen_principal != "")
-					      	<div class="row clearfix" id="img_p">
-					      		<div class="col-sm-12">			      		
-					      			<div class="col-xs-6 col-md-3" id="imagen_principal">
-					      				<button id="elimina_imagen">Elimina imagen</button>
-								  		<img src="{{$pagina->imagen_principal}}" class="img-responsive" alt="" data-toggle="tooltip" data-placement="top">
-								  	</div>		
-					      		</div>		      		
-					      	</div>
-					      	<br/>
+					      	<div class="col-sm-6 col-sm-offset-3" id="imagen_principal">
+								<button type="button" class="close" id="elimina_imagen" aria-hidden="true">&times;</button>
+								<div class="thumbnail">
+									<img src="{{$pagina->imagen_principal}}">
+								</div>
+							</div>
 				      	@endif
 
 				      	<input type="hidden" name="eliminada" value="0" id="eliminada">

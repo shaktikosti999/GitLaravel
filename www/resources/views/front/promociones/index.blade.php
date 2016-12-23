@@ -65,7 +65,7 @@
 											<li class="slide"> 									
 												<div class="slide-content" style="background-image: url('{{ $item->imagen }}'); ">
 													<div class="slide-caption">
-														<a href="#"><p>{{ $item->nombre }}</p></a>
+														<a href="/promociones/detalle/{{ $item->slug }}"><p>{{ $item->nombre }}</p></a>
 
 													</div><!-- /.slide-caption -->
 												</div><!-- /.slide-content -->
