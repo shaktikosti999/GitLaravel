@@ -146,11 +146,11 @@ $(document).ready(function(){
 					});
 					$.each(data.dinamicas, function(index,item){
 						$('#pay_list').append('\
-							<li class="list-group-item" data-text="' + item.descripcion + '" data-inicio="' + item.inicio + '" data-fin="' + item.fin + '">' + item.titulo + '\
-								<span class="btn btn-default badge" onClick="game_delete(' + item.id_sucursal + ',' + id + ')">\
+							<li class="list-group-item">' + item.titulo + '\
+								<span class="btn btn-default badge" onClick="pay_delete(' + item.id + ')">\
 									<i class="fa fa-trash" aria-hidden="true"></i>\
 								</span>\
-								<span class="btn btn-default badge" onClick="game_edit(' + item.id_sucursal + ',' + id + ')">\
+								<span class="btn btn-default badge" onClick="pay_edit(' + item.id + ')">\
 									<i class="fa fa-pencil" aria-hidden="true"></i>\
 								</span>\
 							</li>');
@@ -170,6 +170,33 @@ $(document).ready(function(){
 		});
 	});
 
+	pay_edit = function(id){
+		$.ajax({
+			url:'/administrador/obtener/pago_promocion.html',
+			type:'post',
+			data:{
+				'_method':'PATCH',
+				'id':id
+			},
+			success:function(data){
+				if( data.trim() != "" ){
+					console.log(data);
+					data = JSON.parse(data);
+					$('#pay_id_promocion').val(id);
+					$('#pay_titulo').val(data.titulo);
+					$('#pay_desc').val(data.descripcion);
+					$('#pay_sucursal').val(data.sucursal);
+					$('#pay_sucursal').attr('disabled',true);
+					$('#pay_date').val(data.fecha);
+					$('#pay_date1').val(data.inicio);
+					$('#pay_date2').val(data.fin);
+					$('#modal_pay_form').attr('action','/administrador/modificar/pago_promocion.html');
+					$('#modal_pay_form > input:submit').val('Modificar');
+				}
+			}
+		});
+	}
+
 	$('#payModal').on('hidden.bs.modal', function(){
 		$('#pay_id_promocion').val('');
 		$('#pay_titulo').val('');
@@ -180,5 +207,8 @@ $(document).ready(function(){
 		$('#pay_date2').val('');
 		$('#pay_sucursal').html('');
 		$('#pay_list').html('');
+		$('#pay_sucursal').attr('disabled',false);
+		$('#modal_pay_form').attr('action','/administrador/agregar/pago_promocion.html');
+		$('#modal_pay_form > input:submit').val('Guardar');
 	});
 });

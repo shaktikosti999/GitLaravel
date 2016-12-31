@@ -40,6 +40,23 @@ class promocion_model{
 		return promocion::find($id);
 	}
 
+	static function find_pay($id){
+		$data = \DB::table('pago_promocion')
+			->select(
+				'id_sucursal as sucursal',
+				'titulo',
+				'descripcion',
+				'inicio',
+				'fin'
+			)
+			->where('id_pago',$id)
+			->first();
+		$data->fecha = date('m/d/Y',strtotime($data->inicio));
+		$data->inicio = date('H:i A',strtotime($data->inicio));
+		$data->fin = date('H:i A',strtotime($data->fin));
+		return $data;
+	}
+
 	static function get_branches($id){
 		
 		$data = \DB::table('promocion_sucursal as ps')
@@ -56,11 +73,8 @@ class promocion_model{
 	static function get_dynamics($id){
 		$data = \DB::table('pago_promocion as pp')
 			->select(
-				'id_sucursal',
-				'titulo',
-				'descripcion',
-				'inicio',
-				'fin'
+				'id_pago as id',
+				'titulo'
 			)
 			->where('id_promocion',$id)
 			->get();
@@ -161,6 +175,21 @@ class promocion_model{
 			->update($data);
 
 		return $query;
+	}
+
+	static function store_dinamica($request){
+		$promocion = $request->input('pay_id_promocion');
+		foreach($request->input('pay_sucursal') as $item){
+			$data[] = [
+				'id_promocion' => $promocion,
+				'id_sucursal' => $item,
+				'titulo' => $request->input('pay_titulo'),
+				'descripcion' => $request->input('pay_desc'),
+				'inicio' => date('Y-m-d H:i:s', strtotime($request->input('pay_date') . ' ' . $request->input('pay_date1'))),
+				'fin' => date('Y-m-d H:i:s', strtotime($request->input('pay_date') . ' ' . $request->input('pay_date2')))
+			];
+		}
+		return \DB::table('pago_promocion')->insert($data);
 	}
 
 	static function destroy_promotion($id_promocion,$id_sucursal){

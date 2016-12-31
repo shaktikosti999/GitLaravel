@@ -336,4 +336,27 @@ class promocionController extends Controller
         }
     }
 
+    public function update_dinamica(Request $request){
+         $this->validate($request,[
+            "pay_id_promocion" => "required|integer|min:1",
+            "pay_titulo" => "required|string",
+            "pay_desc" => "required|string",
+            "pay_date" => "required",
+            "pay_date1" => "required",
+            "pay_date2" => "required"
+        ]);
+        if(promocion::update_dinamica($request)){
+            return redirect('/administrador/promocion.html')->with('success','Dinámica modificada correctamente');
+        }
+        return redirect('/administrador/promocion.html')->with('error','Hubo un error al almacenar la dinámica');
+    }
+
+    public function get_dinamica(Request $request){
+        $data = promocion::find_pay($request->input('id'));
+        if( $data !== null )
+            return json_encode($data);
+        else
+            return null;
+    }
+
 }

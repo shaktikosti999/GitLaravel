@@ -1,5 +1,6 @@
 <?php
-
+//Hacer middleware para realizar la sesión o aumentar uno a la petición de deportes
+//Hacer el controlador para que todos los archivos del mundo jalen al 100
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use SoapServer;
 
 class soapController extends Controller
 {
+   
     /**
      * Display a listing of the resource.
      *
@@ -19,41 +21,44 @@ class soapController extends Controller
      */
     public function index()
     {
-        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl&amp');
+        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl');
         $res = $soap->__soapCall('SignOnSitioOp',[[
             'ip'=>'10.100.240.2',
             'idSitio'=>1
         ]]);
 
-        // // regresa array con error de sesión 4
-        // $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaEventosDeportes?wsdl');
-        // $res2 = $soap->__soapCall('ListaEventosDeportesOp',[[
-        //     'numDeporte'=>$res->sesion,
-        //     'numLiga'=>$res->sesion,
-        //     'idAgrupador'=>$res->sesion
-        // ]]);
 
         // No regresa información 2
         $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp');
-        // $res2 = $soap->__soapCall('ListaDeportesOp',['listaDeportesType']);
-        // $res2 = $soap->__soapCall('ListaDeportesOp',[['listaDeportesType']]);
-        // $res2 = $soap->__soapCall('ListaDeportesOp',['listaDeportesType'=>1]);
-        // $res2 = $soap->__soapCall('ListaDeportesOp',[['listaDeportesType']]);
-        // $res2 = $soap->__soapCall('ListaDeportesOp',[['listaDeportesType'=>1]]);
-        // $res2 = $soap->__soapCall('ListaDeportesOp',[1]);
-        // $res2 = $soap->__soapCall('ListaDeportesOp',[[1]]);
-        // $res2 = $soap->__soapCall('ListaDeportesOp',[]);
-        // $res2 = $soap->__soapCall('ListaDeportesOp',[[]]);
-        // $res2 = $soap->__soapCall('ListaDeportesOp');
+        $res2 = $soap->__soapCall('ListaDeportesOp',[[
+            'sesion' => $res->sesion,
+            'serieMensaje' => "1"
+        ]]);
 
         // No regresa información 3
-        // $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl');
-        // $res2 = $soap->__soapCall('ListaAgrupadoresDeportesOp',[
-        //     'numDeporte'=>1
-        // ]);
+        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl');
+        $res3 = $soap->__soapCall('ListaAgrupadoresDeportesOp',[[
+            'sesion' => $res->sesion,
+            'serieMensaje' => 1,
+            'numDeporte' => 2
+        ]]);
+        $ligas = $res3->deporte->ligas->liga;
+        // print_r($ligas[0]->agrupadores->agrupador[0]->idAgrupador);
+
+        // // regresa array con error de sesión 4
+        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaEventosDeportes?wsdl');
+        $res4 = $soap->__soapCall('ListaEventosDeportesOp',[[
+            'sesion'=>$res->sesion,
+            'numDeporte' => 2,
+            'idAgrupador'=>'E2',
+            'numLiga'=>1,
+        ]]);
 
         // Prueba inicial
-        // dd($res);
+        dd($res,$res2,$res3,$res4);
+        echo $this->exp_to_dec($res->sesion)."<br>";
+        echo (int)$res->sesion;
+        dd($res);
 
         echo '<pre>';
         echo '<h2>Types:</h2>';

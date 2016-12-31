@@ -75,6 +75,7 @@ Route::get('/lineas-de-juego/apuesta-deportiva/{sucursal?}','front\lineasControl
 Route::get('/{slug_maquina}/detalle/{slug}','front\lineasController@detalle_juego');
 Route::patch('/filtro-maquinas','front\api\filtroController@filtro_maquinas');
 Route::patch('/get-mesa-juego','front\api\filtroController@get_mesa');
+Route::patch('/ver-lineas','front\api\filtroController@get_lineas');
 
 Route::post('/contacto/newsletter','front\contactoController@newsletter');
 

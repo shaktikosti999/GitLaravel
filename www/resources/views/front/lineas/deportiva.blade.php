@@ -1,780 +1,846 @@
 @extends('layout.front')
-@section('contenido')
-	<div class="slider-secondary secondary-margin">
-		<!--<a href="#" class="btn-menu">
-			<img src="css/images/btn-menu@2x.png" alt="">-->
-		</a>
 
-		<div class="slider-clip">
-			<ul class="slides">
-				@if( isset( $slider ) && count( $slider ) )
+	@section('js')
+		<script>
 
-					@foreach( $slider as $item )
+			ofertas = {!!json_encode($ofertas)!!};
+			$('#liga_select').on('change', function(){
+				$('#lista_oferta').html('<option>Seleccione oferta</option>');
+				$.each(ofertas[$(this).val()]['data'], function(index,item){
+					$('#lista_oferta').html('<option value="' + item.id + '">' + item.nombre + '</option>');
+				});
+			});
 
-						<li class="slide" style="background-image: url({{ $item->imagen }})">
-							<div class="slide-body">
-								<div class="shell"> 		 
-									 <div class="slide-content">
-									 	<h1>
-									 		Apuesta Deportiva
-									 	</h1>
+			$('#liga_select').on('change', function(){
+				$('#lista_oferta').show();
+				$('#lista_oferta').html('<option>Seleccione oferta</option>');
+				$.each(ofertas[$(this).val()]['data'], function(index,item){
+					$('#lista_oferta').append('<option value="' + item.id + '">' + item.nombre + '</option>');
+				});
+			});
+
+			$('#lista_oferta').on('change', function(){
+				var id = $(this).val();
+				$.ajax({
+					url:'/ver-lineas',
+					type:'post',
+					data:{
+						_method:"PATCH",
+						deporte:{{$dep}},
+						liga:$('#liga_select > option:selected').attr('data-liga'),
+						oferta:id
+					},
+					success:function(data){
+						if( data == "[]" )
+							return false;
+						var str = '';
+						data = JSON.parse(data);
+						$('#tbl_content').html('');
+						$.each(data, function(index,item){
+							str += '<div class="table-content" >\
+								<h5>' + item.fecha + '</h5>\
+								<div class="table__wrapp">\
+									<div class="table-item">\
+										<div class="line-gray">\
+										</div>\
+										<div class="table-list">\
+											<p>' + item.data[0].id_apuesta + '</p>\
+											<p>' + item.data[0].nombre + '</p>\
+											<p>Línea de apertura</p>\
+											<h2>' + item.data[0].puntos + '</h2>\
+										</div>';
+							if( item.data.length > 2 ){
+										str += '<div class="table-list">\
+											<p>' + item.data[2].id_apuesta + '</p>\
+											<p>' + item.data[2].nombre + '</p>\
+											<p>Línea de apertura</p>\
+											<h2>' + item.data[2].puntos + '</h2>\
+										</div>\
+										<div class="gray-item">\
+											<p>' + item.data[1].id_apuesta + '</p>\
+											<p>' + item.data[1].nombre + '</p>\
+											<p>Línea de apertura</p>\
+											<h2>' + item.data[1].puntos + '</h2>\
+										</div>';
+							}
+							else{
+										str += '<div class="table-list">\
+											<p>' + item.data[2].id_apuesta + '</p>\
+											<p>' + item.data[2].nombre + '</p>\
+											<p>Línea de apertura</p>\
+											<h2>' + item.data[2].puntos + '</h2>\
+										</div>';
+							}
+										str += '<div class="gray-item2">\
+											<h6>' + item.hora + '</h6>\
+											<p>Tiempo del centro</p>\
+										</div>\
+									</div>\
+								</div>\
+							</div>';				
+						});
+						$('#tbl_content').html(str);
+					}
+				});
+			});
+
+		</script>
+	@stop
+
+	@section('contenido')
+		<div class="slider-secondary secondary-margin">
+			<!--<a href="#" class="btn-menu">
+				<img src="css/images/btn-menu@2x.png" alt="">-->
+			</a>
+
+			<div class="slider-clip">
+				<ul class="slides">
+					@if( isset( $slider ) && count( $slider ) )
+
+						@foreach( $slider as $item )
+
+							<li class="slide" style="background-image: url({{ $item->imagen }})">
+								<div class="slide-body">
+									<div class="shell"> 		 
+										 <div class="slide-content">
+										 	<h1>
+										 		Apuesta Deportiva
+										 	</h1>
+											 	
+											 	<h3>
+											 		@if( isset( $sucursal_info->nombre ) )
+											 			
+											 			Sucursal {{ $sucursal_info->nombre }}
+
+											 		@endif
+											 	</h3>
 										 	
-										 	<h3>
-										 		@if( isset( $sucursal_info->nombre ) )
-										 			
-										 			Sucursal {{ $sucursal_info->nombre }}
+										 	
 
-										 		@endif
-										 	</h3>
-									 	
-									 	
+										@if( isset( $sucursales ) && count( $sucursales ) )
 
-									@if( isset( $sucursales ) && count( $sucursales ) )
+											<div class="filter-secondary">
+												<label for="sucursales" class="form-label hidden">filter-secondary1</label>
+												<select name="sucursales" id="sucursales" class="select branch-filter">
+													
+													<option value="-1">Selecciona una sucursal</option>
 
-										<div class="filter-secondary">
-											<label for="sucursales" class="form-label hidden">filter-secondary1</label>
-											<select name="sucursales" id="sucursales" class="select branch-filter">
-												
-												<option value="-1">Selecciona una sucursal</option>
+													@foreach( $sucursales as $item )
 
-												@foreach( $sucursales as $item )
+														<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
 
-													<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
+													@endforeach
+													
+												</select>
+											</div><!-- /.filter-secondary -->
 
-												@endforeach
-												
-											</select>
-										</div><!-- /.filter-secondary -->
-
-									@endif
+										@endif
 
 
-									 </div><!-- /.slide-content -->
+										 </div><!-- /.slide-content -->
 
-									@include('front.includes.breadcrumbs')
-								</div><!-- /.shell -->
-							</div><!-- /.slide-body -->
-						</li><!-- /.slide -->
+										@include('front.includes.breadcrumbs')
+									</div><!-- /.shell -->
+								</div><!-- /.slide-body -->
+							</li><!-- /.slide -->
 
-					@endforeach
-
-				@endif
-			</ul><!-- /.slides -->
-		</div><!-- /.slider-clip -->
-
-		<div class="slider-label red-label large">
-			<i class="ico-deportiva"></i>
-		</div><!-- /.slider-label -->
-	</div><!-- /.slider-secondary -->
-
-	<div class="gray-sport">
-		<div class="shell">
-			<div class="btn-sport">
-				<a href="http://casinocaliente.abardev.net/calendario-deportivo" class="btn btn-border btn-calendar-sport">
-					<img src="css/images/icons/calendar.png">
-					<img class="calendar-off" src="css/images/icons/calendar-white.png">
-					Calendario deportivo
-				</a>
-				<a href="http://casinocaliente.abardev.net/como-apostar" class="btn btn-border btn-calendar-sport2">
-					Cómo apostar
-				</a>
-			</div>
-			<div class="sport-calendar">
-				<div class="list-calendar">
-					<a href="#">
-						<img src="css/images/icons/americano.png">
-						<span>Fútbol americano</span>
-					</a>
-				</div>
-				<div class="list-calendar">
-					<a href="#">
-						<img src="css/images/icons/basquetbol.png">
-						<span>Básquetbol</span>
-					</a>
-				</div>
-				<div class="list-calendar">
-					<a href="#">
-						<img src="css/images/icons/baseball.png">
-						<span>Baseball</span>
-					</a>
-				</div>
-				<div class="list-calendar active">
-					<a href="#">
-						<img src="css/images/icons/soccer.png">
-						<span>Soccer</span>
-					</a>
-				</div>
-				<div class="list-calendar">
-					<a href="#">
-						<img src="css/images/icons/box.png">
-						<span>Box</span>
-					</a>
-				</div>
-				<div class="list-calendar">
-					<a href="#">
-						<img src="css/images/icons/hockey.png">
-						<span>Hockey</span>
-					</a>
-				</div>
-				<div class="list-calendar">
-					<a href="#">
-						<img src="css/images/icons/hockey.png">
-						<span>Hockey</span>
-					</a>
-				</div>
-			</div>
-			<div class="btn-calendar2" id="calendario">
-				<a href="#" class="btn btn-black">
-					seleccionar liga
-				</a>
-				<a href="#" class="btn btn-black">
-					seleccionar oferta
-				</a>
-				<div class="input-group date">
-					<img src="css/images/icons/calendar-gray.png">
-				   	 <input type="text" placeholder="mm/dd/yyyy" class="form-control">
-			   </div>
-			</div>
-
-			<div class="table-content" >
-				<h5>07 Noviembre 2016</h5>
-				<div class="table__wrapp">
-
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>					
-				</div>
-			</div>
-
-			<div class="table-content">
-				<h5>08 Noviembre 2016</h5>
-				<div class="table__wrapp">
-
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>	
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>
-					<div class="table-item"><!-- * -->
-						<div class="line-gray">
-						</div>
-						<div class="table-list">
-							<p>8001</p>
-							<p>N.Y. METS</p>
-							<p>B. COLON</p>	
-							<p>Línea de apertura</p>
-							<h2>-220</h2>
-						</div>
-						<div class="table-list">	
-							<p>8003</p>
-							<p>PHI. PHILIES</p>
-							<p>J. HELLICSON</p>
-							<p>Línea de apertura</p>
-							<h2>+600</h2>
-						</div>
-						<div class="gray-item">
-							<p>Over / Under</p>
-							<h4>9</h4>
-							<p>-110</p>
-							<p>EVEN</p>
-						</div>
-						<div class="gray-item2">
-							<h6>7:00 PM</h6>
-							<p>Tiempo del centro</p>
-						</div>
-					</div>					
-				</div>
-			</div>
-
-			<div class="table-sport">
-				<div class="shell">
-					<h2>Resultados</h2>
-					<table>
-						<tr>
-							<td>5402</td>
-							<td>
-								<p>Tigres</p>
-							</td>
-							<td>Even</td>
-						</tr>
-						<tr class="white-space">
-							<td colspan="3"></td>
-						</tr>
-						<tr>
-							<td>5403</td>
-							<td>
-								<p>America</p>
-							</td>
-							<td>2/1</td>
-						</tr>
-						<tr class="white-space">
-							<td colspan="3"></td>
-						</tr>
-						<tr>
-							<td>5409</td>
-							<td>
-								<p>Leon</p>
-							</td>
-							<td>3/1</td>
-						</tr>
-						<tr class="white-space">
-							<td colspan="3"></td>
-						</tr>
-						<tr>
-							<td>5418</td>
-							<td>
-								<p>Necaxa</p>
-							</td>
-							<td>3/1</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-
-		</div>
-	</div>
-
-	
-
-	<div class="main"> 
-		@if( isset( $promociones ) && count( $promociones ) )
-
-			<section class="section-promotions">
-				<div class="shell">
-					<header class="section-head top-promotions">
-						<div class="stick--point" id="promociones"></div>
-						<h2>
-							@yield('promo-head','Promociones')
-						</h2>
-
-						<!-- <a href="#" class="btn btn-black">
-									consulta calendario completo
-								</a> -->
-					</header><!-- /.section-head -->
-
-					<div class="section-body">
-						<div class="slider-games slider-promotions">
-							<div class="slider-clip">
-								<ul class="slides">
-									@foreach($promociones as $item)
-									<?php 
-
-									$start = new DateTime( $item->fecha_inicio );
-									$end   = new DateTime( $item->fecha_fin );
-
-									?>
-									<li class="slide">
-										<a href="{{url('promociones/detalle/' . $item->slug)}}" class="slide-content" style="background-image: url({{$item->imagen}}); ">
-											<span class="slide-label">
-												Válido del {{$start->format('d/m/Y')}} al {{$end->format('d/m/Y')}} 
-											</span>
-
-											<span class="slide-inner">
-												<span class="slide-inner-entry">
-													<strong>{{$item->nombre}}</strong> <br>
-												</span>
-
-												<span class="slide-inner-price">
-													{{$item->resumen}}
-												</span>
-											</span>
-										</a><!-- /.slide-content -->
-									</li><!-- /.slide -->								
-									@endforeach
-								</ul><!-- /.slides -->
-							</div><!-- /.slider-clip -->
-						</div><!-- /.slider-games -->
-					</div><!-- /.section-body -->	
-					@if( isset($quinielas) && count($quinielas) )
-						@foreach($quinielas as $item)
-							<div class="slider-bet"> <!-- Slider Quiniela -->
-								<div class="slider-bet-item back-module">
-									<div class="txt-bet">
-										<h2>{{$item->titulo}}</h2>
-										{!! isset($item->subtitulo) && !empty($item->subtitulo) ? '<h6>' . $item->subtitulo . '</h6>' : '' !!}
-										<p>{{$item->texto}}</p>
-										<a href="{{$item->link}}" class="btn btn-red btn-red-small btn-red-medium">
-											{{$item->texto_boton}}
-										</a>
-									</div>
-									<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
-								</div>
-							</div>
 						@endforeach
-					@endif
-				</div><!-- /.shell -->
-			</section><!-- /.section-promotions -->
-			
-		@endif
 
-		<!-- Promociones -->
+					@endif
+				</ul><!-- /.slides -->
+			</div><!-- /.slider-clip -->
+
+			<div class="slider-label red-label large">
+				<i class="ico-deportiva"></i>
+			</div><!-- /.slider-label -->
+		</div><!-- /.slider-secondary -->
+
+		<div class="gray-sport">
+			<div class="shell">
+				<div class="btn-sport">
+					<a href="http://casinocaliente.abardev.net/calendario-deportivo" class="btn btn-border btn-calendar-sport">
+						<img src="css/images/icons/calendar.png">
+						<img class="calendar-off" src="css/images/icons/calendar-white.png">
+						Calendario deportivo
+					</a>
+					<a href="http://casinocaliente.abardev.net/como-apostar" class="btn btn-border btn-calendar-sport2">
+						Cómo apostar
+					</a>
+				</div>
+				<div class="sport-calendar">
+					@if( isset($deportes) && count($deportes) )
+					    @foreach($deportes as $item)
+				            <div class="list-calendar {{$item->numDeporte == $dep ? 'active' : ''}}">
+				                <a href="/lineas-de-juego/apuesta-deportiva?dep={{$item->numDeporte}}" tabindex="0">
+				                	<?php 
+				                	$imagen = explode("/", $item->fondo->urlImagen);
+				                	$imagen = explode(".", end($imagen));
+				                	$imagen = $imagen[0];
+				                	?>
+				                    <img src="css/images/icons/{{$imagen}}.png">
+				                    <span>{{$item->nombre}}</span>
+				                </a>
+				            </div>
+					    @endforeach
+					@endif
+				</div>
+				<div class="btn-calendar2" id="calendario">
+					@if( isset($ofertas) && count($ofertas) )
+					<select class="btn btn-black" id ="liga_select">
+						<option>Seleccionar Liga</option>
+						@foreach($ofertas as $key => $item)
+						<option value="{{$key}}" data-liga="{{$item['id']}}">{{$item['nombre']}}</option>
+						@endforeach
+					</select>
+					@endif
+					<select class="btn btn-black" id="lista_oferta" style="display:none"></select>
+					<div class="input-group date">
+						<img src="css/images/icons/calendar-gray.png">
+					   	 <input type="text" placeholder="mm/dd/yyyy" class="form-control">
+				   </div>
+				</div>
+
+				<div class="col-sm-12" id="tbl_content"></div>
+
+				<div class="table-content" >
+					<h5>07 Noviembre 2016</h5>
+					<div class="table__wrapp">
+
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>					
+					</div>
+				</div>
+
+				<div class="table-content">
+					<h5>08 Noviembre 2016</h5>
+					<div class="table__wrapp">
+
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>	
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>
+						<div class="table-item"><!-- * -->
+							<div class="line-gray">
+							</div>
+							<div class="table-list">
+								<p>8001</p>
+								<p>N.Y. METS</p>
+								<p>B. COLON</p>	
+								<p>Línea de apertura</p>
+								<h2>-220</h2>
+							</div>
+							<div class="table-list">	
+								<p>8003</p>
+								<p>PHI. PHILIES</p>
+								<p>J. HELLICSON</p>
+								<p>Línea de apertura</p>
+								<h2>+600</h2>
+							</div>
+							<div class="gray-item">
+								<p>Over / Under</p>
+								<h4>9</h4>
+								<p>-110</p>
+								<p>EVEN</p>
+							</div>
+							<div class="gray-item2">
+								<h6>7:00 PM</h6>
+								<p>Tiempo del centro</p>
+							</div>
+						</div>					
+					</div>
+				</div>
+
+				<div class="table-sport">
+					<div class="shell">
+						<h2>Resultados</h2>
+						<table>
+							<tr>
+								<td>5402</td>
+								<td>
+									<p>Tigres</p>
+								</td>
+								<td>Even</td>
+							</tr>
+							<tr class="white-space">
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<td>5403</td>
+								<td>
+									<p>America</p>
+								</td>
+								<td>2/1</td>
+							</tr>
+							<tr class="white-space">
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<td>5409</td>
+								<td>
+									<p>Leon</p>
+								</td>
+								<td>3/1</td>
+							</tr>
+							<tr class="white-space">
+								<td colspan="3"></td>
+							</tr>
+							<tr>
+								<td>5418</td>
+								<td>
+									<p>Necaxa</p>
+								</td>
+								<td>3/1</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
 		
 
-		<section class="section-gray">
-			<div class="shell">
-				<div class="subscribe">
-					<form action="?" method="post">
-						<div class="subscribe-head">
-							<h2>Regístrate a nuestro newsletter</h2>
-						</div><!-- /.subscribe-head -->
+		<div class="main"> 
+			@if( isset( $promociones ) && count( $promociones ) )
 
-						<div class="subscribe-wrapper">
-							<!--<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>-->
+				<section class="section-promotions">
+					<div class="shell">
+						<header class="section-head top-promotions">
+							<div class="stick--point" id="promociones"></div>
+							<h2>
+								@yield('promo-head','Promociones')
+							</h2>
 
-							<div class="subscribe-body-hidden">
-								<div class="subscribe-inner">
-									<label for="mail" class="hidden">Email</label>
-									
-									<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
-									
-									<input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
-								</div><!-- /.subscribe-inner -->
+							<!-- <a href="#" class="btn btn-black">
+										consulta calendario completo
+									</a> -->
+						</header><!-- /.section-head -->
 
-								<div class="subscribe-actions">
-									<ul class="list-checkboxes">
-										<li>
-											<div class="checkbox">
-												<input type="checkbox" name="field-notifications" id="field-notifications">
-												
-												<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
-											</div><!-- /.checkbox -->
-										</li>
-									</ul><!-- /.list-checkboxes -->
-								</div><!-- /.subscribe-actions -->
-							</div><!-- /.subscribe-body-hidden -->
-						</div><!-- /.subscribe-wrapper -->
-					</form>
-				</div><!-- /.subscribe -->
-			</div><!-- /.shell -->
-		</section><!-- /.section-gray -->
+						<div class="section-body">
+							<div class="slider-games slider-promotions">
+								<div class="slider-clip">
+									<ul class="slides">
+										@foreach($promociones as $item)
+										<?php 
 
-		@if( isset( $sucursal_info ) && $sucursal_info )
+										$start = new DateTime( $item->fecha_inicio );
+										$end   = new DateTime( $item->fecha_fin );
 
-			<section class="section-map no-top-padding"> 
-				<div class="section-body">
-					<div id="googlemap" data-lng="-97.727616" data-lat="18.884188"></div><!-- /#googlemap --> 
-				
-					<div class="section-content">
-						<div class="shell">
-							<div class="section-content-head">
-								<div class="stick--point" id="sucursales"></div>
-								<p>Sucursal</p>
-								
-								<h2>{{ $sucursal_info->nombre }}</h2>
-							</div><!-- /.section-content-head -->
-									
-							<div class="section-content-body">
-								<ul class="list-contacts">
-									<li>
-										<i class="ico-map"></i>
-									
-										<p>
-											{!! $sucursal_info->direccion !!}
-										</p>
-									</li>
-									
-									<li>
-										<i class="ico-phone"></i>
-									
-										<p>
-											{!! $sucursal_info->telefono !!}
-										</p>
-									</li>
-									
-									<li>
-										<i class="ico-clock"></i>
-									
-										{!! $sucursal_info->horario !!}
-									</li>
-									
-									<li>
-										<i class="ico-car"></i>
-									
-										{!! $sucursal_info->instrucciones !!}
-									</li>
-								</ul><!-- /.list-contacts -->
-							</div><!-- /.section-content-body -->
-						</div><!-- /.shell -->
-
-
-						
-						<div class="section-actions">
-							<a target="_blank" href="http://www.google.com/maps/place/{{ $sucursal_info->latitud . "," . $sucursal_info->longitud }}" class="btn btn-red btn-red-small">
-								<i class="ico-human"></i>
-
-								Cómo llegar aquí
-							</a>
-						</div><!-- /.section-actions -->
-					</div><!-- /.section-content --> 
-				</div><!-- /.section-body -->
-			</section><!-- /.section-map -->
-
-			<section class="section-gallery secondary">
-				<div class="shell">
-					
-					@if( isset( $sucursal_info->galeria ) && is_array( $sucursal_info->galeria ) && count( $sucursal_info->galeria ) )
-
-						<div class="slider-gallery">
-							<div class="slider-clip">
-								
-								<ul class="slides">
-									
-									@foreach( $sucursal_info->galeria as $g )
-
+										?>
 										<li class="slide">
-											<div class="slide-image">
-												<img src="{{ $g->imagen }}" alt="">
-											</div><!-- /.slide-image -->
-										</li><!-- /.slide -->
+											<a href="{{url('promociones/detalle/' . $item->slug)}}" class="slide-content" style="background-image: url({{$item->imagen}}); ">
+												<span class="slide-label">
+													Válido del {{$start->format('d/m/Y')}} al {{$end->format('d/m/Y')}} 
+												</span>
 
-									@endforeach
-								
-								</ul><!-- /.slides -->
-							
-							</div><!-- /.slider-clip -->
-						</div><!-- /.slider-gallery -->
+												<span class="slide-inner">
+													<span class="slide-inner-entry">
+														<strong>{{$item->nombre}}</strong> <br>
+													</span>
 
-					@endif
-
-				</div><!-- /.shell -->
-			</section><!-- /.section-gallery -->
-
-		@endif
-		@if( isset( $otras ) && count( $otras ) )
-
-			<section class="section section-simple">
-				<div class="shell">
-					<div class="section-head top-promotions">
-						<div class="stick--point" id="diversion"></div>
-						<h2>
-							<small>Otras opciones de</small>
-							Diversión
-						</h2>
-					</div><!-- /.section-head -->
-
-					<div class="section-content">
-						<div class="cols">
-							
-							@foreach( $otras as $item )
-
-								<div class="col col-1of3">
-									<article class="article-fun">
-										<a href="{{ '/lineas-de-juego/' . $item->slug }}" style="background-image: url('{{ $item->imagen }}')"> 
-											<strong>
-												{{ $item->linea }}
-												<span>{{ $item->slogan }}</span>	
-											</strong>
-										</a>
-									</article>
-								</div><!-- /.col col-1of3 -->
-
+													<span class="slide-inner-price">
+														{{$item->resumen}}
+													</span>
+												</span>
+											</a><!-- /.slide-content -->
+										</li><!-- /.slide -->								
+										@endforeach
+									</ul><!-- /.slides -->
+								</div><!-- /.slider-clip -->
+							</div><!-- /.slider-games -->
+						</div><!-- /.section-body -->	
+						@if( isset($quinielas) && count($quinielas) )
+							@foreach($quinielas as $item)
+								<div class="slider-bet"> <!-- Slider Quiniela -->
+									<div class="slider-bet-item back-module">
+										<div class="txt-bet">
+											<h2>{{$item->titulo}}</h2>
+											{!! isset($item->subtitulo) && !empty($item->subtitulo) ? '<h6>' . $item->subtitulo . '</h6>' : '' !!}
+											<p>{{$item->texto}}</p>
+											<a href="{{$item->link}}" class="btn btn-red btn-red-small btn-red-medium">
+												{{$item->texto_boton}}
+											</a>
+										</div>
+										<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
+									</div>
+								</div>
 							@endforeach
+						@endif
+					</div><!-- /.shell -->
+				</section><!-- /.section-promotions -->
+				
+			@endif
 
-						</div><!-- /.cols -->
-					</div><!-- /.section-content -->
+			<!-- Promociones -->
+			
+
+			<section class="section-gray">
+				<div class="shell">
+					<div class="subscribe">
+						<form action="?" method="post">
+							<div class="subscribe-head">
+								<h2>Regístrate a nuestro newsletter</h2>
+							</div><!-- /.subscribe-head -->
+
+							<div class="subscribe-wrapper">
+								<!--<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>-->
+
+								<div class="subscribe-body-hidden">
+									<div class="subscribe-inner">
+										<label for="mail" class="hidden">Email</label>
+										
+										<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
+										
+										<input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
+									</div><!-- /.subscribe-inner -->
+
+									<div class="subscribe-actions">
+										<ul class="list-checkboxes">
+											<li>
+												<div class="checkbox">
+													<input type="checkbox" name="field-notifications" id="field-notifications">
+													
+													<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
+												</div><!-- /.checkbox -->
+											</li>
+										</ul><!-- /.list-checkboxes -->
+									</div><!-- /.subscribe-actions -->
+								</div><!-- /.subscribe-body-hidden -->
+							</div><!-- /.subscribe-wrapper -->
+						</form>
+					</div><!-- /.subscribe -->
 				</div><!-- /.shell -->
-			</section><!-- /.section-entry -->
+			</section><!-- /.section-gray -->
 
-		@endif
-	</div><!-- /.main -->
-@stop
+			@if( isset( $sucursal_info ) && $sucursal_info )
+
+				<section class="section-map no-top-padding"> 
+					<div class="section-body">
+						<div id="googlemap" data-lng="-97.727616" data-lat="18.884188"></div><!-- /#googlemap --> 
+					
+						<div class="section-content">
+							<div class="shell">
+								<div class="section-content-head">
+									<div class="stick--point" id="sucursales"></div>
+									<p>Sucursal</p>
+									
+									<h2>{{ $sucursal_info->nombre }}</h2>
+								</div><!-- /.section-content-head -->
+										
+								<div class="section-content-body">
+									<ul class="list-contacts">
+										<li>
+											<i class="ico-map"></i>
+										
+											<p>
+												{!! $sucursal_info->direccion !!}
+											</p>
+										</li>
+										
+										<li>
+											<i class="ico-phone"></i>
+										
+											<p>
+												{!! $sucursal_info->telefono !!}
+											</p>
+										</li>
+										
+										<li>
+											<i class="ico-clock"></i>
+										
+											{!! $sucursal_info->horario !!}
+										</li>
+										
+										<li>
+											<i class="ico-car"></i>
+										
+											{!! $sucursal_info->instrucciones !!}
+										</li>
+									</ul><!-- /.list-contacts -->
+								</div><!-- /.section-content-body -->
+							</div><!-- /.shell -->
+
+
+							
+							<div class="section-actions">
+								<a target="_blank" href="http://www.google.com/maps/place/{{ $sucursal_info->latitud . "," . $sucursal_info->longitud }}" class="btn btn-red btn-red-small">
+									<i class="ico-human"></i>
+
+									Cómo llegar aquí
+								</a>
+							</div><!-- /.section-actions -->
+						</div><!-- /.section-content --> 
+					</div><!-- /.section-body -->
+				</section><!-- /.section-map -->
+
+				<section class="section-gallery secondary">
+					<div class="shell">
+						
+						@if( isset( $sucursal_info->galeria ) && is_array( $sucursal_info->galeria ) && count( $sucursal_info->galeria ) )
+
+							<div class="slider-gallery">
+								<div class="slider-clip">
+									
+									<ul class="slides">
+										
+										@foreach( $sucursal_info->galeria as $g )
+
+											<li class="slide">
+												<div class="slide-image">
+													<img src="{{ $g->imagen }}" alt="">
+												</div><!-- /.slide-image -->
+											</li><!-- /.slide -->
+
+										@endforeach
+									
+									</ul><!-- /.slides -->
+								
+								</div><!-- /.slider-clip -->
+							</div><!-- /.slider-gallery -->
+
+						@endif
+
+					</div><!-- /.shell -->
+				</section><!-- /.section-gallery -->
+
+			@endif
+			@if( isset( $otras ) && count( $otras ) )
+
+				<section class="section section-simple">
+					<div class="shell">
+						<div class="section-head top-promotions">
+							<div class="stick--point" id="diversion"></div>
+							<h2>
+								<small>Otras opciones de</small>
+								Diversión
+							</h2>
+						</div><!-- /.section-head -->
+
+						<div class="section-content">
+							<div class="cols">
+								
+								@foreach( $otras as $item )
+
+									<div class="col col-1of3">
+										<article class="article-fun">
+											<a href="{{ '/lineas-de-juego/' . $item->slug }}" style="background-image: url('{{ $item->imagen }}')"> 
+												<strong>
+													{{ $item->linea }}
+													<span>{{ $item->slogan }}</span>	
+												</strong>
+											</a>
+										</article>
+									</div><!-- /.col col-1of3 -->
+
+								@endforeach
+
+							</div><!-- /.cols -->
+						</div><!-- /.section-content -->
+					</div><!-- /.shell -->
+				</section><!-- /.section-entry -->
+
+			@endif
+		</div><!-- /.main -->
+	@stop

@@ -13,6 +13,7 @@ use App\Models\front\sucursal_model as sucursal;
 use App\Models\front\slider_model as slider;
 use App\Models\front\promocion_model as promocion;
 use App\Models\front\juego_model as juego;
+use SoapClient;
 
 class lineasController extends Controller
 {
@@ -163,8 +164,6 @@ class lineasController extends Controller
     }
    
     public function deportivas( $sucursal = null){
-        $data = [];
-
         $data["sucursal"] = $sucursal;
 
         //-----> Obtenemos detalle de sucursal seleccionada
@@ -176,6 +175,69 @@ class lineasController extends Controller
         $data["otras"] = linea::find_all( [ "not_in" => [ 3 ] ] ); // Obtenemos otras opciones de diversión
         $data['quinielas'] = slider::football_pools();// Obtenemos las quinielas
 
-        return view('front.lineas.deportiva',$data);
+        // -----> Soap
+        // Hacer dowhile para la sesión
+        // --> Iniciar Sesión
+        if( session()->has('soapSession') && session()->has('soapCount') ){
+            $soapCount = session('soapCount');
+            $soapCount++;
+            session()->forget('soapCount');
+            session(['soapCount'=>$soapCount]);
+        }
+        else{
+            session()->flush();
+            $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl');
+            $soap = $soap->__soapCall('SignOnSitioOp',[[
+                'ip'=>'10.100.240.2',
+                'idSitio'=>1
+            ]]);
+            $data = [
+                'soapSession'=>$soap,
+                'soapCount'=>1
+            ];
+            session($data);
+        }
+        // si no existe una solicitud para deporte, por defecto srá 5
+        $dep = (\Request::input('dep') !== null) ? \Request::input('dep') : 5;
+        $data['dep'] = $dep;
+
+        // Lista de deportes
+        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp');
+        $res = $soap->__soapCall('ListaDeportesOp',[[
+            'sesion' => session('soapSession')->sesion,
+            'serieMensaje' => session('soapCount')
+        ]]);
+        $data['deportes'] = $res->deporte;
+
+        //Lista de ligas y ofertas
+        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl');
+        $res = $soap->__soapCall('ListaAgrupadoresDeportesOp',[[
+            'sesion' => session('soapSession')->sesion,
+            'serieMensaje' => session('soapCount'),
+            'numDeporte' => $dep
+        ]]);
+        $ofertas = [];
+        foreach($res->deporte->ligas->liga as $key => $item){
+            $ofertas[$key]['id'] = $item->numLiga;
+            $ofertas[$key]['nombre'] = $item->nombre;
+            if( is_array($item->agrupadores->agrupador) ){
+                foreach($item->agrupadores->agrupador as $agrupador){
+                    $ofertas[$key]['data'][] = [
+                        'id' => $agrupador->idAgrupador,
+                        'nombre' => $agrupador->nombre
+                    ];
+                }
+            }
+            else{
+                $agrupador = $item->agrupadores->agrupador;
+                $ofertas[$key]['data'][] = [
+                    'id' => $agrupador->idAgrupador,
+                    'nombre' => $agrupador->nombre
+                ];
+            }
+        }
+        $data['ofertas'] = $ofertas;
+
+         return view('front.lineas.deportiva',$data);
     }
 }
