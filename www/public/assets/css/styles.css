@@ -1592,7 +1592,7 @@ li:first-child { margin: 0;}
 .slide-caption a {text-decoration: none;}
 .slider-games .slick-arrow { display: inline-block; border: none; background-color: transparent; width: 60px; height: 60px; background: url(../css/images/ico-arrow-left@2x.png) no-repeat 0 0; background-size: 60px 60px; font-size: 0; line-height: 0; text-indent: -4004px; position: absolute; bottom: 135px; left: -74px; border-radius: 50%; transition: all .3s; z-index: 99; }
 .slider-games .slick-arrow:hover { background-color: #f00; }
-.slider-games .slick-next { left: auto; right: -74px; -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg); transform: rotate(180deg); }
+.slider-games .slick-next { left: auto; right: -74px; -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg); transform: rotate(180deg);}
 /* Tablet Portrait */
 @media (max-width: 1023px) {
 	.slider-games .slick-arrow { zoom: .8; bottom: 50%; margin-bottom: -30px; } 
@@ -1610,8 +1610,8 @@ li:first-child { margin: 0;}
 .slider-games-menu .slide-content p { font-size: 30px; margin-bottom: 8px; }
 .slider-games-menu .slide-content span { font-size: 15px; line-height: 1.2; display: inline-block; }
 .slider-games-menu .slide-caption { padding: 0 12px 9px 18px; }
-.slider-games .slick-arrow { background: url(../css/images/ico-arrow-gray@2x.png) no-repeat 0 0; background-size: 60px 60px; -webkit-transform: scale(0.8); -ms-transform: scale(0.8); transform: scale(0.8); }
-.slider-games .slick-next { background: url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0; background-size: 60px 60px; -webkit-transform: rotate(0); -ms-transform: rotate(0); transform: rotate(0); -webkit-transform: scale(0.8); -ms-transform: scale(0.8); transform: scale(0.8); }
+.slider-games .slick-arrow { background: url(../css/images/ico-arrow-gray@2x.png) no-repeat 0 0; background-size: 60px 60px; -webkit-transform: scale(0.8); -ms-transform: scale(0.8); transform: scale(0.8); background-color: #fff;}
+.slider-games .slick-next { background: url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0; background-size: 60px 60px; -webkit-transform: rotate(0); -ms-transform: rotate(0); transform: rotate(0); -webkit-transform: scale(0.8); -ms-transform: scale(0.8); transform: scale(0.8); background-color: #fff; }
 .slider-games .slick-arrow:hover { background-color: #fff; opacity: .7; }
 /* Tablet Portrait */
 @media (max-width: 1023px) {
