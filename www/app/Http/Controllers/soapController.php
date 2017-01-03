@@ -40,7 +40,7 @@ class soapController extends Controller
         $res3 = $soap->__soapCall('ListaAgrupadoresDeportesOp',[[
             'sesion' => $res->sesion,
             'serieMensaje' => 1,
-            'numDeporte' => 2
+            'numDeporte' => 5
         ]]);
         $ligas = $res3->deporte->ligas->liga;
         // print_r($ligas[0]->agrupadores->agrupador[0]->idAgrupador);
@@ -49,8 +49,8 @@ class soapController extends Controller
         $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaEventosDeportes?wsdl');
         $res4 = $soap->__soapCall('ListaEventosDeportesOp',[[
             'sesion'=>$res->sesion,
-            'numDeporte' => 2,
-            'idAgrupador'=>'E2',
+            'numDeporte' => 5,
+            'idAgrupador'=>'E3',
             'numLiga'=>1,
         ]]);
 

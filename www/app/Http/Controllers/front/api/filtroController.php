@@ -13,6 +13,47 @@ use SoapClient;
 
 class filtroController extends Controller
 {
+    private function mes($mes){
+        $mes = (int)$mes;
+        switch($mes){
+            case 1:
+                return "Enero";
+                break;
+            case 2:
+                return "Febrero";
+                break;
+            case 3:
+                return "Marzo";
+                break;
+            case 4:
+                return "Abril";
+                break;
+            case 5:
+                return "Mayo";
+                break;
+            case 6:
+                return "Junio";
+                break;
+            case 7:
+                return "Julio";
+                break;
+            case 8:
+                return "Agosto";
+                break;
+            case 9:
+                return "Septiembre";
+                break;
+            case 10:
+                return "Octubre";
+                break;
+            case 11:
+                return "Noviembre";
+                break;
+            case 12:
+                return "Diciembre";
+                break;
+        }
+    }
     public function filtro_maquinas(Request $request)
     {
         
@@ -82,20 +123,26 @@ class filtroController extends Controller
                         $data[$key]['hora'] = date('h:iA',strtotime($item->fecha));
                         if( is_array($item->bis->bi) ){
                             foreach($item->bis->bi as $val){
-                                $data[$key]['data'][] = [
-                                    'id_apuesta' => $val->numBi,
-                                    'nombre' => $val->contendiente->nombre,
-                                    'puntos' => isset($val->linPuntos->linea) && $val->linPuntos->linea !== null ? $val->linPuntos->linea : null
-                                ];
+                                if( mb_strtoupper(trim($val->estado)) == "DISPONIBLE" ){
+                                    $data[$key]['data'][] = [
+                                        'id_apuesta' => $val->numBi,
+                                        'nombre' => $val->contendiente->nombre,
+                                        'puntos' => trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->linea : $val->linDinero->linea,
+                                        'linea' => 0
+                                    ];
+                                }
                             }
                         }
                         else{
                             $val = $item->bis->bi;
-                            $data[$key]['data'][] = [
-                                'id_apuesta' => $val->numBi,
-                                'nombre' => $val->contendiente->nombre,
-                                'puntos' =>  isset($val->linPuntos->linea) && $val->linPuntos->linea !== null ? $val->linPuntos->linea : null
-                            ];
+                            if( mb_strtoupper(trim($val->estado)) == "DISPONIBLE" ){
+                                $data[$key]['data'][] = [
+                                    'id_apuesta' => $val->numBi,
+                                    'nombre' => $val->contendiente->nombre,
+                                    'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->linea : $val->linDinero->linea,
+                                    'linea' => 0
+                                ];
+                            }
                         }
                     }
                 }
@@ -106,26 +153,56 @@ class filtroController extends Controller
                     $data[$key]['hora'] = date('h:iA',strtotime($item->fecha));
                     if( is_array($linea->evento->bis->bi) ){
                         foreach($linea->evento->bis->bi as $val){
-                            $data[$key]['data'][] = [
-                                'id_apuesta' => $val->numBi,
-                                'nombre' => $val->contendiente->nombre,
-                                'puntos' =>  isset($val->linPuntos->linea) && $val->linPuntos->linea !== null ? $val->linPuntos->linea : null
-                            ];
+                            if( mb_strtoupper(trim($val->estado)) == "DISPONIBLE" ){
+                                $data[$key]['data'][] = [
+                                    'id_apuesta' => $val->numBi,
+                                    'nombre' => $val->contendiente->nombre,
+                                    'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->linea : $val->linDinero->linea,
+                                    'linea' => 0
+                                ];
+                            }
                         }
                     }
                     else{
                         $val = $linea->evento->bis->bi;
-                        $data[$key]['data'][] = [
-                            'id_apuesta' => $val->numBi,
-                            'nombre' => $val->contendiente->nombre,
-                            'puntos' =>  isset($val->linPuntos->linea) && $val->linPuntos->linea !== null ? $val->linPuntos->linea : null
-                        ];
+                        if( mb_strtoupper(trim($val->estado)) == "DISPONIBLE" ){
+                            $data[$key]['data'][] = [
+                                'id_apuesta' => $val->numBi,
+                                'nombre' => $val->contendiente->nombre,
+                                'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->linea : $val->linDinero->linea,
+                                'linea' => 0
+                            ];
+                        }
                     }
                 }
             }
+
+            $info = [];
+            foreach($data as $key => $val){
+                $info[$val['fecha']][] = $key;
+            }
+
+            $data2 = [];
+            $c = 0;
+            foreach($info as $num => $val){
+                $data2[$c]['fecha_data'] = date('m/d/Y',strtotime($num));
+                $data2[$c]['fecha'] = date('d',strtotime($num)) . " " . $this->mes(date('m',strtotime($num))) . " " . date('Y',strtotime($num));
+                foreach($val as $key){
+                    unset($data[$key]['fecha']);
+                    if( isset($data[$key]['data']) ){
+                        $data2[$c]['data'][] = $data[$key]['data'];
+                        $data2[$c]['hora'][] = $data[$key]['hora'];
+                    }
+                }
+                if( !array_key_exists('data', $data2[$c]) ){
+                    unset($data2[$c]);
+                }
+                $c++;
+            }
+
             // $data['fecha'] = date('Y-m-d h:iA',strtotime($linea->fecha));
 
-            echo json_encode($data);
+            echo json_encode($data2);
         }
         else
             abort(403);

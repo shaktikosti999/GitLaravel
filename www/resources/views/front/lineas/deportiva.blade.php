@@ -2,7 +2,13 @@
 
 	@section('js')
 		<script>
-
+			$('#date_select').on('change', function(){
+				$('[data-date]').show();
+				$('[data-date]').addClass('dateHide');
+				$('[data-date="' + $(this).val() + '"]').removeClass('dateHide');
+				$('.dateHide').hide();
+				$('[data-date]').removeClass('dateHide');
+			});
 			ofertas = {!!json_encode($ofertas)!!};
 			$('#liga_select').on('change', function(){
 				$('#lista_oferta').html('<option>Seleccione oferta</option>');
@@ -36,48 +42,53 @@
 						var str = '';
 						data = JSON.parse(data);
 						$('#tbl_content').html('');
-						$.each(data, function(index,item){
-							str += '<div class="table-content" >\
-								<h5>' + item.fecha + '</h5>\
-								<div class="table__wrapp">\
-									<div class="table-item">\
-										<div class="line-gray">\
-										</div>\
-										<div class="table-list">\
-											<p>' + item.data[0].id_apuesta + '</p>\
-											<p>' + item.data[0].nombre + '</p>\
-											<p>Línea de apertura</p>\
-											<h2>' + item.data[0].puntos + '</h2>\
+						$.each(data, function(index,data2){
+								str += '<div class="table-content" data-date="' + data2.fecha_data +'">\
+									<h5>' + data2.fecha + '</h5>\
+									<div class="table__wrapp">';
+							$.each(data2.data, function(index2,item){
+								// console.log(item);
+								if( item !== null ){
+										str += '<div class="table-item">\
+											<div class="line-gray">\
+											</div>\
+											<div class="table-list">\
+												<p>' + item[0].id_apuesta + '</p>\
+												<p>' + item[0].nombre + '</p>\
+												<p>Línea de apertura</p>\
+												<h2>' + item[0].puntos + '</h2>\
+											</div>';
+								if( item[2] !== undefined ){
+											str += '<div class="table-list">\
+												<p>' + item[2].id_apuesta + '</p>\
+												<p>' + item[2].nombre + '</p>\
+												<p>Línea de apertura</p>\
+												<h2>' + item[2].puntos + '</h2>\
+											</div>\
+											<div class="gray-item">\
+												<p>' + item[1].id_apuesta + '</p>\
+												<p>' + item[1].nombre + '</p>\
+												<p>Línea de apertura</p>\
+												<h2>' + item[1].puntos + '</h2>\
+											</div>';
+								}
+								else{
+											str += '<div class="table-list">\
+												<p>' + item[1].id_apuesta + '</p>\
+												<p>' + item[1].nombre + '</p>\
+												<p>Línea de apertura</p>\
+												<h2>' + item[1].puntos + '</h2>\
+											</div>';
+								}
+											str += '<div class="gray-item2">\
+												<h6>' + data2.hora[index2] + '</h6>\
+												<p>Tiempo del centro</p>\
+											</div>\
 										</div>';
-							if( item.data.length > 2 ){
-										str += '<div class="table-list">\
-											<p>' + item.data[2].id_apuesta + '</p>\
-											<p>' + item.data[2].nombre + '</p>\
-											<p>Línea de apertura</p>\
-											<h2>' + item.data[2].puntos + '</h2>\
-										</div>\
-										<div class="gray-item">\
-											<p>' + item.data[1].id_apuesta + '</p>\
-											<p>' + item.data[1].nombre + '</p>\
-											<p>Línea de apertura</p>\
-											<h2>' + item.data[1].puntos + '</h2>\
-										</div>';
-							}
-							else{
-										str += '<div class="table-list">\
-											<p>' + item.data[2].id_apuesta + '</p>\
-											<p>' + item.data[2].nombre + '</p>\
-											<p>Línea de apertura</p>\
-											<h2>' + item.data[2].puntos + '</h2>\
-										</div>';
-							}
-										str += '<div class="gray-item2">\
-											<h6>' + item.hora + '</h6>\
-											<p>Tiempo del centro</p>\
-										</div>\
-									</div>\
-								</div>\
-							</div>';				
+									}
+							});
+									str += '</div>\
+								</div>';				
 						});
 						$('#tbl_content').html(str);
 					}
@@ -196,12 +207,14 @@
 					<select class="btn btn-black" id="lista_oferta" style="display:none"></select>
 					<div class="input-group date">
 						<img src="css/images/icons/calendar-gray.png">
-					   	 <input type="text" placeholder="mm/dd/yyyy" class="form-control">
+					   	 <input type="text" placeholder="mm/dd/yyyy" class="form-control" id="date_select">
 				   </div>
 				</div>
 
 				<div class="col-sm-12" id="tbl_content"></div>
 
+
+				<?php /*
 				<div class="table-content" >
 					<h5>07 Noviembre 2016</h5>
 					<div class="table__wrapp">
@@ -550,7 +563,7 @@
 							</div>
 						</div>					
 					</div>
-				</div>
+				</div>*/?>
 
 				<div class="table-sport">
 					<div class="shell">

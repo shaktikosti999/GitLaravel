@@ -57,7 +57,7 @@ class lineasController extends Controller
 
         $data['pagados'] = sucursal::get_paid(['id_sucursal' => $id_sucursal]);
 
-        // dd($data);
+        dd($data);
 
         return view('front.lineas.maquinas',$data);
     }
@@ -217,24 +217,47 @@ class lineasController extends Controller
             'numDeporte' => $dep
         ]]);
         $ofertas = [];
-        foreach($res->deporte->ligas->liga as $key => $item){
-            $ofertas[$key]['id'] = $item->numLiga;
-            $ofertas[$key]['nombre'] = $item->nombre;
-            if( is_array($item->agrupadores->agrupador) ){
-                foreach($item->agrupadores->agrupador as $agrupador){
+        if( isset($res->deporte->ligas->liga) && is_array($res->deporte->ligas->liga) ){
+            foreach($res->deporte->ligas->liga as $key => $item){
+                $ofertas[$key]['id'] = $item->numLiga;
+                $ofertas[$key]['nombre'] = $item->nombre;
+                if( is_array($item->agrupadores->agrupador) ){
+                    foreach($item->agrupadores->agrupador as $agrupador){
+                        $ofertas[$key]['data'][] = [
+                            'id' => $agrupador->idAgrupador,
+                            'nombre' => $agrupador->nombre
+                        ];
+                    }
+                }
+                else{
+                    $agrupador = $item->agrupadores->agrupador;
                     $ofertas[$key]['data'][] = [
                         'id' => $agrupador->idAgrupador,
                         'nombre' => $agrupador->nombre
                     ];
                 }
             }
-            else{
-                $agrupador = $item->agrupadores->agrupador;
-                $ofertas[$key]['data'][] = [
-                    'id' => $agrupador->idAgrupador,
-                    'nombre' => $agrupador->nombre
-                ];
-            }
+        }
+        else{
+            $key = 0;
+            $item = $res->deporte->ligas->liga;
+            $ofertas[$key]['id'] = $item->numLiga;
+                $ofertas[$key]['nombre'] = $item->nombre;
+                if( is_array($item->agrupadores->agrupador) ){
+                    foreach($item->agrupadores->agrupador as $agrupador){
+                        $ofertas[$key]['data'][] = [
+                            'id' => $agrupador->idAgrupador,
+                            'nombre' => $agrupador->nombre
+                        ];
+                    }
+                }
+                else{
+                    $agrupador = $item->agrupadores->agrupador;
+                    $ofertas[$key]['data'][] = [
+                        'id' => $agrupador->idAgrupador,
+                        'nombre' => $agrupador->nombre
+                    ];
+                }
         }
         $data['ofertas'] = $ofertas;
 
