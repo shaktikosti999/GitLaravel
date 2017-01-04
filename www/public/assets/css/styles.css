@@ -1038,6 +1038,7 @@ li:first-child { margin: 0;}
 .nav-access li a { display: inline-block; text-decoration: none; transition: all .3s; }
 .nav-access li a:hover { color: #ff0000; }
 .nav-access li + li:before { display: inline-block; content: '|'; margin-right: 15px; margin-left: 12px; font-size: 8px; position: relative; top: -2px; }
+
 /* Tablet Portrait */
 @media (max-width: 1023px) { 
 	.nav-access { display: none; }
@@ -1051,7 +1052,7 @@ li:first-child { margin: 0;}
 	.nav > ul { border-bottom: 2px solid rgba(255, 255, 255, 0.2); }
 	.nav > ul > li { float: left; font-size: 15px; color: #fff; text-transform: uppercase; font-weight: 700; }
 	.nav > ul > li + li { margin-left: 34px; }
-	.nav > ul > li a { display: inline-block; text-decoration: none; color: #fff; padding-bottom: 20px; position: relative; transition: all .3s; }
+	.nav > ul > li a {display: inline-block; text-decoration: none; color: #fff; padding-bottom: 20px; position: relative; transition: all .3s; }
 	.nav > ul > .has-dropdown a:after { display: inline-block; content: ''; width: 8px; height: 8px; border: 1px solid #fff; border-width: 0 1px 1px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); position: relative; top: -3px; margin-left: 8px; transition: all .3s; }
 	.nav li a:before { display: inline-block; content: ''; width: 100%; height: 2px; background: #f00; position: absolute; bottom: -2px; left: 0; right: 0; -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); transition: all .3s; }
 
@@ -1074,6 +1075,9 @@ li:first-child { margin: 0;}
 @media (max-width: 1162px) {
 	.nav li a { padding-bottom: 10px; padding-top: 10px; }
 	.nav > ul > li + li { margin-left: 15px; }
+}
+@media (max-width: 1070px) {
+	.nav > ul > li a {font-size: 13px;}
 }
 @media (max-width: 1023px) { 	 
 	.nav > ul > li a { padding: 15px 0; color: #fff; text-transform: uppercase; text-decoration: none; } 
@@ -1102,8 +1106,8 @@ li:first-child { margin: 0;}
 	.nav .tablet-hidden a i { font-size: 20px; position: relative; top: 8px; } 
 }
 @media(max-height: 580px){
-	.nav { height: calc(100vh - 71px); top: 71px; overflow: auto; }
-	.nav > ul > li:first-child { padding-top: 30px; }
+	.nav { /*height: calc(100vh - 71px);*/ top: 71px; /*overflow: auto;*/ }
+	/*.nav > ul > li:first-child { padding-top: 30px; }*/
 	.nav > ul > li:last-child { padding-bottom: 90px; } 
 }
 /* ------------------------------------------------------------ *\
