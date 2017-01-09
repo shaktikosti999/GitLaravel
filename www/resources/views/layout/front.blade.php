@@ -274,7 +274,7 @@
 									</li>-->
 									
 									<li>
-										<a href="{{url('sucursal')}}">Sucursales</a>
+										<a href="{{url('sucursal')}}">Ubicaciones</a>
 									</li>
 									
 									<li>
