@@ -128,7 +128,7 @@
 								</a>
 							</div>
 							<h6>Dirección</h6>
-							{!!$item->direccion!!}
+							<p>{!!$item->direccion!!}</p>
 						</li>
 				<?php $c++; ?>
 			@endforeach

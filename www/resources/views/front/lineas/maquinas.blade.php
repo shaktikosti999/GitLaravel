@@ -176,12 +176,23 @@
 											{{$maquina->nombre}} 
 										</h6>
 
-										<p>
+										<div class="fake-div">
+											<div id="counter">
+											    <div class="counter-value" data-count="39467">$0</div>
+											    <!--<div class="counter-value" data-count="400">$100</div>
+											    <div class="counter-value" data-count="1500">$500</div>-->
+											</div>
+											<div class="fake-div">
+										<!--<p>
 											${{$maquina->acumulado}}
-										</p>
+										</p>-->
+											</div>
+										</div>
 									</div><!-- /.article-content -->
 								</article><!-- /.article-jackpot -->
 							</div><!-- /.col col-1of2 -->
+
+							
 						@endforeach
 						
 					</div><!-- /.cols -->
@@ -208,9 +219,18 @@
 										{{ucfirst($pagado->juego)}} 
 									</h6>
 
-									<p>
+									<div class="fake-div">
+										<div id="counter">
+										    <div class="counter-value" data-count="50013">$0</div>
+										    <!--<div class="counter-value" data-count="400">$100</div>
+										    <div class="counter-value" data-count="1500">$500</div>-->
+										</div>
+										<div class="fake-div">
+									<!--<p>
 										${{$pagado->pagado}}
-									</p>
+									</p>-->
+										</div>
+									</div>
 								</div><!-- /.article-content -->
 							</article><!-- /.article-jackpot -->
 						</div><!-- /.col col-1of2 -->
