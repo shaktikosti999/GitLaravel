@@ -118,6 +118,20 @@ class promocion_model{
 		return $evento;
 	}
 
+	// static function store_dinamica($request){
+	// 	$promocion = $request->input('pay_id_promocion');
+	// 	foreach($request->input('pay_sucursal') as $item){
+	// 		$data[] = [
+	// 			'id_promocion' => $promocion,
+	// 			'id_sucursal' => $item,
+	// 			'titulo' => $request->input('pay_titulo'),
+	// 			'descripcion' => $request->input('pay_desc'),
+	// 			'inicio' => date('Y-m-d H:i:s', strtotime($request->input('pay_date') . ' ' . $request->input('pay_date1'))),
+	// 			'fin' => date('Y-m-d H:i:s', strtotime($request->input('pay_date') . ' ' . $request->input('pay_date2')))
+	// 		];
+	// 	}
+	// 	return \DB::table('pago_promocion')->insert($data);
+	// }
 	static function store_dinamica($request){
 		$promocion = $request->input('pay_id_promocion');
 		foreach($request->input('pay_sucursal') as $item){
@@ -177,20 +191,6 @@ class promocion_model{
 		return $query;
 	}
 
-	static function store_dinamica($request){
-		$promocion = $request->input('pay_id_promocion');
-		foreach($request->input('pay_sucursal') as $item){
-			$data[] = [
-				'id_promocion' => $promocion,
-				'id_sucursal' => $item,
-				'titulo' => $request->input('pay_titulo'),
-				'descripcion' => $request->input('pay_desc'),
-				'inicio' => date('Y-m-d H:i:s', strtotime($request->input('pay_date') . ' ' . $request->input('pay_date1'))),
-				'fin' => date('Y-m-d H:i:s', strtotime($request->input('pay_date') . ' ' . $request->input('pay_date2')))
-			];
-		}
-		return \DB::table('pago_promocion')->insert($data);
-	}
 
 	static function destroy_promotion($id_promocion,$id_sucursal){
 		$imagen = \DB::table('promocion_sucursal')

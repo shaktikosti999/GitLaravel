@@ -31,12 +31,12 @@
 	    
 	    <div class="stick-nav"><!-- Stick nav -->
 	        <ul>
-	            <li><a href="#promociones"><img src="css/images/icons/icon-1.png"><span>Promociones</span></a></li>
-	            <li><a href="#juegos"><img src="css/images/icons/icon-7.png"><span>Juegos</span></a></li>
+	            {!!isset( $promociones ) && count( $promociones ) ? '<li><a href="#promociones"><img src="css/images/icons/icon-1.png"><span>Promociones</span></a></li>' : ''!!}
+	            {!!isset($mesas) && count($mesas) ? '<li><a href="#juegos"><img src="css/images/icons/icon-7.png"><span>Juegos</span></a></li>' : ''!!}
 	            <li><a href="#jackpot"><img src="css/images/icons/icon-4.png"><span>Jackpot</span></a></li>
-	            <li><a href="#torneos"><img src="css/images/icons/icon-8.png"><span>Torneos</span></a></li>
+	            {!!isset( $torneos ) && count($torneos) ? '<li><a href="#torneos"><img src="css/images/icons/icon-8.png"><span>Torneos</span></a></li>' : '' !!}
 	            <!--<li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Ubicación</span></a></li>-->
-	            <li><a href="#diversion"><img src="css/images/icons/icon-6.png"><span>Diversión</span></a></li>
+	            {!!isset( $otras ) && count( $otras ) ? '<li><a href="#diversion"><img src="css/images/icons/icon-6.png"><span>Diversión</span></a></li>' : '' !!}
 	        </ul>
 	    </div>
 
@@ -247,7 +247,7 @@
 
 																			<span class="plus"></span>
 																		</h6>
-																	<div class="article-image" style="background-image: url({{ isset($mesas->archivo) && $mesas->archivo !== null ? $mesas->imagen : $mesa->archivo}})"> </div><!-- /.article-image -->
+																	<div class="article-image" style="background-image: url({{ isset($mesa->archivo) && trim($mesa->archivo) != "" ? $mesa->archivo : $mesa->imagen}})"> </div><!-- /.article-image -->
 
 																	<a href="#" class="link-more ver-mesa" data-id="{{$mesa->id}}">
 																		Ver más
@@ -320,7 +320,7 @@
 				</div><!-- /.shell -->
 			</section><!-- /.section-jackpots -->
 
-			@if( isset( $torneos ) )
+			@if( isset( $torneos ) && count($torneos) )
 
 				<section class="section section-secondary">
 					<div class="shell">

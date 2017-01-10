@@ -68,17 +68,32 @@
 											<div class="gray-item">\
 												<p>' + item[1].id_apuesta + '</p>\
 												<p>' + item[1].nombre + '</p>\
-												<p>Línea de apertura</p>\
-												<h2>' + item[1].puntos + '</h2>\
+												<h4 style="color:rgb(255,255,255)">' + item[1].puntos + '</h4>\
 											</div>';
 								}
 								else{
+									if( data2.overunder !== undefined ){
+										console.log(data2);
+											str += '<div class="table-list">\
+												<p>' + item[1].id_apuesta + '</p>\
+												<p>' + item[1].nombre + '</p>\
+												<p>Línea de apertura</p>\
+												<h2>' + item[1].puntos + '</h2>\
+											</div>\
+											<div class="gray-item">\
+												<p>Over / Under</p>\
+												<h4>' + data2.overunder[index2].puntos + '</h4>\
+												<p>' + data2.overunder[index2].linea + '</p>\
+											</div>';
+									}
+									else{
 											str += '<div class="table-list">\
 												<p>' + item[1].id_apuesta + '</p>\
 												<p>' + item[1].nombre + '</p>\
 												<p>Línea de apertura</p>\
 												<h2>' + item[1].puntos + '</h2>\
 											</div>';
+									}
 								}
 											str += '<div class="gray-item2">\
 												<h6>' + data2.hora[index2] + '</h6>\
@@ -203,6 +218,8 @@
 						<option value="{{$key}}" data-liga="{{$item['id']}}">{{$item['nombre']}}</option>
 						@endforeach
 					</select>
+					@else
+						<h3>No encontramos ofertas</h3>
 					@endif
 					<select class="btn btn-black" id="lista_oferta" style="display:none"></select>
 					<div class="input-group date">
@@ -212,7 +229,6 @@
 				</div>
 
 				<div class="col-sm-12" id="tbl_content"></div>
-
 
 				<?php /*
 				<div class="table-content" >
@@ -563,8 +579,11 @@
 							</div>
 						</div>					
 					</div>
-				</div>*/?>
+				</div>
+				*/?>
 
+				<?php 
+				/*
 				<div class="table-sport">
 					<div class="shell">
 						<h2>Resultados</h2>
@@ -609,6 +628,7 @@
 						</table>
 					</div>
 				</div>
+				*/ ?>
 
 			</div>
 		</div>

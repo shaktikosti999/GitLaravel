@@ -95,8 +95,7 @@ class filtroController extends Controller
                 session(['soapCount'=>$soapCount]);
             }
             else{
-                session()->flush();
-                $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl');
+                $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl');
                 $soap = $soap->__soapCall('SignOnSitioOp',[[
                     'ip'=>'10.100.240.2',
                     'idSitio'=>1
@@ -108,13 +107,25 @@ class filtroController extends Controller
                 session($data);
             }
 
-            $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaEventosDeportes?wsdl');
-            $linea = $soap->__soapCall('ListaEventosDeportesOp',[[
-                'sesion'=>session('soapSession')->sesion,
-                'numDeporte' => $request->input('deporte'),
-                'idAgrupador'=> $request->input('oferta'),
-                'numLiga'=> $request->input('liga'),
-            ]]);
+            $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaEventosDeportes?wsdl');
+            if( $request->input('oferta') == "E589"){
+                $linea = $soap->__soapCall('ListaEventosDeportesOp',[[
+                    'sesion'=>session('soapSession')->sesion,
+                    'numDeporte' => $request->input('deporte'),
+                    'idAgrupador'=> $request->input('oferta'),
+                    'numLiga'=> $request->input('liga'),
+                    "proposicion" => true
+                ]]);
+            }
+            else{
+                $linea = $soap->__soapCall('ListaEventosDeportesOp',[[
+                    'sesion'=>session('soapSession')->sesion,
+                    'numDeporte' => $request->input('deporte'),
+                    'idAgrupador'=> $request->input('oferta'),
+                    'numLiga'=> $request->input('liga'),
+                ]]);
+            }
+            // dd($linea);
             $data = [];
             if( isset($linea->evento) ){
                 if( is_array($linea->evento) ){
@@ -127,7 +138,7 @@ class filtroController extends Controller
                                     $data[$key]['data'][] = [
                                         'id_apuesta' => $val->numBi,
                                         'nombre' => $val->contendiente->nombre,
-                                        'puntos' => trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->linea : $val->linDinero->linea,
+                                        'puntos' => trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->puntos : $val->linDinero->linea,
                                         'linea' => 0
                                     ];
                                 }
@@ -139,10 +150,16 @@ class filtroController extends Controller
                                 $data[$key]['data'][] = [
                                     'id_apuesta' => $val->numBi,
                                     'nombre' => $val->contendiente->nombre,
-                                    'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->linea : $val->linDinero->linea,
+                                    'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->puntos : $val->linDinero->linea,
                                     'linea' => 0
                                 ];
                             }
+                        }
+                        if( count($data[$key]['data']) <= 2 && trim(mb_strtoupper($item->total->altas->estado)) == "DISPONIBLE"){
+                            $data[$key]['overunder'] = [
+                                'puntos' => $item->total->altas->puntos,
+                                'linea' => $item->total->altas->linea
+                            ];
                         }
                     }
                 }
@@ -157,7 +174,7 @@ class filtroController extends Controller
                                 $data[$key]['data'][] = [
                                     'id_apuesta' => $val->numBi,
                                     'nombre' => $val->contendiente->nombre,
-                                    'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->linea : $val->linDinero->linea,
+                                    'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->puntos : $val->linDinero->linea,
                                     'linea' => 0
                                 ];
                             }
@@ -169,36 +186,47 @@ class filtroController extends Controller
                             $data[$key]['data'][] = [
                                 'id_apuesta' => $val->numBi,
                                 'nombre' => $val->contendiente->nombre,
-                                'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->linea : $val->linDinero->linea,
+                                'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->puntos : $val->linDinero->linea,
                                 'linea' => 0
                             ];
                         }
                     }
-                }
-            }
-
-            $info = [];
-            foreach($data as $key => $val){
-                $info[$val['fecha']][] = $key;
-            }
-
-            $data2 = [];
-            $c = 0;
-            foreach($info as $num => $val){
-                $data2[$c]['fecha_data'] = date('m/d/Y',strtotime($num));
-                $data2[$c]['fecha'] = date('d',strtotime($num)) . " " . $this->mes(date('m',strtotime($num))) . " " . date('Y',strtotime($num));
-                foreach($val as $key){
-                    unset($data[$key]['fecha']);
-                    if( isset($data[$key]['data']) ){
-                        $data2[$c]['data'][] = $data[$key]['data'];
-                        $data2[$c]['hora'][] = $data[$key]['hora'];
+                    if( count($data[$key]['data']) <= 2 && trim(mb_strtoupper($item->total->altas->estado)) == "DISPONIBLE"){
+                        $data[$key]['overunder'] = [
+                            'puntos' => $item->total->altas->puntos,
+                            'linea' => $item->total->altas->linea
+                        ];
                     }
                 }
-                if( !array_key_exists('data', $data2[$c]) ){
-                    unset($data2[$c]);
+
+                $info = [];
+                foreach($data as $key => $val){
+                    $info[$val['fecha']][] = $key;
                 }
-                $c++;
+
+                $data2 = [];
+                $c = 0;
+                // dd($data);
+                foreach($info as $num => $val){
+                    $data2[$c]['fecha_data'] = date('m/d/Y',strtotime($num));
+                    $data2[$c]['fecha'] = date('d',strtotime($num)) . " " . $this->mes(date('m',strtotime($num))) . " " . date('Y',strtotime($num));
+                    foreach($val as $key){
+                        unset($data[$key]['fecha']);
+                        if( isset($data[$key]['data']) ){
+                            // foreach($data[$key]['data'] as )
+                            $data2[$c]['data'][] = $data[$key]['data'];
+                            $data2[$c]['hora'][] = $data[$key]['hora'];
+                            if( isset($data[$key]['overunder']) )
+                                $data2[$c]['overunder'][$key] = $data[$key]['overunder'];
+                        }
+                    }
+                    if( !array_key_exists('data', $data2[$c]) ){
+                        unset($data2[$c]);
+                    }
+                    $c++;
+                }
             }
+
 
             // $data['fecha'] = date('Y-m-d h:iA',strtotime($linea->fecha));
 

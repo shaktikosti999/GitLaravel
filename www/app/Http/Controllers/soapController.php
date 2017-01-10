@@ -21,22 +21,22 @@ class soapController extends Controller
      */
     public function index()
     {
-        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl');
+        $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl');
         $res = $soap->__soapCall('SignOnSitioOp',[[
-            'ip'=>'10.100.240.2',
+            'ip'=>'10.100.240.1',
             'idSitio'=>1
         ]]);
 
 
         // No regresa información 2
-        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp');
+        $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp');
         $res2 = $soap->__soapCall('ListaDeportesOp',[[
             'sesion' => $res->sesion,
             'serieMensaje' => "1"
         ]]);
 
         // No regresa información 3
-        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl');
+        $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl');
         $res3 = $soap->__soapCall('ListaAgrupadoresDeportesOp',[[
             'sesion' => $res->sesion,
             'serieMensaje' => 1,
@@ -46,11 +46,11 @@ class soapController extends Controller
         // print_r($ligas[0]->agrupadores->agrupador[0]->idAgrupador);
 
         // // regresa array con error de sesión 4
-        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaEventosDeportes?wsdl');
+        $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaEventosDeportes?wsdl');
         $res4 = $soap->__soapCall('ListaEventosDeportesOp',[[
             'sesion'=>$res->sesion,
-            'numDeporte' => 5,
-            'idAgrupador'=>'E3',
+            'numDeporte' => 3,
+            'idAgrupador'=>'E1',
             'numLiga'=>1,
         ]]);
 

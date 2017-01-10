@@ -11,10 +11,10 @@
 					</div><!-- /.article-head -->
 					
 					<div class="article-entry">
-						<p>Del {{$promocion->fecha_inicio}} al {{$promocion->fecha_fin}}</p>
-						<p>{{$promocion->resumen}}</p>
+						<p style="color:rgb(0,0,0)">Del {{$promocion->fecha_inicio}} al {{$promocion->fecha_fin}}</p>
+						<p style="color:rgb(0,0,0)">{{$promocion->resumen}}</p>
 						
-						<p>{{$promocion->descripcion}}</p>
+						<p style="color:rgb(0,0,0)">{{$promocion->descripcion}}</p>
 						
 					</div><!-- /.article-entry -->
 					

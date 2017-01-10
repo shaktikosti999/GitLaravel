@@ -85,8 +85,15 @@ class promocionesController extends Controller
      *   Muestra los detales de cada promoción
      *
      */
-    public function show($slug){
-        $promocion = promocion::find(['slug' => $slug]);
+    public function details($slug){
+        $data = [
+            'promocion' => promocion::find(['slug' => $slug])
+        ];
+        return view('front.promociones.show',$data);
+    }
+
+    public function show(){
+        $promocion = promocion::find(['slug' => 'promocion-1']);
 
         $data = [
             'promocion' => $promocion,

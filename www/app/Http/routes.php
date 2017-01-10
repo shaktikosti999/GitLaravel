@@ -64,8 +64,9 @@ Route::get('/','front\indexController@index');
 // Route::get('/promociones', function(){
 	// return view('front.promociones.promotions');
 // });
+Route::get('/promociones/calendario','front\promocionesController@show');
 Route::get('/promociones/{sucursal?}','front\promocionesController@index');
-Route::get('/promociones/detalle/{slug}','front\promocionesController@show');
+Route::get('/promociones/detalle/{slug}','front\promocionesController@details');
 
 //-----> Lineas
 Route::get('/lineas-de-juego/maquinas-de-juego/{sucursal?}','front\lineasController@maquinas');

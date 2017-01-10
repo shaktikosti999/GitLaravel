@@ -127,7 +127,7 @@
 
 										<li class="slide">
 											<div class="slide-image">
-												<img src="{{ $item->archivo }}" alt="{{ $item->nombre }}">
+												<a href="{{$item->link}}"><img src="{{ $item->archivo }}" alt="{{ $item->nombre }}"></a>
 											</div><!-- /.slide-image -->
 										</li><!-- /.slide -->
 

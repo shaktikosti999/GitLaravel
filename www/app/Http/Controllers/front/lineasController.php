@@ -57,7 +57,7 @@ class lineasController extends Controller
 
         $data['pagados'] = sucursal::get_paid(['id_sucursal' => $id_sucursal]);
 
-        dd($data);
+        // dd($data);
 
         return view('front.lineas.maquinas',$data);
     }
@@ -162,7 +162,31 @@ class lineasController extends Controller
 
         return view('front.lineas.carreras',$data);
     }
-   
+
+    private function soapLoggin(){
+        // -----> Soap
+        // Hacer dowhile para la sesión
+        // --> Iniciar Sesión
+        if( session()->has('soapSession') && session()->has('soapCount') ){
+            $soapCount = session('soapCount');
+            $soapCount++;
+            session()->forget('soapCount');
+            session(['soapCount'=>$soapCount]);
+        }
+        else{
+            $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl');
+            $soap = $soap->__soapCall('SignOnSitioOp',[[
+                'ip'=>'10.100.240.2',
+                'idSitio'=>1
+            ]]);
+            $data = [
+                'soapSession'=>$soap,
+                'soapCount'=>1
+            ];
+            session($data);
+        }
+    }
+
     public function deportivas( $sucursal = null){
         $data["sucursal"] = $sucursal;
 
@@ -175,89 +199,83 @@ class lineasController extends Controller
         $data["otras"] = linea::find_all( [ "not_in" => [ 3 ] ] ); // Obtenemos otras opciones de diversión
         $data['quinielas'] = slider::football_pools();// Obtenemos las quinielas
 
-        // -----> Soap
-        // Hacer dowhile para la sesión
-        // --> Iniciar Sesión
-        if( session()->has('soapSession') && session()->has('soapCount') ){
-            $soapCount = session('soapCount');
-            $soapCount++;
-            session()->forget('soapCount');
-            session(['soapCount'=>$soapCount]);
-        }
-        else{
-            session()->flush();
-            $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl');
-            $soap = $soap->__soapCall('SignOnSitioOp',[[
-                'ip'=>'10.100.240.2',
-                'idSitio'=>1
-            ]]);
-            $data = [
-                'soapSession'=>$soap,
-                'soapCount'=>1
-            ];
-            session($data);
-        }
+       
         // si no existe una solicitud para deporte, por defecto srá 5
         $dep = (\Request::input('dep') !== null) ? \Request::input('dep') : 5;
         $data['dep'] = $dep;
 
+        if($dep == 5){
+            
+        }
+
         // Lista de deportes
-        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp');
+        $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp');
         $res = $soap->__soapCall('ListaDeportesOp',[[
             'sesion' => session('soapSession')->sesion,
             'serieMensaje' => session('soapCount')
         ]]);
+
+        if( isset($res->descripcionError) && $res->descripcionError == "Sesion Invalida" ){
+            session()->forget('soapSession');
+            session()->forget('soapCount');
+            $this->soapLoggin();
+        }
+
+
         $data['deportes'] = $res->deporte;
 
         //Lista de ligas y ofertas
-        $soap = new SoapClient('http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl');
+        $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl');
         $res = $soap->__soapCall('ListaAgrupadoresDeportesOp',[[
             'sesion' => session('soapSession')->sesion,
             'serieMensaje' => session('soapCount'),
             'numDeporte' => $dep
         ]]);
+
         $ofertas = [];
-        if( isset($res->deporte->ligas->liga) && is_array($res->deporte->ligas->liga) ){
-            foreach($res->deporte->ligas->liga as $key => $item){
-                $ofertas[$key]['id'] = $item->numLiga;
-                $ofertas[$key]['nombre'] = $item->nombre;
-                if( is_array($item->agrupadores->agrupador) ){
-                    foreach($item->agrupadores->agrupador as $agrupador){
+        if( isset($res->deporte->ligas->liga) ){
+            if( is_array($res->deporte->ligas->liga) ){
+                foreach($res->deporte->ligas->liga as $key => $item){
+                    $ofertas[$key]['id'] = $item->numLiga;
+                    $ofertas[$key]['nombre'] = $item->nombre;
+                    if( is_array($item->agrupadores->agrupador) ){
+                        foreach($item->agrupadores->agrupador as $agrupador){
+                            $ofertas[$key]['data'][] = [
+                                'id' => $agrupador->idAgrupador,
+                                'nombre' => $agrupador->nombre
+                            ];
+                        }
+                    }
+                    else{
+                        $agrupador = $item->agrupadores->agrupador;
                         $ofertas[$key]['data'][] = [
                             'id' => $agrupador->idAgrupador,
                             'nombre' => $agrupador->nombre
                         ];
                     }
-                }
-                else{
-                    $agrupador = $item->agrupadores->agrupador;
-                    $ofertas[$key]['data'][] = [
-                        'id' => $agrupador->idAgrupador,
-                        'nombre' => $agrupador->nombre
-                    ];
                 }
             }
-        }
-        else{
-            $key = 0;
-            $item = $res->deporte->ligas->liga;
-            $ofertas[$key]['id'] = $item->numLiga;
-                $ofertas[$key]['nombre'] = $item->nombre;
-                if( is_array($item->agrupadores->agrupador) ){
-                    foreach($item->agrupadores->agrupador as $agrupador){
+            else{
+                $key = 0;
+                $item = $res->deporte->ligas->liga;
+                $ofertas[$key]['id'] = $item->numLiga;
+                    $ofertas[$key]['nombre'] = $item->nombre;
+                    if( is_array($item->agrupadores->agrupador) ){
+                        foreach($item->agrupadores->agrupador as $agrupador){
+                            $ofertas[$key]['data'][] = [
+                                'id' => $agrupador->idAgrupador,
+                                'nombre' => $agrupador->nombre
+                            ];
+                        }
+                    }
+                    else{
+                        $agrupador = $item->agrupadores->agrupador;
                         $ofertas[$key]['data'][] = [
                             'id' => $agrupador->idAgrupador,
                             'nombre' => $agrupador->nombre
                         ];
                     }
-                }
-                else{
-                    $agrupador = $item->agrupadores->agrupador;
-                    $ofertas[$key]['data'][] = [
-                        'id' => $agrupador->idAgrupador,
-                        'nombre' => $agrupador->nombre
-                    ];
-                }
+            }
         }
         $data['ofertas'] = $ofertas;
 
