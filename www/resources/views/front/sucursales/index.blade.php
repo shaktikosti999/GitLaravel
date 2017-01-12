@@ -381,7 +381,12 @@
 									<li>
 										<i class="ico-car"></i>
 									
-										<p>{!!$sucursal->instrucciones!!}</p>
+										<p>{!!$sucursal->estacionamiento!!}</p>
+									</li>
+									<li>
+										<i class="ico-car"></i>
+									
+										<p>{!!$sucursal->Oferta de juego!!}</p>
 									</li>
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->
