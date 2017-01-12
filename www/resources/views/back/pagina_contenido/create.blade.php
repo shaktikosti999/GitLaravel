@@ -24,19 +24,7 @@
 				          		</div>
 				        	</div>
 				      	</div>
-				      	<div class="row clearfix">
-				        	<div class="col-sm-12">
-				          		<div class="form-group form-group-default">
-				            		<label for="padre">Padre</label>
-				            		<select id="padre" class="form-control" name="padre" aria-required="true" aria-invalid="true">
-				            			<option value="null">Opciones...</option>
-				            			@foreach($paginas as $padre)
-				            				<option value="{{$padre->id}}">{{$padre->titulo}}</option>
-				            			@endforeach
-				            		</select>
-				          		</div>
-				          	</div>
-				      	</div>
+				      	
 				      	<div class="row clearfix">
 				        	<div class="col-sm-12">
 				          		<div class="form-group form-group-default">
@@ -58,12 +46,7 @@
 				      	<div class="row clearfix">
 				        	<div class="col-sm-12">
 				          		<div class="form-group" aria-required="true">
-				            		<div>
-									  	<label>
-									    	<input type="checkbox" name="menu_principal" id="menu_principal" value="1">
-									    	Menú principal
-									  	</label>
-									</div>
+				            		
 									<div>
 									  	<label>
 									    	<input type="checkbox" name="menu_inferior" id="menu_inferior" value="1">
@@ -78,14 +61,6 @@
 				          		<div class="form-group form-group-default" aria-required="true">
 				            		<label for="slug">Slug</label>
 				            		<input type="text" id="slug" class="form-control" name="slug" aria-invalid="true" value="">
-				          		</div>
-				        	</div>
-				      	</div>
-				      	<div class="row clearfix">
-				        	<div class="col-sm-12">
-				          		<div class="form-group form-group-default" aria-required="true">
-				            		<label for="orden">Orden</label>
-				            		<input type="number" id="orden" class="form-control" name="orden" aria-invalid="true" value="0">
 				          		</div>
 				        	</div>
 				      	</div>

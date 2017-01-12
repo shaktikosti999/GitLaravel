@@ -48,7 +48,7 @@
 				      		<div class="row clearfix">
 					        	<div class="col-sm-12">
 					          		<div class="form-group form-group-default" aria-required="true">
-					            		<label for="tipo">Tipo de torneo</label>
+					            		<label for="tipo">Tipo de torneo / Evento</label>
 					            		<select id="tipo" class="cs-select cs-skin-slide" name="tipo" data-init-plugin="cs-select" required="required" aria-required="true" aria-invalid="true">
 					            			@foreach($tipos as $tipo)
 					            			<option value="{{$tipo->id}}" {{$torneo->tipo_torneo == $tipo->id ? "selected" : ""}}>{{$tipo->nombre}}</option>

@@ -39,6 +39,14 @@ class contacto_model{
 
 	}
 
+	static function mails(){
+		$data = \DB::table('mail_aviso')
+			->where('tipo_mail',1)
+			->orderBy('mail')
+			->get();
+		return $data;
+	}
+
 	static function store($request){
 		$contacto = new contacto;
 		$contacto->id_sucursal		=	$request->input('field-sucursal') !== null && $request->input('field-sucursal') > 0 ? $request->input('field-sucursal') : null;

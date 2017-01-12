@@ -29,46 +29,11 @@ class newsletter_model{
 		return alimento::find($id);
 	}
 
-	static function get_file_name($id){
-		$file = \DB::table('alimento as a')
-			->select('archivo')
-			->where('id_newsletter',$id)
-			->first();
-		if( $file !== null ){
-			$file = $file->archivo;
-			return $file;
-		}
-		return false;
-	}
-
-	static function get_food_type(){
-		$ft = \DB::table('tipo_alimento as ta')
-			->select('id_tipo as id','nombre')
-			->orderBy('nombre')
+	static function mails(){
+		$data = \DB::table('mail_aviso')
+			->where('tipo_mail',2)
+			->orderBy('mail')
 			->get();
-		if(count($ft) > 0 )
-			return $ft;
-		return false;
+		return $data;
 	}
-
-	static function store($request, $archivo){
-		$alimento = new alimento();
-		$alimento->tipo_alimento = $request->input('tipo_alimento');
-		$alimento->nombre = $request->input('nombre');
-		$alimento->descripcion = $request->input('descripcion');
-		$alimento->archivo = $archivo;
-		$evento = Event::fire(new dotask($alimento));
-		return $evento;
-	}
-
-	static function update($id, $request, $archivo = false){
-		$alimento = alimento::find($id);
-		$alimento->tipo_alimento = $request->tipo_alimento;
-		$alimento->nombre = $request->nombre;
-		$alimento->descripcion = $request->descripcion;
-		if($archivo !== false)
-			$alimento->archivo = $archivo;
-		$evento = Event::fire(new dotask($alimento));
-		return $evento;
-	}
-};
+}

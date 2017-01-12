@@ -40,6 +40,7 @@ class papeleraController extends Controller
     public function show($modulo,$id){
         $tabla = \DB::table('sys_modulo')->select('tabla')->where('id_modulo',$id)->get();
         $tabla = $tabla[0]->tabla;
+        $tabla = $tabla == "pagina_contenido" ? 'contenido_simple' : $tabla;
         $tbl = \DB::select("SHOW INDEX FROM `" . $tabla . "` WHERE `Key_name` = 'PRIMARY';");
         $key = $tbl[0]->Column_name;
         $nombre = $tabla == 'red_social' ? 'link' : 'nombre';

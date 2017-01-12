@@ -153,4 +153,63 @@ $(document).ready(function(){
 		$('#gallery_item_' + id).remove();
 		$('#modal_form_gallery').append('<input type="hidden" name="delete[]" value="' + id + '">')
 	}
+
+	$('.pay_btn').on('click', function(){
+		var context = $(this);
+		var id = parseInt($(this).attr('data-id'));
+		$.ajax({
+			url:'/administrador/ver/pago.html',
+			type:'post',
+			data:{
+				_method:'post',
+				sucursal:id,
+			},
+			success:function(data){
+				console.log(data);
+				data = JSON.parse(data);
+				$('#pay_sucursal').val(context.attr('data-id'));
+				$('#nombre_pay').text(context.attr('data-sucname'));
+				if(data.length > 0){
+					$('#pay_list1').html('');
+					$('#pay_list2').html('');
+					$.each(data, function(index,val){
+						$('#pay_list' + val.id_tipo).append('\
+							<li class="list-group-item pay_item" data-id="' + val.id_pago + '">' + val.titulo + '\
+								<span class="btn btn-default badge" onClick="pay_delete(' + val.id_pago + ')">\
+									<i class="fa fa-trash" aria-hidden="true"></i>\
+								</span>\
+								<span class="badge">\
+									' + val.cantidad + '\
+								</span>\
+							</li>');
+					});
+				}
+				$('#payModal').modal('show');
+			}
+		});
+	});
+
+	pay_delete = function(id){
+		if( confirm('¿Eliminar?') ){
+			$.ajax({
+				url:'/administrador/borrar/pago.html',
+				type:'post',
+				data:{
+					_method:'delete',
+					pago:id,
+				},
+				success:function(data){
+					if(data == 1)
+						$('.pay_item[data-id="' + id + '"]').remove();
+				}
+			});
+		}
+	}
+
+	$('#payModal').on('hide.bs.modal', function(){
+		$('#pay_list1').html('');
+		$('#pay_list2').html('');
+		$('#pay_sucursal').val('');
+		$('#nombre_pay').text('');
+	});
 });

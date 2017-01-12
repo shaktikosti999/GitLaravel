@@ -89,7 +89,7 @@ class registertask
                     return false;
                 }
                 catch(\Exception $e){
-                    // dd($e);
+                    // dd($e->getMEssage());
                     return array("error"=>$e->getMEssage());
                 }
                 

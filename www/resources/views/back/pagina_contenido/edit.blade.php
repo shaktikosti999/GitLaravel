@@ -24,23 +24,7 @@
 				          		</div>
 				        	</div>
 				      	</div>
-				      	<div class="row clearfix">
-				        	<div class="col-sm-12">
-				          		<div class="form-group form-group-default">
-				            		<label for="padre">Padre</label>
-				            		<select id="padre" class="form-control" name="padre" aria-required="true" aria-invalid="true">
-				            			<option value="null">Opciones...</option>
-				            			@foreach($paginas as $padre)
-				            				@if($padre->id == $pagina->id_padre)
-				            					<option value="{{$padre->id}}" selected>{{$padre->titulo}}</option>
-				            				@else
-				            					<option value="{{$padre->id}}">{{$padre->titulo}}</option>
-				            				@endif
-				            			@endforeach
-				            		</select>
-				          		</div>
-				          	</div>
-				      	</div>
+				      	
 				      	<div class="row clearfix">
 				        	<div class="col-sm-12">
 				          		<div class="form-group form-group-default">
@@ -72,12 +56,6 @@
 				      	<div class="row clearfix">
 				        	<div class="col-sm-12">
 				          		<div class="form-group" aria-required="true">
-				            		<div>
-									  	<label>
-									    	<input type="checkbox" name="menu_principal" id="menu_principal" value="1" {{$pagina->menu_principal == 1 ? 'checked' : ''}} >
-									    	Menú principal
-									  	</label>
-									</div>
 									<div>
 									  	<label>
 									    	<input type="checkbox" name="menu_inferior" id="menu_inferior" value="1" {{$pagina->menu_inferior == 1 ? 'checked' : ''}}>
@@ -92,14 +70,6 @@
 				          		<div class="form-group form-group-default" aria-required="true">
 				            		<label for="slug">Slug</label>
 				            		<input type="text" id="slug" class="form-control" name="slug" aria-invalid="true" value="{{$pagina->slug}}">
-				          		</div>
-				        	</div>
-				      	</div>
-				      	<div class="row clearfix">
-				        	<div class="col-sm-12">
-				          		<div class="form-group form-group-default" aria-required="true">
-				            		<label for="orden">Orden</label>
-				            		<input type="number" id="orden" class="form-control" name="orden" aria-invalid="true" value="{{$pagina->orden}}">
 				          		</div>
 				        	</div>
 				      	</div>	

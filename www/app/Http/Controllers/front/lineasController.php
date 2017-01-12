@@ -56,7 +56,7 @@ class lineasController extends Controller
         $data["sucursales"] = sucursal::find_all();
 
         $data['pagados'] = sucursal::get_paid(['id_sucursal' => $id_sucursal]);
-
+        $data['acumulado'] = sucursal::get_accumulated(['id_sucursal' => $id_sucursal]);
         // dd($data);
 
         return view('front.lineas.maquinas',$data);
@@ -144,7 +144,7 @@ class lineasController extends Controller
         $data["programas"] = linea::get_programs( [ "id_sucursal" => $id_sucursal, 'id_juego' => $id_juego ] );
 
         //-----> Obtenemos los proveedores
-        $data["torneos"] = linea::find_all_tournaments( [ "id_sucursal" => $id_sucursal, 'id_juego' => $id_juego ] );
+        $data["torneos"] = linea::find_all_event( [ "id_sucursal" => $id_sucursal, 'id_juego' => $id_juego ] );
 
         //dd( $data["torneos"] );
  

@@ -51,6 +51,15 @@
 												<td class="v-align-middle gallery_images" data-id="{{$sucursal->id}}"><h1 class="text-center">{{$sucursal->galeria}}</h1></td>
 												<td class="v-align-middle">
 													<div class="btn-group btn-group-justified">
+														<div class="btn-group">
+																<button type="button" role="button" class="btn btn-default pay_btn" data-id="{{$sucursal->id}}" data-sucname="{{$sucursal->nombre}}">
+								                              		<span class="p-t-5 p-b-5">
+								                              			<i class="fa fa-usd fs-15"></i>
+								                              		</span>
+								                              		<br>
+								                              		<span class="fs-11 font-montserrat text-uppercase">Pagos</span>
+								                              	</button>
+							                            </div>
 							                            <div class="btn-group">
 																<button type="button" role="button" class="btn btn-default game_btn" data-id="{{$sucursal->id}}" data-sucname="{{$sucursal->nombre}}">
 								                              		<span class="p-t-5 p-b-5">
@@ -210,4 +219,51 @@
 			</div>
 		</div>
 		<!-- END MODAL PARA GALERÍA -->
+
+		<!-- MODAL PARA Pagos -->
+		<div class="modal fade slide-up disable-scroll in" id="payModal" tabindex="-1" role="dialog" aria-hidden="false" style="display: none; padding-right: 17px;">
+			<div class="modal-dialog  modal-lg">
+				<div class="modal-content-wrapper">
+					<div class="modal-content">
+						<div class="modal-header clearfix text-left">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+							</button>
+							<h5>Pagos en <span class="semi-bold" id="nombre_pay"></span></h5>
+						</div>
+						<div class="modal-body">
+							<div class="row" style="height:150px;overflow-y:auto;">
+								<ul class="list-group col-sm-6"  id="pay_list1"></ul>
+								<ul class="list-group col-sm-6"  id="pay_list2"></ul>
+							</div>
+							<div class="row">
+								<form action="{{url('/administrador/agregar/pago.html')}}" enctype="multipart/form-data" method="post" id="modal_form">
+									<input type="hidden" name="_method" value="patch">
+									<input type="hidden" name="pay_sucursal" id="pay_sucursal">
+									{{csrf_field()}}
+									<div class="form-group">
+										<label for="pay_tipo">Tipo</label>
+										<select name="pay_tipo" id="pay_tipo" class="form-control">
+											<option value="1">Acumulado</option>
+											<option value="2">Pagado</option>
+										</select>
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="pay_titulo">Título</label>
+										<input type="text" name="pay_titulo" id="pay_titulo" class="form-control" required>
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="pay_cantidad">Cantidad</label>
+										<input type="text" name="pay_cantidad" id="pay_cantidad" class="form-control">
+									</div>
+									<input type="submit" value="Guardar" class="btn btn-success">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+		</div>
+		<!-- END MODAL PARA Pagos -->
+
 	@stop

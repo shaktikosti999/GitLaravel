@@ -19,8 +19,19 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/administrador', function () {return view('layout.admin');});
 	Route::patch('/administrador/listar/{modulo}.html','generalController@listar')->where(['modulo'=>'[a-zA-Z]+[a-zA-Z_]*']);
 
+	Route::put('/administrador/newsletter/newmail.html','newsletterController@create');
+	Route::put('/administrador/contacto/newmail.html','contactoController@create');
+
 	// Asignar Dinámica a promoción y sucursal
 	include_once('Routes/dinamica.php');
+
+	Route::patch('/administrador/slider/calendario.html','calendarioController@storeSlider');
+	Route::post('/administrador/slider/calendario.html','calendarioController@getSlider');
+
+	//Pagado y Acumulado por pagar
+	Route::patch('/administrador/agregar/pago.html','sucursalController@add_pay');
+	Route::post('/administrador/ver/pago.html','sucursalController@get_pay');
+	Route::delete('/administrador/borrar/pago.html','sucursalController@destroy_pay');
 
 	Route::group(['middleware' => 'permisos'], function() {
 		Route::post('/administrador/estatus/{modulo}.html','generalController@estatus');
@@ -53,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 		include_once('Routes/promocion.php');
 		include_once('Routes/textfooter.php');
 		include_once('Routes/pagina_contenido.php');
+		include_once('Routes/calendario.php');
 
 	});
 });

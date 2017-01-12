@@ -90,7 +90,6 @@ class paginaController extends Controller
 
         $evento = pagina::store($request,$archivo);
         $evento = $evento[0];
-        
         if(!$evento){
             return redirect(url('/administrador/pagina_de_contenido.html'))->with('success','Pagina agregada correctamente');
         }

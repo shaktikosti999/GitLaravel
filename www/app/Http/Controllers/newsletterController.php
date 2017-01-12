@@ -17,7 +17,8 @@ class newsletterController extends Controller
      */
     public function index(){
         $data = array(
-            'newsletters' => newsletter::all()
+            'newsletters' => newsletter::all(),
+            'mails' =>newsletter::mails()
         );
         return view('back.newsletter.index',$data);  
     }
@@ -27,7 +28,23 @@ class newsletterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(){}
+    public function create(Request $request){
+        if( $request->input('mail_own') !== null && trim($request->input('mail_own')) != "" ){
+            $data = [
+                'mail' => trim($request->input('mail_own')),
+                'tipo_mail' => 2
+            ];
+            \DB::table('mail_aviso')->insert($data);
+        }
+        if( $request->input('borrar_own') !== null && count($request->input('borrar_own')) ){
+            $data = \DB::table('mail_aviso');
+            foreach($request->input('borrar_own') as $borrar ){
+                $data = $data->where('id',$borrar);
+            }
+            $data = $data->delete();
+        }
+        return redirect()->back();
+    }
 
     /**
      * Store a newly created resource in storage.

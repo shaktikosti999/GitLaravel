@@ -241,6 +241,58 @@
 				</div><!-- /.shell -->
 			</section><!-- /.section-games-available -->
 
+			@if( isset( $torneos ) && count($torneos) )
+
+				<section class="section section-secondary">
+					<div class="shell">
+						<header class="section-head">
+							<div class="stick--point" id="torneos"></div>
+							<h2>
+								Próximos Eventos
+							</h2>
+						</header><!-- /.section-head -->
+
+						<div class="section-body">
+							<div class="cols">
+
+								@foreach( $torneos as $item )
+
+									<div class="col col-1of2">
+										<article class="article-tournament" style="background-image: url('{{ $item->archivo }}')"> 
+											<span class="article-title">
+												{{ ( strtotime( $item->fecha_inicio ) > time() ) ? 'Próximos Eventos' : 'Experiencias pasadas' }}
+											</span><!-- /.article-title -->	
+
+											<div class="article-content">
+												<span class="article-label">
+													{{ $item->tipo }}
+												</span><!-- /.article-label -->
+												
+												<h5>
+													{{ $item->titulo }}
+												</h5>
+
+												<p>
+													{{ date("M", strtotime( $item->fecha_inicio ) ) }} {{ date("d", strtotime( $item->fecha_inicio ) ) }} {{ date("Y", strtotime( $item->fecha_inicio ) ) }} - {{ $item->sucursal }}
+			 									</p>
+
+			 									<a href="{{ ( $item->link ) ? $item->link : '/torneos/' . $item->slug }}" class="btn btn-red">
+			 										Ver más
+			 									</a>
+											</div><!-- /.article-content -->
+										</article><!-- /.article-tournament -->
+									</div><!-- /.col col-1of2 -->
+
+								@endforeach
+
+							</div><!-- /.cols -->
+						</div><!-- /.section-body -->
+					</div><!-- /.shell -->
+				</section><!-- /.section section-secondary -->
+
+			@endif
+
+			<?php /*
 			<section class="section section-secondary">
 				<div class="shell">
 					<header class="section-head">
@@ -294,6 +346,7 @@
 
 				</div><!-- /.shell -->
 			</section><!-- /.section section-secondary -->
+			*/?>
 
 			<section class="section-gray">
 				<div class="shell">

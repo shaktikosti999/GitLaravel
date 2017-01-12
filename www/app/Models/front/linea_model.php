@@ -107,6 +107,46 @@ class linea_model{
             )
             ->where('t.estatus','=',1)
             ->where('t.eliminado','=',0)
+            ->where('t.tipo_torneo','!=',999)
+            ->join("tipo_torneo as tt", "t.tipo_torneo", "=", "tt.id_tipo")
+            ->join("sucursal as s", "t.id_sucursal", "=", "s.id_sucursal");
+
+        //-----> Aplicamos filtros
+
+        if( isset( $parameters["id_sucursal"] ) && ! empty( $parameters["id_sucursal"] ) )
+            $data = $data->where( "s.id_sucursal", "=", $parameters["id_sucursal"] );
+
+        if( isset($parameters['id_juego'] )&& ! empty( $parameters["id_juego"] ) ){
+            $data->join('juego as j','j.id_juego','=','t.id_juego')
+                ->where('j.id_juego',$parameters['id_juego']);
+        }
+
+        $data = $data
+            ->where('fecha_inicio','>',date('Y-m-d'))
+            ->orderBy('fecha_inicio')
+            // ->paginate(2);
+            ->get();
+
+        // dd($data);
+        return $data;
+    }
+
+    static function find_all_event( $parameters = [] ){
+        
+        $data = \DB::table('torneo as t')
+            ->select(
+                't.titulo',
+                't.slug',
+                't.fecha_inicio',
+                't.fecha_fin',
+                't.archivo',
+                't.link',
+                's.nombre as sucursal',
+                'tt.nombre as tipo'
+            )
+            ->where('t.estatus','=',1)
+            ->where('t.eliminado','=',0)
+            ->where('t.tipo_torneo',999)
             ->join("tipo_torneo as tt", "t.tipo_torneo", "=", "tt.id_tipo")
             ->join("sucursal as s", "t.id_sucursal", "=", "s.id_sucursal");
 

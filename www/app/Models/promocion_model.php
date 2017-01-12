@@ -13,15 +13,14 @@ class promocion_model{
 				'l.nombre as juego',
 				'p.nombre',
 				'p.slug',
-				'p.estatus',
-				\DB::raw('IF (s.id_sucursal is null,0,COUNT(s.id_sucursal)) AS sucursales')
+				'p.estatus'
 			)
-			->leftJoin('promocion_sucursal as s','s.id_promocion','=','p.id_promocion')
 			->join('linea as l','l.id_linea','=','p.id_juego')
 			->orderBy('p.nombre')
 			->where('p.eliminado',0)
-			->groupBy('s.id_promocion')
 			->get();
+			// ->toSql();
+		// dd($data);
 		return $data;
 	}
 

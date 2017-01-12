@@ -40,10 +40,12 @@
 					<li class="game posts-data" data-id="{{ $item->id }}">
 						<a href="{{ url('/maquinas-de-juego/detalle/'.$item->slug) }}" style="background-image: url('{{ $item->imagen }}')"> 
 							<span class="jackpot">
+							<?php /*
 								<small>JACKPOT</small>
 								<strong>
 									${{$item->acumulado}}
 								</strong>
+							*/?>
 							</span>
 
 							<span class="game-title">

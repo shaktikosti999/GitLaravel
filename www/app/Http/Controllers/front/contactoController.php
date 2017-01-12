@@ -54,6 +54,14 @@ class contactoController extends Controller
             if( ! $suscribed )
                 throw new \Exception("Ocurrió un error al guardar el registro", 1);
 
+            $to = \DB::table('mail_aviso')->where('tipo_mail',2)->get();
+            $mails = [];
+            if(count($to)){
+                foreach($to as $item)
+                    $mails[] = $item->mail;
+                $to = implode(",",$mails);
+                mail($to, 'Suscripción a Newsletter', 'La dirección ' . $request->input('email') . ' se ha suscrito al newsletter','From: Casino Caliente <casino@casinocaliente.com>');
+            }
             $response->status   = TRUE;
             $response->message  = "Se ha suscrito correctamente";
             $response->code     = 0;

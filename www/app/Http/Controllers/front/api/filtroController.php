@@ -217,7 +217,7 @@ class filtroController extends Controller
                             $data2[$c]['data'][] = $data[$key]['data'];
                             $data2[$c]['hora'][] = $data[$key]['hora'];
                             if( isset($data[$key]['overunder']) )
-                                $data2[$c]['overunder'][$key] = $data[$key]['overunder'];
+                                $data2[$c]['overunder'][] = $data[$key]['overunder'];
                         }
                     }
                     if( !array_key_exists('data', $data2[$c]) ){

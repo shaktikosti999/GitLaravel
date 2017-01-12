@@ -47,7 +47,7 @@
 									<h5>' + data2.fecha + '</h5>\
 									<div class="table__wrapp">';
 							$.each(data2.data, function(index2,item){
-								// console.log(item);
+								console.log(item);
 								if( item !== null ){
 										str += '<div class="table-item">\
 											<div class="line-gray">\

@@ -127,7 +127,7 @@
 
 										<li class="slide">
 											<div class="slide-image">
-												<a href="{{$item->link}}"><img src="{{ $item->archivo }}" alt="{{ $item->nombre }}"></a>
+												<a href="{{$item->link}}" target="_blank"><img src="{{ $item->archivo }}" alt="{{ $item->nombre }}"></a>
 											</div><!-- /.slide-image -->
 										</li><!-- /.slide -->
 
@@ -143,104 +143,105 @@
 
 		@endif
 
-		<section class="section-jackpots">
-			<div class="shell">
-				<header class="section-head">
-					<div class="stick--point" id="jackpot"></div>
-					<h2>
-						<small>Jackpot</small>
-						Acumulado
-					</h2> 
-				</header><!-- /.section-head -->
+			<section class="section-jackpots">
+				<div class="shell">
+					@if( isset($acumulado) && count($acumulado) )
+						<header class="section-head">
+							<div class="stick--point" id="jackpot"></div>
+							<h2>
+								<small>Jackpot</small>
+								Acumulado
+							</h2> 
+						</header><!-- /.section-head -->
 
-				<div class="section-content">
-					<div class="section-entry">
-						<p>
-							<span>
-								Por pagar
-							</span>
+						<div class="section-content">
+						<div class="section-entry">
+							<p>
+								<span>
+									Por pagar
+								</span>
 
-							{{-- <a href="#">
-								Ver más
-							</a> --}}
-						</p>
-					</div><!-- /.section-entry -->
+								{{-- <a href="#">
+									Ver más
+								</a> --}}
+							</p>
+						</div><!-- /.section-entry -->
 
-					<div class="cols">
-						
-						@foreach ($maquinas_acumulado as $maquina)
-							<div class="col col-1of2">
-								<article class="article-jackpot">
-									<div class="article-content">
-										<h6>
-											{{$maquina->nombre}} 
-										</h6>
-
-										<div class="fake-div">
-											<div id="counter">
-											    <div class="counter-value" data-count="39467">$0</div>
-											    <!--<div class="counter-value" data-count="400">$100</div>
-											    <div class="counter-value" data-count="1500">$500</div>-->
-											</div>
-											<div class="fake-div">
-										<!--<p>
-											${{$maquina->acumulado}}
-										</p>-->
-											</div>
-										</div>
-									</div><!-- /.article-content -->
-								</article><!-- /.article-jackpot -->
-							</div><!-- /.col col-1of2 -->
-
+						<div class="cols">
 							
-						@endforeach
-						
-					</div><!-- /.cols -->
+							@foreach ($acumulado as $item)
+								<div class="col col-1of2">
+									<article class="article-jackpot">
+										<div class="article-content">
+											<h6>
+												{{$item->titulo}} 
+											</h6>
 
-					@if( isset($pagados) && count($pagados) )
-					<div class="section-entry">
-						<p>
-							<span>
-								Pagado
-							</span>
+											<div class="fake-div">
+												<div id="counter">
+												    <div class="counter-value" data-count="{{$item->cantidad}}">$0</div>
+												    <!--<div class="counter-value" data-count="400">$100</div>
+												    <div class="counter-value" data-count="1500">$500</div>-->
+												</div>
+												<div class="fake-div">
+											<!--<p>
+												${{$item->cantidad}}
+											</p>-->
+												</div>
+											</div>
+										</div><!-- /.article-content -->
+									</article><!-- /.article-jackpot -->
+								</div><!-- /.col col-1of2 -->
 
-							<a href="{{url('/pagados')}}">
-								Conoce los pagados
-							</a>
-						</p>
-					</div><!-- /.section-entry -->
-
-					<div class="cols">
-						@foreach($pagados as $pagado)
-						<div class="col col-1of2">
-							<article class="article-jackpot">
-								<div class="article-content">
-									<h6>
-										{{ucfirst($pagado->juego)}} 
-									</h6>
-
-									<div class="fake-div">
-										<div id="counter">
-										    <div class="counter-value" data-count="50013">$0</div>
-										    <!--<div class="counter-value" data-count="400">$100</div>
-										    <div class="counter-value" data-count="1500">$500</div>-->
-										</div>
-										<div class="fake-div">
-									<!--<p>
-										${{$pagado->pagado}}
-									</p>-->
-										</div>
-									</div>
-								</div><!-- /.article-content -->
-							</article><!-- /.article-jackpot -->
-						</div><!-- /.col col-1of2 -->
-						@endforeach
-					</div><!-- /.cols -->
+								
+							@endforeach
+							
+						</div><!-- /.cols -->
 					@endif
-				</div><!-- /.section-content --> 
-			</div><!-- /.shell -->
-		</section><!-- /.section-jackpots -->
 
+						@if( isset($pagados) && count($pagados) )
+							<div class="section-entry">
+								<p>
+									<span>
+										Pagado
+									</span>
+
+									<a href="{{url('/pagados')}}">
+										Conoce los pagados
+									</a>
+								</p>
+							</div><!-- /.section-entry -->
+
+							<div class="cols">
+								@foreach($pagados as $pagado)
+								<div class="col col-1of2">
+									<article class="article-jackpot">
+										<div class="article-content">
+											<h6>
+												{{ucfirst($pagado->titulo)}} 
+											</h6>
+
+											<div class="fake-div">
+												<div id="counter">
+												    <div class="counter-value" data-count="{{$pagado->cantidad}}">$0</div>
+												    <!--<div class="counter-value" data-count="400">$100</div>
+												    <div class="counter-value" data-count="1500">$500</div>-->
+												</div>
+												<div class="fake-div">
+											<!--<p>
+												${{$pagado->cantidad}}
+											</p>-->
+												</div>
+											</div>
+										</div><!-- /.article-content -->
+									</article><!-- /.article-jackpot -->
+								</div><!-- /.col col-1of2 -->
+								@endforeach
+							</div><!-- /.cols -->
+						@endif
+					</div><!-- /.section-content --> 
+				</div><!-- /.shell -->
+			</section><!-- /.section-jackpots -->
 		<section class="section-gray">
 			<div class="shell">
 				<div class="subscribe">

@@ -297,4 +297,38 @@ class sucursalController extends Controller
             return redirect('administrador/sucursal.html')->with('success','Galería actualizada');
         return redirect('administrador/sucursal.html')->with('warning','Hubo error al hacer los cambios');
     }
+
+    public function add_pay(Request $request){
+        $this->validate($request,[
+            'pay_sucursal' => 'required|integer|min:1',
+            'pay_tipo' => 'required|integer|min:1',
+            'pay_titulo' => 'required|string',
+            'pay_cantidad' => 'required|integer|min:1'
+        ]);
+        \DB::table('sucursal_pago')
+            ->insert([
+                'id_tipo' => $request->input('pay_tipo'),
+                'id_sucursal' => $request->input('pay_sucursal'),
+                'titulo' => $request->input('pay_titulo'),
+                'cantidad' => $request->input('pay_cantidad')
+            ]);
+        return redirect()->back();
+    }
+
+    public function get_pay(Request $request){
+        if($request->ajax()){
+            $data = \DB::table('sucursal_pago')->where('id_sucursal',$request->input('sucursal'))->get();
+            echo json_encode($data);
+        }
+        else
+            abort(405);
+    }
+
+    public function destroy_pay(Request $request){
+        if($request->ajax()){
+            echo \DB::table('sucursal_pago')->where('id_pago',$request->input('pago'))->delete();
+        }
+        else
+            abort(405);
+    }
 }

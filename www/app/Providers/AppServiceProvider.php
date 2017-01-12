@@ -48,6 +48,14 @@ class AppServiceProvider extends ServiceProvider
         view()->share('breadcrumbs',$breadcrumbs);
         if( count($sn) )
             view()->share('sn',$sn);
+
+        $contenido_simple = \DB::table('contenido_simple')
+            ->where('menu_inferior',1)
+            ->where('eliminado',0)
+            ->select('titulo','slug','link')
+            ->get();
+        if( count($contenido_simple) )
+            view()->share('submenu',$contenido_simple);
     }
 
     /**

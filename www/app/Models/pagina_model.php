@@ -36,7 +36,7 @@ class pagina_model{
         $contenido      = $request->input('contenido');
         $menu_principal = trim($request->input('menu_principal'));
         $menu_inferior  = trim($request->input('menu_inferior'));
-        $orden          = $request->input('orden');
+        $orden          = 0;
         $link           = trim($request->input('link'));
        
         $verifica_slug = \DB::table('contenido_simple')
@@ -62,6 +62,8 @@ class pagina_model{
         $pagina->menu_principal = $menu_principal;
         $pagina->menu_inferior  = $menu_inferior;
         $pagina->link           = $link;        
+
+        // dd($pagina);
 
         $evento = Event::fire(new dotask($pagina));
 
