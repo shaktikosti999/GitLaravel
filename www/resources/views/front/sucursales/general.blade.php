@@ -83,7 +83,7 @@
 				<div class="shell">
 					<article class="article">
 						<div class="article-head head-padding">
-							<h2>Sucursales</h2>
+							<h2>Ubicaciones</h2>
 							<div class="fs-dropdown btn-ciudades" tabindex="-1"><!-- BEGIN boton sucursal -->
 								<div class="select btn-ubn fs-dropdown-element" tabindex="-1"> 
 			                        <select name="ciudad">
