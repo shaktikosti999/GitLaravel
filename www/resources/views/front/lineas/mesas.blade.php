@@ -180,7 +180,7 @@
 							<aside class="section-aside">
 								<article class="article-game-available large" id="article-mesa">
 						 			<div class="article-content">
-						 				<div class="article-image" style="background-image: url({{isset(current($mesas)->archivo) && current($mesas)->archivo !== null ? current($mesas)->archivo : current($mesas)->imagen}})">  
+						 				<div class="article-image" style="background-image: url({{isset(current($mesas)->archivo) && !empty(current($mesas)->archivo) ? current($mesas)->archivo : current($mesas)->imagen}})">  
 						 					@if(isset(current($mesas)->apuesta_minima) && !empty(current($mesas)->apuesta_minima))
 						 					<div class="article-label">
 						 						<span> Apuesta Mínima DESDE </span>

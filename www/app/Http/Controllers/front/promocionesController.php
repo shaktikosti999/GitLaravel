@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Models\front\linea_model as linea;
 use App\Models\front\promocion_model as promocion;
 use App\Models\front\sucursal_model as sucursal;
+use App\Models\front\calendario_model as calendario;
 
 class promocionesController extends Controller
 {
@@ -92,16 +93,13 @@ class promocionesController extends Controller
         return view('front.promociones.show',$data);
     }
 
-    public function show(){
-        $promocion = promocion::find(['slug' => 'promocion-1']);
-
+    public function show($slug){
+        $promocion = calendario::find(['slug' => $slug]);
         $data = [
             'promocion' => $promocion,
-            'slider' => [1,2,3],
-            'suc_validas' => promocion::find_valid_branch($promocion->id_promocion),
-            'dinamica' => promocion::get_dynamic($promocion->id_promocion)
+            'slider' => calendario::slider(['slug' => $slug])
         ];
-        // DD($data);
+        // dd($data);
 
         return view('front.promociones.promotions',$data);
     }

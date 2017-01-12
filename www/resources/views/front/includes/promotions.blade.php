@@ -6,9 +6,11 @@
 				@yield('promo-head','Promociones')
 			</h2>
 
-			<a href="{{url('/promociones/calendario')}}" class="btn btn-black">
-						consulta calendario completo
-					</a>
+			@if( isset($sucursal) && $sucursal !== null )
+			<a href="{{url('/promociones/calendario/' . $sucursal)}}" class="btn btn-black">
+				consulta calendario completo
+			</a>
+			@endif
 		</header><!-- /.section-head -->
 
 		<div class="section-body">

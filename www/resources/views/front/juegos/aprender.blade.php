@@ -11,9 +11,11 @@
                         <h2><small>Aprender a Jugar</small> {{ $juego->nombre }}</h2>
                     </div><!-- /.article-head -->
 
+                    <?php /*
                     <div class="article-image">
                         <img src="{{ $juego->imagen }}" alt="">
                     </div><!-- /.article-image -->
+                    */ ?>
                     
                     <div class="article-entry">
                     

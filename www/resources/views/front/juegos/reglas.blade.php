@@ -11,12 +11,14 @@
                         <h2><small>Reglas para </small> {{ $juego->nombre }}</h2>
                     </div><!-- /.article-head -->
 
+                    <?php /*
                     <div class="article-image">
                         <img src="{{ $juego->imagen }}" alt="">
                     </div><!-- /.article-image -->
                     
                     <div class="article-entry">
-                    
+                    */ ?>
+
                         {{ $juego->reglas }}
 
                     </div><!-- /.article-entry -->

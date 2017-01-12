@@ -1,6 +1,4 @@
-@section('js')
-	<script src="js/front/maquinas.js"></script>
-@stop
+
 <section class="section-promotions">
 	<div class="shell">
 		<header class="section-head">

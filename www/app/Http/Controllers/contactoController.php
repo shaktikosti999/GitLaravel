@@ -59,10 +59,16 @@ class contactoController extends Controller
             'field-name.min' => 'El nombre debe de contener por lo menos 2 caracteres',
             'field-name.max' => 'El nombre debe de tener máximo 100 caracteres',
 
+            'field-apat.required' => 'Debe de escribir su apellido paterno',
+            'field-apat.min' => 'El apellido paterno debe de contener por lo menos 2 caracteres',
+            'field-apat.max' => 'El apellido paterno debe de tener máximo 100 caracteres',
+
+            'field-mat.required' => 'Debe de escribir un apellido materno',
+            'field-mat.min' => 'El apellido materno debe de contener por lo menos 2 caracteres',
+            'field-mat.max' => 'El apellido materno debe de tener máximo 100 caracteres',
+
             'field-email.required' => 'Debe de escribir un email',
             'field-email.email' => 'Debe de escribir un email válido',
-
-            'field-card.required' => 'Debe de escribir su número de tarjeta',
 
             'field-tipo.required' => 'Falta el tipo de mensaje',
             'field-tipo.integer' => 'Tipo demensaje no válido',
@@ -71,9 +77,11 @@ class contactoController extends Controller
         ];
         $validate = \Validator::make($request->all(),[
             "field-name" => "required|min:2|max:100",
+            "field-apat" => "required|min:2|max:100",
+            "field-mat" => "required|min:2|max:100",
             "field-email" => "required|email",
             "field-phone" => "string",
-            "field-card" => "required|string",
+            "field-card" => "string",
             "field-tipo" => "required|integer|min:1|max:4",
             "field-sucursal" => "integer",
             "field-message" => "string",
@@ -85,6 +93,7 @@ class contactoController extends Controller
 
         // $request->input('field-promo') = isset($request->input('field-promo')) && $request->input('field-promo') != 0 ? 1 : 0;
 
+        
         if(contacto::store($request))
             return redirect()->back()->with('success','Gracias por estar en contacto con nosotros');
         return redirect()->back()->with('success','Ocurrió un evento inesperado, inténtelo de nuevo más tarde');

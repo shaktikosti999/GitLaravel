@@ -1,4 +1,9 @@
 @extends('layout.front')
+
+@section('js')
+	<script src="js/front/maquinas.js"></script>
+@stop
+
 @section('contenido')
 
 	<!--@{

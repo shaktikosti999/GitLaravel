@@ -10,12 +10,12 @@
 				<div class="slider-clip">
 					<ul class="slides">
 						@foreach($slider as $item)
-							<li class="slide" style="background-image: url(css/images/temp/slider2.jpg)">
+							<li class="slide" style="background-image: url({{ asset($item->imagen) }})">
 								<div class="slide-body">
 									<div class="shell"> 		 
 										 <div class="slide-content">
 										 	<h1>
-										 		PRomoción de pRIMAVERA
+										 		{{$item->titulo}}
 										 	</h1>
 
 										 	<!-- <h3>
@@ -31,16 +31,7 @@
 											</select>
 										</div> --><!-- /.filter-secondary -->
 										 </div><!-- /.slide-content -->
-
-										 <div class="slide-inner">
-										 	<p class="breadcrumbs">
-												<a href="#">Inicio</a>
-
-												<a href="#">Promociones y eventos</a>
-
-												<a href="#">Promoción de primavera</a> 
-											</p><!-- /.breadcrumbs -->
-										 </div><!-- /.slide-inner --> 
+										 @include('front.includes.breadcrumbs')
 									</div><!-- /.shell -->
 								</div><!-- /.slide-body -->
 							</li><!-- /.slide -->
@@ -55,7 +46,7 @@
 				<div class="shell">
 					<header class="section-head">
 						<h2>
-							{{$promocion->nombre}}
+							$promocion->titulo}}
 						</h2>
 
 						<p>
@@ -65,7 +56,7 @@
 
 					<div class="section-body">
 						<p>
-							{{$promocion->descripcion}}
+							$promocion->descripcion}}
 						</p>
 					</div><!-- /.section-body -->
 				</div><!-- /.shell -->
@@ -97,6 +88,7 @@
 						</div><!-- /.section-head-entry -->
 					</header><!-- /.section-head -->
 
+					@if( isset($dinamica) && count($dinamica) )
 					<div class="section-body">
 						<div class="section-inner green">
 							<h4>
@@ -557,6 +549,7 @@
 							</div> --><!-- /.section-actions -->
 						</div><!-- /.section-inner -->
 					</div><!-- /.section-body -->
+					@endif
 				</div><!-- /.shell -->
 			</section><!-- /.section-listing -->
 

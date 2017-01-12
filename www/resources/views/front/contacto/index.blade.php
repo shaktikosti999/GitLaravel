@@ -75,7 +75,7 @@
 			<section class="section-contacts">
 				<div class="shell">
 					<div class="section-head">
-						<h2>Tu opinón es importante</h2>
+						<h2>Tu opinión es muy importante <small>envíanos tu mensaje</small>:</h2>
 						
 						<!-- <p>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie. Cheesecake powder marshmallow cupcake marzipan jelly. Powder cake macaroon gingerbread tart. Bear claw lemon drops pastry gingerbread wafer dessert cheesecake carrot cake. Biscuit apple pie carrot cake tiramisu.</p> -->
 					</div><!-- /.section-head -->
@@ -86,11 +86,25 @@
 								{{csrf_field()}}
 								<input type="hidden" name="_method" value="PUT">
 								<div class="form-body">
+
 									<div class="form-row">
-										<label for="field-name" class="form-label" hidden>*Nombre</label>
-										
+										<label for="field-name" class="form-label" hidden>*Primer Nombre</label>
 										<div class="form-controls">
 											<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="*Nombre" required>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+
+									<div class="form-row">
+										<label for="field-apat" class="form-label" hidden>*Apellido Paterno</label>
+										<div class="form-controls">
+											<input type="text" class="field" name="field-apat" id="field-apat" value="" placeholder="*Apellido Paterno" required>
+										</div><!-- /.form-controls -->
+									</div><!-- /.form-row -->
+
+									<div class="form-row">
+										<label for="field-mat" class="form-label" hidden>*Apellido Materno</label>
+										<div class="form-controls">
+											<input type="text" class="field" name="field-mat" id="field-mat" value="" placeholder="*Apellido Materno" required>
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
 									
@@ -103,7 +117,7 @@
 									</div><!-- /.form-row -->
 									
 									<div class="form-row">
-										<label for="field-phone" class="form-label" hidden>Teléfono</label>
+										<label for="field-phone" class="form-label" hidden>Teléfono a 10 dígitos</label>
 										
 										<div class="form-controls">
 											<input type="text" class="field" name="field-phone" id="field-phone" value="" placeholder="Teléfono">
@@ -111,10 +125,10 @@
 									</div><!-- /.form-row -->
 									
 									<div class="form-row">
-										<label for="field-card" class="form-label" hidden>*No. de tarjeta club</label>
+										<label for="field-card" class="form-label" hidden>No. de tarjeta Caliente Club</label>
 										
 										<div class="form-controls">
-											<input type="text" class="field" name="field-card" id="field-card" value="" placeholder="*No. de tarjeta club" required>
+											<input type="text" class="field" name="field-card" id="field-card" value="" placeholder="No. de tarjeta club">
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
 
@@ -159,7 +173,7 @@
 									</div><!-- /.form-row -->
 
 									<div class="form-row select-wrapper">
-										<label for="field-sucursal" class="form-label" hidden>Indique sucursal</label>
+										<label for="field-sucursal" class="form-label" hidden>Casino al que hace referencia</label>
 										
 										@if( isset($sucursales) && count($sucursales) )
 
@@ -202,6 +216,9 @@
 									?>
 
 									<input type="submit" value="Enviar" class="form-btn btn btn-black">
+									<p style="color:rgb(0,0,0)">Si lo prefieres
+									Escríbenos a: programa.lealtad@caliente.com.mx <br>
+									Llámanos sin costo al: 01 800 831 1310</p>
 								</div><!-- /.form-actions -->
 							</form>
 						</div><!-- /.form-contact -->

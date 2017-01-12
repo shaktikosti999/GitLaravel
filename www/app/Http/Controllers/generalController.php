@@ -305,8 +305,10 @@ class generalController extends Controller
         $id = (int)$id;
         $id_papelera = (int)$request->input('id_papelera');
         if($id > 0 && $id_papelera > 0){
+            $tabla = $tabla == "contenido_simple" ? "pagina_contenido" : $tabla;
             $modulo = \App\modulo::where('tabla',$tabla)->first();
             $modulo = $modulo->id_modulo;
+            $tabla = $tabla == "pagina_contenido" ? "contenido_simple" : $tabla;
 
             $data = array(
                 'eliminado' => 0,

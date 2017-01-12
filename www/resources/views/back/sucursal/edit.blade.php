@@ -94,7 +94,7 @@
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
-			            		<label for="instrucciones">Cómo llegar</label>
+			            		<label for="instrucciones">Aparcamiento</label>
 			            		<textarea id="instrucciones" class="form-control" name="instrucciones" aria-required="true" aria-invalid="true">{{$sucursal->instrucciones}}</textarea>
 			          		</div>
 			          	</div>
