@@ -384,7 +384,7 @@
 										<p>{!!$sucursal->estacionamiento!!}</p>
 									</li>
 									<li>
-										<i class="ico-car"></i>
+										<i class="ico-game"></i>
 									
 										<p>{!!$sucursal->Oferta de juego!!}</p>
 									</li>
