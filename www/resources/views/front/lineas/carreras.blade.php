@@ -76,6 +76,80 @@
 		</script>
 	@stop
 
+	<!-- Lightbox calendario -->
+	<section class="lightbox-calendar lightbox--module">
+            <section class="modal modal-calendar centerme">
+                <form class="modal-item">
+            		<div class="texto-calendar">
+                        <h2>Martes 5 de Mayo</h2>
+                    </div>
+                    <div class="item-calendar"> <!-- cuadro derecha -->
+
+						<h3>Programas</h3>
+						<ul>	
+							<li class="txt-left"">
+								<h5>Serie 30 Caballos Edición Centenario</h5>
+									<a href="#"> 
+										<img src="css/images/icons/download.png">
+										Descargar programa
+									</a>
+							</li>
+							<li class="txt-left"">
+								<h5>Serie 30 Caballos Edición Centenario</h5>
+									<a href="#"> 
+										<img src="css/images/icons/download.png">
+										Descargar programa
+									</a>
+							</li>
+							<li class="txt-left"">
+								<h5>Serie 30 Caballos Edición Centenario</h5>
+									<a href="#"> 
+										<img src="css/images/icons/download.png">
+										Descargar programa
+									</a>
+							</li>
+							<li class="txt-left"">
+								<h5>Serie 30 Caballos Edición Centenario</h5>
+									<a href="#"> 
+										<img src="css/images/icons/download.png">
+										Descargar programa
+									</a>
+							</li>
+							<li class="txt-left"">
+								<h5>Serie 30 Caballos Edición Centenario</h5>
+									<a href="#"> 
+										<img src="css/images/icons/download.png">
+										Descargar programa
+									</a>
+							</li>
+							<li class="txt-left"">
+								<h5>Serie 30 Caballos Edición Centenario</h5>
+									<a href="#"> 
+										<img src="css/images/icons/download.png">
+										Descargar programa
+									</a>
+							</li>
+							<li class="txt-left"">
+								<h5>Serie 30 Caballos Edición Centenario</h5>
+									<a href="#"> 
+										<img src="css/images/icons/download.png">
+										Descargar programa
+									</a>
+							</li>
+						</ul>
+					</div>
+                </form>
+
+                <button type="button" class="close  js-close-lightbox">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button> 
+            </section>
+        </section>
+
+
+
+
+
 	@section('contenido')
 		<div class="wrapper">
 	    
@@ -211,7 +285,7 @@
 
 						<div class="left-item"> <!-- calendario -->
 							<div id="datepicker" class="calendar-module" data-date="{{date('m/d/Y')}}">
-
+							
 							</div>
 						</div>
 

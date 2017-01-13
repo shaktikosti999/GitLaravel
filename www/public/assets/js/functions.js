@@ -28,6 +28,12 @@
 	      		}
 	      		$('.hide_program').hide();
 	      		$('[data-fecha]').removeClass('hide_program');
+	      		
+	      		$('#sandbox-container input').datepicker({
+				    keyboardNavigation: false,
+				    forceParse: false,
+				    todayHighlight: true
+				});
 	      	});
 		}
 				
