@@ -165,6 +165,14 @@
 .ico-square { background-image: url(../css/images/sprite.png); background-position: -220px 0; width: 26px; height: 26px; display: inline-block; vertical-align: middle; font-size: 0; }
 .ico-ticket { background-image: url(../css/images/sprite.png); background-position: -96px -59px; width: 38px; height: 38px; display: inline-block; vertical-align: middle; font-size: 0; }
 .logo { background-image: url(../css/images/sprite.png); background-position: 0 0; width: 140px; height: 55px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-map-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -94px -96px; width: 32px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-phone-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: 160px -94px; width: 33px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-clock-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -184px 0; width: 32px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-car-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -32px -155px; width: 38px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-game-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -70px -145px; width: 41px; height: 34px; display: inline-block; vertical-align: middle; font-size: 0; }
+
+
+.sucursales h6, p {padding-left: 50px; margin: 0;}
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 	.ico-arrow-right { background-image: url(../css/images/sprite.@2x.png); background-position: -142px -53.5px; background-size: 168px 139px; width: 26px; height: 18px; display: inline-block; vertical-align: middle; font-size: 0; }
 	.ico-car { background-image: url(../css/images/sprite.@2x.png); background-position: -100px -107px; background-size: 168px 139px; width: 38px; height: 19px; display: inline-block; vertical-align: middle; font-size: 0; }
@@ -2227,11 +2235,12 @@ li:first-child { margin: 0;}
 .item-video iframe {height: 315px; width: 560px;}
 
 .sucursales {position: relative; width: 100%; float: left; display: inline-block; margin-bottom: 80px; margin-top: 30px;}
+.sucursales li {padding-bottom: 20px;}
 .sucursales li:nth-child(1) {float: left; position: relative; display: inline-block; width: 50%; padding: 0 14px;}
 .sucursales li:nth-child(2) {float: right; display: inline-block; width: 50%; position: absolute; padding: 0 14px;}
 .sucursales ul {list-style: none;}
 .sucursales h3 {color: #ed1d25;}
-.sucursales p {color: #4a4a4a; width: 190px; line-height: 25px;}
+.sucursales p {color: #4a4a4a; width: 60%; line-height: 25px; margin: 0;}
 .sucursales a {text-decoration: none;}
 .sucursales h6 {color: #000;}
 .fs-dropdown.btn-city {float: right; padding-right: 50px;}
@@ -2596,9 +2605,10 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.section-articles.content-video {padding-bottom: 0;}
 	.section-video:last-child {padding-bottom: 50px;}
 }
-
-
-
+.content-map {position: relative; width: 50%; float: left; display: inline-block;}
+.content-phone {position: absolute; width: 50%; float: right; display: inline-block;}
+.content-clock {}
+.content-car {}
 
 
 

@@ -127,15 +127,82 @@
 									Cómo llegar aquí
 								</a>
 							</div>
-							<h6>Dirección</h6>
-							<p>{!!$item->direccion!!}</p>
+							<article>
+								<div class="content-map">
+									<i class="ico-map-gray"></i>
+									<h6>Dirección</h6>
+									<p>Calle Fuentes del molino 
+									#49-BCol. San Miguel
+									Piedras Negras,
+									Coahuila C.P. 53970</p>
+								</div>
+								<div class="content-phone">
+									<i class="ico-phone-gray"></i>
+									<h6>Teléfono</h6>
+									<p>Teléfono: 01 + 55 123456789</p>
+									<p>Teléfono: 01 + 55 123456789</p>
+									<p>Teléfono: 01 + 55 123456789</p>
+								</div>
+							</article>
+							<article>
+								<div class="content-clock">
+									<i class="ico-clock-gray"></i>
+									<h6>Horario</h6>
+									<p>Horario : 13:00 pm - 00:00 am 
+										Lunes - Domingo</p>
+								</div>
+								<div class="content-car">
+									<i class="ico-car-gray"></i>
+									<h6>Estacionamiento</h6>
+									<p>Horario : 13:00 pm - 00:00 am 
+										Lunes - Domingo</p>
+								</div>
+							</article>
 						</li>
+						<!--<li>
+							<i class="ico-map-gray"></i>
+							<h6>Dirección</h6>	
+							<p>{!!$item->direccion!!}</p>
+
+							<i class="ico-phone-gray"></i>
+							<h6>Teléfono</h6>
+							<p>Teléfono: 01 + 55 123456789</p>
+							<p>Teléfono: 01 + 55 123456789</p>
+							<p>Teléfono: 01 + 55 123456789</p>
+						</li>
+						<li>
+							<i class="ico-phone-gray"></i>
+							<h6>Teléfono</h6>
+							<p>Teléfono: 01 + 55 123456789</p>
+							<p>Teléfono: 01 + 55 123456789</p>
+							<p>Teléfono: 01 + 55 123456789</p>
+						</li>
+						<li>
+							<i class="ico-clock-gray"></i>
+							<h6>Horario</h6>
+							<p>Horario : 13:00 pm - 00:00 am </p>
+							<p>Lunes - Domingo</p>
+						</li>
+						<li>
+							<i class="ico-car-gray"></i>
+							<h6>Estacionamiento</h6>
+							<p>Horario : 13:00 pm - 00:00 am </p>
+							<p>Lunes - Domingo</p>
+						</li>
+						<li>
+							<i class="ico-game-gray"></i>
+							<h6>Oferta de Juego</h6>
+							<p>Horario : 13:00 pm - 00:00 am </p>
+							<p>Lunes - Domingo</p>
+						</li> -->
+
 				<?php $c++; ?>
 			@endforeach
 					</ul>
 				</div>
 			</div>
 		@endif
+
 
 			<section class="section-gray">
 				<div class="shell">
