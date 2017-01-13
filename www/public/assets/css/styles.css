@@ -2256,18 +2256,9 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .calendar-module tr td.old.day {font-size: 18px; text-align: center;}
 .calendar-module tr td.day {font-size: 18px; text-align: center; /*padding-bottom: 22px;*/ color: #777;}
 /*.calendar-module tr td.new.day {text-align: center; padding-bottom: 43px;}*/
-.datepicker table tr td.today {
-    color: #fff;
-    background-color: #ffdb99;
-    border-color: #ffb733;
-}
-.datepicker table tr td, .datepicker table tr th {
-    text-align: center;
-    /*width: 30px;*/
-    height: 30px;
-    border-radius: 4px;
-    border: none;
-}
+.datepicker table tr td.today {color: #fff; background-color: #ffdb99; border-color: #ffb733;}
+.datepicker table tr td, .datepicker table tr th {text-align: center; height: 30px; border-radius: 4px; border: none;}
+.datepicker table tr td.day:hover, .datepicker table tr td.focused {background: #e3e3e3; cursor: pointer;}
 .calendar-module thead tr.next {background-image: url(css/images/icons/right.png); background-repeat: no-repeat; position: absolute;}
 .left-item p {font-size: 18px; text-transform: uppercase; color: #ed1c24; text-align: center;}
 .content.programas {padding: 0;}
@@ -2389,7 +2380,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
     color: #cbcbcb;
 }
 .datepicker table tr td.day:hover, .datepicker table tr td.focused {
-    background: #eee;
+    background: #e3e3e3
     cursor: pointer;
 }
 .datepicker table tr td.today {

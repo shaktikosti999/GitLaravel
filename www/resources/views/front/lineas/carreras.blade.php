@@ -285,7 +285,7 @@
 
 						<div class="left-item"> <!-- calendario -->
 							<div id="datepicker" class="calendar-module" data-date="{{date('m/d/Y')}}">
-							
+							<div id="sandbox-container"></div>
 							</div>
 						</div>
 
@@ -590,4 +590,12 @@
 			@endif
 		
 		</div><!-- /.main -->
+
+		<script type="text/javascript">
+			$('#sandbox-container input').datepicker({
+				    keyboardNavigation: false,
+				    forceParse: false,
+				    todayHighlight: true
+				});
+		</script>
 	@stop
