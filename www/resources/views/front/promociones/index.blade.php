@@ -63,13 +63,15 @@
 										@foreach( $promociones as $item )	
 
 											<li class="slide"> 			
-												<div class="gradient-black"></div>						
+																		
 												<div class="slide-content" style="background-image: url('{{ $item->imagen }}'); ">
+													<div class="gradient-black"></div>
 													<div class="slide-caption">
 														<a href="/promociones/detalle/{{ $item->slug }}"><p>{{ $item->nombre }}</p></a>
 
 													</div><!-- /.slide-caption -->
 												</div><!-- /.slide-content -->
+
 											</li><!-- /.slide -->
 
 										@endforeach

@@ -218,6 +218,7 @@
 						<div class="right-item"> <!-- cuadro derecha -->
 
 							@if( isset($programas) && count($programas) )
+								<a href="#" class="btn btn-red btn-small">Ver programas del mes</a>
 								<h3>Programas</h3>
 									<div class="alert" role="alert" style="display:none">
 										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
