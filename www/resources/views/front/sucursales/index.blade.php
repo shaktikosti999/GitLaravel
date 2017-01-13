@@ -386,7 +386,7 @@
 									<li>
 										<i class="ico-game"></i>
 									
-										<p>{!!$sucursal->Oferta de juego!!}</p>
+										<p>Oferta de Juego</p>
 									</li>
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->
