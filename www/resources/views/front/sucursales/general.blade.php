@@ -159,6 +159,15 @@
 										<p>Lunes - Domingo</p>
 									</div>
 								</article>
+								<article class="ico-ubc3">
+									<div class="content-game">
+										<div class="content-game">
+											<i class="ico-game-gray"></i>
+											<h6>Oferta de juego</h6>
+											<p>Lorem Ipsum</p> 
+										</div>
+									</div>
+								</article>
 							</div>
 						</li>
 						<li>
@@ -200,6 +209,15 @@
 										<h6>Estacionamiento</h6>
 										<p>Horario : 13:00 pm - 00:00 am</p> 
 										<p>Lunes - Domingo</p>
+									</div>
+								</article>
+								<article class="ico-ubc3">
+									<div class="content-game">
+										<div class="content-game">
+											<i class="ico-game-gray"></i>
+											<h6>Oferta de juego</h6>
+											<p>Lorem Ipsum</p> 
+										</div>
 									</div>
 								</article>
 							</div>
@@ -236,14 +254,23 @@
 									<div class="content-clock">
 										<i class="ico-clock-gray"></i>
 										<h6>Horario</h6>
-										<p>Horario : 13:00 pm - 00:00 am 
-											Lunes - Domingo</p>
+										<p>Horario : 13:00 pm - 00:00 am</p> 
+										<p>Lunes - Domingo</p>
 									</div>
 									<div class="content-car">
 										<i class="ico-car-gray"></i>
 										<h6>Estacionamiento</h6>
-										<p>Horario : 13:00 pm - 00:00 am 
-											Lunes - Domingo</p>
+										<p>Horario : 13:00 pm - 00:00 am</p>
+										<p>Lunes - Domingo</p>
+									</div>
+								</article>
+								<article class="ico-ubc3">
+									<div class="content-game">
+										<div class="content-game">
+											<i class="ico-game-gray"></i>
+											<h6>Oferta de juego</h6>
+											<p>Lorem Ipsum</p> 
+										</div>
 									</div>
 								</article>
 							</div>
@@ -288,6 +315,15 @@
 										<h6>Estacionamiento</h6>
 										<p>Horario : 13:00 pm - 00:00 am <p>
 										<p>Lunes - Domingo</p>
+									</div>
+								</article>
+								<article class="ico-ubc3">
+									<div class="content-game">
+										<div class="content-game">
+											<i class="ico-game-gray"></i>
+											<h6>Oferta de juego</h6>
+											<p>Lorem Ipsum</p> 
+										</div>
 									</div>
 								</article>
 							</div>

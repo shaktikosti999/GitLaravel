@@ -169,7 +169,7 @@
 .ico-phone-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: 160px -94px; width: 33px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
 .ico-clock-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -284px 0; width: 32px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
 .ico-car-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -29px -163px; width: 38px; height: 25px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-game-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -70px -145px; width: 41px; height: 34px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-game-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -65px -129px; width: 28px; height: 29px; display: inline-block; vertical-align: middle; font-size: 0; }
 
 
 .sucursales h6, p {padding-left: 50px; margin: 0;}
@@ -2542,9 +2542,9 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.table-list h2 {font-size: 40px;}
 	.table-list {line-height: 19px;}
 	.table-content h5 {font-size: 25px;}
-	.btn-sport .btn-calendar-sport {height: auto;
-    line-height: 1;
-    padding: 20px 30px;}
+	.btn-sport .btn-calendar-sport {height: auto; line-height: 1; padding: 20px 30px;}
+	.sucursales li {width: 100%; border-bottom: 1px solid #efefef;}
+	.sucursales li:nth-child(2) {position: relative; float: left; display: block; width: 100%; padding: 0 14px; margin-top: 30px;}
 }
 
 @media (max-width: 920px) {
@@ -2576,8 +2576,6 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.btn-tut a {margin-top: 0px;}
 	.main .btn-ciudades {width: 100%;}
 	.sucursales {margin-bottom: 0;}
-	.sucursales li {border-bottom: 1px solid #efefef;}
-	.sucursales li:nth-child(1) {width: 100%;}
 	.sucursales p {width: 100%;}
 	.sucursales p:last-child {margin-bottom: 30px;}
 	.slider-bet .slider-bet-item {height: 330px;}
@@ -2590,13 +2588,19 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.table-sport table td p {font-size: 20px;}
 	.section-events img {height: auto;}
 	.sucursales li:nth-child(2) {position: relative; float: left; display: block; width: 100%; padding: 0 14px; margin-top: 30px;}
+	.ico-ubc1 {height: 160px !important;}
 }
 
 @media(max-width: 768px){
 	.sport-calendar .slick-arrow { -webkit-transform: scale(.8); -ms-transform: scale(.8); transform: scale(.8); -webkit-transform: rotateZ(180deg);}
 	.sport-calendar .slick-prev {-webkit-transform: rotateZ(0deg) !important;} 
 }
-
+@media(max-width: 580px){
+	.content-map {width: 100% !important;}
+	.content-phone {width: 100% !important; position: relative !important; float: left; display: inline-block;}
+	.content-car {width: 100% !important; position: relative !important;}
+	.content-clock {width: 100% !important;}
+}
 @media(max-width: 480px){
 	.serie-item h4 {font-size: 40px;}
 	.serie-item {width: 45%; padding: 27px;}
@@ -2604,8 +2608,10 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.section-articles.content-video {padding-bottom: 0;}
 	.section-video:last-child {padding-bottom: 50px;}
 }
-.ico-ubc1 {width: 100%; position: relative; height: 170px;}
+.ico-ubc1 {width: 100%; position: relative; height: 140px;}
 .ico-ubc2 {width: 100%; position: relative; height: 100px;}
+.ico-ubc3 {width: 100%; position: relative; height: 80px;}
+.content-game {position: relative; width: 100%; float: left; display: inline-block;}
 .content-map {position: relative; width: 50%; float: left; display: inline-block;}
 .content-phone {position: absolute; width: 50%; float: right; display: inline-block;}
 .content-clock {position: relative; width: 50%; float: left; display: inline-block;}
