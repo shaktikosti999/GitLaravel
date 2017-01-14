@@ -381,7 +381,7 @@
 									<li>
 										<i class="ico-car"></i>
 									
-										<p>{!!$sucursal->estacionamiento!!}</p>
+										<p>{!!$sucursal->aparcamiento!!}</p>
 									</li>
 									<li>
 										<i class="ico-game"></i>

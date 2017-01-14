@@ -154,7 +154,7 @@
 									</div>
 									<div class="content-car">
 										<i class="ico-car-gray"></i>
-										<h6>Estacionamiento</h6>
+										<h6>Aparcamiento</h6>
 										<p>Horario : 13:00 pm - 00:00 am</p> 
 										<p>Lunes - Domingo</p>
 									</div>
@@ -206,7 +206,7 @@
 									</div>
 									<div class="content-car">
 										<i class="ico-car-gray"></i>
-										<h6>Estacionamiento</h6>
+										<h6>Aparcamiento</h6>
 										<p>Horario : 13:00 pm - 00:00 am</p> 
 										<p>Lunes - Domingo</p>
 									</div>
@@ -259,7 +259,7 @@
 									</div>
 									<div class="content-car">
 										<i class="ico-car-gray"></i>
-										<h6>Estacionamiento</h6>
+										<h6>Aparcamiento</h6>
 										<p>Horario : 13:00 pm - 00:00 am</p>
 										<p>Lunes - Domingo</p>
 									</div>
@@ -312,7 +312,7 @@
 									</div>
 									<div class="content-car">
 										<i class="ico-car-gray"></i>
-										<h6>Estacionamiento</h6>
+										<h6>Aparcamiento</h6>
 										<p>Horario : 13:00 pm - 00:00 am <p>
 										<p>Lunes - Domingo</p>
 									</div>
