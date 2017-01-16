@@ -42,7 +42,7 @@
 		@endif
 
 		<div class="main"> 
-			<section class="section-secondary section-gray">
+			<?php /*<section class="section-secondary section-gray">
 				<div class="shell">
 					<header class="section-head">
 						<h2>
@@ -60,498 +60,508 @@
 						</p>
 					</div><!-- /.section-body -->
 				</div><!-- /.shell -->
-			</section><!-- /.section-gray --> 
+			</section><!-- /.section-gray --> */ ?>
 
-			<section class="section-listings">
+			<section>
 				<div class="shell">
 					<header class="section-head">
-						<h2>
-							Calendario “Promoción de primavera”
-						</h2>
+						<div class="listing-filters">
+							<label for="field-filter" class="form-label hidden">filter</label>
+							<select name="field-filter" id="field-filter" class="select select-black">
+								<option value>Mostrar todo</option>
+								@if(isset($categorias) && count($categorias) ) 
+									@foreach($categorias as $item) 
+										<option value="{{$item->id}}">{{$item->nombre}}</option>
+									@endforeach
+								@endif
+							</select>
+						</div><!-- /.listing-filters-->
+					</header>
+				</div>
+			</section>
+			@if( isset($promocion) && count($promocion) )
+				@foreach($promocion as $dinamica)
+					<section class="section-listings" data-sucursal="{{current($dinamica)->id_categoria}}">
+						<div class="shell">
+							<header class="section-head">
+								<h2>
+									{{current($dinamica)->categoria}}
+								</h2>
 
-						<div class="section-head-entry">
-							<h2>
-								Marzo, 2016
-							</h2>
+								<!-- <div class="section-head-entry">
+									<h2>
+										Marzo, 2016
+									</h2>
 
-							<div class="listing-filters">
-								<label for="field-filter" class="form-label hidden">filter</label>
-								<select name="field-filter" id="field-filter" class="select select-black">
-									<option value>Seleccione Sucursal</option>
-									@if(isset($suc_validas) && count($suc_validas) ) 
-										@foreach($suc_validas as $item) 
-											<option value="{{$item->id}}">{{$item->nombre}}</option>
+								</div> --><!-- /.section-head-entry -->
+							</header><!-- /.section-head -->
+
+							@if( isset($dinamica) && count($dinamica) )
+							<div class="section-body">
+								<div class="section-inner green">
+									<h4 style="color:rgb(0,0,0)">
+										Eventos activos
+									</h4>
+
+									<ul class="promotions">
+										@foreach( $dinamica as $item )
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														{{date('d',strtotime($item->inicio))}}
+													</span>
+
+													<small>
+														{{date('M',strtotime($item->inicio))}}
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													{{$item->titulo}}
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+
+													<small>
+														{{date('h:i A',strtotime($item->inicio))}} - {{date('h:i A',strtotime($item->fin))}}
+													</small>
+
+													<span>
+														{{$item->descripcion}}
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
 										@endforeach
-									@endif
-								</select>
-							</div><!-- /.listing-filters-->
-						</div><!-- /.section-head-entry -->
-					</header><!-- /.section-head -->
-
-					@if( isset($dinamica) && count($dinamica) )
-					<div class="section-body">
-						<div class="section-inner green">
-							<h4>
-								Eventos activos
-							</h4>
-
-							<ul class="promotions">
-								@foreach( $dinamica as $item )
-								<li class="promotion" data-sucursal="{{$item->id_sucursal}}">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												{{date('d',strtotime($item->inicio))}}
-											</span>
-
-											<small>
-												{{date('M',strtotime($item->inicio))}}
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											{{$item->titulo}}
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-
-											<small>
-												{{date('h:i A',strtotime($item->inicio))}} - {{date('h:i A',strtotime($item->fin))}}
-											</small>
-
-											<span>
-												{{$item->descripcion}}
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-								@endforeach
-								<?php /*<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												9
-											</span>
-
-											<small>
-												Mar
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												13
-											</span>
-
-											<small>
-												Mar
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-											
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												20	
-											</span>
-
-											<small>
-												Mar
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-											
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												26
-											</span>
-
-											<small>
-												Mar
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue	
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-											
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-							</ul><!-- /.promotion -->
-
-							<div class="section-actions">
-								<a href="#" class="btn btn-border">
-									Cargar más 
-								</a>
-							</div><!-- /.section-actions -->
-						</div><!-- /.section-inner -->
-
-						<div class="section-inner red">
-							<h4>
-								Eventos próximos
-							</h4>
-
-							<ul class="promotions">
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												1
-											</span>
-
-											<small>
-												May
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												11
-											</span>
-
-											<small>
-												May
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-											
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												20	
-											</span>
-
-											<small>
-												May
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-											
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												28
-											</span>
-
-											<small>
-												May
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue	
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-											
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-							</ul><!-- /.promotion -->
-
-							<div class="section-actions">
-								<a href="#" class="btn btn-border">
-									Cargar más 
-								</a>
-							</div><!-- /.section-actions -->
-						</div><!-- /.section-inner -->
-
-						<div class="section-inner gray">
-							<h4>
-								Eventos pasados
-							</h4>
-
-							<ul class="promotions">
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												3
-											</span>
-
-											<small>
-												Ene
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												5
-											</span>
-
-											<small>
-												Ene
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-											
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												16	
-											</span>
-
-											<small>
-												Ene
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-											
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>
-
-								<li class="promotion">
-									<div class="promotion-date">
-										<strong>
-											<span>
-												27
-											</span>
-
-											<small>
-												Ene
-											</small>
-										</strong>
-									</div><!-- /.promotion-date -->
-
-									<div class="promotion-info">
-										<strong class="promotion-title">
-											sit amet egestas augue	
-										</strong>
-
-										<strong class="promotion-entry">
-											<i class="ico-clock-secondary"></i>
-											
-											<small>
-												10:00 am - 9:00 pm
-											</small>
-
-											<span>
-												Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
-											</span>
-										</strong>
-									</div><!-- /.promotion-info -->
-								</li>*/ ?>
-							</ul><!-- /.promotion -->
-
-							<!-- <div class="section-actions">
-								<a href="#" class="btn btn-border">
-									Cargar más 
-								</a>
-							</div> --><!-- /.section-actions -->
-						</div><!-- /.section-inner -->
-					</div><!-- /.section-body -->
-					@endif
-				</div><!-- /.shell -->
-			</section><!-- /.section-listing -->
+										<?php /*<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														9
+													</span>
+
+													<small>
+														Mar
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														13
+													</span>
+
+													<small>
+														Mar
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+													
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														20	
+													</span>
+
+													<small>
+														Mar
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+													
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														26
+													</span>
+
+													<small>
+														Mar
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue	
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+													
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+									</ul><!-- /.promotion -->
+
+									<div class="section-actions">
+										<a href="#" class="btn btn-border">
+											Cargar más 
+										</a>
+									</div><!-- /.section-actions -->
+								</div><!-- /.section-inner -->
+
+								<div class="section-inner red">
+									<h4>
+										Eventos próximos
+									</h4>
+
+									<ul class="promotions">
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														1
+													</span>
+
+													<small>
+														May
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														11
+													</span>
+
+													<small>
+														May
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+													
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														20	
+													</span>
+
+													<small>
+														May
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+													
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														28
+													</span>
+
+													<small>
+														May
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue	
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+													
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+									</ul><!-- /.promotion -->
+
+									<div class="section-actions">
+										<a href="#" class="btn btn-border">
+											Cargar más 
+										</a>
+									</div><!-- /.section-actions -->
+								</div><!-- /.section-inner -->
+
+								<div class="section-inner gray">
+									<h4>
+										Eventos pasados
+									</h4>
+
+									<ul class="promotions">
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														3
+													</span>
+
+													<small>
+														Ene
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														5
+													</span>
+
+													<small>
+														Ene
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+													
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														16	
+													</span>
+
+													<small>
+														Ene
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+													
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>
+
+										<li class="promotion">
+											<div class="promotion-date">
+												<strong>
+													<span>
+														27
+													</span>
+
+													<small>
+														Ene
+													</small>
+												</strong>
+											</div><!-- /.promotion-date -->
+
+											<div class="promotion-info">
+												<strong class="promotion-title">
+													sit amet egestas augue	
+												</strong>
+
+												<strong class="promotion-entry">
+													<i class="ico-clock-secondary"></i>
+													
+													<small>
+														10:00 am - 9:00 pm
+													</small>
+
+													<span>
+														Aliquam fermentum pellentesque mauris, quis lacinia nulla placerat eget
+													</span>
+												</strong>
+											</div><!-- /.promotion-info -->
+										</li>*/ ?>
+									</ul><!-- /.promotion -->
+
+									<!-- <div class="section-actions">
+										<a href="#" class="btn btn-border">
+											Cargar más 
+										</a>
+									</div> --><!-- /.section-actions -->
+								</div><!-- /.section-inner -->
+							</div><!-- /.section-body -->
+							@endif
+						</div><!-- /.shell -->
+					</section><!-- /.section-listing -->
+				@endforeach
+			@endif
 
 			<section class="section-gray">
 				<div class="shell">

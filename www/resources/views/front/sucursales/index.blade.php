@@ -6,7 +6,7 @@
 		</a>
 
 		<div class="slider-secondary">
-				<a href="#" class="btn-menu">
+				<a href="{{url('alimentos-y-bebidas')}}" class="btn-menu">
 					<img src="css/images/btn-menu@2x.png" alt="">
 				</a>
 
@@ -381,7 +381,7 @@
 									<li>
 										<i class="ico-car"></i>
 									
-										<p>{!!$sucursal->aparcamiento!!}</p>
+										<p>{!!$sucursal->horario!!}</p>
 									</li>
 									<li>
 										<i class="ico-game"></i>

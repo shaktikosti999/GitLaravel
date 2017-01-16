@@ -13,9 +13,10 @@
 		<!-- START PANEL -->
 		<div class="panel panel-transparent">
 	  		<div class="panel-body">
-			    <form id="form-agregar" role="form" autocomplete="off" method="POST" action="{{url('/administrador/agregar/juego.html')}}">
+			    <form id="form-agregar" role="form" autocomplete="off" method="POST" action="{{url('/administrador/agregar/juego.html')}}" enctype="multipart/form-data">
 			    	{!!csrf_field()!!}
 			    	<input type="hidden" name="_method" value="PUT">
+
 		      		<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
@@ -24,6 +25,7 @@
 			          		</div>
 			        	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -32,6 +34,7 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -45,6 +48,7 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -58,6 +62,7 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -66,6 +71,7 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -74,6 +80,7 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -82,6 +89,16 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
+			      	<div class="row">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default">
+			            		<label for="archivo">Imagen</label>
+			            		<input type="file" id="archivo" class="form-control required" name="archivo" aria-required="true" aria-invalid="true" >
+			          		</div>
+			          	</div>
+			      	</div>
+
 			      	<div class="clearfix"></div>
 			      	<input class="btn btn-primary" type="submit" value="Agregar Juego">
 			    </form>

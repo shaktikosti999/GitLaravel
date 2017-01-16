@@ -23,7 +23,7 @@
 		</a>
 
 		<div class="slider-secondary">
-				<a href="#" class="btn-menu">
+				<a href="{{url('alimentos-y-bebidas')}}" class="btn-menu">
 					<img src="css/images/btn-menu@2x.png" alt="">
 				</a>
 
@@ -132,34 +132,27 @@
 									<div class="content-map">
 										<i class="ico-map-gray"></i>
 										<h6>Dirección</h6>
-										<p>Calle Fuentes del molino</p> 
-										<p>#49-BCol. San Miguel</p>
-										<p>Piedras Negras,</p>
-										<p>Coahuila C.P. 53970</p>
+										{!!$item->direccion!!}
 									</div>
 									<div class="content-phone">
 										<i class="ico-phone-gray"></i>
 										<h6>Teléfono</h6>
-										<p>Teléfono: 01 + 55 123456789</p>
-										<p>Teléfono: 01 + 55 123456789</p>
-										<p>Teléfono: 01 + 55 123456789</p>
+										{!!$item->telefono!!}
 									</div>
 								</article>
 								<article class="ico-ubc2">
 									<div class="content-clock">
 										<i class="ico-clock-gray"></i>
 										<h6>Horario</h6>
-										<p>Horario : 13:00 pm - 00:00 am</p> 
-										<p>Lunes - Domingo</p>
+										{!!$item->horario!!}
 									</div>
 									<div class="content-car">
 										<i class="ico-car-gray"></i>
 										<h6>Aparcamiento</h6>
-										<p>Horario : 13:00 pm - 00:00 am</p> 
-										<p>Lunes - Domingo</p>
+										{!!$item->horario!!}
 									</div>
 								</article>
-								<article class="ico-ubc3">
+								<!-- <article class="ico-ubc3">
 									<div class="content-game">
 										<div class="content-game">
 											<i class="ico-game-gray"></i>
@@ -167,165 +160,7 @@
 											<p>Lorem Ipsum</p> 
 										</div>
 									</div>
-								</article>
-							</div>
-						</li>
-						<li>
-							<h3><a href="{{url('sucursal/' . $item->slug)}}">{{$item->nombre}}</a></h3>
-							<div class="section-actions btn-action">
-								<a href="http://www.google.com/maps/place/{{ $item->latitud . "," . $item->longitud }}" target="_blank" class="btn btn-red btn-red-small">
-									<i class="ico-human"></i>
-
-									Cómo llegar aquí
-								</a>
-							</div>
-							<div class="content-ico-rgt">
-								<article class="ico-ubc1">
-									<div class="content-map">
-										<i class="ico-map-gray"></i>
-										<h6>Dirección</h6>
-										<p>Calle Fuentes del molino</p> 
-										<p>#49-BCol. San Miguel</p>
-										<p>Piedras Negras,</p>
-										<p>Coahuila C.P. 53970</p>
-									</div>
-									<div class="content-phone">
-										<i class="ico-phone-gray"></i>
-										<h6>Teléfono</h6>
-										<p>Teléfono: 01 + 55 123456789</p>
-										<p>Teléfono: 01 + 55 123456789</p>
-										<p>Teléfono: 01 + 55 123456789</p>
-									</div>
-								</article>
-								<article class="ico-ubc2">
-									<div class="content-clock">
-										<i class="ico-clock-gray"></i>
-										<h6>Horario</h6>
-										<p>Horario : 13:00 pm - 00:00 am</p> 
-										<p>Lunes - Domingo</p>
-									</div>
-									<div class="content-car">
-										<i class="ico-car-gray"></i>
-										<h6>Aparcamiento</h6>
-										<p>Horario : 13:00 pm - 00:00 am</p> 
-										<p>Lunes - Domingo</p>
-									</div>
-								</article>
-								<article class="ico-ubc3">
-									<div class="content-game">
-										<div class="content-game">
-											<i class="ico-game-gray"></i>
-											<h6>Oferta de juego</h6>
-											<p>Lorem Ipsum</p> 
-										</div>
-									</div>
-								</article>
-							</div>
-						</li>
-
-						<li>
-							<h3><a href="{{url('sucursal/' . $item->slug)}}">{{$item->nombre}}</a></h3>
-							<div class="section-actions btn-action">
-								<a href="http://www.google.com/maps/place/{{ $item->latitud . "," . $item->longitud }}" target="_blank" class="btn btn-red btn-red-small">
-									<i class="ico-human"></i>
-
-									Cómo llegar aquí
-								</a>
-							</div>
-							<div class="content-ico-lft">
-								<article class="ico-ubc1">
-									<div class="content-map">
-										<i class="ico-map-gray"></i>
-										<h6>Dirección</h6>
-										<p>Calle Fuentes del molino</p> 
-										<p>#49-BCol. San Miguel</p>
-										<p>Piedras Negras,</p>
-										<p>Coahuila C.P. 53970</p>
-									</div>
-									<div class="content-phone">
-										<i class="ico-phone-gray"></i>
-										<h6>Teléfono</h6>
-										<p>Teléfono: 01 + 55 123456789</p>
-										<p>Teléfono: 01 + 55 123456789</p>
-										<p>Teléfono: 01 + 55 123456789</p>
-									</div>
-								</article>
-								<article class="ico-ubc2">
-									<div class="content-clock">
-										<i class="ico-clock-gray"></i>
-										<h6>Horario</h6>
-										<p>Horario : 13:00 pm - 00:00 am</p> 
-										<p>Lunes - Domingo</p>
-									</div>
-									<div class="content-car">
-										<i class="ico-car-gray"></i>
-										<h6>Aparcamiento</h6>
-										<p>Horario : 13:00 pm - 00:00 am</p>
-										<p>Lunes - Domingo</p>
-									</div>
-								</article>
-								<article class="ico-ubc3">
-									<div class="content-game">
-										<div class="content-game">
-											<i class="ico-game-gray"></i>
-											<h6>Oferta de juego</h6>
-											<p>Lorem Ipsum</p> 
-										</div>
-									</div>
-								</article>
-							</div>
-						</li>
-
-						<li>
-							<h3><a href="{{url('sucursal/' . $item->slug)}}">{{$item->nombre}}</a></h3>
-							<div class="section-actions btn-action">
-								<a href="http://www.google.com/maps/place/{{ $item->latitud . "," . $item->longitud }}" target="_blank" class="btn btn-red btn-red-small">
-									<i class="ico-human"></i>
-
-									Cómo llegar aquí
-								</a>
-							</div>
-							<div class="content-ico-rgt">
-								<article class="ico-ubc1">
-									<div class="content-map">
-										<i class="ico-map-gray"></i>
-										<h6>Dirección</h6>
-										<p>Calle Fuentes del molino</p> 
-										<p>#49-BCol. San Miguel</p>
-										<p>Piedras Negras,</p>
-										<p>Coahuila C.P. 53970</p>
-									</div>
-									<div class="content-phone">
-										<i class="ico-phone-gray"></i>
-										<h6>Teléfono</h6>
-										<p>Teléfono: 01 + 55 123456789</p>
-										<p>Teléfono: 01 + 55 123456789</p>
-										<p>Teléfono: 01 + 55 123456789</p>
-									</div>
-								</article>
-								<article class="ico-ubc2">
-									<div class="content-clock">
-										<i class="ico-clock-gray"></i>
-										<h6>Horario</h6>
-										<p>Horario : 13:00 pm - 00:00 am <p>
-										<p>Lunes - Domingo</p>
-									</div>
-									<div class="content-car">
-										<i class="ico-car-gray"></i>
-										<h6>Aparcamiento</h6>
-										<p>Horario : 13:00 pm - 00:00 am <p>
-										<p>Lunes - Domingo</p>
-									</div>
-								</article>
-								<article class="ico-ubc3">
-									<div class="content-game">
-										<div class="content-game">
-											<i class="ico-game-gray"></i>
-											<h6>Oferta de juego</h6>
-											<p>Lorem Ipsum</p> 
-										</div>
-									</div>
-								</article>
+								</article> -->
 							</div>
 						</li>
 
@@ -364,10 +199,10 @@
 							<h6>Oferta de Juego</h6>
 							<p>Horario : 13:00 pm - 00:00 am </p>
 							<p>Lunes - Domingo</p>
-						</li> 
+						</li> -->
 
 				<?php $c++; ?>
-			@endforeach-->
+			@endforeach
 					</ul>
 				</div>
 			</div>

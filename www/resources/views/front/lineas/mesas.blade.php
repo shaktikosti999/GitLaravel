@@ -196,9 +196,11 @@
 						 				<div class="article-entry">
 						 					<h4 class="article-title">
 						 						{{current($mesas)->nombre}}
+						 						@if( isset(current($mesas)->disponibles) && !empty(current($mesas)->disponibles))
 						 						<small>
 						 							{{current($mesas)->disponibles}} mesas
 						 						</small>
+						 						@endif
 						 					</h4><!-- /.article-title -->
 
 											<p>
@@ -249,7 +251,7 @@
 																		</h6>
 																	<div class="article-image" style="background-image: url({{ isset($mesa->archivo) && trim($mesa->archivo) != "" ? $mesa->archivo : $mesa->imagen}})"> </div><!-- /.article-image -->
 
-																	<a href="#" class="link-more ver-mesa" data-id="{{$mesa->id}}">
+																	<a href="#" class="link-more ver-mesa" data-id="{{$mesa->id}}" data-sucursal="{{isset($mesa->id_sucursal) && !empty($mesa->id_sucursal) ? $mesa->id_sucursal : "0"}}">
 																		Ver más
 																	</a>
 																	</article><!-- /.article-game-available small -->

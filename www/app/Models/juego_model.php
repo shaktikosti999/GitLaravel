@@ -47,7 +47,7 @@ class juego_model{
 		return $get;
 	}
 
-	static function store($request){
+	static function store($request,$archivo){
 		$sucursal = new juego;
 		$sucursal->id_linea = $request->linea;
 		$sucursal->id_categoria = $request->categoria == 'null' ? null : $request->categoria;
@@ -56,12 +56,13 @@ class juego_model{
 		$sucursal->resumen = $request->resumen;
 		$sucursal->aprender = $request->aprender;
 		$sucursal->reglas = $request->reglas;
+		$sucursal->imagen = $archivo;
 		$sucursal->slug = Str::slug($request->nombre, '-');
 		$evento = Event::fire(new dotask($sucursal));
 		return $evento;
 	}
 
-	static function update($id, $request){
+	static function update($id, $request, $archivo = null){
 		$sucursal = juego::find($id);
 		$sucursal->id_linea = $request->linea;
 		$sucursal->id_categoria = $request->categoria == 'null' ? null : $request->categoria;
@@ -70,6 +71,12 @@ class juego_model{
 		$sucursal->resumen = $request->resumen;
 		$sucursal->aprender = $request->aprender;
 		$sucursal->reglas = $request->reglas;
+		if( $archivo !== null ){
+			if( file_exists(public_path() . '/' . $sucursal->imagen) && is_file(public_path() . '/' . $sucursal->imagen) ){
+				unlink(public_path() . '/' . $sucursal->imagen);
+			}
+			$sucursal->imagen = $archivo;
+		}
 		$sucursal->slug = Str::slug($request->nombre, '-');
 		$evento = Event::fire(new dotask($sucursal));
 		return $evento;

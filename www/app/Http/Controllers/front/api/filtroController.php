@@ -241,9 +241,12 @@ class filtroController extends Controller
         if($request->ajax())
         {
             $id_mesa = $request->input('id_mesa');
-            $id_mesa == "" ? $id_mesa = null : $id_mesa = $id_mesa;
+            $id_sucursal = $request->input('id_sucursal');
 
-            echo json_encode( linea::get_games( [ "id" => $id_mesa ] ) );
+            $id_mesa = (int)$id_mesa > 0 ? $id_mesa : null;
+            $id_sucursal = (int)$id_sucursal > 0 ? $id_sucursal : null;
+
+            echo json_encode( linea::get_games_table( [ "id" => $id_mesa, 'id_sucursal'=>$id_sucursal ] ) );
 
         }
         else

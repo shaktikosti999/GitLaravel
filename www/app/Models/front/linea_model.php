@@ -231,6 +231,60 @@ class linea_model{
         return $get;
     }
 
+    static function get_games_table($args = []){
+        $get = \DB::table('juego as j')
+            ->select(
+                'j.id_juego as id',
+                'j.nombre',
+                'j.titulo',
+                'j.imagen',
+                'j.resumen',
+                // 'js.archivo',
+                'j.slug'
+                // 'js.link',
+                // 'js.archivo',
+                // 'js.acumulado',
+                // 'js.apuesta_minima',
+                // 'js.descripcion',
+                // 'js.disponibles'
+            )
+            ->where('j.estatus',1)
+            ->where('j.eliminado',0);
+        if(array_key_exists('linea', $args) && $args['linea'] !== null)
+            $get = $get->where('j.id_linea',$args['linea']);
+        if(array_key_exists('id_sucursal', $args) && $args['id_sucursal'] !== null){
+            $get = $get
+                ->select(
+                    'j.id_juego as id',
+                    'js.id_sucursal',
+                    'j.nombre',
+                    'j.titulo',
+                    'j.imagen',
+                    'j.resumen',
+                    'js.archivo',
+                    'j.slug',
+                    'js.link',
+                    'js.archivo',
+                    // 'js.acumulado',
+                    'js.apuesta_minima',
+                    'js.descripcion',
+                    'js.disponibles'
+                )
+                ->where('js.id_sucursal',$args['id_sucursal'])
+                ->join('juego_sucursal AS js','js.id_juego','=','j.id_juego');
+        }
+        if(array_key_exists('id_categoria', $args) && $args['id_categoria'] !== null)
+            $get = $get->where('j.id_categoria',$args['id_categoria']);
+        if(array_key_exists('limit', $args) && $args['limit'] !== null)
+            $get = $get->limit($args['limit']);
+        if(array_key_exists('not_id', $args) && $args['not_id'] !== null)
+            $get = $get->whereNotIn('j.id_juego',$args['not_id']);
+        if(array_key_exists('id', $args) && $args['id'] !== null)
+            $get = $get->where('j.id_juego',$args['id']); 
+        $get = $get->get();
+        return $get;
+    }
+
     static function get_programs($args = [] ){
         $data = \DB::table('carrerapdf as c')
             ->select(

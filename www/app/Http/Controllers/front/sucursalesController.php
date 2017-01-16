@@ -64,6 +64,7 @@ class sucursalesController extends Controller
             'ciudades' => \App\Models\front\ciudad_model::find_all(),
             'sucursales' => sucursal::find_all(['id_ciudad'=>$id_ciudad])
         ];
+        // dd($data);
         return view('front.sucursales.general',$data);
     }
 }

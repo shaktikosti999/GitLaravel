@@ -1,11 +1,11 @@
 $(document).ready(function(){
 	$('.fs-dropdown').on('change', function(){
-		$('.promotion').show();
+		$('.section-listings').show();
 		if( $('[data-sucursal="' + $('.fs-dropdown-item_selected').attr('data-value') + '"]').length > 0 ){
-			$('.promotion').addClass('not-show');
+			$('.section-listings').addClass('not-show');
 			$('[data-sucursal="' + $('.fs-dropdown-item_selected').attr('data-value') + '"]').removeClass('not-show');
 			$('.not-show').hide();
-			$('.promotion').removeClass('not-show');
+			$('.section-listings').removeClass('not-show');
 		}
 	});
 	// });

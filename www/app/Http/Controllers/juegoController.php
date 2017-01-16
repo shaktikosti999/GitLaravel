@@ -58,18 +58,42 @@ class juegoController extends Controller
             'nombre' => 'required|string|min:1|max:50',
             'titulo' => 'required|string|min:1|max:50',
             'linea' => 'required|integer|min:1|max:99',
+            'archivo' => 'required|image',
             'resumen' => 'string',
             'aprender' => 'string',
             'reglas' => 'string'
         ]);
 
-        $evento = juego::store($request);
-        $evento = $evento[0];
-        if(!$evento){
-            return redirect(url('/administrador/juego.html'))->with('success','Juego agregado correctamente');
-        }
-        else{
-            return redirect(url('/administrador/juego.html'))->with('error',$evento);
+        if($request->hasFile('archivo')){
+            $archivo = $request->file('archivo');
+            $ext = strtolower($archivo->getClientOriginalExtension());
+            $extValidas = ['jpg','jpeg','png'];
+
+            if(in_array($ext, $extValidas)){
+                $carpeta = 'assets/images/juegos/';
+                if(!file_exists(public_path() . '/' . $carpeta))
+                    mkdir(public_path() . '/' . $carpeta,0777,true);
+                do{
+                    $nombre = "";
+                    $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                    for($i=0; $i<=16; $i++ ){
+                        $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
+                    }
+                }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+                $nombre .= '.' . $ext;
+                if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                    $archivo = '/' . $carpeta . $nombre;
+
+                    $evento = juego::store($request,$archivo);
+                    $evento = $evento[0];
+                    if(!$evento){
+                        return redirect(url('/administrador/juego.html'))->with('success','Juego agregado correctamente');
+                    }
+                    else{
+                        return redirect(url('/administrador/juego.html'))->with('error',$evento);
+                    }
+                }
+            }                    
         }
 
     }
@@ -110,12 +134,36 @@ class juegoController extends Controller
             'nombre' => 'required|string|min:1|max:50',
             'titulo' => 'required|string|min:1|max:50',
             'linea' => 'required|integer|min:1|max:99',
+            'archivo' => 'image',
             'resumen' => 'string',
             'aprender' => 'string',
             'reglas' => 'string'
         ]);
 
-        $evento = juego::update($id,$request);
+        if($request->hasFile('archivo')){
+            $archivo = $request->file('archivo');
+            $ext = strtolower($archivo->getClientOriginalExtension());
+            $extValidas = ['jpg','jpeg','png'];
+
+            if(in_array($ext, $extValidas)){
+                $carpeta = 'assets/images/juegos/';
+                if(!file_exists(public_path() . '/' . $carpeta))
+                    mkdir(public_path() . '/' . $carpeta,0777,true);
+                do{
+                    $nombre = "";
+                    $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                    for($i=0; $i<=16; $i++ ){
+                        $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
+                    }
+                }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+                $nombre .= '.' . $ext;
+                if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                    $archivo = '/' . $carpeta . $nombre;
+                }
+            }                    
+        }
+
+        $evento = juego::update($id,$request,$archivo);
         $evento = $evento[0];
         if(!$evento){
             return redirect(url('/administrador/juego.html'))->with('success','Juego modificado correctamente');

@@ -7,7 +7,7 @@
 			</h2>
 
 			@if( isset($sucursal) && $sucursal !== null )
-			<a href="{{url('/promociones/calendario/' . $sucursal)}}" class="btn btn-black">
+			<a href="{{url('/promociones/calendario/' . $sucursal->slug)}}" class="btn btn-black">
 				consulta calendario completo
 			</a>
 			@endif

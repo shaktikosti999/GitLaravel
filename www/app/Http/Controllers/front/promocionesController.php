@@ -95,8 +95,17 @@ class promocionesController extends Controller
 
     public function show($slug){
         $promocion = calendario::find(['slug' => $slug]);
+        $promos = [];
+        $categorias = [];
+        if(count($promocion)){
+            foreach($promocion as $item){
+                $promos[$item->id_categoria][] = $item;
+                $categorias[] = (object)['id' => $item->id_categoria,'nombre' => $item->categoria];
+            }
+        }
         $data = [
-            'promocion' => $promocion,
+            'promocion' => $promos,
+            'categorias' => $categorias,
             'slider' => calendario::slider(['slug' => $slug])
         ];
         // dd($data);

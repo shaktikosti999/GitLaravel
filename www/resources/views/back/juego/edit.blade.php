@@ -4,6 +4,12 @@
 		<script>
 		$(function(){
 			$('#form-agregar').validate();
+			$('.img_juego').on('click', function(){
+				$('#archivo').click();
+			});
+			$('#archivo').on('change',function(evt){
+		 		$('.img_juego').attr('src', URL.createObjectURL(evt.target.files[0]));
+		 	});
 		});
 		</script>
 	@stop
@@ -13,9 +19,10 @@
 		<!-- START PANEL -->
 		<div class="panel panel-transparent">
 	  		<div class="panel-body">
-			    <form id="form-agregar" role="form" autocomplete="off" method="POST" action="{{url('/administrador/modificar/juego' . $id . '.html')}}">
+			    <form id="form-agregar" role="form" autocomplete="off" method="POST" action="{{url('/administrador/modificar/juego' . $id . '.html')}}" enctype="multipart/form-data">
 			    	{!!csrf_field()!!}
 			    	<input type="hidden" name="_method" value="PATCH">
+
 		      		<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
@@ -24,6 +31,7 @@
 			          		</div>
 			        	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -32,6 +40,7 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -45,6 +54,7 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -58,6 +68,7 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -66,6 +77,7 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -74,6 +86,7 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
 			      	<div class="row">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default">
@@ -82,6 +95,17 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
+			      	<div class="row">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default">
+			            		<label for="archivo">Imagen</label>
+			            		<img src="{{$juego->imagen}}" class="img-responsive img_juego">
+			            		<input type="file" id="archivo" class="form-control required" name="archivo" aria-required="true" aria-invalid="true" style="display:none;">
+			          		</div>
+			          	</div>
+			      	</div>
+
 			      	<div class="clearfix"></div>
 			      	<input class="btn btn-primary" type="submit" value="Modificar Sección">
 			    </form>

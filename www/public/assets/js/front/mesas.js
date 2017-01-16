@@ -3,13 +3,15 @@ $(document).on('ready', function(){
 	$(".ver-mesa").click(function(e){
 		e.preventDefault();
 		id_mesa = $(this).attr('data-id');
+		id_sucursal = $(this).attr('data-sucursal');
 
 		$.ajax({
 			type:'post',
 			url:'/get-mesa-juego',
 			data:{
 				_method:'PATCH',
-				id_mesa:id_mesa
+				id_mesa:id_mesa,
+				id_sucursal:id_sucursal
 			},
 			success: function(data){
 				

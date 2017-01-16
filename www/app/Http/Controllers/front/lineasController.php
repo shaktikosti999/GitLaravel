@@ -103,7 +103,7 @@ class lineasController extends Controller
         $data["promociones"] = promocion::find_all( [ "linea" => 2, "id_sucursal" => $id_sucursal ] );
 
         //-----> Obtenemos mesas de juego
-        $data["mesas"] = linea::get_games( [ "linea" => 2, "id_sucursal" => $id_sucursal] );
+        $data["mesas"] = linea::get_games_table( [ "linea" => 2, "id_sucursal" => $id_sucursal] );
 
         //-----> Obtenemos los proveedores
         $data["torneos"] = linea::find_all_tournaments( [ "id_sucursal" => $id_sucursal ] );
