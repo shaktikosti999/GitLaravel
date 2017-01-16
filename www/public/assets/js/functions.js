@@ -30,7 +30,7 @@
 	      		$('.hide_program').hide();
 	      		$('[data-fecha]').removeClass('hide_program');
 
-
+	      	
 	      		
 	      	});
 	      	

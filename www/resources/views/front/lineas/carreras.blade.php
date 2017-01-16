@@ -76,14 +76,14 @@
 		</script>
 	@stop
 
-	<!-- Lightbox calendario -->
+	<!-- Lightbox calendario 
 	<section class="lightbox-calendar lightbox--module">
             <section class="modal modal-calendar centerme">
                 <form class="modal-item">
             		<div class="texto-calendar">
                         <h2>Martes 5 de Mayo</h2>
                     </div>
-                    <div class="item-calendar"> <!-- cuadro derecha -->
+                    <div class="item-calendar"> 
 
 						<h3>Programas</h3>
 						<ul>	
@@ -144,7 +144,7 @@
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </button> 
             </section>
-        </section>
+        </section>-->
 
 
 
@@ -284,12 +284,20 @@
 					<section class="content programas">	
 
 						<div class="left-item"> <!-- calendario -->
-							<div id="sandbox-container">
 							<div id="datepicker" class="calendar-module" data-date="{{date('m/d/Y')}}">
 							
 							</div>
+							<div class="indications">
+								<ul>
+									<li class="day">
+										<p>Día Actual</p>
+									</li>
+									<li class="program">
+										<div class="color-black"></div>
+										<p>Programa</p>
+									</li>
+								</ul>
 							</div>
-
 						</div>
 
 						<div class="right-item"> <!-- cuadro derecha -->
