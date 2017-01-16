@@ -290,10 +290,11 @@
 							<div class="indications">
 								<ul>
 									<li class="day">
+										<div class="red"></div>
 										<p>Día Actual</p>
 									</li>
 									<li class="program">
-										<div class="color-black"></div>
+										<div class="black-c"></div>
 										<p>Programa</p>
 									</li>
 								</ul>
