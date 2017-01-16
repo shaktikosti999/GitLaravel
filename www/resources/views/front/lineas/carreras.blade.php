@@ -284,9 +284,12 @@
 					<section class="content programas">	
 
 						<div class="left-item"> <!-- calendario -->
+							<div id="sandbox-container">
 							<div id="datepicker" class="calendar-module" data-date="{{date('m/d/Y')}}">
-							<div id="sandbox-container"></div>
+							
 							</div>
+							</div>
+
 						</div>
 
 						<div class="right-item"> <!-- cuadro derecha -->

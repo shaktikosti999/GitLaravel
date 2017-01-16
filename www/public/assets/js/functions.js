@@ -11,7 +11,8 @@
 		if (typeof activeDays != "undefined" ) {
 			$( '[data-date]' ).datepicker({
 	      		dateFormat: 'mm/dd/yyyy',
-	      		beforeShowDay: activeDays
+	      		beforeShowDay: activeDays,
+	      		todayHighlight: true
 	      	}).datepicker("setDate", null).on('changeDate',function(e){
 	      		date = new Date( e.date );
 	      		date = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
@@ -29,11 +30,12 @@
 	      		$('.hide_program').hide();
 	      		$('[data-fecha]').removeClass('hide_program');
 
+
 	      		
 	      	});
 	      	
 		}
-				
+			
 
 		$.ajaxSetup({
 		    headers: {
