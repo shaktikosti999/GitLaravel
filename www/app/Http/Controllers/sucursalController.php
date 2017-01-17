@@ -52,7 +52,8 @@ class sucursalController extends Controller
             'longitud' => 'string',
             'horario' => 'required|string',
             'instrucciones' => 'required|string',
-            'telefono' => 'required|string'
+            'telefono' => 'required|string',
+            'oferta' => 'string'
         ]);
         $ciudad = (int)trim($request->input('ciudad')) > 0 ? trim($request->input('ciudad')) : trim($request->input('ciudad_txt'));
         $evento = sucursal::store($request,$ciudad);
@@ -105,7 +106,8 @@ class sucursalController extends Controller
             'longitud' => 'string',
             'horario' => 'required|string',
             'instrucciones' => 'required|string',
-            'telefono' => 'required|string'
+            'telefono' => 'required|string',
+            'oferta' => 'string'
         ]);
         $ciudad = (int)trim($request->input('ciudad')) > 0 ? trim($request->input('ciudad')) : trim($request->input('ciudad_txt'));
         // dd($ciudad);

@@ -100,7 +100,7 @@
 
 		@if( isset( $promociones ) && count( $promociones ) )
 
-			@include('front.includes.promotions',['promociones' => $promociones])
+			@include('front.includes.promotions',['promociones' => $promociones,'sucursal'=>$sucursal_info])
 			
 		@endif
 		

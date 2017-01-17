@@ -100,7 +100,7 @@
 							<div class="section-body">
 								<div class="section-inner green">
 									<h4 style="color:rgb(0,0,0)">
-										Eventos activos
+										Calendario
 									</h4>
 
 									<ul class="promotions">

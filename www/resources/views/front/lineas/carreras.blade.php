@@ -45,6 +45,11 @@
 
 		   	<?php } ?> 
 
+		   	$(function(){
+		   		$('#vermes').on('click', function(){
+		   			$('[data-fecha]').show();
+		   		});
+		   	});
 
 			function activeDays(date) {
 			    for (var i = 0; i < dates.length; i++) {
@@ -304,7 +309,7 @@
 						<div class="right-item"> <!-- cuadro derecha -->
 
 							@if( isset($programas) && count($programas) )
-								<a href="#" class="btn btn-red btn-small">Ver programas del mes</a>
+								<a class="btn btn-red btn-small" id="vermes">Ver programas del mes</a>
 								<h3>Programas</h3>
 									<div class="alert" role="alert" style="display:none">
 										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>

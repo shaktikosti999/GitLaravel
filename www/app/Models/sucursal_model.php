@@ -98,6 +98,7 @@ class sucursal_model{
 		$sucursal->longitud = $request->longitud;
 		$sucursal->horario = $request->horario;
 		$sucursal->instrucciones = $request->instrucciones;
+		$sucursal->oferta = $request->oferta;
 		$sucursal->telefono = $request->telefono;
 		$evento = Event::fire(new dotask($sucursal));
 		return $evento;
@@ -140,6 +141,7 @@ class sucursal_model{
 		$sucursal->longitud = $request->longitud;
 		$sucursal->horario = $request->horario;
 		$sucursal->instrucciones = $request->instrucciones;
+		$sucursal->oferta = $request->oferta;
 		$sucursal->telefono = $request->telefono;
 		$evento = Event::fire(new dotask($sucursal));
 		return $evento;

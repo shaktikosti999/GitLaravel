@@ -185,6 +185,16 @@
 			          		</div>
 			          	</div>
 			      	</div>
+
+			      	<div class="row">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default">
+			            		<label for="oferta">Ofertas de juego</label>
+			            		<textarea id="oferta" class="form-control" name="oferta" aria-required="true" aria-invalid="true"></textarea>
+			          		</div>
+			          	</div>
+			      	</div>
+
 			      	<div class="clearfix"></div>
 			      	<input class="btn btn-primary" type="submit" value="Agregar Sección">
 			    </form>

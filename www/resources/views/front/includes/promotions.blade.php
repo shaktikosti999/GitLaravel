@@ -6,7 +6,7 @@
 				@yield('promo-head','Promociones')
 			</h2>
 
-			@if( isset($sucursal) && $sucursal !== null )
+			@if( isset($sucursal) && count($sucursal) && $sucursal != false)
 			<a href="{{url('/promociones/calendario/' . $sucursal->slug)}}" class="btn btn-black">
 				consulta calendario completo
 			</a>

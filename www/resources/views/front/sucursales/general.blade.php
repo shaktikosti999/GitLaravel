@@ -152,6 +152,13 @@
 										{!!$item->instrucciones!!}
 									</div>
 								</article>
+								<article class="ico-ubc2">
+									<div class="content-car">
+										<i class="ico-car-gray"></i>
+										<h6>Oferta de Juego</h6>
+										{!!$item->oferta!!}
+									</div>
+								</article>
 								<!-- <article class="ico-ubc3">
 									<div class="content-game">
 										<div class="content-game">

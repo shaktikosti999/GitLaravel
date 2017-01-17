@@ -16,18 +16,26 @@
 	      		keyboardNavigation: false,
 			    forceParse: false,
 			    beforeShowDay: function (date){
-                  if (date.getMonth() == (new Date()).getMonth())
-                    switch (date.getDate()){
-                      case 4:
-                        return {
-                          tooltip: 'Example tooltip',
-                          classes: 'active'
-                        };
-                      case 8:
-                        return false;
-                      case 12:
-                        return "black";
-                  }
+			    	for (var i = 0; i < dates.length; i++) {
+			    	    if (new Date(dates[i]).toString() == date.toString()) {             
+			    	        return {
+			    	            classes: 'black'
+			    	        };
+			    	    }
+			    	}
+			    	return [false,''];
+                  // if (date.getMonth() == (new Date()).getMonth())
+                  //   switch (date.getDate()){
+                  //     case 4:
+                  //       return {
+                  //         tooltip: 'Example tooltip',
+                  //         classes: 'black'
+                  //       };
+                  //     case 8:
+                  //       return false;
+                  //     case 12:
+                  //       return "black";
+                  // }
                 }
 	      	}).datepicker("setDate", null).on('changeDate',function(e){
 	      		date = new Date( e.date );

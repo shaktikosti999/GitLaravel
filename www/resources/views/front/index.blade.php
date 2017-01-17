@@ -446,6 +446,14 @@
 											{!! $rand_sucursal->instrucciones !!}
 										</p>
 									</li>
+
+									<li>
+										<i class="ico-car"></i>
+
+										<p>
+											{!! $rand_sucursal->oferta !!}
+										</p>
+									</li>
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->
 						</div><!-- /.shell -->
