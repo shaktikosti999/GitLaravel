@@ -132,31 +132,31 @@
 									<div class="content-map">
 										<i class="ico-map-gray"></i>
 										<h6>Dirección</h6>
-										{!!$item->direccion!!}
+										<p>{!!$item->direccion!!}</p>
 									</div>
 									<div class="content-phone">
 										<i class="ico-phone-gray"></i>
 										<h6>Teléfono</h6>
-										{!!$item->telefono!!}
+										<p>{!!$item->telefono!!}</p>
 									</div>
 								</article>
 								<article class="ico-ubc2">
 									<div class="content-clock">
 										<i class="ico-clock-gray"></i>
 										<h6>Horario</h6>
-										{!!$item->horario!!}
+										<p>{!!$item->horario!!}</p>
 									</div>
 									<div class="content-car">
 										<i class="ico-car-gray"></i>
 										<h6>Aparcamiento</h6>
-										{!!$item->instrucciones!!}
+										<p>{!!$item->instrucciones!!}</p>
 									</div>
 								</article>
 								<article class="ico-ubc2">
 									<div class="content-car">
-										<i class="ico-car-gray"></i>
+										<i class="ico-game-gray"></i>
 										<h6>Oferta de Juego</h6>
-										{!!$item->oferta!!}
+										<p>{!!$item->oferta!!}</p>
 									</div>
 								</article>
 								<!-- <article class="ico-ubc3">

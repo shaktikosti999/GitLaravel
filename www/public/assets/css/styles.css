@@ -1001,7 +1001,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 	list-contacts
 \* ------------------------------------------------------------ */
 .list-contacts { margin: 0; }
-.list-contacts li { padding-left: 50px; position: relative; }
+.list-contacts li { padding-left: 50px; position: relative; margin-bottom: 30px !important;}
 .list-contacts li p { margin: 0; color: #fff; font-size: 15px; }
 .list-contacts li i { position: absolute; top: 0px; left: 0; }
 .list-contacts li:last-child i { top: 10px; }
@@ -2239,7 +2239,7 @@ li:first-child { margin: 0;}
 
 .sucursales ul {list-style: none;}
 .sucursales h3 {color: #ed1d25;}
-.sucursales p {color: #4a4a4a; width: 100%; line-height: 25px; margin: 0;}
+.sucursales p {color: #4a4a4a; width: 90%; line-height: 25px; margin: 0;}
 .sucursales a {text-decoration: none;}
 .sucursales h6 {color: #000;}
 .fs-dropdown.btn-city {float: right; padding-right: 50px;}
