@@ -55,7 +55,7 @@ class calendarioController extends Controller
         $this->validate($request,[
             "titulo" => "required|string",
             "descripcion" => "string",
-            "categoria" => "int|min:1",
+            "categoria" => "int|min:0",
             "categoria_txt" => "string",
             "sucursal" => "required|int",
             "fecha" => "date"

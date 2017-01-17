@@ -2,7 +2,89 @@
 	@section('script')
 		<script src="{{asset('/assets/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('/assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js')}}"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script>
+		$( function() {
+		    $.widget( "custom.combobox", {
+		      _create: function() {
+		        this.wrapper = $( "<span>" )
+		          .addClass( "custom-combobox" )
+		          .insertAfter( this.element );
+		 
+		        this.element.hide();
+		        this._createAutocomplete();
+		        // this._createShowAllButton();
+		      },
+		 
+		      _createAutocomplete: function() {
+		        var selected = this.element.children( ":selected" ),
+		          value = selected.val() ? selected.text() : "";
+		 
+		        this.input = $( "<input>" )
+		          .appendTo( this.wrapper )
+		          .val( value )
+		          .attr( "title", "" )
+		          .addClass( "form-control" )
+		          .autocomplete({
+		            delay: 0,
+		            minLength: 0,
+		            source: $.proxy( this, "_source" )
+		          })
+		          .tooltip({
+		            classes: {
+		              "ui-tooltip": "ui-state-highlight"
+		            }
+		          });
+		 
+		        this._on( this.input, {
+		          autocompleteselect: function( event, ui ) {
+		            ui.item.option.selected = true;
+		            this._trigger( "select", event, {
+		              item: ui.item.option
+		            });
+		          },
+		 
+		          autocompletechange: "_removeIfInvalid"
+		        });
+		      },
+		 
+		      _source: function( request, response ) {
+		        var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+		        response( this.element.children( "option" ).map(function() {
+		          var text = $( this ).text();
+		          if ( this.value && ( !request.term || matcher.test(text) ) )
+		            return {
+		              label: text,
+		              value: text,
+		              option: this
+		            };
+		        }) );
+		      },
+		 
+		      _removeIfInvalid: function( event, ui ) {
+		 
+		        // Selected an item, nothing to do
+		        if ( ui.item ) {
+		          return;
+		        }
+		 
+		        // Search for a match (case-insensitive)
+		        var value = this.input.val(),
+		          valueLowerCase = value.toLowerCase(),
+		          valid = false;
+	          	$('#ciudad').val(0);
+	          	// alert($('#ciudad').val());
+		        $('#ciudad_txt').val(value);
+		      },
+		 
+		      _destroy: function() {
+		        this.wrapper.remove();
+		        this.element.show();
+		      }
+		    });
+		 
+		    $( "#ciudad" ).combobox();
+		  } );
 		$(function(){
 			$('#form-agregar').validate();
 			$('#direccion').wysihtml5();
@@ -12,6 +94,7 @@
 
 	@section('css')
 		<link rel="stylesheet" href="{{asset('/assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	@stop
 
 	@section('contenido')
@@ -34,12 +117,15 @@
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="ciudad">Ciudad</label>
-			            		<select id="ciudad" class="form-control" name="ciudad" aria-required="true" aria-invalid="true">
-			            			<option value="">Seleccione una...</option>
-			            			@foreach( $ciudades as $item)
-			            			<option value="{{$item->id_ciudad}}">{{$item->ciudad}}</option>
-			            			@endforeach
+			            		<select id="ciudad" class="form-control required" name="ciudad" required="required" aria-required="true" aria-invalid="true">
+			            			<option value="0"></option>
+			            			@if( isset($ciudades) && count($ciudades) )
+			            				@foreach($ciudades as $item)
+			            					<option value="{{$item->id_ciudad}}">{{$item->ciudad}}</option>
+			            				@endforeach
+			            			@endif
 			            		</select>
+			            		<input type="hidden" name="ciudad_txt" id="ciudad_txt">
 			          		</div>
 			        	</div>
 			      	</div>

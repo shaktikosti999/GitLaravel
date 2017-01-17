@@ -149,7 +149,7 @@
 									<div class="content-car">
 										<i class="ico-car-gray"></i>
 										<h6>Aparcamiento</h6>
-										{!!$item->horario!!}
+										{!!$item->instrucciones!!}
 									</div>
 								</article>
 								<!-- <article class="ico-ubc3">

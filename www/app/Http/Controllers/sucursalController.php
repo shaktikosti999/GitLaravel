@@ -45,7 +45,7 @@ class sucursalController extends Controller
     public function store(Request $request){
         $this->validate($request,[
             'nombre' => 'required|string|max:50|min:1',
-            'ciudad' => 'required|integer|min:1',
+            'ciudad' => 'required|integer|min:0',
             'direccion' => 'required|string|min:5|max:255',
             'slug' => 'required|string',
             'latitud' => 'string',
@@ -54,7 +54,8 @@ class sucursalController extends Controller
             'instrucciones' => 'required|string',
             'telefono' => 'required|string'
         ]);
-        $evento = sucursal::store($request);
+        $ciudad = (int)trim($request->input('ciudad')) > 0 ? trim($request->input('ciudad')) : trim($request->input('ciudad_txt'));
+        $evento = sucursal::store($request,$ciudad);
         $evento = $evento[0];
         if(!$evento){
             return redirect(url('/administrador/sucursal.html'))->with('success','Sucursal agregada correctamente');
@@ -97,7 +98,7 @@ class sucursalController extends Controller
     public function update(Request $request, $id){
         $this->validate($request,[
             'nombre' => 'required|string|max:50|min:1',
-            'ciudad' => 'required|integer|min:1',
+            'ciudad' => 'required|integer|min:0',
             'direccion' => 'required|string|min:5|max:255',
             'slug' => 'required|string',
             'latitud' => 'string',
@@ -106,7 +107,9 @@ class sucursalController extends Controller
             'instrucciones' => 'required|string',
             'telefono' => 'required|string'
         ]);
-        $evento = sucursal::update($id,$request);
+        $ciudad = (int)trim($request->input('ciudad')) > 0 ? trim($request->input('ciudad')) : trim($request->input('ciudad_txt'));
+        // dd($ciudad);
+        $evento = sucursal::update($id,$request,$ciudad);
         $evento = $evento[0];
         if(!$evento){
             return redirect(url('/administrador/sucursal.html'))->with('success','Sucursal agregada correctamente');

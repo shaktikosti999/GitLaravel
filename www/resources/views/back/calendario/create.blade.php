@@ -74,7 +74,7 @@
 		          valueLowerCase = value.toLowerCase(),
 		          valid = false;
 	          	$('#categoria').val(0);
-	          	alert($('#categoria').val());
+	          	// alert($('#categoria').val());
 		        $('#categoria_txt').val(value);
 		      },
 		 

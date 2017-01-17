@@ -78,9 +78,19 @@ class sucursal_model{
 		return $get;
 	}
 
-	static function store($request){
+	static function store($request,$ciudad){
+		if( (int)$ciudad < 1){
+			$data = \DB::table('ciudad')->where('nombre',$ciudad)->get();
+			if( count($data) )
+				$ciudad = $data[0]->id_ciudad;
+			else{
+				\DB::table('ciudad')->insert(['nombre' => $ciudad]);
+				$data = \DB::table('ciudad')->where('nombre',$ciudad)->first();
+				$ciudad = $data->id_ciudad;
+			}
+		}
 		$sucursal = new sucursal;
-		$sucursal->id_ciudad = $request->ciudad;
+		$sucursal->id_ciudad = $ciudad;
 		$sucursal->nombre = $request->nombre;
 		$sucursal->slug = $request->slug;
 		$sucursal->direccion = $request->direccion;
@@ -110,9 +120,19 @@ class sucursal_model{
 		return $evento;
 	}
 
-	static function update($id, $request){
+	static function update($id, $request, $ciudad){
+		if( (int)$ciudad < 1){
+			$data = \DB::table('ciudad')->where('nombre',$ciudad)->get();
+			if( count($data) )
+				$ciudad = $data[0]->id_ciudad;
+			else{
+				\DB::table('ciudad')->insert(['nombre' => $ciudad]);
+				$data = \DB::table('ciudad')->where('nombre',$ciudad)->first();
+				$ciudad = $data->id_ciudad;
+			}
+		}
 		$sucursal = sucursal::find($id);
-		$sucursal->id_ciudad = $request->ciudad;
+		$sucursal->id_ciudad = $ciudad;
 		$sucursal->nombre = $request->nombre;
 		$sucursal->slug = $request->slug;
 		$sucursal->direccion = $request->direccion;
