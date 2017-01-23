@@ -600,6 +600,9 @@ blockquote:last-child { margin-bottom: 0; }
 .article-entry { padding-bottom: 41px; padding-top: 41px; }
 .article-entry p { margin: 0; line-height: 1.4; }
 .article-entry p + p { margin-top: 21px; }
+.article-entry ul {padding-left: 40px;}
+.article-entry li.MsoNormal {margin-left: 25px;}
+.article-entry ol {padding-left: 40px;}
 .article-image img { width: auto; height: auto; max-width: 100%;}
 /* ------------------------------------------------------------ *\
 	Article Jackpot
