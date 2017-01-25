@@ -23,6 +23,12 @@ class calendario_model{
             $data = $data
                 ->where('s.slug',$args['slug']);
         }
+
+        if( isset($args['categoria']) && !empty($args['categoria']) ){
+            $data = $data
+                ->where('p.id_categoria',$args['categoria']);
+        }
+
         $data = $data
             ->get();
         return $data;

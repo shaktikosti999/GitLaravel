@@ -99,17 +99,41 @@ class promocionesController extends Controller
         $categorias = [];
         if(count($promocion)){
             foreach($promocion as $item){
+                $item->dia = $this->dia(date('N',strtotime($item->inicio)));
                 $promos[$item->id_categoria][] = $item;
-                $categorias[] = (object)['id' => $item->id_categoria,'nombre' => $item->categoria];
             }
         }
         $data = [
             'promocion' => $promos,
-            'categorias' => $categorias,
             'slider' => calendario::slider(['slug' => $slug])
         ];
         // dd($data);
 
         return view('front.promociones.promotions',$data);
+    }
+
+    private function dia($dia){
+        switch((int)$dia){
+            case 1:
+                return "Lunes";
+                break;
+            case 2:
+                return "Martes";
+                break;
+            case 3:
+                return "Miércoles";
+                break;
+            case 4:
+                return "Jueves";
+                break;
+            case 5:
+                return "Viernes";
+                break;
+            case 6:
+                return "Sábados";
+                break;
+            default:
+                return "Domingos";
+        }
     }
 }

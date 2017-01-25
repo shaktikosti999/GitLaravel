@@ -84,7 +84,7 @@
 		      }
 		    });
 		 
-		    $( "#categoria" ).combobox();
+		    // $( "#categoria" ).combobox();
 		  } );
 		$(function(){
 			$('#form-agregar').validate();
@@ -134,12 +134,8 @@
 				          		<div class="form-group form-group-default" aria-required="true">
 				            		<label for="categoria">Categoría</label>
 				            		<select id="categoria" class="form-control required" name="categoria" required="required" aria-required="true" aria-invalid="true">
-				            			<option></option>
-				            			@if( isset($categorias) && count($categorias) )
-				            				@foreach($categorias as $item)
-				            					<option value="{{$item->id}}">{{$item->nombre}}</option>
-				            				@endforeach
-				            			@endif
+				            			<option value="1">Especial</option>
+				            			<option value="2">Regular</option>
 				            		</select>
 				            		<input type="hidden" name="categoria_txt" id="categoria_txt">
 				          		</div>
