@@ -281,8 +281,8 @@
 		$('.slider-secondary .slick-dots').wrap('<div class="slick-dots-wrapper"><div class="shell"></div></div>');
 
 		$('.slider-providers .slides').slick({
-			dots: true,
-			arrows: false,
+			dots: false,
+			arrows: true,
 			infinite: false,
 			touchMove: false,
 			swipeToSlide: false,
@@ -292,6 +292,8 @@
 			centerPadding: '0',
 			slidesToShow: 3,
 			slidesToScroll: 1,
+			autoplay: true,
+			autoplaySpeed: 2000,
 			swipeToSlide: true 
 		});
 

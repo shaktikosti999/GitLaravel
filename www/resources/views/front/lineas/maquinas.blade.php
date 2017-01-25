@@ -320,14 +320,16 @@
 									
 									<li>
 										<i class="ico-clock"></i>
-									
+										<p>
 										{!! $sucursal_info->horario !!}
+										</p>
 									</li>
 									
 									<li>
 										<i class="ico-car"></i>
-									
+										<p>
 										{!! $sucursal_info->instrucciones !!}
+										</p>
 									</li>
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->

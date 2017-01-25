@@ -1626,6 +1626,10 @@ li:first-child { margin: 0;}
 	.slider-games .slick-arrow { left: 0px; }
 	.slider-games .slick-next { right: 0px; left: auto; }
 	.slider-games .slides { margin: 0; }
+	.slider-providers .slick-arrow {left: 0px !important;}
+	.slider-providers .slick-next {right: 0px !important; left: auto !important;}
+	
+
 }
 /* slider-games-menu */
 .slider-games-menu .slide-content { height: 329px; }
@@ -2640,6 +2644,56 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .indications p {text-transform: none; color: #000; position: absolute; padding-left: 40px;}
 .red {position: absolute; width: 20px; height: 20px; background: #f00;}
 .black-c {position: absolute; width: 20px; height: 20px; border: 1px solid #000;}
+
+.slider-providers .slick-arrow {    display: inline-block;
+    border: none;
+    background-color: transparent;
+    width: 60px;
+    height: 60px;
+    background: url(../css/images/ico-arrow-left@2x.png) no-repeat 0 0;
+    background-size: 60px 60px;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -4004px;
+    position: absolute;
+    bottom: 135px;
+    left: -74px;
+    border-radius: 50%;
+    transition: all .3s;
+    z-index: 99;
+}
+.slider-providers .slick-arrow {
+    background: url(../css/images/ico-arrow-gray@2x.png) no-repeat 0 0;
+    background-size: 60px 60px;
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+    background-color: #fff;
+}
+
+
+
+.slider-providers .slick-next {
+    left: auto;
+    right: -74px;
+    -webkit-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+.slider-providers .slick-next {
+    background: url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0;
+    background-size: 60px 60px;
+    -webkit-transform: rotate(0);
+    -ms-transform: rotate(0);
+    transform: rotate(0);
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+    background-color: #fff;
+}
+
+
+
 
 
 
