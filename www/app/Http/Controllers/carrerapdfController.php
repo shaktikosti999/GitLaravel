@@ -125,7 +125,7 @@ class carrerapdfController extends Controller
             'titulo' => 'required|string',
             'juego' => 'required|integer',
             'sucursal' => 'required|integer',
-            'fecha' => 'required|date',
+            'fecha' => 'required|date|after:tomorrow',
             'archivo' => 'mimes:pdf'
         ]);
         if($request->hasFile('archivo')){

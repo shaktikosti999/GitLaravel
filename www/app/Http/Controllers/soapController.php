@@ -49,8 +49,9 @@ class soapController extends Controller
         $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaEventosDeportes?wsdl');
         $res4 = $soap->__soapCall('ListaEventosDeportesOp',[[
             'sesion'=>$res->sesion,
-            'numDeporte' => 3,
-            'idAgrupador'=>'E1',
+            'numDeporte' => 5,
+            'idAgrupador'=>'P670487',
+            // 'idAgrupador'=>'P670487',
             'numLiga'=>1,
         ]]);
 

@@ -150,6 +150,15 @@ class sucursal_model{
         return $data;
     }
 
+    static function to_pay($args = []){
+        $data = \DB::table('sucursal_pago')
+            ->where('id_tipo',3);
+        if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
+            $data = $data->where('id_sucursal',$args['id_sucursal']);
+        $data = $data->get();
+        return $data;
+    }
+
     static function get_sucursal( $sucursal_slug ){
         $data = \DB::table('sucursal as s')
             ->select('s.id_sucursal')            

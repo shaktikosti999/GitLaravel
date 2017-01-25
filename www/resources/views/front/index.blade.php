@@ -448,7 +448,7 @@
 									</li>
 
 									<li>
-										<i class="ico-car"></i>
+										<i class="ico-game"></i>
 
 										<p>
 											{!! $rand_sucursal->oferta !!}

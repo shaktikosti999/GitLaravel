@@ -172,6 +172,7 @@ $(document).ready(function(){
 				if(data.length > 0){
 					$('#pay_list1').html('');
 					$('#pay_list2').html('');
+					$('#pay_list3').html('');
 					$.each(data, function(index,val){
 						$('#pay_list' + val.id_tipo).append('\
 							<li class="list-group-item pay_item" data-id="' + val.id_pago + '">' + val.titulo + '\

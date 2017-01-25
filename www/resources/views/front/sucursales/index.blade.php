@@ -381,12 +381,12 @@
 									<li>
 										<i class="ico-car"></i>
 									
-										<p>{!!$sucursal->horario!!}</p>
+										<p>{!!$sucursal->instrucciones!!}</p>
 									</li>
 									<li>
 										<i class="ico-game"></i>
 									
-										<p>Oferta de Juego</p>
+										<p>{!!$sucursal->oferta!!}</p>
 									</li>
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->

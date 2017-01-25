@@ -107,6 +107,8 @@ class linea_model{
             )
             ->where('t.estatus','=',1)
             ->where('t.eliminado','=',0)
+            ->where('s.estatus',1)
+            ->where('s.eliminado',0)
             ->where('t.tipo_torneo','!=',999)
             ->join("tipo_torneo as tt", "t.tipo_torneo", "=", "tt.id_tipo")
             ->join("sucursal as s", "t.id_sucursal", "=", "s.id_sucursal");
@@ -147,6 +149,8 @@ class linea_model{
             ->where('t.estatus','=',1)
             ->where('t.eliminado','=',0)
             ->where('t.tipo_torneo',999)
+            ->where('s.estatus',1)
+            ->where('s.eliminado',0)
             ->join("tipo_torneo as tt", "t.tipo_torneo", "=", "tt.id_tipo")
             ->join("sucursal as s", "t.id_sucursal", "=", "s.id_sucursal");
 

@@ -104,7 +104,7 @@ class filtroController extends Controller
                     'soapSession'=>$soap,
                     'soapCount'=>1
                 ];
-                session($data);
+                // session($data);
             }
 
             $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaEventosDeportes?wsdl');
@@ -141,6 +141,11 @@ class filtroController extends Controller
                                         'puntos' => trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->puntos : $val->linDinero->linea,
                                         'linea' => 0
                                     ];
+                                    if( $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] > 0 )
+                                        $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] = "+" . $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'];
+                                    if( trim($item->apuestaPorOmision) == "LINPUNTOS" && isset($val->linDinero->linea) )
+                                        $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] .= $val->linDinero->linea > 0 ? "</h2><h2> +" . $val->linDinero->linea : "</h2><h2>" . $val->linDinero->linea;
+
                                 }
                             }
                         }
@@ -153,6 +158,10 @@ class filtroController extends Controller
                                     'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->puntos : $val->linDinero->linea,
                                     'linea' => 0
                                 ];
+                                if( $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] > 0 )
+                                                                        $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] = "+" . $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'];
+                                                                    if( trim($item->apuestaPorOmision) == "LINPUNTOS" && isset($val->linDinero->linea) )
+                                                                        $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] .= $val->linDinero->linea > 0 ? "</h2><h2> +" . $val->linDinero->linea : "</h2><h2>" . $val->linDinero->linea;
                             }
                         }
                         if( count($data[$key]['data']) <= 2 && trim(mb_strtoupper($item->total->altas->estado)) == "DISPONIBLE"){
@@ -160,6 +169,10 @@ class filtroController extends Controller
                                 'puntos' => $item->total->altas->puntos,
                                 'linea' => $item->total->altas->linea
                             ];
+                            if( $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] > 0 )
+                                                                    $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] = "+" . $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'];
+                                                                if( trim($item->apuestaPorOmision) == "LINPUNTOS" && isset($val->linDinero->linea) )
+                                                                    $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] .= $val->linDinero->linea > 0 ? "</h2><h2> +" . $val->linDinero->linea : "</h2><h2>" . $val->linDinero->linea;
                         }
                     }
                 }
@@ -177,6 +190,10 @@ class filtroController extends Controller
                                     'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->puntos : $val->linDinero->linea,
                                     'linea' => 0
                                 ];
+                                if( $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] > 0 )
+                                                                        $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] = "+" . $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'];
+                                                                    if( trim($item->apuestaPorOmision) == "LINPUNTOS" && isset($val->linDinero->linea) )
+                                                                        $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] .= $val->linDinero->linea > 0 ? "</h2><h2> +" . $val->linDinero->linea : "</h2><h2>" . $val->linDinero->linea;
                             }
                         }
                     }
@@ -189,6 +206,10 @@ class filtroController extends Controller
                                 'puntos' =>  trim($item->apuestaPorOmision) == "LINPUNTOS" ? $val->linPuntos->puntos : $val->linDinero->linea,
                                 'linea' => 0
                             ];
+                            if( $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] > 0 )
+                                                                    $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] = "+" . $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'];
+                                                                if( trim($item->apuestaPorOmision) == "LINPUNTOS" && isset($val->linDinero->linea) )
+                                                                    $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] .= $val->linDinero->linea > 0 ? "</h2><h2> +" . $val->linDinero->linea : "</h2><h2>" . $val->linDinero->linea;
                         }
                     }
                     if( count($data[$key]['data']) <= 2 && trim(mb_strtoupper($item->total->altas->estado)) == "DISPONIBLE"){
@@ -196,6 +217,10 @@ class filtroController extends Controller
                             'puntos' => $item->total->altas->puntos,
                             'linea' => $item->total->altas->linea
                         ];
+                        if( $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] > 0 )
+                                                                $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] = "+" . $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'];
+                                                            if( trim($item->apuestaPorOmision) == "LINPUNTOS" && isset($val->linDinero->linea) )
+                                                                $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] .= $val->linDinero->linea > 0 ? "</h2><h2> +" . $val->linDinero->linea : "</h2><h2>" . $val->linDinero->linea;
                     }
                 }
 

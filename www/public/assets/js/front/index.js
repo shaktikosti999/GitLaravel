@@ -39,6 +39,16 @@
 	});
 
 	option_data = function(id,url,element){
+		console.log(url);
+		var optionselect = "una opción";
+		switch( url ){
+			case '/ciudades_sucursal':
+				optionselect = "una ciudad";
+			break;
+			case '/sucursales':
+				optionselect = "una sucursal";
+			break;
+		}
 		$.ajax({
 			type:'post',
 			url:url,
@@ -47,7 +57,7 @@
 				id:id
 			},
 			success: function(data){
-				element.html('<option value="">Seleccione una opción...</option>');
+				element.html('<option value="">Seleccione ' + optionselect + '</option>');
 				if(data != ""){
 					data = JSON.parse(data);
 					$.each(data, function(index, val){

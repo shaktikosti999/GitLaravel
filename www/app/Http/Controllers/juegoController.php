@@ -162,6 +162,8 @@ class juegoController extends Controller
                 }
             }                    
         }
+        else
+            $archivo = null;
 
         $evento = juego::update($id,$request,$archivo);
         $evento = $evento[0];

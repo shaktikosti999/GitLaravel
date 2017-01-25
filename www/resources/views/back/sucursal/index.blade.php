@@ -35,9 +35,7 @@
 												<th class="sorting_disabled" rowspan="1" colspan="1">Teléfono</th>
 												<th class="sorting_disabled" rowspan="1" colspan="1">Dirección</th>
 												<th class="sorting_disabled" rowspan="1" colspan="1">Estatus</th>
-												<th class="sorting_disabled" rowspan="1" colspan="1">Juegos</th>
-												<th class="sorting_disabled" rowspan="1" colspan="1">Imágenes</th>
-												<th class="sorting_disabled" rowspan="1" colspan="1" style="width:30%">Opciones</th>
+												<th class="sorting_disabled" rowspan="1" colspan="1" style="width:40%">Opciones</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -47,10 +45,17 @@
 												<td class="v-align-middle">{{$sucursal->telefono}}</td>
 												<td class="v-align-middle">{{$sucursal->direccion}}</td>
 												<td class="v-align-middle"><input type="checkbox" {{$sucursal->estatus == 1 ? "checked" : ""}} class="activo" data="{{$sucursal->id}}" data-toggle="toggle"></td>
-												<td class="v-align-middle"><h1 class="text-center">{{$sucursal->juegos}}</h1></td>
-												<td class="v-align-middle gallery_images" data-id="{{$sucursal->id}}"><h1 class="text-center">{{$sucursal->galeria}}</h1></td>
 												<td class="v-align-middle">
 													<div class="btn-group btn-group-justified">
+														<div class="btn-group">
+																<button type="button" role="button" class="btn btn-default gallery_images" data-id="{{$sucursal->id}}">
+								                              		<span class="p-t-5 p-b-5">
+								                              			<i class="fa fa-picture-o fs-15"></i>
+								                              		</span>
+								                              		<br>
+								                              		<span class="fs-11 font-montserrat text-uppercase">Imágenes</span>
+								                              	</button>
+							                            </div>
 														<div class="btn-group">
 																<button type="button" role="button" class="btn btn-default pay_btn" data-id="{{$sucursal->id}}" data-sucname="{{$sucursal->nombre}}">
 								                              		<span class="p-t-5 p-b-5">
@@ -232,8 +237,9 @@
 						</div>
 						<div class="modal-body">
 							<div class="row" style="height:150px;overflow-y:auto;">
-								<ul class="list-group col-sm-6"  id="pay_list1"></ul>
-								<ul class="list-group col-sm-6"  id="pay_list2"></ul>
+								<ul class="list-group col-sm-4"  id="pay_list1" data-toggle="tooltip" title="Acumulado"></ul>
+								<ul class="list-group col-sm-4"  id="pay_list2" data-toggle="tooltip" title="Pagado"></ul>
+								<ul class="list-group col-sm-4"  id="pay_list3" data-toggle="tooltip" title="Por pagar"></ul>
 							</div>
 							<div class="row">
 								<form action="{{url('/administrador/agregar/pago.html')}}" enctype="multipart/form-data" method="post" id="modal_form">
@@ -245,6 +251,7 @@
 										<select name="pay_tipo" id="pay_tipo" class="form-control">
 											<option value="1">Acumulado</option>
 											<option value="2">Pagado</option>
+											<option value="3">Por Pagar</option>
 										</select>
 									</div>
 									<div class="form-group col-sm-6">
@@ -253,7 +260,7 @@
 									</div>
 									<div class="form-group col-sm-6">
 										<label for="pay_cantidad">Cantidad</label>
-										<input type="text" name="pay_cantidad" id="pay_cantidad" class="form-control">
+										<input type="number" name="pay_cantidad" id="pay_cantidad" class="form-control" required>
 									</div>
 									<input type="submit" value="Guardar" class="btn btn-success">
 								</form>

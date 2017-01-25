@@ -14,17 +14,17 @@ class sucursal_model{
 				's.nombre',
 				's.direccion',
 				's.telefono',
-				's.estatus',
-				\DB::raw('COUNT(j.id_juego) as juegos'),
-				\DB::raw('IF(g.cantidad IS NULL,0,g.cantidad) as galeria')
+				's.estatus'
+				// \DB::raw('COUNT(j.id_juego) as juegos'),
+				// \DB::raw('IF(g.cantidad IS NULL,0,g.cantidad) as galeria')
 				// \DB::raw('if(COUNT(s.id_sucursal) = NULL,0,COUNT(s.id_sucursal)) as juegos')
 			);
 		if( isset($args['id_sucursal']) && !empty($args['id_sucursal']) )
 			$get = $get->where('id_sucursal',$args['id_sucursal']);
-		$get = $get->leftJoin('juego_sucursal as j','j.id_sucursal','=','s.id_sucursal')
-			->leftJoin('count_gallery_images_view as g', 'g.id','=','s.id_sucursal')
+		$get = $get
+			// ->leftJoin('juego_sucursal as j','j.id_sucursal','=','s.id_sucursal')
+			// ->leftJoin('count_gallery_images_view as g', 'g.id','=','s.id_sucursal')
 			->where('s.eliminado',0)
-			->groupBy('j.id_sucursal')
 			->orderBy('s.nombre')
 			->get();
 		return $get;

@@ -55,7 +55,7 @@
 											<th class="sorting_disabled" rowspan="1" colspan="1">Juego</th>
 											<th class="sorting_disabled" rowspan="1" colspan="1">Slug</th>
 											<th class="sorting_disabled" rowspan="1" colspan="1">Estatus</th>
-											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:35%">Opciones</th>
+											<th class="sorting_disabled" rowspan="1" colspan="1" style="width:25%">Opciones</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -68,7 +68,7 @@
 											<td class="v-align-middle"><input type="checkbox" {{$promocion->estatus == 1 ? "checked" : ""}} class="activo" data="{{$promocion->id}}" data-toggle="toggle"></td>
 											<td class="v-align-middle">
 												<div class="btn-group btn-group-justified">
-													<div class="btn-group">
+													<!-- <div class="btn-group">
 															<button type="button" role="button" class="btn btn-default pay_btn" data-id="{{$promocion->id}}" data-promoname="{{$promocion->nombre}}">
 							                              		<span class="p-t-5 p-b-5">
 							                              			<i class="fa fa-usd" aria-hidden="true"></i>
@@ -76,7 +76,7 @@
 							                              		<br>
 							                              		<span class="fs-11 font-montserrat text-uppercase">Pagos</span>
 							                              	</button>
-						                            </div>
+						                            </div> -->
 						                            <div class="btn-group">
 															<button type="button" role="button" class="btn btn-default promocion_btn" data-id="{{$promocion->id}}" data-promoname="{{$promocion->nombre}}">
 							                              		<span class="p-t-5 p-b-5">

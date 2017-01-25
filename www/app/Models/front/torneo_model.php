@@ -18,6 +18,7 @@ class torneo_model{
             )
             ->join('tipo_torneo as tt','t.tipo_torneo','=','tt.id_tipo')
             ->where('slug',$slug)
+            ->where('eliminado',0)
             ->first();
         return $get;
     }

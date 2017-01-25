@@ -221,52 +221,50 @@
 
 			@endif
 
-			<section class="section-jackpots secondary">
-				<div class="shell">
-					<header class="section-head">
-						<div class="stick--point" id="jackpot"></div>
-						<h2>
-							<small>Bad Beat</small>
-							Jackpot
-						</h2> 
-					</header><!-- /.section-head -->
+			@if( isset($porpagar) && count($porpagar) )
+				@foreach($porpagar as $item)
+					<section class="section-jackpots secondary">
+						<div class="shell">
+							<header class="section-head">
+								<div class="stick--point" id="jackpot"></div>
+								<h2>
+									<small>{{$item->titulo}}</small>
+									Jackpot
+								</h2> 
+							</header><!-- /.section-head -->
 
-					<div class="section-content">
-						<div class="section-entry">
-							<p>
-								<span>
-									Por pagar
-								</span>
+							<div class="section-content">
+								<div class="section-entry">
+									<p>
+										<span>
+											Por pagar
+										</span>
 
-								{{-- <a href="#">
-									Ver más
-								</a> --}}
-							</p>
-						</div><!-- /.section-entry -->
+										{{-- <a href="#">
+											Ver más
+										</a> --}}
+									</p>
+								</div><!-- /.section-entry -->
 
-						<div class="cols">
-							<div class="col col-1of1">
-								<article class="article-jackpot">
-									<div class="article-content"> 
+								<div class="cols">
+									<div class="col col-1of1">
+										<article class="article-jackpot">
+											<div class="article-content"> 
 
-										<div class="fake-div">
-											<div id="counter">
-											    <div class="counter-value" data-count="84625">$0</div>
-											</div>
-											<div class="fake-div">
-
-										<!--<p>
-											${{$acumulado}}
-										</p>-->
-											</div>
-										</div>
-									</div><!-- /.article-content -->
-								</article><!-- /.article-jackpot -->
-							</div><!-- /.col col-1of1 --> 
-						</div><!-- /.cols --> 
-					</div><!-- /.section-content --> 
-				</div><!-- /.shell -->
-			</section><!-- /.section-jackpots -->
+												<div class="fake-div">
+													<div id="counter">
+													    <div class="counter-value" data-count="{{$item->cantidad}}">$0</div>
+													</div>
+												</div>
+											</div><!-- /.article-content -->
+										</article><!-- /.article-jackpot -->
+									</div><!-- /.col col-1of1 --> 
+								</div><!-- /.cols --> 
+							</div><!-- /.section-content --> 
+						</div><!-- /.shell -->
+					</section><!-- /.section-jackpots -->
+				@endforeach
+			@endif
 
 			@if( isset( $torneos ) && count($torneos) )
 

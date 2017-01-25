@@ -48,59 +48,80 @@
 									<div class="table__wrapp">';
 							$.each(data2.data, function(index2,item){
 								console.log(item);
+								$('#simple_info').hide();
+								$('#simple_info').html('');
 								if( item !== null ){
-										str += '<div class="table-item">\
-											<div class="line-gray">\
-											</div>\
-											<div class="table-list">\
-												<p>' + item[0].id_apuesta + '</p>\
-												<p>' + item[0].nombre + '</p>\
-												<p>Línea de apertura</p>\
-												<h2>' + item[0].puntos + '</h2>\
-											</div>';
-								if( item[2] !== undefined ){
-											str += '<div class="table-list">\
-												<p>' + item[2].id_apuesta + '</p>\
-												<p>' + item[2].nombre + '</p>\
-												<p>Línea de apertura</p>\
-												<h2>' + item[2].puntos + '</h2>\
-											</div>\
-											<div class="gray-item">\
-												<p>' + item[1].id_apuesta + '</p>\
-												<p>' + item[1].nombre + '</p>\
-												<h4 style="color:rgb(255,255,255)">' + item[1].puntos + '</h4>\
-											</div>';
-								}
-								else{
-									if( data2.overunder !== undefined ){
-										console.log(data2);
-											str += '<div class="table-list">\
-												<p>' + item[1].id_apuesta + '</p>\
-												<p>' + item[1].nombre + '</p>\
-												<p>Línea de apertura</p>\
-												<h2>' + item[1].puntos + '</h2>\
-											</div>\
-											<div class="gray-item">\
-												<p>Over / Under</p>\
-												<h4>' + data2.overunder[index2].puntos + '</h4>\
-												<p>' + data2.overunder[index2].linea + '</p>\
+									if(item.length > 1 && item.length < 4){
+											str += '<div class="table-item">\
+												<div class="line-gray">\
+												</div>\
+												<div class="table-list">\
+													<p>' + item[0].id_apuesta + '</p>\
+													<p>' + item[0].nombre + '</p>\
+													<p>Línea de apertura</p>\
+													<h2>' + item[0].puntos + '</h2>\
+												</div>';
+										if( item[2] !== undefined ){
+												str += '<div class="table-list">\
+													<p>' + item[2].id_apuesta + '</p>\
+													<p>' + item[2].nombre + '</p>\
+													<p>Línea de apertura</p>\
+													<h2>' + item[2].puntos + '</h2>\
+												</div>\
+												<div class="gray-item">\
+													<p>' + item[1].id_apuesta + '</p>\
+													<p>' + item[1].nombre + '</p>\
+													<h4 style="color:rgb(255,255,255)">' + item[1].puntos + '</h4>\
+												</div>';
+										}
+										else{
+											if( data2.overunder !== undefined ){
+											console.log(data2);
+												str += '<div class="table-list">\
+													<p>' + item[1].id_apuesta + '</p>\
+													<p>' + item[1].nombre + '</p>\
+													<p>Línea de apertura</p>\
+													<h2>' + item[1].puntos + '</h2>\
+												</div>\
+												<div class="gray-item">\
+													<p>Over / Under</p>\
+													<h4>' + data2.overunder[index2].puntos + '</h4>\
+													<p>' + data2.overunder[index2].linea + '</p>\
+												</div>';
+											}
+											else{
+												str += '<div class="table-list">\
+													<p>' + item[1].id_apuesta + '</p>\
+													<p>' + item[1].nombre + '</p>\
+													<p>Línea de apertura</p>\
+													<h2>' + item[1].puntos + '</h2>\
+												</div>';
+											}
+										}
+												str += '<div class="gray-item2">\
+													<h6>' + data2.hora[index2] + '</h6>\
+													<p>Tiempo del centro</p>\
+												</div>\
 											</div>';
 									}
 									else{
-											str += '<div class="table-list">\
-												<p>' + item[1].id_apuesta + '</p>\
-												<p>' + item[1].nombre + '</p>\
-												<p>Línea de apertura</p>\
-												<h2>' + item[1].puntos + '</h2>\
-											</div>';
+										$.each(item, function(key,val){
+											$('#simple_info').append('\
+												<tr>\
+													<td>' + val.id_apuesta +'</td>\
+													<td>\
+														<p>' + val.nombre +'</p>\
+													</td>\
+													<td>' + val.puntos +'</td>\
+												</tr>\
+												<tr class="white-space">\
+													<td colspan="3"></td>\
+												</tr>\
+											');
+										});
+										$('#simple_info').show(300);
 									}
 								}
-											str += '<div class="gray-item2">\
-												<h6>' + data2.hora[index2] + '</h6>\
-												<p>Tiempo del centro</p>\
-											</div>\
-										</div>';
-									}
 							});
 									str += '</div>\
 								</div>';				
@@ -582,53 +603,12 @@
 				</div>
 				*/?>
 
-				<?php 
-				/*
-				<div class="table-sport">
+				<div class="table-sport" style="height:auto">
 					<div class="shell">
-						<h2>Resultados</h2>
-						<table>
-							<tr>
-								<td>5402</td>
-								<td>
-									<p>Tigres</p>
-								</td>
-								<td>Even</td>
-							</tr>
-							<tr class="white-space">
-								<td colspan="3"></td>
-							</tr>
-							<tr>
-								<td>5403</td>
-								<td>
-									<p>America</p>
-								</td>
-								<td>2/1</td>
-							</tr>
-							<tr class="white-space">
-								<td colspan="3"></td>
-							</tr>
-							<tr>
-								<td>5409</td>
-								<td>
-									<p>Leon</p>
-								</td>
-								<td>3/1</td>
-							</tr>
-							<tr class="white-space">
-								<td colspan="3"></td>
-							</tr>
-							<tr>
-								<td>5418</td>
-								<td>
-									<p>Necaxa</p>
-								</td>
-								<td>3/1</td>
-							</tr>
-						</table>
+						<h2></h2>
+						<table id="simple_info" style="display:none;"></table>
 					</div>
 				</div>
-				*/ ?>
 
 			</div>
 		</div>

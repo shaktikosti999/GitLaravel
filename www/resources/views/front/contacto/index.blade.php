@@ -75,7 +75,7 @@
 			<section class="section-contacts">
 				<div class="shell">
 					<div class="section-head">
-						<h2>Tu opinión es muy importante <small>envíanos tu mensaje</small>:</h2>
+						<h2>Tu opinión es muy importante </h2><h4 style="color:rgb(0,0,0)">envíanos tu mensaje:</h4>
 						
 						<!-- <p>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie. Cheesecake powder marshmallow cupcake marzipan jelly. Powder cake macaroon gingerbread tart. Bear claw lemon drops pastry gingerbread wafer dessert cheesecake carrot cake. Biscuit apple pie carrot cake tiramisu.</p> -->
 					</div><!-- /.section-head -->
@@ -90,7 +90,7 @@
 									<div class="form-row">
 										<label for="field-name" class="form-label" hidden>*Primer Nombre</label>
 										<div class="form-controls">
-											<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="*Nombre" required>
+											<input type="text" class="field" name="field-name" id="field-name" value="" placeholder="*Primer Nombre" required>
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
 
@@ -120,7 +120,7 @@
 										<label for="field-phone" class="form-label" hidden>Teléfono a 10 dígitos</label>
 										
 										<div class="form-controls">
-											<input type="text" class="field" name="field-phone" id="field-phone" value="" placeholder="Teléfono">
+											<input type="text" class="field" name="field-phone" id="field-phone" value="" placeholder="Teléfono a 10 dígitos">
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
 									
@@ -128,7 +128,7 @@
 										<label for="field-card" class="form-label" hidden>No. de tarjeta Caliente Club</label>
 										
 										<div class="form-controls">
-											<input type="text" class="field" name="field-card" id="field-card" value="" placeholder="No. de tarjeta club">
+											<input type="text" class="field" name="field-card" id="field-card" value="" placeholder="No. de tarjeta Caliente Club">
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
 
@@ -179,7 +179,7 @@
 
 										<div class="form-controls">
 											<select name="field-sucursal" id="field-sucursal" class="select">
-												<option value="">Indique sucursal</option>
+												<option value="">Casino al que hace referencia</option>
 												@foreach( $sucursales as $item )
 
 													<option value="{{$item->id_sucursal}}">{{$item->nombre}}</option>
@@ -197,7 +197,7 @@
 										<label for="field-message" class="form-label" hidden>Mensaje</label>
 										
 										<div class="form-controls">
-											<textarea class="textarea" name="field-message" id="field-message" placeholder="Mensaje"></textarea>
+											<textarea class="textarea" name="field-message" id="field-message" placeholder="* Mensaje" required></textarea>
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
 								</div><!-- /.form-body -->
@@ -216,9 +216,9 @@
 									?>
 
 									<input type="submit" value="Enviar" class="form-btn btn btn-black">
-									<p style="color:rgb(0,0,0)">Si lo prefieres
+									<h5 style="color:rgb(0,0,0)">Si lo prefieres
 									Escríbenos a: programa.lealtad@caliente.com.mx <br>
-									Llámanos sin costo al: 01 800 831 1310</p>
+									Llámanos sin costo al: 01 800 831 1310</h5>
 								</div><!-- /.form-actions -->
 							</form>
 						</div><!-- /.form-contact -->

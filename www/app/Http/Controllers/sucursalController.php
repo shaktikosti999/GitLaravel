@@ -21,6 +21,7 @@ class sucursalController extends Controller
             'sucursales' => sucursal::all(),
             'juegos' => \App\Models\juego_model::list_games()
         );
+        // dd($data);
         return view('back.sucursal.index',$data);
     }
 

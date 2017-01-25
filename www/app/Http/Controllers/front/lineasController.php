@@ -116,8 +116,8 @@ class lineasController extends Controller
         //-----> Obtenemos todas las sucursales
         $data["sucursales"] = sucursal::find_all();
 
-        // -----> Acumulado
-        $data['acumulado'] = linea::accumulated(['id_sucursal' => $id_sucursal,'linea' => 2]);
+        // -----> Por Pagar
+        $data['porpagar'] = sucursal::to_pay(['id_sucursal' => $id_sucursal]);
         // dd($data);
 
         return view('front.lineas.mesas',$data);
@@ -188,6 +188,7 @@ class lineasController extends Controller
     }
 
     public function deportivas( $sucursal = null){
+        $this->soapLoggin();
         $data["sucursal"] = $sucursal;
 
         //-----> Obtenemos detalle de sucursal seleccionada
@@ -234,24 +235,65 @@ class lineasController extends Controller
 
         $ofertas = [];
         if( isset($res->deporte->ligas->liga) ){
+            // dd( $res->deporte->ligas->liga );
             if( is_array($res->deporte->ligas->liga) ){
                 foreach($res->deporte->ligas->liga as $key => $item){
                     $ofertas[$key]['id'] = $item->numLiga;
                     $ofertas[$key]['nombre'] = $item->nombre;
                     if( is_array($item->agrupadores->agrupador) ){
                         foreach($item->agrupadores->agrupador as $agrupador){
+                            $props = [];
+                            if($agrupador->proposicion){
+                                if( is_array($agrupador->proposiciones->proposicion) ){
+                                    foreach($agrupador->proposiciones->proposicion as $kp => $vp){
+                                        $ofertas[$key]['data'][] = [
+                                            'id' =>$vp->idProposicion,
+                                            'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+                                        ];
+                                    }
+                                }
+                                else{
+                                    $vp = $agrupador->proposiciones->proposicion;
+                                    $ofertas[$key]['data'][] = [
+                                        'id' =>$vp->idProposicion,
+                                        'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+                                    ];
+                                }
+                            }
+                            else{
+                                $ofertas[$key]['data'][] = [
+                                    'id' => $agrupador->idAgrupador,
+                                    'nombre' => $agrupador->nombre
+                                ];
+                            }
+                        }
+                    }
+                    else{
+                        $agrupador = $item->agrupadores->agrupador;
+                        $props = [];
+                        if($agrupador->proposicion){
+                            if( is_array($agrupador->proposiciones->proposicion) ){
+                                foreach($agrupador->proposiciones->proposicion as $kp => $vp){
+                                    $ofertas[$key]['data'][] = [
+                                        'id' =>$vp->idProposicion,
+                                        'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+                                    ];
+                                }
+                            }
+                            else{
+                                $vp = $agrupador->proposiciones->proposicion;
+                                $ofertas[$key]['data'][] = [
+                                    'id' =>$vp->idProposicion,
+                                    'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+                                ];
+                            }
+                        }
+                        else{
                             $ofertas[$key]['data'][] = [
                                 'id' => $agrupador->idAgrupador,
                                 'nombre' => $agrupador->nombre
                             ];
                         }
-                    }
-                    else{
-                        $agrupador = $item->agrupadores->agrupador;
-                        $ofertas[$key]['data'][] = [
-                            'id' => $agrupador->idAgrupador,
-                            'nombre' => $agrupador->nombre
-                        ];
                     }
                 }
             }
@@ -262,21 +304,62 @@ class lineasController extends Controller
                     $ofertas[$key]['nombre'] = $item->nombre;
                     if( is_array($item->agrupadores->agrupador) ){
                         foreach($item->agrupadores->agrupador as $agrupador){
+                            $props = [];
+                            if($agrupador->proposicion){
+                                if( is_array($agrupador->proposiciones->proposicion) ){
+                                    foreach($agrupador->proposiciones->proposicion as $kp => $vp){
+                                        $ofertas[$key]['data'][] = [
+                                            'id' =>$vp->idProposicion,
+                                            'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+                                        ];
+                                    }
+                                }
+                                else{
+                                    $vp = $agrupador->proposiciones->proposicion;
+                                    $ofertas[$key]['data'][] = [
+                                        'id' =>$vp->idProposicion,
+                                        'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+                                    ];
+                                }
+                            }
+                            else{
+                                $ofertas[$key]['data'][] = [
+                                    'id' => $agrupador->idAgrupador,
+                                    'nombre' => $agrupador->nombre
+                                ];
+                            }
+                        }
+                    }
+                    else{
+                        $agrupador = $item->agrupadores->agrupador;
+                        $props = [];
+                        if($agrupador->proposicion){
+                            if( is_array($agrupador->proposiciones->proposicion) ){
+                                foreach($agrupador->proposiciones->proposicion as $kp => $vp){
+                                    $ofertas[$key]['data'][] = [
+                                        'id' =>$vp->idProposicion,
+                                        'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+                                    ];
+                                }
+                            }
+                            else{
+                                $vp = $agrupador->proposiciones->proposicion;
+                                $ofertas[$key]['data'][] = [
+                                    'id' =>$vp->idProposicion,
+                                    'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+                                ];
+                            }
+                        }
+                        else{
                             $ofertas[$key]['data'][] = [
                                 'id' => $agrupador->idAgrupador,
                                 'nombre' => $agrupador->nombre
                             ];
                         }
                     }
-                    else{
-                        $agrupador = $item->agrupadores->agrupador;
-                        $ofertas[$key]['data'][] = [
-                            'id' => $agrupador->idAgrupador,
-                            'nombre' => $agrupador->nombre
-                        ];
-                    }
             }
         }
+        // dd($ofertas);
         $data['ofertas'] = $ofertas;
 
          return view('front.lineas.deportiva',$data);
