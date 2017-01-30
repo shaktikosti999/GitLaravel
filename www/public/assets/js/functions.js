@@ -194,7 +194,8 @@
 			touchMove: false,
 			swipeToSlide: false,
 			autoplay: true,
-  			autoplaySpeed: 3000,
+			infinite: true,
+  			autoplaySpeed: 3000
 		});
 
 		$('.slider-intro .slick-dots').wrap('<div class="slick-dots-wrapper"><div class="shell"></div></div>')

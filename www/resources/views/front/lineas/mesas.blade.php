@@ -390,14 +390,16 @@
 										
 										<li>
 											<i class="ico-clock"></i>
-										
-											{!! $sucursal_info->horario !!}
+											<p>
+												{!! $sucursal_info->horario !!}
+											</p>
 										</li>
 										
 										<li>
 											<i class="ico-car"></i>
-										
-											{!! $sucursal_info->instrucciones !!}
+											<p>
+												{!! $sucursal_info->instrucciones !!}
+											</p>
 										</li>
 									</ul><!-- /.list-contacts -->
 								</div><!-- /.section-content-body -->
