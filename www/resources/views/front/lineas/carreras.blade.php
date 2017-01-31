@@ -298,10 +298,10 @@
 										<div class="red"></div>
 										<p>Día Actual</p>
 									</li>
-									<li class="program">
+									<!--<li class="program">
 										<div class="black-c"></div>
 										<p>Programa</p>
-									</li>
+									</li>-->
 								</ul>
 							</div>
 						</div>
