@@ -2267,7 +2267,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .calendar-module tr td.old.day {font-size: 18px; text-align: center;}
 .calendar-module tr td.day {font-size: 18px; text-align: center; /*padding-bottom: 22px;*/ color: #777;}
 /*.calendar-module tr td.new.day {text-align: center; padding-bottom: 43px;}*/
-.calendar-module tr td.black {border: 1px solid black; border-radius: 4px !important;}
+.calendar-module tr td.black {/*border: 1px solid black;*/ border-radius: 4px !important;}
 .calendar-module tr td.black:hover {background: #000 !important; color: #fff;}
 .datepicker table tr td.today {color: #fff; background-color: #ffdb99; border-color: #ffb733;}
 .datepicker table tr td, .datepicker table tr th {text-align: center; height: 30px;}

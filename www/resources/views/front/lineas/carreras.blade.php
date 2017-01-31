@@ -239,7 +239,7 @@
 						<header class="section-head modif-section">
 		                    <div class="stick--point" id="promociones"></div>
 							<h2>
-								Calendario de carreras
+								Selecciona tus carreras
 							</h2>
 
 							<a href="{{url('/como-apostar')}}" class="btn btn-border">
@@ -282,7 +282,7 @@
 					<div class="section-head">
 	                    <div class="stick--point" id="juegos"></div>
 						<h2>
-							Juegos disponibles
+							Calendario y programas
 						</h2>
 					</div><!-- /.section-head -->
 
@@ -309,7 +309,7 @@
 						<div class="right-item"> <!-- cuadro derecha -->
 
 							@if( isset($programas) && count($programas) )
-								<a class="btn btn-red btn-small" id="vermes">Ver programas del mes</a>
+								<a class="btn btn-red btn-small" id="vermes">Descarga programa del mes</a>
 								<h3>Programas</h3>
 									<div class="alert" role="alert" style="display:none">
 										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
