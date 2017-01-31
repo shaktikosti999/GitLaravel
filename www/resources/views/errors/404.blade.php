@@ -36,7 +36,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Página no encontrada</div>
+                <div class="title">Página no encontradafsadafsdfas</div>
             </div>
         </div>
     </body>

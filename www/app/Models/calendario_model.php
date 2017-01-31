@@ -69,8 +69,8 @@ class calendario_model{
 			}
 		}
 
-		$inicio = date('Y-m-d H:i:s',strtotime($request->input('fecha') . ' ' . $request->input('hora_inicio')));
-		$fin = date('Y-m-d H:i:s',strtotime($request->input('fecha') . ' ' . $request->input('hora_fin')));
+		$inicio = date('Y-m-d H:i:s',strtotime($request->input('fecha')));
+		$fin = date('Y-m-d H:i:s',strtotime($request->input('fecha')));
 
 		$data = new calendario;
 		$data->id_categoria = $categoria;
@@ -103,8 +103,8 @@ class calendario_model{
 			}
 		}
 
-		$inicio = date('Y-m-d H:i:s',strtotime($request->input('fecha') . ' ' . $request->input('hora_inicio')));
-		$fin = date('Y-m-d H:i:s',strtotime($request->input('fecha') . ' ' . $request->input('hora_fin')));
+		$inicio = date('Y-m-d H:i:s',strtotime($request->input('fecha')));
+		$fin = date('Y-m-d H:i:s',strtotime($request->input('fecha')));
 
 		$data = calendario::find($id);
 		$data->id_categoria = $categoria;

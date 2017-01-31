@@ -43,6 +43,8 @@
 			            		<select id="tipo" class="form-control required" name="tipo" required="required" aria-required="true" aria-invalid="true">
 			            			<option value="1">Home</option>
 			            			<option value="0">Quiniela</option>
+			            			<option value="3">Ubicaciones</option>
+			            			<option value="2">Promociones</option>
 			            		</select>
 			          		</div>
 			        	</div>

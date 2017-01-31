@@ -271,17 +271,17 @@
 										
 										@foreach( $promociones as $p )
 
+										<a href="{{url('/promociones/detalle/' . $p->slug)}}">
 											<li class="slide"> 									
-												<div class="slide-content" style="background-image: url({{ $p->imagen }}); ">
+												<div class="slide-content" style="background-image: url({{ $p->thumb !== null && !empty($p->thumb) ? $p->thumb : $p->imagen }}); ">
 													<div class="slide-caption">
-														<a href="{{url('/promociones/detalle/' . $p->slug)}}">
 															<p>{{ $p->nombre }}</p>
-														</a>
 														
 														<!--span>Club&reg;</span-->
 													</div><!-- /.slide-caption -->
 												</div><!-- /.slide-content -->
 											</li><!-- /.slide -->
+										</a>
 
 										@endforeach
 

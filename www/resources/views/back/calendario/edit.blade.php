@@ -166,24 +166,6 @@
 				        	</div>
 				      	</div>
 
-				      	<div class="row clearfix">
-				      		
-				        	<div class="col-sm-6">
-				          		<div class="form-group form-group-default" aria-required="true">
-				            		<label for="hora_inicio">Hora</label>
-				            		<input type="text" id="hora_inicio" class="form-control required" value="{{date('H:i',strtotime($calendario->inicio))}}" name="hora_inicio" required="required" aria-required="true" aria-invalid="true">
-				          		</div>
-				        	</div>
-				        	
-				        	<div class="col-sm-6">
-				          		<div class="form-group form-group-default" aria-required="true">
-				            		<label for="hora_fin">Hora</label>
-				            		<input type="text" id="hora_fin" class="form-control required" value="{{date('H:i',strtotime($calendario->fin))}}" name="hora_fin" required="required" aria-required="true" aria-invalid="true">
-				          		</div>
-				        	</div>
-
-				      	</div>
-
 		               	<div class="clearfix"></div>
 				      	<input class="btn btn-primary" type="submit" value="Agregar">
 				    </form>

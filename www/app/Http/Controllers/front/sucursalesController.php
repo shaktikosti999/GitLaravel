@@ -46,6 +46,7 @@ class sucursalesController extends Controller
         
         //-----> Obtenemos las categorías de los juegos
         $data["categorias"] = linea::get_categories();
+        $data['slider'] = \App\Models\front\slider_model::find_all(3);
 
         // dd($data);
         return view('front.sucursales.index',$data);
@@ -62,7 +63,8 @@ class sucursalesController extends Controller
         $data = [
             'id_ciudad' => $id_ciudad,
             'ciudades' => \App\Models\front\ciudad_model::find_all(),
-            'sucursales' => sucursal::find_all(['id_ciudad'=>$id_ciudad])
+            'sucursales' => sucursal::find_all(['id_ciudad'=>$id_ciudad]),
+            'slider' => \App\Models\front\slider_model::find_all(3)
         ];
         // dd($data);
         return view('front.sucursales.general',$data);

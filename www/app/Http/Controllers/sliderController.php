@@ -40,7 +40,7 @@ class sliderController extends Controller
      */
     public function store(Request $request){
         $this->validate($request,[
-            'tipo' => 'required|integer|min:0|max:1',
+            'tipo' => 'required|integer|min:0',
             "titulo" => 'required|string|max:100|min:3',
             'subtitulo'=>'string',
             'texto' => 'string',

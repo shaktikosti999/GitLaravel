@@ -27,10 +27,10 @@
     </div>
 
 	<div class="slider-secondary">
-		<a href="/alimentos-y-bebidas" class="btn-menu">
+<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
 			<img src="css/images/btn-menu@2x.png" alt="">
 		</a>
-
+ -->
 		<div class="slider-clip">
 			<ul class="slides">
 				
@@ -49,7 +49,7 @@
 										 	<h3>
 										 		@if( isset( $sucursal_info->nombre ) )
 										 			
-										 			Sucursal {{ $sucursal_info->nombre }}
+										 			{{ $sucursal_info->nombre }}
 
 										 		@endif
 										 	</h3>
@@ -62,7 +62,7 @@
 											<label for="sucursales" class="form-label hidden">filter-secondary1</label>
 											<select name="sucursales" id="sucursales" class="select branch-filter">
 												
-												<option value="-1">Selecciona una sucursal</option>
+												<option value="-1">Selecciona ubicación</option>
 
 												@foreach( $sucursales as $item )
 
@@ -118,7 +118,7 @@
 					<header class="section-head">
 						<div class="stick--point" id="proveedores"></div>
 						<h2>
-							Proveedores
+							Marcas de Juegos
 						</h2>
 					</header><!-- /.section-head -->
 
@@ -132,7 +132,13 @@
 
 										<li class="slide">
 											<div class="slide-image">
-												<a href="{{$item->link}}" target="_blank"><img src="{{ $item->archivo }}" alt="{{ $item->nombre }}"></a>
+												@if( trim($item->link) != "" )
+													<a href="{{$item->link}}" target="_blank">
+														<img src="{{ $item->archivo }}" alt="{{ $item->nombre }}">
+													</a>
+												@else
+													<img src="{{ $item->archivo }}" alt="{{ $item->nombre }}">
+												@endif
 											</div><!-- /.slide-image -->
 										</li><!-- /.slide -->
 
@@ -184,7 +190,7 @@
 
 											<div class="fake-div">
 												<div id="counter">
-												    <div class="counter-value" data-count="{{$item->cantidad}}">$0</div>
+												    <div class="counter-value" >${{$item->cantidad}} <em>MN</em></div>
 												    <!--<div class="counter-value" data-count="400">$100</div>
 												    <div class="counter-value" data-count="1500">$500</div>-->
 												</div>
@@ -228,7 +234,7 @@
 
 											<div class="fake-div">
 												<div id="counter">
-												    <div class="counter-value"><p>${{number_format($pagado->cantidad)}} <em>pesos</em></p></div>
+												    <div class="counter-value"><p>${{number_format($pagado->cantidad)}} <em>MN</em></p></div>
 												    <!--<div class="counter-value" data-count="400">$100</div>
 												    <div class="counter-value" data-count="1500">$500</div>-->
 												</div>
@@ -320,16 +326,12 @@
 									
 									<li>
 										<i class="ico-clock"></i>
-										<p>
-										{!! $sucursal_info->horario !!}
-										</p>
+										<p>{!! $sucursal_info->horario !!}</p>
 									</li>
 									
 									<li>
 										<i class="ico-car"></i>
-										<p>
-										{!! $sucursal_info->instrucciones !!}
-										</p>
+										<p>{!! $sucursal_info->instrucciones !!}</p>
 									</li>
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->
@@ -420,38 +422,38 @@
 	</div><!-- /.main -->
 	<script type="text/javascript">
 	// jQuery Counter
-			var a = 0;
-				$(window).scroll(function() {
+			// var a = 0;
+			// 	$(window).scroll(function() {
 
-				  var oTop = $('#counter').offset().top - window.innerHeight;
-				  if (a == 0 && $(window).scrollTop() > oTop) {
-				    $('.counter-value').each(function() {
-				      var $this = $(this),
-				        countTo = $this.attr('data-count');
-				      $({
-				        countNum: $this.text()
-				      }).animate({
-				          countNum: countTo
-				        },
+			// 	  var oTop = $('#counter').offset().top - window.innerHeight;
+			// 	  if (a == 0 && $(window).scrollTop() > oTop) {
+			// 	    $('.counter-value').each(function() {
+			// 	      var $this = $(this),
+			// 	        countTo = $this.attr('data-count');
+			// 	      $({
+			// 	        countNum: $this.text()
+			// 	      }).animate({
+			// 	          countNum: countTo
+			// 	        },
 
-				        {
+			// 	        {
 
-				          duration: 2000,
-				          easing: 'swing',
-				          step: function() {
-				            $this.text(Math.floor(this.countNum));
-				          },
-				          complete: function() {
-				            $this.text(this.countNum);
-				            //alert('finished');
-				          }
+			// 	          duration: 2000,
+			// 	          easing: 'swing',
+			// 	          step: function() {
+			// 	            $this.text(Math.floor(this.countNum));
+			// 	          },
+			// 	          complete: function() {
+			// 	            $this.text(this.countNum);
+			// 	            //alert('finished');
+			// 	          }
 
-				        });
-				    });
-				    a = 1;
-				  }
+			// 	        });
+			// 	    });
+			// 	    a = 1;
+			// 	  }
 
-				});
+			// 	});
 	</script>
 
 

@@ -39,8 +39,9 @@ class promocionesController extends Controller
 
         //-----> Obtenemos todas las sucursales
         $data["sucursales"] = sucursal::find_all();
+        $data['slider'] = \App\Models\front\slider_model::find_all(2);
 
-        //dd($data);
+        // dd($data);
 
         return view('front.promociones.index',$data);
     

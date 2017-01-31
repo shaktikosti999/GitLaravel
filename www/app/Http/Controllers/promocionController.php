@@ -47,11 +47,41 @@ class promocionController extends Controller
         $this->validate($request,[
             "nombre" => 'required|string',
             "juego" => 'required|integer|min:1',
-            "slug" => 'required|string',
+            "slug" => 'string',
             "resumen" => 'required|string',
             "descripcion" => 'required|string',
             "imagen" => 'required|image'
         ]);
+
+        if($request->hasFile('thumb')){
+            $archivo = $request->file('thumb');
+            $ext = strtolower($archivo->getClientOriginalExtension());
+            $extValidas = ['jpg','jpeg','png'];
+
+            if(in_array($ext, $extValidas)){
+                $carpeta = 'assets/images/promociones/thumbs/';
+                if(!file_exists(public_path() . '/' . $carpeta))
+                    mkdir(public_path() . '/' . $carpeta,0777,true);
+                do{
+                    $nombre = "";
+                    $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                    for($i=0; $i<=16; $i++ ){
+                        $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
+                    }
+                }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+                $nombre .= '.' . $ext;
+                if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                    $thumb = '/' . $carpeta . $nombre;
+                }
+                else
+                    return redirect(url('/administrador/promocion.html'))->with('error','Error al agregar la imagen pequeña');
+            } 
+            else
+                return redirect(url('/administrador/promocion.html'))->with('error','Error al agregar la imagen pequeña');                   
+        }
+        else
+            return redirect(url('/administrador/promocion.html'))->with('error','Error al agregar la imagen pequeña');
+
         if($request->hasFile('imagen')){
             $archivo = $request->file('imagen');
             $ext = strtolower($archivo->getClientOriginalExtension());
@@ -72,7 +102,7 @@ class promocionController extends Controller
                 if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
                     $archivo = '/' . $carpeta . $nombre;
 
-                    $evento = promocion::store($request,$archivo);
+                    $evento = promocion::store($request,$archivo,$thumb);
                     $evento = $evento[0];
                     if(!$evento){
                         return redirect(url('/administrador/promocion.html'))->with('success','Promocion agregada correctamente');
@@ -119,11 +149,41 @@ class promocionController extends Controller
         $this->validate($request,[
             "nombre" => 'required|string',
             "juego" => 'required|integer|min:1',
-            "slug" => 'required|string',
+            "slug" => 'string',
             "resumen" => 'required|string',
             "descripcion" => 'required|string',
             "imagen" => 'image'
         ]);
+
+        if($request->hasFile('thumb')){
+            $archivo = $request->file('thumb');
+            $ext = strtolower($archivo->getClientOriginalExtension());
+            $extValidas = ['jpg','jpeg','png'];
+
+            if(in_array($ext, $extValidas)){
+                $carpeta = 'assets/images/promociones/thumbs/';
+                if(!file_exists(public_path() . '/' . $carpeta))
+                    mkdir(public_path() . '/' . $carpeta,0777,true);
+                do{
+                    $nombre = "";
+                    $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                    for($i=0; $i<=16; $i++ ){
+                        $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
+                    }
+                }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+                $nombre .= '.' . $ext;
+                if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                    $thumb = '/' . $carpeta . $nombre;
+                }
+                else
+                    $thumb = null;
+            } 
+            else
+                $thumb = null;
+        }
+        else
+            $thumb = null;
+
         if($request->hasFile('imagen')){
             $archivo = $request->file('imagen');
             $ext = strtolower($archivo->getClientOriginalExtension());
@@ -149,7 +209,7 @@ class promocionController extends Controller
         }
         else
             $archivo = null;
-        $evento = promocion::update($id,$request,$archivo);
+        $evento = promocion::update($id,$request,$archivo,$thumb);
         $evento = $evento[0];
         if(!$evento){
             return redirect(url('/administrador/promocion.html'))->with('success','Promocion modificada correctamente');

@@ -258,19 +258,19 @@
 
 					<div class="cols">
 						<div class="col col-size1">
-							<a href="#" class="logo"></a>
+							<a href="{{url('/')}}" class="logo"></a>
 
 							<ul class="list-partners">
 								<li>
-									<a href="http://www.caliente.mx">www.caliente.mx</a>
+									<a href="http://www.caliente.mx" target="_blank">www.caliente.mx</a>
 								</li>
 								
 								<li>
-									<a href="http://www.xolos.com.mx">www.xolos.com.mx</a>
+									<a href="http://www.xolos.com.mx" target="_blank">www.xolos.com.mx</a>
 								</li>
 								
 								<li>
-									<a href="http://www.grupocaliente.com.mx">www.grupocaliente.com.mx</a>
+									<a href="http://www.grupocaliente.com.mx" target="_blank">www.grupocaliente.com.mx</a>
 								</li>
 							</ul><!-- /.list-partners -->
 						</div><!-- /.col col-size1 -->

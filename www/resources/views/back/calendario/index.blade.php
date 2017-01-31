@@ -74,8 +74,6 @@
 																<th class="sorting_disabled" rowspan="1" colspan="1">Nombre</th>
 																<th class="sorting_disabled" rowspan="1" colspan="1">Categoría</th>
 																<th class="sorting_disabled" rowspan="1" colspan="1">Fecha</th>
-																<th class="sorting_disabled" rowspan="1" colspan="1">Inicio</th>
-																<th class="sorting_disabled" rowspan="1" colspan="1">Fin</th>
 																<th class="sorting_disabled" rowspan="1" colspan="1">Estatus</th>
 																<th class="sorting_disabled" rowspan="1" colspan="1">Opciones</th>
 															</tr>
@@ -86,8 +84,6 @@
 																<td class="v-align-middle">{{$item->nombre}}</td>
 																<td class="v-align-middle">{{$item->categoria}}</td>
 																<td class="v-align middle">{{date('d/m/Y',strtotime($item->inicio))}}</td>
-																<td class="v-align middle">{{date('H:i A',strtotime($item->inicio))}}</td>
-																<td class="v-align middle">{{date('H:i A',strtotime($item->fin))}}</td>
 																<td class="v-align-middle"><input type="checkbox" {{$item->estatus == 1 ? "checked" : ""}} class="activo" data="{{$item->id}}" data-toggle="toggle"></td>
 																<td class="v-align-middle">
 																	<div class="btn-group btn-group-justified">

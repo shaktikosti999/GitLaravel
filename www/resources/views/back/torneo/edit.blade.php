@@ -96,24 +96,12 @@
 					            		<input type="text" id="fecha_inicio" class="form-control required" name="fecha_inicio" value="{{date('m/d/Y',strtotime($torneo->fecha_inicio))}}" required="required" aria-required="true" aria-invalid="true">
 					          		</div>
 					        	</div>
-					        	<div class="col-sm-6">
-					          		<div class="form-group form-group-default" aria-required="true">
-					            		<label for="hora_inicio">Hora</label>
-					            		<input type="text" id="hora_inicio" class="form-control required" name="hora_inicio" value="{{date('H:i',strtotime($torneo->fecha_inicio))}}" required="required" aria-required="true" aria-invalid="true">
-					          		</div>
-					        	</div>
 					      	</div>
 					      	<div class="row clearfix">
 					        	<div class="col-sm-6">
 					          		<div class="form-group form-group-default" aria-required="true">
 					            		<label for="fecha_fin">Fin</label>
 					            		<input type="text" id="fecha_fin" class="form-control required" name="fecha_fin" value="{{date('m/d/Y',strtotime($torneo->fecha_fin))}}" required="required" aria-required="true" aria-invalid="true">
-					          		</div>
-					        	</div>
-					        	<div class="col-sm-6">
-					          		<div class="form-group form-group-default" aria-required="true">
-					            		<label for="hora_fin">Hora</label>
-					            		<input type="text" id="hora_fin" class="form-control required" name="hora_fin" value="{{date('H:m',strtotime($torneo->fecha_fin))}}" required="required" aria-required="true" aria-invalid="true">
 					          		</div>
 					        	</div>
 					      	</div>

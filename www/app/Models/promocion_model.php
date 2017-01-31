@@ -100,7 +100,7 @@ class promocion_model{
 		return $data;
 	}
 
-	static function store($request, $archivo){
+	static function store($request, $archivo, $thumb){
 		$data = new promocion();
 
 		$data->id_juego = $request->input('juego');
@@ -108,6 +108,7 @@ class promocion_model{
 		$data->slug = $request->input('slug');
 		$data->resumen = $request->input('resumen');
 		$data->imagen = $archivo;
+		$data->thumb = $thumb;
 		$data->descripcion = $request->input('descripcion');
 		$data->fecha_inicio = $request->input('fecha_inicio');
 		$data->fecha_fin = $request->input('fecha_fin');
@@ -146,8 +147,20 @@ class promocion_model{
 		return \DB::table('pago_promocion')->insert($data);
 	}
 
-	static function update($id, $request, $archivo = null){
+	static function update($id, $request, $archivo = null,$thumb = null){
 		$data = promocion::find($id);
+
+		if( $archivo !== null ){
+			$borrar = public_path() . $data->archivo;
+			if( is_file($borrar) )
+				unlink($borrar);
+		}
+
+		if( $thumb !== null ){
+			$borrar = public_path() . $data->thumb;
+			if( is_file($borrar) )
+				unlink($borrar);
+		}
 		
 		$data->id_juego = $request->input('juego');
 		$data->nombre = $request->input('nombre');
@@ -155,6 +168,8 @@ class promocion_model{
 		$data->resumen = $request->input('resumen');
 		if($archivo !== null)
 			$data->imagen = $archivo;
+		if($thumb !== null)
+			$data->thumb = $thumb;
 		$data->descripcion = $request->input('descripcion');
 		$data->fecha_inicio = $request->input('fecha_inicio');
 		$data->fecha_fin = $request->input('fecha_fin');

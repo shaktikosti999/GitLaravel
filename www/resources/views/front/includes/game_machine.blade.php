@@ -10,6 +10,9 @@
 			<a href="/aprende_como_jugar" class="btn btn-red">
 				Aprende a jugar
 			</a>
+			<a href="/todos-los-juegos" class="btn btn-red">
+				Todos los Juegos
+			</a>
 		</header><!-- /.section-head -->
 		
 		<div class="section-body">

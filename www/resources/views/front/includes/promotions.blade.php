@@ -25,7 +25,11 @@
 
 						?>
 						<li class="slide">
-							<a href="{{url('promociones/detalle/' . $item->slug)}}" class="slide-content" style="background-image: url({{$item->imagen}}); ">
+							@if( trim($item->slug) != "" )
+							<a href="{{url('promociones/detalle/' . $item->slug)}}" class="slide-content" style="background-image: url({{$item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen}}); ">
+							@else
+							<a class="slide-content" style="background-image: url({{$item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen}}); ">
+							@endif
 								<span class="slide-label">
 									Válido del {{$start->format('d/m/Y')}} al {{$end->format('d/m/Y')}} 
 								</span>

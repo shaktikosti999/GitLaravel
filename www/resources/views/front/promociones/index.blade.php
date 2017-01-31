@@ -7,43 +7,47 @@
 		</a>-->
 		<div class="slider-clip">
 			<ul class="slides">
-				<li class="slide fullscreen" style="background-image: url(css/images/temp/slider-intro-secondary.jpg);">
-					<div class="slide-content slide-promo">
-						<div class="shell">
-							<h2>
-								PROMOCIONES Y EVENTOS
-							</h2>
+				@if( isset($slider) && count($slider) )
+					@foreach( $slider as $item)
+						<li class="slide fullscreen" style="background-image: url({{($item->imagen)}});">
+							<div class="slide-content slide-promo">
+								<div class="shell">
+									<h2>
+										PROMOCIONES Y EVENTOS
+									</h2>
 
-							<h3>
-								@if( isset( $sucursal_info->nombre ) )
-										 			
-						 			Sucursal {{ $sucursal_info->nombre }}
+									<h3>
+										@if( isset( $sucursal_info->nombre ) )
+												 			
+								 			{{ $sucursal_info->nombre }}
 
-						 		@endif
-							</h3>
- 							
- 							@if( isset( $sucursales ) && count( $sucursales ) )
+								 		@endif
+									</h3>
+		 							
+		 							@if( isset( $sucursales ) && count( $sucursales ) )
 
-								<div class="filter-secondary">
-									<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-									<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
-										
-										<option value="-1">Selecciona una sucursal</option>
+										<div class="filter-secondary">
+											<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+											<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
+												
+												<option value="-1">Selecciona ubicación</option>
 
-										@foreach( $sucursales as $item )
+												@foreach( $sucursales as $item )
 
-											<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
+													<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
 
-										@endforeach
-										
-									</select>
-								</div><!-- /.filter-secondary -->
+												@endforeach
+												
+											</select>
+										</div><!-- /.filter-secondary -->
 
-							@endif
+									@endif
 
-						</div><!-- /.shell -->
-					</div><!-- /.slide-content -->
-				</li><!-- /.slide --> 
+								</div><!-- /.shell -->
+							</div><!-- /.slide-content -->
+						</li><!-- /.slide --> 
+					@endforeach
+				@endif
 			</ul><!-- /.slides -->
 		</div><!-- /.slider-clip -->
 	</div><!-- /.slider-intro -->
@@ -64,14 +68,15 @@
 
 											<li class="slide"> 			
 																		
-												<div class="slide-content" style="background-image: url('{{ $item->imagen }}'); ">
-													<div class="gradient-black"></div>
-													<div class="slide-caption">
-														<a href="/promociones/detalle/{{ $item->slug }}"><p>{{ $item->nombre }}</p></a>
+												<a href="/promociones/detalle/{{ $item->slug }}">
+													<div class="slide-content" style="background-image: url('{{ $item->thumb === null && !empty($item->thumb) ? $item->imagen : $item->thumb}}'); ">
+														<div class="gradient-black"></div>
+														<div class="slide-caption">
+															<p>{{ $item->nombre }}</p>
+														</div><!-- /.slide-caption -->
+													</div><!-- /.slide-content -->
 
-													</div><!-- /.slide-caption -->
-												</div><!-- /.slide-content -->
-
+												</a>
 											</li><!-- /.slide -->
 
 										@endforeach
@@ -139,7 +144,7 @@
 			 					<div class="row">
 
 									<div class="col col-1of2 item-{{ $item->id_linea }}">
-										<div class="box-current-promotions" style="background-image: url('{{ $item->imagen }}')"> 
+										<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
 											<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 												Conoce más
 											</a>
@@ -153,7 +158,7 @@
 			 					<div class="col col-1of2">
 									<div class="cols">
 										<div class="col col-1of2 item-{{ $item->id_linea }}">
-											<div class="box-current-promotions" style="background-image: url('{{ $item->imagen }}')"> 
+											<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
 												<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 													Conoce más
 												</a>
@@ -165,7 +170,7 @@
 			 				@if( $count == 3 )
 
 					 						<div class="col col-1of2 item-{{ $item->id_linea }}">
-												<div class="box-current-promotions" style="background-image: url('{{ $item->imagen }}')"> 
+												<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
 													<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 														Conoce más
 													</a>
@@ -185,7 +190,7 @@
 						 				<div class="col col-1of2">
 						 					<div class="cols">
 												<div class="col col-1of2 item-{{ $item->id_linea }}">
-													<div class="box-current-promotions" style="background-image: url('{{ $item->imagen }}')"> 
+													<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
 														<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 															Conoce más
 														</a>
@@ -197,7 +202,7 @@
 			 				@if( $count == 5 )
 
 						 			<div class="col col-1of2 item-{{ $item->id_linea }}">
-											<div class="box-current-promotions" style="background-image: url('{{ $item->imagen }}')"> 
+											<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
 												<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 													Conoce más
 												</a>
@@ -211,7 +216,7 @@
 			 				@if( $count == 6 )
 
 								 	<div class="col col-1of2 item-{{ $item->id_linea }}">
-					 					<div class="box-current-promotions" style="background-image: url('{{ $item->imagen }}')"> 
+					 					<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
 											<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 												Conoce más
 											</a>
@@ -226,7 +231,7 @@
 			 					$count++; 
 
 			 					if( $count == 6 )
-			 						$count == 1;
+			 						$count = 1;
 
 			 				?>
 

@@ -82,7 +82,7 @@ class contacto_model{
                 }
                 $sucursal = \App\Models\sucursal_model::find($request->input('field-sucursal'));
                 $sucursal = $sucursal->nombre;
-                mail($to, 'Contacto', 'La persona ' . $request->input('field-name') . ' ' .$request->input('field-apat') . ' ' . $request->input('field-mat') . ' hizo contacto con Casino.
+                mail($to, $tipo . ' de ' . $request->input('field-name') . ' ' .$request->input('field-apat') . ' ' . $request->input('field-mat'), 'La persona ' . $request->input('field-name') . ' ' .$request->input('field-apat') . ' ' . $request->input('field-mat') . ' hizo contacto con Casino.
                 	Correo: ' . $request->input('field-email') . '
                 	Tarjeta:' . $request->input('field-card') . '
                 	Telefono:' . $request->input('field-phone') . '

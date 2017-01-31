@@ -54,7 +54,7 @@
 	        			<div class="col-sm-12">
 	        				<div class="form-group form-group-default">
 	        					<label for="slug">Slug</label>
-				      			<input type="text" id="slug" class="form-control required" name="slug" value="{{$promocion->slug}}" required="required" aria-required="true" aria-invalid="true">
+				      			<input type="text" id="slug" class="form-control" name="slug" value="{{$promocion->slug}}" aria-required="true" aria-invalid="true">
 	                    	</div>
 	                	</div>
 	                </div>
@@ -100,6 +100,15 @@
 			            		<label for="imagen">Imagen</label>
 			            		<img src="{{$promocion->imagen}}" class="img-responsive img_promocion">
 			            		<input type="file" id="imagen" class="form-control required" name="imagen" required="required" aria-required="true" aria-invalid="true" style="display:none">
+			          		</div>
+			        	</div>
+			      	</div>
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="thumb">Imagen pequeña</label>
+			            		<img src="{{$promocion->thumb}}" class="img-responsive img_thumb">
+			            		<input type="file" id="thumb" class="form-control required" name="thumb" required="required" aria-required="true" aria-invalid="true" style="display:none">
 			          		</div>
 			        	</div>
 			      	</div>

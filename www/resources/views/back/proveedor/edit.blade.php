@@ -30,7 +30,7 @@
 	        			<div class="col-sm-12">
 	        				<div class="form-group form-group-default">
 	        					<label for="link">Enlace</label>
-				      			<input type="text" id="link" value="{{$proveedor->link}}" class="form-control required url" name="link" required="required" aria-required="true" aria-invalid="true">
+				      			<input type="text" id="link" value="{{$proveedor->link}}" class="form-control url" name="link" aria-required="true" aria-invalid="true">
 	                    	</div>
 	                	</div>
 	                </div>
@@ -39,7 +39,7 @@
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="archivo">Imagen</label>
 			            		<img src="{{$proveedor->archivo}}" class="img-responsive img_proveedor">
-			            		<input type="file" id="archivo" class="form-control required" name="archivo" required="required" aria-required="true" aria-invalid="true" style="display:none">
+			            		<input type="file" id="archivo" class="form-control required" name="archivo" aria-required="true" aria-invalid="true" style="display:none">
 			          		</div>
 			        	</div>
 			      	</div>

@@ -58,17 +58,15 @@ class torneoController extends Controller
             "juego" => 'required|integer|min:1',
             "sucursal" => 'required|integer|min:1',
             "descripcion" => 'required|string',
-            "fecha_inicio" => 'required|date|after:tomorrow',
-            "fecha_fin" => 'required|date|after:tomorrow',
-            "hora_inicio" => 'required',
-            "hora_fin" => 'required',
+            "fecha_inicio" => 'required|date',
+            "fecha_fin" => 'required|date',
             "link" => 'string|url',
             "archivo" => 'required|image'
         ]);
-        $request->merge([
-            'fecha_inicio' => $request->fecha_inicio . " " . $request->hora_inicio,
-            'fecha_fin' => $request->fecha_fin . " " . $request->hora_fin
-        ]);
+        // $request->merge([
+        //     'fecha_inicio' => $request->fecha_inicio . " " . $request->hora_inicio,
+        //     'fecha_fin' => $request->fecha_fin . " " . $request->hora_fin
+        // ]);
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
             $ext = strtolower($archivo->getClientOriginalExtension());
@@ -142,17 +140,15 @@ class torneoController extends Controller
             "juego" => 'required|integer|min:1',
             "sucursal" => 'required|integer|min:1',
             "descripcion" => 'required|string',
-            "fecha_inicio" => 'required|date|after:tomorrow',
-            "fecha_fin" => 'required|date|after:tomorrow',
-            "hora_inicio" => 'required',
-            "hora_fin" => 'required',
+            "fecha_inicio" => 'required|date',
+            "fecha_fin" => 'required|date',
             "link" => 'string|url',
             "archivo" => 'image'
         ]);
-        $request->merge([
-            'fecha_inicio' => $request->fecha_inicio . " " . $request->hora_inicio,
-            'fecha_fin' => $request->fecha_fin . " " . $request->hora_fin
-        ]);
+        // $request->merge([
+        //     'fecha_inicio' => $request->fecha_inicio . " " . $request->hora_inicio,
+        //     'fecha_fin' => $request->fecha_fin . " " . $request->hora_fin
+        // ]);
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
             $ext = strtolower($archivo->getClientOriginalExtension());

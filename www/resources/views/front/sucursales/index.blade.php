@@ -2,19 +2,19 @@
 @section('contenido')
 	<div class="slider-secondary secondary-margin">
 		<!--<a href="#" class="btn-menu">
-			<img src="css/images/btn-menu@2x.png" alt="">-->
-		</a>
+			<img src="css/images/btn-menu@2x.png" alt="">
+		</a>-->
 
 		<div class="slider-secondary">
-				<a href="{{url('alimentos-y-bebidas')}}" class="btn-menu">
+				<!-- <a href="{{url('alimentos-y-bebidas')}}" class="btn-menu">
 					<img src="css/images/btn-menu@2x.png" alt="">
-				</a>
+				</a> -->
 
 				<div class="slider-clip">
 					<ul class="slides">
-						@if( isset($sucursales) && count($sucursales) )
-							@foreach($sucursales as $value)
-								<li class="slide" style="background-image: url(css/images/temp/slider-secondary1.jpg)">
+						@if( isset($slider) && count($slider) )
+							@foreach($slider as $value)
+								<li class="slide" style="background-image: url({{asset($value->imagen)}})">
 									<div class="slide-body">
 										<div class="shell"> 		 
 											 <div class="slide-content">
@@ -23,7 +23,7 @@
 													<div class="filter-secondary">
 														<label for="selec_sucursales" class="form-label hidden">filter-secondary1</label>
 														<select name="selec_sucursales" id="selec_sucursales" class="select branch-filter2">
-															<option value="-1">Selecciona una sucursal</option>
+															<option value="-1">Selecciona ubicaión</option>
 															@foreach( $sucursales as $item )
 																<option value="{{ $item->slug }}">Sucursal {{ $item->nombre }}</option>
 															@endforeach

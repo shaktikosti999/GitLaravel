@@ -172,7 +172,6 @@ class calendarioController extends Controller
             "fecha" => "date"
         ]);
         $categoria = (int)trim($request->input('categoria')) > 0 ? trim($request->input('categoria')) : trim($request->input('categoria_txt'));
-        dd($request->all(),$categoria);
         if( $categoria != "" ){
             $evento = calendario::update($id,$request,$categoria);
             $evento = $evento[0];

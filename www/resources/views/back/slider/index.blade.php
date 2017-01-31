@@ -57,10 +57,26 @@
 									<tbody>
 										@if( isset($sliders) && count($sliders) )
 										@foreach($sliders as $slider)
+										<?php
+											switch($slider->tipo){
+												case 0:
+							            			$tipo = "Quiniela";
+													break;
+												case 1:
+													$tipo = "Home";
+													break;
+												case 2:
+							            			$tipo = "Promociones";
+													break;
+												default:
+							            			$tipo = "Ubicaciones";
+													break;
+											}
+										?>
 										<tr role="row" class="">
 											<td class="v-align-middle">{{$slider->titulo}}</td>
 											<td class="v-align middle">{{$slider->subtitulo}}</td>
-											<td class="v-align middle">{{$slider->tipo == 1 ? 'Home' : 'Quiniela'}}</td>
+											<td class="v-align middle">{{$tipo}}</td>
 											<td class="v-align middle">{{$slider->link}}</td>
 											<td class="v-align-middle"><input type="checkbox" {{$slider->estatus == 1 ? "checked" : ""}} class="activo" data="{{$slider->id}}" data-toggle="toggle"></td>
 											<td class="v-align-middle">

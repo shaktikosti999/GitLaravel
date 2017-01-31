@@ -55,7 +55,7 @@
 	        			<div class="col-sm-12">
 	        				<div class="form-group form-group-default">
 	        					<label for="slug">Slug</label>
-				      			<input type="text" id="slug" class="form-control required" name="slug" required="required" aria-required="true" aria-invalid="true">
+				      			<input type="text" id="slug" class="form-control" name="slug" aria-required="true" aria-invalid="true">
 	                    	</div>
 	                	</div>
 	                </div>
@@ -101,6 +101,15 @@
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="imagen">Imagen</label>
 			            		<input type="file" id="imagen" class="form-control required" name="imagen" required="required" aria-required="true" aria-invalid="true">
+			          		</div>
+			        	</div>
+			      	</div>
+
+			      	<div class="row clearfix">
+			        	<div class="col-sm-12">
+			          		<div class="form-group form-group-default" aria-required="true">
+			            		<label for="thumb">Imagen pequeña</label>
+			            		<input type="file" id="thumb" class="form-control required" name="thumb" required="required" aria-required="true" aria-invalid="true">
 			          		</div>
 			        	</div>
 			      	</div>

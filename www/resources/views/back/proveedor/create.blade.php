@@ -29,7 +29,7 @@
 	        			<div class="col-sm-12">
 	        				<div class="form-group form-group-default">
 	        					<label for="link">Enlace</label>
-				      			<input type="text" id="link" class="form-control required url" name="link" required="required" aria-required="true" aria-invalid="true">
+				      			<input type="text" id="link" class="form-control url" name="link" aria-required="true" aria-invalid="true">
 	                    	</div>
 	                	</div>
 	                </div>

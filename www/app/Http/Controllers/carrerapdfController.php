@@ -52,8 +52,8 @@ class carrerapdfController extends Controller
         $this->validate($request,[
             'titulo' => 'required|string',
             'juego' => 'required|integer',
-            'sucursal' => 'required|integer',
-            'fecha' => 'required|date|after:tomorrow',
+            'sucursal' => 'integer',
+            'fecha' => 'required|date',
             'archivo' => 'required|mimes:pdf'
         ]);
         if($request->hasFile('archivo')){
@@ -124,8 +124,8 @@ class carrerapdfController extends Controller
         $this->validate($request,[
             'titulo' => 'required|string',
             'juego' => 'required|integer',
-            'sucursal' => 'required|integer',
-            'fecha' => 'required|date|after:tomorrow',
+            'sucursal' => 'integer',
+            'fecha' => 'required|date',
             'archivo' => 'mimes:pdf'
         ]);
         if($request->hasFile('archivo')){

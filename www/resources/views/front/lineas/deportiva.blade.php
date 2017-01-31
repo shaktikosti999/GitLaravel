@@ -157,7 +157,7 @@
 											 	<h3>
 											 		@if( isset( $sucursal_info->nombre ) )
 											 			
-											 			Sucursal {{ $sucursal_info->nombre }}
+											 			{{ $sucursal_info->nombre }}
 
 											 		@endif
 											 	</h3>
@@ -170,7 +170,7 @@
 												<label for="sucursales" class="form-label hidden">filter-secondary1</label>
 												<select name="sucursales" id="sucursales" class="select branch-filter">
 													
-													<option value="-1">Selecciona una sucursal</option>
+													<option value="-1">Selecciona ubicación</option>
 
 													@foreach( $sucursales as $item )
 
