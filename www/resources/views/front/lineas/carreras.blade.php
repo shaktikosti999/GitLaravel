@@ -612,6 +612,7 @@
 			$('#sandbox-container input').datepicker({
 				    keyboardNavigation: false,
 				    forceParse: false,
+				    language: "es",
 				    todayHighlight: true
 				});
 		</script>

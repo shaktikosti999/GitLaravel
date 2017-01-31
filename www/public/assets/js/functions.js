@@ -9,12 +9,14 @@
 
 		// date picker
 		if (typeof activeDays != "undefined" ) {
+			 
 			$( '[data-date]' ).datepicker({
 	      		dateFormat: 'mm/dd/yyyy',
 	      		beforeShowDay: activeDays,
 	      		todayHighlight: true,
 	      		keyboardNavigation: false,
 			    forceParse: false,
+			    language: "es",
 			    beforeShowDay: function (date){
 			    	for (var i = 0; i < dates.length; i++) {
 			    	    if (new Date(dates[i]).toString() == date.toString()) {             
@@ -37,6 +39,9 @@
                   //       return "black";
                   // }
                 }
+
+                
+                
 	      	}).datepicker("setDate", null).on('changeDate',function(e){
 	      		date = new Date( e.date );
 	      		date = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
@@ -44,6 +49,7 @@
 	      		if( $('[data-fecha="' + date + '"]').length > 0 ){
 		      		$('[data-fecha]').addClass('hide_program');
 	      			$('[data-fecha="' + date + '"]').removeClass('hide_program');
+
 	      		}
 	      		else{
 	      			$('.alert').fadeIn(200);
@@ -53,12 +59,15 @@
 	      		}
 	      		$('.hide_program').hide();
 	      		$('[data-fecha]').removeClass('hide_program');
-
-	      	
 	      		
 	      	});
+
+
 	      	
 		}
+
+
+
 			
 
 		$.ajaxSetup({
@@ -656,6 +665,10 @@ $(function() {
     }, 500);
   });
 });
+
+
+
+
 
 
 	
