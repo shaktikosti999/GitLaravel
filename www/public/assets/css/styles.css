@@ -1564,11 +1564,14 @@ li:first-child { margin: 0;}
 }
 /* Mobile */
 @media (max-width: 767px) {
-	.slider-intro .slide { min-height: 400px; } 
+	.slider-intro .slide { height: 280px !important; } 
 	.slider-intro .slide-content { padding-top: 130px; }
 	.slider-intro .slick-dots-wrapper { top: auto; bottom: 20px; }
 	.slider-intro .btn-scroll { top: auto; bottom: 50px; -webkit-transform: scale(0.6); -ms-transform: scale(0.6); transform: scale(0.6); } 
 	.slider-intro-promo {/*height: 440px;*/}
+	.slider-games .slide-content {max-width: 223px !important; height: 290px !important;}
+	.section-map #googlemap {height: 700px;}
+
 }
 .slider-intro.anchor + .main.anchor { margin-top: -400px; z-index: 200; position: relative; }
 /*@media (max-width: 1023px) {
@@ -1885,7 +1888,7 @@ li:first-child { margin: 0;}
 	.subscribe-field  { min-width: 100%; font-size: 15px; line-height: 1.2; height: 45px;  padding: 0 20px; margin-bottom: 20px; margin-right: 0; } 
 	.list-buttons li a {display: none;}
 	.section-content-head .fs-dropdown {margin-top: 60px;}
-	.list-contacts {margin-top: 92px;}
+	.list-contacts {margin-top: 132px;}
 	li.feature {margin-bottom: 30px;}
 }
 /* ------------------------------------------------------------ *\
@@ -2607,6 +2610,9 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.lightbox-calendar .modal.modal-calendar {max-width: 540px !important;}
 	.section-jackpots .section-entry .btn {width: 100% !important; top: 10px !important;}	
 	.sucursales h6, p {padding-left: 0 !important;}
+	.section-map .section-actions {padding-top: 30px;}
+	.fs-dropdown-selected {top: 30px;}
+	.slider-games .slide-caption {padding: 0 0 20px 20px;}
 }
 
 @media(max-width: 768px){
