@@ -19,7 +19,7 @@
         <ul>
             <li><a href="#promociones"><img src="css/images/icons/icon-1.png"><span>Promociones</span></a></li>
             <li><a href="#maquinas"><img src="css/images/icons/icon-2.png"><span>Máquinas</span></a></li>
-            <li><a href="#proveedores"><img src="css/images/icons/icon-3.png"><span>Proveedores</span></a></li>
+            <li><a href="#proveedores"><img src="css/images/icons/icon-3.png"><span>Marcas de Juego</span></a></li>
             <li><a href="#jackpot"><img src="css/images/icons/icon-4.png"><span>Jackpot</span></a></li>
             <!--<li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Ubicación</span></a></li>-->
             <li><a href="#diversion"><img src="css/images/icons/icon-6.png"><span>Diversión</span></a></li>
@@ -160,7 +160,7 @@
 						<header class="section-head">
 							<div class="stick--point" id="jackpot"></div>
 							<h2>
-								<small>Jackpot</small>
+								<small>Jackpots</small>
 								Acumulado
 							</h2> 
 						</header><!-- /.section-head -->
@@ -217,9 +217,15 @@
 										Pagado
 									</span>
 
-									<a href="{{url('/pagados')}}">
+									<!--<a href="{{url('/pagados')}}">
 										Conoce los pagados
+									</a>-->
+
+									<a class="btn btn-red btn-small" href="#">
+										Miles de pesos repartidos
 									</a>
+
+								
 								</p>
 							</div><!-- /.section-entry -->
 
@@ -276,11 +282,11 @@
 								<div class="subscribe-actions">
 									<ul class="list-checkboxes">
 										<li>
-											<div class="checkbox">
+											<!--<div class="checkbox">
 												<input type="checkbox" name="field-notifications" id="field-notifications">
 												
 												<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
-											</div><!-- /.checkbox -->
+											</div> /.checkbox -->
 										</li>
 									</ul><!-- /.list-checkboxes -->
 								</div><!-- /.subscribe-actions -->

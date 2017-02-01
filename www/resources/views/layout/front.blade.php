@@ -50,7 +50,7 @@
 					<nav class="nav-access">
 						<ul>
 							<li>
-								<a href="/quienes_somos">Quíenes somos</a>
+								<a href="/quienes_somos">Quiénes Somos</a>
 							</li>
 							
 							<li>

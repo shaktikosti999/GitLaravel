@@ -325,11 +325,11 @@
 								<div class="subscribe-actions">
 									<ul class="list-checkboxes">
 										<li>
-											<div class="checkbox">
+											<!--<div class="checkbox">
 												<input type="checkbox" name="field-notifications" id="field-notifications">
 												
 												<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
-											</div><!-- /.checkbox -->
+											</div> /.checkbox -->
 										</li>
 									</ul><!-- /.list-checkboxes -->
 								</div><!-- /.subscribe-actions -->

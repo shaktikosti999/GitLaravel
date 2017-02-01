@@ -60,7 +60,7 @@
 				<div class="shell">
 					<div class="section-body">
 						<div class="slider-games reset-margin">
-							<h2>Promociones</h2>
+							<h2>Promociones y Eventos</h2>
 							<div class="slider-clip">
 								<ul class="slides">								
 
@@ -277,11 +277,11 @@
 								<div class="subscribe-actions">
 									<ul class="list-checkboxes">
 										<li>
-											<div class="checkbox">
+											<!--<div class="checkbox">
 												<input type="checkbox" name="field-notifications" id="field-notifications">
 												
 												<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
-											</div><!-- /.checkbox -->
+											</div> /.checkbox -->
 										</li>
 									</ul><!-- /.list-checkboxes -->
 								</div><!-- /.subscribe-actions -->
