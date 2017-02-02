@@ -132,16 +132,16 @@
 		 		</div><!-- /.section-head -->
 
 		 		<div class="section-body">
-		 			
-		 			<?php $count = 1; ?>
+		 			<div class="row">
+			 			<?php $count = 1; ?>
 
-		 			@if( isset( $promociones ) && count( $promociones ) )
+			 			@if( isset( $promociones ) && count( $promociones ) )
 
-			 			@foreach( $promociones as $item )
+				 			@foreach( $promociones as $item )
 
-			 				@if( $count == 1 )
+				 				@if( $count == 1 )
   
-			 					<div class="row">
+			 					
 
 									<div class="col col-1of2 item-{{ $item->id_linea }}">
 										<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
@@ -154,7 +154,6 @@
 			 				@endif
 
 			 				@if( $count == 2 )
-
 			 					<div class="col col-1of2">
 									<div class="cols">
 										<div class="col col-1of2 item-{{ $item->id_linea }}">
@@ -164,6 +163,7 @@
 												</a>
 											</div><!-- /.box-current-promotions -->	 				
 										</div><!-- /.col col-1of2 -->
+
 
 			 				@endif
 
@@ -180,13 +180,12 @@
 									</div><!-- /.col col-1of2 -->
 
 
-				 			</div><!-- /.row -->
+
 
 			 				@endif
 
 			 				@if( $count == 4 )
 
-					 				<div class="row">
 						 				<div class="col col-1of2">
 						 					<div class="cols">
 												<div class="col col-1of2 item-{{ $item->id_linea }}">
@@ -200,8 +199,8 @@
 			 				@endif
 
 			 				@if( $count == 5 )
-
-						 			<div class="col col-1of2 item-{{ $item->id_linea }}">
+			 				
+						 			<div class="col col-1of2 item-{{ $item->id_linea }}"> 
 											<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
 												<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 													Conoce más
@@ -215,7 +214,7 @@
 
 			 				@if( $count == 6 )
 
-								 	<div class="col col-1of2 item-{{ $item->id_linea }}">
+								 	<div class="col col-1of2 item-{{ $item->id_linea }}"> <!-- modificar-->
 					 					<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
 											<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 												Conoce más
@@ -223,6 +222,8 @@
 										</div><!-- /.box-current-promotions -->	 				
 					 				</div><!-- /.col col-1of2 -->
 					 			</div><!-- /.row -->
+
+
 
 			 				@endif
 

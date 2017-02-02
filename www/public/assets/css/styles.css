@@ -1258,7 +1258,7 @@ li:first-child { margin: 0;}
 .section-teritary .row:after { content: ''; line-height: 0; display: table; clear: both; }
 .section-teritary .cols { display: block; margin: 0 -15px; width: calc(100% + 30px); }
 .section-teritary .cols:after { content: ''; line-height: 0; display: table; clear: both; }
-.section-teritary .col { float: left; padding: 0 15px; }
+.section-teritary .col { float: left; padding: 0 15px 15px; }
 .section-filters { list-style: none; }
 .section-filters:after { content: ''; line-height: 0; display: table; clear: both; }
 .section-filters { margin: 0 -10px 0 -20px; }
@@ -2703,7 +2703,6 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
     background-color: #fff;
 }
 .section-jackpots .section-entry .btn {position: relative; font-size: 16px; height: auto; line-height: 1; width: auto; min-width: auto; padding: 10px 28px; font-weight: 500; float: right; display: inline-block; color: #fff; top: 40px;}
-
 
 
 
