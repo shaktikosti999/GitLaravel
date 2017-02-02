@@ -599,8 +599,8 @@ blockquote:last-child { margin-bottom: 0; }
 .article-head h2:after { display: inline-block; content: ''; width: 50px; height: 2px; background: #f00; vertical-align: middle; margin-left: 35px; position: relative; top: -2px; }
 .article-head { padding-top: 43px; padding-bottom: 23px; }
 .article-entry { padding-bottom: 41px; padding-top: 41px; }
-.article-entry p { margin: 0; line-height: 1.4; }
-.article-entry p + p { margin-top: 21px; }
+.article-entry p { margin: 0; line-height: 1.4; color: #000; }
+.article-entry p + p { margin-top: 21px; color: #000;}
 .article-entry ul {padding-left: 40px;}
 .article-entry li.MsoNormal {margin-left: 25px;}
 .article-entry ol {padding-left: 40px;}
@@ -1715,7 +1715,7 @@ li:first-child { margin: 0;}
 .slider-secondary .slide { height: 598px; position: relative; background-size: cover; background-position: center center; background-repeat: no-repeat; }
 .slider-secondary .slide .shell:after { content: ''; line-height: 0; display: table; clear: both; }
 .slider-secondary .slide { position: relative; }
-.slider-secondary .slide:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; /*background: rgba(0, 0, 0, .5);*/ background: linear-gradient(to bottom, rgba(0,0,0,0.11) 0%, rgba(0,0,0,0.69) 100%);}
+.slider-secondary .slide:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; /*background: rgba(0, 0, 0, .5); background: linear-gradient(to bottom, rgba(0,0,0,0.11) 0%, rgba(0,0,0,0.69) 100%);*/}
 .slider-secondary .slide-body { position: absolute; bottom: 0; left: 0; width: 100%; padding: 55px 0; }
 .slider-secondary .slide-content { position: relative; z-index: 30; float: left; width: 51%; }
 .slider-secondary .slide-content h1 { font-size: 50px; margin-bottom: 5px; line-height: 1; font-size: 45px;font-weight: 700; margin-right: -50%; }
