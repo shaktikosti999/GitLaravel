@@ -25,14 +25,20 @@ class promocion_model{
 	}
 
 	static function addBranchPromotion($request,$archivo=null){
-		$data = [
-			'id_promocion' => $request->input('add_promocion'),
-			'id_sucursal' => $request->input('add_sucursal'),
-			'descripcion' => $request->input('add_desc') !== null ?  $request->input('add_desc'): '',
-			'archivo' => $archivo !== null ?  $archivo : '',
-			'link' => $request->input('add_archivo') !== null ? $request->input('add_archivo') : ''
-		];
-		return \DB::table('promocion_sucursal')->insert($data);
+		$data = [];
+		if( $request->input('add_sucursal') !== null && count($request->input('add_sucursal')) ){
+			foreach($request->input('add_sucursal') as $item ){
+				$data[] = [
+					'id_promocion' => $request->input('add_promocion'),
+					'id_sucursal' => $item,
+					'descripcion' => $request->input('add_desc') !== null ?  $request->input('add_desc'): '',
+					'archivo' => $archivo !== null ?  $archivo : '',
+					'link' => $request->input('add_archivo') !== null ? $request->input('add_archivo') : ''
+				];
+			}
+			return \DB::table('promocion_sucursal')->insert($data);
+		}
+		return true;
 	}
 
 	static function find($id){
@@ -110,8 +116,8 @@ class promocion_model{
 		$data->imagen = $archivo;
 		$data->thumb = $thumb;
 		$data->descripcion = $request->input('descripcion');
-		$data->fecha_inicio = $request->input('fecha_inicio');
-		$data->fecha_fin = $request->input('fecha_fin');
+		$data->fecha_inicio = trim($request->input('fecha_inicio')) != "" ? $request->input('fecha_inicio') : null;
+		$data->fecha_fin = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
 
 		$evento = Event::fire(new dotask($data));
 		// dd($evento,$data);
@@ -171,8 +177,8 @@ class promocion_model{
 		if($thumb !== null)
 			$data->thumb = $thumb;
 		$data->descripcion = $request->input('descripcion');
-		$data->fecha_inicio = $request->input('fecha_inicio');
-		$data->fecha_fin = $request->input('fecha_fin');
+		$data->fecha_inicio = trim($request->input('fecha_inicio')) != "" ? $request->input('fecha_inicio') : null;
+		$data->fecha_fin = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
 
 		$evento = Event::fire(new dotask($data));
 		// dd($evento,$data);

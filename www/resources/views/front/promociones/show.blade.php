@@ -11,10 +11,14 @@
 					</div><!-- /.article-head -->
 					
 					<div class="article-entry">
-						<p style="color:rgb(0,0,0)">Del {{$promocion->fecha_inicio}} al {{$promocion->fecha_fin}}</p>
-						<p style="color:rgb(0,0,0)">{{$promocion->resumen}}</p>
+						@if( $promocion->fecha_inicio !== null || $promocion->fecha_fin !== null )
+						<p style="color:rgb(0,0,0)">
+							Válido @if( ($promocion->fecha_inicio) !== null )del {{$promocion->fecha_inicio}}@endif @if( ($promocion->fecha_fin) !== null )al {{$promocion->fecha_fin}}@endif
+						</p>
+						@endif
+						<p style="color:rgb(0,0,0)">{!!$promocion->resumen!!}</p>
 						
-						<p style="color:rgb(0,0,0)">{{$promocion->descripcion}}</p>
+						<p style="color:rgb(0,0,0)">{!!$promocion->descripcion!!}</p>
 						
 					</div><!-- /.article-entry -->
 					

@@ -72,7 +72,7 @@ $(document).ready(function(){
 					$('#add_sucursal').attr('readonly',true);
 					$('#modal_form').attr('action','/administrador/modificar/promocion.html');
 					$('#promo_list').hide();
-					$('#add_imagen').parent().parent().show();
+					// $('#add_imagen').parent().parent().show();
 					$('[type="submit"]').val('Modificar');
 				}
 			}

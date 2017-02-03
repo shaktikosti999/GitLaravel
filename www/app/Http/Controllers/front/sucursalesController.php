@@ -62,7 +62,7 @@ class sucursalesController extends Controller
         $id_ciudad = isset( $id_ciudad['city'] ) ? $id_ciudad['city'] : null;
         $data = [
             'id_ciudad' => $id_ciudad,
-            'ciudades' => \App\Models\front\ciudad_model::find_all(),
+            'ciudades' => \App\Models\front\ciudad_model::find_all(['lista'=>true]),
             'sucursales' => sucursal::find_all(['id_ciudad'=>$id_ciudad]),
             'slider' => \App\Models\front\slider_model::find_all(3)
         ];

@@ -150,8 +150,7 @@
 									{{csrf_field()}}
 									<div class="form-group">
 										<label for="add_sucursal">Sucursales</label>
-										<select name="add_sucursal" id="add_sucursal" class="form-control">
-											<option value="">Elija una opción</option>
+										<select name="add_sucursal[]" id="add_sucursal" class="form-control" multiple>
 											@foreach($sucursales as $val)
 											<option value="{{$val->id}}">{{$val->nombre}}</option>
 											@endforeach
@@ -161,14 +160,14 @@
 										<label for="add_desc">Descripción</label>
 										<textarea name="add_desc" id="add_desc" class="form-control"></textarea>
 									</div>
-									<div class="form-group col-sm-6">
+									<!-- <div class="form-group col-sm-6">
 										<label for="add_archivo">Imagen</label>
 										<input type="file" name="add_archivo" id="add_archivo" >
 									</div>
 									<div class="form-group col-sm-6">
 										<label for="add_link">Enlace</label>
 										<input type="text" name="add_link" id="add_link" class="form-control">
-									</div>
+									</div> -->
 									<input type="submit" value="Guardar" class="btn btn-success">
 								</form>
 							</div>

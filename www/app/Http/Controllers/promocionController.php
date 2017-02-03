@@ -252,9 +252,10 @@ class promocionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addPromotion(Request $request){
+        // dd($request->all());
         $this->validate($request,[
             "add_promocion" => 'required|integer|min:1',
-            "add_sucursal" => 'required|integer|min:1',
+            "add_sucursal" => 'required',
             "add_desc" => 'string|min:10',
             "add_link" => "string",
             "add_archivo" => 'image'

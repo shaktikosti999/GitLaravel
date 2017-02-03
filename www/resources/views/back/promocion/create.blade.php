@@ -6,7 +6,7 @@
 		<script>
 		$(function(){
 			$('#form-agregar').validate();
-			$('[type="date"').datepicker({
+			$('.datepkr').datepicker({
 				dateFormat: "yy-mm-dd",
 				minDate: new Date({{date('Y,m,d')}})
 			});
@@ -82,7 +82,7 @@
 	        			<div class="col-sm-12">
 	        				<div class="form-group form-group-default">
 	        					<label for="fecha_inicio">Inicio</label>
-				      			<input type="date" id="fecha_inicio" class="form-control required" name="fecha_inicio" value="{{date('Y-m-d')}}" required="required" aria-required="true" aria-invalid="true">
+				      			<input type="text" id="fecha_inicio" class="form-control datepkr" name="fecha_inicio" aria-required="true" aria-invalid="true">
 	                    	</div>
 	                	</div>
 	                </div>
@@ -91,7 +91,7 @@
 	        			<div class="col-sm-12">
 	        				<div class="form-group form-group-default">
 	        					<label for="fecha_fin">Fin</label>
-				      			<input type="date" id="fecha_fin" class="form-control required" name="fecha_fin" value="{{date('Y-m-d')}}" required="required" aria-required="true" aria-invalid="true">
+				      			<input type="text" id="fecha_fin" class="form-control datepkr" name="fecha_fin" aria-required="true" aria-invalid="true">
 	                    	</div>
 	                	</div>
 	                </div>
