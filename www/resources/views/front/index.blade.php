@@ -391,7 +391,7 @@
 				</div><!-- /.section-head -->
 				
 				<div class="section-body">
-					<div id="googlemap" data-lng="-97.727616" data-lat="18.884188"></div><!-- /#googlemap --> 
+					<div id="googlemap" data-lng="{{$rand_sucursal->longitud}}" data-lat="{{$rand_sucursal->latitud}}"></div><!-- /#googlemap --> 
 				
 					<div class="section-content">
 						<div class="shell">

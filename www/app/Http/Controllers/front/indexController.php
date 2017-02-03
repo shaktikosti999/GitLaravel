@@ -34,6 +34,8 @@ class indexController extends Controller
         $data["ciudades"]       = ciudad::find_all();
         $data["footer_text"]    = \DB::table('text_footer')->where('id',1)->first();
 
+        // dd($data);
+
         return view('front.index',$data);
     
     }

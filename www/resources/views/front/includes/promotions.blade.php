@@ -3,7 +3,7 @@
 		<header class="section-head">
 			<div class="stick--point" id="promociones"></div>
 			<h2>
-				@yield('promo-head','Promociones')
+				@yield('promo-head','Promociones y Eventos')
 			</h2>
 
 			@if( isset($sucursal) && count($sucursal) && $sucursal != false)

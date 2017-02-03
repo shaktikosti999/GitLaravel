@@ -63,7 +63,7 @@
 	        			<div class="col-sm-12">
 	        				<div class="form-group form-group-default">
 	        					<label for="resumen">Resumen</label>
-				      			<textarea id="resumen" class="form-control required" name="resumen" required="required" aria-required="true" aria-invalid="true">{{$promocion->resumen}}"</textarea>
+				      			<textarea id="resumen" class="form-control required" name="resumen" required="required" aria-required="true" aria-invalid="true">{{$promocion->resumen}}</textarea>
 	                    	</div>
 	                	</div>
 	                </div>
@@ -72,7 +72,7 @@
 	        			<div class="col-sm-12">
 	        				<div class="form-group form-group-default">
 	        					<label for="descripcion">Descripción</label>
-				      			<textarea id="descripcion" class="form-control required" name="descripcion" required="required" aria-required="true" aria-invalid="true">{{$promocion->descripcion}}"</textarea>
+				      			<textarea id="descripcion" class="form-control required" name="descripcion" required="required" aria-required="true" aria-invalid="true">{{$promocion->descripcion}}</textarea>
 	                    	</div>
 	                	</div>
 	                </div>

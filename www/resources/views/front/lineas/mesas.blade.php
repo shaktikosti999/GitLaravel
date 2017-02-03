@@ -253,7 +253,7 @@
 
 												<div class="fake-div">
 													<div id="counter">
-													    <div class="counter-value" data-count="{{$item->cantidad}}">$0</div>
+													    <div class="counter-value">${{number_format($item->cantidad)}} <em>MN</em></div>
 													</div>
 												</div>
 											</div><!-- /.article-content -->
@@ -489,38 +489,38 @@
 
 		<script type="text/javascript">
 	// jQuery Counter
-			var a = 0;
-				$(window).scroll(function() {
+			// var a = 0;
+			// 	$(window).scroll(function() {
 
-				  var oTop = $('#counter').offset().top - window.innerHeight;
-				  if (a == 0 && $(window).scrollTop() > oTop) {
-				    $('.counter-value').each(function() {
-				      var $this = $(this),
-				        countTo = $this.attr('data-count');
-				      $({
-				        countNum: $this.text()
-				      }).animate({
-				          countNum: countTo
-				        },
+			// 	  var oTop = $('#counter').offset().top - window.innerHeight;
+			// 	  if (a == 0 && $(window).scrollTop() > oTop) {
+			// 	    $('.counter-value').each(function() {
+			// 	      var $this = $(this),
+			// 	        countTo = $this.attr('data-count');
+			// 	      $({
+			// 	        countNum: $this.text()
+			// 	      }).animate({
+			// 	          countNum: countTo
+			// 	        },
 
-				        {
+			// 	        {
 
-				          duration: 2000,
-				          easing: 'swing',
-				          step: function() {
-				            $this.text(Math.floor(this.countNum));
-				          },
-				          complete: function() {
-				            $this.text(this.countNum);
-				            //alert('finished');
-				          }
+			// 	          duration: 2000,
+			// 	          easing: 'swing',
+			// 	          step: function() {
+			// 	            $this.text(Math.floor(this.countNum));
+			// 	          },
+			// 	          complete: function() {
+			// 	            $this.text(this.countNum);
+			// 	            //alert('finished');
+			// 	          }
 
-				        });
-				    });
-				    a = 1;
-				  }
+			// 	        });
+			// 	    });
+			// 	    a = 1;
+			// 	  }
 
-				});
+			// 	});
 	</script>
 
 	@stop

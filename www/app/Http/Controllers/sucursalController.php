@@ -273,6 +273,7 @@ class sucursalController extends Controller
     }
 
     public function saveGallery(Request $request){
+        // dd($request->all());
         if($request->hasFile('add_archivo')){
             $archivos = [];
             foreach( $request->file('add_archivo') as $archivo){
@@ -299,7 +300,36 @@ class sucursalController extends Controller
         }
         else
             $archivos = null;
-        if( galeria::store($request->input('add_sucursal'),['new'=>$archivos,'delete'=>$request->input('delete')]) )
+
+        if($request->hasFile('add_galeria')){
+            $slides = [];
+            foreach( $request->file('add_galeria') as $archivo){
+                $ext = strtolower($archivo->getClientOriginalExtension());
+                $extValidas = ['jpg','jpeg','png'];
+
+                if(in_array($ext, $extValidas)){
+                    $carpeta = 'assets/images/sucursal/galeria/';
+                    if(!file_exists(public_path() . '/' . $carpeta))
+                        mkdir(public_path() . '/' . $carpeta,0777,true);
+                    do{
+                        $nombre = "";
+                        $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                        for($i=0; $i<=16; $i++ ){
+                            $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
+                        }
+                    }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+                    $nombre .= '.' . $ext;
+                    if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                        $slides[] = '/' . $carpeta . $nombre;
+                    }
+                }                    
+            }
+        }
+        else
+            $slides = null;
+
+
+        if( galeria::store($request->input('add_sucursal'),['new'=>$archivos,'slider'=>$slides, 'delete'=>$request->input('delete')]) )
             return redirect('administrador/sucursal.html')->with('success','Galería actualizada');
         return redirect('administrador/sucursal.html')->with('warning','Hubo error al hacer los cambios');
     }

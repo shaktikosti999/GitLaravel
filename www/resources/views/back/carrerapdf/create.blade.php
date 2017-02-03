@@ -43,7 +43,7 @@
 		        			<div class="col-sm-12">
 		        				<div class="form-group form-group-default">
 		        					<label for="sucursal">Sucursal</label>
-					      			<select class="cs-select cs-skin-slide" data-init-plugin="cs-select" name="sucursal" id="sucursal">
+					      			<select class="form-control" name="sucursal[]" id="sucursal" multiple>
 					      				@foreach($sucursales as $sucursal)
 				                      	<option value="{{$sucursal->id}}">{{$sucursal->nombre}}</option>
 				                      	@endforeach

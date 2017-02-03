@@ -96,10 +96,11 @@ class sucursal_model{
         return $get;
     }
 
-    static function get_gallery($id){
+    static function get_gallery($id,$tipo = 1){
         $get = \DB::table('sucursal_galeria as s')
             ->where('id_sucursal',$id)
             ->where('estatus',1)
+            ->where('tipo',$tipo)
             ->where('eliminado',0)
             ->get();
         return $get;

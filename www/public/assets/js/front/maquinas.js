@@ -30,15 +30,17 @@
 					if (ids_maquinas == null)
 						$("#games").empty();	
 
+					var imagen = "";
 					$.each(data, function(index, val){
+						imagen = val.thumb != null ? val.thumb : val.imagen;
 
 						maquinas += '<li class="game posts-data" data-id="'+val.id+'">'
-										+'<a href="/maquinas-de-juego/detalle/'+val.slug+'" style="background-image: url('+val.imagen+')">' 
-											+'<span class="jackpot">'
-												+'<small>JACKPOT</small>'
-												+'<strong>'
-													+"$"+val.acumulado
-												+'</strong>'
+										+'<a href="/maquinas-de-juego/detalle/'+val.slug+'" style="background-image: url('+imagen+')">' 
+											// +'<span class="jackpot">'
+											// 	+'<small>JACKPOT</small>'
+											// 	+'<strong>'
+											// 		+"$"+val.acumulado
+											// 	+'</strong>'
 											+'</span>'
 											+'<span class="game-title">'
 												+'<strong>'

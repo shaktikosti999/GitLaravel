@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
                 $routeExists = \Route::getRoutes()->hasNamedRoute(end($breadcrumbs)->url . '/' . $item);
                 $breadcrumbs[] = (object)[
                     'url' => end($breadcrumbs)->url . '/' . $item,
-                    'text' => ucwords(str_replace("-", " ", $item))
+                    'text' => ucfirst(str_replace("-", " ", $item))
                 ];
             }
         // array_pop($breadcrumbs);

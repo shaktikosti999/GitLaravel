@@ -161,7 +161,7 @@
 							<div class="stick--point" id="jackpot"></div>
 							<h2>
 								<small>Jackpots</small>
-								Acumulado
+								Acumulados
 							</h2> 
 						</header><!-- /.section-head -->
 
@@ -190,7 +190,7 @@
 
 											<div class="fake-div">
 												<div id="counter">
-												    <div class="counter-value" >${{$item->cantidad}} <em>MN</em></div>
+												    <div class="counter-value" >${{number_format($item->cantidad)}} <em>MN</em></div>
 												    <!--<div class="counter-value" data-count="400">$100</div>
 												    <div class="counter-value" data-count="1500">$500</div>-->
 												</div>
@@ -214,14 +214,14 @@
 							<div class="section-entry">
 								<p>
 									<span>
-										Pagado
+										Pagados
 									</span>
 
 									<!--<a href="{{url('/pagados')}}">
 										Conoce los pagados
 									</a>-->
 
-									<a class="btn btn-red btn-small" href="#">
+									<a class="btn btn-red btn-small" href="{{url('/pagados')}}">
 										Miles de pesos repartidos
 									</a>
 

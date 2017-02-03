@@ -38,14 +38,27 @@ class gallery_model{
 			foreach( $args['new'] as $val){
 				$data[] = [
 					'id_sucursal'=>$id,
-					'imagen' => $val
+					'imagen' => $val,
+					'tipo' => 1
 				];
 			}
 			$ret2 = \DB::table('sucursal_galeria')->insert($data);
 		}
 		else
 			$ret2 = true;
-		return $del && $ret2;
+		if( isset($args['slider']) && count($args['slider']) ){
+			foreach( $args['slider'] as $val){
+				$data[] = [
+					'id_sucursal'=>$id,
+					'imagen' => $val,
+					'tipo' => 2
+				];
+			}
+			$ret3 = \DB::table('sucursal_galeria')->insert($data);
+		}
+		else
+			$ret3 = true;
+		return $del && $ret2 && $ret3;
 	}
 
 }

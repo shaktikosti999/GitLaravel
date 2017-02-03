@@ -17,13 +17,8 @@ class carrerapdfController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $carrera = carrera::all();
-        $carreras = [];
-        foreach($carrera as $val)
-            $carreras[$val->id_sucursal][] = $val;
-
         $data = [
-            'carreras' => $carreras
+            'carreras' => carrera::all()
         ];
         return view('back.carrerapdf.index',$data);
     }
@@ -52,7 +47,7 @@ class carrerapdfController extends Controller
         $this->validate($request,[
             'titulo' => 'required|string',
             'juego' => 'required|integer',
-            'sucursal' => 'integer',
+            // 'sucursal' => 'integer',
             'fecha' => 'required|date',
             'archivo' => 'required|mimes:pdf'
         ]);
@@ -62,7 +57,7 @@ class carrerapdfController extends Controller
             $extValidas = ['pdf'];
 
             if(in_array($ext, $extValidas)){
-                $carpeta = 'assets/images/carreras/' . $request->input('sucursal') . '/' . $request->input('juego') . '/';
+                $carpeta = 'assets/images/carreras/' . $request->input('juego') . '/';
                 if(!file_exists(public_path() . '/' . $carpeta))
                     mkdir(public_path() . '/' . $carpeta,0777,true);
                 do{
@@ -104,12 +99,19 @@ class carrerapdfController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
+        $sc = carrera::find_suc($id);
+        foreach($sc as $item){
+            $suc[] = $item->id_sucursal;
+        }
+
         $data = [
             'id'=>$id,
             'carrera' => carrera::find($id),
             'juegos' => \App\Models\juego_model::all(['id_linea'=>4]),
             'sucursales' => \App\Models\sucursal_model::all(),
+            'sucursales_carrera' => $suc
         ];
+        // dd($data);
         return view('back.carrerapdf.edit',$data);
     }
 
@@ -124,7 +126,7 @@ class carrerapdfController extends Controller
         $this->validate($request,[
             'titulo' => 'required|string',
             'juego' => 'required|integer',
-            'sucursal' => 'integer',
+            // 'sucursal' => 'integer',
             'fecha' => 'required|date',
             'archivo' => 'mimes:pdf'
         ]);

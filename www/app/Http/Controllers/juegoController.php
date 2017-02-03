@@ -64,6 +64,10 @@ class juegoController extends Controller
             'reglas' => 'string'
         ]);
 
+        $categoria = (int)trim($request->input('categoria')) > 0 ? trim($request->input('categoria')) : trim($request->input('categoria_txt'));
+        $categoria = $categoria != "" ? null : $categoria;
+
+
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
             $ext = strtolower($archivo->getClientOriginalExtension());
@@ -82,9 +86,34 @@ class juegoController extends Controller
                 }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
                 $nombre .= '.' . $ext;
                 if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
-                    $archivo = '/' . $carpeta . $nombre;
+                    $principal = '/' . $carpeta . $nombre;
 
-                    $evento = juego::store($request,$archivo);
+                    if($request->hasFile('thumb')){
+                        $archivo = $request->file('thumb');
+                        $ext = strtolower($archivo->getClientOriginalExtension());
+                        $extValidas = ['jpg','jpeg','png'];
+
+                        if(in_array($ext, $extValidas)){
+                            $carpeta = 'assets/images/juegos/';
+                            if(!file_exists(public_path() . '/' . $carpeta))
+                                mkdir(public_path() . '/' . $carpeta,0777,true);
+                            do{
+                                $nombre = "";
+                                $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                                for($i=0; $i<=16; $i++ ){
+                                    $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
+                                }
+                            }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+                            $nombre .= '.' . $ext;
+                            if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                                $thumb = '/' . $carpeta . $nombre;
+                            }
+                        }                    
+                    }
+                    else
+                        $thumb = null;
+
+                    $evento = juego::store($request,$principal,$categoria,$thumb);
                     $evento = $evento[0];
                     if(!$evento){
                         return redirect(url('/administrador/juego.html'))->with('success','Juego agregado correctamente');
@@ -140,6 +169,10 @@ class juegoController extends Controller
             'reglas' => 'string'
         ]);
 
+        $categoria = (int)trim($request->input('categoria')) > 0 ? trim($request->input('categoria')) : trim($request->input('categoria_txt'));
+        $categoria = trim($categoria) == "" ? null : $categoria;
+
+
         if($request->hasFile('archivo')){
             $archivo = $request->file('archivo');
             $ext = strtolower($archivo->getClientOriginalExtension());
@@ -158,14 +191,39 @@ class juegoController extends Controller
                 }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
                 $nombre .= '.' . $ext;
                 if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
-                    $archivo = '/' . $carpeta . $nombre;
+                    $principal = '/' . $carpeta . $nombre;
                 }
             }                    
         }
         else
-            $archivo = null;
+            $principal = null;
 
-        $evento = juego::update($id,$request,$archivo);
+        if($request->hasFile('thumb')){
+            $archivo = $request->file('thumb');
+            $ext = strtolower($archivo->getClientOriginalExtension());
+            $extValidas = ['jpg','jpeg','png'];
+
+            if(in_array($ext, $extValidas)){
+                $carpeta = 'assets/images/juegos/';
+                if(!file_exists(public_path() . '/' . $carpeta))
+                    mkdir(public_path() . '/' . $carpeta,0777,true);
+                do{
+                    $nombre = "";
+                    $str = "abcdefghijklmnopqrstuvwxyz0123456789";
+                    for($i=0; $i<=16; $i++ ){
+                        $nombre .= substr($str, rand(0,strlen($str)-1) ,1 );
+                    }
+                }while(file_exists(public_path() . '/' . $carpeta . $nombre . '.' . $ext));
+                $nombre .= '.' . $ext;
+                if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
+                    $thumb = '/' . $carpeta . $nombre;
+                }
+            }                    
+        }
+        else
+            $thumb = null;
+
+        $evento = juego::update($id,$request,$principal,$categoria,$thumb);
         $evento = $evento[0];
         if(!$evento){
             return redirect(url('/administrador/juego.html'))->with('success','Juego modificado correctamente');

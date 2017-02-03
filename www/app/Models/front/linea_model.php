@@ -207,6 +207,7 @@ class linea_model{
                 'j.titulo',
                 'j.imagen',
                 'j.resumen',
+                'j.thumb',
                 'js.archivo',
                 'j.slug',
                 'js.link',
@@ -298,9 +299,10 @@ class linea_model{
                 'c.archivo',
                 'j.imagen'
             )
+            ->join('carrera_sucursal as cs','cs.id_carrera','=','c.id_carrerapdf')
             ->join('juego as j','j.id_juego','=','c.id_juego');
         if( isset($args['id_sucursal']) )
-            $data = $data->where('c.id_sucursal',$args['id_sucursal']);
+            $data = $data->where('cs.id_sucursal',$args['id_sucursal']);
         if( isset($args['id_juego']) )
             $data = $data->where('j.id_juego',$args['id_juego']);
         $data = $data->get();

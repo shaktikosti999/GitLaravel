@@ -39,7 +39,7 @@
 				@foreach( $maquinas as $item )
 
 					<li class="game posts-data" data-id="{{ $item->id }}">
-						<a href="{{ url('/maquinas-de-juego/detalle/'.$item->slug) }}" style="background-image: url('{{ $item->imagen }}')"> 
+						<a href="{{ url('/maquinas-de-juego/detalle/'.$item->slug) }}" style="background-image: url('{{ $item->thumb !== null ? $item->thumb : $item->imagen }}')"> 
 							<span class="jackpot">
 							<?php /*
 								<small>JACKPOT</small>

@@ -249,9 +249,9 @@
 									<div class="form-group">
 										<label for="pay_tipo">Tipo</label>
 										<select name="pay_tipo" id="pay_tipo" class="form-control">
-											<option value="1">Acumulado</option>
-											<option value="2">Pagado</option>
-											<option value="3">Por Pagar</option>
+											<option value="1">Máquinas de Juego Acumulado por Pagar</option>
+											<option value="2">Máquinas de Juego Pagado</option>
+											<option value="3">Juegos de Mesa Por Pagar</option>
 										</select>
 									</div>
 									<div class="form-group col-sm-6">

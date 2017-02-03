@@ -74,14 +74,14 @@
 										</li>
 										
 										<li>
-											<a href="{{url('lineas-de-juego/mesas-de-juego')}}">Mesas de Juego</a>
+											<a href="{{url('lineas-de-juego/mesas-de-juego')}}">Juegos de Mesa</a>
 										</li>
 										<li>
-											<a href="{{url('lineas-de-juego/apuesta-deportiva')}}">Apuesta Deportiva</a>
+											<a href="{{url('lineas-de-juego/apuesta-deportiva')}}">Apuesta Deportes</a>
 										</li>	
 
 										<li>
-											<a href="{{url('lineas-de-juego/apuesta-de-carreras?game=caballos')}}">Apuesta de Carreras</a>
+											<a href="{{url('lineas-de-juego/apuesta-de-carreras?game=caballos')}}">Apuesta Carreras</a>
 										</li>
 
 											
