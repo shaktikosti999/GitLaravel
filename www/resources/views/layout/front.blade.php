@@ -117,7 +117,7 @@
 									<a href="/contacto">Contacto</a>
 								</li>
 
-								<li class="desktop-hidden tablet-hidden">
+								<!--<li class="desktop-hidden tablet-hidden">
 									<a href="#">
 										<i class="fa fa-facebook" aria-hidden="true"></i>
 									</a>
@@ -134,7 +134,7 @@
 									<a href="#">
 										<i class="fa fa-youtube-play" aria-hidden="true"></i>
 									</a>
-								</li>
+								</li>-->
 
 								<div class="socials-footer hdr-btn">
 								<!--<h4>Síguenos</h4>-->
@@ -196,7 +196,7 @@
 									@endif
 								</ul>
 							</div><!-- /.socials-footer -->
-							
+
 						</nav><!-- /.nav -->
 
 						<div class="col col-size4 hdr-redes">
