@@ -122,8 +122,9 @@
 										<i class="fa fa-facebook" aria-hidden="true"></i>
 									</a>
 								</li>
-								
-								<li class="desktop-hidden tablet-hidden">
+							</ul>
+
+							<li class="desktop-hidden tablet-hidden">
 									<a href="#">
 										<i class="fa fa-twitter" aria-hidden="true"></i>
 									</a>
@@ -134,7 +135,68 @@
 										<i class="fa fa-youtube-play" aria-hidden="true"></i>
 									</a>
 								</li>
-							</ul>
+
+								<div class="socials-footer hdr-btn">
+								<!--<h4>Síguenos</h4>-->
+
+
+								<ul>
+									@if( isset($sn[1]) && count($sn[1]) )
+									<li>
+										<a href="#">
+											<i class="fa fa-facebook" aria-hidden="true"></i>
+										</a>
+
+										<ul class="socials-dropdown">
+											
+											@foreach( $sn[1] as $val )
+											<li>
+												<a href="{{($val->link)}}" target="_blank">{{$val->nombre}}</a>
+											</li>
+											@endforeach
+											
+											
+											
+										</ul><!-- /.socials-dropdown -->
+									</li>
+									@endif
+									@if( isset($sn[2]) && count($sn[2]) )
+									<li>
+										<a href="#">
+											<i class="fa fa-twitter" aria-hidden="true"></i>
+										</a>
+
+										<ul class="socials-dropdown">
+											@foreach( $sn[2] as $val )
+											<li>
+												<a href="{{($val->link)}}" target="_blank">{{$val->nombre}}</a>
+											</li>
+											@endforeach
+											
+											
+										</ul><!-- /.socials-dropdown -->
+									</li>
+									@endif
+									@if( isset($sn[3]) && count($sn[3]) )
+									<li>
+										<a href="#">
+											<i class="fa fa-youtube-play" aria-hidden="true"></i>
+										</a>
+
+										<ul class="socials-dropdown">
+											@foreach( $sn[3] as $val )
+											<li>
+												<a href="{{($val->link)}}" target="_blank">{{$val->nombre}}</a>
+											</li>
+											@endforeach
+											
+											
+										</ul><!-- /.socials-dropdown -->
+									</li>
+									@endif
+								</ul>
+							</div><!-- /.socials-footer -->
+							
 						</nav><!-- /.nav -->
 
 						<div class="col col-size4 hdr-redes">

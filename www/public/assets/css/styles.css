@@ -514,6 +514,7 @@ blockquote:last-child { margin-bottom: 0; }
 	.footer .col-size4 { width: 100%; text-align: center; }	
 	
 	.footer .socials-footer  { text-align: center; float: none; margin: 0 auto; }
+	.nav .socials-footer .socials-dropdown {display: none;}
 	 
 }
 /* ------------------------------------------------------------ *\
@@ -563,12 +564,13 @@ blockquote:last-child { margin-bottom: 0; }
 	.header.fixed .nav-trigger-wrapper { height: 71px; padding-top: 30px; }
 	.header.fixed .nav-trigger-wrapper a { top: -5px; } 
 
-	.header.nav-mobile-open { background: rgba(0, 0, 0, 0.9); z-index: 9999 !important;} 
+	.header.nav-mobile-open { background: /*rgba(0, 0, 0, 0.9)*/ #000; z-index: 9999 !important;} 
 	.header.nav-mobile-open .nav-trigger-wrapper { height: 71px; padding-top: 30px; }
 	.header.nav-mobile-open .nav-trigger-wrapper a { top: -5px; }
 	.header.nav-mobile-open .btn-search { height: 71px; } 
 	.header.nav-mobile-open .socials { margin-top: 12px; } 
 	.socials-footer.hdr-btn {display: none;}
+	.header .logo {transform: scale(.7);}
 }
 /* Mobile */
 @media (max-width: 767px) {
@@ -1104,12 +1106,12 @@ li:first-child { margin: 0;}
 }
 @media (max-width: 1023px) { 	 
 	.nav > ul > li a { padding: 15px 0; color: #fff; text-transform: uppercase; text-decoration: none; } 
-
+	
 	.nav > ul > .has-dropdown a:after { display: inline-block; content: ''; width: 8px; height: 8px; border: 1px solid #fff; 
 		border-width: 0 1px 1px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); position: relative; top: -3px; margin-left: 8px; transition: all .3s; }
 
 	.nav .desktop-hidden { display: block; }
-	.nav { position: fixed; top: 13%; left: 0; right: 0; margin: 0 !important; width: 100%; text-align: center; display: none; height: 87%; overflow-y: scroll; 
+	.nav { position: fixed; top: 11%; left: 0; right: 0; margin: 0 !important; width: 100%; text-align: center; display: none; height: 87%; overflow-y: scroll; background: #000;
 		-webkit-overflow-scrolling: touch; /* deja que se desplace, con retardo */
         -webkit-overflow-scrolling: auto; /* para el scroll inmediatamente */}
 	 
@@ -1117,8 +1119,8 @@ li:first-child { margin: 0;}
 	.nav li { display: block; width: 100%; margin: 0; background: rgba(0, 0, 0, 0.9); }
 	.nav li a { display: block; }
 	.nav > ul > li + li { margin-left: 0px; }
-	.nav .has-dropdown .dropdown { position: static; width: 100%; opacity: 1; visibility: visible; background: none; padding: 10px 0; display: none; }
-	.nav .has-dropdown .dropdown li {background: rgba(255, 0, 0, 0.6); }
+	.nav .has-dropdown .dropdown { position: relative; width: 100%; opacity: 1; visibility: visible; background: none; padding: 10px 0; display: none; z-index: 1; }
+	.nav .has-dropdown .dropdown li {background: /*rgba(255, 0, 0, 0.6)*/ #ff0000;  }
 	.nav .has-dropdown .dropdown li a:after { display: none; }
 	.nav .has-dropdown.active .dropdown { display: block; }
 	
@@ -1127,8 +1129,12 @@ li:first-child { margin: 0;}
 	
 	.nav .tablet-hidden { padding-bottom: 20px; }
 	.nav .tablet-hidden:hover a:after { display: block; }
-	.nav .tablet-hidden a { border: 2px solid #fff; border-radius: 50%; padding: 0; height: 40px; width: 40px; margin: 0 auto;  }
+	.nav .tablet-hidden a { border: 2px solid #fff; border-radius: 50%; padding: 0; height: 40px; width: 40px; margin: 0 auto; display: none;  }
 	.nav .tablet-hidden a i { font-size: 20px; position: relative; top: 8px; } 
+	.nav .socials-footer.hdr-btn {position: absolute; display: block; left: 50%; transform: translateX(-50%); top: 270px;}
+ 	.socials-footer > ul > li > a {line-height: 26px !important;}
+ 	.socials-footer > ul > li {padding: 10px 0 10px 0;}
+ 	.socials-footer.hdr-btn > ul > li + li {margin-left: 0 !important;}
 }
 @media(max-height: 580px){
 	.nav { /*height: calc(100vh - 71px);*/ top: 71px; /*overflow: auto;*/ }
@@ -1811,6 +1817,8 @@ li:first-child { margin: 0;}
 @media (max-width: 1023px) {
 	.slider-games-available .slide-content > .col { width: 100%; margin-bottom: 30px; }
 	.slider-games-available .col-1of2 {width: 100%;}
+
+	.socials-footer > ul > li.active .socials-dropdown {display: block;}
 }
 /* Mobile */
 @media (max-width: 767px) {
@@ -1864,12 +1872,12 @@ li:first-child { margin: 0;}
 }
 /* Mobile */
 @media (max-width: 767px) {
-	.socials-footer > ul > li { width: 100%; margin-bottom: 20px; } 
-	.socials-footer > ul > li + li { margin: 0; margin-bottom: 20px; }
+	.socials-footer > ul > li { width: 100%; /*margin-bottom: 20px;*/ } 
+	.socials-footer > ul > li + li { margin: 0; /*margin-bottom: 20px;*/ }
 	
 	.socials-footer > ul > li.active > a { border-radius: 23px 23px 0 0; }
 	.socials-footer > ul > li.active > a:before { display: inline-block; content: ''; background: #000; position: absolute; bottom: -4px; height: 5px; width: 100%; right: 0; z-index: 10; }
-	.socials-footer > ul > li .socials-dropdown { opacity: 1; overflow: visible; visibility: visible; pointer-events: all; background: #000; z-index: 100; position: static; border-radius: 0; display: none; }
+	.socials-footer > ul > li .socials-dropdown { opacity: 1; overflow: visible; visibility: visible; pointer-events: all; background: #000; z-index: 100; position: static; border-radius: 0; display: block; }
 	.socials-footer > ul > li.active .socials-dropdown { display: block; }
 }
 /* ------------------------------------------------------------ *\
@@ -2541,6 +2549,10 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.content-clock h6 {margin-top: 40px;}
 	.content-car h6 {margin-top: 40px;}
 	.sucursales li {height: 780px;}
+	.header .logo {transform: scale(0.6);}
+	.nav .socials-footer.hdr-btn {position: relative; display: block; left: 0; transform: inherit; top: -290px; width: 100%; max-width: 100%;}
+	.socials-footer > ul > li > a {line-height: 26px;}
+	.nav .tablet-hidden {padding-bottom: 0;}
 }
 
 @media (max-width: 1320px) {
@@ -2715,7 +2727,4 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
     background-color: #fff;
 }
 .section-jackpots .section-entry .btn {position: relative; font-size: 16px; height: auto; line-height: 1; width: auto; min-width: auto; padding: 10px 28px; font-weight: 500; float: right; display: inline-block; color: #fff; top: 40px;}
-
-
-
-
+.nav .socials-footer {display: none;}
