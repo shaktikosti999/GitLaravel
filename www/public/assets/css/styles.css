@@ -2616,6 +2616,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.fs-dropdown-selected {top: 30px;}
 	.slider-games .slide-caption {padding: 0 0 20px 20px;}
 	.fs-dropdown-selected {font-size: 17px;}
+	.content-map {width: 100%;}
 }
 
 @media(max-width: 768px){
