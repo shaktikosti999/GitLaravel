@@ -2533,6 +2533,15 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 }
 
 /* Tablet Portrait */
+@media (max-width: 767px) {
+	.content-map, .content-clock, .content-car, .content-phone {width: 100% !important; float: none !important;}
+	.ico-ubc2 {height: 240px !important;}
+	.content-map h6 {margin-top: 40px;}
+	.content-phone h6  {margin-top: 40px;}
+	.content-clock h6 {margin-top: 40px;}
+	.content-car h6 {margin-top: 40px;}
+	.sucursales li {height: 780px;}
+}
 
 @media (max-width: 1320px) {
 .sport-calendar .slick-next {right: 0px; left: auto;}
@@ -2607,7 +2616,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.table-sport table td p {font-size: 20px;}
 	.section-events img {height: auto;}
 	.sucursales li:nth-child(2) {position: relative; float: left; display: block; width: 100%; padding: 0 14px; margin-top: 30px;}
-	.ico-ubc1 {height: 160px !important;}
+	.ico-ubc1 {height: 240px !important;}
 	.content .right-item .btn {font-size: 13px !important;}
 	.lightbox-calendar .modal.modal-calendar {max-width: 540px !important;}
 	.section-jackpots .section-entry .btn {width: 100% !important; top: 10px !important;}	
@@ -2616,7 +2625,6 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.fs-dropdown-selected {top: 30px;}
 	.slider-games .slide-caption {padding: 0 0 20px 20px;}
 	.fs-dropdown-selected {font-size: 17px;}
-	.content-map {width: 100%;}
 }
 
 @media(max-width: 768px){
