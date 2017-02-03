@@ -1132,7 +1132,6 @@ li:first-child { margin: 0;}
 	.nav .tablet-hidden a { border: 2px solid #fff; border-radius: 50%; padding: 0; height: 40px; width: 40px; margin: 0 auto; display: none;  }
 	.nav .tablet-hidden a i { font-size: 20px; position: relative; top: 8px; } 
 	.nav .socials-footer.hdr-btn {position: relative; display: block; left: 0; transform: inherit; top: 0; width: 100%; max-width: 100%;}
- 	.socials-footer > ul > li > a {line-height: 26px !important;}
  	.socials-footer > ul > li {padding: 10px 0 10px 0; width: 100%;}
  	.socials-footer.hdr-btn > ul > li + li {margin-left: 0 !important;}
  	/*.socials-footer > ul > li .socials-dropdown    { opacity: 1;
@@ -2562,8 +2561,13 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.sucursales li {height: 780px;}
 	.header .logo {transform: scale(0.6);}
 	.nav .socials-footer.hdr-btn {position: relative; display: block; left: 0; transform: inherit; top: 0; width: 100%; max-width: 100%;}
-	.socials-footer > ul > li > a {line-height: 26px;}
 	.nav .tablet-hidden {padding-bottom: 0;}
+
+	/*submenu*/
+	.nav .socials-footer > ul > li > a {line-height: 26px !important;}
+
+	/*footer*/
+	.socials-footer > ul > li > a {line-height: 44px;}
 }
 
 @media (max-width: 1320px) {
