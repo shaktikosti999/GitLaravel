@@ -1109,7 +1109,9 @@ li:first-child { margin: 0;}
 		border-width: 0 1px 1px 0; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); position: relative; top: -3px; margin-left: 8px; transition: all .3s; }
 
 	.nav .desktop-hidden { display: block; }
-	.nav { position: absolute; top: 100%; left: 0; right: 0; margin: 0 !important; width: 100%; text-align: center; display: none; }
+	.nav { position: fixed; top: 13%; left: 0; right: 0; margin: 0 !important; width: 100%; text-align: center; display: none; height: 87%; overflow-y: scroll; 
+		-webkit-overflow-scrolling: touch; /* deja que se desplace, con retardo */
+        -webkit-overflow-scrolling: auto; /* para el scroll inmediatamente */}
 	 
 	.nav > ul { height: 100% !important; }
 	.nav li { display: block; width: 100%; margin: 0; background: rgba(0, 0, 0, 0.9); }
@@ -1420,7 +1422,7 @@ li:first-child { margin: 0;}
 /* ------------------------------------------------------------ *\
 	Section providers
 \* ------------------------------------------------------------ */
-.section-providers .section-head { padding: 74px 0 20px; position: relative; }
+.section-providers .section-head { padding: 74px 0 20px; position: relative; z-index: -1000000000;}
 /* Mobile */
 @media (max-width: 767px) {
 	.section-providers .section-head { padding-bottom: 40px; }
@@ -2613,6 +2615,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.section-map .section-actions {padding-top: 30px;}
 	.fs-dropdown-selected {top: 30px;}
 	.slider-games .slide-caption {padding: 0 0 20px 20px;}
+	.fs-dropdown-selected {font-size: 17px;}
 }
 
 @media(max-width: 768px){
