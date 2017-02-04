@@ -2214,7 +2214,9 @@ li:first-child { margin: 0;}
 /* --------------- apuestas, sucursales, tutoriales -----------------*/
 
 .content {max-width: 1142px; margin: auto; float: right; width: 100%; padding: 15px;}
-.right-item {width: 50%; float: right; border: 2px solid #dfdfdf; padding: 2%; overflow-y: scroll;}
+.right-item {width: 50%; float: right; border: 2px solid #dfdfdf; padding: 2%; overflow-y: scroll; height: 483px; 
+	-webkit-overflow-scrolling: touch; /* deja que se desplace, con retardo */
+    -webkit-overflow-scrolling: auto; /* para el scroll inmediatamente */}
 .right-item h3 {text-transform: uppercase;}
 .right-item ul {list-style: none;}
 .txt-left {border-bottom: 2px solid #f0f0f0;}
