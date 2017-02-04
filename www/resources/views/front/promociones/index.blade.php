@@ -54,7 +54,7 @@
 
 	<div class="main ">
 		
-		@if( isset( $promociones ) && count( $promociones ) )
+		@if( isset( $promociones ) && count( $promociones ) && 1 == 2 )
 
 			<section class="section-slider">
 				<div class="shell">

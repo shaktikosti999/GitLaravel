@@ -292,6 +292,7 @@ class linea_model{
 
     static function get_programs($args = [] ){
         $data = \DB::table('carrerapdf as c')
+            // ->distinct()
             ->select(
                 'c.titulo',
                 'c.fecha',
@@ -305,7 +306,10 @@ class linea_model{
             $data = $data->where('cs.id_sucursal',$args['id_sucursal']);
         if( isset($args['id_juego']) )
             $data = $data->where('j.id_juego',$args['id_juego']);
-        $data = $data->get();
+        $data = $data
+            ->where('c.estatus',1)
+            ->where('c.eliminado',0)
+            ->get();
         return $data;
     }
 

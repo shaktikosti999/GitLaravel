@@ -1089,7 +1089,7 @@ li:first-child { margin: 0;}
 
 	.nav .has-dropdown { position: relative; }
 
-	.nav > ul .dropdown a { padding: 10px 10px; text-transform: capitalize; display: block; } 
+	.nav > ul .dropdown a { padding: 10px 10px; text-transform: none; display: block; } 
 	.nav > ul .dropdown a:hover { color: #fff; background: #c11b22; }
 	.nav > ul .dropdown a:after { display: none; }
 

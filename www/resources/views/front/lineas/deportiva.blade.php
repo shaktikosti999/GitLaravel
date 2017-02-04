@@ -838,7 +838,7 @@
 
 									<div class="col col-1of3">
 										<article class="article-fun">
-											<a href="{{ '/lineas-de-juego/' . $item->slug }}" style="background-image: url('{{ $item->imagen }}')"> 
+											<a href="{{ url('/lineas-de-juego/' . $item->slug) }}" style="background-image: url('{{ $item->imagen }}')"> 
 												<strong>
 													{{ $item->linea }}
 													<span>{{ $item->slogan }}</span>	
