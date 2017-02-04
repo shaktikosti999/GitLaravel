@@ -603,7 +603,7 @@ blockquote:last-child { margin-bottom: 0; }
 .article-entry { padding-bottom: 41px; padding-top: 41px; }
 .article-entry p { margin: 0; line-height: 1.4; color: #000; }
 .article-entry p + p { margin-top: 21px; color: #000;}
-.article-entry ul {padding-left: 40px;}
+/*.article-entry ul {padding-left: 40px;}*/
 .article-entry li.MsoNormal {margin-left: 25px;}
 .article-entry ol {padding-left: 40px;}
 .article-image img { width: auto; height: auto; max-width: 100%;}
@@ -691,7 +691,7 @@ blockquote:last-child { margin-bottom: 0; }
 /* Mobile */
 @media (max-width: 767px) {
 	.article-game-available.large .list-links li { width: 100%; text-align: center; margin-bottom: 20px; }
-	.article-game-available.large .list-links li a { margin: 0; }
+	.article-game-available.large .list-links li a { margin: 0; width: 100%; padding-left: 0;}
 }
 /* ------------------------------------------------------------ *\
 	box-current-promotions
@@ -1134,16 +1134,6 @@ li:first-child { margin: 0;}
 	.nav .socials-footer.hdr-btn {position: relative; display: block; left: 0; transform: inherit; top: 0; width: 100%; max-width: 100%;}
  	.socials-footer > ul > li {padding: 10px 0 10px 0; width: 100%;}
  	.socials-footer.hdr-btn > ul > li + li {margin-left: 0 !important;}
- 	/*.socials-footer > ul > li .socials-dropdown    { opacity: 1;
-    overflow: visible;
-    visibility: visible;
-    pointer-events: all;
-    background: #000;
-    z-index: 100;
-    position: static;
-    border-radius: 0;
-    display: block;
-}*/
 	.socials-footer > ul > li .socials-dropdown { opacity: 1; visibility: visible; pointer-events: all; background: #000; z-index: 100; position: static; border-radius: 0; display: block; }
 }
 @media(max-height: 580px){
@@ -1801,7 +1791,7 @@ li:first-child { margin: 0;}
 	.left-item {padding: 5% !important;}
 	/*.calendar-module tr td.new.day {padding-bottom: 37px !important;}*/
 	.right-item {padding: 5% !important;}
-	.slider-games-available .col { padding: 0 !important; }
+	/*.slider-games-available .col { padding: 0 !important; }*/
 }
 /* ------------------------------------------------------------ *\
 	Slider Games Available
@@ -1838,7 +1828,11 @@ li:first-child { margin: 0;}
 	.slider-games-available .slider-clip { padding: 0 20px; } 		
 	.slider-games-available .slide-content .col { width: 100%; }
 	.slider-games-available { padding-top: 50px; } 
-	.slider-games-available .slide { padding: 0 5px; margin: 0 10px; } 
+	.slider-games-available .slide { /*padding: 0 5px;*/ margin: 0 10px; } 
+	.article-game-available.small {    min-height: 220px;
+    border: 2px solid #dfdfdf;
+    padding: 22px 18px 0;
+    transition: all .3s;}
 	
 }
 /* ------------------------------------------------------------ *\
@@ -1887,7 +1881,7 @@ li:first-child { margin: 0;}
 	
 	.socials-footer > ul > li.active > a { border-radius: 23px 23px 0 0; }
 	.socials-footer > ul > li.active > a:before { display: inline-block; content: ''; background: #000; position: absolute; bottom: -4px; height: 5px; width: 100%; right: 0; z-index: 10; }
-	.socials-footer > ul > li .socials-dropdown { opacity: 1; overflow: visible; visibility: visible; pointer-events: all; background: #000; z-index: 100; position: static; border-radius: 0; display: block; }
+	/*.socials-footer > ul > li .socials-dropdown { opacity: 1; overflow: visible; visibility: visible; pointer-events: all; background: #000; z-index: 100; position: static; border-radius: 0; display: block; }*/
 	.socials-footer > ul > li.active .socials-dropdown { display: block; width: 60%; margin-left: -25%; position: relative; left: 45%;}
 }
 /* ------------------------------------------------------------ *\
@@ -2560,14 +2554,21 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.content-car h6 {margin-top: 40px;}
 	.sucursales li {height: 780px;}
 	.header .logo {transform: scale(0.6);}
-	.nav .socials-footer.hdr-btn {position: relative; display: block; left: 0; transform: inherit; top: 0; width: 100%; max-width: 100%;}
+	.slider-secondary .slide-inner .breadcrumbs {padding-top: 45px !important; }
 	.nav .tablet-hidden {padding-bottom: 0;}
+	.section-games-available h2 {margin-top: 0;}
+	.calendar-content {padding: 28px 18px 8px 18px;}
+	.indications p {margin-left: 40px;}
+	.right-item {height: 500px;}
 
 	/*submenu*/
 	.nav .socials-footer > ul > li > a {line-height: 26px !important;}
+	/*.nav .socials-footer > ul > li.active .socials-dropdown { display: block; width: 60%; margin-left: -25%; position: relative; left: 45%;}*/
+	.nav .socials-footer.hdr-btn {position: relative; display: block; left: 0; transform: inherit; top: 0; width: 100%; max-width: 100%;}
 
 	/*footer*/
 	.socials-footer > ul > li > a {line-height: 44px;}
+	.socials-footer .socials-dropdown {display: none;}
 }
 
 @media (max-width: 1320px) {
@@ -2649,7 +2650,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.section-jackpots .section-entry .btn {width: 100% !important; top: 10px !important;}	
 	.sucursales h6, p {padding-left: 0 !important;}
 	.section-map .section-actions {padding-top: 30px;}
-	.fs-dropdown-selected {top: 30px;}
+	/*.fs-dropdown-selected {top: 30px;}*/
 	.slider-games .slide-caption {padding: 0 0 20px 20px;}
 	.fs-dropdown-selected {font-size: 17px;}
 }
