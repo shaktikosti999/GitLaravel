@@ -6,7 +6,6 @@
 
 
 
-
 		// date picker
 		if (typeof activeDays != "undefined" ) {
 			 
@@ -40,6 +39,7 @@
                   // }
                 }
 
+
                 
                 
 	      	}).datepicker("setDate", null).on('changeDate',function(e){
@@ -66,9 +66,7 @@
 	      	
 		}
 
-
-
-			
+		
 
 		$.ajaxSetup({
 		    headers: {
@@ -430,6 +428,8 @@
 
 
 	}); //jQuery end
+	
+
 
 	$(function() {
 		var map; 
@@ -667,6 +667,16 @@ $(function() {
     }, 500);
   });
 });
+
+	$('.fs-dropdown').on(
+		 { 'touchstart' : function(){
+		  
+		   $(this).toggleClass('fs-dropdown-open');
+		   alert('hola');
+
+		  } 
+		 }
+		);
 
 
 

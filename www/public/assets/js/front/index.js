@@ -69,7 +69,7 @@
 		});
 	}
 
-	$('.select_ciudad_mapa').on('change', function(){		
+	$('.select_ciudad_mapa').on('change', 'touchstart', function(){		
 		var ciudad = $('[name="ciudad_mapa"]>option:contains("' + $(this).parent().children()[1].innerText + '")').attr('data-ciudad');
 		$('#message').text('');
 		$('.select_ciudad_modal2').val(ciudad).trigger('change');
