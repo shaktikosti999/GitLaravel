@@ -1119,8 +1119,8 @@ li:first-child { margin: 0;}
         -webkit-overflow-scrolling: auto; /* para el scroll inmediatamente */}
 	 
 	/*.nav > ul { height: 100% !important; }*/
-	.nav li { display: block; width: 100%; margin: 0; background: rgba(0, 0, 0, 0.9); }
-	.nav li a { display: block; }
+	/*.nav li { display: block; width: 100%; margin: 0; background: rgba(0, 0, 0, 0.9); }*/
+	.nav li a { display: block; padding-top: 0;}
 	.nav > ul > li + li { margin-left: 0px; }
 	.nav .has-dropdown .dropdown { position: static; width: 100%; opacity: 1; visibility: visible; background: none; padding: 10px 0; display: none; z-index: 1; }
 	.nav .has-dropdown .dropdown li {background: rgba(255, 0, 0, 0.6);  }
@@ -1135,7 +1135,7 @@ li:first-child { margin: 0;}
 	.nav .tablet-hidden a { border: 2px solid #fff; border-radius: 50%; padding: 0; height: 40px; width: 40px; margin: 0 auto; display: none;  }
 	.nav .tablet-hidden a i { font-size: 20px; position: relative; top: 8px; } 
 	.nav .socials-footer.hdr-btn {position: relative; display: block; left: 0; transform: inherit; top: 0; width: 100%; max-width: 100%;}
- 	.socials-footer > ul > li {padding: 10px 0 10px 0; width: 100%;}
+ 	.socials-footer > ul > li {padding: 10px 0 10px 0; width: 60%;}
  	.socials-footer.hdr-btn > ul > li + li {margin-left: 0 !important;}
 	.socials-footer > ul > li .socials-dropdown { opacity: 1; visibility: visible; pointer-events: all; background: #000; z-index: 100; position: static; border-radius: 0; display: block; }
 }
@@ -1822,6 +1822,8 @@ li:first-child { margin: 0;}
 	.slider-games-available .col-1of2 {width: 100%;}
 
 	.socials-footer > ul > li.active .socials-dropdown {display: block;}
+	.socials-footer > ul > li.active > a { border-radius: 23px 23px 0 0; }
+	.socials-footer > ul > li.active > a:before { display: inline-block; content: ''; background: #000; position: absolute; bottom: -4px; height: 5px; width: 100%; right: 0; z-index: 10; }
 }
 /* Mobile */
 @media (max-width: 767px) {
@@ -1874,7 +1876,7 @@ li:first-child { margin: 0;}
 
 @media(min-width: 768px){
 	.socials-footer > ul > li:hover > a { border-radius: 23px 23px 0 0; }
-	.socials-footer > ul > li:hover > a:before { display: inline-block; content: ''; background: #000; position: absolute; bottom: -4px; height: 5px; width: 100%; right: 0; z-index: 10; }
+	/*.socials-footer > ul > li:hover > a:before { display: inline-block; content: ''; background: #000; position: absolute; bottom: -4px; height: 5px; width: 100%; right: 0; z-index: 10; }*/
 	.socials-footer > ul > li:hover .socials-dropdown { opacity: 1; overflow: visible; visibility: visible; pointer-events: all; background: #000; z-index: 100; }
 }
 /* Mobile */
@@ -2567,7 +2569,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.right-item {height: 500px;}
 
 	/*submenu*/
-	.nav .socials-footer > ul > li > a {line-height: 26px !important;}
+	.nav .socials-footer > ul > li > a {line-height: 45px !important;}
 	/*.nav .socials-footer > ul > li.active .socials-dropdown { display: block; width: 60%; margin-left: -25%; position: relative; left: 45%;}*/
 	.nav .socials-footer.hdr-btn {position: relative; display: block; left: 0; transform: inherit; top: 0; width: 100%; max-width: 100%;}
 
@@ -2592,6 +2594,10 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.serie-item {width: 47%;}
 }
 
+@media (max-width: 1033px) {
+	.footer .col-size4 {display: none;}
+}
+
 @media (max-width: 1023px) {
 	.sport-calendar .slick-arrow { background: #fff url(../css/images/ico-arrow-gray@2x.png) no-repeat 0 0; background-size: 60px 60px; bottom: 50%; margin-bottom: -30px; }
 	.sport-calendar .slick-next { background: #fff url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0; background-size: 60px 60px; }
@@ -2606,6 +2612,9 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.btn-sport .btn-calendar-sport {height: auto; line-height: 1; padding: 20px 30px;}
 	.sucursales li {width: 100%; border-bottom: 1px solid #efefef;}
 	.sucursales li:nth-child(2) {position: relative; float: left; display: block; width: 100%; padding: 0 14px; margin-top: 30px;}
+
+	.nav .socials-footer .socials-dropdown {display: none;}
+	.fs-dropdown-element {z-index: 100;}
 }
 
 @media (max-width: 920px) {
@@ -2658,7 +2667,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	/*.fs-dropdown-selected {top: 30px;}*/
 	.slider-games .slide-caption {padding: 0 0 20px 20px;}
 	.fs-dropdown-selected {font-size: 17px; z-index: 60 !important;}
-	.fs-dropdown-element {z-index: 60;}
+	.fs-dropdown-element {z-index: 100;}
 }
 
 @media(max-width: 768px){
