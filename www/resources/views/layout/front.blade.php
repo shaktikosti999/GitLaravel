@@ -66,7 +66,7 @@
 							<ul>
 								
 								<li class="has-dropdown">
-									<a href="{{url('lineas-de-juego')}}">opciones De Diversión</a>
+									<a class="active" href="{{url('lineas-de-juego')}}">opciones De Diversión</a>
 
 									<ul class="dropdown">
 										<li>
