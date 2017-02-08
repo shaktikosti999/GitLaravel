@@ -2563,7 +2563,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.content-car h6 {margin-top: 40px;}
 	.sucursales li {height: 780px;}
 	.header .logo {transform: scale(0.6);}
-	.slider-secondary .slide-inner .breadcrumbs {padding-top: 45px !important; }
+	.slider-secondary .slide-inner .breadcrumbs {padding-top: 45px !important; display: none;}
 	.nav .tablet-hidden {padding-bottom: 0;}
 	.section-games-available h2 {margin-top: 0;}
 	.calendar-content {padding: 28px 18px 8px 18px;}
