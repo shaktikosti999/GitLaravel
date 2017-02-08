@@ -64,9 +64,9 @@
 						
 						<nav class="nav">
 							<ul>
-								
+								<?php $uri = explode('/',Request::path());$uri = $uri[0]; ?>
 								<li class="has-dropdown">
-									<a class="active" href="{{url('lineas-de-juego')}}">opciones De Diversión</a>
+									<a {{$uri == "lineas-de-juego" ? 'class=active' : ''}} href="{{url('lineas-de-juego')}}">opciones De Diversión</a>
 
 									<ul class="dropdown">
 										<li>
@@ -89,15 +89,15 @@
 								</li>
 								
 								<li>
-									<a href="/promociones">promociones Y Eventos</a>
+									<a {{$uri == "promociones" ? 'class=active' : ''}} href="/promociones">promociones Y Eventos</a>
 								</li>
 								
 								<li>
-									<a href="{{url('sucursal')}}">ubicaciones</a>
+									<a {{$uri == "sucursal" ? 'class=active' : ''}} href="/sucursal">ubicaciones</a>
 								</li>
 								
 								<li {{isset($submenu) && count($submenu) ? 'class=has-dropdown' : ''}}>
-									<a href="/caliente_club">caliente Club</a>
+									<a {{$uri == "caliente_club" ? 'class=active' : ''}} href="/caliente_club">caliente Club</a>
 									@if( isset($submenu) && count($submenu) )
 										<ul class="dropdown">
 											@foreach($submenu as $item)
@@ -110,11 +110,11 @@
 								</li>
 
 								<li class="desktop-hidden">
-									<a href="/quienes_somos">Quíenes somos</a>
+									<a {{$uri == "quienes_somos" ? 'class=active' : ''}} href="/quienes_somos">Quíenes somos</a>
 								</li>
 								
 								<li class="desktop-hidden">
-									<a href="/contacto">Contacto</a>
+									<a {{$uri == "contacto" ? 'class=active' : ''}} href="/contacto">Contacto</a>
 								</li>
 
 								<!--<li class="desktop-hidden tablet-hidden">
