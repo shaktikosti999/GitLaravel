@@ -53,12 +53,12 @@
 	        </section>
 	<!--END: LIGHTBOX UBICACION CIUDAD -->
 
-	<!-- BEGIN: LIGHTBOX UBICACION CIUDAD -->
+	<!-- BEGIN: LIGHTBOX UBICACION CIUDAD 2 -->
 	        <section class="lightbox-etb lightbox--module modal_ciudades" style="display:none;">
 	            <section class="modal centerme">
 	                <form class="modal-item">
 	                		<div class="texto-etb">
-	                            <h4>Selecciona tu diversión</h4>
+	                            <h4>Selecciona tu ciudad</h4>
 	                            <div class="select select_ciudad_modal2 btn--select">
 			                        <select name="ciudad_modal2">
 										@if( isset($ciudades) && count($ciudades) )
@@ -72,19 +72,19 @@
 	                        </div>
 
 	                        <div class="texto-etb">
-	                            <h4>Selecciona tu ciudad</h4>
+	                            <h4>Selecciona tu casino</h4>
 	                            <div class="select select_sucursal_modal2 btn--select">
 			                        <select name="sucursal_modal2">
-										<option value="">Seleccione sucursal</option>
+										<option value="">Selecciona tu casino</option>
 									</select>
 								</div>
 	                        </div>
 
 	                        <div class="texto-etb">
-	                            <h4>Selecciona tu casino</h4>
+	                            <h4>Selecciona tu diversión</h4>
 	                            <div class="select select_linea_modal2 btn--select">
 			                        <select name="linea_modal2" required>
-										<option value="">Seleccione línea</option>
+										<option value="">Selecciona tu diversión</option>
 									</select>
 								</div>
 	                        </div>
@@ -109,7 +109,7 @@
 	<!--END: LIGHTBOX UBICACION CIUDAD -->
 
 
-	<!-- BEGIN: LIGHTBOX ESTABLECIMIENTOS -->
+	<!-- BEGIN: LIGHTBOX ESTABLECIMIENTOS 1 -->
 	        <section class="lightbox-etb lightbox--module modal_establecimiento" style="display:none;">
 	            <section class="modal centerme">
 	                <form class="modal-item">
@@ -117,7 +117,7 @@
 	                        <div class="texto-etb">
 	                            <h4>Selecciona tu diversión</h4>
 	                            <div class="select select_linea_de_juegos btn--select">
-	                            	<h5>Selecciona tu diversiòn</h5>
+	                            	<h5>Selecciona tu diversió</h5>
 				                        <select name="lineas_de_juego">
 				                        	@if( isset($lineas) && count($lineas) )
 				                        		@foreach($lineas as $linea)
@@ -129,10 +129,10 @@
 	                        </div>
 
 	                        <div class="texto-etb">
-	                            <h4>Selecciona tu ciudad</h4>
+	                            <h4>Selecciona tu ciudad </h4>
 	                            <div class="select select_ciudad btn--select">
 			                        <select name="linea_ciudad">
-			                        	<option value="">Seleccione Ciudad</option>
+			                        	<option value="">Selecciona tu ciudad </option>
 									</select>
 								</div>
 	                        </div>
@@ -141,7 +141,7 @@
 	                            <h4>Selecciona tu casino</h4>
 	                            <div class="select select_linea_sucursal btn--select">
 			                        <select name="linea_sucursal">
-			                        	<option value="">Seleccione sucursal</option>
+			                        	<option value="">Selecciona tu casino</option>
 									</select>
 								</div>
 	                        </div>

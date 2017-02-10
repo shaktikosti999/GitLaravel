@@ -46,7 +46,7 @@
 				optionselect = "una ciudad";
 			break;
 			case '/sucursales':
-				optionselect = "una sucursal";
+				optionselect = "selecciona tu casino";
 			break;
 		}
 		$.ajax({
