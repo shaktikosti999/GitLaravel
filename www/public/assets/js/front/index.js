@@ -6,7 +6,7 @@
 		$('.select_linea_de_juegos').val($(this).attr('data-href')).trigger('change');
 		$('#establecimiento_go').attr('href',$(this).attr('data-href'));
 		$('[name="linea_ciudad"]').html('<option value=""> Seleccione una opción </option>');
-		$('[name="linea_sucursal"]').html('<option value=""> Seleccione una opción </option>');
+		$('[name="linea_sucursal"]').html('<option value=""> Selecciona tu casino </option>');
 		$('[name="linea_ciudad"]').parent().dropdown('update');
 		$('[name="linea_sucursal"]').parent().dropdown('update');
 		$('.modal_establecimiento').fadeIn();
@@ -39,14 +39,13 @@
 	});
 
 	option_data = function(id,url,element){
-		console.log(url);
-		var optionselect = "una opción";
+		var optionselect = "Selecciona tu casino";
 		switch( url ){
 			case '/ciudades_sucursal':
 				optionselect = "una ciudad";
 			break;
 			case '/sucursales':
-				optionselect = "selecciona tu casino";
+				optionselect = " tu casino";
 			break;
 		}
 		$.ajax({
@@ -71,6 +70,7 @@
 
 	$('.select_ciudad_mapa').on('change', 'touchstart', function(){		
 		var ciudad = $('[name="ciudad_mapa"]>option:contains("' + $(this).parent().children()[1].innerText + '")').attr('data-ciudad');
+		console.log(ciudad);
 		$('#message').text('');
 		$('.select_ciudad_modal2').val(ciudad).trigger('change');
 		$('[name="sucursal_modal2"]').html('<option value=""> Seleccione sucursal</option>');

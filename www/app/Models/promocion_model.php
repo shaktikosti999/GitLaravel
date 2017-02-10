@@ -156,13 +156,13 @@ class promocion_model{
 	static function update($id, $request, $archivo = null,$thumb = null){
 		$data = promocion::find($id);
 
-		if( $archivo !== null ){
+		if( $archivo !== null || ($request->input('borrar_imagen') !== null && $request->input('borrar_imagen') == 1) ){
 			$borrar = public_path() . $data->archivo;
 			if( is_file($borrar) )
 				unlink($borrar);
 		}
 
-		if( $thumb !== null ){
+		if( $thumb !== null || ($request->input('borrar_thumb') !== null && $request->input('borrar_thumb') == 1) ){
 			$borrar = public_path() . $data->thumb;
 			if( is_file($borrar) )
 				unlink($borrar);
@@ -172,10 +172,17 @@ class promocion_model{
 		$data->nombre = $request->input('nombre');
 		$data->slug = $request->input('slug');
 		$data->resumen = $request->input('resumen');
+
+		if( $request->input('borrar_imagen') !== null && $request->input('borrar_imagen') == 1 )
+			$data->imagen = "";
+		if( $request->input('borrar_thumb') !== null && $request->input('borrar_thumb') == 1 )
+			$data->thumb = "";
+		
 		if($archivo !== null)
 			$data->imagen = $archivo;
 		if($thumb !== null)
 			$data->thumb = $thumb;
+		
 		$data->descripcion = $request->input('descripcion');
 		$data->fecha_inicio = trim($request->input('fecha_inicio')) != "" ? $request->input('fecha_inicio') : null;
 		$data->fecha_fin = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
