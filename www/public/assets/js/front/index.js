@@ -39,14 +39,13 @@
 	});
 
 	option_data = function(id,url,element){
-		console.log(url);
 		var optionselect = "selecciona tu diversión";
 		switch( url ){
 			case '/ciudades_sucursal':
 				optionselect = "selecciona tu ciudad";
 			break;
 			case '/sucursales':
-				optionselect = "selecciona tu casino";
+				optionselect = " tu casino";
 			break;
 		}
 		$.ajax({
@@ -71,6 +70,7 @@
 
 	$('.select_ciudad_mapa').on('change touchstart', function(){
 		var ciudad = $('[name="ciudad_mapa"]>option:contains("' + $(this).parent().children()[1].innerText + '")').attr('data-ciudad');
+		console.log(ciudad);
 		$('#message').text('');
 		$('.select_ciudad_modal2').val(ciudad).trigger('change');
 		$('[name="sucursal_modal2"]').html('<option value=""> Seleccione sucursal</option>');

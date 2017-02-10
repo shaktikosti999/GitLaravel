@@ -399,7 +399,9 @@
 
 			function getScroll() {
 				elScroll = $( '.shell-btn' ).offset().top;
-				iconScroll = $( '.icon-wrapper' ).offset().top;
+				if( $( '.icon-wrapper' ).length  ){
+					iconScroll = $( '.icon-wrapper' ).offset().top;
+				}
 				console.log( elScroll, iconScroll );
 
 				if ( elScroll >= ( iconScroll - 50 ) ) {

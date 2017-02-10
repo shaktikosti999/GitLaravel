@@ -32,7 +32,7 @@
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="nombre">Nombre</label>
-			            		<input type="text" id="nombre" class="form-control required" name="nombre" value="{{$promocion->nombre}}" required="required" aria-required="true" aria-invalid="true">
+			            		<input type="text" id="nombre" class="form-control " name="nombre" value="{{$promocion->nombre}}" aria-required="true" aria-invalid="true">
 			          		</div>
 			        	</div>
 			      	</div>
@@ -98,15 +98,15 @@
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="imagen">Imagen</label>
-			      		      	@if($promocion->imagen != "")
-			      			      	<div class="col-sm-8 col-sm-offset-2" id="imagen">
+			      		      	@if( $promocion->imagen != "" )
+			      			      	<div class="col-sm-8 col-sm-offset-2" id="imagen_del">
 			      						<button type="button" class="close" id="elimina_imagen" aria-hidden="true">&times;</button>
 			      						<div class="thumbnail">
 			      							<img src="{{$promocion->imagen}}" class="img-responsive img_promocion">
 			      						</div>
 			      					</div>
 			      		      	@endif
-			            		<input type="file" id="imagen" class="form-control required" name="imagen" required="required" aria-required="true" aria-invalid="true" style="display:none">
+			            		<input type="file" id="imagen" class="form-control" name="imagen" aria-required="true" aria-invalid="true" {{$promocion->imagen != "" ? 'style=display:none' : ''}}>
 			          		</div>
 			        	</div>
 			      	</div>
@@ -114,8 +114,15 @@
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="thumb">Imagen pequeña</label>
-			            		<img src="{{$promocion->thumb}}" class="img-responsive img_thumb">
-			            		<input type="file" id="thumb" class="form-control required" name="thumb" required="required" aria-required="true" aria-invalid="true" style="display:none">
+			            		@if( $promocion->thumb != "" )
+			      			      	<div class="col-sm-8 col-sm-offset-2" id="thumb_del">
+			      						<button type="button" class="close" id="elimina_thumb" aria-hidden="true">&times;</button>
+			      						<div class="thumbnail">
+			      							<img src="{{$promocion->thumb}}" class="img-responsive img_thumb">
+			      						</div>
+			      					</div>
+			      		      	@endif
+			            		<input type="file" id="thumb" class="form-control" name="thumb" aria-required="true" aria-invalid="true" {{$promocion->thumb != "" ? 'style=display:none' : ''}}>
 			          		</div>
 			        	</div>
 			      	</div>

@@ -147,7 +147,7 @@ class promocionController extends Controller
      */
     public function update(Request $request, $id){
         $this->validate($request,[
-            "nombre" => 'required|string',
+            "nombre" => 'string',
             "juego" => 'required|integer|min:1',
             "slug" => 'string',
             "resumen" => 'required|string',

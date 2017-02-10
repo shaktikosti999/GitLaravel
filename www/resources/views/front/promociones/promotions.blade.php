@@ -127,7 +127,7 @@
 
 												<strong class="promotion-entry">
 													<span>
-														{{$item->descripcion}}
+														{!!$item->descripcion!!}
 													</span>
 												</strong>
 											</div><!-- /.promotion-info -->
