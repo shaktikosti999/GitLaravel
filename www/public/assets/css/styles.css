@@ -1,7 +1,7 @@
 /* 
 	Table of Contents
 
-	I.   Generic --------------------------------------
+	I.   Generic -------------------------------------- HOLA MUNDOS
 	     01. Reset ------------------------------------
 	     02. Base -------------------------------------
 	         Tablet Portrait --------------------------
@@ -212,7 +212,7 @@ section,
 summary,
 main { display: block; }
 html { tap-highlight-color: rgba(0,0,0,0); }
-body { -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased; font-smoothing: antialiased; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; text-size-adjust: none; }
+body { -moz-osx-font-smoothing: grayscale; -webkit-font-smoothing: antialiased; font-smoothing: antialiased; -webkit-text-size-adjust: none; -ms-text-size-adjust: none; text-size-adjust: none;}
 img,
 iframe,
 video,
@@ -1679,7 +1679,7 @@ li:first-child { margin: 0;}
 /* ------------------------------------------------------------ *\
 	slider-promotions
 \* ------------------------------------------------------------ */
-.slider-promotions .slide-content { display: block; height: 330px; text-decoration: none; position: relative; }
+.slider-promotions .slide-content { display: block; height: 360px !important; text-decoration: none; position: relative; }
 .slider-promotions .slide-content:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
 .slider-promotions .slide-content:before { 
 	background: linear-gradient(to bottom, rgba(0,0,0,0.20) 0%,rgba(0,0,0,0.40) 50%,rgba(0,0,0,.7) 100%); 	 	
