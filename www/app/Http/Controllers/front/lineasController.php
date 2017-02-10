@@ -44,7 +44,7 @@ class lineasController extends Controller
         $data["maquinas_acumulado"] = linea::get_games( [ "linea" => 1, "id_sucursal" => $id_sucursal] );
 
         //-----> Obtenemos las categorías de los juegos
-        $data["categorias"] = linea::get_categories();
+        $data["categorias"] = linea::get_categories(['list'=>true]);
 
         //-----> Obtenemos los proveedores
         $data["proveedores"] = linea::find_all_providers();

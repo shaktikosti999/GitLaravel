@@ -14,6 +14,7 @@ Route::get('/prueba_ws','soapController@index');
 Route::get('/server.md5','soapController@serv');
 include_once('Routes/auth.php');
 Route::group(['middleware' => 'auth'], function () {
+	Route::delete('/administrador/eliminar/categoria.html','categoriaController@destroy');
 
 	Route::get('/',function(){return view('layout.admin');});
 	Route::get('/administrador', function () {return view('layout.admin');});

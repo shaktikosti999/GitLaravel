@@ -31,7 +31,7 @@ class indexController extends Controller
         $data["lineas"]         = linea::find_all();
         $data["rand_sucursal"]  = sucursal::find_random();
         $data["sucursales"]     = sucursal::find_all();
-        $data["ciudades"]       = ciudad::find_all();
+        $data["ciudades"]       = ciudad::find_all(['lista'=>true]);
         $data["footer_text"]    = \DB::table('text_footer')->where('id',1)->first();
 
         // dd($data);

@@ -26,7 +26,8 @@ class juegoController extends Controller
             $juegos[$val->id_linea][] = $val;
 
         $data = array(
-            'juegos' => $juegos
+            'juegos' => $juegos,
+            'categorias' => linea::get_categories(['del'=>true])
         );
 
         return view('back.juego.index',$data);

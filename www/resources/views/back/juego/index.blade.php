@@ -21,6 +21,29 @@
 						}
 					});
 				});
+
+				$('#delcat').on('click', function(){
+					$('#myModal').modal('show');
+				});
+
+				$('.eliminar_categoria').on('click', function(){
+					if( confirm('Eliminar?') ){
+						context = $(this);
+						var id = $(this).attr('data-id');
+						$.ajax({
+							url:'eliminar/categoria.html',
+							method:'post',
+							data:{
+								_method:'DELETE',
+								'id':id
+							},
+							success:function(data){
+								if(data == 'eliminado')
+									context.parent().parent().remove();
+							}
+						})
+					}
+				});
 			});
 		</script>
 		<script src="{{asset('/assets/js/index.js')}}"></script>
@@ -35,7 +58,10 @@
 						<div class="panel-title">Juegos
 						</div>
 						<div class="pull-right">
-							<div class="col-xs-12">
+							<div class="col-xs-6">
+		                    	<a class="btn btn-primary btn-cons" id="delcat"><i class="fa fa-trash"></i> Categorías</a>
+			              	</div>
+							<div class="col-xs-6">
 		                    	<a href="{{url('/administrador/agregar/juego.html')}}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Agregar</a>
 			              	</div>
 		                </div>
@@ -115,5 +141,35 @@
 			</div>
 		</div>
 		<!-- Large modal -->
+
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  	<div class="modal-dialog">
+
+			    <!-- Modal content-->
+			    <div class="modal-content">
+		      		<div class="modal-header">
+			        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+			        	<h4 class="modal-title">Eliminar categorías</h4>
+			      	</div>
+			      	<div class="modal-body">
+			      		@if( isset($categorias) && count($categorias) )
+			      			<table class="table table-hover">
+			      				@foreach($categorias as $item)
+			      					<tr>
+			      						<td><strong>{{$item->nombre}}</strong></td>
+			      						<td><button type="button" class="btn btn-default eliminar_categoria" data-id="{{$item->id}}"><i class="glyphicon glyphicon-trash"></i></button></td>
+			      					</tr>
+			      				@endforeach
+			      			</table>
+			      		@endif
+			      	</div>
+			      	<div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      	</div>
+			    </div>
+
+		  	</div>
+		</div>
 
 	@stop

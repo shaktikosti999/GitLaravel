@@ -190,12 +190,22 @@ class linea_model{
         return $data;
     }  
 
-    static function get_categories(){
+    static function get_categories($args = []){
         $data = \DB::table('categoria_juego as cj')
             ->select(
                 'cj.id',
                 'cj.nombre'
-            )->get();
+            );
+        if( isset($args['del']) ){
+            $data = $data
+                ->leftJoin('juego as j','j.id_categoria','=','cj.id')
+                ->where('j.id_categoria',NULL);
+        }
+        if( isset($args['list']) ){
+            $data = $data
+                ->join('juego as j','j.id_categoria','=','cj.id');
+        }
+        $data = $data->get();
         return $data;
     }
 
