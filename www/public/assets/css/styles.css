@@ -1414,7 +1414,7 @@ li:first-child { margin: 0;}
 .section-promotions .section-head { padding: 74px 0 20px; /* position: relative; */ }
 .section-promotions + .section-promotions { padding-bottom: 40px; }
 .section-promotions + .section-promotions .section-head { padding: 25px 0 20px; }
-.section-promotions .games-filters { margin-top: -20px; position: relative; top: -10px; }
+.section-promotions .games-filters { margin-top: -20px; position: relative; top: -10px; z-index: 100;}
 .section-promotions + .section-promotions .section-head h2 { letter-spacing: -0.015em; }
 .section-promotions .section-head:after { content: ''; line-height: 0; display: table; clear: both; }
 .section-promotions .section-head h2 { float: left; }
@@ -1679,7 +1679,7 @@ li:first-child { margin: 0;}
 /* ------------------------------------------------------------ *\
 	slider-promotions
 \* ------------------------------------------------------------ */
-.slider-promotions .slide-content { display: block; height: 360px !important; text-decoration: none; position: relative; }
+.slider-promotions .slide-content { display: block; height: 360px; text-decoration: none; position: relative; }
 .slider-promotions .slide-content:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
 .slider-promotions .slide-content:before { 
 	background: linear-gradient(to bottom, rgba(0,0,0,0.20) 0%,rgba(0,0,0,0.40) 50%,rgba(0,0,0,.7) 100%); 	 	
@@ -2211,6 +2211,7 @@ li:first-child { margin: 0;}
 }
 .texto-etb h4 {
     margin: 25px 20px 10px 20px;
+    color: #000;
 }
 .txt-select {	
     margin: 27px 0 10px 0;

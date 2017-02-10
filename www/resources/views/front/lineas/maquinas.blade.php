@@ -62,7 +62,7 @@
 											<label for="sucursales" class="form-label hidden">filter-secondary1</label>
 											<select name="sucursales" id="sucursales" class="select branch-filter">
 												
-												<option value="-1">Selecciona ubicación</option>
+												<option value="-1">Selecciona tu casino</option>
 
 												@foreach( $sucursales as $item )
 

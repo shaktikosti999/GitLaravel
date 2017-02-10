@@ -115,15 +115,16 @@
 	                <form class="modal-item">
 
 	                        <div class="texto-etb">
-	                            <h4>Línea de juego seleccionada</h4>
+	                            <h4>Selecciona tu diversión</h4>
 	                            <div class="select select_linea_de_juegos btn--select">
-			                        <select name="lineas_de_juego">
-			                        	@if( isset($lineas) && count($lineas) )
-			                        		@foreach($lineas as $linea)
-												<option value="/lineas-de-juego/{{$linea->slug}}" data-id="{{$linea->id_linea}}">{{$linea->linea}}</option>
-											@endforeach
-										@endif
-									</select>
+	                            	<h5>Selecciona tu diversiòn</h5>
+				                        <select name="lineas_de_juego">
+				                        	@if( isset($lineas) && count($lineas) )
+				                        		@foreach($lineas as $linea)
+													<option value="/lineas-de-juego/{{$linea->slug}}" data-id="{{$linea->id_linea}}">{{$linea->linea}}</option>
+												@endforeach
+											@endif
+										</select>
 								</div>
 	                        </div>
 
@@ -137,7 +138,7 @@
 	                        </div>
 
 	                        <div class="texto-etb">
-	                            <h4>Selecciona tu sucursal</h4>
+	                            <h4>Selecciona tu casino</h4>
 	                            <div class="select select_linea_sucursal btn--select">
 			                        <select name="linea_sucursal">
 			                        	<option value="">Seleccione sucursal</option>
@@ -398,7 +399,7 @@
 
 								<div class="select btn-ubn select_ciudad_mapa"> <!-- BEGIN boton sucursal -->
 			                        <select name="ciudad_mapa">
-										<option value="">Seleccione la ciudad</option>
+										<option value="">Seleccione tu ciudad</option>
 										@if( isset($ciudades) && count($ciudades) )
 			                        		@foreach($ciudades as $ciudad)
 												<option data-id="{{$ciudad->id_ciudad}}" data-ciudad="{{$ciudad->ciudad}}">{{$ciudad->ciudad}}</option>

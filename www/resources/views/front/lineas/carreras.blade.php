@@ -199,7 +199,7 @@
 												<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
 												<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
 													
-													<option value="-1">Selecciona ubicación</option>
+													<option value="-1">Selecciona tu casino</option>
 
 													@foreach( $sucursales as $item )
 
