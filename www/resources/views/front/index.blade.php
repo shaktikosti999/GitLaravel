@@ -58,7 +58,7 @@
 	            <section class="modal centerme">
 	                <form class="modal-item">
 	                		<div class="texto-etb">
-	                            <h4>Ciudad seleccionada</h4>
+	                            <h4>Selecciona tu diversión</h4>
 	                            <div class="select select_ciudad_modal2 btn--select">
 			                        <select name="ciudad_modal2">
 										@if( isset($ciudades) && count($ciudades) )
@@ -72,7 +72,7 @@
 	                        </div>
 
 	                        <div class="texto-etb">
-	                            <h4>Selecciona tu sucursal</h4>
+	                            <h4>Selecciona tu ciudad</h4>
 	                            <div class="select select_sucursal_modal2 btn--select">
 			                        <select name="sucursal_modal2">
 										<option value="">Seleccione sucursal</option>
@@ -81,7 +81,7 @@
 	                        </div>
 
 	                        <div class="texto-etb">
-	                            <h4>Selecciona tu línea de juego</h4>
+	                            <h4>Selecciona tu casino</h4>
 	                            <div class="select select_linea_modal2 btn--select">
 			                        <select name="linea_modal2" required>
 										<option value="">Seleccione línea</option>
