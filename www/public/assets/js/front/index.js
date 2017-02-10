@@ -39,13 +39,14 @@
 	});
 
 	option_data = function(id,url,element){
+		console.log(url);
 		var optionselect = "selecciona tu diversión";
 		switch( url ){
 			case '/ciudades_sucursal':
 				optionselect = "selecciona tu ciudad";
 			break;
 			case '/sucursales':
-				optionselect = " tu casino";
+				optionselect = "selecciona tu casino";
 			break;
 		}
 		$.ajax({
@@ -70,7 +71,6 @@
 
 	$('.select_ciudad_mapa').on('change touchstart', function(){
 		var ciudad = $('[name="ciudad_mapa"]>option:contains("' + $(this).parent().children()[1].innerText + '")').attr('data-ciudad');
-		console.log(ciudad);
 		$('#message').text('');
 		$('.select_ciudad_modal2').val(ciudad).trigger('change');
 		$('[name="sucursal_modal2"]').html('<option value=""> Seleccione sucursal</option>');
@@ -78,11 +78,13 @@
 		$('[name="sucursal_modal2"]').parent().dropdown('update');
 		$('[name="linea_modal2"]').parent().dropdown('update');
 		$('.modal_ciudades').fadeIn();
+		$('.fs-dropdown').removeClass('fs-dropdown-open');
 	});
 
 	$('.select_ciudad_modal2').on('change', function(){
 		var id_get = $('[name="ciudad_modal2"]>option:contains("' + $(this).parent().children()[1].innerText + '")').attr('data-id');
 		option_data(id_get,'/sucursales',$('[name="sucursal_modal2"]'));
+		$('.fs-dropdown').removeClass('fs-dropdown-open');
 	});
 
 	$('.select_sucursal_modal2').on('change', function(){
@@ -90,11 +92,13 @@
 		option_data(id_get,'/lineas_ciudades',$('[name="linea_modal2"]'));
 		$('#establecimiento_go2').attr('data-sucursal',id_get);
 		$('#establecimiento_go2').attr('href','/sucursal');
+		$('.fs-dropdown').removeClass('fs-dropdown-open');
 	});
 
 	$('.select_linea_modal2').on('change', function(){
 		var id_get = $('[name="linea_modal2"]>option:contains("' + $(this).parent().children()[1].innerText + '")').val();
 		$('#establecimiento_go2').attr('href','');
+		$('.fs-dropdown').removeClass('fs-dropdown-open');
 		if (id_get == "")
 			$('#establecimiento_go2').attr('href','/sucursal');
 		else

@@ -399,9 +399,7 @@
 
 			function getScroll() {
 				elScroll = $( '.shell-btn' ).offset().top;
-				if( $( '.icon-wrapper' ).length  ){
-					iconScroll = $( '.icon-wrapper' ).offset().top;
-				}
+				iconScroll = $( '.icon-wrapper' ).offset().top;
 				console.log( elScroll, iconScroll );
 
 				if ( elScroll >= ( iconScroll - 50 ) ) {
@@ -669,8 +667,12 @@ $(function() {
     }, 500);
   });
 
-	$('body').on( 'click touchstart', '.fs-dropdown', function(){
-		alert('hola');
-		$(this).toggleClass('fs-dropdown-open');
+	$('body').on( 'click touchstart', '.fs-dropdown-selected', function(){
+		$(this).parent().addClass('fs-dropdown-open');
 	});
+	
+	/*$('body').on( 'click touchstart', '.fs-dropdown-item', function(){
+		$(this).parents('.fs-dropdown').removeClass('fs-dropdown-open');
+	});*/
+	
 });

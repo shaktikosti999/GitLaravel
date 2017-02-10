@@ -2617,7 +2617,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.sucursales li:nth-child(2) {position: relative; float: left; display: block; width: 100%; padding: 0 14px; margin-top: 30px;}
 
 	.nav .socials-footer .socials-dropdown {display: none;}
-	.fs-dropdown-element {z-index: 100; background: transparent; border: none;}
+	.fs-dropdown-element {/*z-index: 100; */background: transparent; border: none;}
 	.section-map .fs-dropdown-element {z-index: 100;}
 }
 
