@@ -7,7 +7,7 @@
 		<script>
 		$(function(){
 			$('#form-agregar').validate();
-			$('textarea').wysihtml5();
+			// $('textarea').wysihtml5();
 		});
 		</script>
 	@stop
@@ -37,7 +37,7 @@
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="texto">Texto</label>
-			            		<textarea id="texto" class="form-control required" style="height: 300px" name="texto" required="required" aria-required="true" aria-invalid="true">{{$texto->texto}} </textarea>
+			            		<textarea id="texto" class="form-control required summernote" style="height: 300px" name="texto" required="required" aria-required="true" aria-invalid="true">{{$texto->texto}} </textarea>
 			          		</div>
 			        	</div>
 			      	</div>

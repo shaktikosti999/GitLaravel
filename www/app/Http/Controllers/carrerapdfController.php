@@ -84,6 +84,56 @@ class carrerapdfController extends Controller
         }
     }
 
+    public function storemassive(Request $request){
+        // print_r($_FILES);
+        $fp = fopen($_FILES['csv']['tmp_name'],'r');
+        fgetcsv($fp);
+        $data = [];
+        while(!feof($fp)){
+            $txt = fgetcsv($fp);
+            $data[] = [
+                'id_juego' => $txt[1],
+                'titulo' => $txt[0],
+                'fecha' => date('Y-m-d',strtotime($txt[2])),
+                'archivo' => '/assets/carreras/' . $txt[3],
+                'estatus' => 1,
+                'eliminado' => 0,
+                'updated_at'=>date('Y-m-d'),
+                'created_at'=>date('Y-m-d')
+            ];
+        }
+        if( count($data) ){
+            $save = \DB::table('carrerapdf')
+                ->insert($data);
+            if( $save ){
+                $limit = count($data);
+                $ids = \DB::table('carrerapdf')
+                    ->select('id_carrerapdf as id')
+                    ->orderBy('id_carrerapdf','DESC')
+                    ->limit($limit)
+                    ->get();
+
+                if( count($ids) ){
+                    $sucursales = \App\Models\sucursal_model::all();
+
+                    if( count($sucursales) ){
+                        $data = [];
+                        foreach($ids as $carrera){
+                            foreach($sucursales as $sucursal){
+                                $data[] = [
+                                    'id_carrera' => $carrera->id,
+                                    'id_sucursal' => $sucursal->id
+                                ];
+                            }
+                        }
+                        \DB::table('carrera_sucursal')->insert($data);
+                    }
+                }
+            }
+        }
+        return redirect('/administrador/pdfcarrera.html');
+    }
+
     /**
      * Display the specified resource.
      *

@@ -274,11 +274,7 @@
 										<a href="{{url('/promociones/detalle/' . $p->slug)}}">
 											<li class="slide"> 									
 												<div class="slide-content" style="background-image: url({{ $p->thumb !== null && !empty($p->thumb) ? $p->thumb : $p->imagen }}); ">
-													<div class="slide-caption">
-															<p>{{ $p->nombre }}</p>
-														
-														<!--span>Club&reg;</span-->
-													</div><!-- /.slide-caption -->
+													
 												</div><!-- /.slide-content -->
 											</li><!-- /.slide -->
 										</a>

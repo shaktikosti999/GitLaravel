@@ -97,7 +97,7 @@
 								</li>
 								
 								<li {{isset($submenu) && count($submenu) ? 'class=has-dropdown' : ''}}>
-									<a {{$uri == "caliente_club" ? 'class=active' : ''}} href="/caliente_club">caliente Club</a>
+									<a {{$uri == "caliente_club" ? 'class=active' : ''}}>caliente Club</a>
 									@if( isset($submenu) && count($submenu) )
 										<ul class="dropdown">
 											@foreach($submenu as $item)

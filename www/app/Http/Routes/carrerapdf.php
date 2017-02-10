@@ -5,4 +5,5 @@ Route::get('/administrador/mostrar/pdfcarrera{id}.html','carrerapdfController@sh
 Route::post('/administrador/modificar/pdfcarrera{id}.html','carrerapdfController@edit');
 Route::patch('/administrador/modificar/pdfcarrera{id}.html','carrerapdfController@update');
 Route::put('/administrador/agregar/pdfcarrera.html','carrerapdfController@store');
+Route::patch('/administrador/agregar/pdfcarrera.html','carrerapdfController@storemassive');
 Route::delete('/administrador/eliminar/pdfcarrera{id}.html','carrerapdfController@destroy');

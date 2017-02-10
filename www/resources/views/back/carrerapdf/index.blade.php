@@ -32,10 +32,13 @@
 			<!-- START PANEL -->
 				<div class="panel panel-transparent">
 					<div class="panel-heading">
-						<div class="panel-title">PDF de Carreras
-						</div>
+						<div class="panel-title">PDF de Carreras</div>
+
 						<div class="pull-right">
-							<div class="col-xs-12">
+							<div class="col-xs-6">
+		                    	<button class="btn btn-primary" data-toggle="modal" data-target="#myModal"	><i class="fa fa-plus"></i> Masivo</button>
+			              	</div>	
+							<div class="col-xs-6">
 		                    	<a href="{{url('/administrador/agregar/pdfcarrera.html')}}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Agregar</a>
 			              	</div>
 		                </div>
@@ -104,4 +107,31 @@
 				<!-- END PANEL -->
 			</div>
 		</div>
+
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+			  		<div class="modal-header">
+				    	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				    	<h4 class="modal-title" id="myModalLabel">Carga Masiva de Carreras</h4>
+				  	</div>
+				  	<div class="modal-body">
+				    	<form id="form-agregar" role="form" autocomplete="off" method="POST" action="{{url('/administrador/agregar/pdfcarrera.html')}}" enctype="multipart/form-data">
+					    	{!!csrf_field()!!}
+					    	<input type="hidden" name="_method" value="PATCH">
+					    	<div class="row clearfix">
+					        	<div class="col-sm-12">
+					          		<div class="form-group form-group-default" aria-required="true">
+					            		<label for="csv">Archivo CSV</label>
+					            		<input type="file" id="csv" class="form-control required" name="csv" required="required" aria-required="true" aria-invalid="true" accept=".csv">
+					          		</div>
+					          		<div class="form-group"><input type="submit" value="Guardar" class="btn btn-default"></div>
+					        	</div>
+					      	</div>
+				     	</form>
+				  	</div>
+				</div>
+			</div>
+		</div>
+
 	@stop

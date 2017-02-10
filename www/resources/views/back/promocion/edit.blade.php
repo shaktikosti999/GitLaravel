@@ -98,7 +98,14 @@
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="imagen">Imagen</label>
-			            		<img src="{{$promocion->imagen}}" class="img-responsive img_promocion">
+			      		      	@if($promocion->imagen != "")
+			      			      	<div class="col-sm-8 col-sm-offset-2" id="imagen">
+			      						<button type="button" class="close" id="elimina_imagen" aria-hidden="true">&times;</button>
+			      						<div class="thumbnail">
+			      							<img src="{{$promocion->imagen}}" class="img-responsive img_promocion">
+			      						</div>
+			      					</div>
+			      		      	@endif
 			            		<input type="file" id="imagen" class="form-control required" name="imagen" required="required" aria-required="true" aria-invalid="true" style="display:none">
 			          		</div>
 			        	</div>

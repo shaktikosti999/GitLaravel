@@ -19,9 +19,8 @@
 					<ul class="slides">
 						@foreach($promociones as $item)
 						<?php 
-
-						$start = new DateTime( $item->fecha_inicio );
-						$end   = new DateTime( $item->fecha_fin );
+						$start = isset($item->fecha_inicio) && !empty($item->fecha_inicio) ? new DateTime( $item->fecha_inicio ) : null;
+						$end   = isset($item->fecha_fin) && !empty($item->fecha_fin) ? new DateTime( $item->fecha_fin ) : null;
 
 						?>
 						<li class="slide">
@@ -30,17 +29,16 @@
 							@else
 							<a class="slide-content" style="background-image: url({{$item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen}}); ">
 							@endif
+							@if($start !== null || $end !== null)
 								<span class="slide-label">
-									Válido del {{$start->format('d/m/Y')}} al {{$end->format('d/m/Y')}} 
+									Válido{{$start !== null ? ' del' . $start->format('d/m/Y') : ''}}{{$end !== null ? ' al' . $end->format('d/m/Y') : ''}} 
 								</span>
+							@endif
 
 								<span class="slide-inner">
-									<span class="slide-inner-entry">
-										<strong>{{$item->nombre}}</strong> <br>
-									</span>
 
 									<span class="slide-inner-price">
-										{{$item->resumen}}
+										{!!$item->resumen!!}
 									</span>
 								</span>
 							</a><!-- /.slide-content -->
