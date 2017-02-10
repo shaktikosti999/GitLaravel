@@ -5,8 +5,8 @@
 	$('.modal_linea').on('click', function(){
 		$('.select_linea_de_juegos').val($(this).attr('data-href')).trigger('change');
 		$('#establecimiento_go').attr('href',$(this).attr('data-href'));
-		$('[name="linea_ciudad"]').html('<option value=""> Seleccione una opción </option>');
-		$('[name="linea_sucursal"]').html('<option value=""> Seleccione una opción </option>');
+		$('[name="linea_ciudad"]').html('<option value=""> Selecciona tu ciudad </option>');
+		$('[name="linea_sucursal"]').html('<option value=""> Selecciona tu casino </option>');
 		$('[name="linea_ciudad"]').parent().dropdown('update');
 		$('[name="linea_sucursal"]').parent().dropdown('update');
 		$('.modal_establecimiento').fadeIn();
@@ -40,10 +40,10 @@
 
 	option_data = function(id,url,element){
 		console.log(url);
-		var optionselect = "una opción";
+		var optionselect = "selecciona tu diversión";
 		switch( url ){
 			case '/ciudades_sucursal':
-				optionselect = "una ciudad";
+				optionselect = "selecciona tu ciudad";
 			break;
 			case '/sucursales':
 				optionselect = "selecciona tu casino";
@@ -57,7 +57,7 @@
 				id:id
 			},
 			success: function(data){
-				element.html('<option value="">Seleccione ' + optionselect + '</option>');
+				element.html('<option value="">' + optionselect + '</option>');
 				if(data != ""){
 					data = JSON.parse(data);
 					$.each(data, function(index, val){
@@ -69,12 +69,12 @@
 		});
 	}
 
-	$('.select_ciudad_mapa').on('change', 'touchstart', function(){		
+	$('.select_ciudad_mapa').on('change touchstart', function(){
 		var ciudad = $('[name="ciudad_mapa"]>option:contains("' + $(this).parent().children()[1].innerText + '")').attr('data-ciudad');
 		$('#message').text('');
 		$('.select_ciudad_modal2').val(ciudad).trigger('change');
 		$('[name="sucursal_modal2"]').html('<option value=""> Seleccione sucursal</option>');
-		$('[name="linea_modal2"]').html('<option value=""> Seleccione línea</option>');
+		$('[name="linea_modal2"]').html('<option value=""> Selecciona tu diversión</option>');
 		$('[name="sucursal_modal2"]').parent().dropdown('update');
 		$('[name="linea_modal2"]').parent().dropdown('update');
 		$('.modal_ciudades').fadeIn();
@@ -99,7 +99,7 @@
 			$('#establecimiento_go2').attr('href','/sucursal');
 		else
 			$('#establecimiento_go2').attr('href','/lineas-de-juego/'+id_get);
-	});	
+	});
 
 	$('#establecimiento_go2').on('click', function(){
 		if($(this).attr('href') == undefined)
@@ -129,5 +129,5 @@
 		$( location ).attr("href", $url);
 
 	} );
-	
+
 });

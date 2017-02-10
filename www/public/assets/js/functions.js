@@ -8,7 +8,7 @@
 
 		// date picker
 		if (typeof activeDays != "undefined" ) {
-			 
+
 			$( '[data-date]' ).datepicker({
 	      		dateFormat: 'mm/dd/yyyy',
 	      		beforeShowDay: activeDays,
@@ -18,7 +18,7 @@
 			    language: "es",
 			    beforeShowDay: function (date){
 			    	for (var i = 0; i < dates.length; i++) {
-			    	    if (new Date(dates[i]).toString() == date.toString()) {             
+			    	    if (new Date(dates[i]).toString() == date.toString()) {
 			    	        return {
 			    	            classes: 'black'
 			    	        };
@@ -40,8 +40,8 @@
                 }
 
 
-                
-                
+
+
 	      	}).datepicker("setDate", null).on('changeDate',function(e){
 	      		date = new Date( e.date );
 	      		date = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
@@ -59,14 +59,14 @@
 	      		}
 	      		$('.hide_program').hide();
 	      		$('[data-fecha]').removeClass('hide_program');
-	      		
+
 	      	});
 
 
-	      	
+
 		}
 
-		
+
 
 		$.ajaxSetup({
 		    headers: {
@@ -85,7 +85,7 @@
 			};
 		});
 
-		
+
 
 		//close lightbox
 		$('.close').click(function(e){
@@ -114,7 +114,7 @@
 		    e.preventDefault();
 
 		    var $data = $("#mail").val();
-		    var $token = $("input[name=_token]").val() 
+		    var $token = $("input[name=_token]").val()
 
 		    $("#subscribe-message").remove();
 
@@ -133,10 +133,10 @@
                     url: '/contacto/newsletter',
                     data: {send_data: "sent", email: $data, _token: $token },
                     error: function(){
-                        
+
                     },
-                    success: function(response){ 
-                                        
+                    success: function(response){
+
                     			console.log( response );
 
                     			var $resp = $.parseJSON( response );
@@ -152,7 +152,7 @@
 
                     			}
 
-                            }, 
+                            },
                 });
 
 		    }
@@ -163,8 +163,8 @@
 
 		//burger btn
 		$('.nav-trigger').on('click', function (event) {
-			event.preventDefault(); 
-			$(this).toggleClass('active');    
+			event.preventDefault();
+			$(this).toggleClass('active');
 			$('.nav').stop(true,true).slideToggle();
 			$('.header').toggleClass('nav-mobile-open');
 			$('html, body').toggleClass('mobile-fixed');
@@ -176,14 +176,14 @@
 			$('.search .search-actions').slideToggle();
 		});
 
-		 
+
 			if ($win.width() <= 1025) {
 				$('.nav .has-dropdown > a').on('click', function (event) {
 					event.preventDefault();
 					$(this).parent().toggleClass('active');
-				}); 
+				});
 			}
-		 
+
 
 		//Custom Dropdowns
 		$('.select').dropdown();
@@ -219,14 +219,14 @@
 					breakpoint: 1150,
 					settings: {
 						slidesToShow: 3,
-						slidesToScroll: 1 
+						slidesToScroll: 1
 					}
 				},
 				{
 					breakpoint: 1024,
 					settings: {
 						slidesToShow: 2,
-						slidesToScroll: 1 
+						slidesToScroll: 1
 					}
 				},
 				{
@@ -235,10 +235,10 @@
 						slidesToShow: 1,
 						slidesToScroll: 1
 				  	}
-				} 
+				}
 			]
 		});
-		
+
 		//slider games
 		$('.slider-games-available .slides').slick({
 			dots: false,
@@ -261,7 +261,7 @@
 					breakpoint: 1024,
 					settings: {
 						slidesToShow: 3,
-						slidesToScroll: 1 
+						slidesToScroll: 1
 					}
 				},
 				{
@@ -270,12 +270,12 @@
 						slidesToShow: 1,
 						slidesToScroll: 1
 				  	}
-				} 
+				}
 			]
 		});
 
 		$('.slider-secondary .slides').slick({
-			dots: false, 
+			dots: false,
 			arrows: true,
 			prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="Previous" tabindex="0" role="button"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
             nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
@@ -285,7 +285,7 @@
 			slidesToScroll: 1,
 			//autoplay: true,
   			//autoplaySpeed: 2000,
-			swipeToSlide: true 
+			swipeToSlide: true
 		});
 
 		$('.slider-secondary .slick-dots').wrap('<div class="slick-dots-wrapper"><div class="shell"></div></div>');
@@ -304,7 +304,7 @@
 			slidesToScroll: 1,
 			autoplay: true,
 			autoplaySpeed: 2000,
-			swipeToSlide: true 
+			swipeToSlide: true
 		});
 
 
@@ -334,7 +334,7 @@
 			    }
 			  ]
 			});
-		
+
 		// slider promociones apuesta
    		$('.slider-bet').slick({
 		  dots: true,
@@ -343,12 +343,12 @@
 		  slidesToShow: 1,
 		  adaptiveHeight: true
 		});
-   
+
 		// $('.slider-gallery .slide').each(function() {
-		// 	var imageSrc = $(this).find('img').attr('src'); 
+		// 	var imageSrc = $(this).find('img').attr('src');
 		// 	$(this).find('.slide-image').css('background-image','url(' + imageSrc + ')')
 		// });
-	
+
 
 		//scroll to next section
 		$('.btn-scroll').click(function (e) {
@@ -377,21 +377,21 @@
 			$(this).addClass('hidden');
 		})
 
-		
+
 
 		//footer-socials fix dropdown on mobile (add class)
 		$('.socials-footer  > ul > li > a').on('click', function (event) {
 			event.preventDefault();
 			$(this).parent('li').toggleClass('active');
 		});
-	
+
 	// Image
 		    $('.image-back').replaceWith(function(i, v){
 		        return $('<figure/>', {
 		            style: 'background-image: url('+this.src+')',
-		        }) 
+		        })
 		    });
-		    
+
 		    // scrollChange
 		function scrollChange() {
 			var elScroll,
@@ -428,13 +428,13 @@
 
 
 	}); //jQuery end
-	
+
 
 
 	$(function() {
-		var map; 
+		var map;
 		function initialize() {
-			
+
 			// Create an array of styles.
 			var styles = [
 				{
@@ -629,18 +629,18 @@
 
 			map = new google.maps.Map(document.getElementById('googlemap'),mapOptions);
 
-			var image = 'css/images/marker.png'; 
+			var image = 'css/images/marker.png';
 			var marker = new google.maps.Marker({
 				position: myLatLng,
 				map: map,
 				icon: image
 			});
-			 
+
 			google.maps.event.addDomListener(window, "resize", function() {
 				google.maps.event.trigger(map, "resize");
 				map.setCenter( bounds.getCenter() );
 			});
-			
+
 			map.mapTypes.set('map_style', styledMap);
 			map.setMapTypeId('map_style');
 		}
@@ -666,23 +666,9 @@ $(function() {
       scrollTop: $(destination).offset().top
     }, 500);
   });
+
+	$('body').on( 'click touchstart', '.fs-dropdown', function(){
+		alert('hola');
+		$(this).toggleClass('fs-dropdown-open');
+	});
 });
-
-	$('.fs-dropdown').on(
-		 { 'touchstart' : function(){
-		  
-		   $(this).toggleClass('fs-dropdown-open');
-		   alert('hola');
-
-		  } 
-		 }
-		);
-
-
-
-
-
-
-	
-	
-
