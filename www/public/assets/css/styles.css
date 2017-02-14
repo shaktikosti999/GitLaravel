@@ -1724,7 +1724,7 @@ li:first-child { margin: 0;}
 .slider-secondary .slides .filter-secondary { z-index: 500; }
 .slider-secondary .slick-slider .slick-track, 
 .slider-secondary .slick-slider .slick-list { overflow: visible; }
-.slider-secondary .slides.slick-initialized { overflow: visible; }
+.slider-secondary .slides.slick-initialized { overflow: visible;}
 .slider-secondary .slide { height: 598px; position: relative; background-size: cover; background-position: center center; background-repeat: no-repeat; }
 .slider-secondary .slide .shell:after { content: ''; line-height: 0; display: table; clear: both; }
 .slider-secondary .slide { position: relative; }
@@ -1742,7 +1742,7 @@ li:first-child { margin: 0;}
 .slider-secondary .slick-dots button { width: 12px; height: 12px; background: #a1a1a1; border: 3px solid #f0f0f0; font-size: 0; line-height: 0; text-indent: -4004px; line-height: 1; border-radius: 50%; display: inline-block; vertical-align: middle; transition: all .3s; }
 .slider-secondary .slick-dots li:hover button,
 .slider-secondary .slick-dots .slick-active button { background-color: transparent; border-color: #ed1c24; }
-.slider-secondary .slider-label { width: 84px; height: 84px; border-radius: 50%; background: #ed1c24; display: inline-block; z-index: 200; position: absolute; bottom: -41px; left: 50%; margin-left: -42px; text-align: center; }
+.slider-secondary .slider-label { width: 84px; height: 84px; border-radius: 50%; background: #ed1c24; display: inline-block;  position: absolute; bottom: -41px; left: 50%; margin-left: -42px; text-align: center; }
 .slider-secondary .slider-label i { top: 20px; position: relative; left: 0px; }
 .slider-secondary .slider-label.large i { top: 26px; position: relative; left: 3px; }
 @media(max-width: 1500px){ 
@@ -1762,7 +1762,7 @@ li:first-child { margin: 0;}
 	.slider-secondary .btn-menu { position: absolute; right: -4px; top: 100px; z-index: 100; width: 80px; }
 	.slider-secondary .slick-dots-wrapper { z-index: 200; }
 	.slider-secondary .slick-dots-wrapper .shell { padding: 0; }
-	.slider-secondary .slick-list { z-index: 100; }
+	.slider-secondary .slick-list { /*z-index: 100;*/ }
 	.slider-secondary .filter-secondary { margin: 0 auto !important; float: none; display: inline-block; }
 }
 /* Mobile */

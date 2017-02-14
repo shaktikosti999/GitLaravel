@@ -77,11 +77,11 @@
 					<div class="section-head">
 						<h2>Tu opinión es muy importante </h2>
 
-						<h4 style="color:rgb(0,0,0)"> Escríbenos a: </h4> 
-						<h6>programa.lealtad@caliente.com.mx</h6>
+						<h4 style="color:rgb(0,0,0)"> Escríbenos a: programa.lealtad@caliente.com.mx</h4> 
+						
 
-						<h4 style="color:rgb(0,0,0)">Llámanos sin costo al:</h4>
-						<h6>01 800 831 1310</h6>
+						<h4 style="color:rgb(0,0,0)">Llámanos sin costo al: 01 800 831 1310</h4>
+						
 
 						<h4 style="color:rgb(0,0,0)">o si lo prefieres envíanos tu mensaje:</h4>
 						

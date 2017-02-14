@@ -190,7 +190,7 @@
 
 											<div class="fake-div">
 												<div id="counter">
-												    <div class="counter-value" >${{number_format($item->cantidad)}} <em>MN</em></div>
+												    <div class="counter-value" ><p>${{number_format($item->cantidad)}} <em>MN</em></p></div>
 												    <!--<div class="counter-value" data-count="400">$100</div>
 												    <div class="counter-value" data-count="1500">$500</div>-->
 												</div>
