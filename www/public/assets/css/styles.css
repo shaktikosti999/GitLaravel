@@ -2771,6 +2771,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .nav .socials-footer {display: none;}
 
 .main .section-contacts .section-head h6 {color: #616161; font-weight: 600;}
+.main .section-contacts .section-head h6 ,h4 {text-align: center;}
 .section-jackpots .btn-more {text-align: center; padding: 25px 0 10px;}
 
 
