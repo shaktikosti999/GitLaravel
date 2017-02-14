@@ -633,7 +633,7 @@ blockquote:last-child { margin-bottom: 0; }
 \* ------------------------------------------------------------ */
 .article-fun a { height: 272px; display: block; text-decoration: none; position: relative; background-size: cover; background-position: center; }
 .article-fun a:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; 
-	background: linear-gradient(to bottom, rgba(0,0,0,0.20) 0%,rgba(0,0,0,0.40) 50%,rgba(0,0,0,.7) 100%); 	 
+	/*background: linear-gradient(to bottom, rgba(0,0,0,0.20) 0%,rgba(0,0,0,0.40) 50%,rgba(0,0,0,.7) 100%); */	 
 }
 .article-fun a strong { position: absolute; bottom: 0; left: 0; width: 100%; padding: 30px; color: #fff; font-size: 30px; font-weight: 900; z-index: 20; }
 .article-fun a strong span { display: block; font-weight: 400; font-size: 15px; line-height: 1.1; margin-top: 10px; }
@@ -699,7 +699,7 @@ blockquote:last-child { margin-bottom: 0; }
 .box-current-promotions { min-height: 314px; background-size: cover; background-position: center; position: relative; }
 .box-current-promotions .btn { position: absolute; bottom: 20px; right: 20px; font-size: 16px; height: auto; line-height: 1; width: auto; min-width: auto; padding: 10px 28px;  font-weight: 500;  }
 .box-current-promotions:before { content: ''; position: absolute; top: 0; bottom: 0; left: 0; right: 0; 
-	background: linear-gradient(to bottom, rgba(0,0,0,0.20) 0%,rgba(0,0,0,0.40) 50%,rgba(0,0,0,.7) 100%); 	 
+	/*background: linear-gradient(to bottom, rgba(0,0,0,0.20) 0%,rgba(0,0,0,0.40) 50%,rgba(0,0,0,.7) 100%);*/ 	 
 }
 /* ------------------------------------------------------------ *\
 	breadcrumbs
@@ -952,9 +952,9 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 .games li { width: 50%; float: left; padding: 0 14px; }
 .games li a { min-height: 420px; display: block; text-decoration: none; margin-bottom: 28px; position: relative; background-size: cover; background-position: center; }
 .games li a:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: ; }
-.games li a:before { 
+/*.games li a:before { 
 	background: linear-gradient(to bottom, rgba(0,0,0,0.20) 0%,rgba(0,0,0,0.40) 50%,rgba(0,0,0,.7) 100%); 	 
-}
+}*/
 .games li .jackpot { position: absolute; top: 0; right: 0; z-index: 20; color: #fff; display: block; text-align: right; padding: 30px 40px; }
 .games li .jackpot small { display: block; color: #ed1c24; font-size: 18px; text-transform: uppercase; }
 .games li .jackpot strong { font-size: 25px; margin-top: -2px; display: inline-block; }
@@ -1681,9 +1681,9 @@ li:first-child { margin: 0;}
 \* ------------------------------------------------------------ */
 .slider-promotions .slide-content { display: block; height: 360px; text-decoration: none; position: relative; }
 .slider-promotions .slide-content:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
-.slider-promotions .slide-content:before { 
+/*.slider-promotions .slide-content:before { 
 	background: linear-gradient(to bottom, rgba(0,0,0,0.20) 0%,rgba(0,0,0,0.40) 50%,rgba(0,0,0,.7) 100%); 	 	
-}
+}*/
 .slider-promotions .slide-label { background: #ed1c24; color: #fff; min-width: 140px; display: inline-block; font-size: 15px; padding: 7px 10px; line-height: 1; position: absolute; top: 20px; left: 30px; }
 .slider-promotions .slide-inner { position: absolute; bottom: 0; left: 0; padding: 20px 30px; }
 .slider-promotions .slide-inner-entry { font-size: 30px; color: #fff; display: block; line-height: 1.2; margin-bottom: 10px; }
@@ -2579,6 +2579,10 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	/*footer*/
 	.socials-footer > ul > li > a {line-height: 44px;}
 	.socials-footer .socials-dropdown {display: none;}
+
+	.section-jackpots .btn-more .btn-border { width: 100%;}
+	.section-jackpots .btn-more {padding: 25px 0 30px !important;}
+	    
 }
 
 @media (max-width: 1320px) {
@@ -2619,6 +2623,8 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.nav .socials-footer .socials-dropdown {display: none;}
 	.fs-dropdown-element {/*z-index: 100; */background: transparent; border: none;}
 	.section-map .fs-dropdown-element {z-index: 100;}
+
+	.section-jackpots .btn-more .btn-border {padding: 20px 110px;}
 }
 
 @media (max-width: 920px) {
@@ -2763,4 +2769,11 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 }
 .section-jackpots .section-entry .btn {position: relative; font-size: 16px; height: auto; line-height: 1; width: auto; min-width: auto; padding: 10px 28px; font-weight: 500; float: right; display: inline-block; color: #fff; top: 40px;}
 .nav .socials-footer {display: none;}
+
+.main .section-contacts .section-head h6 {color: #616161; font-weight: 600;}
+.section-jackpots .btn-more {text-align: center; padding: 25px 0 10px;}
+
+
+
+
 

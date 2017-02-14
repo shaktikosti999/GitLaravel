@@ -203,12 +203,18 @@
 										</div><!-- /.article-content -->
 									</article><!-- /.article-jackpot -->
 								</div><!-- /.col col-1of2 -->
-
+					
 								
 							@endforeach
 							
 						</div><!-- /.cols -->
 					@endif
+
+					<div class="btn-more">
+						<a href="#" class="btn btn-border view_more">
+							Ver más
+						</a>
+					</div>
 
 						@if( isset($pagados) && count($pagados) )
 							<div class="section-entry">
@@ -228,6 +234,7 @@
 								
 								</p>
 							</div><!-- /.section-entry -->
+
 
 							<div class="cols">
 								@foreach($pagados as $pagado)
@@ -255,10 +262,17 @@
 								</div><!-- /.col col-1of2 -->
 								@endforeach
 							</div><!-- /.cols -->
+							<div class="btn-more">
+								<a href="#" class="btn btn-border view_more">
+									Ver más
+								</a>
+							</div>
 						@endif
 					</div><!-- /.section-content --> 
 				</div><!-- /.shell -->
 			</section><!-- /.section-jackpots -->
+
+
 		<section class="section-gray">
 			<div class="shell">
 				<div class="subscribe">
@@ -296,6 +310,7 @@
 				</div><!-- /.subscribe -->
 			</div><!-- /.shell -->
 		</section><!-- /.section-gray -->
+
 
 		@if( isset( $sucursal_info ) && $sucursal_info )
 

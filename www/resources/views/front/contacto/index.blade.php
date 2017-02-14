@@ -75,7 +75,15 @@
 			<section class="section-contacts">
 				<div class="shell">
 					<div class="section-head">
-						<h2>Tu opinión es muy importante </h2><h4 style="color:rgb(0,0,0)">envíanos tu mensaje:</h4>
+						<h2>Tu opinión es muy importante </h2>
+
+						<h4 style="color:rgb(0,0,0)"> Escríbenos a: </h4> 
+						<h6>programa.lealtad@caliente.com.mx</h6>
+
+						<h4 style="color:rgb(0,0,0)">Llámanos sin costo al:</h4>
+						<h6>01 800 831 1310</h6>
+
+						<h4 style="color:rgb(0,0,0)">o si lo prefieres envíanos tu mensaje:</h4>
 						
 						<!-- <p>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie. Cheesecake powder marshmallow cupcake marzipan jelly. Powder cake macaroon gingerbread tart. Bear claw lemon drops pastry gingerbread wafer dessert cheesecake carrot cake. Biscuit apple pie carrot cake tiramisu.</p> -->
 					</div><!-- /.section-head -->
@@ -216,9 +224,9 @@
 									?>
 
 									<input type="submit" value="Enviar" class="form-btn btn btn-black">
-									<h5 style="color:rgb(0,0,0)">Si lo prefieres
+									<!--<h5 style="color:rgb(0,0,0)">Si lo prefieres
 									Escríbenos a: programa.lealtad@caliente.com.mx <br>
-									Llámanos sin costo al: 01 800 831 1310</h5>
+									Llámanos sin costo al: 01 800 831 1310</h5>-->
 								</div><!-- /.form-actions -->
 							</form>
 						</div><!-- /.form-contact -->
