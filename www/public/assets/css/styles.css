@@ -1714,6 +1714,7 @@ li:first-child { margin: 0;}
 	
 	.slider-gallery .slide-image { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); padding: 80px; padding-top: 40px; padding-bottom: 40px; }
 	.slider-gallery .slick-center .slide-image { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); } 
+	.filter-secondary .fs-dropdown-open .fs-dropdown-options {display: none;}
 }
 /* ------------------------------------------------------------ *\
 	Slider Secondary
