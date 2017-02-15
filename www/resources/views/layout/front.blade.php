@@ -448,7 +448,10 @@
 						</div><!-- /.col col-size4 -->
 					</div><!-- /.cols -->
 
-					<p class="copyright"><strong>&copy; 2016 Casino Caliente</strong> | Todos los Derechos Reservados | <a href="#"><strong>Aviso de Privacidad</strong></a></p><!-- /.copyright -->
+					<p class="copyright">
+						Los juegos con apuesta está prohibidos para menores de edad. | Diviértete responsablemente. |
+						Permisos SEGOB 03923; 6680; 7540; 8599; 8993 y sus posteriores modificaciones.
+					</p><!-- /.copyright -->
 				</div><!-- /.shell -->
 			</footer><!-- /.footer -->
 		</div><!-- /.wrapper -->

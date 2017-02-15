@@ -485,7 +485,7 @@ blockquote:last-child { margin-bottom: 0; }
 .footer .logo { margin-bottom: 12px; }
 .footer .socials-footer { margin-right: 3px; padding-top: 11px; }
 .footer .btn-top { position: absolute; top: -34px; left: 50%; margin-left: -34px; }
-.footer .copyright { text-align: center; font-size: 13px; color: #4d4d4d; margin-bottom: 17px; }
+.footer .copyright { text-align: center; font-size: 15px; color: #4d4d4d; margin-bottom: 17px; }
 .footer .copyright strong { font-size: 15px; }
 .footer .copyright a { text-decoration: none; transition: all .3s; }
 .footer .copyright a:hover { color: #fff; }
