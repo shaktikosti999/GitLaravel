@@ -450,6 +450,11 @@ blockquote:last-child { margin-bottom: 0; }
 .visible-lg-block,
 .visible-lg-inline,
 .visible-lg-inline-block { display: none !important; }
+
+@media (max-width: 430px) {
+.article-jackpot .article-content .fake-div .counter-value {font-size: 40px !important;}
+}
+
 @media (max-width: 767px) {
 	.hidden-xs { display: none !important; }
 	.visible-xs-block { display: block !important; }
@@ -1583,7 +1588,7 @@ li:first-child { margin: 0;}
 	.slider-intro .btn-scroll { top: auto; bottom: 50px; -webkit-transform: scale(0.6); -ms-transform: scale(0.6); transform: scale(0.6); }
 	.slider-intro-promo {/*height: 440px;*/}
 	.slider-games .slide-content {max-width: 223px !important; height: 290px !important;}
-	.section-map #googlemap {height: 700px;}
+	.section-map #googlemap {height: 580px;}
 
 }
 .slider-intro.anchor + .main.anchor { margin-top: -400px; z-index: 200; position: relative; }
@@ -1911,7 +1916,7 @@ li:first-child { margin: 0;}
 	.subscribe-field  { min-width: 100%; font-size: 15px; line-height: 1.2; height: 45px;  padding: 0 20px; margin-bottom: 20px; margin-right: 0; }
 	.list-buttons li a {display: none;}
 	.section-content-head .fs-dropdown {margin-top: 100px; z-index: 60;}
-	.list-contacts {margin-top: 160px; z-index: -10;}
+	.list-contacts {margin-top: 10px; z-index: -10;}
 	li.feature {margin-bottom: 30px;}
 }
 /* ------------------------------------------------------------ *\
@@ -2568,7 +2573,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.header .logo {transform: scale(0.6);}
 	.slider-secondary .slide-inner .breadcrumbs {padding-top: 45px !important; display: none;}
 	.nav .tablet-hidden {padding-bottom: 0;}
-	.section-games-available h2 {margin-top: 0;}
+	.section-games-available h2 {margin-top: 0; padding-bottom: 40px; padding-top: 70px; margin-bottom: 0;}
 	.calendar-content {padding: 28px 18px 8px 18px;}
 	.indications p {margin-left: 40px;}
 	.right-item {height: 500px;}
@@ -2584,6 +2589,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 
 	.section-jackpots .btn-more .btn-border { width: 100%;}
 	.section-jackpots .btn-more {padding: 25px 0 30px !important;}
+	.slider-secondary .slide-content h3 {font-size: 20px !important;}
 
 }
 
