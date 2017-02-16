@@ -982,6 +982,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 .intro:before { display: inline-block; content: ''; width: 100%; height: 100%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.6) 100%); }
 .intro-content { position: absolute; left: 0; right: 0; bottom: 0; padding-bottom: 58px; }
 .intro-content .shell { max-width: 1180px; padding-right: 34px; }
+.intro-content p {display: none;}
 /* Small Desktop */
 @media (max-width: 1162px) {
 	.intro-content .shell  { padding: 0 10px; }
@@ -1968,7 +1969,7 @@ li:first-child { margin: 0;}
 /* ------------------------------------------------------------ *\
 	Botones scroll
 \* ------------------------------------------------------------ */
-.shell-btn { position: fixed; width: 100%; left: 50%; transform: translateX(-50%); margin-top: -199px; padding: 0; z-index: 10000000;}
+.shell-btn { position: fixed; width: 100%; left: 50%; transform: translateX(-50%); margin-top: -239px; padding: 0; z-index: 10000000;}
 /* ------------------------------------------------------------ *\
 	Forma Botones
 \* ------------------------------------------------------------ */
@@ -2301,7 +2302,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .calendar-module tr td.old.day {font-size: 18px; text-align: center;}
 .calendar-module tr td.day {font-size: 18px; text-align: center; /*padding-bottom: 22px;*/ color: #777;}
 /*.calendar-module tr td.new.day {text-align: center; padding-bottom: 43px;}*/
-.calendar-module tr td.black {/*border: 1px solid black;*/ border-radius: 4px !important;}
+.calendar-module tr td.black {/*border: 1px solid black; border-radius: 4px !important;*/}
 .calendar-module tr td.black:hover {background: #000 !important; color: #fff;}
 .datepicker table tr td.today {color: #fff; background-color: #ffdb99; border-color: #ffb733;}
 .datepicker table tr td, .datepicker table tr th {text-align: center; height: 30px;}
