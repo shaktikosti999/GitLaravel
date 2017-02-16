@@ -70,16 +70,16 @@
 
 		<section class="section-jackpots">
 			<div class="shell">
-				<header class="section-head">
+				<!-- <header class="section-head">
                     <div class="stick--point" id="jackpot"></div>
 					<h2>
 						<small>Jackpot</small>
 						Acumulado
 					</h2> 
-				</header><!-- /.section-head -->
+				</header> --><!-- /.section-head -->
 
 				<div class="section-content">
-					<div class="section-entry">
+					<!-- <div class="section-entry">
 						<p>
 							<span>
 								Por pagar
@@ -89,7 +89,7 @@
 								Ver más
 							</a>
 						</p>
-					</div><!-- /.section-entry -->
+					</div> --><!-- /.section-entry -->
 
 					<div class="cols">
 
@@ -111,7 +111,7 @@
 						
 					</div><!-- /.cols -->
 
-					<div class="section-entry">
+					<!-- <div class="section-entry">
 						<p>
 							<span>
 								Pagado
@@ -121,9 +121,9 @@
 								Conoce más detalle
 							</a>
 						</p>
-					</div><!-- /.section-entry -->
+					</div> --><!-- /.section-entry -->
 
-					<div class="cols">
+					<!-- <div class="cols">
 						<div class="col col-1of2">
 							<article class="article-jackpot">
 								<div class="article-content">
@@ -134,9 +134,9 @@
 									<p>
 										$293,939.93
 									</p>
-								</div><!-- /.article-content -->
-							</article><!-- /.article-jackpot -->
-						</div><!-- /.col col-1of2 -->
+								</div>
+							</article>
+						</div>
 
 						<div class="col col-1of2">
 							<article class="article-jackpot">
@@ -148,24 +148,24 @@
 									<p>
 										$562,241.62 									
 									</p>
-								</div><!-- /.article-content -->
-							</article><!-- /.article-jackpot -->
-						</div><!-- /.col col-1of2 -->
-					</div><!-- /.cols -->
+								</div>
+							</article>
+						</div>
+					</div> -->
 				</div><!-- /.section-content --> 
 			</div><!-- /.shell -->
 		</section><!-- /.section-jackpots -->
 
-		<section class="section-games-available">
-			<div class="shell">
-				<div class="section-head">
-                    <div class="stick--point" id="juegos"></div>
-					<h2>
-						Juegos disponibles
-					</h2>
-				</div><!-- /.section-head -->
-				
-				@if(isset($mesas) && count($mesas))
+		@if(isset($mesas) && count($mesas))
+			<section class="section-games-available">
+				<div class="shell">
+					<div class="section-head">
+	                    <div class="stick--point" id="juegos"></div>
+						<h2>
+							Juegos disponibles
+						</h2>
+					</div><!-- /.section-head -->
+					
 					<div class="section-body">					
 						<aside class="section-aside">
 							<article class="article-game-available large">
@@ -234,7 +234,7 @@
 																
 																<div class="article-image" style="background-image: url({{$mesa->imagen}})"> </div><!-- /.article-image -->
 
-																<a href="#" class="link-more">
+																<a href="{{url($mesa->slug)}}" class="link-more">
 																	Ver más
 																</a>
 																</article><!-- /.article-game-available small -->
@@ -252,10 +252,10 @@
 							</div><!-- /.slider-games-available -->
 						</div><!-- /.section-content --> 
 					</div><!-- /.section-body -->
-				@endif				
 
-			</div><!-- /.shell -->
-		</section><!-- /.section-games-available -->
+				</div><!-- /.shell -->
+			</section><!-- /.section-games-available -->
+		@endif				
 
 		@if( isset($torneos) && count($torneos) )
 			<section class="section section-secondary">
@@ -393,7 +393,7 @@
 						</div><!-- /.shell -->
 						
 						<div class="section-actions">
-							<a href="#" class="btn btn-red btn-red-small">
+							<a href="http://www.google.com/maps/place/{{$sucursal->latitud}},{{$sucursal->longitud}}" class="btn btn-red btn-red-small" target="_blank">
 								<i class="ico-human"></i>
 
 								Cómo llegar aquí

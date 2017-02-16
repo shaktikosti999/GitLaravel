@@ -112,7 +112,9 @@ class sucursal_model{
                 ->where('s.id_sucursal','=',$branch->id_sucursal)
                 ->where('s.estatus','=',1)
                 ->where('s.eliminado','=',0)
+                ->where('s.tipo',1)
                 ->get();
+            // dd($branch);
 
     }
 
