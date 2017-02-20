@@ -66,7 +66,7 @@
 							<ul>
 								<?php $uri = explode('/',Request::path());$uri = $uri[0]; ?>
 								<li class="has-dropdown">
-									<a href="{{url('lineas-de-juego')}}">opciones De Diversión</a>
+									<a>opciones De Diversión</a>
 
 									<ul class="dropdown">
 										<li>
