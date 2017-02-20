@@ -25,7 +25,7 @@ $(document).on('ready', function(){
 
 					$.each(data, function(index, val){
 
-						if (val.archivo != null )
+						if (val.archivo != null && val.archivo.trim() != "" )
 							imagen = val.archivo;
 						else
 							imagen = val.imagen;

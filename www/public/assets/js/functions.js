@@ -44,7 +44,8 @@
 
 	      	}).datepicker("setDate", null).on('changeDate',function(e){
 	      		date = new Date( e.date );
-	      		date = date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
+	      		var datemount = parseInt(date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1);
+	      		date = date.getFullYear() + '-' + datemount + '-' + date.getDate();
 	      		$('[data-fecha]').show();
 	      		if( $('[data-fecha="' + date + '"]').length > 0 ){
 		      		$('[data-fecha]').addClass('hide_program');

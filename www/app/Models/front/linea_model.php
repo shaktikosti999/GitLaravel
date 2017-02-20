@@ -203,6 +203,7 @@ class linea_model{
         }
         if( isset($args['list']) ){
             $data = $data
+                ->distinct()
                 ->join('juego as j','j.id_categoria','=','cj.id');
         }
         $data = $data->get();
@@ -302,7 +303,7 @@ class linea_model{
 
     static function get_programs($args = [] ){
         $data = \DB::table('carrerapdf as c')
-            // ->distinct()
+            ->distinct()
             ->select(
                 'c.titulo',
                 'c.fecha',

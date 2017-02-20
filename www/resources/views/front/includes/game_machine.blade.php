@@ -27,7 +27,7 @@
 				 		<select name="categorias" id="categorias" class="select">
 				 			<option value="">Todas</option>
 					 		@foreach ($categorias as $categoria)
-					 			<option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+					 			<option value="{{$categoria->id}}" {{$categoria->id == 2 ? 'selected' : ''}}>{{$categoria->nombre}}</option>
 					 		@endforeach				 			
 				 		</select>
 				 	</div><!-- /.form-controls -->

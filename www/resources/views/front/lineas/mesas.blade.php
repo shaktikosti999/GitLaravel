@@ -188,27 +188,24 @@
 													 	<div class="slide-content">  
 														 	<div class="cols">
 												@endif
-																<div class="col col-1of2">
-																	<article class="article-game-available small">
-																		<h6>
-																			{{$mesa->nombre}}
-
-																			<span class="plus"></span>
-																		</h6>
-																	<div class="article-image" style="background-image: url({{ isset($mesa->archivo) && trim($mesa->archivo) != "" ? $mesa->archivo : $mesa->imagen}})"> </div><!-- /.article-image -->
-
-																	<a href="#" class="link-more ver-mesa" data-id="{{$mesa->id}}" data-sucursal="{{isset($mesa->id_sucursal) && !empty($mesa->id_sucursal) ? $mesa->id_sucursal : "0"}}">
-																		Ver más
-																	</a>
-																	</article><!-- /.article-game-available small -->
-																</div><!-- /.col col-1of2 -->
+																<a href="#" class="link-more ver-mesa" data-id="{{$mesa->id}}" data-sucursal="{{isset($mesa->id_sucursal) && !empty($mesa->id_sucursal) ? $mesa->id_sucursal : "0"}}">
+																	<div class="col col-1of2">
+																		<article class="article-game-available small">
+																			<h6>
+																				{{$mesa->nombre}}
+																				<span class="plus"></span>
+																			</h6>
+																			<div class="article-image" style="background-image: url({{ isset($mesa->archivo) && trim($mesa->archivo) != "" ? $mesa->archivo : $mesa->imagen}})"> </div><!-- /.article-image -->
+																		</article><!-- /.article-game-available small -->
+																	</div><!-- /.col col-1of2 -->
+																</a>
 
 													<?php $c++; ?>
 											@endforeach
 											@if( ($c % 4) != 1 )
-													 	</div><!-- /.cols -->
-													</div><!-- /.slide-content -->
-												</li><!-- /.slide -->
+													 		</div><!-- /.cols -->
+														</div><!-- /.slide-content -->
+													</li><!-- /.slide -->
 											@endif
 										</ul><!-- /.slides -->
 										<!-- vik0x -->
@@ -298,7 +295,7 @@
 												</h5>
 
 												<p>
-													{{ date("M", strtotime( $item->fecha_inicio ) ) }} {{ date("d", strtotime( $item->fecha_inicio ) ) }} {{ date("Y", strtotime( $item->fecha_inicio ) ) }} - {{ $item->sucursal }}
+													{{ date("M", strtotime( $item->fecha_inicio ) ) }} {{ date("d", strtotime( $item->fecha_inicio ) ) }} {{ date("Y", strtotime( $item->fecha_inicio ) ) }} al {{ date("M", strtotime( $item->fecha_fin ) ) }} {{ date("d", strtotime( $item->fecha_fin ) ) }} {{ date("Y", strtotime( $item->fecha_fin ) ) }}
 			 									</p>
 
 			 									<a href="{{ ( $item->link ) ? $item->link : '/torneos/' . $item->slug }}" class="btn btn-red">
