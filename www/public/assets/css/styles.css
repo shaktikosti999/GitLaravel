@@ -160,7 +160,7 @@
 .ico-robot-small { background-image: url(../css/images/sprite.png); background-position: -184px -36px; width: 30px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
 .ico-robot {background: url(../images/icon/maquinas-de-juego.svg) center center no-repeat;width: 38px;height: 40px;display: inline-block;vertical-align: middle;font-size: 0;background-size: 100%;}
 .ico-search { background-image: url(../css/images/sprite.png); background-position: -101px -103px; width: 32px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-slot { background-image: url(../css/images/sprite.png); background-position: -184px -72px; width: 30px; height: 31px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-slot {background: url(../images/icon/maquinas-de-juego.svg) center center no-repeat;width: 40px;height: 40px;display: inline-block;vertical-align: middle;font-size: 0;background-size: 100%;}
 .ico-deportiva {background-image: url(../css/images/sprite.png); background-position: -144px -49px; width: 39px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0;}
 .ico-square { background-image: url(../css/images/sprite.png); background-position: -220px 0; width: 26px; height: 26px; display: inline-block; vertical-align: middle; font-size: 0; }
 .ico-ticket { background-image: url(../css/images/sprite.png); background-position: -96px -59px; width: 38px; height: 38px; display: inline-block; vertical-align: middle; font-size: 0; }
@@ -1766,7 +1766,7 @@ li:first-child {margin: 0;margin-left: 0;}
 .slider-secondary .slick-dots .slick-active button { background-color: transparent; border-color: #ed1c24; }
 .slider-secondary .slider-label { width: 84px; height: 84px; border-radius: 50%; background: #ed1c24; display: inline-block;  position: absolute; bottom: -41px; left: 50%; margin-left: -42px; text-align: center; }
 .slider-secondary .slider-label i { top: 20px; position: relative; left: 0px; }
-.slider-secondary .slider-label.large i { top: 26px; position: relative; left: 3px; }
+.slider-secondary .slider-label.large i {top: 22px;position: relative;left: 0px;}
 @media(max-width: 1500px){
 	.slider-secondary .slide-content h1 {margin-right: 0; }
 }
