@@ -163,7 +163,7 @@
 .ico-slot {background: url(../images/icon/maquinas-de-juego.svg) center center no-repeat;width: 40px;height: 40px;display: inline-block;vertical-align: middle;font-size: 0;background-size: 100%;}
 .ico-deportiva {background-image: url(../css/images/sprite.png); background-position: -144px -49px; width: 39px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0;}
 .ico-square { background-image: url(../css/images/sprite.png); background-position: -220px 0; width: 26px; height: 26px; display: inline-block; vertical-align: middle; font-size: 0; }
-.ico-ticket { background-image: url(../css/images/sprite.png); background-position: -96px -59px; width: 38px; height: 38px; display: inline-block; vertical-align: middle; font-size: 0; }
+.ico-ticket {background: url(../images/icon/todas-las-promociones.svg) center center no-repeat;width: 30px;height: 30px;display: inline-block;vertical-align: middle;font-size: 0;background-size: 100%;}
 .logo { background-image: url(../css/images/sprite.png); background-position: 0 0; width: 140px; height: 55px; display: inline-block; vertical-align: middle; font-size: 0; }
 .ico-map-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -94px -96px; width: 32px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
 .ico-phone-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: 160px -94px; width: 33px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
@@ -1294,12 +1294,17 @@ li:first-child {margin: 0;margin-left: 0;}
 .section-teritary .col { float: left; padding: 0 15px 15px; }
 .section-filters { list-style: none; }
 .section-filters:after { content: ''; line-height: 0; display: table; clear: both; }
-.section-filters { margin: 0 -10px 0 -20px; }
-.section-filters li { float: left; width: 20%; text-align: center; }
-.section-filters li a { max-width: 204px; background: #cbc9c9; display: block; margin: 0 auto; border-radius: 30px; padding: 10px ; text-decoration: none; transition: all .3s; }
+.section-filters {/* margin: 0 -10px 0 -20px; */}
+.section-filters li {float: left;width: 20%;text-align: center;border-right: 1px solid #ebebeb;}
+.section-filters li:last-child {border-right:0;}
+.section-filters li a {background: #cbc9c9;display: block;margin: 0 auto;padding: 10px;text-decoration: none;transition: all .3s;width: 100%;height: 60px;}
 .section-filters li a:hover { background: #ff0000; }
-.section-filters li span { display: block; font-size: 14px; text-transform: uppercase; font-weight: 700; color: #fff; margin-top: 4px; }
+.section-filters li span {display: block;font-size: 14px;text-transform: uppercase;font-weight: 700;color: #fff;float: left;width: 52%;text-align: left;}
 .section-filters li.active a { background: #ff0000; }
+.section-filters li i {/* margin-top: 5px; */float: left;margin-right: 5%;}
+.section-filters li:first-child a {border-radius:5px 0 0 5px;}
+.section-filters li:last-child a {border-radius:0 5px 5px 0px;}
+
 /* Small Desktop */
 @media (max-width: 1162px) {
 	.section-filters { margin: 0; }
