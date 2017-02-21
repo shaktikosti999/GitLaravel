@@ -164,7 +164,7 @@
 .ico-deportiva {background-image: url(../css/images/sprite.png); background-position: -144px -49px; width: 39px; height: 35px; display: inline-block; vertical-align: middle; font-size: 0;}
 .ico-square { background-image: url(../css/images/sprite.png); background-position: -220px 0; width: 26px; height: 26px; display: inline-block; vertical-align: middle; font-size: 0; }
 .ico-ticket {background: url(../images/icon/todas-las-promociones.svg) center center no-repeat;width: 30px;height: 30px;display: inline-block;vertical-align: middle;font-size: 0;background-size: 100%;}
-.logo { background-image: url(../css/images/sprite.png); background-position: 0 0; width: 140px; height: 55px; display: inline-block; vertical-align: middle; font-size: 0; }
+.logo {background-image: url(../css/images/sprite.png);background-position: 0 0;width: 140px;height: 55px;display: inline-block;vertical-align: middle;font-size: 0;}
 .ico-map-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -94px -96px; width: 32px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
 .ico-phone-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: 160px -94px; width: 33px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
 .ico-clock-gray {position: absolute; background-image: url(../css/images/sprite_gray.png); background-position: -284px 0; width: 32px; height: 32px; display: inline-block; vertical-align: middle; font-size: 0; }
@@ -535,10 +535,19 @@ blockquote:last-child { margin-bottom: 0; }
 .header .btn-search { position: absolute; top: 0; right: 0; transition: all 0; display: block; }
 .header.fixed { padding-top: 5px; background: rgba(0, 0, 0, 0.7); padding-bottom: 5px; top: -5px; }
 .header.fixed .socials { margin-top: 5px; }
-.header.fixed .nav { margin-top: 5px; }
-.header.fixed .logo { margin-top: -10px; }
+.header.fixed .nav {margin-top: 15px;}
+.header.fixed .logo {margin-top: -7px;-webkit-transform: scale(.6);}
 .header.fixed .btn-search { height: 79px; }
 .header.fixed .search-actions input { height: 94px; padding-top: 10px; }
+.header.fixed .nav > ul > li a {
+	padding-bottom: 15px;
+}
+.header.fixed .nav-access {
+	margin-top: 2px;
+}
+.header.fixed .socials-footer.hdr-btn {
+	margin-top: -1px;
+}
 .hdr-redes {width: 100%;}
 
 @media(max-width: 1320px){
@@ -1080,7 +1089,7 @@ li:first-child {margin: 0;margin-left: 0;}
 /* ------------------------------------------------------------ *\
 	Nav-access
 \* ------------------------------------------------------------ */
-.nav-access {font-size: 13px;color: #fff;text-align: right;text-transform: uppercase;}
+.nav-access {font-size: 13px;color: #fff;text-align: right;text-transform: uppercase;margin-top: 10px;}
 .nav-access li { display: inline-block; }
 .nav-access li a { display: inline-block; text-decoration: none; transition: all .3s; }
 .nav-access li a:hover { color: #ff0000; }
