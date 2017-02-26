@@ -17,12 +17,12 @@
     
     <div class="stick-nav"><!-- Stick nav -->
         <ul>
-            <li><a href="#promociones"><img src="css/images/icons/icon-1.png"><span>Promociones</span></a></li>
-            <li><a href="#maquinas"><img src="css/images/icons/icon-2.png"><span>Máquinas</span></a></li>
-            <li><a href="#proveedores"><img src="css/images/icons/icon-3.png"><span>Marcas de Juego</span></a></li>
-            <li><a href="#jackpot"><img src="css/images/icons/icon-4.png"><span>Jackpot</span></a></li>
+            <li><a href="#promociones"><img src="/assets/images/icon/todas-las-promociones.svg"><span>Promociones</span></a></li>
+            <li><a href="#maquinas"><img src="/assets/images/icon/maquinas-de-juego.svg"><span>Máquinas</span></a></li>
+            <li><a href="#proveedores"><img src="/assets/images/icon/marcas-de-juego.svg"><span>Marcas de Juego</span></a></li>
+            <li><a href="#jackpot"><img src="/assets/images/icon/jackpot.svg"><span>Jackpot</span></a></li>
             <!--<li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Ubicación</span></a></li>-->
-            <li><a href="#diversion"><img src="css/images/icons/icon-6.png"><span>Diversión</span></a></li>
+            <li><a href="#diversion"><img src="/assets/images/icon/diversion.svg"><span>Diversión</span></a></li>
         </ul>
     </div>
 
