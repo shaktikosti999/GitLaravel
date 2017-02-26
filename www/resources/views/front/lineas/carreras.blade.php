@@ -92,12 +92,12 @@
 	    
 	    <div class="stick-nav"><!-- Stick nav -->
 	        <ul>
-	            <li><a href="#promociones"><img src="css/images/icons/icon-1.png"><span>Promociones</span></a></li>
-	            <li><a href="#juegos"><img src="css/images/icons/icon-7.png"><span>Juegos</span></a></li>
+	            <li><a href="#promociones"><img src="/assets/images/icon/todas-las-promociones.svg"><span>Promociones</span></a></li>
+	            <li><a href="#juegos"><img src="/assets/images/icon/apuesta-de-carreras.svg"><span>Juegos</span></a></li>
 	            <!--<li><a href="#jackpot"><img src="css/images/icons/icon-4.png"><span>Jackpot</span></a></li>-->
-	            <li><a href="#torneos"><img src="css/images/icons/icon-8.png"><span>Torneos</span></a></li>
+	            <li><a href="#torneos"><img src="/assets/images/icon/torneos.svg"><span>Torneos</span></a></li>
 	            <!--<li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Ubicación</span></a></li>-->
-	            <li><a href="#diversion"><img src="css/images/icons/icon-6.png"><span>Diversión</span></a></li>
+	            <li><a href="#diversion"><img src="/assets/images/icon/diversion.svg"><span>Diversión</span></a></li>
 	        </ul>
 	    </div>
 		<div class="slider-secondary">
@@ -184,21 +184,21 @@
 								<ul class="section-btn">
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}">
-											<img src="css/images/icons/horse_black.png">
+											<img src="/assets/images/icon/caballos.svg">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
 										<?php next($carreras); ?>
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" class="btn-carreras">
-											<img src="css/images/icons/galgo_black.png">
+											<img src="/assets/images/icon/galgos.svg">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
 										<?php next($carreras); ?>
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" class="btn-carreras">
-											<img src="css/images/icons/dog_black.png">
+											<img src="/assets/images/icon/canodromo.svg">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
