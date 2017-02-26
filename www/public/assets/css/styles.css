@@ -2847,10 +2847,47 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .section-jackpots .btn-more {text-align: center; padding: 25px 0 10px;}
 
 
+/* ------------------------------------------------------------ *\
+	GENERAL FIXES
+\* ------------------------------------------------------------ */
+.promo-slider {
+	width: 100%;
+}
+
+.promo-slider .slick-arrow {
+		border: none;
+		background-color: transparent;
+		width: 60px;
+		height: 60px;
+		font-size: 0;
+		line-height: 0;
+		text-indent: -4004px;
+		position: absolute;
+		top: 50%;
+		margin-top: -45px;
+		/* left: -74px; */
+		border-radius: 50%;
+		transition: all .3s;
+		z-index: 99;
+		cursor: pointer;
+}
+.promo-slider .slick-arrow.slick-prev {
+	background: #fff url(../css/images/ico-arrow-gray@2x.png) no-repeat 0 0;
+	background-size: 60px 60px;
+	left: -10px;
+}
+.promo-slider .slick-arrow.slick-next {
+	background:#fff url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0;
+	background-size: 60px 60px;
+	right: -20px;
+}  
+
+
 
 /* ------------------------------------------------------------ *\
 	RESPONSIVE FIXES
 \* ------------------------------------------------------------ */
+
 
 @media (max-width: 1200px) {/* ------ LargeScreen */
     
@@ -2900,6 +2937,15 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.slider-secondary {
 		height: 490px;
 	}
+	.promo-slider {
+		padding: 0 10%;
+	}
+	.promo-slider .slick-arrow.slick-prev {
+		left: 2%;
+	}
+	.promo-slider .slick-arrow.slick-next {
+		right: 2%;
+	}  
 }
 
 
