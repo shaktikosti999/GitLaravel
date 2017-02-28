@@ -2880,7 +2880,10 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	background:#fff url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0;
 	background-size: 60px 60px;
 	right: -20px;
-}  
+} 
+.slider-secondary {
+	z-index: 100;
+} 
 
 
 
