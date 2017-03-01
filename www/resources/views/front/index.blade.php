@@ -240,7 +240,7 @@
 							@foreach( $lineas as $linea )
 
 								<li>
-									<a data-href="{{ '/lineas-de-juego/' . $linea->slug }}" class="btn btn-features modal_linea">
+									<a href="{{ '/lineas-de-juego/' . $linea->slug }}" class="btn btn-features"><!-- data-href class=modal_linea"> -->
 										<i class="{{ $linea->icono }}"></i>
 										
 										<span>{{ $linea->linea }}</span> 

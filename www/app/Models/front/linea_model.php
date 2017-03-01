@@ -321,6 +321,11 @@ class linea_model{
             ->where('c.estatus',1)
             ->where('c.eliminado',0)
             ->get();
+        foreach($data as $key => $item){
+            if( !is_file( public_path() . $item->archivo) )
+                $data[$key]->archivo = "";
+        }
+        // dd($data);
         return $data;
     }
 

@@ -251,10 +251,12 @@
 								@foreach($programas as $item)
 									<li class="txt-left" data-fecha="{{$item->fecha}}">
 										<h5>{{$item->titulo}}</h5>
-											<a href="{{$item->archivo}}" target="_blank"> 
-												<img src="css/images/icons/download.png">
-												Descargar programa
-											</a>
+											@if( trim($item->archivo) !== "" )
+												<a href="{{$item->archivo}}" target="_blank"> 
+													<img src="css/images/icons/download.png">
+													Descargar programa
+												</a>
+											@endif
 									</li>
 										
 								@endforeach

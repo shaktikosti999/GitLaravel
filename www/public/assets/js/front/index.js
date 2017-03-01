@@ -63,6 +63,10 @@
 					$.each(data, function(index, val){
 						element.append('<option value="' + val.id + '">' + val.nombre + '</option>')
 					});
+					element.append('\
+						<option value="apuesta-deportiva">Apuesta Deportes</option>\
+						<option value="apuesta-de-carreras">Apuesta de Carreras</option>\
+					');
 				}
 				element.parent().dropdown("update")
 			}

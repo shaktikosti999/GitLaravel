@@ -11,11 +11,25 @@ class sucursal_model{
         $data = \DB::table('sucursal as s')
             ->where('s.estatus','=',1)
             ->where('s.eliminado','=',0);
+
         if(isset($args['id_ciudad']) && !empty($args['id_ciudad']) ){
             $data = $data->where('id_ciudad',$args['id_ciudad']);
         }
-            $data = $data->orderBy('s.nombre')
-            ->get();
+
+        if( isset($args['id_linea']) ){
+            $data = $data->distinct()
+                ->select('s.id_sucursal','s.nombre','s.slug')
+                ->join('promocion_sucursal as ps','ps.id_sucursal','=','s.id_sucursal')
+                ->join('promocion as p','p.id_promocion','=','ps.id_promocion')
+                ->join('linea as l','l.id_linea','=','p.id_juego');
+            if( (int)$args['id_linea'] > 0)
+                $data = $data->where('l.id_linea',$args['id_linea']);
+        }
+
+        $data = $data->orderBy('s.nombre')
+        ->get();
+
+        // dd($data);
 
         //-----> Obtenemos la galeria de la sucursal
         //self::get_branch_gallery( $data );
