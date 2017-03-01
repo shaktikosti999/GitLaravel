@@ -377,14 +377,14 @@
 			$(this).siblings('.subscribe-body-hidden').addClass('shown')
 			$(this).addClass('hidden');
 		})
-		
+
 		// promo slider
 		$('.promo-slider').slick({
 		  infinite: true,
 		  slidesToShow: 2,
 		  slidesToScroll: 1,
 		  responsive: [
-		    
+
 		    {
 		      breakpoint: 992,
 		      settings: {
@@ -438,7 +438,9 @@
 				}
 			}
 
-			$( window ).on( 'scroll', getScroll );
+			if($('.shell-btn').length){
+				$( window ).on( 'scroll', getScroll );
+			}
 		}
 
 		scrollChange();
@@ -687,11 +689,11 @@ $(function() {
 	$('body').on( 'click touchstart', '.fs-dropdown-selected', function(){
 		$(this).parent().addClass('fs-dropdown-open');
 	});
-	
+
 	/*$('body').on( 'click touchstart', '.fs-dropdown-item', function(){
 		$(this).parents('.fs-dropdown').removeClass('fs-dropdown-open');
 	});*/
-	
+
 });
 
 
