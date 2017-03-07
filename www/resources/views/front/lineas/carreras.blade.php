@@ -184,21 +184,21 @@
 								<ul class="section-btn">
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}">
-											<img src="/assets/images/icon/caballos.svg">
+											<img src="/assets/images/icon/caballos.png">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
 										<?php next($carreras); ?>
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" class="btn-carreras">
-											<img src="/assets/images/icon/galgos.svg">
+											<img src="/assets/images/icon/galgos.png">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
 										<?php next($carreras); ?>
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" class="btn-carreras">
-											<img src="/assets/images/icon/canodromo.svg">
+											<img src="/assets/images/icon/canodromo.png">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
