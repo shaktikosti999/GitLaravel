@@ -241,7 +241,7 @@
 						<div class="right-item"> <!-- cuadro derecha -->
 
 							@if( isset($programas) && count($programas) )
-								<a class="btn btn-red btn-small" id="vermes">Descarga programa del mes</a>
+								<!--<a class="btn btn-red btn-small" id="vermes">Descarga programa del mes</a>-->
 								<h3>Programas</h3>
 									<div class="alert" role="alert" style="display:none">
 										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
