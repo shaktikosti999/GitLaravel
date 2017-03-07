@@ -93,9 +93,9 @@
 	    <div class="stick-nav"><!-- Stick nav -->
 	        <ul>
 	            <li><a href="#promociones"><img src="/assets/images/icon/todas-las-promociones.svg"><span>Promociones</span></a></li>
-	            <li><a href="#juegos"><img src="/assets/images/icon/apuesta-de-carreras.svg"><span>Juegos</span></a></li>
+	            <li><a href="#juegos"><img src="/assets/images/icon/apuesta-de-carreras.svg"><span>Calendario</span></a></li>
 	            <!--<li><a href="#jackpot"><img src="css/images/icons/icon-4.png"><span>Jackpot</span></a></li>-->
-	            <li><a href="#torneos"><img src="/assets/images/icon/torneos.svg"><span>Torneos</span></a></li>
+	            <li><a href="#torneos"><img src="/assets/images/icon/torneos.svg"><span>Eventos</span></a></li>
 	            <!--<li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Ubicación</span></a></li>-->
 	            <li><a href="#diversion"><img src="/assets/images/icon/diversion.svg"><span>Diversión</span></a></li>
 	        </ul>
