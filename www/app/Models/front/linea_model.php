@@ -165,7 +165,8 @@ class linea_model{
         }
 
         $data = $data
-            ->where('fecha_inicio','>',date('Y-m-d'))
+            ->where('fecha_inicio','>=',date('Y-m-d'))
+            // ->where('fecha_fin','<=',date('Y-m-d'))
             ->orderBy('fecha_inicio')
             // ->paginate(2);
             ->get();
@@ -219,7 +220,6 @@ class linea_model{
                 'j.imagen',
                 'j.resumen',
                 'j.thumb',
-                'js.archivo',
                 'j.slug',
                 'js.link',
                 'js.archivo',
@@ -256,6 +256,7 @@ class linea_model{
                 'j.imagen',
                 'j.resumen',
                 // 'js.archivo',
+                'j.thumb',
                 'j.slug'
                 // 'js.link',
                 // 'js.archivo',
@@ -278,6 +279,7 @@ class linea_model{
                     'j.imagen',
                     'j.resumen',
                     'js.archivo',
+                    'j.thumb',
                     'j.slug',
                     'js.link',
                     'js.archivo',
@@ -342,6 +344,9 @@ class linea_model{
         return $data;
     }
 
-   
+    static function tables_availability(){
+        if($args['id_sucursal']){}
+        else{}
+    }
 
 }

@@ -220,9 +220,8 @@
 				            <div class="list-calendar {{$item->numDeporte == $dep ? 'active' : ''}}">
 				                <a href="/lineas-de-juego/apuesta-deportiva?dep={{$item->numDeporte}}" tabindex="0">
 				                	<?php 
-				                	$imagen = explode("/", $item->fondo->urlImagen);
-				                	$imagen = explode(".", end($imagen));
-				                	$imagen = $imagen[0];
+				                	$imagen = $item->nombre;
+				                	$imagen = str_replace(" ", "_", $imagen) . ".png";
 				                	?>
 				                    <img src="css/images/icons/{{$imagen}}.png">
 				                    <span>{{$item->nombre}}</span>
@@ -243,10 +242,10 @@
 						<h3>No encontramos ofertas</h3>
 					@endif
 					<select class="btn btn-black" id="lista_oferta" style="display:none"></select>
-					<div class="input-group date">
+					<!-- <div class="input-group date">
 						<img src="css/images/icons/calendar-gray.png">
 					   	 <input type="text" placeholder="mm/dd/yyyy" class="form-control" id="date_select">
-				   </div>
+				   </div> -->
 				</div>
 
 				<div class="col-sm-12" id="tbl_content"></div>
@@ -650,11 +649,11 @@
 
 												<span class="slide-inner">
 													<span class="slide-inner-entry">
-														<strong>{{$item->nombre}}</strong> <br>
+														<strong>{!!$item->nombre!!}</strong> <br>
 													</span>
 
 													<span class="slide-inner-price">
-														{{$item->resumen}}
+														{!!$item->resumen!!}
 													</span>
 												</span>
 											</a><!-- /.slide-content -->

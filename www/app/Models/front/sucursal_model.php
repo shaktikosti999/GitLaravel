@@ -16,14 +16,27 @@ class sucursal_model{
             $data = $data->where('id_ciudad',$args['id_ciudad']);
         }
 
-        if( isset($args['id_linea']) ){
+        if( isset($args['promo_id_linea']) ){
             $data = $data->distinct()
                 ->select('s.id_sucursal','s.nombre','s.slug')
                 ->join('promocion_sucursal as ps','ps.id_sucursal','=','s.id_sucursal')
                 ->join('promocion as p','p.id_promocion','=','ps.id_promocion')
                 ->join('linea as l','l.id_linea','=','p.id_juego');
-            if( (int)$args['id_linea'] > 0)
-                $data = $data->where('l.id_linea',$args['id_linea']);
+            if( (int)$args['promo_id_linea'] > 0)
+                $data = $data->where('l.id_linea',$args['promo_id_linea'])
+                    ->where('p.estatus',1)
+                    ->where('p.eliminado',0)
+                    ->where('l.estatus',1)
+                    ->where('l.eliminado',0);
+        }
+
+        if( isset($args['linea_id_linea']) ){
+            $data = $data->distinct()
+                ->select('s.id_sucursal','s.nombre','s.slug')
+                ->join('juego_sucursal AS js','js.id_sucursal','=','s.id_sucursal')
+                ->join('juego AS j','j.id_juego','=','js.id_juego');
+            if( (int)$args['linea_id_linea'] > 0)
+                $data = $data->where('j.id_linea',$args['linea_id_linea']);
         }
 
         $data = $data->orderBy('s.nombre')

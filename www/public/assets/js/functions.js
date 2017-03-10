@@ -45,7 +45,9 @@
 	      	}).datepicker("setDate", null).on('changeDate',function(e){
 	      		date = new Date( e.date );
 	      		var datemount = parseInt(date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1);
-	      		date = date.getFullYear() + '-' + datemount + '-' + date.getDate();
+	      		var dateday = parseInt(date.getDate()) < 10 ? "0" + (date.getDate()) : (date.getDate());
+	      		date = date.getFullYear() + '-' + datemount + '-' + dateday;
+	      		// console.log(date);
 	      		$('[data-fecha]').show();
 	      		if( $('[data-fecha="' + date + '"]').length > 0 ){
 		      		$('[data-fecha]').addClass('hide_program');
@@ -53,10 +55,11 @@
 
 	      		}
 	      		else{
+	      			$('[data-fecha]').hide();
 	      			$('.alert').fadeIn(200);
 	      			setTimeout(function(){
-	      				$('.alert').fadeOut(200);
-	      			},5000);
+	      				$('.alert').fadeOut(300);
+	      			},1200);
 	      		}
 	      		$('.hide_program').hide();
 	      		$('[data-fecha]').removeClass('hide_program');
