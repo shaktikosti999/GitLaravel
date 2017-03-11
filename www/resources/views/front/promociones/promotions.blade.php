@@ -80,6 +80,9 @@
 				@foreach($promocion as $dinamica)
 					<section class="section-listings" data-sucursal="{{current($dinamica)->id_categoria}}">
 						<div class="shell">
+							<h4 style="color:rgb(0,0,0)" class="title-calendar">
+										Calendario
+							</h4>
 							<header class="section-head">
 								<h2>
 									{{current($dinamica)->categoria}}
@@ -96,14 +99,12 @@
 							@if( isset($dinamica) && count($dinamica) )
 							<div class="section-body">
 								<div class="section-inner green">
-									<h4 style="color:rgb(0,0,0)">
-										Calendario
-									</h4>
+									
 
 									<ul class="promotions">
 										@foreach( $dinamica as $item )
 										<li class="promotion">
-											<div class="promotion-date">
+											<div class="promotion-date promotion--day">
 												<strong>
 													@if( (int)$item->id_categoria == 1 )
 														<span>
