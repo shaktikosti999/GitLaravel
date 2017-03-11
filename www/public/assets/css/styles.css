@@ -2849,7 +2849,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 
 .main .section-contacts .section-head h6 {color: #616161; font-weight: 600;}
 .main .section-contacts .section-head h6 ,h4 {text-align: center;}
-.main .section-contacts .title-calendar h4
+.section-listings .shell h4.title-calendar  {font-size: 40px; color: #f00 !important;}
 .section-jackpots .btn-more {text-align: center; padding: 25px 0 10px;}
 
 
