@@ -1607,7 +1607,7 @@ li:first-child {margin: 0;margin-left: 0;}
 	.slider-intro .slick-dots-wrapper { top: 57%; z-index: 2;}
 	.slider-intro .promo, .slider-intro .slick-dots-wrapper {z-index: 40;}
 
-	.slider-intro-promo {height: 680px}
+	.slider-intro-promo {height: 598px}
 	/*.slider-intro-promo .slide {height: 700px;}*/
 
 }
@@ -1653,13 +1653,15 @@ li:first-child {margin: 0;margin-left: 0;}
 @media (max-width: 767px) {
 	.slider-intro.anchor + .main.anchor { margin-top: 0; }
 	.main .sldr-top {margin-top: 0;}
+	.slider-intro-secondary .slide-content {padding-top: 280px !important; border-bottom: 1px dotted #ebebeb; padding-bottom: 20px;}
+	.slider-intro-secondary h2 {color: #333 !important; text-shadow: inherit; text-align: left;}
+	.slider-intro-secondary .slide-content .filter-secondary {background: rgb(237, 28, 36); border-radius: 10px; padding: 5px 0; float: left;}
 }
 /* ------------------------------------------------------------ *\
 	slider-intro Secondary
 \* ------------------------------------------------------------ */
 .slider-intro-secondary { position: relative; z-index: 100;}
 .slider-intro-secondary .slide:before { content: ''; position: absolute; top: 0; right: 0; bottom: 0; left: 0; /*background:  linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.23) 100%);*/ }
-.slider-intro-secondary .slide-content { padding-top: 400px; position: relative; z-index: 30; }
 .slider-intro-secondary .slide-promo {padding-top: 341px;}
 .slider-intro-secondary .slider-clip { position: relative; z-index: 30; }
 .slider-intro-secondary h2 { color: #fff; font-weight: 700; font-size: 50px; margin: 0; }
@@ -1667,10 +1669,11 @@ li:first-child {margin: 0;margin-left: 0;}
 /* Small Desktop */
 @media (max-width: 1162px) {
 	.slider-intro-secondary .slide-content { padding-top: 300px; padding-bottom: 300px; }
-	.slider-intro-promo .slide-content {padding-top: 270px;}
+	.slider-intro-promo .slide-content {padding-top: 440px;}
 	.slider-intro-secondary .slide-content .filter-secondary { margin: 0 auto; display: inline-block; }
 	.slider-intro-secondary .slide { height: 600px; }
 }
+.slider-intro-promo .slide-content {padding-top: 440px;}
 /* Tablet Portrait */
 @media (max-width: 1023px) {
 	.slider-intro-secondary .slide-content { padding-top: 170px; padding-bottom: 30px; }
@@ -1734,7 +1737,6 @@ li:first-child {margin: 0;margin-left: 0;}
 @media (max-width: 767px) {
 	.slider-games.reset-margin { margin-top: 0 !important; }
 	.slider-games.reset-margin h2 {text-align: center;}
-	.slider-intro-secondary .slide-content {padding-top: 140px;}
 }
 /* ------------------------------------------------------------ *\
 	slider-promotions
@@ -1818,6 +1820,7 @@ li:first-child {margin: 0;margin-left: 0;}
 	.slider-secondary .slide-body { /*position: static;*/ padding: 120px 0 150px; font-size: 15px; text-align: center; }
 	.slider-secondary .slide-content {width: 100%;float: none;z-index: 100;position: relative;padding-bottom: 30px;}
 	.slider-secondary .slide-content h1 { font-size: 30px; }
+	.slider-intro-secondary h2 {font-size: 30px;}
 	.slider-secondary .slide-inner { float: none; width: 100%; position: relative; z-index: 60; }
 	.slider-secondary .slide-inner p { padding: 20px !important; text-align: center; }
 
@@ -2646,6 +2649,9 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.indications p {margin-left: 40px;}
 	.right-item {height: 500px;}
 
+	/* Txt slider */
+	.section-teritary .section-head {padding-top: 170px;}
+
 	/*submenu*/
 	.nav .socials-footer > ul > li > a {line-height: 45px !important;}
 	/*.nav .socials-footer > ul > li.active .socials-dropdown { display: block; width: 60%; margin-left: -25%; position: relative; left: 45%;}*/
@@ -2886,10 +2892,10 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	background:#fff url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0;
 	background-size: 60px 60px;
 	right: -20px;
-} 
+}
 .slider-secondary {
 	z-index: 100;
-} 
+}
 
 
 
@@ -2899,7 +2905,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 
 
 @media (max-width: 1200px) {/* ------ LargeScreen */
-    
+
 }
 
 @media (max-width: 1024px) {/* ------ Tablet Landscape */
@@ -2930,7 +2936,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.slider-secondary .slider-label {
 		bottom: 109px;
 	}
-	
+
 	.slider-secondary .slides .filter-secondary {
 		background: rgb(237, 28, 36);
 		border-radius: 10px;
@@ -2954,7 +2960,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	}
 	.promo-slider .slick-arrow.slick-next {
 		right: 2%;
-	}  
+	}
 }
 
 
@@ -3024,6 +3030,3 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 
 
 }
-
-
-
