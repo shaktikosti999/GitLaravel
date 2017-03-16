@@ -1313,7 +1313,7 @@ li:first-child {margin: 0;margin-left: 0;}
 .section-teritary .section-head h2 { font-weight: 700; padding-bottom: 30px;}
 .section-teritary .section-actions { text-align: center; padding: 35px 0 100px; }
 .section-teritary .section-actions .btn { width: 100%; max-width: 360px; }
-.section-teritary .row { margin: 0 -15px 30px; }
+.section-teritary .row { margin: 0 -15px 30px;}
 .section-teritary .row:after { content: ''; line-height: 0; display: table; clear: both; }
 .section-teritary .cols { display: block; margin: 0 -15px; width: calc(100% + 30px); }
 .section-teritary .cols:after { content: ''; line-height: 0; display: table; clear: both; }
@@ -1350,11 +1350,11 @@ li:first-child {margin: 0;margin-left: 0;}
 }
 /* Mobile */
 @media (max-width: 767px) {
-	.section-teritary .row { margin-bottom: 0; }
-	.section-teritary .row .col { width: 100%; margin-bottom: 30px; }
+	.section-teritary .row { margin-bottom: 0; height: 1180px;}
+	.section-teritary .row .col { width: 100%; margin-bottom: 0; }
 	.section-teritary .row > .col { margin-bottom: 0 ; }
 	.section-teritary .row > .col:first-child { margin-bottom: 0px; }
-	.section-teritary .row:first-child > .col:first-child { margin-bottom: 30px; }
+	.section-teritary .row:first-child > .col:first-child { margin-bottom: 0; }
 
 	.section-filters li { width: 100%; float: left; }
 	.section-filters li span { padding: 0 10px; }
@@ -2664,7 +2664,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.section-jackpots .btn-more .btn-border { width: 100%;}
 	.section-jackpots .btn-more {padding: 25px 0 30px !important;}
 	.slider-secondary .slide-content h3 {font-size: 20px !important;}
-	.box-current-promotions {height: 290px; max-width: 223px; left: 50%; transform: translateX(-50%);}
+	.box-current-promotions {height: 290px; max-width: 100%; left: 50%; transform: translateX(-50%);}
 
 }
 
