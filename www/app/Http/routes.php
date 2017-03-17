@@ -92,6 +92,11 @@ Route::patch('/filtro-maquinas','front\api\filtroController@filtro_maquinas');
 Route::patch('/get-mesa-juego','front\api\filtroController@get_mesa');
 Route::patch('/ver-lineas','front\api\filtroController@get_lineas');
 
+Route::get('/getAllDataAcumulados/{sucursal?}/{limit}','front\lineasController@getAllDataDetailAcumulados');
+Route::get('/getAllDataPagados/{sucursal?}/{limit}','front\lineasController@getAllDataDetailPagados');
+
+
+
 Route::post('/contacto/newsletter','front\contactoController@newsletter');
 
 //-----> Alimentos y bebidas

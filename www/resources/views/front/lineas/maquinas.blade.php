@@ -154,10 +154,10 @@
 
 		@endif
 
-			<section class="section-jackpots">
-				<div class="shell">
+			<section class="section-jackpots" >
+				<div class="shell" >
 					@if( isset($acumulado) && count($acumulado) )
-						<header class="section-head">
+						<header class="section-head" >
 							<div class="stick--point" id="jackpot"></div>
 							<h2>
 								<small>Jackpots</small>
@@ -178,7 +178,7 @@
 							</p>
 						</div><!-- /.section-entry -->
 
-						<div class="cols">
+						<div class="cols" id="seeMoreDataAcumulados">
 							
 							@foreach ($acumulado as $item)
 								<div class="col col-1of2">
@@ -211,7 +211,7 @@
 					@endif
 
 					<div class="btn-more">
-						<a href="#" class="btn btn-border view_more">
+						<a href="#" class="btn btn-border view_more" id="seeMoreAcumulados">
 							Ver más
 						</a>
 					</div>
@@ -236,7 +236,7 @@
 							</div><!-- /.section-entry -->
 
 
-							<div class="cols">
+							<div class="cols" id="seeMoreDataPagados" >
 								@foreach($pagados as $pagado)
 								<div class="col col-1of2">
 									<article class="article-jackpot">
@@ -263,7 +263,7 @@
 								@endforeach
 							</div><!-- /.cols -->
 							<div class="btn-more">
-								<a href="#" class="btn btn-border view_more">
+								<a href="#" class="btn btn-border view_more" id="seeMorePagados" >
 									Ver más
 								</a>
 							</div>

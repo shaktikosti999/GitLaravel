@@ -1,200 +1,175 @@
 <?php
-namespace App\Models\front;
+namespace App\Models;
 
+use App\Events\dotask;
+use Event;
+
+use App\sucursal;
+use App\juego_sucursal;
 class sucursal_model{
+	static function all($args = []){
+		$get = \DB::table('sucursal as s')
+			->select(
+				's.id_sucursal as id',
+				's.nombre',
+				's.direccion',
+				's.telefono',
+				's.estatus'
+				// \DB::raw('COUNT(j.id_juego) as juegos'),
+				// \DB::raw('IF(g.cantidad IS NULL,0,g.cantidad) as galeria')
+				// \DB::raw('if(COUNT(s.id_sucursal) = NULL,0,COUNT(s.id_sucursal)) as juegos')
+			);
+		if( isset($args['id_sucursal']) && !empty($args['id_sucursal']) )
+			$get = $get->where('id_sucursal',$args['id_sucursal']);
+		$get = $get
+			// ->leftJoin('juego_sucursal as j','j.id_sucursal','=','s.id_sucursal')
+			// ->leftJoin('count_gallery_images_view as g', 'g.id','=','s.id_sucursal')
+			->where('s.eliminado',0)
+			->orderBy('s.nombre')
+			->get();
+		return $get;
+	}
 
+	static function deleteGame($id_juego,$id_sucursal){
+		$imagen = \DB::table('juego_sucursal')
+			->where('id_juego',$id_juego)
+			->where('id_sucursal',$id_sucursal)
+			->first();
+		if( file_exists(public_path() . $imagen->archivo) && is_file(public_path() . $imagen->archivo) )
+			unlink(public_path() . $imagen->archivo);
+		return \DB::table('juego_sucursal')
+			->where('id_juego',$id_juego)
+			->where('id_sucursal',$id_sucursal)
+			->delete();
+	}
 
-    static function find_all($args = []){
+	static function find($id){
+		return sucursal::find($id);
+	}
 
-        $data = [];
+	static function info_game($sucursal,$id){
+		$data = \DB::table('juego as j')
+			->select(
+				'js.descripcion',
+				'js.archivo',
+				'js.link',
+				'js.disponibles',
+				'js.apuesta_minima',
+				'js.acumulado',
+				'js.pagado'
+			)
+			->join('juego_sucursal as js','js.id_juego','=','j.id_juego')
+			->where('js.id_juego',$id)
+			->where('js.id_sucursal',$sucursal)
+			->first();
+		return $data;
+	}
 
-        $data = \DB::table('sucursal as s')
-            ->where('s.estatus','=',1)
-            ->where('s.eliminado','=',0);
+	static function list_sucursal_games($id){
+		$get = \DB::table('juego_sucursal as js')->
+			select(
+				'js.id_juego',
+				'j.nombre as juego',
+				'js.descripcion'
+			)
+			->join('juego as j','j.id_juego','=','js.id_juego')
+			->where('js.id_sucursal',$id)
+			->get();
+		return $get;
+	}
 
-        if(isset($args['id_ciudad']) && !empty($args['id_ciudad']) ){
-            $data = $data->where('id_ciudad',$args['id_ciudad']);
-        }
+	static function store($request,$ciudad){
+		if( (int)$ciudad < 1){
+			$data = \DB::table('ciudad')->where('nombre',$ciudad)->get();
+			if( count($data) )
+				$ciudad = $data[0]->id_ciudad;
+			else{
+				\DB::table('ciudad')->insert(['nombre' => $ciudad]);
+				$data = \DB::table('ciudad')->where('nombre',$ciudad)->first();
+				$ciudad = $data->id_ciudad;
+			}
+		}
+		$sucursal = new sucursal;
+		$sucursal->id_ciudad = $ciudad;
+		$sucursal->nombre = $request->nombre;
+		$sucursal->slug = $request->slug;
+		$sucursal->direccion = $request->direccion;
+		$sucursal->latitud = $request->latitud;
+		$sucursal->longitud = $request->longitud;
+		$sucursal->horario = $request->horario;
+		$sucursal->instrucciones = $request->instrucciones;
+		$sucursal->oferta = $request->oferta;
+		$sucursal->telefono = $request->telefono;
+		$evento = Event::fire(new dotask($sucursal));
+		return $evento;
+	}
 
-        if( isset($args['promo_id_linea']) ){
-            $data = $data->distinct()
-                ->select('s.id_sucursal','s.nombre','s.slug')
-                ->join('promocion_sucursal as ps','ps.id_sucursal','=','s.id_sucursal')
-                ->join('promocion as p','p.id_promocion','=','ps.id_promocion')
-                ->join('linea as l','l.id_linea','=','p.id_juego');
-            if( (int)$args['promo_id_linea'] > 0)
-                $data = $data->where('l.id_linea',$args['promo_id_linea'])
-                    ->where('p.estatus',1)
-                    ->where('p.eliminado',0)
-                    ->where('l.estatus',1)
-                    ->where('l.eliminado',0);
-        }
+	static function storeGame($request,$archivo){
+		$juego_sucursal = new juego_sucursal;
 
-        if( isset($args['linea_id_linea']) ){
-            $data = $data->distinct()
-                ->select('s.id_sucursal','s.nombre','s.slug')
-                ->join('juego_sucursal AS js','js.id_sucursal','=','s.id_sucursal')
-                ->join('juego AS j','j.id_juego','=','js.id_juego');
-            if( (int)$args['linea_id_linea'] > 0)
-                $data = $data->where('j.id_linea',$args['linea_id_linea']);
-        }
+		$juego_sucursal->id_juego = $request->input('add_juego');
+		$juego_sucursal->id_sucursal = $request->input('add_sucursal');
+		$juego_sucursal->descripcion = $request->input('add_desc');
+		$juego_sucursal->acumulado = $request->input('add_acumulado');
+		$juego_sucursal->archivo = $archivo;
+		$juego_sucursal->disponibles = $request->input('add_disp'); 
+		$juego_sucursal->apuesta_minima = $request->input('add_apuesta');
+		$juego_sucursal->pagado = $request->input('add_pagado');
+		$juego_sucursal->link = $request->input('add_link');
 
-        $data = $data->orderBy('s.nombre')
-        ->get();
+		$evento = Event::fire(new dotask($juego_sucursal));
+		return $evento;
+	}
 
-        // dd($data);
+	static function update($id, $request, $ciudad){
+		if( (int)$ciudad < 1){
+			$data = \DB::table('ciudad')->where('nombre',$ciudad)->get();
+			if( count($data) )
+				$ciudad = $data[0]->id_ciudad;
+			else{
+				\DB::table('ciudad')->insert(['nombre' => $ciudad]);
+				$data = \DB::table('ciudad')->where('nombre',$ciudad)->first();
+				$ciudad = $data->id_ciudad;
+			}
+		}
+		$sucursal = sucursal::find($id);
+		$sucursal->id_ciudad = $ciudad;
+		$sucursal->nombre = $request->nombre;
+		$sucursal->slug = $request->slug;
+		$sucursal->direccion = $request->direccion;
+		$sucursal->latitud = $request->latitud;
+		$sucursal->longitud = $request->longitud;
+		$sucursal->horario = $request->horario;
+		$sucursal->instrucciones = $request->instrucciones;
+		$sucursal->oferta = $request->oferta;
+		$sucursal->telefono = $request->telefono;
+		$evento = Event::fire(new dotask($sucursal));
+		return $evento;
+	}
 
-        //-----> Obtenemos la galeria de la sucursal
-        //self::get_branch_gallery( $data );
-
-        return $data;
-    }
-
-    static function find_by_slug( $slug = null ){
-
-        if( ! $slug )
-            return FALSE;
-
-        $data = [];
-
-        $data = \DB::table('sucursal as s')
-                        ->where('s.estatus','=',1)
-                        ->where('s.eliminado','=',0)
-                        ->where('s.slug','=', $slug)
-                        ->first();
-
-        //-----> Obtenemos la galeria de la sucursal
-        self::get_branch_gallery( $data );
-
-        return $data;
-    }
-
-    static function find_random(){
-
-        $data = [];
-
-        $data = \DB::table('sucursal as s')
-                        ->where('s.estatus','=',1)
-                        ->where('s.eliminado','=',0)
-                        ->orderByRaw('RAND()')
-                        ->first();
-
-        //-----> Obtenemos la galeria de la sucursal
-        self::get_branch_gallery( $data );
-
-        return $data;
-    }
-
-    static function get_by_city( $city ){
-        $data = \DB::table('sucursal as s')
-            ->select('s.slug as id','nombre')
-            ->where('s.estatus','=',1)
-            ->where('s.eliminado','=',0)
-            ->where('s.id_ciudad','=', $city)
-            ->get();
-        return $data;
-    }
-
-    static function get_by_sucursal( $sucursal_slug ){
-        $data = \DB::table('sucursal as s')
-            ->select(\DB::raw('distinct l.slug as id'),'l.nombre')
-            ->join('juego_sucursal as js','s.id_sucursal','=','js.id_sucursal')
-            ->join('juego as j','js.id_juego','=','j.id_juego')
-            ->join('linea as l','j.id_linea','=','l.id_linea')
-            ->where('l.estatus','=',1)
-            ->where('l.eliminado','=',0)
-            ->where('s.slug','=', $sucursal_slug)
-            ->get();
-        return $data;
-    }
-
-    static function get_cities($id){
-        $get = \DB::table('ciudad AS c')
-            ->select(
-                'c.id_ciudad AS id',
-                'c.nombre'
-            )
-        ->distinct()
-        ->join('sucursal AS s','s.id_ciudad','=','c.id_ciudad')
-        ->join('juego_sucursal AS js','js.id_sucursal','=','s.id_sucursal')
-        ->join('juego AS j','j.id_juego','=','js.id_juego')
-        ->where('j.id_linea','=',$id)
-        ->get();
-        return $get;
-    }
-
-    static function get_gallery($id,$tipo = 1){
-        $get = \DB::table('sucursal_galeria as s')
-            ->where('id_sucursal',$id)
-            ->where('estatus',1)
-            ->where('tipo',$tipo)
-            ->where('eliminado',0)
-            ->get();
-        return $get;
-    }
-
-    static function get_branch_gallery( & $branch ){
-        if( $branch !== null ) 
-            $branch->galeria = \DB::table('sucursal_galeria as s')
-                ->where('s.id_sucursal','=',$branch->id_sucursal)
-                ->where('s.estatus','=',1)
-                ->where('s.eliminado','=',0)
-                ->where('s.tipo',1)
-                ->get();
-            // dd($branch);
-
-    }
-
-    //  static function get_paid($args = []){
-    //     $data = \DB::table('juego_sucursal as js')
-    //         ->select('j.nombre as juego','js.pagado')
-    //         ->join('juego as j','j.id_juego','=','js.id_juego')
-    //         ->join('sucursal as s','s.id_sucursal','=','js.id_sucursal')
-    //         ->where('js.estatus',1)
-    //         ->where('j.estatus',1)
-    //         ->where('s.estatus',1)
-    //         ->where('s.eliminado',0)
-    //         ->where('j.eliminado',0)
-    //         ->where('js.pagado','>',0);
-    //     if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
-    //         $data = $data->where('js.id_sucursal',$args['id_sucursal']);
-    //     $data = $data->get();
-    //     return $data;
-    // }
-    
-    static function get_paid($args = []){
-        $data = \DB::table('sucursal_pago')
-            ->where('id_tipo',2);
-        if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
-            $data = $data->where('id_sucursal',$args['id_sucursal']);
-        $data = $data->get();
-        return $data;
-    }
-
-    static function get_accumulated($args = []){
-        $data = \DB::table('sucursal_pago')
-            ->where('id_tipo',1);
-        if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
-            $data = $data->where('id_sucursal',$args['id_sucursal']);
-        $data = $data->get();
-        return $data;
-    }
-
-    static function to_pay($args = []){
-        $data = \DB::table('sucursal_pago')
-            ->where('id_tipo',3);
-        if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
-            $data = $data->where('id_sucursal',$args['id_sucursal']);
-        $data = $data->get();
-        return $data;
-    }
-
-    static function get_sucursal( $sucursal_slug ){
-        $data = \DB::table('sucursal as s')
-            ->select('s.id_sucursal')            
-            ->where('s.slug','=', $sucursal_slug)
-            ->get();
-        return $data;
-    }
-
-}
+	static function updateGame($request,$archivo){
+		$data = array(
+			'descripcion' => $request->input('add_desc'),
+			'acumulado' => $request->input('add_acumulado'),
+			'disponibles' => $request->input('add_disp'),
+			'apuesta_minima' => $request->input('add_apuesta'),
+			'pagado' => $request->input('add_pagado'),
+			'link' => $request->input('add_link')
+		);
+		
+		if( isset($archivo) && !empty($archivo) ){
+			$imagen = \DB::table('juego_sucursal')
+				->where('id_juego',$request->input('add_juego'))
+				->where('id_sucursal',$request->input('add_sucursal'))
+				->first();
+			if( file_exists(public_path() . $imagen->archivo) && is_file(public_path() . $imagen->archivo) )
+				unlink(public_path() . $imagen->archivo);
+			$data['archivo'] = $archivo;
+		}
+		return \DB::table('juego_sucursal')
+			->where('id_juego',$request->input('add_juego'))
+			->where('id_sucursal',$request->input('add_sucursal'))
+			->update($data);
+	}
+	
+};
