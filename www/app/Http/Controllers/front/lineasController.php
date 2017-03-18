@@ -201,5 +201,182 @@ class lineaController extends Controller
             return redirect('administrador/linea.html')->with('success','Galería actualizada');
         return redirect('administrador/linea.html')->with('warning','Hubo error al hacer los cambios');
     }
+    public function deportivas( $sucursal = null){
+        // $this->soapLoggin();
+        $data["sucursal"] = $sucursal;
+
+        //-----> Obtenemos detalle de sucursal seleccionada
+        $data["sucursal_info"] = sucursal::find_by_slug( $sucursal );
+        $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
+
+        $data['slider'] = linea::find_gallery( 3 ); //Obtener Sliders
+        $data['promociones'] = promocion::find_all( [ "linea" => 3, "id_sucursal" => $id_sucursal ] ); //Obtener promociones
+        $data["otras"] = linea::find_all( [ "not_in" => [ 3 ] ] ); // Obtenemos otras opciones de diversión
+        $data['quinielas'] = slider::football_pools();// Obtenemos las quinielas
+
+       
+        // si no existe una solicitud para deporte, por defecto srá 5
+        $dep = (\Request::input('dep') !== null) ? \Request::input('dep') : 5;
+        $data['dep'] = $dep;
+
+        if($dep == 5){
+            
+        }
+
+        // Lista de deportes
+        // $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp');
+        // $res = $soap->__soapCall('ListaDeportesOp',[[
+        //     'sesion' => session('soapSession')->sesion,
+        //     'serieMensaje' => session('soapCount')
+        // ]]);
+
+        // if( isset($res->descripcionError) && $res->descripcionError == "Sesion Invalida" ){
+        //     session()->forget('soapSession');
+        //     session()->forget('soapCount');
+        //     $this->soapLoggin();
+        // }
+
+
+        // $data['deportes'] = $res->deporte;
+
+        // //Lista de ligas y ofertas
+        // $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl');
+        // $res = $soap->__soapCall('ListaAgrupadoresDeportesOp',[[
+        //     'sesion' => session('soapSession')->sesion,
+        //     'serieMensaje' => session('soapCount'),
+        //     'numDeporte' => $dep
+        // ]]);
+
+        $ofertas = [];
+        // if( isset($res->deporte->ligas->liga) ){
+        //     // dd( $res->deporte->ligas->liga );
+        //     if( is_array($res->deporte->ligas->liga) ){
+        //         foreach($res->deporte->ligas->liga as $key => $item){
+        //             $ofertas[$key]['id'] = $item->numLiga;
+        //             $ofertas[$key]['nombre'] = $item->nombre;
+        //             if( is_array($item->agrupadores->agrupador) ){
+        //                 foreach($item->agrupadores->agrupador as $agrupador){
+        //                     $props = [];
+        //                     if($agrupador->proposicion){
+        //                         if( is_array($agrupador->proposiciones->proposicion) ){
+        //                             foreach($agrupador->proposiciones->proposicion as $kp => $vp){
+        //                                 $ofertas[$key]['data'][] = [
+        //                                     'id' =>$vp->idProposicion,
+        //                                     'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+        //                                 ];
+        //                             }
+        //                         }
+        //                         else{
+        //                             $vp = $agrupador->proposiciones->proposicion;
+        //                             $ofertas[$key]['data'][] = [
+        //                                 'id' =>$vp->idProposicion,
+        //                                 'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+        //                             ];
+        //                         }
+        //                     }
+        //                     else{
+        //                         $ofertas[$key]['data'][] = [
+        //                             'id' => $agrupador->idAgrupador,
+        //                             'nombre' => $agrupador->nombre
+        //                         ];
+        //                     }
+        //                 }
+        //             }
+        //             else{
+        //                 $agrupador = $item->agrupadores->agrupador;
+        //                 $props = [];
+        //                 if($agrupador->proposicion){
+        //                     if( is_array($agrupador->proposiciones->proposicion) ){
+        //                         foreach($agrupador->proposiciones->proposicion as $kp => $vp){
+        //                             $ofertas[$key]['data'][] = [
+        //                                 'id' =>$vp->idProposicion,
+        //                                 'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+        //                             ];
+        //                         }
+        //                     }
+        //                     else{
+        //                         $vp = $agrupador->proposiciones->proposicion;
+        //                         $ofertas[$key]['data'][] = [
+        //                             'id' =>$vp->idProposicion,
+        //                             'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+        //                         ];
+        //                     }
+        //                 }
+        //                 else{
+        //                     $ofertas[$key]['data'][] = [
+        //                         'id' => $agrupador->idAgrupador,
+        //                         'nombre' => $agrupador->nombre
+        //                     ];
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     else{
+        //         $key = 0;
+        //         $item = $res->deporte->ligas->liga;
+        //         $ofertas[$key]['id'] = $item->numLiga;
+        //             $ofertas[$key]['nombre'] = $item->nombre;
+        //             if( is_array($item->agrupadores->agrupador) ){
+        //                 foreach($item->agrupadores->agrupador as $agrupador){
+        //                     $props = [];
+        //                     if($agrupador->proposicion){
+        //                         if( is_array($agrupador->proposiciones->proposicion) ){
+        //                             foreach($agrupador->proposiciones->proposicion as $kp => $vp){
+        //                                 $ofertas[$key]['data'][] = [
+        //                                     'id' =>$vp->idProposicion,
+        //                                     'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+        //                                 ];
+        //                             }
+        //                         }
+        //                         else{
+        //                             $vp = $agrupador->proposiciones->proposicion;
+        //                             $ofertas[$key]['data'][] = [
+        //                                 'id' =>$vp->idProposicion,
+        //                                 'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+        //                             ];
+        //                         }
+        //                     }
+        //                     else{
+        //                         $ofertas[$key]['data'][] = [
+        //                             'id' => $agrupador->idAgrupador,
+        //                             'nombre' => $agrupador->nombre
+        //                         ];
+        //                     }
+        //                 }
+        //             }
+        //             else{
+        //                 $agrupador = $item->agrupadores->agrupador;
+        //                 $props = [];
+        //                 if($agrupador->proposicion){
+        //                     if( is_array($agrupador->proposiciones->proposicion) ){
+        //                         foreach($agrupador->proposiciones->proposicion as $kp => $vp){
+        //                             $ofertas[$key]['data'][] = [
+        //                                 'id' =>$vp->idProposicion,
+        //                                 'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+        //                             ];
+        //                         }
+        //                     }
+        //                     else{
+        //                         $vp = $agrupador->proposiciones->proposicion;
+        //                         $ofertas[$key]['data'][] = [
+        //                             'id' =>$vp->idProposicion,
+        //                             'nombre' => $agrupador->nombre . ' -> ' . $vp->nombre
+        //                         ];
+        //                     }
+        //                 }
+        //                 else{
+        //                     $ofertas[$key]['data'][] = [
+        //                         'id' => $agrupador->idAgrupador,
+        //                         'nombre' => $agrupador->nombre
+        //                     ];
+        //                 }
+        //             }
+        //     }
+        // }
+        // dd($data);
+        $data['ofertas'] = $ofertas;
+
+         return view('front.lineas.deportiva',$data);
+    }
     
 }

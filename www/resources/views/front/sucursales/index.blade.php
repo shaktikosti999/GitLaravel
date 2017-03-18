@@ -1,4 +1,9 @@
 @extends('layout.front')
+
+@section('js')
+<script src="js/front/mesas.js"></script>
+@stop
+
 @section('contenido')
 	<div class="slider-secondary secondary-margin">
 		<!--<a href="#" class="btn-menu">
@@ -158,103 +163,107 @@
 
 		@if(isset($mesas) && count($mesas))
 			<section class="section-games-available">
-				<div class="shell">
-					<div class="section-head">
-	                    <div class="stick--point" id="juegos"></div>
-						<h2>
-							Juegos disponibles
-						</h2>
-					</div><!-- /.section-head -->
-					
-					<div class="section-body">					
-						<aside class="section-aside">
-							<article class="article-game-available large">
-					 			<div class="article-content">
-					 				<div class="article-image" style="background-image: url({{current($mesas)->imagen}})">  
-					 					@if(isset(current($mesas)->apuesta_minima) && !empty(current($mesas)->apuesta_minima))
-					 					<div class="article-label">
-					 						<span> Apuesta Mínima DESDE </span>
+					<div class="shell">
+						<div class="section-head">
+							<div class="stick--point" id="juegos"></div>
+							<h2>
+								Juegos disponibles
+							</h2>
+						</div><!-- /.section-head -->
 
-					 						<strong> {{current($mesas)->apuesta_minima}} </strong>
-					 					</div><!-- /.article-label -->
-					 					@endif
-					 					<div class="article-max-price">
-					 						CONSULTA MONTOS MÁXIMOS DE APUESTA EN EL CASINO
-					 					</div><!-- /.article-max-price -->
-					 				</div><!-- /.article-image -->
+						<div class="section-body">
+							<aside class="section-aside">
+								<article class="article-game-available large" id="article-mesa">
+						 			<div class="article-content">
+						 				<div class="article-image" style="background-image: url({{isset(current($mesas)->archivo) && !empty(current($mesas)->archivo) ? current($mesas)->archivo : current($mesas)->imagen}})">  
+						 					@if(isset(current($mesas)->apuesta_minima) && !empty(current($mesas)->apuesta_minima))
+						 					<div class="article-label">
+						 						<span> Apuesta Mínima DESDE </span>
 
-					 				<div class="article-entry">
-					 					<h4 class="article-title">
-					 						{{current($mesas)->nombre}}
-					 						<small>
-					 							{{current($mesas)->disponibles}} mesas
-					 						</small>
-					 					</h4><!-- /.article-title -->
+						 						<strong> {{current($mesas)->apuesta_minima}} </strong>
+						 					</div><!-- /.article-label -->
+						 					@endif
+						 					<div class="article-max-price">
+						 						CONSULTA MONTOS MÁXIMOS DE APUESTA EN EL CASINO
+						 					</div><!-- /.article-max-price -->
+						 				</div><!-- /.article-image -->
 
-										<p>
-											{{current($mesas)->resumen}}
-										</p>
+						 				<div class="article-entry">
+						 					<h4 class="article-title">
+						 						{{current($mesas)->nombre}}
+						 						@if( isset(current($mesas)->disponibles) && !empty(current($mesas)->disponibles))
+						 						<small>
+						 							{{current($mesas)->disponibles}} mesas
+						 						</small>
+						 						@endif
+						 					</h4><!-- /.article-title -->
 
-										<ul class="list-links">
-											<li>
-												<a href="{{url('aprende_a_jugar')}}" class="btn btn-border">
-													Aprende a jugar
-												</a>
-											</li>
+											<p>
+												{{isset( current($mesas)->descripcion ) && trim(current($mesas)->descripcion) != "" ? current($mesas)->descripcion : current($mesas)->resumen}}
+											</p>
 
-											<li>
-												<a href="{{url('reglas')}}" class="btn btn-border btn-border-grey">
-													Reglas
-												</a>
-											</li>
-										</ul><!-- /.list-links -->
-					 				</div><!-- /.article-entry -->
-					 			</div><!-- /.article-content -->
-					 		</article><!-- /.article-game-available large -->
-						</aside><!-- /.section-aside -->
-						
-						<?php array_shift($mesas); $c = 0; $x = 0; ?>
-						<div class="section-content">
-							<div class="slider-games-available">
-								<div class="slider-clip">
-									<ul class="slides">									
-										@foreach($mesas as $mesa)										
-											@if( ($c % 4) == 0 )											
-												<li class="slide">
-												 	<div class="slide-content">  
-													 	<div class="cols">
-											@endif
-															<div class="col col-1of2">
-																<article class="article-game-available small">
-																	<h6>
-																		{{$mesa->nombre}}
+											<ul class="list-links">
+												<li>
+													<a href="{{url('aprende_a_jugar/' . current($mesas)->slug)}}" class="btn btn-border">
+														Aprende a jugar
+													</a>
+												</li>
 
-																		<span class="plus"></span>
-																	</h6>
-																
-																<div class="article-image" style="background-image: url({{$mesa->imagen}})"> </div><!-- /.article-image -->
+												<li>
+													<a href="{{url('reglas/' . current($mesas)->slug)}}" class="btn btn-border btn-border-grey">
+														Reglas
+													</a>
+												</li>
+											</ul><!-- /.list-links -->
+						 				</div><!-- /.article-entry -->
+						 			</div><!-- /.article-content -->
+						 		</article><!-- /.article-game-available large -->
+							</aside><!-- /.section-aside -->
 
-																<a href="{{url($mesa->slug)}}" class="link-more">
-																	Ver más
+							<div class="section-content">
+								<div class="slider-games-available">
+									<div class="slider-clip">
+										<!-- vik0x -->
+										<ul class="slides">
+											<?php next($mesas);$c = 0;?>
+											@foreach($mesas as $mesa)
+												@if( ($c % 4) == 0 && $c > 0 )
+															</div><!-- /.cols -->
+														</div><!-- /.slide-content -->
+													</li><!-- /.slide -->
+												@endif
+												@if( ($c % 4) == 0 )
+													<li class="slide">
+													 	<div class="slide-content">  
+														 	<div class="cols">
+												@endif
+																<a class="link-more ver-mesa" data-id="{{$mesa->id}}" data-sucursal="{{isset($mesa->id_sucursal) && !empty($mesa->id_sucursal) ? $mesa->id_sucursal : "0"}}">
+																	<div class="col col-1of2">
+																		<article class="article-game-available small">
+																			<h6>
+																				{{$mesa->nombre}}
+																				<span class="plus"></span>
+																			</h6>
+																			<div class="article-image" style="background-image: url({{ isset($mesa->archivo) && trim($mesa->archivo) != "" ? $mesa->archivo : $mesa->imagen}})"> </div><!-- /.article-image -->
+																		</article><!-- /.article-game-available small -->
+																	</div><!-- /.col col-1of2 -->
 																</a>
-																</article><!-- /.article-game-available small -->
-															</div><!-- /.col col-1of2 -->
 
-												<?php $c++; $x = $c - 1; ?>
-										@endforeach
-										@if( ($x % 4) == 0 )
-												 	</div><!-- /.cols -->
-												</div><!-- /.slide-content -->
-											</li><!-- /.slide -->
-										@endif
-									</ul><!-- /.slides -->
-								</div><!-- /.slider-clip -->
-							</div><!-- /.slider-games-available -->
-						</div><!-- /.section-content --> 
-					</div><!-- /.section-body -->
-
-				</div><!-- /.shell -->
-			</section><!-- /.section-games-available -->
+													<?php $c++; ?>
+											@endforeach
+											@if( ($c % 4) != 1 )
+													 		</div><!-- /.cols -->
+														</div><!-- /.slide-content -->
+													</li><!-- /.slide -->
+											@endif
+										</ul><!-- /.slides -->
+										<!-- vik0x -->
+									</div><!-- /.slider-clip -->
+								</div><!-- /.slider-games-available -->
+							</div><!-- /.section-content --> 
+						</div><!-- /.section-body -->
+					</div><!-- /.shell -->
+				</section><!-- /.section-games-available -->
 		@endif				
 
 		@if( isset($torneos) && count($torneos) )
