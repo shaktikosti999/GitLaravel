@@ -215,19 +215,15 @@
 					</a>
 				</div>
 				<div class="sport-calendar">
-					<div class="list-calendar active">
-					    <a href="/lineas-de-juego/apuesta-deportiva?dep=7" tabindex="0">
-					    	<img src="css/images/icons/automovilismo.png">
-					        <span>Automovilismo</span>
-					    </a>
-					</div>
+					
 					@if( isset($deportes) && count($deportes) )
 					    @foreach($deportes as $item)
 				            <div class="list-calendar {{$item->numDeporte == $dep ? 'active' : ''}}">
 				                <a href="/lineas-de-juego/apuesta-deportiva?dep={{$item->numDeporte}}" tabindex="0">
 				                	<?php 
 				                	$imagen = $item->nombre;
-				                	$imagen = str_replace(" ", "_", $imagen) . ".png";
+				                	$imagen = str_replace(" ", "_", $imagen);
+				                	$imagen = strtolower($imagen);
 				                	?>
 				                    <img src="css/images/icons/{{$imagen}}.png">
 				                    <span>{{$item->nombre}}</span>
@@ -256,7 +252,7 @@
 
 				<div class="col-sm-12" id="tbl_content"></div>
 
-				<!-- de aquí -->
+				<?php /*<!-- de aquí -->
 				<div class="table-content" >
 					<h5>07 Noviembre 2016</h5>
 					<div class="table__wrapp">
@@ -606,7 +602,7 @@
 						</div>					
 					</div>
 				</div>
-				<!-- aquí -->
+				<!-- aquí -->*/?>
 				<div class="table-sport" style="height:auto">
 					<div class="shell">
 						<h2></h2>

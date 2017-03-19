@@ -47,7 +47,7 @@ class sucursalesController extends Controller
         }
         
         //-----> Obtenemos las categorías de los juegos
-        $data["categorias"] = linea::get_categories();
+        $data["categorias"] = linea::get_categories(['list'=>true]);
         $data['slider'] = sucursal::get_gallery($sucursal->id_sucursal,2);
 
         // dd($data);

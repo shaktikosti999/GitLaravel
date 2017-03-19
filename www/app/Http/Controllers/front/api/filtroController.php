@@ -170,7 +170,7 @@ class filtroController extends Controller
                                 'linea' => $item->total->altas->linea
                             ];
                             if( $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] > 0 )
-                                                                    $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] = "+" . $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'];
+                                                                    $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] = "" . $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'];
                                                                 // if( trim($item->apuestaPorOmision) == "LINPUNTOS" && isset($val->linDinero->linea) )
                                                                 //     $data[$key]['data'][count($data[$key]['data']) - 1]['puntos'] .= $val->linDinero->linea > 0 ? "</h2><h2> +" . $val->linDinero->linea : "</h2><h2>" . $val->linDinero->linea;
                         }
