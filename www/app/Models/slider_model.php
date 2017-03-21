@@ -16,6 +16,7 @@ class slider_model{
 	}
 
 	static function store($request,$archivo){
+
 		$data = new slider;
 		$data->tipo = $request->input('tipo');
 		$data->titulo = $request->input('titulo');
@@ -24,6 +25,7 @@ class slider_model{
 		$data->imagen = $archivo;
 		$data->texto_boton = $request->input('texto_boton');
 		$data->link = $request->input('link');
+        dd($data);
 		$evento = Event::fire(new dotask($data));
 		return $evento;
 	}

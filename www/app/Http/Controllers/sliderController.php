@@ -44,7 +44,7 @@ class sliderController extends Controller
             "titulo" => 'required|string|max:100|min:3',
             'subtitulo'=>'string',
             'texto' => 'string',
-            "texto_boton" => 'required|string|max:100|min:2',
+            //"texto_boton" => 'required|string|max:100|min:2',
             "link" => 'string|max:100|min:3',
             "imagen" => 'required|image'
         ]);
