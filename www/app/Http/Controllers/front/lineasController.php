@@ -48,7 +48,7 @@ class lineasController extends Controller
 
         //-----> Obtenemos los proveedores
         $data["proveedores"] = linea::find_all_providers();
- 
+
         //-----> Obtenemos otras opciones de diversión
         $data["otras"] = linea::find_all( [ "not_in" => [ 1 ] ] );
 
@@ -59,8 +59,34 @@ class lineasController extends Controller
         $data['acumulado'] = sucursal::get_accumulated(['id_sucursal' => $id_sucursal]);
         // dd($data);
 
+
+
+
         return view('front.lineas.maquinas',$data);
     }
+
+    public function getAllDataDetailAcumulados($sucursal = null , $limit){
+
+        $data["sucursal_info"] = sucursal::find_by_slug( $sucursal );
+        $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
+
+        $data['acumulado'] = sucursal::get_all_accumulated(['id_sucursal' => $id_sucursal , 'limit' => $limit]);
+        $data = json_encode($data);
+        print_r( $data);
+    }
+
+
+    public function getAllDataDetailPagados($sucursal = null , $limit){
+
+        $data["sucursal_info"] = sucursal::find_by_slug( $sucursal );
+        $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
+
+        $data['pagados'] = sucursal::get_all_paid(['id_sucursal' => $id_sucursal , 'limit' => $limit]);
+        $data = json_encode($data);
+        print_r( $data);
+    }
+
+
 
     public function detalle_juego($slug_maquina,$slug){
         $juego = juego::find(['slug' => $slug]);
