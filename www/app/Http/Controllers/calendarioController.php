@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\dotask;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use DB;
+use Excel;
+use Input;
+use Event;
 use App\Models\calendario_model as calendario;
+use Psy\Util\Json;
 
 class calendarioController extends Controller
 {
@@ -191,4 +196,15 @@ class calendarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id){}
+
+    public function importCSV(){
+        Excel::load(Input::file('fileImportCSV'),function ($reader){
+            $reader->each(function ($sheet){
+
+                calendario::importCSVData($sheet->toArray());
+            });
+        });
+
+        return redirect(url('/administrador/calendario.html'))->with('success','File has been updated in DB');
+    }
 }
