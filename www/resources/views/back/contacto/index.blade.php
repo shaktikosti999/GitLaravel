@@ -42,6 +42,13 @@
 					<div class="panel-heading">
 						<div class="panel-title">Contacto <button class="btn btn-default" id="owner_mail"><i class="fa fa-search" aria-hidden="true"></i></button>
 						</div>
+						<div class="panel-title"><Eventos></Eventos>
+						</div>
+						<div class="pull-right">
+							<div class="col-xs-12">
+								<a id="exportCSV" href="/administrador/contactoCSV.html" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> CSV de exportación</a>
+							</div>
+						</div>
 					</div>
 					<div class="panel-body">
 						<div class="table-responsive">

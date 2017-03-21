@@ -39,7 +39,8 @@
 						</div>
 						<div class="pull-right">
 							<div class="col-xs-12">
-		                    	<a href="{{url('/administrador/agregar/calendario.html')}}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Agregar</a>
+								<a data-toggle="modal" data-target="#importCSV" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Masivo</a>
+								<a href="{{url('/administrador/agregar/calendario.html')}}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Agregar</a>
 			              	</div>
 		                </div>
 					</div>
@@ -170,6 +171,33 @@
 					</div>
 				</div>
 				<!-- /.modal-content -->
+			</div>
+		</div>
+
+
+		<div class="modal fade" id="importCSV" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="myModalLabel">Carga Masiva de Calendarios</h4>
+					</div>
+					<div class="modal-body">
+						<form id="form-agregar" role="form" autocomplete="off" method="POST" action="{{url('/administrador/calendario/importCSV')}}" enctype="multipart/form-data">
+							{!!csrf_field()!!}
+							<input type="hidden" name="_match"  value="PATCH">
+							<div class="row clearfix">
+								<div class="col-sm-12">
+									<div class="form-group form-group-default" aria-required="true">
+										<label for="csv">Archivo CSV</label>
+										<input type="file" name="fileImportCSV" id="csv" class="form-control required" required="required" aria-required="true" aria-invalid="true" accept=".csv">
+									</div>
+									<div class="form-group"><input type="submit" value="Guardar" class="btn btn-default"></div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 	@stop

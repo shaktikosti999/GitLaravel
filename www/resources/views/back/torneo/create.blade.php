@@ -50,36 +50,47 @@
 				            		<label for="tipo">Tipo de torneo / Evento </label>
 				            		<select id="tipo" class="cs-select cs-skin-slide" name="tipo" data-init-plugin="cs-select" required="required" aria-required="true" aria-invalid="true">
 				            			@foreach($tipos as $tipo)
-				            			<option value="{{$tipo->id}}">{{$tipo->nombre}}</option>
+											@if($tipo->nombre == "Torneo regional" )
+				            					<option value="{{$tipo->id}}">{{$tipo->nombre}}</option>
+											@endif
 				            			@endforeach
 				            		</select>
 				          		</div>
 				        	</div>
+
 				      	</div>
 				      	<div class="row">
-		        			<div class="col-sm-12">
-		        				<div class="form-group form-group-default">
-		        					<label for="sucursal">Sucursal</label>
-					      			<select class="cs-select cs-skin-slide" data-init-plugin="cs-select" name="sucursal" id="sucursal">
-					      				@foreach($sucursales as $sucursal)
-				                      	<option value="{{$sucursal->id}}">{{$sucursal->nombre}}</option>
-				                      	@endforeach
-		                    		</select>
-		                    	</div>
-		                	</div>
-		                </div>
-		                <div class="row">
-		        			<div class="col-sm-12">
-		        				<div class="form-group form-group-default">
-		        					<label for="juego">Juego</label>
-					      			<select class="cs-select cs-skin-slide" data-init-plugin="cs-select" name="juego" id="juego">
-					      				@foreach($juegos as $juego)
-				                      	<option value="{{$juego->id}}">{{$juego->nombre}}</option>
-				                      	@endforeach
-		                    		</select>
-		                    	</div>
-		                	</div>
-		                </div>
+		        			<div class="col-sm-12" style="border: 1px solid #eeeeee;margin-bottom: 0.8em;">
+								<div class="form-group col-sm-12">
+		        					<label for="sucursal" style="margin-left: 1em;">Sucursal</label>
+					      			{{--<select class="cs-select cs-skin-slide" data-init-plugin="chosen-select" multiple="multiple" name="sucursal[]" id="sucursal">--}}
+					      				{{--@foreach($sucursales as $sucursal)--}}
+				                      	{{--<option value="{{$sucursal->id}}">{{$sucursal->nombre}}</option>--}}
+				                      	{{--@endforeach--}}
+		                    		{{--</select>--}}
+								</div>
+
+								<div class="col-sm-12" style="padding-left: 0.8em;margin-top: -1em;">
+									<select  id="sucursal" name="sucursal[]" multiple="multiple" onchange="console.log('changed', this)" placeholder="Seleccione sucursal" class="SlectBox" required style="border-color: #eeeeee;margin-bottom: 0.2em;" >
+										@foreach($sucursales as $sucursal)
+											<option value="{{$sucursal->id}}">{{$sucursal->nombre}}</option>
+										@endforeach
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                      {{--<div class="row">--}}
+		        			{{--<div class="col-sm-12">--}}
+		        				{{--<div class="form-group form-group-default">--}}
+		        					{{--<label for="juego">Juego</label>--}}
+					      			{{--<select class="cs-select cs-skin-slide" data-init-plugin="cs-select" name="juego" id="juego">--}}
+					      				{{--@foreach($juegos as $juego)--}}
+				                      	{{--<option value="{{$juego->id}}">{{$juego->nombre}}</option>--}}
+				                      	{{--@endforeach--}}
+		                    		{{--</select>--}}
+		                    	{{--</div>--}}
+		                	{{--</div>--}}
+		                {{--</div>--}}
 		                <div class="row clearfix">
 				        	<div class="col-sm-12">
 				          		<div class="form-group form-group-default" aria-required="true">
@@ -104,14 +115,14 @@
 					          		</div>
 					        	</div>
 					      	</div>
-				      	<div class="row clearfix">
-				        	<div class="col-sm-12">
-				          		<div class="form-group form-group-default" aria-required="true">
-				            		<label for="link">Link</label>
-				            		<input type="text" id="link" class="form-control url" name="link" aria-required="true" aria-invalid="true">
-				          		</div>
-				        	</div>
-				      	</div>
+				      	{{--<div class="row clearfix">--}}
+				        	{{--<div class="col-sm-12">--}}
+				          		{{--<div class="form-group form-group-default" aria-required="true">--}}
+				            		{{--<label for="link">Link</label>--}}
+				            		{{--<input type="text" id="link" class="form-control url" name="link" aria-required="true" aria-invalid="true">--}}
+				          		{{--</div>--}}
+				        	{{--</div>--}}
+				      	{{--</div>--}}
 		                <div class="row clearfix">
 				        	<div class="col-sm-12">
 				          		<div class="form-group form-group-default" aria-required="true">
@@ -135,4 +146,8 @@
 	        @endif
 			<!-- END PANEL -->
 		</div>
+
+
 	@stop
+
+

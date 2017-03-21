@@ -15,6 +15,7 @@
 	@stop
 	@section('script')
 		<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
 		<script src="{{asset('/assets/js/index.js')}}"></script>
 		<script>
 			$('#owner_mail').on('click', function(){
@@ -38,6 +39,15 @@
 			<div class="col-md-12">
 			<!-- START PANEL -->
 				<div class="panel panel-transparent">
+					<div class="panel-heading">
+						<div class="panel-title"><Eventos></Eventos>
+						</div>
+						<div class="pull-right">
+							<div class="col-xs-12">
+								<a id="exportCSV" href="/administrador/newsletterCSV.html" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> CSV de exportación</a>
+							</div>
+						</div>
+					</div>
 					<div class="panel-heading">
 						<div class="panel-title">Newsletter <button class="btn btn-default" id="owner_mail"><i class="fa fa-search" aria-hidden="true"></i></button>
 						</div>
@@ -121,4 +131,6 @@
 				</div>
 			</div>
 		</div>
+
+
 	@stop
