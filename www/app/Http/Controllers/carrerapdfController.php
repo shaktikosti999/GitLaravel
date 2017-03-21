@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+
 use App\Models\carrerapdf_model as carrera;
 
 class carrerapdfController extends Controller
@@ -86,22 +87,52 @@ class carrerapdfController extends Controller
 
     public function storemassive(Request $request){
         // print_r($_FILES);
+
+
+        $carpeta = 'assets/carreras/';
+        if(!file_exists(public_path() . '/' . $carpeta)) {
+            mkdir(public_path() . '/' . $carpeta, 0777, true);
+        }
+
+        $timestamp=time();
+
+        for($i=0;$i<count($_FILES['pdf']['name']);$i++) {
+            move_uploaded_file($_FILES['pdf']['tmp_name'][$i] , public_path() . '/' . $carpeta . '/' .$timestamp.$_FILES['pdf']['name'][$i]);
+        }
+
         $fp = fopen($_FILES['csv']['tmp_name'],'r');
+//        dd($_FILES['csv']);
         fgetcsv($fp);
         $data = [];
+        $branchs = [];
+        $k=0;
         while(!feof($fp)){
             $txt = fgetcsv($fp);
-            $data[] = [
-                'id_juego' => $txt[1],
-                'titulo' => $txt[0],
-                'fecha' => date('Y-m-d',strtotime($txt[2])),
-                'archivo' => '/assets/carreras/' . $txt[3],
-                'estatus' => 1,
-                'eliminado' => 0,
-                'updated_at'=>date('Y-m-d'),
-                'created_at'=>date('Y-m-d')
-            ];
+
+            if(count($txt)!=1) {
+                $data[] = [
+                    'id_juego' => $txt[1],
+                    'titulo' => $txt[0],
+                    'fecha' => date('Y-m-d', strtotime($txt[2])),
+                    'archivo' => '/assets/carreras/' . $timestamp . $txt[3],
+                    'estatus' => 1,
+                    'eliminado' => 0,
+                    'updated_at' => date('Y-m-d'),
+                    'created_at' => date('Y-m-d')
+                ];
+
+                $branch = [];
+                for($j=4;$j<count($txt);$j++){
+                    if($txt[$j]!=""){
+                        $branch[] = $txt[$j];
+                    }
+                }
+
+                $branchs[$k] = $branch;
+                $k++;
+            }
         }
+
         if( count($data) ){
             $save = \DB::table('carrerapdf')
                 ->insert($data);
@@ -113,22 +144,17 @@ class carrerapdfController extends Controller
                     ->limit($limit)
                     ->get();
 
-                if( count($ids) ){
-                    $sucursales = \App\Models\sucursal_model::all();
 
-                    if( count($sucursales) ){
-                        $data = [];
-                        foreach($ids as $carrera){
-                            foreach($sucursales as $sucursal){
-                                $data[] = [
-                                    'id_carrera' => $carrera->id,
-                                    'id_sucursal' => $sucursal->id
-                                ];
-                            }
-                        }
-                        \DB::table('carrera_sucursal')->insert($data);
+                $data = [];
+                for($i=0;$i<count($branchs);$i++){
+                    for($j=0;$j<count($branchs[$i]);$j++) {
+                        $branchId = array('id_carrera' => $ids[$i]->id,'id_sucursal' => $branchs[$i][$j]);
+
+                        $data[] =  $branchId;
                     }
                 }
+                \DB::table('carrera_sucursal')->insert($data);
+
             }
         }
         return redirect('/administrador/pdfcarrera.html');
