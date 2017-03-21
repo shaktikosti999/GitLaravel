@@ -27,14 +27,14 @@
 			        	</div>
 			      	</div>
 
-			      	<div class="row clearfix">
-			        	<div class="col-sm-12">
-			          		<div class="form-group form-group-default" aria-required="true">
-			            		<label for="subtitulo">subtítulo</label>
-			            		<input type="text" id="subtitulo" class="form-control required" name="subtitulo" required="required" aria-required="true" aria-invalid="true">
-			          		</div>
-			        	</div>
-			      	</div>
+			      	{{--<div class="row clearfix">--}}
+			        	{{--<div class="col-sm-12">--}}
+			          		{{--<div class="form-group form-group-default" aria-required="true">--}}
+			            		{{--<label for="subtitulo">subtítulo</label>--}}
+			            		{{--<input type="text" id="subtitulo" class="form-control required" name="subtitulo" required="required" aria-required="true" aria-invalid="true">--}}
+			          		{{--</div>--}}
+			        	{{--</div>--}}
+			      	{{--</div>--}}
 
 			      	<div class="row clearfix">
 			        	<div class="col-sm-12">
@@ -50,7 +50,7 @@
 			        	</div>
 			      	</div>
 
-			      	<div class="row clearfix">
+			      	<!--<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="texto">Descripción</label>
@@ -76,7 +76,7 @@
 			          		</div>
 			        	</div>
 			      	</div>
-
+-->
 			      	<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
