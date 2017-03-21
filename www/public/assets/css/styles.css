@@ -1313,7 +1313,7 @@ li:first-child {margin: 0;margin-left: 0;}
 .section-teritary .section-head h2 { font-weight: 700; padding-bottom: 30px;}
 .section-teritary .section-actions { text-align: center; padding: 35px 0 100px; }
 .section-teritary .section-actions .btn { width: 100%; max-width: 360px; }
-.section-teritary .row { margin: 0 -15px 30px; }
+.section-teritary .row { margin: 0 -15px 30px;}
 .section-teritary .row:after { content: ''; line-height: 0; display: table; clear: both; }
 .section-teritary .cols { display: block; margin: 0 -15px; width: calc(100% + 30px); }
 .section-teritary .cols:after { content: ''; line-height: 0; display: table; clear: both; }
@@ -1350,11 +1350,11 @@ li:first-child {margin: 0;margin-left: 0;}
 }
 /* Mobile */
 @media (max-width: 767px) {
-	.section-teritary .row { margin-bottom: 0; }
-	.section-teritary .row .col { width: 100%; margin-bottom: 30px; }
+	.section-teritary .row { margin-bottom: 0; height: 1180px;}
+	.section-teritary .row .col { width: 100%; margin-bottom: 0; }
 	.section-teritary .row > .col { margin-bottom: 0 ; }
 	.section-teritary .row > .col:first-child { margin-bottom: 0px; }
-	.section-teritary .row:first-child > .col:first-child { margin-bottom: 30px; }
+	.section-teritary .row:first-child > .col:first-child { margin-bottom: 0; }
 
 	.section-filters li { width: 100%; float: left; }
 	.section-filters li span { padding: 0 10px; }
@@ -2071,7 +2071,7 @@ li:first-child {margin: 0;margin-left: 0;}
 	display: none !important;
 }
 /* ------------------------------------------------------------ *\
-	Lightbox AtenciÃ³n
+	Lightbox AtenciÃƒÂ³n
 \* ------------------------------------------------------------ */
 .lightbox {
     position: fixed;
@@ -2598,19 +2598,19 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 /*------------- Contenido tabla ---------------*/
 .table-content {width: 100%;}
 .table-content h5 {text-align: center;}
-.table-item {background-color: #fff; width: 30%; height: 277px; position: relative; border-radius: 10px; margin-bottom: 80px; float: left; display: inline-block; margin-right: 5%; }
+.table-item {background-color: #fff;width: 30%;height: 300px;position: relative;border-radius: 10px;margin-bottom: 30px;float: left;display: inline-block;margin-right: 5%;}
 .table-item:nth-child(3n+3) {margin-right: 0;}
-.table-list p, h2 {color: #000; margin-bottom: 0;}
+.table-list p, h2 {color: #000;margin-bottom: 0;padding: 0;}
 .table-list p:nth-child(1) {color: #a0a0a0;}
 .table-list p:nth-child(4) {color: #626262;}
 .table-list h2 {color: #ff0000;}
-.table-list {float: left; width: 50%; text-align: center; padding: 15px;}
+.table-list {float: left;width: 50%;text-align: center;padding: 15px;height: 260px;}
 .table__wrapp {display: inline-block; width: 100%;}
-.gray-item {border-radius: 10px; line-height: 1; width: 139px; text-align: center; position: absolute; background-color: #000; padding: 5px; left: 50%; transform: translateX(-50%); top: 159px;}
-.gray-item p, h4 {color: #fff; margin-bottom: 0;}
+.gray-item {border-radius: 10px;line-height: 1;width: 139px;text-align: center;position: absolute;background-color: #000;padding: 10px;left: 50%;bottom: 60px;margin-left: -70px;}
+.gray-item p, h4 {color: #fff;margin-bottom: 0;padding: 0;}
 .gray-item p:nth-child(3) {float: left; display: inline-block;}
 .gray-item p:nth-child(4) {float: right; display: inline-block;}
-.gray-item2 {background-color: #d2d2d2; position: relative; width: 100%; height: 43px; border-radius: 0 0 10px 10px; top: 235px; padding-left: 0; padding-right: 0;}
+.gray-item2 {background-color: #d2d2d2;position: relative;width: 100%;height: 43px;border-radius: 0 0 10px 10px;/* top: 235px; */padding-left: 0;padding-right: 0;float: left;}
 .gray-item2 h6 {color: black; position: absolute; text-align: center; left: 50%; transform: translateX(-50%); margin-bottom: 0;}
 .gray-item2 p {color: black; position: absolute; text-align: center; top: 22px; left: 50%; transform: translateX(-50%); width: 100%;}
 .line-gray {background-color: #d2d2d2; height: 270px; width: 2px; position: absolute; left: 50%; transform: translateX(-50%);}
@@ -2664,7 +2664,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.section-jackpots .btn-more .btn-border { width: 100%;}
 	.section-jackpots .btn-more {padding: 25px 0 30px !important;}
 	.slider-secondary .slide-content h3 {font-size: 20px !important;}
-	.box-current-promotions {height: 290px; max-width: 223px; left: 50%; transform: translateX(-50%);}
+	.box-current-promotions {height: 290px; max-width: 100%; left: 50%; transform: translateX(-50%);}
 
 }
 

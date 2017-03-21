@@ -29,7 +29,8 @@ class sucursalesController extends Controller
                 'maquinas' => linea::get_games([ 'linea' => 1, 'id_sucursal' => $sucursal->id_sucursal, 'limit' => 4]),
                 'torneos' => linea::find_all_tournaments(['id_sucursal' => $sucursal->id_sucursal]),
                 'maquinas_acumulado' => linea::get_games( [ "linea" => 1, "id_sucursal" => $sucursal->id_sucursal] ),
-                'mesas' => linea::get_games([ 'linea' => 2, 'id_sucursal' => $sucursal->id_sucursal ])
+                // 'mesas' => linea::get_games([ 'linea' => 2, 'id_sucursal' => $sucursal->id_sucursal ])
+                "mesas" => linea::get_games_table( [ "linea" => 2, "id_sucursal" => $sucursal->id_sucursal] )
             ];
         }
         else{
@@ -40,12 +41,13 @@ class sucursalesController extends Controller
                 'maquinas' => linea::get_games(['linea' => 1,'limit' => 4]),
                 'torneos' => linea::find_all_tournaments(),
                 'maquinas_acumulado' => linea::get_games( [ "linea" => 1 ] ),
-                'mesas' => linea::get_games([ 'linea' => 2 ])                
+                // 'mesas' => linea::get_games([ 'linea' => 2 ])                
+                "mesas" => linea::get_games_table( [ "linea" => 2 ] )
             ];
         }
         
         //-----> Obtenemos las categorías de los juegos
-        $data["categorias"] = linea::get_categories();
+        $data["categorias"] = linea::get_categories(['list'=>true]);
         $data['slider'] = sucursal::get_gallery($sucursal->id_sucursal,2);
 
         // dd($data);

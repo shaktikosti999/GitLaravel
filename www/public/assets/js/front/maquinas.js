@@ -3,7 +3,8 @@
 	$('#categorias').on('change', function(){
 		slug_sucursal = $('#sucursales').val(); 
 		id_categoria = $(this).val();
-		option_data(id_categoria, slug_sucursal);
+		linea = $('#linea').val();
+		option_data(id_categoria, slug_sucursal,null,linea);
 	});
 
 	option_data = function(id_categoria, slug_sucursal, ids_maquinas = null, linea = null){

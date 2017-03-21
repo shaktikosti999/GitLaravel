@@ -285,7 +285,7 @@ class linea_model{
                     'js.archivo',
                     // 'js.acumulado',
                     'js.apuesta_minima',
-                    'js.descripcion',
+                    // 'js.descripcion',
                     'js.disponibles'
                 )
                 ->where('js.id_sucursal',$args['id_sucursal'])

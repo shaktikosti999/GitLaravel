@@ -51,7 +51,7 @@
 								$('#simple_info').hide();
 								$('#simple_info').html('');
 								if( item !== null ){
-									if(item.length > 1 && item.length < 4){
+									if((item.length > 1 && item.length < 4) && {{$dep}} != 7 ){
 											str += '<div class="table-item">\
 												<div class="line-gray">\
 												</div>\
@@ -100,7 +100,7 @@
 										}
 												str += '<div class="gray-item2">\
 													<h6>' + data2.hora[index2] + '</h6>\
-													<p>Tiempo del centro</p>\
+													<!-- <p>Tiempo del centro</p> -->\
 												</div>\
 											</div>';
 									}
@@ -215,13 +215,15 @@
 					</a>
 				</div>
 				<div class="sport-calendar">
+					
 					@if( isset($deportes) && count($deportes) )
 					    @foreach($deportes as $item)
 				            <div class="list-calendar {{$item->numDeporte == $dep ? 'active' : ''}}">
 				                <a href="/lineas-de-juego/apuesta-deportiva?dep={{$item->numDeporte}}" tabindex="0">
 				                	<?php 
 				                	$imagen = $item->nombre;
-				                	$imagen = str_replace(" ", "_", $imagen) . ".png";
+				                	$imagen = str_replace(" ", "_", $imagen);
+				                	$imagen = strtolower($imagen);
 				                	?>
 				                    <img src="css/images/icons/{{$imagen}}.png">
 				                    <span>{{$item->nombre}}</span>
@@ -250,7 +252,7 @@
 
 				<div class="col-sm-12" id="tbl_content"></div>
 
-				<?php /*
+				<?php /*<!-- de aquí -->
 				<div class="table-content" >
 					<h5>07 Noviembre 2016</h5>
 					<div class="table__wrapp">
@@ -600,8 +602,7 @@
 						</div>					
 					</div>
 				</div>
-				*/?>
-
+				<!-- aquí -->*/?>
 				<div class="table-sport" style="height:auto">
 					<div class="shell">
 						<h2></h2>
