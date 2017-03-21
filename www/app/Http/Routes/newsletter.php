@@ -6,3 +6,4 @@ Route::post('/administrador/modificar/newsletter{id}.html','newsletterController
 Route::patch('/administrador/modificar/newsletter{id}.html','newsletterController@update');
 Route::put('/administrador/agregar/newsletter.html','newsletterController@store');
 Route::delete('/administrador/eliminar/newsletter{id}.html','newsletterController@destroy');
+Route::get('/administrador/newsletterCSV.html','newsletterController@exportCSV');

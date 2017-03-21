@@ -6,3 +6,4 @@ Route::post('/administrador/modificar/calendario{id}.html','calendarioController
 Route::patch('/administrador/modificar/calendario{id}.html','calendarioController@update');
 Route::put('/administrador/agregar/calendario.html','calendarioController@store');
 Route::delete('/administrador/eliminar/calendario{id}.html','calendarioController@destroy');
+Route::post('/administrador/calendario/importCSV','calendarioController@importCSV');

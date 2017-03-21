@@ -5,7 +5,7 @@ use App\Events\dotask;
 use Event;
 
 use App\torneo;
-class torneo_model{
+class eventos_model{
 	static function all(){
 		$get = \DB::table('torneo as t')
 			->select(
@@ -21,7 +21,8 @@ class torneo_model{
 			)
 			->join('sucursal as s','s.id_sucursal','=','t.id_sucursal')
 			->join('tipo_torneo as tt','tt.id_tipo','=','t.tipo_torneo')
-            ->where('t.tipo_torneo','2')
+            ->where('t.tipo_torneo','999')
+            ->orWhere('t.tipo_torneo','1')
 			->where('t.eliminado',0)
 			->where('s.eliminado',0)
 			->get();
@@ -55,7 +56,6 @@ class torneo_model{
 	}
 
 	static function update($id,$request,$archivo=null){
-
         for($i=0;$i<count($request->input('sucursal'));$i++) {
             if($i==0) {
                 $data = torneo::find($id);
@@ -65,12 +65,12 @@ class torneo_model{
             $data->titulo = $request->input('titulo');
             $data->slug = $request->input('slug');
             $data->tipo_torneo = $request->input('tipo');
-    //		$data->id_juego = $request->input('juego');
+            $data->id_juego = $request->input('juego');
             $data->id_sucursal = $request->input('sucursal')[$i];
             $data->descripcion = $request->input('descripcion');
             $data->fecha_inicio = date('Y-m-d H:i:s', strtotime($request->input('fecha_inicio')));
             $data->fecha_fin = date('Y-m-d H:i:s', strtotime($request->input('fecha_fin')));
-    //		$data->link = $request->input('link');
+            $data->link = $request->input('link');
             if ($archivo !== null)
                 $data->archivo = $archivo;
 

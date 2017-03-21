@@ -164,16 +164,39 @@ class sucursal_model{
     
     static function get_paid($args = []){
         $data = \DB::table('sucursal_pago')
-            ->where('id_tipo',2);
+            ->where('id_tipo',2)
+            ->limit(4);
         if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
             $data = $data->where('id_sucursal',$args['id_sucursal']);
         $data = $data->get();
         return $data;
     }
 
-    static function get_accumulated($args = []){
+    static function get_all_accumulated($args = []){
         $data = \DB::table('sucursal_pago')
-            ->where('id_tipo',1);
+            ->where('id_tipo',1)
+            ->limit(4)->offset($args['limit']);
+        if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
+            $data = $data->where('id_sucursal',$args['id_sucursal']);
+        $data = $data->get();
+        return $data;
+    }
+
+    static function get_all_paid($args = []){
+        $data = \DB::table('sucursal_pago')
+            ->where('id_tipo',2)
+            ->limit(4)->offset($args['limit']);
+           if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
+            $data = $data->where('id_sucursal',$args['id_sucursal']);
+        $data = $data->get();
+        return $data;
+    }
+
+    static function get_accumulated($args = []){
+
+        $data = \DB::table('sucursal_pago')
+            ->where('id_tipo',1)
+            ->limit(4);
         if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
             $data = $data->where('id_sucursal',$args['id_sucursal']);
         $data = $data->get();

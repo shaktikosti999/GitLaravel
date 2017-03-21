@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Models\eventos_model as eventos;
 use App\Models\torneo_model as torneo;
 
-class torneoController extends Controller
+class eventosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +18,7 @@ class torneoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $torneo = torneo::all();
+        $torneo = eventos::all();
         $torneos = [];
 
         foreach($torneo as $val)
@@ -27,7 +28,7 @@ class torneoController extends Controller
             'torneos' => $torneos
         ];
 
-        return view('back.torneo.index',$data);
+        return view('back.eventos.index',$data);
     }
 
     /**
@@ -37,12 +38,12 @@ class torneoController extends Controller
      */
     public function create(){
         $data = [
-            'tipos' => torneo::get_tournament_types(),
+            'tipos' => eventos::get_tournament_types(),
             'sucursales' =>\App\Models\sucursal_model::all(),
             'juegos' => \App\Models\juego_model::all()
         ];
 
-        return view('back.torneo.create',$data);
+        return view('back.eventos.create',$data);
     }
 
     /**
@@ -75,7 +76,7 @@ class torneoController extends Controller
 
                 $imageSelect = $request->input('sucursal')[0];
 
-                $carpeta = 'assets/images/torneo/' . $imageSelect . '/';
+                $carpeta = 'assets/images/eventos/' . $imageSelect . '/';
                 if(!file_exists(public_path() . '/' . $carpeta))
                     mkdir(public_path() . '/' . $carpeta,0777,true);
                 do{
@@ -89,13 +90,13 @@ class torneoController extends Controller
                 if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
                     $archivo = '/' . $carpeta . $nombre;
 
-                    $evento = torneo::store($request,$archivo);
+                    $evento = eventos::store($request,$archivo);
                     $evento = $evento[0];
                     if(!$evento){
-                        return redirect(url('/administrador/torneo.html'))->with('success','Torneo registrado');
+                        return redirect(url('/administrador/eventos.html'))->with('success','Eventos registrado');
                     }
                     else{
-                        return redirect(url('/administrador/torneo.html'))->with('error',$evento);
+                        return redirect(url('/administrador/eventos.html'))->with('error',$evento);
                     }
                 }
             }                    
@@ -122,9 +123,9 @@ class torneoController extends Controller
             'torneo' => \App\torneo::find($id),
             'tipos' => torneo::get_tournament_types(),
             'sucursales' =>\App\Models\sucursal_model::all(),
-            'juegos' => \App\Models\juego_model::all()
+//             'juegos' => \App\Models\juego_model::all()
         ];
-        return view('back.torneo.edit',$data);
+        return view('back.eventos.edit',$data);
     }
 
     /**
@@ -174,15 +175,15 @@ class torneoController extends Controller
             }                    
         }
         if( isset($archivo) )
-            $evento = torneo::update($id,$request,$archivo);
+            $evento = eventos::update($id,$request,$archivo);
         else
-            $evento = torneo::update($id,$request);
+            $evento = eventos::update($id,$request);
         $evento = $evento[0];
         if(!$evento){
-            return redirect(url('/administrador/torneo.html'))->with('success','Torneo modificado correctamente');
+            return redirect(url('/administrador/eventos.html'))->with('success','Torneo modificado correctamente');
         }
         else{
-            return redirect(url('/administrador/torneo.html'))->with('error',$evento);
+            return redirect(url('/administrador/eventos.html'))->with('error',$evento);
         }
     }
 

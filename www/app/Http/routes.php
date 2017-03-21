@@ -39,7 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::delete('/administrador/eliminar/{modulo}{id}.html','generalController@destroy')->where(['modulo'=>'[a-zA-Z]+[a-zA-Z_]*','id'=>'[1-9]+[0-9]*']);
 		Route::post('/administrador/restaurar/{modulo}{id}.html','generalController@restore')->where(['modulo'=>'[a-zA-Z]+[a-zA-Z_]*','id'=>'[1-9]+[0-9]*']);
 		// Route::get('/administrador/mostrar/{modulo}{id}.html','generalController@show')->where(['modulo'=>'[a-zA-Z]+[a-zA-Z_]*','id'=>'[1-9]+[0-9]*']);
-		
+
+
 		include_once('Routes/dash.php');
 		include_once('Routes/idiomas.php');
 		include_once('Routes/modulo.php');
@@ -61,6 +62,7 @@ Route::group(['middleware' => 'auth'], function () {
 		include_once('Routes/red.php');
 		include_once('Routes/carrerapdf.php');
 		include_once('Routes/torneo.php');
+        include_once('Routes/eventos.php');
 		include_once('Routes/slider.php');
 		include_once('Routes/promocion.php');
 		include_once('Routes/textfooter.php');
@@ -91,6 +93,11 @@ Route::get('/{slug_maquina}/detalle/{slug}','front\lineasController@detalle_jueg
 Route::patch('/filtro-maquinas','front\api\filtroController@filtro_maquinas');
 Route::patch('/get-mesa-juego','front\api\filtroController@get_mesa');
 Route::patch('/ver-lineas','front\api\filtroController@get_lineas');
+
+Route::get('/getAllDataAcumulados/{sucursal?}/{limit}','front\lineasController@getAllDataDetailAcumulados');
+Route::get('/getAllDataPagados/{sucursal?}/{limit}','front\lineasController@getAllDataDetailPagados');
+
+
 
 Route::post('/contacto/newsletter','front\contactoController@newsletter');
 
