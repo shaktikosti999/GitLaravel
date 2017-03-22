@@ -10,6 +10,7 @@ class slider_model{
 	static function all(){
 		return \DB::table('slider')
 			->where('eliminado',0)
+            ->join('slider_type','slider.tipo','=','slider_type.id')
 			->orderBy('tipo')
 			->orderBy('titulo')
 			->get();
@@ -17,16 +18,17 @@ class slider_model{
 
 	static function store($request,$archivo){
 
-		$data = new slider;
-		$data->tipo = $request->input('tipo');
-		$data->titulo = $request->input('titulo');
-		$data->subtitulo = $request->input('subtitulo');
-		$data->texto = $request->input('texto');
-		$data->imagen = $archivo;
-		$data->texto_boton = $request->input('texto_boton');
-		$data->link = $request->input('link');
-        dd($data);
-		$evento = Event::fire(new dotask($data));
+	    for($i=0;$i<count($request->input('tipo'));$i++){
+            $data = new slider;
+            $data->tipo = $request->input('tipo')[$i];
+            $data->titulo = $request->input('titulo');
+//            $data->subtitulo = $request->input('subtitulo');
+//            $data->texto = $request->input('texto');
+            $data->imagen = $archivo;
+//            $data->texto_boton = $request->input('texto_boton');
+//            $data->link = $request->input('link');
+            $evento = Event::fire(new dotask($data));
+        }
 		return $evento;
 	}
 
@@ -45,4 +47,9 @@ class slider_model{
 		$evento = Event::fire(new dotask($data));
 		return $evento;
 	}
+
+    static function getAllSliderType(){
+        return \DB::table('slider_type')
+                ->get();
+    }
 };

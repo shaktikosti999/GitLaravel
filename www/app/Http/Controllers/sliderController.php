@@ -29,7 +29,12 @@ class sliderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        return view('back.slider.create');
+
+        $sliderData = [
+            'sliderType' => slider::getAllSliderType()
+        ];
+
+        return view('back.slider.create',$sliderData);
     }
 
     /**
@@ -40,12 +45,12 @@ class sliderController extends Controller
      */
     public function store(Request $request){
         $this->validate($request,[
-            'tipo' => 'required|integer|min:0',
+           // 'tipo' => 'required|integer|min:0',
             "titulo" => 'required|string|max:100|min:3',
-            'subtitulo'=>'string',
-            'texto' => 'string',
+//            'subtitulo'=>'string',
+//            'texto' => 'string',
             //"texto_boton" => 'required|string|max:100|min:2',
-            "link" => 'string|max:100|min:3',
+//            "link" => 'string|max:100|min:3',
             "imagen" => 'required|image'
         ]);
         if($request->hasFile('imagen')){

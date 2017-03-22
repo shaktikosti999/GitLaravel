@@ -36,16 +36,23 @@
 			        	{{--</div>--}}
 			      	{{--</div>--}}
 
-			      	<div class="row clearfix">
+			      	<div class="row">
 			        	<div class="col-sm-12">
-			          		<div class="form-group form-group-default" aria-required="true">
-			            		<label for="tipo">Tipo</label>
-			            		<select id="tipo" class="form-control required" name="tipo" required="required" aria-required="true" aria-invalid="true">
-			            			<option value="1">Home</option>
-			            			<option value="0">Quiniela</option>
-			            			<option value="3">Ubicaciones</option>
-			            			<option value="2">Promociones</option>
-			            		</select>
+			          		<div class=" form-group-default row" aria-required="true" style="margin-bottom: 0.8em;" >
+			            		<label style="font-family: 'Montserrat';font-size: 11px;text-transform: uppercase;font-weight: 600;" >Tipo</label>
+			            		{{--<select id="tipo" class="form-control required" name="tipo" required="required" aria-required="true" aria-invalid="true">--}}
+			            			{{--<option value="1">Home</option>--}}
+			            			{{--<option value="0">Quiniela</option>--}}
+			            			{{--<option value="3">Ubicaciones</option>--}}
+			            			{{--<option value="2">Promociones</option>--}}
+			            		{{--</select>--}}
+
+								@foreach($sliderType as $val)
+									<label class="col-lg-6" >
+										<input type="checkbox"  value="{{$val->id}}" name="tipo[]" >{{$val->type_name}}
+									</label>
+								@endforeach
+
 			          		</div>
 			        	</div>
 			      	</div>
