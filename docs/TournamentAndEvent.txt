@@ -1,0 +1,21 @@
+
+
+// Insert Menu in Admin Side 
+
+INSERT INTO `sys_modulo` (`id_modulo`, `id_seccion`, `nombre`, `slug`, `tabla`, `descripcion`, `estatus`, `eliminado`, `created_at`, `updated_at`) VALUES (NULL, '1', 'Eventos', 'eventos', 'eventos', 'Administración de los Eventos', '1', '0', '2017-03-22 00:00:00', '2017-03-22 00:00:00');
+
+
+
+
+// Update Menu Option 
+
+UPDATE `sys_modulo` SET `nombre` = 'Torneos' WHERE `sys_modulo`.`id_modulo` = 28;
+
+
+
+
+
+//Alter Table `torneo`  and Change
+
+
+ALTER TABLE `torneo` CHANGE `id_torneo` `id_torneo` INT(10) NOT NULL AUTO_INCREMENT, CHANGE `id_sucursal` `id_sucursal` INT(4) NOT NULL, CHANGE `id_juego` `id_juego` INT(3) NULL, CHANGE `tipo_torneo` `tipo_torneo` INT(2) NOT NULL, CHANGE `titulo` `titulo` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `slug` `slug` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `descripcion` `descripcion` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `fecha_inicio` `fecha_inicio` DATETIME NOT NULL, CHANGE `fecha_fin` `fecha_fin` DATETIME NOT NULL, CHANGE `archivo` `archivo` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL, CHANGE `link` `link` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL, CHANGE `estatus` `estatus` TINYINT(4) NOT NULL DEFAULT '1', CHANGE `eliminado` `eliminado` TINYINT(4) NOT NULL DEFAULT '0', CHANGE `created_at` `created_at` DATETIME NOT NULL, CHANGE `updated_at` `updated_at` DATETIME NOT NULL;
