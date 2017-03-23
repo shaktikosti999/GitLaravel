@@ -32,6 +32,7 @@ class pagina_model{
     {
         $padre          = $request->input('padre');
         $titulo         = trim($request->input('titulo'));
+        $is_show_title  = $request->input('is_show_title');
         $slug           = trim($request->input('slug'));
         $contenido      = $request->input('contenido');
         $menu_principal = trim($request->input('menu_principal'));
@@ -51,10 +52,17 @@ class pagina_model{
                     ->count();
         }
 
+        if($is_show_title=="on"){
+            $is_show_title=1;
+        }else{
+            $is_show_title=0;
+        }
+
         $pagina = new pagina_contenido;
 
         $pagina->id_padre       = $padre;
         $pagina->titulo         = $titulo;
+        $pagina->is_show_title  = $is_show_title;
         $pagina->slug           = $slug;
         $pagina->archivo        = $archivo;
         $pagina->contenido      = $contenido;
@@ -63,8 +71,7 @@ class pagina_model{
         $pagina->menu_inferior  = $menu_inferior;
         $pagina->link           = $link;        
 
-        // dd($pagina);
-
+        //dd($pagina);
         $evento = Event::fire(new dotask($pagina));
 
         return $evento;
@@ -99,7 +106,7 @@ class pagina_model{
     static function edit($id)
     {
         $data = \DB::table('contenido_simple as pc')
-                ->select('pc.id_contenido','pc.id_padre','pc.titulo','pc.archivo as imagen_principal','pc.contenido','pc.orden','pc.slug','pc.menu_principal','pc.menu_inferior','pc.link')
+                ->select('pc.id_contenido','pc.id_padre','pc.titulo','pc.archivo as imagen_principal','pc.contenido','pc.orden','pc.slug','pc.menu_principal','pc.menu_inferior','pc.link','pc.is_show_title')
                 ->where('pc.id_contenido',$id)                
                 ->first();
 
@@ -129,13 +136,26 @@ class pagina_model{
             else
                 $pagina->archivo = '';
         }
+
+        if($request->input('is_show_title')=="on"){
+            $is_show_title=1;
+        }else{
+            $is_show_title=0;
+        }
+
+
         $pagina->titulo = $request->input('titulo');
+        $pagina->is_show_title  = $is_show_title;
         $pagina->slug = $request->input('slug');
         $pagina->orden = $request->input('orden') !== null ? $request->input('orden') : '';
         $pagina->contenido = $request->input('contenido');
         $pagina->menu_principal = $request->input('menu_principal') !== null ? $request->input('menu_principal') : '';
         $pagina->menu_inferior = $request->input('menu_inferior') !== null ? $request->input('menu_inferior') : '';
         $pagina->link = $request->input('link') !== null ? $request->input('link') : '';
+
+
+
+
         $evento = Event::fire(new dotask($pagina));
         return $evento;
     }

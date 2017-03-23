@@ -8,7 +8,7 @@
             <div class="shell">
                 <article class="article">
                     <div class="article-head">
-                        <h2>{{ $pagina->titulo }}</h2>
+                        <h2>{{$pagina->is_show_title==1 ? $pagina->titulo : ""}}</h2>
                     </div><!-- /.article-head -->
 
                     <div class="article-image">
