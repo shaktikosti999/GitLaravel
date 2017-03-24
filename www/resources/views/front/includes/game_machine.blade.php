@@ -24,6 +24,7 @@
 				<li>
 				 	<div class="games-filter-select">
 				 		<label for="categorias" class="form-label hidden">games-filter-select1</label>
+						<?php print_r($categorias); ?>
 				 		<select name="categorias" id="categorias" class="select">
 				 			<option value="">Todas</option>
 					 		@foreach ($categorias as $categoria)

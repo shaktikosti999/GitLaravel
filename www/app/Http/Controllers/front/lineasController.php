@@ -45,6 +45,7 @@ class lineasController extends Controller
 
         //-----> Obtenemos las categorías de los juegos
         $data["categorias"] = linea::get_categories(['list'=>true]);
+        //
 
         //-----> Obtenemos los proveedores
         $data["proveedores"] = linea::find_all_providers();

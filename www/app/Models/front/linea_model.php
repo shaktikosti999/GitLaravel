@@ -14,6 +14,7 @@ class linea_model{
         $get = $get->sum('acumulado');
         return $get;
     }
+    //
 
 	static function find_all( $parameters = [] ){
 		
