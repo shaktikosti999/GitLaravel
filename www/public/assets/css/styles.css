@@ -2535,8 +2535,8 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .sport-calendar {max-width: 1142px; margin: auto;height: 180px;border: 2px solid #dfdfdf;width: 100%;padding: 18px; /*overflow: hidden;*/ margin-bottom: 70px; margin-top: 70px;}
 .sport-calendar .slick-slider {margin: 30px auto 50px;}
 .list-calendar.active {background: #ff0000; color: #fff;}
-.list-calendar {float: left;width: 14%;text-align: center;background: #fff;display: block;margin: 0 1% 30px 1%;padding: 24px;transition: all .3s;border-radius: 10px;height: 140px;}
-.list-calendar span {text-transform: uppercase; margin: 10px 0 0; font-size: 18px; font-weight: 600; display: block;}
+.list-calendar {float: left;width: 14%;text-align: center;background: #fff;display: block;margin: 0 1% 30px 1%;padding: 24px 10px 24px 10px;transition: all .3s;border-radius: 10px;height: 140px;}
+.list-calendar span {text-transform: uppercase; margin: 10px 0 0; font-size: 14px; font-weight: 600; display: block;}
 .list-calendar a {text-decoration: none;}
 
 .sport-calendar .slick-slide img {display: inline-block;}
