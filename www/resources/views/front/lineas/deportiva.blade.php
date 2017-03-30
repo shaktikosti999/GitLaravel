@@ -614,77 +614,34 @@
 		</div>
 
 
+		<div class="main"> 
 
-		<div class="main">
-			@if( isset( $promociones ) && count( $promociones ) )
-
-				<section class="section-promotions">
-					<div class="shell">
-						<header class="section-head top-promotions">
-							<div class="stick--point" id="promociones"></div>
-							<h2>
-								@yield('promo-head','Promociones')
-							</h2>
-
-							<!-- <a href="#" class="btn btn-black">
-										consulta calendario completo
-									</a> -->
-						</header><!-- /.section-head -->
-
-						<div class="section-body">
-							<div class="slider-games slider-promotions">
-								<div class="slider-clip">
-									<ul class="slides">
-										@foreach($promociones as $item)
-										<?php
-
-										$start = new DateTime( $item->fecha_inicio );
-										$end   = new DateTime( $item->fecha_fin );
-
-										?>
-										<li class="slide">
-											<a href="{{url('promociones/detalle/' . $item->slug)}}" class="slide-content" style="background-image: url({{$item->imagen}}); ">
-												<span class="slide-label">
-													Válido del {{$start->format('d/m/Y')}} al {{$end->format('d/m/Y')}}
-												</span>
-
-												<span class="slide-inner">
-													<span class="slide-inner-entry">
-														<strong>{!!$item->nombre!!}</strong> <br>
-													</span>
-
-													<span class="slide-inner-price">
-														{!!$item->resumen!!}
-													</span>
-												</span>
-											</a><!-- /.slide-content -->
-										</li><!-- /.slide -->
-										@endforeach
-									</ul><!-- /.slides -->
-								</div><!-- /.slider-clip -->
-							</div><!-- /.slider-games -->
-						</div><!-- /.section-body -->
-						@if( isset($quinielas) && count($quinielas) )
-							@foreach($quinielas as $item)
-								<div class="slider-bet"> <!-- Slider Quiniela -->
-									<div class="slider-bet-item back-module">
-										<div class="txt-bet">
-											<h2>{{$item->titulo}}</h2>
-											{!! isset($item->subtitulo) && !empty($item->subtitulo) ? '<h6>' . $item->subtitulo . '</h6>' : '' !!}
-											<p>{{$item->texto}}</p>
-											<a href="{{$item->link}}" class="btn btn-red btn-red-small btn-red-medium">
-												{{$item->texto_boton}}
-											</a>
-										</div>
-										<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
+			<section class="section-promotions">
+				<div class="shell">
+					@if( isset( $promociones ) && count( $promociones ) )
+					
+						@include('front.includes.promotions',['promociones' => $promociones,'sucursal'=>$sucursal_info])
+		
+					@endif
+					@if( isset($quinielas) && count($quinielas) )
+						@foreach($quinielas as $item)
+							<div class="slider-bet"> <!-- Slider Quiniela -->
+								<div class="slider-bet-item back-module">
+									<div class="txt-bet">
+										<h2>{{$item->titulo}}</h2>
+										{!! isset($item->subtitulo) && !empty($item->subtitulo) ? '<h6>' . $item->subtitulo . '</h6>' : '' !!}
+										<p>{{$item->texto}}</p>
+										<a href="{{$item->link}}" class="btn btn-red btn-red-small btn-red-medium">
+											{{$item->texto_boton}}
+										</a>
 									</div>
+									<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
 								</div>
-							@endforeach
-						@endif
-					</div><!-- /.shell -->
-				</section><!-- /.section-promotions -->
-
-			@endif
+							</div>
+						@endforeach
+					@endif
+				</div><!-- /.shell -->
+			</section><!-- /.section-promotions -->
 
 			<!-- Promociones -->
 

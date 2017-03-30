@@ -58,7 +58,7 @@ class carrerapdfController extends Controller
             $extValidas = ['pdf'];
 
             if(in_array($ext, $extValidas)){
-                $carpeta = 'assets/images/carreras/' . $request->input('juego') . '/';
+                $carpeta = 'assets/carreras/' . $request->input('juego') . '/';
                 if(!file_exists(public_path() . '/' . $carpeta))
                     mkdir(public_path() . '/' . $carpeta,0777,true);
                 do{
@@ -212,7 +212,7 @@ class carrerapdfController extends Controller
             $extValidas = ['pdf'];
 
             if(in_array($ext, $extValidas)){
-                $carpeta = 'assets/carreras/' . $request->input('sucursal') . '/' . $request->input('juego') . '/';
+                $carpeta = 'assets/carreras/' . $request->input('juego') . '/';
                 if(!file_exists(public_path() . '/' . $carpeta))
                     mkdir(public_path() . '/' . $carpeta,0777,true);
                 do{
