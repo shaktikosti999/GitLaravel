@@ -31,6 +31,10 @@
 			<img src="css/images/btn-menu@2x.png" alt="">
 		</a>
  -->
+		<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
+			<img src="css/images/btn-menu@2x.png" alt="">
+		</a>
+ -->
 		<div class="slider-clip">
 			<ul class="slides">
 				
