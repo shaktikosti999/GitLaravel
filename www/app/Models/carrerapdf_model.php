@@ -58,7 +58,7 @@ class carrerapdf_model{
 
 	static function update($id,$request,$archivo=null){
 		$data = carrerapdf::find($id);
-		$data->id_sucursal = $request->input("sucursal");
+		// $data->id_sucursal = $request->input("sucursal");
 		$data->id_juego = $request->input("juego");
 		$data->titulo = $request->input("titulo");
 		$data->fecha = date('Y-m-d',strtotime($request->input('fecha')));
