@@ -32,7 +32,9 @@ class lineasController extends Controller
         $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
 
         //-----> Obtenemos los sliders
-        $data["slider"] = linea::find_gallery( 1 );
+        //$data["slider"] = linea::find_gallery( 1 );
+        $data["slider"] = slider::find_all(6);
+
 
         //-----> Obtenemos promociones
         $data["promociones"] = promocion::find_all( [ "linea" => 1, "id_sucursal" => $id_sucursal ] );
@@ -124,7 +126,8 @@ class lineasController extends Controller
         $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
 
         //-----> Obtenemos los sliders
-        $data["slider"] = linea::find_gallery( 2 );
+        //$data["slider"] = linea::find_gallery( 2 );
+        $data["slider"] = slider::find_all( 7 );
 
         //-----> Obtenemos promociones
         $data["promociones"] = promocion::find_all( [ "linea" => 2, "id_sucursal" => $id_sucursal ] );
@@ -162,7 +165,7 @@ class lineasController extends Controller
         $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
 
         //-----> Obtenemos los sliders
-        $data["slider"] = linea::find_gallery( 4 );
+        $data["slider"] = slider::find_all( 9 );
 
         //-----> Obtenemos mesas de juego
         $data["carreras"] = linea::get_races();
@@ -223,7 +226,7 @@ class lineasController extends Controller
         $data["sucursal_info"] = sucursal::find_by_slug( $sucursal );
         $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
 
-        $data['slider'] = linea::find_gallery( 3 ); //Obtener Sliders
+        $data['slider'] = slider::find_all( 0 ); //Obtener Sliders
         $data['promociones'] = promocion::find_all( [ "linea" => 3, "id_sucursal" => $id_sucursal ] ); //Obtener promociones
         $data["otras"] = linea::find_all( [ "not_in" => [ 3 ] ] ); // Obtenemos otras opciones de diversión
         $data['quinielas'] = slider::football_pools();// Obtenemos las quinielas

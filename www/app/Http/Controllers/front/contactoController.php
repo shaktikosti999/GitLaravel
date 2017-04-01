@@ -83,6 +83,7 @@ class contactoController extends Controller
         $data=[
             // -----> Listado de sucursales;
             'sucursales' => sucursal::find_all(),
+            'slider' => \App\Models\front\slider_model::find_all(4),
         ];
         return view('front.contacto.index',$data);
     }

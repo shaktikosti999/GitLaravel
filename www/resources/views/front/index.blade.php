@@ -200,11 +200,11 @@
 
 			<div class="slider-clip">
 				<ul class="slides">
-					
+
 					@foreach( $slider as $s )
-					
-						
-						
+
+
+
 						<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
 							<div class="slide-content ">
 								<!--<div class="shell"-->
@@ -212,7 +212,7 @@
 									<!--h1>
 										Navidad Excepcional
 									</h1-->
-									
+
 									<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
 
 								<!--</div> /.shell -->
@@ -221,7 +221,7 @@
 
 					@endforeach
 
-					
+
 				</ul><!-- /.slides -->
 			</div><!-- /.slider-clip -->
 		</div><!-- /.slider-intro -->

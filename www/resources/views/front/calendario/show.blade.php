@@ -1,5 +1,55 @@
 @extends('layout.front')
 	@section('contenido')
+		<div class="slider-secondary">
+			<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
+			<img src="css/images/btn-menu@2x.png" alt="">
+		</a>
+ -->
+			<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
+			<img src="css/images/btn-menu@2x.png" alt="">
+		</a>
+ -->
+			<div class="slider-clip">
+				<ul class="slides">
+
+					@if( isset( $slider ) && count( $slider ) )
+
+						@foreach( $slider as $item )
+
+							<li class="slide" style="background-image: url({{ $item->imagen }})">
+								<div class="slide-body">
+									<div class="shell">
+										<div class="slide-content">
+											<h1>
+												mÁquinas de juego
+											</h1>
+
+											<h3>
+												@if( isset( $sucursal_info->nombre ) )
+
+													{{ $sucursal_info->nombre }}
+
+												@endif
+											</h3>
+										</div><!-- /.slide-content -->
+
+										@include('front.includes.breadcrumbs')
+									</div><!-- /.shell -->
+								</div><!-- /.slide-body -->
+							</li><!-- /.slide -->
+
+						@endforeach
+
+					@endif
+
+
+				</ul><!-- /.slides -->
+			</div><!-- /.slider-clip -->
+
+			<div class="slider-label red-label large">
+				<i class="ico-slot"></i>
+			</div><!-- /.slider-label -->
+		</div><!-- /.slider-secondary -->
 	<div class="intro-gray"></div><!-- /.intro-gray -->
 
 	<div class="main">

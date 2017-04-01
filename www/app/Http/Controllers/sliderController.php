@@ -20,6 +20,7 @@ class sliderController extends Controller
         $data = [
             'sliders' => slider::all()
         ];
+//        dd($data);
         return view('back.slider.index',$data);
     }
 
@@ -105,6 +106,7 @@ class sliderController extends Controller
             'id' => $id,
             'slider' => \App\slider::find($id)
         ];
+//        dd($data);
         return view('back.slider.edit',$data);
     }
 

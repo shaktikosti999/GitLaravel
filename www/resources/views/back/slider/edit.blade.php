@@ -27,6 +27,14 @@
 			        	</div>
 			      	</div>
 
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" >
+								<label><input type="checkbox" name="is_show_title" {{$slider->is_show_title==1 ? "checked" : ""}} ><span>Show Title to mark check box</span></label>
+							</div>
+						</div>
+					</div>
+
 			      	<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">

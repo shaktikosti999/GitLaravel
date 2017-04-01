@@ -15,7 +15,11 @@ class calendarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(){
-        return view('front.calendario.show');
+
+        $data=[
+            'slider' => \App\Models\front\slider_model::find_all(5),
+        ];
+        return view('front.calendario.show',$data);
         //
     }
 

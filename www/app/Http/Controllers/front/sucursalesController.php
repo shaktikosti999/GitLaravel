@@ -48,7 +48,8 @@ class sucursalesController extends Controller
         
         //-----> Obtenemos las categorías de los juegos
         $data["categorias"] = linea::get_categories(['list'=>true]);
-        $data['slider'] = sucursal::get_gallery($sucursal->id_sucursal,2);
+        //$data['slider'] = sucursal::get_gallery($sucursal->id_sucursal,2);
+        $data['slider'] = \App\Models\front\slider_model::find_all(3);
 
         // dd($data);
         return view('front.sucursales.index',$data);

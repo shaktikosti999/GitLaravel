@@ -5,15 +5,24 @@ class slider_model{
 
     static function find_all($tipo = 1){
 
-        $data = [];
+        $getdata = [];
 
-        $data = \DB::table('slider as s')
+        $getdata = \DB::table('slider as s')
             ->where('s.estatus','=',1)
             ->where('s.eliminado','=',0)
             ->where('s.tipo',$tipo)
             ->orderByRaw('RAND()')
             ->get();
 
+        $data = [];
+        foreach($getdata as $d){
+            if($d->is_show_title==0){
+                $d->titulo="";
+            }
+
+            array_push($data,$d);
+        }
+//        dd($data);
         return $data;
 
     }
