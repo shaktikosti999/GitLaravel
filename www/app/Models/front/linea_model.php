@@ -299,7 +299,7 @@ class linea_model{
         if(array_key_exists('not_id', $args) && $args['not_id'] !== null)
             $get = $get->whereNotIn('j.id_juego',$args['not_id']);
         if(array_key_exists('id', $args) && $args['id'] !== null)
-            $get = $get->where('j.id_juego',$args['id']); 
+            $get = $get->where('j.id_juego',$args['id']);
         $get = $get->get();
         return $get;
     }

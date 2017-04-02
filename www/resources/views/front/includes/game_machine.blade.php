@@ -24,17 +24,20 @@
 				<li>
 				 	<div class="games-filter-select">
 				 		<label for="categorias" class="form-label hidden">games-filter-select1</label>
-						<?php print_r($categorias); ?>
 				 		<select name="categorias" id="categorias" class="select">
 				 			<option value="">Todas</option>
-					 		@foreach ($categorias as $categoria)
-					 			<option value="{{$categoria->id}}" {{$categoria->id == 2 ? 'selected' : ''}}>{{$categoria->nombre}}</option>
-					 		@endforeach				 			
+					 		{{--@foreach ($categorias as $categoria)--}}
+					 			{{--<option value="{{$categoria->id}}" {{$categoria->id == 2 ? 'selected' : ''}}>{{$categoria->nombre}}</option>--}}
+					 		{{--@endforeach				 			--}}
 				 		</select>
 				 	</div><!-- /.form-controls -->
 				</li>
 			</ul><!-- /.games-filters -->
-			
+			<?php
+				//echo "<pre>";
+				//print_r($maquinas);
+				//die;
+			?>
 			<ul class="games" id="games">
 				
 				@foreach( $maquinas as $item )
@@ -42,12 +45,7 @@
 					<li class="game posts-data" data-id="{{ $item->id }}">
 						<a href="{{ url('/maquinas-de-juego/detalle/'.$item->slug) }}" style="background-image: url('{{ $item->thumb !== null ? $item->thumb : $item->imagen }}')"> 
 							<span class="jackpot">
-							<?php /*
-								<small>JACKPOT</small>
-								<strong>
-									${{$item->acumulado}}
-								</strong>
-							*/?>
+
 							</span>
 
 							<span class="game-title">

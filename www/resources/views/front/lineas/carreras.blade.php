@@ -111,9 +111,7 @@
 								<div class="slide-body">
 									<div class="shell"> 		 
 										 <div class="slide-content">
-										 	<h1>
-										 		Apuestas de Carreras
-										 	</h1>
+											 <h1>{{ $item->titulo }}</h1>
 											 	
 											 	<h3>
 											 		@if( isset( $sucursal_info->nombre ) )

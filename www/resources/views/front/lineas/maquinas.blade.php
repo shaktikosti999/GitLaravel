@@ -37,61 +37,55 @@
  -->
 		<div class="slider-clip">
 			<ul class="slides">
-				
-				@if( isset( $slider ) && count( $slider ) )
+
+				@if( count( $slider ) )
 
 					@foreach( $slider as $item )
 
 						<li class="slide" style="background-image: url({{ $item->imagen }})">
 							<div class="slide-body">
-								<div class="shell"> 		 
-									 <div class="slide-content">
-									 	<h1>
-									 		mÁquinas de juego
-									 	</h1>
-										 	
-										 	<h3>
-										 		@if( isset( $sucursal_info->nombre ) )
-										 			
-										 			{{ $sucursal_info->nombre }}
+								<div class="shell">
+									<div class="slide-content">
+										<h1>{{ $item->titulo }}</h1>
 
-										 		@endif
-										 	</h3>
-									 	
-									 	
+										<h3>
+											@if( isset( $sucursal_info->nombre ) )
 
-									@if( isset( $sucursales ) && count( $sucursales ) )
+												{{ $sucursal_info->nombre }}
 
-										<div class="filter-secondary">
-											<label for="sucursales" class="form-label hidden">filter-secondary1</label>
-											<select name="sucursales" id="sucursales" class="select branch-filter">
-												
-												<option value="-1">Selecciona tu casino</option>
-
-												@foreach( $sucursales as $item )
-
-													<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
-
-												@endforeach
-												
-											</select>
-										</div><!-- /.filter-secondary -->
-
-									@endif
+											@endif
+										</h3>
 
 
-									 </div><!-- /.slide-content -->
+
+										@if( isset( $sucursales ) && count( $sucursales ) )
+
+											<div class="filter-secondary">
+												<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+												<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
+
+													<option value="-1">Selecciona tu casino</option>
+
+													@foreach( $sucursales as $item )
+
+														<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
+
+													@endforeach
+
+												</select>
+											</div><!-- /.filter-secondary -->
+
+										@endif
+
+
+									</div><!-- /.slide-content -->
 
 									@include('front.includes.breadcrumbs')
 								</div><!-- /.shell -->
 							</div><!-- /.slide-body -->
 						</li><!-- /.slide -->
-
 					@endforeach
-
 				@endif
-
-				
 			</ul><!-- /.slides -->
 		</div><!-- /.slider-clip -->
 
@@ -110,7 +104,6 @@
 		
 		<input type="hidden" name="linea" id="linea" value="1">
 		@if( isset( $maquinas ) && count( $maquinas ) )
-
 			@include('front.includes.game_machine',['maquinas' => $maquinas])
 
 		@endif 
@@ -207,8 +200,6 @@
 										</div><!-- /.article-content -->
 									</article><!-- /.article-jackpot -->
 								</div><!-- /.col col-1of2 -->
-					
-								
 							@endforeach
 							
 						</div><!-- /.cols -->
@@ -219,7 +210,6 @@
 							Ver más
 						</a>
 					</div>
-
 						@if( isset($pagados) && count($pagados) )
 							<div class="section-entry">
 								<p>

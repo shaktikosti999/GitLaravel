@@ -7,47 +7,45 @@
 		</a>-->
 		<div class="slider-clip">
 			<ul class="slides">
-				@if( isset($slider) && count($slider) )
-					@foreach( $slider as $item)
-						<li class="slide fullscreen" style="background-image: url({{($item->imagen)}});">
-							<div class="slide-content slide-promo">
-								<div class="shell">
-									<h2>
-										PROMOCIONES Y EVENTOS
-									</h2>
+				<?php
 
-									<h3>
-										@if( isset( $sucursal_info->nombre ) )
-												 			
-								 			{{ $sucursal_info->nombre }}
+				?>
+					@if( isset( $slider ) && count( $slider ) )
 
-								 		@endif
-									</h3>
-		 							
-		 							@if( isset( $sucursales ) && count( $sucursales ) )
+						<div class="slider-intro anchor">
+							<!-- <a href="#" class="btn-scroll">
+                                <i class="ico-mouse"></i>
+                            </a> -->
 
-										<div class="filter-secondary">
-											<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-											<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
-												
-												<option value="-1">Selecciona tu casino</option>
+							<div class="slider-clip">
+								<ul class="slides">
 
-												@foreach( $sucursales as $item )
+									@foreach( $slider as $s )
 
-													<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
 
-												@endforeach
-												
-											</select>
-										</div><!-- /.filter-secondary -->
 
-									@endif
+										<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
+											<div class="slide-content ">
+												<!--<div class="shell"-->
+												<h1>{{ $s->titulo }}</h1>
+												<!--h1>
+                                                    Navidad Excepcional
+                                                </h1-->
 
-								</div><!-- /.shell -->
-							</div><!-- /.slide-content -->
-						</li><!-- /.slide --> 
-					@endforeach
-				@endif
+												<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
+
+												<!--</div> /.shell -->
+											</div><!-- /.slide-content -->
+										</li><!-- /.slide -->
+
+									@endforeach
+
+
+								</ul><!-- /.slides -->
+							</div><!-- /.slider-clip -->
+						</div><!-- /.slider-intro -->
+
+					@endif
 			</ul><!-- /.slides -->
 		</div><!-- /.slider-clip -->
 	</div><!-- /.slider-intro -->

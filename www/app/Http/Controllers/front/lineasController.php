@@ -24,7 +24,6 @@ class lineasController extends Controller
      */
     public function maquinas( $sucursal = null ){
         $data = [];
-
         $data["sucursal"] = $sucursal;
 
         //-----> Obtenemos detalle de sucursal seleccionada
@@ -60,10 +59,6 @@ class lineasController extends Controller
 
         $data['pagados'] = sucursal::get_paid(['id_sucursal' => $id_sucursal]);
         $data['acumulado'] = sucursal::get_accumulated(['id_sucursal' => $id_sucursal]);
-        // dd($data);
-
-
-
 
         return view('front.lineas.maquinas',$data);
     }
@@ -116,7 +111,7 @@ class lineasController extends Controller
     }
 
     public function mesas( $sucursal = null ){
-    
+
         $data = [];
 
         $data["sucursal"] = $sucursal;
@@ -139,7 +134,7 @@ class lineasController extends Controller
         $data["torneos"] = linea::find_all_tournaments( [ "id_sucursal" => $id_sucursal ] );
 
         //dd( $data["torneos"] );
- 
+
         //-----> Obtenemos otras opciones de diversión
         $data["otras"] = linea::find_all( [ "not_in" => [ 2 ] ] );
 
@@ -154,7 +149,7 @@ class lineasController extends Controller
     }
 
     public function carreras( $sucursal = null ){
-        
+
         $request = \Request::all();
         $id_juego = ( isset($request['game']) ) ? juego::id_by_slug($request['game']) : null;
 
@@ -178,7 +173,7 @@ class lineasController extends Controller
         $data["torneos"] = linea::find_all_event( [ "id_sucursal" => $id_sucursal, 'id_juego' => $id_juego ] );
 
         //dd( $data["torneos"] );
- 
+
         //-----> Obtenemos otras opciones de diversión
         $data["otras"] = linea::find_all( [ "not_in" => [ 4 ] ] );
 
@@ -231,13 +226,13 @@ class lineasController extends Controller
         $data["otras"] = linea::find_all( [ "not_in" => [ 3 ] ] ); // Obtenemos otras opciones de diversión
         $data['quinielas'] = slider::football_pools();// Obtenemos las quinielas
 
-       
+
         // si no existe una solicitud para deporte, por defecto srá 5
         $dep = (\Request::input('dep') !== null) ? \Request::input('dep') : 5;
         $data['dep'] = $dep;
 
         if($dep == 5){
-            
+
         }
 
         // Lista de deportes

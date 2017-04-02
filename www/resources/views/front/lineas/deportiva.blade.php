@@ -143,56 +143,22 @@
 			<div class="slider-clip">
 				<ul class="slides">
 					@if( isset( $slider ) && count( $slider ) )
-
-						@foreach( $slider as $item )
-
-							<li class="slide" style="background-image: url({{ $item->imagen }})">
-								<div class="slide-body">
-									<div class="shell">
-										 <div class="slide-content">
-										 	<h1>
-										 		Apuesta Deportiva
-										 	</h1>
-
-											 	<h3>
-											 		@if( isset( $sucursal_info->nombre ) )
-
-											 			{{ $sucursal_info->nombre }}
-
-											 		@endif
-											 	</h3>
-
-
-
-										@if( isset( $sucursales ) && count( $sucursales ) )
-
-											<div class="filter-secondary">
-												<label for="sucursales" class="form-label hidden">filter-secondary1</label>
-												<select name="sucursales" id="sucursales" class="select branch-filter">
-
-													<option value="-1">Selecciona tu casino</option>
-
-													@foreach( $sucursales as $item )
-
-														<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
-
-													@endforeach
-
-												</select>
-											</div><!-- /.filter-secondary -->
-
-										@endif
-
-
-										 </div><!-- /.slide-content -->
-
-										@include('front.includes.breadcrumbs')
-									</div><!-- /.shell -->
-								</div><!-- /.slide-body -->
-							</li><!-- /.slide -->
-
-						@endforeach
-
+						<div class="slider-intro anchor">
+							<div class="slider-clip">
+								<ul class="slides">
+									@foreach( $slider as $s )
+										<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
+											<div class="slide-content ">
+												<!--<div class="shell"-->
+												<h1>{{ $s->titulo }}</h1>
+												<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
+												<!--</div> /.shell -->
+											</div><!-- /.slide-content -->
+										</li><!-- /.slide -->
+									@endforeach
+								</ul><!-- /.slides -->
+							</div><!-- /.slider-clip -->
+						</div><!-- /.slider-intro -->
 					@endif
 				</ul><!-- /.slides -->
 			</div><!-- /.slider-clip -->

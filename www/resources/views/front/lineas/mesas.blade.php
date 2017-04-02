@@ -49,28 +49,26 @@
 
 							<li class="slide" style="background-image: url({{ $item->imagen }})">
 								<div class="slide-body">
-									<div class="shell"> 		 
+									<div class="shell">
 										 <div class="slide-content">
-										 	<h1>
-										 		Mesas de juego
-										 	</h1>
-											 	
+											 <h1>{{ $item->titulo }}</h1>
+
 											 	<h3>
 											 		@if( isset( $sucursal_info->nombre ) )
-											 			
+
 											 			{{ $sucursal_info->nombre }}
 
 											 		@endif
 											 	</h3>
-										 	
-										 	
+
+
 
 										@if( isset( $sucursales ) && count( $sucursales ) )
 
 											<div class="filter-secondary">
 												<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
 												<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
-													
+
 													<option value="-1">Selecciona tu casino</option>
 
 													@foreach( $sucursales as $item )
@@ -78,7 +76,7 @@
 														<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
 
 													@endforeach
-													
+
 												</select>
 											</div><!-- /.filter-secondary -->
 

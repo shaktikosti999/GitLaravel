@@ -50,31 +50,38 @@
 
 					@if( isset( $slider ) && count( $slider ) )
 
-						@foreach( $slider as $item )
+						<div class="slider-intro anchor">
+							<!-- <a href="#" class="btn-scroll">
+                                <i class="ico-mouse"></i>
+                            </a> -->
 
-							<li class="slide" style="background-image: url({{ $item->imagen }})">
-								<div class="slide-body">
-									<div class="shell">
-										<div class="slide-content">
-											<h1>
-												mÁquinas de juego
-											</h1>
+							<div class="slider-clip">
+								<ul class="slides">
 
-											<h3>
-												@if( isset( $sucursal_info->nombre ) )
+									@foreach( $slider as $s )
 
-													{{ $sucursal_info->nombre }}
 
-												@endif
-											</h3>
-										</div><!-- /.slide-content -->
 
-										@include('front.includes.breadcrumbs')
-									</div><!-- /.shell -->
-								</div><!-- /.slide-body -->
-							</li><!-- /.slide -->
+										<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
+											<div class="slide-content ">
+												<!--<div class="shell"-->
+												<h1>{{ $s->titulo }}</h1>
+												<!--h1>
+                                                    Navidad Excepcional
+                                                </h1-->
 
-						@endforeach
+												<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
+
+												<!--</div> /.shell -->
+											</div><!-- /.slide-content -->
+										</li><!-- /.slide -->
+
+									@endforeach
+
+
+								</ul><!-- /.slides -->
+							</div><!-- /.slider-clip -->
+						</div><!-- /.slider-intro -->
 
 					@endif
 

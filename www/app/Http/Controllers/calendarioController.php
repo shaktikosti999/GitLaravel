@@ -198,13 +198,14 @@ class calendarioController extends Controller
     public function destroy($id){}
 
     public function importCSV(){
+
         Excel::load(Input::file('fileImportCSV'),function ($reader){
             $reader->each(function ($sheet){
 
+                
                 calendario::importCSVData($sheet->toArray());
             });
         });
-
         return redirect(url('/administrador/calendario.html'))->with('success','File has been updated in DB');
     }
 }
