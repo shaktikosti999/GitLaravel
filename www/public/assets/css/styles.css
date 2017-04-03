@@ -613,7 +613,7 @@ blockquote:last-child { margin-bottom: 0; }
 	article
 \* ------------------------------------------------------------ */
 .article-head h2:after { display: inline-block; content: ''; width: 50px; height: 2px; background: #f00; vertical-align: middle; margin-left: 35px; position: relative; top: -2px; }
-.article-head { padding-top: 43px; padding-bottom: 23px; }
+.article-head { padding-top: 193px; padding-bottom: 23px; }
 .article-entry { padding-bottom: 41px; padding-top: 41px; }
 .article-entry p { margin: 0; line-height: 1.4; color: #000; }
 .article-entry p + p { margin-top: 21px; color: #000;}
@@ -636,7 +636,8 @@ blockquote:last-child { margin-bottom: 0; }
 	.article-jackpot .article-content p { font-size: 40px; }
 	.section-promotions .section-head .btn {width: 100%;}
 	.section-promotions .section-head .btn:first-of-type {margin-bottom: 30px; margin-top: 30px;}
-		.section-promotions .section-head .btn:last-of-type {margin-bottom: 30px;  margin-right: 0 !important;}
+	.section-promotions .section-head .btn:last-of-type {margin-bottom: 30px;  margin-right: 0 !important;}
+	.article-head {padding-top: 143px;}
 
 }
 @media(max-width: 480px){
@@ -983,7 +984,7 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 /* ------------------------------------------------------------ *\
 	intro
 \* ------------------------------------------------------------ */
-.intro-gray { min-height: 179px; background: #ccc; }
+.intro-gray { min-height: 179px; background: #ccc; display: none;}
 .intro { position: relative; min-height: 598px; background-size: cover; background-repeat: no-repeat; background-position: center center; }
 .intro h1 { margin-bottom: 8px; }
 .intro .intro-title { font-size: 50px; margin: 0 0 5px; letter-spacing: -.05em; }
@@ -2690,7 +2691,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 
 @media (max-width: 1023px) {
 	.sport-calendar .slick-arrow { background: #fff url(../css/images/ico-arrow-gray@2x.png) no-repeat 0 0; background-size: 60px 60px; bottom: 50%; margin-bottom: -30px; }
-	.sport-calendar .slick-next { background: #fff url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0; background-size: 60px 60px; }
+	.sport-calendar .slick-next { background: #fff url(../css/images/ico-arrow-gray-secondary@2x.png) no-repeat 0 0; background-size: 60px 60px; transform: scale(1);  -webkit-transform: rotateZ(1deg);}
 	.secondary-margin {margin-bottom: 0;}
 	.table-item:nth-child(3) {margin-right: 5%;}
 	.table-item {width: 47%;}
@@ -2723,7 +2724,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.btn-sport .btn-calendar-sport {font-size: 14px; padding: 15px 20px;}
 	.sport-calendar {margin-bottom: 45px;}
 	.txt-bet {padding: 37px 60px 59px 40px;}
-	.btn-calendar2 {padding-bottom: 100px;}
+	.btn-calendar2 {padding-bottom: 30px;}
 	.btn-calendar2 .btn-black {width: 100%}
 	.btn-calendar2 a:nth-child(1) {margin-bottom: 30px;}
 	.btn-calendar2 a:nth-child(2) {margin-left: 0;}
@@ -2764,7 +2765,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 }
 
 @media(max-width: 768px){
-	.sport-calendar .slick-arrow { -webkit-transform: scale(.8); -ms-transform: scale(.8); transform: scale(.8); -webkit-transform: rotateZ(180deg);}
+	.sport-calendar .slick-arrow { -webkit-transform: scale(.8); -ms-transform: scale(.8); transform: scale(1); -webkit-transform: rotateZ(1deg);}
 	.sport-calendar .slick-prev {-webkit-transform: rotateZ(0deg) !important;}
 }
 @media(max-width: 580px){
@@ -3014,6 +3015,9 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 		width:40px;
 		height40px;
 		height: 40px;
+	}
+	.article-head {
+    padding-top: 93px;
 	}
 }
 
