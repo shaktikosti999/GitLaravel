@@ -1280,6 +1280,7 @@ li:first-child {margin: 0;margin-left: 0;}
 	Section
 \* ------------------------------------------------------------ */
 .section-head h2:after { display: inline-block; content: ''; width: 50px; height: 2px; background: #f00; vertical-align: middle; margin-left: 44px; }
+.section-head h2.jackpot_line:after {display: none !important;}
 .section-slider .section-actions { text-align: center; padding: 100px 0 74px; }
 .section-slider .section-head h2 {margin-bottom: 30px;}
  .section-promotions .top-promotions {padding: 0;}

@@ -25,8 +25,10 @@
 											<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
 												<div class="slide-content ">
 													<!--<div class="shell"-->
+													<?php /*
 													<h1>{{ $s->titulo }}</h1>
 													<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
+													*/?>
 													<!--</div> /.shell -->
 												</div><!-- /.slide-content -->
 											</li><!-- /.slide -->
@@ -48,11 +50,11 @@
 		</div><!-- /.slider-label -->
 	</div><!-- /.slider-secondary -->
 
-	<div class="main"> 
+	<div class="main">
 		@if( isset($promociones) && count($promociones) )
 			@include('front.includes.promotions',['promociones'=>$promociones])
 		@endif
-	
+
 		<input type="hidden" name="linea" id="linea" value="1">
 		@if( isset($maquinas) && count($maquinas) )
 			@include('front.includes.game_machine',['maquinas'=>$maquinas])
@@ -65,7 +67,7 @@
 					<h2>
 						<small>Jackpot</small>
 						Acumulado
-					</h2> 
+					</h2>
 				</header> --><!-- /.section-head -->
 
 				<div class="section-content">
@@ -82,13 +84,28 @@
 					</div> --><!-- /.section-entry -->
 
 					<div class="cols">
-
-						@foreach ($maquinas_acumulado as $maquina)
+						<div class="shell">
+							@foreach ($maquinas_acumulado as $maquina)
+							<header class="section-head" >
+								{!!isset($sucursal) ? '<h2 class="jackpot_line"> <small>' . $sucursal->nombre . '</h2></small>' : ''!!}
+								<div class="stick--point" id="jackpot"></div>
+								<h2>
+									Jackpots
+								</h2>
+							</header><!-- /.section-head -->
+							<div class="section-entry">
+								<p>
+									<span>
+										Por pagar
+									</span>
+								</p>
+							</div>
+						</div>
 							<div class="col col-1of2">
 								<article class="article-jackpot">
 									<div class="article-content">
 										<h6>
-											{{$maquina->nombre}} 
+											{{$maquina->nombre}}
 										</h6>
 
 										<p>
@@ -98,7 +115,7 @@
 								</article><!-- /.article-jackpot -->
 							</div><!-- /.col col-1of2 -->
 						@endforeach
-						
+
 					</div><!-- /.cols -->
 
 					<!-- <div class="section-entry">
@@ -118,7 +135,7 @@
 							<article class="article-jackpot">
 								<div class="article-content">
 									<h6>
-										MÁquina rodillo A 
+										MÁquina rodillo A
 									</h6>
 
 									<p>
@@ -132,17 +149,17 @@
 							<article class="article-jackpot">
 								<div class="article-content">
 									<h6>
-										MÁquina bingo A 
+										MÁquina bingo A
 									</h6>
 
 									<p>
-										$562,241.62 									
+										$562,241.62
 									</p>
 								</div>
 							</article>
 						</div>
 					</div> -->
-				</div><!-- /.section-content --> 
+				</div><!-- /.section-content -->
 			</div><!-- /.shell -->
 		</section><!-- /.section-jackpots -->
 
@@ -160,7 +177,7 @@
 							<aside class="section-aside">
 								<article class="article-game-available large" id="article-mesa">
 						 			<div class="article-content">
-						 				<div class="article-image" style="background-image: url({{isset(current($mesas)->archivo) && !empty(current($mesas)->archivo) ? current($mesas)->archivo : current($mesas)->imagen}})">  
+						 				<div class="article-image" style="background-image: url({{isset(current($mesas)->archivo) && !empty(current($mesas)->archivo) ? current($mesas)->archivo : current($mesas)->imagen}})">
 						 					@if(isset(current($mesas)->apuesta_minima) && !empty(current($mesas)->apuesta_minima))
 						 					<div class="article-label">
 						 						<span> Apuesta Mínima DESDE </span>
@@ -219,7 +236,7 @@
 												@endif
 												@if( ($c % 4) == 0 )
 													<li class="slide">
-													 	<div class="slide-content">  
+													 	<div class="slide-content">
 														 	<div class="cols">
 												@endif
 																<a class="link-more ver-mesa" data-id="{{$mesa->id}}" data-sucursal="{{isset($mesa->id_sucursal) && !empty($mesa->id_sucursal) ? $mesa->id_sucursal : "0"}}">
@@ -245,11 +262,11 @@
 										<!-- vik0x -->
 									</div><!-- /.slider-clip -->
 								</div><!-- /.slider-games-available -->
-							</div><!-- /.section-content --> 
+							</div><!-- /.section-content -->
 						</div><!-- /.section-body -->
 					</div><!-- /.shell -->
 				</section><!-- /.section-games-available -->
-		@endif				
+		@endif
 
 		@if( isset($torneos) && count($torneos) )
 			<section class="section section-secondary">
@@ -265,16 +282,16 @@
 						<div class="cols">
 							@foreach( $torneos as $item )
 								<div class="col col-1of2">
-									<article class="article-tournament" style="background-image: url({{$item->archivo}})"> 
+									<article class="article-tournament" style="background-image: url({{$item->archivo}})">
 										<span class="article-title">
 											{{strtotime($item->fecha_inicio) > time() ? "Próximos torneos" : "Experiencias Pasadas"}}
-										</span><!-- /.article-title -->	
+										</span><!-- /.article-title -->
 
 										<div class="article-content">
 											<span class="article-label">
 												{{$item->tipo}}
 											</span><!-- /.article-label -->
-											
+
 											<h5>
 												{{$item->titulo}}
 											</h5>
@@ -310,9 +327,9 @@
 							<div class="subscribe-body-hidden">
 								<div class="subscribe-inner">
 									<label for="mail" class="hidden">Email</label>
-									
+
 									<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
-									
+
 									<input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
 								</div><!-- /.subscribe-inner -->
 
@@ -321,7 +338,7 @@
 										<li>
 											<!--<div class="checkbox">
 												<input type="checkbox" name="field-notifications" id="field-notifications">
-												
+
 												<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
 											</div> /.checkbox -->
 										</li>
@@ -335,57 +352,57 @@
 		</section><!-- /.section-gray -->
 
 		@if( isset($sucursal) )
-			<section class="section-map no-top-padding"> 
+			<section class="section-map no-top-padding">
 				<div class="section-body">
-					<div id="googlemap" data-lng="{{$sucursal->longitud}}" data-lat="{{$sucursal->latitud}}"></div><!-- /#googlemap --> 
-				
+					<div id="googlemap" data-lng="{{$sucursal->longitud}}" data-lat="{{$sucursal->latitud}}"></div><!-- /#googlemap -->
+
 					<div class="section-content">
 						<div class="shell">
 							<div class="section-content-head">
 	                            <div class="stick--point" id="sucursales"></div>
 								<p>Sucursal</p>
-								
+
 								<h2>{{$sucursal->nombre}}</h2>
 							</div><!-- /.section-content-head -->
-									
+
 							<div class="section-content-body">
 								<ul class="list-contacts">
 									<li>
 										<i class="ico-map"></i>
-									
+
 										<p>
 											{!!$sucursal->direccion!!}
 										</p>
 									</li>
-									
+
 									<li>
 										<i class="ico-phone"></i>
-									
+
 										<p>
 											{!!$sucursal->telefono!!}
 										</p>
 									</li>
-									
+
 									<li>
 										<i class="ico-clock"></i>
-									
+
 										<p>{!!$sucursal->horario!!}</p>
 									</li>
-									
+
 									<li>
 										<i class="ico-car"></i>
-									
+
 										<p>{!!$sucursal->instrucciones!!}</p>
 									</li>
 									<li>
 										<i class="ico-game"></i>
-									
+
 										<p>{!!$sucursal->oferta!!}</p>
 									</li>
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->
 						</div><!-- /.shell -->
-						
+
 						<div class="section-actions">
 							<a href="http://www.google.com/maps/place/{{$sucursal->latitud}},{{$sucursal->longitud}}" class="btn btn-red btn-red-small" target="_blank">
 								<i class="ico-human"></i>
@@ -393,7 +410,7 @@
 								Cómo llegar aquí
 							</a>
 						</div><!-- /.section-actions -->
-					</div><!-- /.section-content --> 
+					</div><!-- /.section-content -->
 				</div><!-- /.section-body -->
 			</section><!-- /.section-map -->
 		@endif
@@ -413,7 +430,7 @@
 								@endforeach
 							</ul><!-- /.slides -->
 						</div><!-- /.slider-clip -->
-					</div><!-- /.slider-gallery --> 
+					</div><!-- /.slider-gallery -->
 
 				</div><!-- /.shell -->
 			</section><!-- /.section-gallery -->
