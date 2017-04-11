@@ -2746,7 +2746,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	.slider-bet .slider-bet-item {height: 330px;}
 	.table-list {line-height: 25px;}
 	.calendar-content {width: 100%;padding: 10px 10px 5px 10px;}
-	.list-btn li {width: 33%;}
+	.list-btn li {width: 100%; margin-bottom: 10px;}
 	.section-btn li a {max-width: 100%;padding: 0;padding-bottom: 5px;margin: 0;}
 	.section-btn .btn-carreras li a:nth-child(3) {margin-bottom: 0 !important;}
 	.table-sport table {font-size: 20px;}
