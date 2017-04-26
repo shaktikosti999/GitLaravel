@@ -96,8 +96,10 @@ class carrerapdfController extends Controller
 
         $timestamp=time();
 
-        for($i=0;$i<count($_FILES['pdf']['name']);$i++) {
-            move_uploaded_file($_FILES['pdf']['tmp_name'][$i] , public_path() . '/' . $carpeta . '/' .$timestamp.$_FILES['pdf']['name'][$i]);
+        if(isset($_FILES['pdf']) && count($_FILES['pdf'])){
+            for($i=0;$i<count($_FILES['pdf']['name']);$i++) {
+                move_uploaded_file($_FILES['pdf']['tmp_name'][$i] , public_path() . '/' . $carpeta . '/' .$timestamp.$_FILES['pdf']['name'][$i]);
+            }
         }
 
         $fp = fopen($_FILES['csv']['tmp_name'],'r');
