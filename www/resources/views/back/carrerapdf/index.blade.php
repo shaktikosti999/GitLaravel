@@ -103,6 +103,7 @@
 							</tbody>
 						</table>						
 					</div>
+					{!!$carreras->render()!!}
 				</div>
 				<!-- END PANEL -->
 			</div>

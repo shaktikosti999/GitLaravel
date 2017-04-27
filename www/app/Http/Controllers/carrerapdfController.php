@@ -123,15 +123,15 @@ class carrerapdfController extends Controller
                     'created_at' => date('Y-m-d')
                 ];
 
-                $branch = [];
-                for($j=4;$j<count($txt);$j++){
-                    if($txt[$j]!=""){
-                        $branch[] = $txt[$j];
-                    }
-                }
+                // $branch = [];
+                // for($j=4;$j<count($txt);$j++){
+                //     if($txt[$j]!=""){
+                //         $branch[] = $txt[$j];
+                //     }
+                // }
 
-                $branchs[$k] = $branch;
-                $k++;
+                // $branchs[$k] = $branch;
+                // $k++;
             }
         }
 
@@ -146,16 +146,35 @@ class carrerapdfController extends Controller
                     ->limit($limit)
                     ->get();
 
+                // Método con todas las sucursales
+                if( count($ids) ){
+                    $sucursales = \App\Models\sucursales_model::all();
 
-                $data = [];
-                for($i=0;$i<count($branchs);$i++){
-                    for($j=0;$j<count($branchs[$i]);$j++) {
-                        $branchId = array('id_carrera' => $ids[$i]->id,'id_sucursal' => $branchs[$i][$j]);
-
-                        $data[] =  $branchId;
+                    if( count($sucursales) ){
+                        $data = [];
+                        foreach($ids as $carrera){
+                            foreach($sucursales as $sucursal){
+                                $data[] = [
+                                    'id_carrera' => $carrera->id,
+                                    'id_sucursal' => $sucursal->id
+                                ];
+                            }
+                        }
+                        \DB::table('carrera_sucursal')->insert($data);
                     }
                 }
-                \DB::table('carrera_sucursal')->insert($data);
+
+
+                // Método para sucursales seleccionadas
+                // $data = [];
+                // for($i=0;$i<count($branchs);$i++){
+                //     for($j=0;$j<count($branchs[$i]);$j++) {
+                //         $branchId = array('id_carrera' => $ids[$i]->id,'id_sucursal' => $branchs[$i][$j]);
+
+                //         $data[] =  $branchId;
+                //     }
+                // }
+                // \DB::table('carrera_sucursal')->insert($data);
 
             }
         }
@@ -178,6 +197,7 @@ class carrerapdfController extends Controller
      */
     public function edit($id){
         $sc = carrera::find_suc($id);
+        $suc=[];
         foreach($sc as $item){
             $suc[] = $item->id_sucursal;
         }
