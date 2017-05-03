@@ -7,10 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use DB;
-use Excel;
-use Input;
-use Event;
+
 use App\Models\calendario_model as calendario;
 use Psy\Util\Json;
 

@@ -21,7 +21,6 @@ class torneo_model{
 			)
 			->join('sucursal as s','s.id_sucursal','=','t.id_sucursal')
 			->join('tipo_torneo as tt','tt.id_tipo','=','t.tipo_torneo')
-            ->where('t.tipo_torneo','2')
 			->where('t.eliminado',0)
 			->where('s.eliminado',0)
 			->get();
@@ -33,49 +32,35 @@ class torneo_model{
 	}
 
 	static function store($request,$archivo){
-
-		for($i=0;$i<count($request->input('sucursal'));$i++){
-            $data = new torneo;
-            $data->titulo = $request->input('titulo');
-            $data->slug = $request->input('slug');
-            $data->tipo_torneo = $request->input('tipo');
-//            $data->id_juego = $request->input('juego');
-            $data->id_sucursal =  $request->input('sucursal')[$i];
-            $data->descripcion = $request->input('descripcion');
-            $data->fecha_inicio = date('Y-m-d H:i:s',strtotime($request->input('fecha_inicio')));
-            $data->fecha_fin = date('Y-m-d H:i:s',strtotime($request->input('fecha_fin')));
-//            $data->link = $request->input('link');
-            $data->archivo = $archivo;
-
-            $evento = Event::fire(new dotask($data));
-
-        }
-
+		$data = new torneo;
+		$data->titulo = $request->input('titulo');
+		$data->slug = $request->input('slug');
+		$data->tipo_torneo = $request->input('tipo');
+		$data->id_juego = $request->input('juego');
+		$data->id_sucursal = $request->input('sucursal');
+		$data->descripcion = $request->input('descripcion');
+		$data->fecha_inicio = date('Y-m-d H:i:s',strtotime($request->input('fecha_inicio')));
+		$data->fecha_fin = date('Y-m-d H:i:s',strtotime($request->input('fecha_fin')));
+		$data->link = $request->input('link');
+		$data->archivo = $archivo;
+		$evento = Event::fire(new dotask($data));
 		return $evento;
 	}
 
 	static function update($id,$request,$archivo=null){
-
-        for($i=0;$i<count($request->input('sucursal'));$i++) {
-            if($i==0) {
-                $data = torneo::find($id);
-            }else{
-                $data = new torneo;
-            }
-            $data->titulo = $request->input('titulo');
-            $data->slug = $request->input('slug');
-            $data->tipo_torneo = $request->input('tipo');
-    //		$data->id_juego = $request->input('juego');
-            $data->id_sucursal = $request->input('sucursal')[$i];
-            $data->descripcion = $request->input('descripcion');
-            $data->fecha_inicio = date('Y-m-d H:i:s', strtotime($request->input('fecha_inicio')));
-            $data->fecha_fin = date('Y-m-d H:i:s', strtotime($request->input('fecha_fin')));
-    //		$data->link = $request->input('link');
-            if ($archivo !== null)
-                $data->archivo = $archivo;
-
-            $evento = Event::fire(new dotask($data));
-        }
+		$data = torneo::find($id);
+		$data->titulo = $request->input('titulo');
+		$data->slug = $request->input('slug');
+		$data->tipo_torneo = $request->input('tipo');
+		$data->id_juego = $request->input('juego');
+		$data->id_sucursal = $request->input('sucursal');
+		$data->descripcion = $request->input('descripcion');
+		$data->fecha_inicio = date('Y-m-d H:i:s',strtotime($request->input('fecha_inicio')));
+		$data->fecha_fin = date('Y-m-d H:i:s',strtotime($request->input('fecha_fin')));
+		$data->link = $request->input('link');
+		if($archivo !== null)
+			$data->archivo = $archivo;
+		$evento = Event::fire(new dotask($data));
 		return $evento;
 	}
 

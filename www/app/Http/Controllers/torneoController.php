@@ -57,9 +57,12 @@ class torneoController extends Controller
             "titulo" => 'required|string',
             "slug" => 'required|string',
             "tipo" => 'required|integer|min:1',
+            "juego" => 'required|integer|min:1',
+            "sucursal" => 'required|integer|min:1',
             "descripcion" => 'required|string',
             "fecha_inicio" => 'required|date',
             "fecha_fin" => 'required|date',
+            "link" => 'string|url',
             "archivo" => 'required|image'
         ]);
         // $request->merge([
@@ -72,10 +75,7 @@ class torneoController extends Controller
             $extValidas = ['jpg','jpeg','png'];
 
             if(in_array($ext, $extValidas)){
-
-                $imageSelect = $request->input('sucursal')[0];
-
-                $carpeta = 'assets/images/torneo/' . $imageSelect . '/';
+                $carpeta = 'assets/images/torneo/' . $request->input('sucursal') . '/';
                 if(!file_exists(public_path() . '/' . $carpeta))
                     mkdir(public_path() . '/' . $carpeta,0777,true);
                 do{
@@ -139,12 +139,12 @@ class torneoController extends Controller
             "titulo" => 'required|string',
             "slug" => 'required|string',
             "tipo" => 'required|integer|min:1',
-//            "juego" => 'required|integer|min:1',
-//            "sucursal" => 'required|integer|min:1',
+            "juego" => 'required|integer|min:1',
+            "sucursal" => 'required|integer|min:1',
             "descripcion" => 'required|string',
             "fecha_inicio" => 'required|date',
             "fecha_fin" => 'required|date',
-//            "link" => 'string|url',
+            "link" => 'string|url',
             "archivo" => 'image'
         ]);
         // $request->merge([
@@ -157,7 +157,7 @@ class torneoController extends Controller
             $extValidas = ['jpg','jpeg','png'];
 
             if(in_array($ext, $extValidas)){
-                $carpeta = 'assets/images/torneo/' . $request->input('sucursal')[0] . '/';
+                $carpeta = 'assets/images/torneo/' . $request->input('sucursal') . '/';
                 if(!file_exists(public_path() . '/' . $carpeta))
                     mkdir(public_path() . '/' . $carpeta,0777,true);
                 do{

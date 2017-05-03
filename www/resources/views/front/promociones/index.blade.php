@@ -7,45 +7,47 @@
 		</a>-->
 		<div class="slider-clip">
 			<ul class="slides">
-				<?php
+				@if( isset($slider) && count($slider) )
+					@foreach( $slider as $item)
+						<li class="slide fullscreen" style="background-image: url({{($item->imagen)}});">
+							<div class="slide-content slide-promo">
+								<div class="shell">
+									<h2>
+										PROMOCIONES Y EVENTOS
+									</h2>
 
-				?>
-					@if( isset( $slider ) && count( $slider ) )
+									<h3>
+										@if( isset( $sucursal_info->nombre ) )
 
-						<div class="slider-intro anchor">
-							<!-- <a href="#" class="btn-scroll">
-                                <i class="ico-mouse"></i>
-                            </a> -->
+								 			{{ $sucursal_info->nombre }}
 
-							<div class="slider-clip">
-								<ul class="slides">
+								 		@endif
+									</h3>
 
-									@foreach( $slider as $s )
+		 							@if( isset( $sucursales ) && count( $sucursales ) )
 
+										<div class="filter-secondary">
+											<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+											<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
 
+												<option value="-1">Selecciona tu casino</option>
 
-										<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-											<div class="slide-content ">
-												<!--<div class="shell"-->
-												<h1>{{ $s->titulo }}</h1>
-												<!--h1>
-                                                    Navidad Excepcional
-                                                </h1-->
+												@foreach( $sucursales as $item )
 
-												<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
+													<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
 
-												<!--</div> /.shell -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
+												@endforeach
 
-									@endforeach
+											</select>
+										</div><!-- /.filter-secondary -->
 
+									@endif
 
-								</ul><!-- /.slides -->
-							</div><!-- /.slider-clip -->
-						</div><!-- /.slider-intro -->
-
-					@endif
+								</div><!-- /.shell -->
+							</div><!-- /.slide-content -->
+						</li><!-- /.slide -->
+					@endforeach
+				@endif
 			</ul><!-- /.slides -->
 		</div><!-- /.slider-clip -->
 	</div><!-- /.slider-intro -->

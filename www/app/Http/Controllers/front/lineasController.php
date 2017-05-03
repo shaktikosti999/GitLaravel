@@ -203,7 +203,9 @@ class lineasController extends Controller
             $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl');
             $soap = $soap->__soapCall('SignOnSitioOp',[[
                 'ip'=>'10.100.240.2',
-                'idSitio'=>1
+                'idSitio'=>1,
+                'usuario'=>'portal_casino',
+                'password'=>'p0rt4l2047!'
             ]]);
             $data = [
                 'soapSession'=>$soap,

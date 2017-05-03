@@ -135,6 +135,7 @@ class promocionController extends Controller
             'promocion' => \App\promocion::find($id),
             'juegos' => \App\Models\linea_model::all()
         ];
+        // dd($data);
         return view('back.promocion.edit',$data);
     }
 
@@ -398,7 +399,7 @@ class promocionController extends Controller
     }
 
     public function update_dinamica(Request $request){
-         $this->validate($request,[
+        $this->validate($request,[
             "pay_id_promocion" => "required|integer|min:1",
             "pay_titulo" => "required|string",
             "pay_desc" => "required|string",

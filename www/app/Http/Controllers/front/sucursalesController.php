@@ -32,6 +32,7 @@ class sucursalesController extends Controller
                 // 'mesas' => linea::get_games([ 'linea' => 2, 'id_sucursal' => $sucursal->id_sucursal ])
                 "mesas" => linea::get_games_table( [ "linea" => 2, "id_sucursal" => $sucursal->id_sucursal] )
             ];
+            $data['acumulado'] = sucursal::get_accumulated(['id_sucursal' => $sucursal->id_sucursal]);
         }
         else{
             $data = [

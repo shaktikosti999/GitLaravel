@@ -93,6 +93,7 @@ class sucursal_model{
             ->where('s.estatus','=',1)
             ->where('s.eliminado','=',0)
             ->where('s.id_ciudad','=', $city)
+            ->orderBy('nombre')
             ->get();
         return $data;
     }
@@ -136,7 +137,7 @@ class sucursal_model{
     }
 
     static function get_branch_gallery( & $branch ){
-        if( $branch !== null )
+        if( $branch !== null ) 
             $branch->galeria = \DB::table('sucursal_galeria as s')
                 ->where('s.id_sucursal','=',$branch->id_sucursal)
                 ->where('s.estatus','=',1)
@@ -163,7 +164,7 @@ class sucursal_model{
     //     $data = $data->get();
     //     return $data;
     // }
-
+    
     static function get_paid($args = []){
         $data = \DB::table('sucursal_pago')
             ->where('id_tipo',2)
@@ -189,7 +190,7 @@ class sucursal_model{
         $data = \DB::table('sucursal_pago')
             ->where('id_tipo',2)
             ->limit(4)->offset($args['limit']);
-           if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
+        if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
             $data = $data->where('id_sucursal',$args['id_sucursal']);
         $data = $data->get();
         return $data;
@@ -203,7 +204,6 @@ class sucursal_model{
         if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
             $data = $data->where('id_sucursal',$args['id_sucursal']);
         $data = $data->get();
-        dd($data);
         return $data;
     }
 
@@ -218,7 +218,7 @@ class sucursal_model{
 
     static function get_sucursal( $sucursal_slug ){
         $data = \DB::table('sucursal as s')
-            ->select('s.id_sucursal')
+            ->select('s.id_sucursal')            
             ->where('s.slug','=', $sucursal_slug)
             ->get();
         return $data;

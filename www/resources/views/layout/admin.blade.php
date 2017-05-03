@@ -51,9 +51,7 @@ foreach($privs as $key => $priv){
     <!--Carga de imagenes-->
     <link href="{{asset('/assets/css/uploadfile.css')}}" rel="stylesheet">
     <!--[if lte IE 9]>
-
   <link href="assets/plugins/codrops-dialogFx/dialog.ie.css" rel="stylesheet" type="text/css" media="screen" />
-
   <![endif]-->
   <!--Textarea de Texto enriquecido-->
   <link href="{{asset('/assets/plugins/summernote/css/summernote.css')}}" rel="stylesheet" type="text/css" media="screen">

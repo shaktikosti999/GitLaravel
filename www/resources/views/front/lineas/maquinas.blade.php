@@ -37,8 +37,8 @@
  -->
 		<div class="slider-clip">
 			<ul class="slides">
-
-				@if( count( $slider ) )
+				
+				@if( isset( $slider ) && count( $slider ) )
 
 					@foreach( $slider as $item )
 
@@ -58,34 +58,38 @@
 
 
 
-										@if( isset( $sucursales ) && count( $sucursales ) )
+									@if( isset( $sucursales ) && count( $sucursales ) )
 
 											<div class="filter-secondary">
 												<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
 												<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
+												
+												<option value="-1">Selecciona tu casino</option>
 
-													<option value="-1">Selecciona tu casino</option>
+												@foreach( $sucursales as $item )
 
-													@foreach( $sucursales as $item )
+													<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
 
-														<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
+												@endforeach
+												
+											</select>
+										</div><!-- /.filter-secondary -->
 
-													@endforeach
-
-												</select>
-											</div><!-- /.filter-secondary -->
-
-										@endif
+									@endif
 
 
-									</div><!-- /.slide-content -->
+									 </div><!-- /.slide-content -->
 
 									@include('front.includes.breadcrumbs')
 								</div><!-- /.shell -->
 							</div><!-- /.slide-body -->
 						</li><!-- /.slide -->
+
 					@endforeach
+
 				@endif
+
+				
 			</ul><!-- /.slides -->
 		</div><!-- /.slider-clip -->
 
@@ -104,6 +108,7 @@
 		
 		<input type="hidden" name="linea" id="linea" value="1">
 		@if( isset( $maquinas ) && count( $maquinas ) )
+
 			@include('front.includes.game_machine',['maquinas' => $maquinas])
 
 		@endif 
@@ -151,10 +156,10 @@
 
 		@endif
 
-			<section class="section-jackpots" >
-				<div class="shell" >
+			<section class="section-jackpots">
+				<div class="shell">
 					@if( isset($acumulado) && count($acumulado) )
-						<header class="section-head" >
+						<header class="section-head">
 							<div class="stick--point" id="jackpot"></div>
 							<h2>
 								<small>Jackpots</small>
@@ -200,6 +205,8 @@
 										</div><!-- /.article-content -->
 									</article><!-- /.article-jackpot -->
 								</div><!-- /.col col-1of2 -->
+					
+								
 							@endforeach
 							
 						</div><!-- /.cols -->
@@ -210,6 +217,7 @@
 							Ver más
 						</a>
 					</div>
+
 						@if( isset($pagados) && count($pagados) )
 							<div class="section-entry">
 								<p>

@@ -3,29 +3,9 @@ namespace App\Models;
 
 use App\Events\dotask;
 use Event;
-use DB;
 
 use App\calendario;
-
-
 class calendario_model{
-
-
-    protected $fillable=[
-        'id_categoria',
-        'id_sucursal',
-        'titulo',
-        'descripcion',
-        'inicio',
-        'fin',
-        'estatus',
-        'eliminado',
-        'created_at',
-        'updated_at',
-    ];
-
-//    public $timestamps=false;
-
 	static function all(){
 		$data = \DB::table('calendario_pago as p')
 			->select(
@@ -144,9 +124,4 @@ class calendario_model{
 		$queries = \DB::getQueryLog();
 		return $data;
 	}
-
-
-    static function importCSVData($data){
-        return DB::table('calendario_pago')->insert($data);
-    }
 };

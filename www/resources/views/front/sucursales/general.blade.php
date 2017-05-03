@@ -29,23 +29,38 @@
 
 				<div class="slider-clip">
 					<ul class="slides">
-						@if( isset( $slider ) && count( $slider ) )
-							<div class="slider-intro anchor">
-								<div class="slider-clip">
-									<ul class="slides">
-										@foreach( $slider as $s )
-											<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-												<div class="slide-content ">
-													<!--<div class="shell"-->
-													<h1>{{ $s->titulo }}</h1>
-													<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
-													<!--</div> /.shell -->
-												</div><!-- /.slide-content -->
-											</li><!-- /.slide -->
-										@endforeach
-									</ul><!-- /.slides -->
-								</div><!-- /.slider-clip -->
-							</div><!-- /.slider-intro -->
+						@if( isset($slider) && count($slider) )
+							@foreach($slider as $value)
+								<li class="slide" style="background-image: url({{asset($value->imagen)}})">
+									<div class="slide-body">
+										<div class="shell"> 		 
+											 <div class="slide-content">
+											 	<?php /*{!! isset( $sucursal ) ? '<h1>' . $sucursal->nombre . '</h1>' : '' !!}
+												@if( isset( $sucursales ) && count( $sucursales ) )
+													<div class="filter-secondary">
+														<label for="selec_sucursales" class="form-label hidden">filter-secondary1</label>
+														<select name="selec_sucursales" id="selec_sucursales" class="select branch-filter2">
+															<option value="-1">Selecciona ubicación</option>
+															@foreach( $sucursales as $item )
+																<option value="{{ $item->slug }}">Sucursal {{ $item->nombre }}</option>
+															@endforeach
+														</select>
+													</div><!-- /.filter-secondary -->
+												@endif*/?>
+											 </div><!-- /.slide-content -->
+											 @include('front.includes.breadcrumbs')
+											 @if (isset($sucursal))
+											 	<div class="section-actions">
+													<a href="http://www.google.com/maps/place/{{ $sucursal->latitud . "," . $sucursal->longitud }}" target="_blank" class="btn btn-red btn-red-small sldr-btn">
+														<i class="ico-human"></i>
+														Cómo llegar aquí
+													</a>
+												</div><!-- /.section-actions -->
+											 @endif							 
+										</div><!-- /.shell -->
+									</div><!-- /.slide-body -->
+								</li><!-- /.slide -->
+							@endforeach
 						@endif
 					</ul><!-- /.slides -->
 				</div><!-- /.slider-clip -->

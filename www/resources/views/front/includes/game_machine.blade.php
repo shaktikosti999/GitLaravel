@@ -33,11 +33,7 @@
 				 	</div><!-- /.form-controls -->
 				</li>
 			</ul><!-- /.games-filters -->
-			<?php
-				//echo "<pre>";
-				//print_r($maquinas);
-				//die;
-			?>
+			
 			<ul class="games" id="games">
 				
 				@foreach( $maquinas as $item )

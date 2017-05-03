@@ -14,17 +14,17 @@
                     <div class="article-image">
                         <img src="{{ $pagina->archivo }}" alt="" class="img-responsive">
                     </div><!-- /.article-image -->
-
+                    
                     <div class="article-entry">
-
+                    
                         {!! $pagina->contenido !!}
 
                     </div><!-- /.article-entry -->
-
-
+                    
+                    
                 </article><!-- /.article -->
-
-
+                
+                
             </div><!-- /.shell -->
         </section><!-- /.section-articles -->
 
@@ -41,9 +41,9 @@
                             <div class="subscribe-body-hidden">
                                 <div class="subscribe-inner">
                                     <label for="mail" class="hidden">Email</label>
-
+                                    
                                     <input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
-
+                                    
                                     <input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
                                 </div><!-- /.subscribe-inner -->
 
@@ -52,7 +52,7 @@
                                         <li>
                                             <div class="checkbox">
                                                 <input type="checkbox" name="field-notifications" id="field-notifications">
-
+                                                
                                             </div><!-- /.checkbox -->
                                         </li>
                                     </ul><!-- /.list-checkboxes -->

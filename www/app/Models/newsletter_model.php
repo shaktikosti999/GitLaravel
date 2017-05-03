@@ -5,8 +5,6 @@ use App\Events\dotask;
 use Event;
 
 use App\newsletter;
-use Psy\Util\Json;
-
 class newsletter_model{
 	static function all(){
 		$newsletter = \DB::table('newsletter as n')
@@ -24,7 +22,6 @@ class newsletter_model{
 			->orderBy('n.nombre')
 			->where('n.eliminado',0)
 			->get();
-		    //$newsletter = Json::encode($newsletter);
 		return $newsletter;
 	}
 

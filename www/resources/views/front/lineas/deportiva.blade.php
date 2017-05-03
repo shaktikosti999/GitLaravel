@@ -143,22 +143,56 @@
 			<div class="slider-clip">
 				<ul class="slides">
 					@if( isset( $slider ) && count( $slider ) )
-						<div class="slider-intro anchor">
-							<div class="slider-clip">
-								<ul class="slides">
-									@foreach( $slider as $s )
-										<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-											<div class="slide-content ">
-												<!--<div class="shell"-->
-												<h1>{{ $s->titulo }}</h1>
-												<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
-												<!--</div> /.shell -->
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
-									@endforeach
-								</ul><!-- /.slides -->
-							</div><!-- /.slider-clip -->
-						</div><!-- /.slider-intro -->
+
+						@foreach( $slider as $item )
+
+							<li class="slide" style="background-image: url({{ $item->imagen }})">
+								<div class="slide-body">
+									<div class="shell">
+										 <div class="slide-content">
+										 	<h1>
+										 		Apuesta Deportiva
+										 	</h1>
+
+											 	<h3>
+											 		@if( isset( $sucursal_info->nombre ) )
+
+											 			{{ $sucursal_info->nombre }}
+
+											 		@endif
+											 	</h3>
+
+
+
+										@if( isset( $sucursales ) && count( $sucursales ) )
+
+											<div class="filter-secondary">
+												<label for="sucursales" class="form-label hidden">filter-secondary1</label>
+												<select name="sucursales" id="sucursales" class="select branch-filter">
+
+													<option value="-1">Selecciona tu casino</option>
+
+													@foreach( $sucursales as $item )
+
+														<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
+
+													@endforeach
+
+												</select>
+											</div><!-- /.filter-secondary -->
+
+										@endif
+
+
+										 </div><!-- /.slide-content -->
+
+										@include('front.includes.breadcrumbs')
+									</div><!-- /.shell -->
+								</div><!-- /.slide-body -->
+							</li><!-- /.slide -->
+
+						@endforeach
+
 					@endif
 				</ul><!-- /.slides -->
 			</div><!-- /.slider-clip -->
@@ -171,12 +205,12 @@
 		<div class="gray-sport">
 			<div class="shell">
 				<div class="btn-sport">
-					<a href="http://casinocaliente.abardev.net/calendario-deportivo" class="btn btn-border btn-calendar-sport">
+					<a href="/calendario-deportivo" class="btn btn-border btn-calendar-sport">
 						<img src="css/images/icons/calendar.png">
 						<img class="calendar-off" src="css/images/icons/calendar-white.png">
 						Calendario deportivo
 					</a>
-					<a href="http://casinocaliente.abardev.net/como-apostar" class="btn btn-border btn-calendar-sport2">
+					<a href="/como-apostar-deportes" class="btn btn-border btn-calendar-sport2">
 						Cómo apostar
 					</a>
 				</div>
@@ -191,7 +225,7 @@
 				                	$imagen = str_replace(" ", "_", $imagen);
 				                	$imagen = strtolower($imagen);
 				                	?>
-				                    <img src="css/images/icons/{{$imagen}}{{$imagen}}{{$item->numDeporte == $dep ? '_white' : ''}}.png">
+				                    <img src="css/images/icons/{{$imagen}}{{$item->numDeporte == $dep ? '_white' : ''}}.png">
 				                    <span>{{$item->nombre}}</span>
 				                </a>
 				            </div>
@@ -580,34 +614,42 @@
 		</div>
 
 
-		<div class="main"> 
 
-			<section class="section-promotions">
-				<div class="shell">
-					@if( isset( $promociones ) && count( $promociones ) )
-					
-						@include('front.includes.promotions',['promociones' => $promociones,'sucursal'=>$sucursal_info])
-		
-					@endif
-					@if( isset($quinielas) && count($quinielas) )
-						@foreach($quinielas as $item)
-							<div class="slider-bet"> <!-- Slider Quiniela -->
-								<div class="slider-bet-item back-module">
-									<div class="txt-bet">
-										<h2>{{$item->titulo}}</h2>
-										{!! isset($item->subtitulo) && !empty($item->subtitulo) ? '<h6>' . $item->subtitulo . '</h6>' : '' !!}
-										<p>{{$item->texto}}</p>
-										<a href="{{$item->link}}" class="btn btn-red btn-red-small btn-red-medium">
-											{{$item->texto_boton}}
-										</a>
+		<div class="main">
+
+				<section class="section-promotions">
+					<div class="shell">
+						@if( isset( $promociones ) && count( $promociones ) )
+
+							@include('front.includes.promotions',['promociones' => $promociones,'sucursal'=>$sucursal_info])
+
+						@endif
+						@if( isset($quinielas) && count($quinielas) )
+						<header class="section-head">
+							<div class="stick--point" id="promociones"></div>
+							<h2>
+								Quinielas
+							</h2>
+						</header><!-- /.section-head -->
+							@foreach($quinielas as $item)
+								<div class="slider-bet"> <!-- Slider Quiniela -->
+									<div class="slider-bet-item back-module">
+										<div class="txt-bet">
+											<h2>{{$item->titulo}}</h2>
+											{!! isset($item->subtitulo) && !empty($item->subtitulo) ? '<h6>' . $item->subtitulo . '</h6>' : '' !!}
+											<p>{{$item->texto}}</p>
+											<a href="{{$item->link}}" {{$item->in_newtab == 1 ? 'target="_blank"' : ''}} class="btn btn-red btn-red-small btn-red-medium">
+												{{$item->texto_boton}}
+											</a>
+										</div>
+										<img src="{{$item->imagen}}" class="image-back">
 									</div>
-									<img src="css/images/temp/slider-apuesta.jpg" class="image-back">
 								</div>
-							</div>
-						@endforeach
-					@endif
-				</div><!-- /.shell -->
-			</section><!-- /.section-promotions -->
+							@endforeach
+						@endif
+					</div><!-- /.shell -->
+				</section><!-- /.section-promotions -->
+
 
 			<!-- Promociones -->
 

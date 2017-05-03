@@ -21,8 +21,7 @@ class carrerapdf_model{
 			// ->join('sucursal as s','s.id_sucursal','=','sc.id_sucursal')
 			->join('juego as j','j.id_juego','=','c.id_juego')
 			->where('c.eliminado',0)
-			->orderBy('c.fecha','DESC')
-			->paginate(20);
+			->get();
 		return ($get);
 	}
 
