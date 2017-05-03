@@ -94,7 +94,7 @@ class carrerapdfController extends Controller
             mkdir(public_path() . '/' . $carpeta, 0777, true);
         }
 
-        $timestamp=time();
+        $timestamp='';//time();
 
         if(isset($_FILES['pdf']) && count($_FILES['pdf'])){
             for($i=0;$i<count($_FILES['pdf']['name']);$i++) {
@@ -102,80 +102,82 @@ class carrerapdfController extends Controller
             }
         }
 
-        $fp = fopen($_FILES['csv']['tmp_name'],'r');
-//        dd($_FILES['csv']);
-        fgetcsv($fp);
-        $data = [];
-        $branchs = [];
-        $k=0;
-        while(!feof($fp)){
-            $txt = fgetcsv($fp);
+        if( isset($_Files['csv']) ){ 
+            $fp = fopen($_FILES['csv']['tmp_name'],'r');
+    //        dd($_FILES['csv']);
+            fgetcsv($fp);
+            $data = [];
+            $branchs = [];
+            $k=0;
+            while(!feof($fp)){
+                $txt = fgetcsv($fp);
 
-            if(count($txt)!=1) {
-                $data[] = [
-                    'id_juego' => $txt[1],
-                    'titulo' => $txt[0],
-                    'fecha' => date('Y-m-d', strtotime($txt[2])),
-                    'archivo' => '/assets/carreras/' . $timestamp . $txt[3],
-                    'estatus' => 1,
-                    'eliminado' => 0,
-                    'updated_at' => date('Y-m-d'),
-                    'created_at' => date('Y-m-d')
-                ];
+                if(count($txt)!=1) {
+                    $data[] = [
+                        'id_juego' => $txt[1],
+                        'titulo' => $txt[0],
+                        'fecha' => date('Y-m-d', strtotime($txt[2])),
+                        'archivo' => '/assets/carreras/' . $timestamp . $txt[3],
+                        'estatus' => 1,
+                        'eliminado' => 0,
+                        'updated_at' => date('Y-m-d'),
+                        'created_at' => date('Y-m-d')
+                    ];
 
-                // $branch = [];
-                // for($j=4;$j<count($txt);$j++){
-                //     if($txt[$j]!=""){
-                //         $branch[] = $txt[$j];
-                //     }
-                // }
+                    // $branch = [];
+                    // for($j=4;$j<count($txt);$j++){
+                    //     if($txt[$j]!=""){
+                    //         $branch[] = $txt[$j];
+                    //     }
+                    // }
 
-                // $branchs[$k] = $branch;
-                // $k++;
-            }
-        }
-
-        if( count($data) ){
-            $save = \DB::table('carrerapdf')
-                ->insert($data);
-            if( $save ){
-                $limit = count($data);
-                $ids = \DB::table('carrerapdf')
-                    ->select('id_carrerapdf as id')
-                    ->orderBy('id_carrerapdf','DESC')
-                    ->limit($limit)
-                    ->get();
-
-                // Método con todas las sucursales
-                if( count($ids) ){
-                    $sucursales = \App\Models\sucursales_model::all();
-
-                    if( count($sucursales) ){
-                        $data = [];
-                        foreach($ids as $carrera){
-                            foreach($sucursales as $sucursal){
-                                $data[] = [
-                                    'id_carrera' => $carrera->id,
-                                    'id_sucursal' => $sucursal->id
-                                ];
-                            }
-                        }
-                        \DB::table('carrera_sucursal')->insert($data);
-                    }
+                    // $branchs[$k] = $branch;
+                    // $k++;
                 }
+            }
+
+            if( count($data) ){
+                $save = \DB::table('carrerapdf')
+                    ->insert($data);
+                if( $save ){
+                    $limit = count($data);
+                    $ids = \DB::table('carrerapdf')
+                        ->select('id_carrerapdf as id')
+                        ->orderBy('id_carrerapdf','DESC')
+                        ->limit($limit)
+                        ->get();
+
+                    // Método con todas las sucursales
+                    if( count($ids) ){
+                        $sucursales = \App\Models\sucursales_model::all();
+
+                        if( count($sucursales) ){
+                            $data = [];
+                            foreach($ids as $carrera){
+                                foreach($sucursales as $sucursal){
+                                    $data[] = [
+                                        'id_carrera' => $carrera->id,
+                                        'id_sucursal' => $sucursal->id
+                                    ];
+                                }
+                            }
+                            \DB::table('carrera_sucursal')->insert($data);
+                        }
+                    }
 
 
-                // Método para sucursales seleccionadas
-                // $data = [];
-                // for($i=0;$i<count($branchs);$i++){
-                //     for($j=0;$j<count($branchs[$i]);$j++) {
-                //         $branchId = array('id_carrera' => $ids[$i]->id,'id_sucursal' => $branchs[$i][$j]);
+                    // Método para sucursales seleccionadas
+                    // $data = [];
+                    // for($i=0;$i<count($branchs);$i++){
+                    //     for($j=0;$j<count($branchs[$i]);$j++) {
+                    //         $branchId = array('id_carrera' => $ids[$i]->id,'id_sucursal' => $branchs[$i][$j]);
 
-                //         $data[] =  $branchId;
-                //     }
-                // }
-                // \DB::table('carrera_sucursal')->insert($data);
+                    //         $data[] =  $branchId;
+                    //     }
+                    // }
+                    // \DB::table('carrera_sucursal')->insert($data);
 
+                }
             }
         }
         return redirect('/administrador/pdfcarrera.html');

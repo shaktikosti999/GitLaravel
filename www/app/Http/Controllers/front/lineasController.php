@@ -223,7 +223,7 @@ class lineasController extends Controller
         $data["sucursal_info"] = sucursal::find_by_slug( $sucursal );
         $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
 
-        $data['slider'] = slider::find_all( 0 ); //Obtener Sliders
+        $data['slider'] = slider::find_all( 8 ); //Obtener Sliders
         $data['promociones'] = promocion::find_all( [ "linea" => 3, "id_sucursal" => $id_sucursal ] ); //Obtener promociones
         $data["otras"] = linea::find_all( [ "not_in" => [ 3 ] ] ); // Obtenemos otras opciones de diversión
         $data['quinielas'] = slider::football_pools();// Obtenemos las quinielas

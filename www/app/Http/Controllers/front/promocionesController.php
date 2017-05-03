@@ -11,6 +11,7 @@ use App\Models\front\linea_model as linea;
 use App\Models\front\promocion_model as promocion;
 use App\Models\front\sucursal_model as sucursal;
 use App\Models\front\calendario_model as calendario;
+use App\Models\front\slider_model as slider;
 
 class promocionesController extends Controller
 {
@@ -106,7 +107,7 @@ class promocionesController extends Controller
         }
         $data = [
             'promocion' => $promos,
-            'slider' => calendario::slider(['slug' => $slug])
+            'slider' => slider::find_all( 5 )
         ];
         // dd($data);
 
