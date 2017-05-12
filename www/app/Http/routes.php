@@ -130,4 +130,26 @@ Route::get('/torneos/{slug?}','front\torneosController@index');
 // -----> Búsqueda
 Route::get('/resultados','front\indexController@search');
 
+
+Route::group(['prefix' => 'api'], function(){
+	Route::group(['prefix' => 'get'], function(){
+		Route::get('test',function(){
+			return "test";
+		});
+		Route::get('Ubicaciones','front\apiController@Ubicaciones');
+
+		Route::get('Promociones/{id_sucursal}','front\apiController@Promociones');
+
+		Route::get('CalienteClub','front\apiController@CalienteClub');
+
+		Route::get('JuegoResponsable','front\apiController@JuegoResponsable');
+
+		Route::get('AvisoPrivacidad','front\apiController@AvisoPrivacidad');
+		
+		Route::get('QuienesSomos','front\apiController@QuienesSomos');
+	});
+});
+
+
+
 Route::get('{pagina}','front\paginaController@index')->where('pagina','.+');
