@@ -23,7 +23,22 @@ class apiController extends Controller
 		$data['Sstatus']='true';
         $data['code']=200;
         $data['message']='Test';
-        $data['data'] =  \DB::table('sucursal')->join('ciudad', 'sucursal.id_ciudad', '=', 'ciudad.id_ciudad')->select("sucursal.id_sucursal as id","sucursal.nombre","sucursal.nombre as ciudad","sucursal.direccion","sucursal.telefono","sucursal.oferta","sucursal.latitud","sucursal.longitud")->get();
+        $data['data'] =  \DB::table('sucursal')
+            ->select(
+                "sucursal.id_sucursal as id",
+                "sucursal.nombre",
+                "sucursal.nombre as ciudad",
+                "sucursal.direccion",
+                "sucursal.telefono",
+                "sucursal.instrucciones as aparcamiento",
+                "sucursal.oferta",
+                "sucursal.latitud",
+                "sucursal.longitud"
+            )
+            ->join('ciudad', 'sucursal.id_ciudad', '=', 'ciudad.id_ciudad')
+            ->where('estatus',1)
+            ->where('eliminado',0)
+            ->get();
         return ($data);
     }
 
@@ -31,7 +46,29 @@ class apiController extends Controller
         $data['Sstatus']='true';
         $data['code']=200;
         $data['message']='Test';
-        $data['data'] = \DB::table('promocion as p')->select("id_promocion","nombre","slug","resumen","imagen","thumb","descripcion","fecha_inicio","fecha_fin")->where('p.id_promocion','=',$id)->get();
+        $data['data'] = \DB::table('promocion as p')
+            ->select(
+                "p.id_promocion",
+                "p.nombre as titulo",
+                "p.slug",
+                "p.resumen",
+                "p.imagen",
+                "p.thumb",
+                "p.descripcion",
+                "p.fecha_inicio",
+                "p.fecha_fin"
+            )
+            ->join('juego as j','j.id_juego','=','p.id_juego')
+            ->join('juego_sucursal as js','j.id_juego','=','js.id_juego')
+            ->join('sucursal as s','s.id_sucursal','=','js.id_sucursal')
+            ->where('p.estatus',1)
+            ->where('p.eliminado',0)
+            ->where('j.estatus',1)
+            ->where('j.eliminado',0)
+            ->where('s.estatus',1)
+            ->where('s.eliminado',0)
+            ->where('js.id_sucursal','=',$id)
+            ->get();
         return $data;
     }
 
@@ -39,35 +76,72 @@ class apiController extends Controller
         $data['Sstatus']='true';
         $data['code']=200;
         $data['message']='Test';
-        $data['data'] = htmlspecialchars(json_encode( \DB::table('contenido_simple')->select("titulo","slug","contenido")->get()));
-        return ($data);
+        $data['data'] = \App\pagina_contenido::
+            select(
+                "titulo",
+                "slug",
+                "contenido"
+            )
+            ->where('estatus',1)
+            ->where('eliminado',0)
+            ->where('menu_inferior',1)
+            ->get();
+        return \Response::json($data);
     }
 
     public function JuegoResponsable(){
         $data['Sstatus']='true';
         $data['code']=200;
         $data['message']='Test';
-        $data['data'] = htmlspecialchars(json_encode( \DB::table('contenido_simple')->select("contenido")->get()));
-        return ($data);
+        $data['data'] = \App\pagina_contenido::
+            select(
+                "titulo",
+                "slug",
+                "contenido"
+            )
+            ->where('estatus',1)
+            ->where('eliminado',0)
+            ->where('id_contenido',4)
+            ->get();
+        return \Response::json($data);
     }
 
     public function AvisoPrivacidad(){
         $data['Sstatus']='true';
         $data['code']=200;
         $data['message']='Test';
-        $data['data'] = \DB::table('mail_aviso')->select("mail")->get();
-        return ($data);
+        $data['data'] = \App\pagina_contenido::
+            select(
+                "titulo",
+                "slug",
+                "contenido"
+            )
+            ->where('estatus',1)
+            ->where('eliminado',0)
+            ->where('id_contenido',5)
+            ->get();
+        return \Response::json($data);
     }
 	
 	  public function QuienesSomos(){
         $data['Sstatus']='true';
         $data['code']=200;
         $data['message']='Test';
-        $data['data'] = \DB::table('contacto')->select("*")->get();
-        return ($data);
+        $data['data'] = \App\pagina_contenido::
+            select(
+                "titulo",
+                "slug",
+                "contenido"
+            )
+            ->where('estatus',1)
+            ->where('eliminado',0)
+            ->where('id_contenido',3)
+            ->get();
+        return \Response::json($data);
     }
 
     public function index(){
+        abort(403);
         
         $data = [];
 
@@ -77,11 +151,17 @@ class apiController extends Controller
         $data["rand_sucursal"]  = sucursal::find_random();
         $data["sucursales"]     = sucursal::find_all();
         $data["ciudades"]       = ciudad::find_all(['lista'=>true]);
-        $data["footer_text"]    = \DB::table('text_footer')->where('id',1)->first();
-
-        // dd($data);
-
-        return view('front.index',$data);
+        $data['data'] = \App\pagina_contenido::
+            select(
+                "titulo",
+                "slug",
+                "contenido"
+            )
+            ->where('estatus',1)
+            ->where('eliminado',0)
+            ->where('id_contenido',4)
+            ->get();
+        return \Response::json($data);
     
     }
 }
