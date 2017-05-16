@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\promocion_model as promocion;
+use App\Models\front\sucursal_model as sucursal;
 
 class promocionController extends Controller
 {
@@ -32,8 +33,17 @@ class promocionController extends Controller
      */
     public function create(){
         $data = [
-        'juegos' => \App\Models\linea_model::all()
+            'juegos' => \App\Models\linea_model::all()
+//            'sucursales' => sucursal::find_all(['linea_id_linea' => 2])
         ];
+
+        $index = 0;
+        foreach($data['juegos'] as $value){
+            $data['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
+            $index++;
+
+        }
+//        dd($data);
         return view('back.promocion.create',$data);
     }
 
@@ -44,9 +54,10 @@ class promocionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+//        dd($request->all());
         $this->validate($request,[
             "nombre" => 'required|string',
-            "juego" => 'required|integer|min:1',
+//            "juego" => 'required|integer|min:1',
             "slug" => 'string',
             "resumen" => 'required|string',
             "descripcion" => 'required|string',
@@ -253,7 +264,7 @@ class promocionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addPromotion(Request $request){
-        // dd($request->all());
+//      // dd($request->all());
         $this->validate($request,[
             "add_promocion" => 'required|integer|min:1',
             "add_sucursal" => 'required',
