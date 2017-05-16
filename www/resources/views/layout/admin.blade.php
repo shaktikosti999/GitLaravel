@@ -55,7 +55,21 @@ foreach($privs as $key => $priv){
   <![endif]-->
   <!--Textarea de Texto enriquecido-->
   <link href="{{asset('/assets/plugins/summernote/css/summernote.css')}}" rel="stylesheet" type="text/css" media="screen">
+
   @yield('css')
+
+
+    <style>
+      .ui-widget-content{
+        /*//background:transparent;*/
+        border:0px;
+      }
+
+      .ui-widget.ui-widget-content{
+        /*//background:transparent;*/
+        border:0px;
+      }
+    </style>
   </head>
   <body class="fixed-header">
     <!-- BEGIN SIDEBPANEL-->

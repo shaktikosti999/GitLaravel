@@ -146,7 +146,28 @@ class promocionController extends Controller
             'promocion' => \App\promocion::find($id),
             'juegos' => \App\Models\linea_model::all()
         ];
-        // dd($data);
+//         dd($data);
+        $index = 0;
+        foreach($data['juegos'] as $value){
+            $data['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
+            $index++;
+
+        }
+
+        $branchIds = \DB::select('select id_promocion,id_juego from promocion where branch_group_id = (SELECT branch_group_id FROM promocion where id_promocion='.$id.')');
+
+        $linea = array();
+        foreach ($branchIds as $value) {
+            $temp = \DB::select('select * from promocion_sucursal where id_promocion ='.$value->id_promocion);
+
+            $linea[] = $value->id_juego;
+            foreach($temp as $value1){
+                $data['selectedSucursales'][$value->id_juego][] = $value1->id_sucursal;
+                $data['promocion']->link = $value1->link;
+            }
+        }
+//        dd($linea);
+        $data['linea'] = $linea;
         return view('back.promocion.edit',$data);
     }
 
@@ -158,9 +179,10 @@ class promocionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
+//        dd($request->all());
         $this->validate($request,[
             "nombre" => 'string',
-            "juego" => 'required|integer|min:1',
+//            "juego" => 'required|integer|min:1',
             "slug" => 'string',
             "resumen" => 'required|string',
             "descripcion" => 'required|string',

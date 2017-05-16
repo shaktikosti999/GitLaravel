@@ -12,9 +12,8 @@
 						<li class="slide fullscreen" style="background-image: url({{($item->imagen)}});">
 							<div class="slide-content slide-promo">
 								<div class="shell">
-									<h2>
-										PROMOCIONES Y EVENTOS
-									</h2>
+
+									<h1><?php if(isset($item->titulo)){ echo html_entity_decode($item->titulo); } ?></h1>
 
 									<h3>
 										@if( isset( $sucursal_info->nombre ) )
@@ -113,15 +112,17 @@
 
 							@foreach( $lineas as $item )
 
-								<li class="section-filter line-filter {{ ( $id_linea == $item->id_linea ) ? 'active' : '' }}">
-									 <a href="{{ Request::url() }}?linea={{ $item->id_linea }}" data-id="{{ $item->id_linea }}">
-									 	<i class="{{ $item->icono }}"></i>
+								@if($item->id_linea!=7 && $item->id_linea!=8)
+									<li class="section-filter line-filter {{ ( $id_linea == $item->id_linea ) ? 'active' : '' }}">
+										 <a href="{{ Request::url() }}?linea={{ $item->id_linea }}" data-id="{{ $item->id_linea }}">
+											<i class="{{ $item->icono }}"></i>
 
-									 	<span>
-									 		{{ $item->linea }}
-									 	</span>
-									 </a>
-								</li>
+											<span>
+												{{ $item->linea }}
+											</span>
+										 </a>
+									</li>
+								@endif
 
 							@endforeach
 

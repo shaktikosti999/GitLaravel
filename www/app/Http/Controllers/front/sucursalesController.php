@@ -68,6 +68,7 @@ class sucursalesController extends Controller
             'id_ciudad' => $id_ciudad,
             'ciudades' => \App\Models\front\ciudad_model::find_all(['lista'=>true]),
             'sucursales' => sucursal::find_all(['id_ciudad'=>$id_ciudad]),
+            'promociones' => promocion::find_all([ "linea" => 1, "linea" => 8 ]),
             'slider' => \App\Models\front\slider_model::find_all(3)
         ];
         // dd($data);

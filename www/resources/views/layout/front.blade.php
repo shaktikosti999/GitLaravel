@@ -30,6 +30,14 @@
 
 		<!-- App JS -->
 		<script src="js/functions.js"></script>
+
+		<script>
+			function goToUrl($url){
+				//$window.open($url,'_blank');
+				window.location.href = $url;
+				e.preventDefault();
+			}
+		</script>
 	</head>
 
 	<body>

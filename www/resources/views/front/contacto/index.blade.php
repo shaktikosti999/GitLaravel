@@ -65,7 +65,8 @@
 										<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
 											<div class="slide-content ">
 												<!--<div class="shell"-->
-												<h1>{{ $s->titulo }}</h1>
+												<h1><?php echo html_entity_decode($s->titulo); ?></h1>
+												{{--<h1>{{ $s->titulo }}</h1>--}}
 												<!--h1>
                                                     Navidad Excepcional
                                                 </h1-->

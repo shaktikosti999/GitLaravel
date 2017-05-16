@@ -208,7 +208,7 @@
 						<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
 							<div class="slide-content ">
 								<!--<div class="shell"-->
-									<h1>{{ $s->titulo }}</h1>
+									<h1><?php echo html_entity_decode($s->titulo); ?></h1>
 									<!--h1>
 										Navidad Excepcional
 									</h1-->
@@ -230,7 +230,7 @@
 
 	
 	<div class="main anchor">
-		
+
 		@if( isset( $lineas ) && count( $lineas ) )
 
 				<section class="button-section">
@@ -239,13 +239,15 @@
 
 							@foreach( $lineas as $linea )
 
-								<li>
-									<a href="{{ '/lineas-de-juego/' . $linea->slug }}" class="btn btn-features"><!-- data-href class=modal_linea"> -->
-										<i class="{{ $linea->icono }}"></i>
-										
-										<span>{{ $linea->linea }}</span> 
-									</a>
-								</li>
+								@if($linea->id_linea!=7 && $linea->id_linea!=8)
+									<li>
+										<a href="{{ '/lineas-de-juego/' . $linea->slug }}" class="btn btn-features"><!-- data-href class=modal_linea"> -->
+											<i class="{{ $linea->icono }}"></i>
+
+											<span>{{ $linea->linea }}</span>
+										</a>
+									</li>
+								@endif
 
 							@endforeach
 
@@ -258,7 +260,7 @@
 		<section class="section-slider">
 			<div class="shell">
 
-				
+
 				@if( isset( $promociones ) && count( $promociones ) )
 
 
@@ -266,23 +268,41 @@
 						<div class="slider-games sldr-top">
 							<div class="section-head">
 								<h2>Promociones y Eventos</h2>
-							
+
 								<div class="slider-clip">
 									<ul class="slides">
-										
+
 										@foreach( $promociones as $p )
 
-										<a href="{{url('/promociones/detalle/' . $p->slug)}}">
-											<li class="slide"> 									
-												<div class="slide-content" style="background-image: url({{ $p->thumb !== null && !empty($p->thumb) ? $p->thumb : $p->imagen }}); ">
-													
-												</div><!-- /.slide-content -->
+											<li class="slide">
+												<a href="{{url('/promociones/detalle/' . $p->slug)}}">
+													<div class="slide-content" style="background-image: url({{ $p->thumb !== null && !empty($p->thumb) ? $p->thumb : $p->imagen }}); ">
+
+														@if($p->fecha_inicio !== null || $p->fecha_fin !== null)
+															<span class="slide-label" style="background: #ed1c24;color: #fff;min-width: 140px;display: inline-block;font-size: 15px;padding: 7px 10px;line-height: 1;position: absolute;top: 20px;left: 30px;right: 0px;">
+																Válido {{'del'.$p->fecha_inicio}}<br>{{' al' . $p->fecha_fin}}
+															</span>
+														@endif
+
+
+														@if(!empty($p->url))
+															<button>
+																<span class="" style="position: absolute;bottom: 1em;left: 0em;text-align: center;width: 100%;" >
+																	<center>
+																		<form action="{{$p->url}}">
+																			<input type="submit" value="{!!$p->resumen!!}" style="width: 9em;padding: 1em;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+																		</form>
+																	</center>
+																</span>
+															</button>
+														@endif
+													</div><!-- /.slide-content -->
+												</a>
 											</li><!-- /.slide -->
-										</a>
 
 										@endforeach
 
-										
+
 									</ul><!-- /.slides -->
 								</div><!-- /.slider-clip -->
 							</div>

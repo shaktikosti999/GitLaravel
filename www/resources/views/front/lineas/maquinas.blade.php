@@ -46,13 +46,16 @@
 							<div class="slide-body">
 								<div class="shell">
 									<div class="slide-content">
-										<h1>{{ $item->titulo }}</h1>
+										<h1><?php
+												if(isset($item->titulo)){
+													echo html_entity_decode($item->titulo);
+												}
+											?></h1>
+										{{--<h1>{{ $item->titulo }}</h1>--}}
 
 										<h3>
 											@if( isset( $sucursal_info->nombre ) )
-
 												{{ $sucursal_info->nombre }}
-
 											@endif
 										</h3>
 

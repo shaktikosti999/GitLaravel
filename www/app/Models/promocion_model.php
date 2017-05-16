@@ -107,21 +107,51 @@ class promocion_model{
 	}
 
 	static function store($request, $archivo, $thumb){
-		$data = new promocion();
+//		dd($thumb);
+//		dd($request->all());
+		$maxBranchGroupId = \DB::table('promocion')->max('branch_group_id');
+		if($maxBranchGroupId == null){
+			$maxBranchGroupId = 1;
+		}else{
+			$maxBranchGroupId++;
+		}
 
-		$data->id_juego = $request->input('juego');
-		$data->nombre = $request->input('nombre');
-		$data->slug = $request->input('slug');
-		$data->resumen = $request->input('resumen');
-		$data->imagen = $archivo;
-		$data->thumb = $thumb;
-		$data->descripcion = $request->input('descripcion');
-		$data->fecha_inicio = trim($request->input('fecha_inicio')) != "" ? $request->input('fecha_inicio') : null;
-		$data->fecha_fin = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
+		foreach($request->input('juego') as $juego) {
+			$data = [];
 
-		$evento = Event::fire(new dotask($data));
+			$data['id_juego'] = $juego;
+			$data['nombre'] = $request->input('nombre');
+			$data['slug'] = $request->input('slug');
+			$data['resumen'] = $request->input('resumen');
+			$data['imagen'] = $archivo;
+			$data['thumb'] = $thumb;
+			$data['descripcion'] = $request->input('descripcion');
+			$data['fecha_inicio'] = trim($request->input('fecha_inicio')) != "" ? $request->input('fecha_inicio') : null;
+			$data['fecha_fin'] = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
+			$data['branch_group_id'] = $maxBranchGroupId;
+			$data['url'] = $request->input('link');
+
+//			$evento = Event::fire(new dotask($data));
+			\DB::table('promocion')->insert($data);
+
+			$branch = [];
+			$branch['id_promocion'] = \DB::getPdo()->lastInsertId();
+			$branch['descripcion'] = $request->input('descripcion');
+			$branch['link'] = $request->input('link');
+			if ($request->input('is_active_btn') == 'on') {
+				$branch['is_active_btn'] = 1;
+			}
+
+			if(!empty($request->input('juegoSub'.$juego))) {
+				foreach ($request->input('juegoSub' . $juego) as $id) {
+					$branch['id_sucursal'] = $id;
+					\DB::table('promocion_sucursal')->insert($branch);
+				}
+			}
+		}
+
 		// dd($evento,$data);
-		return $evento;
+		return "True";
 	}
 
 	// static function store_dinamica($request){
@@ -154,42 +184,59 @@ class promocion_model{
 	}
 
 	static function update($id, $request, $archivo = null,$thumb = null){
-		$data = promocion::find($id);
 
-		if( $archivo !== null || ($request->input('borrar_imagen') !== null && $request->input('borrar_imagen') == 1) ){
-			$borrar = public_path() . $data->archivo;
-			if( is_file($borrar) )
-				unlink($borrar);
+		$branchIds = \DB::select('select id_promocion,imagen,thumb from promocion where branch_group_id = (SELECT branch_group_id FROM promocion where id_promocion='.$id.')');
+
+		if($archivo==null) {
+			$archivo = $branchIds[0]->imagen;
 		}
 
-		if( $thumb !== null || ($request->input('borrar_thumb') !== null && $request->input('borrar_thumb') == 1) ){
-			$borrar = public_path() . $data->thumb;
-			if( is_file($borrar) )
-				unlink($borrar);
+		if($thumb==null) {
+			$thumb = $branchIds[0]->thumb;
 		}
-		
-		$data->id_juego = $request->input('juego');
-		$data->nombre = $request->input('nombre');
-		$data->slug = $request->input('slug');
-		$data->resumen = $request->input('resumen');
 
-		if( $request->input('borrar_imagen') !== null && $request->input('borrar_imagen') == 1 )
-			$data->imagen = "";
-		if( $request->input('borrar_thumb') !== null && $request->input('borrar_thumb') == 1 )
-			$data->thumb = "";
-		
-		if($archivo !== null)
-			$data->imagen = $archivo;
-		if($thumb !== null)
-			$data->thumb = $thumb;
-		
-		$data->descripcion = $request->input('descripcion');
-		$data->fecha_inicio = trim($request->input('fecha_inicio')) != "" ? $request->input('fecha_inicio') : null;
-		$data->fecha_fin = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
+		foreach($branchIds as $id){
+			\DB::table('promocion')->where('id_promocion',$id->id_promocion)->delete();
+		}
+//		dd($request->all());
+		self::store($request, $archivo, $thumb);
 
-		$evento = Event::fire(new dotask($data));
-		// dd($evento,$data);
-		return $evento;
+//		$data = promocion::find($id);
+//
+//		if( $archivo !== null || ($request->input('borrar_imagen') !== null && $request->input('borrar_imagen') == 1) ){
+//			$borrar = public_path() . $data->archivo;
+//			if( is_file($borrar) )
+//				unlink($borrar);
+//		}
+//
+//		if( $thumb !== null || ($request->input('borrar_thumb') !== null && $request->input('borrar_thumb') == 1) ){
+//			$borrar = public_path() . $data->thumb;
+//			if( is_file($borrar) )
+//				unlink($borrar);
+//		}
+//
+//		$data->id_juego = $request->input('juego');
+//		$data->nombre = $request->input('nombre');
+//		$data->slug = $request->input('slug');
+//		$data->resumen = $request->input('resumen');
+//
+//		if( $request->input('borrar_imagen') !== null && $request->input('borrar_imagen') == 1 )
+//			$data->imagen = "";
+//		if( $request->input('borrar_thumb') !== null && $request->input('borrar_thumb') == 1 )
+//			$data->thumb = "";
+//
+//		if($archivo !== null)
+//			$data->imagen = $archivo;
+//		if($thumb !== null)
+//			$data->thumb = $thumb;
+//
+//		$data->descripcion = $request->input('descripcion');
+//		$data->fecha_inicio = trim($request->input('fecha_inicio')) != "" ? $request->input('fecha_inicio') : null;
+//		$data->fecha_fin = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
+//
+//		$evento = Event::fire(new dotask($data));
+//		// dd($evento,$data);
+//		return $evento;
 	}
 
 	static function updateBranchPromotion($request,$archivo=null){

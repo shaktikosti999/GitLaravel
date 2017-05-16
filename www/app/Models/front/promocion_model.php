@@ -30,13 +30,14 @@ class promocion_model{
 
         if( isset( $parameters["id_sucursal"] ) && ! empty( $parameters["id_sucursal"] ) ){
 
-            $data = $data->join("promocion_sucursal as ps", "p.id_promocion", "=", "ps.id_promocion");
+            $data = $data->select("p.*", "l.id_linea","ps.*")
+                        ->join("promocion_sucursal as ps", "p.id_promocion", "=", "ps.id_promocion");
             $data = $data->where( "ps.id_sucursal", "=", $parameters["id_sucursal"] );
 
         }
 
-        $data = $data->get();
-
+        $data = $data->groupBy('branch_group_id')
+                        ->get();
         return $data;
 
     }
