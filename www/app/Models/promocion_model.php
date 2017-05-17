@@ -130,6 +130,9 @@ class promocion_model{
 			$data['fecha_fin'] = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
 			$data['branch_group_id'] = $maxBranchGroupId;
 			$data['url'] = $request->input('link');
+			if ($request->input('is_active_btn') == 'on') {
+				$data['is_active_btn'] = 1;
+			}
 
 //			$evento = Event::fire(new dotask($data));
 			\DB::table('promocion')->insert($data);

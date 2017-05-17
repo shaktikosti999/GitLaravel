@@ -22,6 +22,7 @@
 			$('.jquery').each(function() {
 				eval($(this).html());
 			});
+
 			$('.button').button();
 			$('.list > li a').click(function() {
 				$(this).parent().find('ul').toggle();
@@ -69,7 +70,7 @@
 
 			      	<div class="row clearfix">
 			        	<div class="col-sm-12">
-			          		<div class="" aria-required="true">
+			          		<div class="form-group form-group-default" aria-required="true">
 			            		{{--<label for="juego">Juego</label>--}}
 			            		{{--<select id="juego" class="form-control required" name="juego" required="required" aria-required="true" aria-invalid="true">--}}
 			            			{{--@foreach( $juegos as $item )--}}
@@ -88,14 +89,16 @@
 
 								<ul class="list">
 										@foreach( $juegos as $indexKey => $item )
-										<li>
-											<a><input type="checkbox" name="juego[]" value="{{$item->id}}" <?php if(in_array($item->id,$linea)){ echo 'checked'; } ?> ><span>{{$item->nombre}}</span></a>
-											@foreach( $sucursales[$indexKey] as $item1 )
-												<ul>
-													<li class="collapsed"><label><input type="checkbox" <?php if(isset($selectedSucursales[$item->id]) && (in_array($item1->id_sucursal,$selectedSucursales[$item->id]))){ echo 'checked'; } ?> name="juegoSub{{$item->id}}[]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
-												</ul>
-											@endforeach
-										</li>
+											@if($item->id !=9)
+												<li>
+													<a><input type="checkbox" name="juego[]" value="{{$item->id}}" <?php if(in_array($item->id,$linea)){ echo 'checked'; } ?> ><span>{{$item->nombre}}</span></a>
+													@foreach( $sucursales[$indexKey] as $item1 )
+														<ul>
+															<li class="collapsed"><label><input type="checkbox" <?php if(isset($selectedSucursales[$item->id]) && (in_array($item1->id_sucursal,$selectedSucursales[$item->id]))){ echo 'checked'; } ?> name="juegoSub{{$item->id}}[]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
+														</ul>
+													@endforeach
+												</li>
+											@endif
 										@endforeach
 
 								</ul>
@@ -151,7 +154,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group form-group-default">
-								<label><input type="checkbox" name="is_active_btn" checked=""><span>Botón de URL externo activo</span></label>
+								<label><input type="checkbox" name="is_active_btn" {{$promocion->is_active_btn ? 'checked' : ''}}><span>Botón de URL externo activo</span></label>
 							</div>
 						</div>
 					</div>
@@ -160,7 +163,7 @@
 						<div class="col-sm-12">
 							<div class="form-group form-group-default">
 								<label for="link">URL Externa</label>
-								<textarea id="link" class="form-control required" name="link" required="required" aria-invalid="true">{{$promocion->link}}</textarea>
+								<textarea id="link" class="form-control" name="link" aria-invalid="true">{{$promocion->link}}</textarea>
 								{{--<input type="text" id="link" class="form-control " name="link" aria-required="true" aria-invalid="true">--}}
 							</div>
 						</div>

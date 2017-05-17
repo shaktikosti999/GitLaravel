@@ -9,7 +9,10 @@
 					<div class="article-head">
 						<h2>{{$promocion->nombre}}</h2>
 					</div><!-- /.article-head -->
-					
+					<?php
+						/*echo "<pre>";
+						print_r($promocion);*/
+						?>
 					<div class="article-entry">
 						@if( $promocion->fecha_inicio !== null || $promocion->fecha_fin !== null )
 						<p style="color:rgb(0,0,0)">
@@ -19,6 +22,7 @@
 						<p style="color:rgb(0,0,0)">{!!$promocion->resumen!!}</p>
 						
 						<p style="color:rgb(0,0,0)">{!!$promocion->descripcion!!}</p>
+
 						
 					</div><!-- /.article-entry -->
 					

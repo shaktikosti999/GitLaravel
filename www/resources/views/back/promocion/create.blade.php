@@ -10,7 +10,7 @@
 			$('#form-agregar').validate();
 			$('.datepkr').datepicker({
 				dateFormat: "yy-mm-dd",
-				minDate: new Date({{date('Y,m,d')}})
+				minDate: new Date()
 			});
 		});
 
@@ -33,6 +33,11 @@
 			onUncheck: {
 				node: 'collapse'
 			}
+		});
+
+		$('.button').button();
+		$('.list > li a').click(function() {
+			$(this).parent().find('ul').toggle();
 		});
 	</script>
 
@@ -64,40 +69,65 @@
 						</div>
 					</div>
 
-					<div class="row clearfix">
+					<div class="row">
 						<div class="col-sm-12">
-							<div class="form-group form-group-default" aria-required="true">
-								<label for="juego">Juego</label>
+							<div class=" form-group-default row" aria-required="true" style="margin-bottom: 0.8em;" >
+								<label style="font-family: 'Montserrat';font-size: 11px;text-transform: uppercase;font-weight: 600;" >Juego</label>
+
 								{{--<select id="juego" class="form-control required" name="juego" required="required" aria-required="true" aria-invalid="true">--}}
 								{{--@foreach( $juegos as $item )--}}
 								{{--<option value="{{$item->id}}">{{$item->nombre}}</option>--}}
 								{{--@endforeach--}}
 								{{--</select>--}}
 
-								<div id="example-3" style="opacity: 1 !important;">
+								{{--<div id="example-3" style="opacity: 1 !important;">--}}
 
-									<div style="background-color:transparent;" >
-										<ul>
+									{{--<div style="background-color:transparent;" >--}}
+										{{--<ul>--}}
+											{{--@foreach( $juegos as $indexKey => $item )--}}
+												{{--@if($item->id !=9)--}}
+													{{--<li class="collapsed"><input type="checkbox" name="juego[]" value="{{$item->id}}" ><span>{{$item->nombre}}</span>--}}
+														{{--<input type="hidden" name="juegoSub{{$item->id}}[]" >--}}
+														{{--@foreach( $sucursales[$indexKey] as $item1 )--}}
+															{{--<ul>--}}
+																{{--<li class="collapsed">--}}
+																	{{--<input type="checkbox" name="juegoSub{{$item->id}}[]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span>--}}
+																{{--</li>--}}
+															{{--</ul>--}}
+														{{--@endforeach--}}
+													{{--</li>--}}
+												{{--@endif--}}
+											{{--@endforeach--}}
+										{{--</ul>--}}
+
+										<style>
+											ul li ul {
+												display: none;
+											}
+										</style>
+
+
+										<ul class="list">
 											@foreach( $juegos as $indexKey => $item )
-												<li class="collapsed"><input type="checkbox" name="juego[]" value="{{$item->id}}" ><span>{{$item->nombre}}</span>
-													{{--<input type="hidden" name="juegoSub{{$item->id}}[]" >--}}
+												<li>
+													<a><input type="checkbox" name="juego[]" value="{{$item->id}}"  ><span>{{$item->nombre}}</span></a>
 													@foreach( $sucursales[$indexKey] as $item1 )
 														<ul>
-															<li class="collapsed">
-																<input type="checkbox" name="juegoSub{{$item->id}}[]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span>
-															</li>
+															<li class="collapsed"><label><input type="checkbox" name="juegoSub{{$item->id}}[]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
 														</ul>
 													@endforeach
-											</li>
+												</li>
 											@endforeach
+
 										</ul>
-									</div>
-								</div>
+									{{--</div>--}}
+								{{--</div>--}}
 
 
 							</div>
 						</div>
 					</div>
+
 
 					<div class="row">
 						<div class="col-sm-12">

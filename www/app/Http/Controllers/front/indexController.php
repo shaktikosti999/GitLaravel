@@ -27,7 +27,7 @@ class indexController extends Controller
         $data = [];
 
         $data["promociones"]    = promocion::find_all( [ 'limit' => 4 , "linea" => 7 ] );
-        $data["slider"]         = slider::find_all();
+        $data["slider"]         = slider::find_all(['tipo' => 7 ]);
         $data["lineas"]         = linea::find_all();
         $data["rand_sucursal"]  = sucursal::find_random();
         $data["sucursales"]     = sucursal::find_all();

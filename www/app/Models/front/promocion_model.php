@@ -5,6 +5,7 @@ class promocion_model{
 
     static function find_all( $parameters = [] ){
 
+//        dd($parameters);
         $data = [];
 
         $data = \DB::table('promocion as p')
@@ -36,8 +37,12 @@ class promocion_model{
 
         }
 
+
         $data = $data->groupBy('branch_group_id')
                         ->get();
+//        ->tosql();
+//        print_r($data);dd();
+
         return $data;
 
     }

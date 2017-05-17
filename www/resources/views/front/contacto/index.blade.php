@@ -46,7 +46,9 @@
 		</a>
  -->
 			<div class="slider-clip">
-				<ul class="slides">
+				@if( isset( $slider ) && count( $slider ) > 1 )
+					<ul class="slides">
+						@endif
 
 					@if( isset( $slider ) && count( $slider ) )
 
@@ -65,6 +67,11 @@
 										<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
 											<div class="slide-content ">
 												<!--<div class="shell"-->
+												@if(isset($s->texto_boton))
+													<form action="{{$s->link}}">
+														<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+													</form>
+												@endif
 												<h1><?php echo html_entity_decode($s->titulo); ?></h1>
 												{{--<h1>{{ $s->titulo }}</h1>--}}
 												<!--h1>
@@ -80,7 +87,9 @@
 									@endforeach
 
 
-								</ul><!-- /.slides -->
+										@if( isset( $slider ) && count( $slider ) > 1 )
+											</ul>
+								@endif
 							</div><!-- /.slider-clip -->
 						</div><!-- /.slider-intro -->
 

@@ -25,7 +25,7 @@ class sucursalesController extends Controller
                 'slug_sucursal' => $slug,
                 'sucursales' => sucursal::find_all(),
                 'galeria' => sucursal::get_gallery($sucursal->id_sucursal),
-                'promociones' => promocion::find_all(['id_sucursal' => $sucursal->id_sucursal]),
+                'promociones' => promocion::find_all(['id_sucursal' => $sucursal->id_sucursal,'linea'=>13]),
                 'maquinas' => linea::get_games([ 'linea' => 1, 'id_sucursal' => $sucursal->id_sucursal, 'limit' => 4]),
                 'torneos' => linea::find_all_tournaments(['id_sucursal' => $sucursal->id_sucursal]),
                 'maquinas_acumulado' => linea::get_games( [ "linea" => 1, "id_sucursal" => $sucursal->id_sucursal] ),
@@ -50,7 +50,7 @@ class sucursalesController extends Controller
         //-----> Obtenemos las categorías de los juegos
         $data["categorias"] = linea::get_categories(['list'=>true]);
         //$data['slider'] = sucursal::get_gallery($sucursal->id_sucursal,2);
-        $data['slider'] = \App\Models\front\slider_model::find_all(3);
+        $data['slider'] = \App\Models\front\slider_model::find_all(['tipo' => 8]);
 
         // dd($data);
         return view('front.sucursales.index',$data);
@@ -69,7 +69,7 @@ class sucursalesController extends Controller
             'ciudades' => \App\Models\front\ciudad_model::find_all(['lista'=>true]),
             'sucursales' => sucursal::find_all(['id_ciudad'=>$id_ciudad]),
             'promociones' => promocion::find_all([ "linea" => 1, "linea" => 8 ]),
-            'slider' => \App\Models\front\slider_model::find_all(3)
+            'slider' => \App\Models\front\slider_model::find_all(['tipo' => 8])
         ];
         // dd($data);
         return view('front.sucursales.general',$data);

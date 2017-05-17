@@ -22,6 +22,10 @@
 			<div class="slider-games slider-promotions">
 				<div class="slider-clip">
 					<ul class="slides">
+						<?php
+						/*echo "<pre>";
+						print_r($promociones);*/
+						?>
 
 						@foreach($promociones as $item)
 						<?php 
@@ -56,7 +60,7 @@
 										@endif
 
 								@else
-										@if(!empty($item->url))
+										@if($item->is_active_btn==1)
 											<button>
 												<span class="" style="position: absolute;bottom: 1em;left: 0em;text-align: center;width: 100%;" >
 													<center>

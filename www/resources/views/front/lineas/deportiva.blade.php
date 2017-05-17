@@ -141,7 +141,9 @@
 			</a>
 
 			<div class="slider-clip">
-				<ul class="slides">
+				@if( isset( $slider ) && count( $slider ) > 1 )
+					<ul class="slides">
+				@endif
 					@if( isset( $slider ) && count( $slider ) )
 
 						@foreach( $slider as $item )
@@ -194,7 +196,9 @@
 						@endforeach
 
 					@endif
-				</ul><!-- /.slides -->
+				@if( isset( $slider ) && count( $slider ) > 1 )
+							</ul>
+				@endif
 			</div><!-- /.slider-clip -->
 
 			<div class="slider-label red-label large">

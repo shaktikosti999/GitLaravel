@@ -40,10 +40,10 @@ class sucursal_model{
             if( (int)$args['linea_id_linea'] > 0)
                 $data = $data->where('j.id_linea',$args['linea_id_linea']);
         }
-
+        //echo $args['linea_id_linea'];
         $data = $data->orderBy('s.nombre')
         ->get();
-
+//->tosql();
         // dd($data);
 
         //-----> Obtenemos la galeria de la sucursal

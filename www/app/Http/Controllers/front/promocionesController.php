@@ -40,7 +40,7 @@ class promocionesController extends Controller
 
         //-----> Obtenemos todas las sucursales
         $data["sucursales"] = sucursal::find_all(["promo_id_linea" => $data["id_linea"]]);
-        $data['slider'] = \App\Models\front\slider_model::find_all(2);
+        $data['slider'] = \App\Models\front\slider_model::find_all(['tipo' => 9,'id_sucursal'=>$id_sucursal]);
 
         // dd($data);
 
@@ -107,7 +107,7 @@ class promocionesController extends Controller
         }
         $data = [
             'promocion' => $promos,
-            'slider' => slider::find_all( 5 )
+            'slider' => slider::find_all(['tipo'=>10] )
         ];
         // dd($data);
 

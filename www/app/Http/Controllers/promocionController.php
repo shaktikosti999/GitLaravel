@@ -37,12 +37,22 @@ class promocionController extends Controller
 //            'sucursales' => sucursal::find_all(['linea_id_linea' => 2])
         ];
 
+//        $index = 0;
+//        foreach($data['juegos'] as $value){
+//            $data['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
+//            $index++;
+//
+//        }
+
         $index = 0;
         foreach($data['juegos'] as $value){
-            $data['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
+            $data['sucursales'][$index] = [];
+            if($value->id != '7') {
+                $data['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+            }
             $index++;
-
         }
+
 //        dd($data);
         return view('back.promocion.create',$data);
     }
@@ -148,11 +158,17 @@ class promocionController extends Controller
         ];
 //         dd($data);
         $index = 0;
-        foreach($data['juegos'] as $value){
+       /* foreach($data['juegos'] as $value){
             $data['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
             $index++;
 
+        }*/
+         foreach($data['juegos'] as $value){
+             $data['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+            $index++;
+
         }
+
 
         $branchIds = \DB::select('select id_promocion,id_juego from promocion where branch_group_id = (SELECT branch_group_id FROM promocion where id_promocion='.$id.')');
 

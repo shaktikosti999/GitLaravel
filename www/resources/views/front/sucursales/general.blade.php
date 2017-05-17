@@ -25,12 +25,20 @@
                 <i class="ico-mouse"></i>
             </a>-->
 			<div class="slider-clip">
-				<ul class="slides">
+				@if( isset( $slider ) && count( $slider ) > 1 )
+					<ul class="slides">
+				@endif
 					@if( isset($slider) && count($slider) )
 						@foreach( $slider as $item)
 							<li class="slide fullscreen" style="background-image: url({{($item->imagen)}});">
 								<div class="slide-content slide-promo">
 									<div class="shell">
+
+										@if(isset($item->texto_boton))
+											<form action="{{$item->link}}">
+												<input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+											</form>
+										@endif
 
 										<h1><?php if(isset($item->titulo)){ echo html_entity_decode($item->titulo); } ?></h1>
 
@@ -46,7 +54,9 @@
 							</li><!-- /.slide -->
 						@endforeach
 					@endif
-				</ul><!-- /.slides -->
+				@if( isset( $slider ) && count( $slider ) > 1 )
+							</ul>
+				@endif
 			</div><!-- /.slider-clip -->
 		</div><!-- /.slider-intro -->
 	</div>

@@ -32,8 +32,7 @@ class lineasController extends Controller
 
         //-----> Obtenemos los sliders
         //$data["slider"] = linea::find_gallery( 1 );
-        $data["slider"] = slider::find_all(6);
-
+        $data["slider"] = slider::find_all(['tipo' => 1 , 'id_sucursal' => $id_sucursal]);
 
         //-----> Obtenemos promociones
         $data["promociones"] = promocion::find_all( [ "linea" => 1, "id_sucursal" => $id_sucursal ] );
@@ -59,6 +58,9 @@ class lineasController extends Controller
 
         $data['pagados'] = sucursal::get_paid(['id_sucursal' => $id_sucursal]);
         $data['acumulado'] = sucursal::get_accumulated(['id_sucursal' => $id_sucursal]);
+
+
+//        dd($data['slider']);
 
         return view('front.lineas.maquinas',$data);
     }
@@ -122,7 +124,7 @@ class lineasController extends Controller
 
         //-----> Obtenemos los sliders
         //$data["slider"] = linea::find_gallery( 2 );
-        $data["slider"] = slider::find_all( 7 );
+        $data["slider"] = slider::find_all(['tipo' => 2 , 'id_sucursal' => $id_sucursal]);
 
         //-----> Obtenemos promociones
         $data["promociones"] = promocion::find_all( [ "linea" => 2, "id_sucursal" => $id_sucursal ] );
@@ -160,7 +162,7 @@ class lineasController extends Controller
         $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
 
         //-----> Obtenemos los sliders
-        $data["slider"] = slider::find_all( 9 );
+        $data["slider"] = slider::find_all(['tipo' => 4 , 'id_sucursal' => $id_sucursal] );
 
         //-----> Obtenemos mesas de juego
         $data["carreras"] = linea::get_races();
@@ -184,7 +186,8 @@ class lineasController extends Controller
         $data['acumulado'] = linea::accumulated(['id_sucursal' => $id_sucursal,'linea' => 4]);
 
         $data['game'] = ( isset($request['game']) ) ? $request['game'] : null;
-        // dd($data);
+
+
 
         return view('front.lineas.carreras',$data);
     }

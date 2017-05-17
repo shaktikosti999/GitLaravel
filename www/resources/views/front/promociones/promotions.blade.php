@@ -8,7 +8,9 @@
 		@if( isset($slider) && count($slider) )
 			<div class="slider-secondary">
 				<div class="slider-clip">
-					<ul class="slides">
+					@if( isset( $slider ) && count( $slider ) > 1 )
+						<ul class="slides">
+					@endif
 						@foreach($slider as $item)
 							<li class="slide" style="background-image: url({{ asset($item->imagen) }})">
 								<div class="slide-body">
@@ -17,6 +19,12 @@
 										 	{{--<h1>--}}
 										 		{{--{{$item->titulo}}--}}
 										 	{{--</h1>--}}
+											 @if(isset($item->texto_boton))
+												 <form action="{{$item->link}}">
+													 <input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+												 </form>
+											 @endif
+
 											 <h1><?php if(isset($item->titulo)){ echo html_entity_decode($item->titulo); } ?></h1>
 
 										 	<!-- <h3>
@@ -37,7 +45,9 @@
 								</div><!-- /.slide-body -->
 							</li><!-- /.slide -->
 						@endforeach
-					</ul><!-- /.slides -->
+					@if( isset( $slider ) && count( $slider ) > 1 )
+								</ul>
+					@endif
 				</div><!-- /.slider-clip --> 
 			</div><!-- /.slider-secondary -->
 		@endif

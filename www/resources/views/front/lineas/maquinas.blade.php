@@ -35,9 +35,11 @@
 			<img src="css/images/btn-menu@2x.png" alt="">
 		</a>
  -->
+
 		<div class="slider-clip">
-			<ul class="slides">
-				
+			@if( isset( $slider ) && count( $slider ) > 1 )
+				<ul class="slides">
+			@endif
 				@if( isset( $slider ) && count( $slider ) )
 
 					@foreach( $slider as $item )
@@ -46,20 +48,14 @@
 							<div class="slide-body">
 								<div class="shell">
 									<div class="slide-content">
-										<h1><?php
-												if(isset($item->titulo)){
-													echo html_entity_decode($item->titulo);
-												}
-											?></h1>
-										{{--<h1>{{ $item->titulo }}</h1>--}}
-
-										<h3>
-											@if( isset( $sucursal_info->nombre ) )
-												{{ $sucursal_info->nombre }}
+											@if(isset($item->texto_boton) && $item->texto_boton != "")
+												<form action="{{$item->link}}">
+													<input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+												</form>
 											@endif
-										</h3>
-
-
+										<h1>
+													{{$item->titulo}}
+										</h1>
 
 									@if( isset( $sucursales ) && count( $sucursales ) )
 
@@ -91,9 +87,9 @@
 					@endforeach
 
 				@endif
-
-				
-			</ul><!-- /.slides -->
+				@if( isset( $slider ) && count( $slider ) > 1 )
+						</ul><!-- /.slides -->
+				@endif
 		</div><!-- /.slider-clip -->
 
 		<div class="slider-label red-label large">

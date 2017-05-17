@@ -5,6 +5,11 @@
 		$(function(){
 			$('#form-agregar').validate();
 		});
+
+		$('.button').button();
+		$('.list > li a').click(function() {
+			$(this).parent().find('ul').toggle();
+		});
 		</script>
 	@stop
 
@@ -22,7 +27,7 @@
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="titulo">Título</label>
-			            		<input type="text" id="titulo" class="form-control required" name="titulo" required="required" aria-required="true" aria-invalid="true">
+			            		<input type="text" id="titulo" class="form-control" name="titulo"  aria-required="true" aria-invalid="true">
 			          		</div>
 			        	</div>
 			      	</div>
@@ -40,18 +45,33 @@
 			        	<div class="col-sm-12">
 			          		<div class=" form-group-default row" aria-required="true" style="margin-bottom: 0.8em;" >
 			            		<label style="font-family: 'Montserrat';font-size: 11px;text-transform: uppercase;font-weight: 600;" >Tipo</label>
-			            		{{--<select id="tipo" class="form-control required" name="tipo" required="required" aria-required="true" aria-invalid="true">--}}
-			            			{{--<option value="1">Home</option>--}}
-			            			{{--<option value="0">Quiniela</option>--}}
-			            			{{--<option value="3">Ubicaciones</option>--}}
-			            			{{--<option value="2">Promociones</option>--}}
-			            		{{--</select>--}}
 
-								@foreach($sliderType as $val)
-									<label class="col-lg-6" >
-										<input type="checkbox"  value="{{$val->id}}" name="tipo[]" >{{$val->type_name}}
-									</label>
-								@endforeach
+								{{--@foreach($sliderType as $val)--}}
+									{{--<label class="col-lg-6" >--}}
+										{{--<input type="checkbox"  value="{{$val->id}}" name="tipo[]" >{{$val->type_name}}--}}
+									{{--</label>--}}
+								{{--@endforeach--}}
+
+								<style>
+									ul li ul {
+										display: none;
+									}
+								</style>
+
+
+								<ul class="list">
+									@foreach( $juegos as $indexKey => $item )
+										<li>
+											<a><input type="checkbox" name="juego[]" value="{{$item->id}}"  ><span>{{$item->nombre}}</span></a>
+											@foreach( $sucursales[$indexKey] as $item1 )
+												<ul>
+													<li class="collapsed"><label><input type="checkbox" name="juegoSub{{$item->id}}[]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
+												</ul>
+											@endforeach
+										</li>
+									@endforeach
+
+								</ul>
 
 			          		</div>
 			        	</div>
