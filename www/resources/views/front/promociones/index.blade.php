@@ -1,7 +1,7 @@
 @extends('layout.front')
 @section('contenido')
 
-	<div class="slider-intro  slider-intro-secondary slider-intro-promo"> 
+	<div class="slider-intro  slider-intro-secondary slider-intro-promo">
 		<!--<a href="#promociones" class="btn-scroll promo">
 			<i class="ico-mouse"></i>
 		</a>-->
@@ -21,7 +21,7 @@
 										</form>
 									@endif
 
-									<h3 style="text-transform: uppercase;"><?php if(isset($item->titulo)){ echo html_entity_decode($item->titulo); } ?></h3>
+									<h1 class="title__slider" style="text-transform: uppercase;"><?php if(isset($item->titulo)){ echo html_entity_decode($item->titulo); } ?></h1>
 
 									<h3>
 										@if( isset( $sucursal_info->nombre ) )
@@ -62,7 +62,7 @@
 	</div><!-- /.slider-intro -->
 
 	<div class="main ">
-		
+
 		@if( isset( $promociones ) && count( $promociones ) && 1 == 2 )
 
 			<section class="section-slider">
@@ -71,12 +71,12 @@
 						<div class="slider-games reset-margin">
 							<h2>Promociones y Eventos</h2>
 							<div class="slider-clip">
-								<ul class="slides">								
+								<ul class="slides">
 
-										@foreach( $promociones as $item )	
+										@foreach( $promociones as $item )
 
-											<li class="slide"> 			
-																		
+											<li class="slide">
+
 												<a href="/promociones/detalle/{{ $item->slug }}">
 													<div class="slide-content" style="background-image: url('{{ $item->thumb === null && !empty($item->thumb) ? $item->imagen : $item->thumb}}'); ">
 														<div class="gradient-black"></div>
@@ -93,7 +93,7 @@
 								</ul><!-- /.slides -->
 							</div><!-- /.slider-clip -->
 						</div><!-- /.slider-games -->
-					</div><!-- /.section-body --> 
+					</div><!-- /.section-body -->
 				</div><!-- /.shell -->
 			</section><!-- /.section-slider -->
 
@@ -138,7 +138,7 @@
 
 						@endif
 
-						
+
 		 			</ul><!-- /.section-filter -->
 		 		</div><!-- /.section-head -->
 
@@ -151,15 +151,15 @@
 				 			@foreach( $promociones as $item )
 
 				 				@if( $count == 1 )
-  
-			 					
+
+
 
 									<div class="col col-1of2 item-{{ $item->id_linea }}">
-										<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
+										<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')">
 											<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 												Conoce más
 											</a>
-										</div><!-- /.box-current-promotions -->	 				
+										</div><!-- /.box-current-promotions -->
 									</div><!-- /.col col-1of2 -->
 
 			 				@endif
@@ -168,11 +168,11 @@
 			 					<div class="col col-1of2">
 									<div class="cols">
 										<div class="col col-1of2 item-{{ $item->id_linea }}">
-											<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
+											<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')">
 												<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 													Conoce más
 												</a>
-											</div><!-- /.box-current-promotions -->	 				
+											</div><!-- /.box-current-promotions -->
 										</div><!-- /.col col-1of2 -->
 
 
@@ -181,13 +181,13 @@
 			 				@if( $count == 3 )
 
 					 						<div class="col col-1of2 item-{{ $item->id_linea }}">
-												<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
+												<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')">
 													<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 														Conoce más
 													</a>
-												</div><!-- /.box-current-promotions -->	 				
+												</div><!-- /.box-current-promotions -->
 											</div><!-- /.col col-1of2 -->
-										</div><!-- /.cols --> 
+										</div><!-- /.cols -->
 									</div><!-- /.col col-1of2 -->
 
 
@@ -200,25 +200,25 @@
 						 				<div class="col col-1of2">
 						 					<div class="cols">
 												<div class="col col-1of2 item-{{ $item->id_linea }}">
-													<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
+													<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')">
 														<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 															Conoce más
 														</a>
-													</div><!-- /.box-current-promotions -->	 				
+													</div><!-- /.box-current-promotions -->
 												</div><!-- /.col col-1of2 -->
 
 			 				@endif
 
 			 				@if( $count == 5 )
-			 				
-						 			<div class="col col-1of2 item-{{ $item->id_linea }}"> 
-											<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
+
+						 			<div class="col col-1of2 item-{{ $item->id_linea }}">
+											<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')">
 												<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 													Conoce más
 												</a>
-											</div><!-- /.box-current-promotions -->	 				
+											</div><!-- /.box-current-promotions -->
 										</div><!-- /.col col-1of2 -->
-									</div><!-- /.cols --> 
+									</div><!-- /.cols -->
 				 				</div><!-- /.col col-1of2 -->
 
 			 				@endif
@@ -226,11 +226,11 @@
 			 				@if( $count == 6 )
 
 								 	<div class="col col-1of2 item-{{ $item->id_linea }}"> <!-- modificar-->
-					 					<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
+					 					<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')">
 											<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">
 												Conoce más
 											</a>
-										</div><!-- /.box-current-promotions -->	 				
+										</div><!-- /.box-current-promotions -->
 					 				</div><!-- /.col col-1of2 -->
 					 			</div><!-- /.row -->
 
@@ -238,9 +238,9 @@
 
 			 				@endif
 
-			 				<?php 
+			 				<?php
 
-			 					$count++; 
+			 					$count++;
 
 			 					if( $count == 6 )
 			 						$count = 1;
@@ -280,9 +280,9 @@
 							<div class="subscribe-body-hidden">
 								<div class="subscribe-inner">
 									<label for="mail" class="hidden">Email</label>
-									
+
 									<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
-									
+
 									<input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
 								</div><!-- /.subscribe-inner -->
 
@@ -291,7 +291,7 @@
 										<li>
 											<!--<div class="checkbox">
 												<input type="checkbox" name="field-notifications" id="field-notifications">
-												
+
 												<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
 											</div> /.checkbox -->
 										</li>
@@ -302,7 +302,7 @@
 					</form>
 				</div><!-- /.subscribe -->
 			</div><!-- /.shell -->
-		</section><!-- /.section-gray --> 
+		</section><!-- /.section-gray -->
 	</div><!-- /.main -->
 
 
