@@ -1665,6 +1665,7 @@ li:first-child {margin: 0;margin-left: 0;}
 	.slider-intro .slide {height: 250px !important;}
 	.slider-intro .slide-content { padding-top: 90px; }
 	.btn-slider--int {width: 100%;}
+	.slider-secondary .slides .filter-secondary {width: 100%;}
 	.slider-intro .slick-dots-wrapper { top: auto; bottom: 20px; }
 	.slider-intro .btn-scroll { top: auto; bottom: 50px; -webkit-transform: scale(0.6); -ms-transform: scale(0.6); transform: scale(0.6); }
 	.slider-intro-promo {/*height: 440px;*/}
@@ -1857,14 +1858,14 @@ li:first-child {margin: 0;margin-left: 0;}
 	.slider-secondary .slide-content {width: 100%;float: none;z-index: 100;position: relative;padding-bottom: 30px;}
 	.slider-secondary .slide-content h1 { font-size: 30px; }
 	.slider-intro-secondary h2 {font-size: 30px;}
-	.slider-secondary .slide-inner { float: none; width: 100%; position: relative; z-index: 60; }
+	.slider-secondary .slide-inner { float: none; width: 100%; position: relative; z-index: 60; display: none;}
 	.slider-secondary .slide-inner p { padding: 20px !important; text-align: center; }
 
 	.slider-secondary .btn-menu { position: absolute; right: -4px; top: 100px; z-index: 100; width: 80px; }
 	.slider-secondary .slick-dots-wrapper { z-index: 200; }
 	.slider-secondary .slick-dots-wrapper .shell { padding: 0; }
 	.slider-secondary .slick-list { /*z-index: 100;*/ }
-	.slider-secondary .filter-secondary { margin: 0 auto !important; float: none; display: inline-block; }
+	.slider-secondary .filter-secondary { margin: 0 auto !important; float: none; display: inline-block; width: auto;}
 	.slider-secondary .slide-content form {
 		position: relative;
 		left: 50%;
