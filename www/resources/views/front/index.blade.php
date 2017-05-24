@@ -208,12 +208,12 @@
 
 
 						<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-							<div class="slide-content ">
+							<div class="slide-content">
 
 									<h1><?php echo html_entity_decode($s->titulo); ?></h1>
 									@if(isset($s->texto_boton))
 										<form action="{{$s->link}}">
-											<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+											<input type="submit" value="{{$s->texto_boton}}" class="btn  btn-red  btn-slider">
 										</form>
 									@endif
 							</div><!-- /.slide-content -->

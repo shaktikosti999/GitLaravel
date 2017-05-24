@@ -47,7 +47,7 @@
 						<li class="slide" style="background-image: url({{ $item->imagen }})">
 							<div class="slide-body">
 								<div class="shell">
-									<div class="slide-content  slide__body--btn">
+									<div class="slide-content ">
 
 										<h1>
 													{{$item->titulo}}
@@ -55,7 +55,7 @@
 
 										@if(isset($item->texto_boton) && $item->texto_boton != "")
 											<form action="{{$item->link}}">
-												<input  class="btn  btn-red  btn-slider"  type="submit"  value="{{$item->texto_boton}}">
+												<input  class="btn  btn-red  btn-slider  btn-slider--int"  type="submit"  value="{{$item->texto_boton}}">
 											</form>
 										@endif
 
