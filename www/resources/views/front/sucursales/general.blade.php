@@ -33,14 +33,13 @@
 							<li class="slide fullscreen" style="background-image: url({{($item->imagen)}});">
 								<div class="slide-content slide-promo">
 									<div class="shell">
-
+										<h1><?php if(isset($item->titulo)){ echo html_entity_decode($item->titulo); } ?></h1>
 										@if(isset($item->texto_boton))
 											<form action="{{$item->link}}">
-												<input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+												<input type="submit" value="{{$item->texto_boton}}" class="btn  btn-red  btn-slider">
 											</form>
 										@endif
 
-										<h1><?php if(isset($item->titulo)){ echo html_entity_decode($item->titulo); } ?></h1>
 
 										<h3>
 											@if( isset( $sucursal_info->nombre ) )

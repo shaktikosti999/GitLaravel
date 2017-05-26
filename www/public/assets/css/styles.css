@@ -1689,7 +1689,7 @@ li:first-child {margin: 0;margin-left: 0;}
 @media (max-width: 767px) {
 	.slider-intro.anchor + .main.anchor { margin-top: 0; }
 	.main .sldr-top {margin-top: 0;}
-	.slider-intro-secondary .slide-content {padding-top: 280px !important; border-bottom: 1px dotted #ebebeb; padding-bottom: 20px;}
+	.slider-intro-secondary .slide-content {padding-top: 250px !important; border-bottom: 1px dotted #ebebeb; padding-bottom: 20px;}
 	.slider-intro-secondary h2 {color: #333 !important; text-shadow: inherit; text-align: left;}
 	.slider-intro-secondary .slide-content .filter-secondary {background: rgb(237, 28, 36); border-radius: 10px; padding: 5px 0; float: left;}
 }
@@ -1712,7 +1712,7 @@ li:first-child {margin: 0;margin-left: 0;}
 .slider-intro-promo .slide-content {padding-top: 440px;}
 /* Tablet Portrait */
 @media (max-width: 1023px) {
-	.slider-intro-secondary .slide-content { padding-top: 170px; padding-bottom: 30px; }
+	.slider-intro-secondary .slide-content { padding-top: 170px; padding-bottom: 30px; border: 0;}
 }
 @media(max-width: 480px){
 	.slider-intro-secondary h2 { font-size: 40px; }
@@ -2668,6 +2668,8 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .sport-calendar .slick-arrow:hover { opacity: .7; }
 .sport-calendar .slick-next { left: auto; right: -74px; -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg); transform: rotate(180deg); }
 
+.slide-promo form {width: 27%; padding: 0 0 20px 0; border-bottom: 1px solid rgba(152, 152, 152, .5);}
+
 /* ------------------------------------------------------------ *\
 	counter
 \* ------------------------------------------------------------ */
@@ -2978,6 +2980,15 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 		color:#333;
 		text-shadow:inherit;
 	}
+	.slide-promo .title__slider {
+	    text-shadow: inherit;
+		text-align: left;
+		font-size: 30px;
+		margin-bottom: 5px;
+	}
+	.slide-promo form {
+		border: 0;
+	}
 	.slider-secondary .slider-label {
 		bottom: 109px;
 	}
@@ -3066,6 +3077,9 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	}
 	.article-head {
     padding-top: 93px;
+	}
+	.slide-promo .title__slider {
+		color: #333;
 	}
 
 }

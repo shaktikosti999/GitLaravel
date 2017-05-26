@@ -204,7 +204,7 @@
 			infinite: false,
 			touchMove: false,
 			swipeToSlide: false,
-			autoplay: false,
+			autoplay: true,
 			infinite: true,
   			autoplaySpeed: 3000
 		});
