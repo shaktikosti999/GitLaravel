@@ -238,8 +238,21 @@
 								</p>
 							</div><!-- /.section-entry -->
 
+							<div class="cols">
+								<div class="col col-1of1">
+									<article class="article-jackpot">
+										<div class="article-content">
 
-							<div class="cols" id="seeMoreDataPagados" >
+											<div class="fake-div">
+												<div id="counter">
+													<div class="counter-value">${{number_format($item->cantidad)}} <em>MN</em></div>
+												</div>
+											</div>
+										</div><!-- /.article-content -->
+									</article><!-- /.article-jackpot -->
+								</div><!-- /.col col-1of1 -->
+							</div><!-- /.cols -->
+						<!--	<div class="cols" id="seeMoreDataPagados" >
 								@foreach($pagados as $pagado)
 								<div class="col col-1of2">
 									<article class="article-jackpot">
@@ -252,17 +265,17 @@
 												<div id="counter">
 												    <div class="counter-value"><p>${{number_format($pagado->cantidad)}} <em>MN</em></p></div>
 												    <!--<div class="counter-value" data-count="400">$100</div>
-												    <div class="counter-value" data-count="1500">$500</div>-->
+												    <div class="counter-value" data-count="1500">$500</div>
 												</div>
 												<div class="fake-div">
 											<!--<p>
 												${{$pagado->cantidad}}
-											</p>-->
+											</p>
 												</div>
 											</div>
-										</div><!-- /.article-content -->
-									</article><!-- /.article-jackpot -->
-								</div><!-- /.col col-1of2 -->
+										</div><!-- /.article-content
+									</article><!-- /.article-jackpot
+								</div><!-- /.col col-1of2
 								@endforeach
 							</div><!-- /.cols -->
 							<div class="btn-more">
