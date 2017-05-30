@@ -8,7 +8,7 @@
 		    $(function(){
 		      //https://notifyjs.com/
 		      $.notify(
-		        "{{$error}}", 
+		        "{{$error}}",
 		        {
 		          globalPosition:"top center",
 		          className:"error",
@@ -23,7 +23,7 @@
 		    <script>
 		      $(function(){
 		        $.notify(
-		          "{{session('success')}}", 
+		          "{{session('success')}}",
 		          {
 		            globalPosition:"top center",
 		            className:"success",
@@ -108,15 +108,15 @@
 			<div class="intro-content">
 				<div class="shell">
 					<h1 class="intro-title">Contacto</h1>
-					<p>Nulla sem justo, maximus in mattis ac, sodales a orci. Vivamus aliquet dolor ut sem consectetur porta. Aliquam vel elementum enim, nec feugiat sem. Mauris a consectetur nisl. Pellentesque tellus ex, maximus sit amet cursus vel, elementum ut mi. Etiam sed risus turpis. Etiam vitae dui dolor. Integer sed mauris ligula. </p>	
-					
+					<p>Nulla sem justo, maximus in mattis ac, sodales a orci. Vivamus aliquet dolor ut sem consectetur porta. Aliquam vel elementum enim, nec feugiat sem. Mauris a consectetur nisl. Pellentesque tellus ex, maximus sit amet cursus vel, elementum ut mi. Etiam sed risus turpis. Etiam vitae dui dolor. Integer sed mauris ligula. </p>
+
 					{{isset($sucursal) ? '<h2>Sucursal Tecamachalco</h2>' :''}}
-					
+
 					@if( isset( $sucursales ) && count( $sucursales ) && 1==2)
 
 					<div class="intro-content-actions">
 						<div class="cols">
-							<div class="col col-1of2"> 
+							<div class="col col-1of2">
 								<div class="filter-secondary">
 									<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
 									<select name="field-filter-secondary1" id="field-filter-secondary1" class="select">
@@ -128,7 +128,7 @@
 									</select>
 								</div><!-- /.filter-secondary -->
 							</div><!-- /.col col-1of2 -->
-							
+
 							<div class="col col-1of2">
 								@include('front.includes.breadcrumbs')
 							</div><!-- /.col col-1of2 -->
@@ -146,14 +146,14 @@
 					<div class="section-head">
 						<h2>Tu opinión es muy importante </h2>
 
-						<h4 style="color:rgb(0,0,0)"> Escríbenos a: programa.lealtad@caliente.com.mx</h4> 
-						
+						<h4 style="color:rgb(0,0,0)"> Escríbenos a: programa.lealtad@caliente.com.mx</h4>
+
 
 						<h4 style="color:rgb(0,0,0)">Llámanos sin costo al: 01 800 831 1310</h4>
-						
+
 
 						<h4 style="color:rgb(0,0,0)">o si lo prefieres envíanos tu mensaje:</h4>
-						
+
 						<!-- <p>Donut icing oat cake icing macaroon. Fruitcake apple pie sweet roll lemon drops pie. Cheesecake powder marshmallow cupcake marzipan jelly. Powder cake macaroon gingerbread tart. Bear claw lemon drops pastry gingerbread wafer dessert cheesecake carrot cake. Biscuit apple pie carrot cake tiramisu.</p> -->
 					</div><!-- /.section-head -->
 
@@ -184,26 +184,26 @@
 											<input type="text" class="field" name="field-mat" id="field-mat" value="" placeholder="*Apellido Materno" required>
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
-									
+
 									<div class="form-row">
 										<label for="field-email" class="form-label" hidden>*Email</label>
-										
+
 										<div class="form-controls">
 											<input type="email" class="field" name="field-email" id="field-email" value="" placeholder="*Email" >
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
-									
+
 									<div class="form-row">
 										<label for="field-phone" class="form-label" hidden>Teléfono a 10 dígitos</label>
-										
+
 										<div class="form-controls">
 											<input type="text" class="field" name="field-phone" id="field-phone" value="" placeholder="Teléfono a 10 dígitos">
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
-									
+
 									<div class="form-row">
 										<label for="field-card" class="form-label" hidden>No. de tarjeta Caliente Club</label>
-										
+
 										<div class="form-controls">
 											<input type="text" class="field" name="field-card" id="field-card" value="" placeholder="No. de tarjeta Caliente Club">
 										</div><!-- /.form-controls -->
@@ -217,31 +217,31 @@
 												<li>
 													<div class="checkbox-primary">
 														<input type="radio" name="field-tipo" value="1" id="field-tipo1">
-														
+
 														<label class="form-label" for="field-tipo1">Duda</label>
 													</div><!-- /.checkbox -->
 												</li>
-												
+
 												<li>
 													<div class="checkbox-primary">
 														<input type="radio" name="field-tipo" value="2" id="field-tipo2">
-														
+
 														<label class="form-label" for="field-tipo2">Sugerencia</label>
 													</div><!-- /.checkbox -->
 												</li>
-												
+
 												<li>
 													<div class="checkbox-primary">
 														<input type="radio" name="field-tipo" value="3" id="field-tipo3">
-														
+
 														<label class="form-label" for="field-tipo3">Felicitación</label>
 													</div><!-- /.checkbox -->
 												</li>
-												
+
 												<li>
 													<div class="checkbox-primary">
 														<input type="radio" name="field-tipo" value="4" id="field-tipo4" checked>
-														
+
 														<label class="form-label" for="field-tipo4">Queja</label>
 													</div><!-- /.checkbox -->
 												</li>
@@ -251,7 +251,7 @@
 
 									<div class="form-row select-wrapper">
 										<label for="field-sucursal" class="form-label" hidden>Casino al que hace referencia</label>
-										
+
 										@if( isset($sucursales) && count($sucursales) )
 
 										<div class="form-controls">
@@ -272,20 +272,20 @@
 
 									<div class="form-row">
 										<label for="field-message" class="form-label" hidden>Mensaje</label>
-										
+
 										<div class="form-controls">
 											<textarea class="textarea" name="field-message" id="field-message" placeholder="* Mensaje" required></textarea>
 										</div><!-- /.form-controls -->
 									</div><!-- /.form-row -->
 								</div><!-- /.form-body -->
-								
+
 								<div class="form-actions">
 									<?php /*
 									<ul class="list-checkboxes">
 										<li>
 											<div class="checkbox-primary checkbox-primary-small-right">
 												<input type="checkbox" name="field-promo" id="field-promo" value="1">
-												
+
 												<label class="form-label" for="field-promo">Quiero recibir promociones exclusivas de Caliente</label>
 											</div><!-- /.checkbox -->
 										</li>
@@ -317,9 +317,9 @@
 								<div class="subscribe-body-hidden">
 									<div class="subscribe-inner">
 										<label for="mail" class="hidden">Email</label>
-										
+
 										<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
-										
+
 										<input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
 									</div><!-- /.subscribe-inner -->
 
@@ -328,7 +328,7 @@
 											<li>
 												<div class="checkbox">
 													<input type="checkbox" name="field-notifications" id="field-notifications">
-													
+
 													<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
 												</div><!-- /.checkbox -->
 											</li>
