@@ -35,13 +35,24 @@ class promocion_model{
                         ->join("promocion_sucursal as ps", "p.id_promocion", "=", "ps.id_promocion");
             $data = $data->where( "ps.id_sucursal", "=", $parameters["id_sucursal"] );
 
+        } else {
+            $data->where( "isParentShow", "=", 1);
         }
+
 
 
         $data = $data->groupBy('branch_group_id')
                         ->get();
+
+        $getdata = [];
+        foreach($data as $value){
+            if($value->button_text == null || $value->is_active_btn==0 ){
+                $value->is_active_btn = 0;
+            }
+            array_push($getdata,$value);
+        }
 //        ->tosql();
-//        print_r($data);dd();
+//        print_r($getdata);dd();
 
         return $data;
 

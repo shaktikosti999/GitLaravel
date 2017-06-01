@@ -17,6 +17,8 @@ class slider_model{
         if( isset( $arg['id_sucursal']) && ! empty($arg['id_sucursal']) ){
              $getdata->join("slider_sucursal as ss", "s.id", "=", "ss.id_slider")
                         ->where( "ss.id_sucursal", "=", $arg['id_sucursal']);
+        } else {
+            $getdata->where( "isParentShow", "=", 1);
         }
 
         $getdata = $getdata->groupby('branch_group_id')
@@ -43,9 +45,10 @@ class slider_model{
     	$data = \DB::table('slider as s')
             ->where('s.estatus','=',1)
             ->where('s.eliminado','=',0)
-            ->where('s.tipo',0)
+            ->where('s.tipo',11)
             ->orderByRaw('RAND()')
             ->get();
+
         return $data;
     }
 

@@ -10,7 +10,6 @@
 	option_data = function(id_categoria, slug_sucursal, ids_maquinas = null, linea = null){
 
 		ids_maquinas != null ? limit = 2 : limit = 4;
-
 		$.ajax({
 			type:'post',
 			url:'/filtro-maquinas',
@@ -100,11 +99,16 @@
              url:'/getAllDataAcumulados/null/'+acumuladoslimit,
 			 dataType:'json',
              success: function(data){
-
+				 dataLayer.push ({
+					 'event': 'vermas',                        //Dato estático
+					 'section': 'Accumulated by paid'            //Dato dinámico
+				 });
 				 console.log(data['acumulado']);
                    $.each(data['acumulado'], function(k , v) {
+					   var url = "'" + data['acumulado'][k].url +"'";
+					   var target = "'" + data['acumulado'][k].is_new_tab  + "'" ;
                   		var html='';
-                 		html+='<div class="col col-1of2">';
+					   html+='<div class="col col-1of2" style="cursor:pointer" onClick="redirectPage('+url+','+target+')">';
                           html+='<article class="article-jackpot">';
                           	html+='<div class="article-content">';
                           		html+='<h6>';
@@ -113,7 +117,7 @@
 
                           		html+='<div class="fake-div">';
                           				html+='<div id="counter">';
-                          					html+='<div class="counter-value" ><p>$'+data['acumulado'][k].cantidad.toLocaleString('ja-JP')+'<em> MN</em></p></div>';
+                          					html+='<div class="counter-value" ><p>$'+Number(data['acumulado'][k].cantidad).toLocaleString('en-US')+'<em> MN</em></p></div>';
                       			html+='</div>';
 
                       			html+='<div class="fake-div">';
@@ -152,8 +156,10 @@
 
                  console.log(data['pagados']);
                  $.each(data['pagados'], function(k , v) {
-                     var html='';
-                     html+='<div class="col col-1of2">';
+					 var url = "'" + data['pagados'][k].url +"'";
+					 var target = "'" + data['pagados'][k].is_new_tab  + "'" ;
+					 var html='';
+					 html+='<div class="col col-1of2" style="cursor:pointer" onClick="redirectPage('+url+','+target+')">';
                      html+='<article class="article-jackpot">';
                      html+='<div class="article-content">';
                      html+='<h6>';
@@ -162,7 +168,7 @@
 
                      html+='<div class="fake-div">';
                      html+='<div id="counter">';
-                     html+='<div class="counter-value" ><p>$'+data['pagados'][k].cantidad.toLocaleString('ja-JP')+'<em> MN</em></p></div>';
+                     html+='<div class="counter-value" ><p>$'+Number(data['pagados'][k].cantidad).toLocaleString('ja-JP')+'<em> MN</em></p></div>';
                      html+='</div>';
 
                      html+='<div class="fake-div">';

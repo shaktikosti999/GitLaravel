@@ -23,8 +23,6 @@
 				<div class="slider-clip">
 					<ul class="slides">
 						<?php
-						/*echo "<pre>";
-						print_r($promociones);*/
 						?>
 
 						@foreach($promociones as $item)
@@ -51,21 +49,8 @@
 											<button>
 												<span class="" style="position: absolute;bottom: 1em;left: 0em;text-align: center;width: 100%;" >
 													<center>
-														<form action="{{$item->url}}">
-															<input type="submit" value="{!!$item->resumen!!}" style="width: 9em;padding: 1em;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
-														</form>
-													</center>
-												</span>
-											</button>
-										@endif
-
-								@else
-										@if($item->is_active_btn==1)
-											<button>
-												<span class="" style="position: absolute;bottom: 1em;left: 0em;text-align: center;width: 100%;" >
-													<center>
-														<form action="{{$item->url}}">
-															<input type="submit" value="{!!$item->resumen!!}" style="width: 9em;padding: 1em;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+														<form action="{{$item->url}}" target="{{$item->is_new_tab}}">
+															<input type="submit" value="{!!$item->button_text!!}" style="width: 9em;padding: 1em;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
 														</form>
 													</center>
 												</span>

@@ -44,7 +44,7 @@ class sucursal_model{
         $data = $data->orderBy('s.nombre')
         ->get();
 //->tosql();
-        // dd($data);
+//         dd($data);
 
         //-----> Obtenemos la galeria de la sucursal
         //self::get_branch_gallery( $data );

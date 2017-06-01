@@ -15,40 +15,65 @@
 					<img src="css/images/btn-menu@2x.png" alt="">
 				</a> -->
 
-				<div class="slider-clip">
-					@if( isset( $slider ) && count( $slider ) > 1 )
-						<ul class="slides">
-					@endif
-						@if( isset( $slider ) && count( $slider ) )
-							<div class="slider-intro anchor">
-								<div class="slider-clip">
-									<ul class="slides">
-										@foreach( $slider as $s )
-											<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-												<div class="slide-content ">
-													<!--<div class="shell"-->
-													@if(isset($s->texto_boton))
-														<form action="{{$s->link}}">
-															<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
-														</form>
-													@endif
-
-													<h1><?php echo html_entity_decode($s->titulo); ?></h1>
-													{{--<h1>{{ $s->titulo }}</h1>--}}
-													<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
-
-													<!--</div> /.shell -->
-												</div><!-- /.slide-content -->
-											</li><!-- /.slide -->
-										@endforeach
-									</ul><!-- /.slides -->
-								</div><!-- /.slider-clip -->
-							</div><!-- /.slider-intro -->
+			<div class="slider-clip">
+				@if( isset( $slider ) && count( $slider ) > 1 )
+					<ul class="slides">
 						@endif
-					@if( isset( $slider ) && count( $slider ) > 1 )
-							</ul>
-					@endif
-				</div><!-- /.slider-clip -->
+						@if( isset( $slider ) && count( $slider ) )
+
+							@foreach( $slider as $item )
+								@if($item->is_show_img_video)
+									<li class="slide fullscreen">
+										<embed  width="100%" height="100%" src="<?php echo $item->video_url; ?>">
+									</li>
+								@else
+								<li class="slide" style="background-image: url({{ $item->imagen }})">
+									<div class="slide-body">
+										<div class="shell">
+											<div class="slide-content">
+												@if(isset($item->texto_boton) && $item->texto_boton != "")
+													<form action="{{$item->link}}" target="{{$item->is_new_tab}}">
+														<input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+													</form>
+												@endif
+												<h1>
+													{{$item->titulo}}
+												</h1>
+
+												@if( isset( $sucursales ) && count( $sucursales ) )
+
+													<div class="filter-secondary">
+														<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+														<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
+
+															<option value="-1">Selecciona tu casino</option>
+
+															@foreach( $sucursales as $item )
+
+																<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
+
+															@endforeach
+
+														</select>
+													</div><!-- /.filter-secondary -->
+
+												@endif
+
+
+											</div><!-- /.slide-content -->
+
+											@include('front.includes.breadcrumbs')
+										</div><!-- /.shell -->
+									</div><!-- /.slide-body -->
+								</li><!-- /.slide -->
+@endif
+							@endforeach
+
+						@endif
+						@if( isset( $slider ) && count( $slider ) > 1 )
+					</ul><!-- /.slides -->
+				@endif
+			</div><!-- /.slider-clip -->
 
 				<!--<div class="slider-label red-label large">
 					<i class="ico-slot"></i>

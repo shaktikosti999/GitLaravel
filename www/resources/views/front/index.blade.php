@@ -198,30 +198,28 @@
 				<i class="ico-mouse"></i>
 			</a> -->
 			<div class="slider-clip">
-
 				@if( isset( $slider ) && count( $slider ) > 1 )
 					<ul class="slides">
 				@endif
-
 					@foreach( $slider as $s )
-
-
-
-						<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-							<div class="slide-content">
-
-									<h1><?php echo html_entity_decode($s->titulo); ?></h1>
-									@if(isset($s->texto_boton))
-										<form action="{{$s->link}}">
-											<input type="submit" value="{{$s->texto_boton}}" class="btn  btn-red  btn-slider">
-										</form>
-									@endif
-							</div><!-- /.slide-content -->
-						</li><!-- /.slide -->
-
+						@if($s->is_show_img_video)
+							<li class="slide fullscreen">
+								{{--<embed  width="100%" height="100%" src="https://www.youtube.com/embed/E21unYOt2u8">--}}
+								<embed  width="100%" height="100%" src="<?php echo $s->video_url; ?>">
+							</li>
+						@else
+							<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
+								<div class="slide-content ">
+										<h1><?php echo html_entity_decode($s->titulo); ?></h1>
+										@if(isset($s->texto_boton))
+											<form action="{{$s->link}}" target="{{$s->is_new_tab}}">
+												<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+											</form>
+										@endif
+								</div><!-- /.slide-content -->
+							</li><!-- /.slide -->
+						@endif
 					@endforeach
-
-
 						@if( isset( $slider ) && count( $slider ) > 1 )
 					</ul><!-- /.slides -->
 				@endif
@@ -286,13 +284,12 @@
 															</span>
 														@endif
 
-
 														@if($p->is_active_btn==1)
 															<button>
 																<span class="" style="position: absolute;bottom: 1em;left: 0em;text-align: center;width: 100%;" >
 																	<center>
-																		<form action="{{$p->url}}">
-																			<input type="submit" value="{!!$p->resumen!!}" >
+																		<form action="{{$p->url}}" target="{{$p->is_new_tab}}">
+																			<input type="submit" value="{!!$p->button_text!!}" style="width: 9em;padding: 1em;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
 																		</form>
 																	</center>
 																</span>
@@ -476,9 +473,26 @@
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->
 						</div><!-- /.shell -->
+						<script>
 
+							function Directions(url, data){
+								dataLayer.push ({
+									'event': 'llegaraqui',                 //Dato estático
+									'casino': data	     //Dato dinámico
+								});
+								window.open(url);
+							//	window.location.href = url;
+							}
+
+						</script>
 						<div class="section-actions">
-							<a href="http://www.google.com/maps/place/{{ $rand_sucursal->latitud . "," . $rand_sucursal->longitud }}" target="_blank" class="btn btn-red btn-red-small">
+
+							<?php
+								$directionUrl = "http://www.google.com/maps/place/".$rand_sucursal->latitud . "," . $rand_sucursal->longitud;
+							?>
+
+								<a target="_blank" class="btn btn-red btn-red-small"  href="javascript:void(0);" onclick="Directions('<?php echo $directionUrl; ?>','<?php echo $rand_sucursal->nombre; ?>')">
+							{{--<a href="http://www.google.com/maps/place/{{ $rand_sucursal->latitud . "," . $rand_sucursal->longitud }}" target="_blank" class="btn btn-red btn-red-small">--}}
 								<i class="ico-human"></i>
 
 								Cómo llegar aquí

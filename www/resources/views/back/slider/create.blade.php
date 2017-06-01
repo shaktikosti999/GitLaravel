@@ -62,10 +62,10 @@
 								<ul class="list">
 									@foreach( $juegos as $indexKey => $item )
 										<li>
-											<a><input type="checkbox" name="juego[]" value="{{$item->id}}"  ><span>{{$item->nombre}}</span></a>
+											<a><input type="checkbox" name="juego[]" value="{{$item->id}}"  style="display:{{$item->id==10 || $item->id==13?'none':''}}" ><span>{{$item->nombre}}</span></a>
 											@foreach( $sucursales[$indexKey] as $item1 )
 												<ul>
-													<li class="collapsed"><label><input type="checkbox" name="juegoSub{{$item->id}}[]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
+													<li class="collapsed"><label><input type="checkbox" name="juegoSub[{{$item->id}}][]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
 												</ul>
 											@endforeach
 										</li>
@@ -104,14 +104,95 @@
 			        	</div>
 			      	</div>
 -->
-			      	<div class="row clearfix">
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" >
+								<label><input type="checkbox" name="is_show_title" ><span>Show Title to mark check box</span></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" aria-required="true">
+								<label for="subtitulo">Subtítulo</label>
+								<input type="text" id="subtitulo" class="form-control" name="subtitulo"  aria-required="true" aria-invalid="true">
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" aria-required="true">
+								<label for="texto">Descripción</label>
+								<textarea id="texto" class="form-control" name="texto" aria-required="true" aria-invalid="true"></textarea>
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" >
+								<label><input type="checkbox" name="is_btn_active" ><span>BOTÓN DE URL EXTERNO ACTIVO</span></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" aria-required="true">
+								<label for="texto_boton">Texto del botón</label>
+								<input type="text" id="texto_boton" class="form-control " name="texto_boton"  aria-required="true" aria-invalid="true">
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" aria-required="true">
+								<label for="link">Link</label>
+								<label><input type="text" id="link" class="form-control" name="link"  aria-required="true" aria-invalid="true"></label>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" >
+								<label><input type="checkbox" name="is_new_tab" ><span> URL Open New Tab</span></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
 			            		<label for="imagen">Imagen</label>
-			            		<input type="file" id="imagen" class="form-control required" name="imagen" required="required" aria-required="true" aria-invalid="true">
+			            		<input type="file" id="imagen" class="form-control" name="imagen" aria-required="true" aria-invalid="true">
 			          		</div>
 			        	</div>
 			      	</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" aria-required="true">
+								<label for="link">Video URL</label>
+								<input type="text" id="video_url" class="form-control" name="video_url"  aria-invalid="true">
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" aria-required="true">
+								{{--<label for="showImage">What should be show</label>--}}
+								<label><input type="radio" id="showImageVideo" name="showImageVideo" value="showImage" checked>Show Image as a Slider</label>
+								<label><input type="radio" id="showImageVideo" name="showImageVideo" value="showVideo">Show Video as a Slider</label>
+							</div>
+						</div>
+					</div>
 
 			      	<div class="clearfix"></div>
 			      	<input class="btn btn-primary" type="submit" value="Agregar Slider">

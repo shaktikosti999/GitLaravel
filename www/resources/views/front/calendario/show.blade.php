@@ -19,18 +19,24 @@
 									<ul class="slides">
 										@endif
 									@foreach( $slider as $s )
-										<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-											<div class="slide-content ">
-												<!--<div class="shell"-->
-												@if(isset($s->texto_boton))
-													<form action="{{$s->link}}">
-														<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
-													</form>
-												@endif
-												<h1><?php echo html_entity_decode($s->titulo); ?></h1>
+										@if($s->is_show_img_video)
+													<li class="slide fullscreen">
+														<embed  width="100%" height="100%" src="<?php echo $s->video_url; ?>">
+													</li>
+										@else
+											<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
+												<div class="slide-content ">
+													<!--<div class="shell"-->
+													@if(isset($s->texto_boton))
+														<form action="{{$s->link}}" target="{{$s->is_new_tab}}">
+															<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+														</form>
+													@endif
+													<h1><?php echo html_entity_decode($s->titulo); ?></h1>
 
-											</div><!-- /.slide-content -->
-										</li><!-- /.slide -->
+												</div><!-- /.slide-content -->
+											</li><!-- /.slide -->
+										@endif
 									@endforeach
 										@if( isset( $slider ) && count( $slider ) > 1 )
 											</ul>

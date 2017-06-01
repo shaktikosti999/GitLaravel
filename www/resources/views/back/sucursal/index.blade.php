@@ -254,6 +254,7 @@
 											<option value="3">Juegos de Mesa Por Pagar</option>
 										</select>
 									</div>
+
 									<div class="form-group col-sm-6">
 										<label for="pay_titulo">Título</label>
 										<input type="text" name="pay_titulo" id="pay_titulo" class="form-control" required>
@@ -262,6 +263,18 @@
 										<label for="pay_cantidad">Cantidad</label>
 										<input type="number" name="pay_cantidad" id="pay_cantidad" class="form-control" required>
 									</div>
+
+									<div class="form-group col-sm-6">
+										<label for="url">Añadir URL</label>
+										<input type="text" name="url" id="url" class="form-control">
+									</div>
+									<div class="form-group col-sm-6">
+										<label for="pay_titulo">&nbsp;</label>
+										<div class="form-group form-group-default" >
+											<label><input type="checkbox" name="is_new_tab" ><span> URL Open New Tab</span></label>
+										</div>
+									</div>
+
 									<input type="submit" value="Guardar" class="btn btn-success">
 								</form>
 							</div>

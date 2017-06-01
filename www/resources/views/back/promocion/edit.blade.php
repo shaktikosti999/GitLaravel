@@ -91,10 +91,10 @@
 										@foreach( $juegos as $indexKey => $item )
 											@if($item->id !=9)
 												<li>
-													<a><input type="checkbox" name="juego[]" value="{{$item->id}}" <?php if(in_array($item->id,$linea)){ echo 'checked'; } ?> ><span>{{$item->nombre}}</span></a>
+													<a><input type="checkbox" name="juego[]" value="{{$item->id}}" style="display:{{$item->id==10 || $item->id==13?'none':''}}" <?php if(in_array($item->id,$linea)){ echo 'checked'; } ?> ><span>{{$item->nombre}}</span></a>
 													@foreach( $sucursales[$indexKey] as $item1 )
 														<ul>
-															<li class="collapsed"><label><input type="checkbox" <?php if(isset($selectedSucursales[$item->id]) && (in_array($item1->id_sucursal,$selectedSucursales[$item->id]))){ echo 'checked'; } ?> name="juegoSub{{$item->id}}[]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
+															<li class="collapsed"><label><input type="checkbox" <?php if(isset($selectedSucursales[$item->id]) && (in_array($item1->id_sucursal,$selectedSucursales[$item->id]))){ echo 'checked'; } ?> name="juegoSub[{{$item->id}}][]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
 														</ul>
 													@endforeach
 												</li>
@@ -162,9 +162,26 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group form-group-default">
+								<label for="button_text">botón de Texto</label>
+								<input type="text" id="button_text" class="form-control" name="button_text" value="{{$promocion->button_text}}" aria-required="true" aria-invalid="true">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
 								<label for="link">URL Externa</label>
 								<textarea id="link" class="form-control" name="link" aria-invalid="true">{{$promocion->link}}</textarea>
 								{{--<input type="text" id="link" class="form-control " name="link" aria-required="true" aria-invalid="true">--}}
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" >
+								<label><input type="checkbox" name="is_new_tab"  {{$promocion->is_new_tab ? 'checked' : ''}} ><span> URL Open New Tab</span></label>
 							</div>
 						</div>
 					</div>

@@ -140,8 +140,11 @@
 
                     },
                     success: function(response){
+						dataLayer.push ({
+							'event': 'newsletter'                                //Dato estático
+						});
 
-                    			console.log( response );
+						console.log( response );
 
                     			var $resp = $.parseJSON( response );
 

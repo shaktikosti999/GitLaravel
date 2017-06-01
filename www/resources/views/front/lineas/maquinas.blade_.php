@@ -2,6 +2,15 @@
 
 @section('js')
 <script src="js/front/maquinas.js"></script>
+<script>
+	function redirectPage(url,target) {
+		if(target == "_blank"){
+			window.open(url);
+		} else {
+			window.location.href = url;
+		}
+	}
+</script>
 @stop
 
 @section('contenido')
@@ -26,38 +35,36 @@
 		</ul>
 	</div>
 
-	<div class="slider-secondary">
-		<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
-                    <img src="css/images/btn-menu@2x.png" alt="">
-                </a>
-         -->
-		<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
-			<img src="css/images/btn-menu@2x.png" alt="">
-		</a>
- -->
+	@if( isset( $slider ) && count( $slider ) )
 
+	<div class=" slider-intro anchor">
+		<!-- <a href="#" class="btn-scroll">
+            <i class="ico-mouse"></i>
+        </a> -->
 		<div class="slider-clip">
 			@if( isset( $slider ) && count( $slider ) > 1 )
 			<ul class="slides">
 				@endif
-				@if( isset( $slider ) && count( $slider ) )
+				@foreach( $slider as $s )
+				@if($s->is_show_img_video)
+				<li class="slide fullscreen">
+					{{--<embed  width="100%" height="100%" src="https://www.youtube.com/embed/E21unYOt2u8">--}}
+					<embed  width="100%" height="100%" src="{{$s->video_url}}">
+				</li>
 
-				@foreach( $slider as $item )
-
-				<li class="slide" style="background-image: url({{ $item->imagen }})">
+				@else
+				<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
 					<div class="slide-body">
 						<div class="shell">
-							<div class="slide-content">
-
-								@if(isset($item->texto_boton))
-								<form action="{{$item->link}}">
-									<input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+							<div class="slide-content"  >
+								@if(isset($s->texto_boton) && $s->texto_boton != "")
+								<form action="{{$s->link}}" target="{{$s->is_new_tab}}" >
+									<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
 								</form>
 								@endif
-
-								<h1>
-									{{$item->titulo}}
-								</h1>
+								<h2>
+									{{$s->titulo}}
+								</h2>
 
 								@if( isset( $sucursales ) && count( $sucursales ) )
 
@@ -85,19 +92,15 @@
 						</div><!-- /.shell -->
 					</div><!-- /.slide-body -->
 				</li><!-- /.slide -->
-
-				@endforeach
-
 				@endif
+				@endforeach
 				@if( isset( $slider ) && count( $slider ) > 1 )
 			</ul><!-- /.slides -->
 			@endif
 		</div><!-- /.slider-clip -->
+	</div><!-- /.slider-intro -->
 
-		<div class="slider-label red-label large">
-			<i class="ico-slot"></i>
-		</div><!-- /.slider-label -->
-	</div><!-- /.slider-secondary -->
+	@endif
 
 	<div class="main">
 
@@ -184,7 +187,8 @@
 					<div class="cols" id="seeMoreDataAcumulados">
 
 						@foreach ($acumulado as $item)
-						<div class="col col-1of2">
+
+						<div class="col col-1of2" onClick="redirectPage('{{$item->url}}','{{$item->is_new_tab}}')" style="cursor: pointer;">
 							<article class="article-jackpot">
 								<div class="article-content">
 									<h6>
@@ -199,15 +203,13 @@
 										</div>
 										<div class="fake-div">
 											<!--<p>
-												${{$item->cantidad}}
-											</p>-->
+                                    ${{$item->cantidad}}
+                                                    </p>-->
 										</div>
 									</div>
 								</div><!-- /.article-content -->
 							</article><!-- /.article-jackpot -->
 						</div><!-- /.col col-1of2 -->
-
-
 						@endforeach
 
 					</div><!-- /.cols -->
@@ -219,61 +221,117 @@
 						</a>
 					</div>
 
-					@if( isset($pagados) && count($pagados) )
+					{{--@if( isset($pagados) && count($pagados) )--}}
+					{{--<div class="section-entry">--}}
+						{{--<p>--}}
+							{{--<span>--}}
+										{{--Pagados--}}
+									{{--</span>--}}
+
+							{{--<!--<a href="{{url('/pagados')}}">--}}
+										{{--Conoce los pagados--}}
+									{{--</a>-->--}}
+
+							{{--<a class="btn btn-red btn-small" href="{{url('/pagados')}}">--}}
+								{{--Miles de pesos repartidos--}}
+								{{--</a>--}}
+
+							{{----}}
+							{{--</p>--}}
+						{{--</div><!-- /.section-entry -->--}}
+
+
+					{{--<div class="cols" id="seeMoreDataPagados" >--}}
+						{{--@foreach($pagados as $pagado)--}}
+
+						{{--<div class="col col-1of2" onClick="redirectPage('{{$item->url}}','{{$item->is_new_tab}}')" style="cursor: pointer;">--}}
+							{{--<article class="article-jackpot">--}}
+								{{--<div class="article-content">--}}
+									{{--<h6>--}}
+										{{--{{ucfirst($pagado->titulo)}}--}}
+										{{--</h6>--}}
+
+									{{--<div class="fake-div">--}}
+										{{--<div id="counter">--}}
+											{{--<div class="counter-value"><p>${{number_format($pagado->cantidad)}} <em>MN</em></p></div>--}}
+											{{--<!--<div class="counter-value" data-count="400">$100</div>--}}
+                                                            {{--<div class="counter-value" data-count="1500">$500</div>-->--}}
+											{{--</div>--}}
+										{{--<div class="fake-div">--}}
+											{{--<!--<p>--}}
+												{{--${{$pagado->cantidad}}--}}
+																	{{--</p>-->--}}
+											{{--</div>--}}
+										{{--</div>--}}
+									{{--</div><!-- /.article-content -->--}}
+								{{--</article><!-- /.article-jackpot -->--}}
+							{{--</div><!-- /.col col-1of2 -->--}}
+
+						{{--@endforeach--}}
+						{{--</div><!-- /.cols -->--}}
+					{{--<div class="btn-more">--}}
+						{{--<a href="#" class="btn btn-border view_more" id="seeMorePagados" >--}}
+							{{--Ver más--}}
+							{{--</a>--}}
+						{{--</div>--}}
+					{{--@endif--}}
+				</div><!-- /.section-content -->
+			</div><!-- /.shell -->
+		</section><!-- /.section-jackpots -->
+
+
+		@if( isset($configuracion) && count($configuracion) )
+		<section class="section-jackpots secondary">
+			<div class="shell">
+				<header class="section-head">
+					{{--<div class="stick--point" id="jackpot"></div>--}}
+					<h2>
+						{{--<small>{{$item->titulo}}</small>--}}
+						Configuración
+					</h2>
+
+					<a class="btn btn-red btn-small" href="{{url('/pagados')}}" style="float: right;height: 2.5em;line-height: 2.5em;margin-top: -1em;">
+						Miles de pesos repartidos
+					</a>
+				</header><!-- /.section-head -->
+
+				<div class="section-content">
 					<div class="section-entry">
 						<p>
-									<span>
-										Pagados
-									</span>
+                                            <span>
+                                                Por pagar
+                                            </span>
 
-							<!--<a href="{{url('/pagados')}}">
-                                Conoce los pagados
-                            </a>-->
-
-							<a class="btn btn-red btn-small" href="{{url('/pagados')}}">
-								Miles de pesos repartidos
-							</a>
-
-
+							{{-- <a href="#">
+								Ver más
+							</a> --}}
 						</p>
 					</div><!-- /.section-entry -->
 
-
-					<div class="cols" id="seeMoreDataPagados" >
-						@foreach($pagados as $pagado)
-						<div class="col col-1of2">
+					@foreach($configuracion as $item)
+					<div class="cols" onClick="redirectPage('{{$item->url}}','{{$item->is_new_tab}}')" style="cursor: pointer;">
+						<div class="col col-1of1">
 							<article class="article-jackpot">
 								<div class="article-content">
 									<h6>
-										{{ucfirst($pagado->titulo)}}
+										{{ucfirst($item->titulo)}}
 									</h6>
 
 									<div class="fake-div">
 										<div id="counter">
-											<div class="counter-value"><p>${{number_format($pagado->cantidad)}} <em>MN</em></p></div>
-											<!--<div class="counter-value" data-count="400">$100</div>
-                                            <div class="counter-value" data-count="1500">$500</div>-->
-										</div>
-										<div class="fake-div">
-											<!--<p>
-												${{$pagado->cantidad}}
-											</p>-->
+											<div class="counter-value">${{number_format($item->cantidad)}} <em>MN</em></div>
 										</div>
 									</div>
 								</div><!-- /.article-content -->
 							</article><!-- /.article-jackpot -->
-						</div><!-- /.col col-1of2 -->
-						@endforeach
+						</div><!-- /.col col-1of1 -->
 					</div><!-- /.cols -->
-					<div class="btn-more">
-						<a href="#" class="btn btn-border view_more" id="seeMorePagados" >
-							Ver más
-						</a>
-					</div>
-					@endif
+					@endforeach
 				</div><!-- /.section-content -->
 			</div><!-- /.shell -->
 		</section><!-- /.section-jackpots -->
+		@endif
+
 
 
 		<section class="section-gray">
@@ -478,7 +536,9 @@
 		// 	  }
 
 		// 	});
+
 	</script>
 
 
 	@stop
+

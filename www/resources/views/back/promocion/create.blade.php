@@ -110,10 +110,10 @@
 										<ul class="list">
 											@foreach( $juegos as $indexKey => $item )
 												<li>
-													<a><input type="checkbox" name="juego[]" value="{{$item->id}}"  ><span>{{$item->nombre}}</span></a>
+													<a><input type="checkbox" name="juego[]" value="{{$item->id}}" style="display:{{$item->id==10 || $item->id==13?'none':''}}"  ><span>{{$item->nombre}}</span></a>
 													@foreach( $sucursales[$indexKey] as $item1 )
 														<ul>
-															<li class="collapsed"><label><input type="checkbox" name="juegoSub{{$item->id}}[]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
+															<li class="collapsed"><label><input type="checkbox" name="juegoSub[{{$item->id}}][]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
 														</ul>
 													@endforeach
 												</li>
@@ -167,8 +167,25 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="form-group form-group-default">
+								<label for="button_text">botón de Texto</label>
+								<input type="text" id="button_text" class="form-control" name="button_text" aria-required="true" aria-invalid="true">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
 								<label for="link">URL Externa</label>
 								<input type="text" id="link" class="form-control " name="link" aria-required="true" aria-invalid="true">
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" >
+								<label><input type="checkbox" name="is_new_tab" ><span> URL Open New Tab</span></label>
 							</div>
 						</div>
 					</div>

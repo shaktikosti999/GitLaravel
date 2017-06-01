@@ -40,7 +40,10 @@ class sliderController extends Controller
         $index = 0;
         foreach($sliderData['juegos'] as $value){
             //$sliderData['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
-            $sliderData['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+            $sliderData['sucursales'][$index] = [];
+            if($value->id != '7' && $value->id != '8' && $value->id != '11' && $value->id != '12') {
+                $sliderData['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+            }
             $index++;
 
         }
@@ -56,16 +59,29 @@ class sliderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-//        dd($request->all());
-        $this->validate($request,[
-           // 'tipo' => 'required|integer|min:0',
+
+        if ($request->input('showImageVideo')  == "showImage") {
+            $this->validate($request,[
+                // 'tipo' => 'required|integer|min:0',
 //            "titulo" => 'required|string|max:100|min:3',
 //            'subtitulo'=>'string',
 //            'texto' => 'string',
-            //"texto_boton" => 'required|string|max:100|min:2',
+                //"texto_boton" => 'required|string|max:100|min:2',
 //            "link" => 'string|max:100|min:3',
-            "imagen" => 'required|image'
-        ]);
+                "imagen" => 'required|image'
+            ]);
+        } else {
+            $this->validate($request,[
+                // 'tipo' => 'required|integer|min:0',
+//            "titulo" => 'required|string|max:100|min:3',
+//            'subtitulo'=>'string',
+//            'texto' => 'string',
+                //"texto_boton" => 'required|string|max:100|min:2',
+//            "link" => 'string|max:100|min:3',
+                "video_url" => 'required'
+            ]);
+        }
+        //dd($request->all());
         if($request->hasFile('imagen')){
             $archivo = $request->file('imagen');
             $ext = strtolower($archivo->getClientOriginalExtension());
@@ -85,7 +101,6 @@ class sliderController extends Controller
                 $nombre .= '.' . $ext;
                 if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
                     $archivo = '/' . $carpeta . $nombre;
-
                     $evento = slider::store($request,$archivo);
                     $evento = $evento[0];
                     if(!$evento){
@@ -96,6 +111,15 @@ class sliderController extends Controller
                     }
                 }
             }                    
+        } else {
+//            dd($request->all());
+            $evento = slider::store($request,"");
+            if(!$evento){
+                return redirect(url('/administrador/slider.html'))->with('success','Slider agregado correctamente');
+            }
+            else{
+                return redirect(url('/administrador/slider.html'))->with('error',$evento);
+            }
         }
     }
 
@@ -124,18 +148,21 @@ class sliderController extends Controller
         $index = 0;
         foreach($sliderData['juegos'] as $value){
            // $sliderData['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
-            $sliderData['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+            $sliderData['sucursales'][$index] = [];
+            if($value->id != '7' && $value->id != '8' && $value->id != '11' && $value->id != '12') {
+                $sliderData['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+            }
             $index++;
         }
 
-
-        $branchIds = \DB::select('select id,tipo from slider where branch_group_id = (SELECT branch_group_id FROM slider where id ='.$id.')');
+        $branchIds = \DB::select('select id,tipo,isParentShow from slider where branch_group_id = (SELECT branch_group_id FROM slider where id ='.$id.')');
 
         $linea = array();
         foreach ($branchIds as $value) {
             $temp = \DB::select('select * from slider_sucursal where id_slider ='.$value->id);
-
-            $linea[] = $value->tipo;
+            if ( $value->isParentShow == 1 ){
+                $linea[] = $value->tipo;
+            }
             foreach($temp as $value1){
                 $sliderData['selectedSucursales'][$value->tipo][] = $value1->id_sucursal;
             }

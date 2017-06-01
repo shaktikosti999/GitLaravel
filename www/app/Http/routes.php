@@ -69,6 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
 		include_once('Routes/pagina_contenido.php');
 		include_once('Routes/calendario.php');
 		include_once('Routes/error.php');
+		include_once('Routes/configuracion.php');
 
 	});
 });

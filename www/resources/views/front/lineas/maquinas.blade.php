@@ -2,6 +2,15 @@
 
 @section('js')
 	<script src="js/front/maquinas.js"></script>
+	<script>
+		function redirectPage(url,target) {
+			if(target == "_blank"){
+				window.open(url);
+			} else {
+				window.location.href = url;
+			}
+		}
+	</script>
 @stop
 
 @section('contenido')
@@ -14,7 +23,7 @@
 
 
 	<div class="wrapper">
-
+    
     <div class="stick-nav"><!-- Stick nav -->
         <ul>
             <li><a href="#promociones"><img src="/assets/images/icon/todas-las-promociones.svg"><span>Promociones</span></a></li>
@@ -26,93 +35,87 @@
         </ul>
     </div>
 
-	<div class="slider-secondary">
-<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
-			<img src="css/images/btn-menu@2x.png" alt="">
-		</a>
- -->
-		<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
-			<img src="css/images/btn-menu@2x.png" alt="">
-		</a>
- -->
+		@if( isset( $slider ) && count( $slider ) )
 
-		<div class="slider-clip">
-			@if( isset( $slider ) && count( $slider ) > 1 )
-				<ul class="slides">
-			@endif
-				@if( isset( $slider ) && count( $slider ) )
+			<div class=" slider-intro anchor">
+				<!-- <a href="#" class="btn-scroll">
+                    <i class="ico-mouse"></i>
+                </a> -->
+				<div class="slider-clip">
+					@if( isset( $slider ) && count( $slider ) > 1 )
+						<ul class="slides">
+							@endif
+							@foreach( $slider as $s )
+								@if($s->is_show_img_video)
+									<li class="slide fullscreen">
+										{{--<embed  width="100%" height="100%" src="https://www.youtube.com/embed/E21unYOt2u8">--}}
+										<embed  width="100%" height="100%" src="{{$s->video_url}}">
+									</li>
 
-					@foreach( $slider as $item )
+								@else
+									<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
+										<div class="slide-body">
+											<div class="shell">
+												<div class="slide-content"  >
+													@if(isset($s->texto_boton) && $s->texto_boton != "")
+														<form action="{{$s->link}}" target="{{$s->is_new_tab}}" >
+															<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+														</form>
+													@endif
+													<h2>
+														{{$s->titulo}}
+													</h2>
 
-						<li class="slide" style="background-image: url({{ $item->imagen }})">
-							<div class="slide-body">
-								<div class="shell">
-									<div class="slide-content ">
+													@if( isset( $sucursales ) && count( $sucursales ) )
 
-										<h1>
-													{{$item->titulo}}
-										</h1>
+														<div class="filter-secondary">
+															<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+															<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
 
-										@if(isset($item->texto_boton) && $item->texto_boton != "")
-											<form action="{{$item->link}}">
-												<input  class="btn  btn-red  btn-slider  btn-slider--int"  type="submit"  value="{{$item->texto_boton}}">
-											</form>
-										@endif
+																<option value="-1">Selecciona tu casino</option>
 
-									@if( isset( $sucursales ) && count( $sucursales ) )
+																@foreach( $sucursales as $item )
 
-											<div class="filter-secondary">
-												<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-												<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
+																	<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
 
-												<option value="-1">Selecciona tu casino</option>
+																@endforeach
 
-												@foreach( $sucursales as $item )
+															</select>
+														</div><!-- /.filter-secondary -->
 
-													<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
-
-												@endforeach
-
-											</select>
-										</div><!-- /.filter-secondary -->
-
-									@endif
+													@endif
 
 
-									 </div><!-- /.slide-content -->
+												</div><!-- /.slide-content -->
 
-									@include('front.includes.breadcrumbs')
-								</div><!-- /.shell -->
-							</div><!-- /.slide-body -->
-						</li><!-- /.slide -->
-
-					@endforeach
-
-				@endif
-				@if( isset( $slider ) && count( $slider ) > 1 )
+												@include('front.includes.breadcrumbs')
+											</div><!-- /.shell -->
+										</div><!-- /.slide-body -->
+									</li><!-- /.slide -->
+								@endif
+							@endforeach
+							@if( isset( $slider ) && count( $slider ) > 1 )
 						</ul><!-- /.slides -->
-				@endif
-		</div><!-- /.slider-clip -->
+					@endif
+				</div><!-- /.slider-clip -->
+			</div><!-- /.slider-intro -->
 
-		<div class="slider-label red-label large">
-			<i class="ico-slot"></i>
-		</div><!-- /.slider-label -->
-	</div><!-- /.slider-secondary -->
+		@endif
 
-	<div class="main">
+		<div class="main">
 
 		@if( isset( $promociones ) && count( $promociones ) )
 
 			@include('front.includes.promotions',['promociones' => $promociones,'sucursal'=>$sucursal_info])
-
+			
 		@endif
-
+		
 		<input type="hidden" name="linea" id="linea" value="1">
 		@if( isset( $maquinas ) && count( $maquinas ) )
 
 			@include('front.includes.game_machine',['maquinas' => $maquinas])
 
-		@endif
+		@endif 
 
 		@if( isset( $proveedores ) && count( $proveedores ) )
 
@@ -128,9 +131,9 @@
 					<div class="section-body">
 						<div class="slider-providers">
 							<div class="slider-clip">
-
+								
 								<ul class="slides">
-
+								
 									@foreach( $proveedores as $item )
 
 										<li class="slide">
@@ -146,7 +149,7 @@
 										</li><!-- /.slide -->
 
 									@endforeach
-
+							 
 								</ul><!-- /.slides -->
 
 							</div><!-- /.slider-clip -->
@@ -165,7 +168,7 @@
 							<h2>
 								<small>Jackpots</small>
 								Acumulados
-							</h2>
+							</h2> 
 						</header><!-- /.section-head -->
 
 						<div class="section-content">
@@ -182,32 +185,31 @@
 						</div><!-- /.section-entry -->
 
 						<div class="cols" id="seeMoreDataAcumulados">
-
+							
 							@foreach ($acumulado as $item)
-								<div class="col col-1of2">
-									<article class="article-jackpot">
-										<div class="article-content">
-											<h6>
-												{{$item->titulo}}
-											</h6>
 
-											<div class="fake-div">
-												<div id="counter">
-												    <div class="counter-value" ><p>${{number_format($item->cantidad)}} <em>MN</em></p></div>
-												    <!--<div class="counter-value" data-count="400">$100</div>
-												    <div class="counter-value" data-count="1500">$500</div>-->
-												</div>
+									<div class="col col-1of2" onClick="redirectPage('{{$item->url}}','{{$item->is_new_tab}}')" style="cursor: pointer;">
+										<article class="article-jackpot">
+											<div class="article-content">
+												<h6>
+													{{$item->titulo}}
+												</h6>
+
 												<div class="fake-div">
-											<!--<p>
+													<div id="counter">
+														<div class="counter-value" ><p>${{number_format($item->cantidad)}} <em>MN</em></p></div>
+														<!--<div class="counter-value" data-count="400">$100</div>
+                                                        <div class="counter-value" data-count="1500">$500</div>-->
+													</div>
+													<div class="fake-div">
+														<!--<p>
 												${{$item->cantidad}}
-											</p>-->
+																</p>-->
+													</div>
 												</div>
-											</div>
-										</div><!-- /.article-content -->
-									</article><!-- /.article-jackpot -->
-								</div><!-- /.col col-1of2 -->
-
-
+											</div><!-- /.article-content -->
+										</article><!-- /.article-jackpot -->
+									</div><!-- /.col col-1of2 -->
 							@endforeach
 
 						</div><!-- /.cols -->
@@ -219,77 +221,120 @@
 						</a>
 					</div>
 
-						@if( isset($pagados) && count($pagados) )
-							<div class="section-entry">
-								<p>
-									<span>
-										Pagados
-									</span>
+						{{--@if( isset($pagados) && count($pagados) )--}}
+							{{--<div class="section-entry">--}}
+								{{--<p>--}}
+									{{--<span>--}}
+										{{--Pagados--}}
+									{{--</span>--}}
 
-									<!--<a href="{{url('/pagados')}}">
-										Conoce los pagados
-									</a>-->
+									{{--<!--<a href="{{url('/pagados')}}">--}}
+										{{--Conoce los pagados--}}
+									{{--</a>-->--}}
 
-									<a class="btn btn-red btn-small" href="{{url('/pagados')}}">
-										Miles de pesos repartidos
-									</a>
+									{{--<a class="btn btn-red btn-small" href="{{url('/pagados')}}">--}}
+										{{--Miles de pesos repartidos--}}
+									{{--</a>--}}
+
+								{{----}}
+								{{--</p>--}}
+							{{--</div><!-- /.section-entry -->--}}
 
 
-								</p>
-							</div><!-- /.section-entry -->
+							{{--<div class="cols" id="seeMoreDataPagados" >--}}
+								{{--@foreach($pagados as $pagado)--}}
 
-							<div class="cols">
-								<div class="col col-1of1">
-									<article class="article-jackpot">
-										<div class="article-content">
+										{{--<div class="col col-1of2" onClick="redirectPage('{{$item->url}}','{{$item->is_new_tab}}')" style="cursor: pointer;">--}}
+											{{--<article class="article-jackpot">--}}
+												{{--<div class="article-content">--}}
+													{{--<h6>--}}
+														{{--{{ucfirst($pagado->titulo)}}--}}
+													{{--</h6>--}}
 
-											<div class="fake-div">
-												<div id="counter">
-													<div class="counter-value">${{number_format($item->cantidad)}} <em>MN</em></div>
-												</div>
-											</div>
-										</div><!-- /.article-content -->
-									</article><!-- /.article-jackpot -->
-								</div><!-- /.col col-1of1 -->
-							</div><!-- /.cols -->
-						<!--	<div class="cols" id="seeMoreDataPagados" >
-								@foreach($pagados as $pagado)
-								<div class="col col-1of2">
-									<article class="article-jackpot">
-										<div class="article-content">
-											<h6>
-												{{ucfirst($pagado->titulo)}}
-											</h6>
+													{{--<div class="fake-div">--}}
+														{{--<div id="counter">--}}
+															{{--<div class="counter-value"><p>${{number_format($pagado->cantidad)}} <em>MN</em></p></div>--}}
+															{{--<!--<div class="counter-value" data-count="400">$100</div>--}}
+                                                            {{--<div class="counter-value" data-count="1500">$500</div>-->--}}
+														{{--</div>--}}
+														{{--<div class="fake-div">--}}
+															{{--<!--<p>--}}
+												{{--${{$pagado->cantidad}}--}}
+																	{{--</p>-->--}}
+														{{--</div>--}}
+													{{--</div>--}}
+												{{--</div><!-- /.article-content -->--}}
+											{{--</article><!-- /.article-jackpot -->--}}
+										{{--</div><!-- /.col col-1of2 -->--}}
 
-											<div class="fake-div">
-												<div id="counter">
-												    <div class="counter-value"><p>${{number_format($pagado->cantidad)}} <em>MN</em></p></div>
-												    <!--<div class="counter-value" data-count="400">$100</div>
-												    <div class="counter-value" data-count="1500">$500</div>
-												</div>
-												<div class="fake-div">
-											<!--<p>
-												${{$pagado->cantidad}}
-											</p>
-												</div>
-											</div>
-										</div><!-- /.article-content
-									</article><!-- /.article-jackpot
-								</div><!-- /.col col-1of2
-								@endforeach
-							</div><!-- /.cols -->
-							<div class="btn-more">
-								<a href="#" class="btn btn-border view_more" id="seeMorePagados" >
-									Ver más
-								</a>
-							</div>
-						@endif
-					</div><!-- /.section-content -->
+								{{--@endforeach--}}
+							{{--</div><!-- /.cols -->--}}
+							{{--<div class="btn-more">--}}
+								{{--<a href="#" class="btn btn-border view_more" id="seeMorePagados" >--}}
+									{{--Ver más--}}
+								{{--</a>--}}
+							{{--</div>--}}
+						{{--@endif--}}
+					</div><!-- /.section-content --> 
 				</div><!-- /.shell -->
 			</section><!-- /.section-jackpots -->
 
 
-		<section class="section-gray">
+			@if( isset($configuracion) && count($configuracion) )
+					<section class="section-jackpots secondary">
+						<div class="shell">
+							<header class="section-head">
+								{{--<div class="stick--point" id="jackpot"></div>--}}
+								<h2>
+									{{--<small>{{$item->titulo}}</small>--}}
+									Configuración
+								</h2>
+
+								<a class="btn btn-red btn-small" href="{{url('/pagados')}}" style="float: right;height: 2.5em;line-height: 2.5em;margin-top: -1em;">
+									Miles de pesos repartidos
+								</a>
+							</header><!-- /.section-head -->
+
+                                <div class="section-content">
+                                    <div class="section-entry">
+                                        <p>
+                                            <span>
+                                                Por pagar
+                                            </span>
+
+                                            {{-- <a href="#">
+                                                Ver más
+                                            </a> --}}
+									</p>
+								</div><!-- /.section-entry -->
+
+								@foreach($configuracion as $item)
+									<div class="cols" onClick="redirectPage('{{$item->url}}','{{$item->is_new_tab}}')" style="cursor: pointer;">
+										<div class="col col-1of1">
+											<article class="article-jackpot">
+												<div class="article-content">
+													<h6>
+														{{ucfirst($item->titulo)}}
+													</h6>
+
+													<div class="fake-div">
+														<div id="counter">
+															<div class="counter-value">${{number_format($item->cantidad)}} <em>MN</em></div>
+														</div>
+													</div>
+												</div><!-- /.article-content -->
+											</article><!-- /.article-jackpot -->
+										</div><!-- /.col col-1of1 -->
+									</div><!-- /.cols -->
+								@endforeach
+							</div><!-- /.section-content -->
+						</div><!-- /.shell -->
+					</section><!-- /.section-jackpots -->
+			@endif
+
+
+
+			<section class="section-gray">
 			<div class="shell">
 				<div class="subscribe">
 					<form action="?" method="post">
@@ -303,9 +348,9 @@
 							<div class="subscribe-body-hidden">
 								<div class="subscribe-inner">
 									<label for="mail" class="hidden">Email</label>
-
+									
 									<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
-
+									
 									<input type="button" value="Enviar" class="subscribe-btn btn btn-red">
 								</div><!-- /.subscribe-inner -->
 
@@ -314,7 +359,7 @@
 										<li>
 											<!--<div class="checkbox">
 												<input type="checkbox" name="field-notifications" id="field-notifications">
-
+												
 												<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
 											</div> /.checkbox -->
 										</li>
@@ -330,42 +375,42 @@
 
 		@if( isset( $sucursal_info ) && $sucursal_info )
 
-			<section class="section-map no-top-padding">
+			<section class="section-map no-top-padding"> 
 				<div class="section-body">
-					<div id="googlemap" data-lng="-97.727616" data-lat="18.884188"></div><!-- /#googlemap -->
-
+					<div id="googlemap" data-lng="-97.727616" data-lat="18.884188"></div><!-- /#googlemap --> 
+				
 					<div class="section-content">
 						<div class="shell">
 							<div class="section-content-head">
 								<div class="stick--point" id="sucursales"></div>
 								<p>Sucursal</p>
-
+								
 								<h2>{{ $sucursal_info->nombre }}</h2>
 							</div><!-- /.section-content-head -->
-
+									
 							<div class="section-content-body">
 								<ul class="list-contacts">
 									<li>
 										<i class="ico-map"></i>
-
+									
 										<p>
 											{!! $sucursal_info->direccion !!}
 										</p>
 									</li>
-
+									
 									<li>
 										<i class="ico-phone"></i>
-
+									
 										<p>
 											{!! $sucursal_info->telefono !!}
 										</p>
 									</li>
-
+									
 									<li>
 										<i class="ico-clock"></i>
 										<p>{!! $sucursal_info->horario !!}</p>
 									</li>
-
+									
 									<li>
 										<i class="ico-car"></i>
 										<p>{!! $sucursal_info->instrucciones !!}</p>
@@ -373,7 +418,7 @@
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->
 						</div><!-- /.shell -->
-
+						
 						<div class="section-actions">
 							<a target="_blank" href="http://www.google.com/maps/place/{{ $sucursal_info->latitud . "," . $sucursal_info->longitud }}" class="btn btn-red btn-red-small">
 								<i class="ico-human"></i>
@@ -381,20 +426,20 @@
 								Cómo llegar aquí
 							</a>
 						</div><!-- /.section-actions -->
-					</div><!-- /.section-content -->
+					</div><!-- /.section-content --> 
 				</div><!-- /.section-body -->
 			</section><!-- /.section-map -->
 
 			<section class="section-gallery secondary">
 				<div class="shell">
-
+					
 					@if( isset( $sucursal_info->galeria ) && is_array( $sucursal_info->galeria ) && count( $sucursal_info->galeria ) )
 
 						<div class="slider-gallery">
 							<div class="slider-clip">
-
+								
 								<ul class="slides">
-
+									
 									@foreach( $sucursal_info->galeria as $g )
 
 										<li class="slide">
@@ -404,9 +449,9 @@
 										</li><!-- /.slide -->
 
 									@endforeach
-
+								
 								</ul><!-- /.slides -->
-
+							
 							</div><!-- /.slider-clip -->
 						</div><!-- /.slider-gallery -->
 
@@ -431,15 +476,15 @@
 
 					<div class="section-content">
 						<div class="cols">
-
+							
 							@foreach( $otras as $item )
 
 								<div class="col col-1of3">
 									<article class="article-fun">
-										<a href="{{ url('/lineas-de-juego/' . $item->slug) }}" style="background-image: url('{{ $item->imagen }}')">
+										<a href="{{ url('/lineas-de-juego/' . $item->slug) }}" style="background-image: url('{{ $item->imagen }}')"> 
 											<strong>
 												{{ $item->linea }}
-												<span>{{ $item->slogan }}</span>
+												<span>{{ $item->slogan }}</span>	
 											</strong>
 										</a>
 									</article>
@@ -491,7 +536,9 @@
 			// 	  }
 
 			// 	});
+
 	</script>
 
 
 @stop
+

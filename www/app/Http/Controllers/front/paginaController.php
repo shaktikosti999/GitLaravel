@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\front\pagina_model as pagina;
-
+use App\Models\front\slider_model as slider;
 class paginaController extends Controller
 {
     /**
@@ -25,11 +25,11 @@ class paginaController extends Controller
 
         if(is_object($pagina)){
             $data = array(
-                'pagina' => $pagina
+                'pagina' => $pagina,
+                'slider' => slider::find_all(['tipo' => 11])
             );
 
-            //dd($pagina);
-
+//            dd($data);
             return view('front.pagina',$data);
         }
         abort(404);

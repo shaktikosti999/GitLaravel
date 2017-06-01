@@ -103,7 +103,6 @@
 							</tbody>
 						</table>						
 					</div>
-					{!!$carreras->render()!!}
 				</div>
 				<!-- END PANEL -->
 			</div>
@@ -124,7 +123,7 @@
 					        	<div class="col-sm-12">
 					          		<div class="form-group form-group-default" aria-required="true">
 					            		<label for="csv">Archivo CSV</label>
-					            		<input type="file" id="csv" class="form-control" name="csv" aria-required="true" aria-invalid="true" accept=".csv">
+					            		<input type="file" id="csv" class="form-control required" name="csv" required="required" aria-required="true" aria-invalid="true" accept=".csv">
 					          		</div>
 
 									<div class="form-group form-group-default" aria-required="true">

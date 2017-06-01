@@ -47,7 +47,7 @@ class promocionController extends Controller
         $index = 0;
         foreach($data['juegos'] as $value){
             $data['sucursales'][$index] = [];
-            if($value->id != '7') {
+            if($value->id != '7' && $value->id != '8' && $value->id != '11' && $value->id != '12') {
                 $data['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
             }
             $index++;
@@ -164,19 +164,23 @@ class promocionController extends Controller
 
         }*/
          foreach($data['juegos'] as $value){
-             $data['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
-            $index++;
+             $data['sucursales'][$index] = [];
+             if($value->id != '7' && $value->id != '8' && $value->id != '11' && $value->id != '12') {
+                 $data['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+             }
+                $index++;
 
         }
 
 
-        $branchIds = \DB::select('select id_promocion,id_juego from promocion where branch_group_id = (SELECT branch_group_id FROM promocion where id_promocion='.$id.')');
+        $branchIds = \DB::select('select id_promocion,id_juego,isParentShow from promocion where branch_group_id = (SELECT branch_group_id FROM promocion where id_promocion='.$id.')');
 
         $linea = array();
         foreach ($branchIds as $value) {
             $temp = \DB::select('select * from promocion_sucursal where id_promocion ='.$value->id_promocion);
-
-            $linea[] = $value->id_juego;
+            if ( $value->isParentShow == 1 ){
+                $linea[] = $value->id_juego;
+            }
             foreach($temp as $value1){
                 $data['selectedSucursales'][$value->id_juego][] = $value1->id_sucursal;
                 $data['promocion']->link = $value1->link;

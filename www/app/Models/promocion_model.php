@@ -116,40 +116,99 @@ class promocion_model{
 			$maxBranchGroupId++;
 		}
 
-		foreach($request->input('juego') as $juego) {
-			$data = [];
+		$parentArray = [];
+		if(!empty($request->input('juego'))) {
+			$parentArray = $request->input('juego');
+		}
 
-			$data['id_juego'] = $juego;
-			$data['nombre'] = $request->input('nombre');
-			$data['slug'] = $request->input('slug');
-			$data['resumen'] = $request->input('resumen');
-			$data['imagen'] = $archivo;
-			$data['thumb'] = $thumb;
-			$data['descripcion'] = $request->input('descripcion');
-			$data['fecha_inicio'] = trim($request->input('fecha_inicio')) != "" ? $request->input('fecha_inicio') : null;
-			$data['fecha_fin'] = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
-			$data['branch_group_id'] = $maxBranchGroupId;
-			$data['url'] = $request->input('link');
-			if ($request->input('is_active_btn') == 'on') {
-				$data['is_active_btn'] = 1;
-			}
+		$isParentShow = 0;
+		if(!empty($request->input('juegoSub'))) {
+			foreach ($request->input('juegoSub') as $key => $juegoSub) {
 
-//			$evento = Event::fire(new dotask($data));
-			\DB::table('promocion')->insert($data);
+				if (!empty($request->input('juego')) && in_array($key, $request->input('juego'))) {
+					$searchKey = array_search($key, $request->input('juego'));
+					unset($parentArray[$searchKey]);
+					$isParentShow = 1;
+				}
+				if (!empty($request->input('juego')) && !in_array($key, $request->input('juego'))) {
+					$isParentShow = 0;
+				}
 
-			$branch = [];
-			$branch['id_promocion'] = \DB::getPdo()->lastInsertId();
-			$branch['descripcion'] = $request->input('descripcion');
-			$branch['link'] = $request->input('link');
-			if ($request->input('is_active_btn') == 'on') {
-				$branch['is_active_btn'] = 1;
-			}
+				$data = [];
 
-			if(!empty($request->input('juegoSub'.$juego))) {
-				foreach ($request->input('juegoSub' . $juego) as $id) {
+				$data['id_juego'] = $key;
+				$data['nombre'] = $request->input('nombre');
+				$data['slug'] = $request->input('slug');
+				$data['resumen'] = $request->input('resumen');
+				$data['imagen'] = $archivo;
+				$data['thumb'] = $thumb;
+				$data['descripcion'] = $request->input('descripcion');
+				$data['fecha_inicio'] = trim($request->input('fecha_inicio')) != "" ? $request->input('fecha_inicio') : null;
+				$data['fecha_fin'] = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
+				$data['branch_group_id'] = $maxBranchGroupId;
+				$data['button_text'] = $request->input('button_text');
+				$data['url'] = $request->input('link');
+				$data['isParentShow'] = $isParentShow;
+
+				if ($request->input('is_active_btn') == 'on') {
+					$data['is_active_btn'] = 1;
+				}
+
+				if ($request->input('is_new_tab') == 'on') {
+					$data['is_new_tab'] = '_blank';
+				} else {
+					$data['is_new_tab'] = '_self';
+				}
+
+				//			$evento = Event::fire(new dotask($data));
+				\DB::table('promocion')->insert($data);
+
+				$branch = [];
+				$branch['id_promocion'] = \DB::getPdo()->lastInsertId();
+				$branch['descripcion'] = $request->input('descripcion');
+				$branch['link'] = $request->input('link');
+				if ($request->input('is_active_btn') == 'on') {
+					$branch['is_active_btn'] = 1;
+				}
+
+				foreach ($juegoSub as $id) {
 					$branch['id_sucursal'] = $id;
 					\DB::table('promocion_sucursal')->insert($branch);
 				}
+			}
+		}
+
+
+		if (!empty($parentArray)){
+			$isParentShow = 1;
+			foreach($parentArray as $parent) {
+				$data = [];
+
+				$data['id_juego'] = $parent;
+				$data['nombre'] = $request->input('nombre');
+				$data['slug'] = $request->input('slug');
+				$data['resumen'] = $request->input('resumen');
+				$data['imagen'] = $archivo;
+				$data['thumb'] = $thumb;
+				$data['descripcion'] = $request->input('descripcion');
+				$data['fecha_inicio'] = trim($request->input('fecha_inicio')) != "" ? $request->input('fecha_inicio') : null;
+				$data['fecha_fin'] = trim($request->input('fecha_fin')) != "" ? $request->input('fecha_fin') : null;
+				$data['branch_group_id'] = $maxBranchGroupId;
+				$data['button_text'] = $request->input('button_text');
+				$data['url'] = $request->input('link');
+				$data['isParentShow'] = $isParentShow;
+				if ($request->input('is_active_btn') == 'on') {
+					$data['is_active_btn'] = 1;
+				}
+
+				if ($request->input('is_new_tab') == 'on') {
+					$data['is_new_tab'] = '_blank';
+				} else {
+					$data['is_new_tab'] = '_self';
+				}
+
+				//			$evento = Event::fire(new dotask($data));
+				\DB::table('promocion')->insert($data);
 			}
 		}
 

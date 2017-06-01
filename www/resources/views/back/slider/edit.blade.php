@@ -46,10 +46,10 @@
 								<ul class="list">
 									@foreach( $juegos as $indexKey => $item )
 										<li>
-											<a><input type="checkbox" name="juego[]" value="{{$item->id}}" <?php if(in_array($item->id,$linea)){ echo 'checked'; } ?> ><span>{{$item->nombre}}</span></a>
+											<a><input type="checkbox" name="juego[]" value="{{$item->id}}" style="display:{{$item->id==10 || $item->id==13?'none':''}}"  <?php if(in_array($item->id,$linea)){ echo 'checked'; } ?> ><span>{{$item->nombre}}</span></a>
 											@foreach( $sucursales[$indexKey] as $item1 )
 												<ul>
-													<li class="collapsed"><label><input type="checkbox" name="juegoSub{{$item->id}}[]" <?php if(isset($selectedSucursales[$item->id]) && (in_array($item1->id_sucursal,$selectedSucursales[$item->id]))){ echo 'checked'; } ?> value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
+													<li class="collapsed"><label><input type="checkbox" name="juegoSub[{{$item->id}}][]" <?php if(isset($selectedSucursales[$item->id]) && (in_array($item1->id_sucursal,$selectedSucursales[$item->id]))){ echo 'checked'; } ?> value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
 												</ul>
 											@endforeach
 										</li>
@@ -112,6 +112,14 @@
 			        	</div>
 			      	</div>
 
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" >
+								<label><input type="checkbox" name="is_new_tab" {{$slider->is_new_tab ? 'checked' : ''}} ><span> URL Open New Tab</span></label>
+							</div>
+						</div>
+					</div>
+
 			      	<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
@@ -121,6 +129,27 @@
 			          		</div>
 			        	</div>
 			      	</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" aria-required="true">
+								<label for="link">Video URL</label>
+								<input type="text" id="video_url" class="form-control" name="video_url"  aria-invalid="true" value="{{$slider->video_url}}">
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" aria-required="true">
+								{{--<label for="showImage">What should be show</label>--}}
+								<label><input type="radio" id="showImageVideo" name="showImageVideo" value="showImage" checked >Show Image as a Slider</label>
+								<label><input type="radio" id="showImageVideo" name="showImageVideo" value="showVideo" {{$slider->is_show_img_video? 'checked' : ''}} >Show Video as a Slider</label>
+							</div>
+						</div>
+					</div>
+
+
 
 			      	<div class="clearfix"></div>
 			      	<input class="btn btn-primary" type="submit" value="Modificar slider">
