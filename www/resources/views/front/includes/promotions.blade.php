@@ -39,9 +39,9 @@
 								<a class="slide-content" style="background-image: url({{$item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen}}); ">
 								@endif
 								@if($start !== null || $end !== null)
-									<span class="slide-label">
-										Válido{{$start !== null ? ' del' . $start->format('d/m/Y') : ''}}{{$end !== null ? ' al' . $end->format('d/m/Y') : ''}}
-									</span>
+									{{--<span class="slide-label">--}}
+										{{--Válido{{$start !== null ? ' del' . $start->format('d/m/Y') : ''}}{{$end !== null ? ' al' . $end->format('d/m/Y') : ''}}--}}
+									{{--</span>--}}
 								@endif
 
 								@if(!empty($item->is_active_btn))

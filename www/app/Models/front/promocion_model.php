@@ -6,6 +6,8 @@ class promocion_model{
     static function find_all( $parameters = [] ){
 
 //        dd($parameters);
+        $ldate = date('Y-m-d');
+
         $data = [];
 
         $data = \DB::table('promocion as p')
@@ -13,7 +15,9 @@ class promocion_model{
                         ->join('linea as l', 'p.id_juego', '=', 'l.id_linea')
                         ->select("p.*", "l.id_linea")
                         ->where('p.estatus',1)
-                        ->where('p.eliminado',0);
+                        ->where('p.eliminado',0)
+                        ->where('fecha_inicio','<=',$ldate)
+                        ->where('fecha_fin','>=',$ldate);
 
         //-----> Aplicamos filtros
 

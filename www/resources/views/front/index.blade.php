@@ -204,8 +204,8 @@
 					@foreach( $slider as $s )
 						@if($s->is_show_img_video)
 							<li class="slide fullscreen">
-								{{--<embed  width="100%" height="100%" src="https://www.youtube.com/embed/E21unYOt2u8">--}}
-								<embed  width="100%" height="100%" src="<?php echo $s->video_url; ?>">
+								{{--<iframe width="100%" height="100%" src="https://www.youtube.com/embed/NNqhURzgEOY" frameborder="0" allowfullscreen></iframe>--}}
+								<embed  width="100%" height="100%" src="{{$s->video_url}}">
 							</li>
 						@else
 							<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
@@ -279,9 +279,9 @@
 													<div class="slide-content" style="background-image: url({{ $p->thumb !== null && !empty($p->thumb) ? $p->thumb : $p->imagen }}); ">
 
 														@if($p->fecha_inicio !== null || $p->fecha_fin !== null)
-															<span class="slide-label" style="background: #ed1c24;color: #fff;min-width: 140px;display: inline-block;font-size: 15px;padding: 7px 10px;line-height: 1;position: absolute;top: 20px;left: 30px;right: 0px;">
-																Válido {{'del'.$p->fecha_inicio}}<br>{{' al' . $p->fecha_fin}}
-															</span>
+															{{--<span class="slide-label" style="background: #ed1c24;color: #fff;min-width: 140px;display: inline-block;font-size: 15px;padding: 7px 10px;line-height: 1;position: absolute;top: 20px;left: 30px;right: 0px;">--}}
+																{{--Válido {{'del'.$p->fecha_inicio}}<br>{{' al' . $p->fecha_fin}}--}}
+															{{--</span>--}}
 														@endif
 
 														@if($p->is_active_btn==1)
