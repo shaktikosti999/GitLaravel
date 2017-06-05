@@ -1593,10 +1593,10 @@ li:first-child {margin: 0;margin-left: 0;}
 .slider-intro .slide-content { /*padding-top: 22vh;*/ max-width: 1200px; margin: 0 auto; }
 .slider-intro .slide-content h1 { margin-bottom: 36px; width: 80%;}
 .slider-intro .slide-content .title__slider {margin-bottom: 0;}
-.slider-intro .slick-prev {top: 250px; border-bottom: 1px solid #ebebeb !important; padding-bottom: 10px; background-color: transparent; border: none;}
+.slider-intro .slick-prev {top: 350px; border-bottom: 1px solid #ebebeb !important; padding-bottom: 10px; background-color: transparent; border: none;}
 .slider-intro .slick-arrow {right: 5%; width: 40px; position: absolute; z-index: 2; color: #fff; background-color: transparent; border: none;}
 .slider-intro .slick-arrow i {font-size: 30px;}
-.slider-intro .slick-next {top: 310px;}
+.slider-intro .slick-next {top: 410px;}
 .title__slider {
 	font-size: 50px;
     margin-bottom: 0;
@@ -1612,8 +1612,10 @@ li:first-child {margin: 0;margin-left: 0;}
 	width: 226px;
     line-height: 1;
     color: #fff;
+	background: rgb(237, 28, 36);
+	border-radius: 10px;
     min-width: auto;
-    padding: 10px 28px;
+    padding: 12px 28px;
     font-weight: 500;
     display: inline-block;
 	overflow: hidden;
@@ -1688,6 +1690,9 @@ li:first-child {margin: 0;margin-left: 0;}
 	.slider-intro-secondary .slide-content {padding-top: 280px !important; border-bottom: 1px dotted #ebebeb; padding-bottom: 20px;}
 	.slider-intro-secondary h2 {color: #333 !important; text-shadow: inherit; text-align: left;}
 	.slider-intro-secondary .slide-content .filter-secondary {background: rgb(237, 28, 36); border-radius: 10px; padding: 5px 0; float: left;}
+
+	.slider-secondary .slide-content form {width: 100% !important;}
+	.slider-secondary .slides .filter-secondary {width: 100% !important;}
 }
 /* ------------------------------------------------------------ *\
 	slider-intro Secondary
@@ -1866,8 +1871,8 @@ li:first-child {margin: 0;margin-left: 0;}
 	.slider-secondary .filter-secondary { margin: 0 auto !important; float: none; display: inline-block; }
 	.slider-secondary .slide-content form {
 		position: relative;
-		left: 50%;
-		transform: translateX(-50%);
+		/*left: 50%;
+		transform: translateX(-50%);*/
 	}
 }
 /* Mobile */
@@ -2946,6 +2951,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .slide-body	.slide-content form {width: 27%; padding: 0 0 20px 0; border-bottom: 1px solid rgba(152, 152, 152, .5);}
 .slider-clip .slide-body--filter {position: absolute; bottom: 0; left: 0; width: 100%; padding: 0; height: auto; padding-bottom: 50px;}
 .slider-clip .slide-body--filter .slide-inner {position: relative; z-index: 30; float: right; width: 50%; margin-top: -19px;}
+.slider-secondary .video-item {width: 100%; height: 725px; background-size: cover; background-position: center center; background-repeat: no-repeat;}
 
 /* ------------------------------------------------------------ *\
 	RESPONSIVE FIXES
@@ -2991,10 +2997,10 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 		padding: 5px 0;
 		display: inline-block;
 		float: right;
-		width: 50%;
+		width: 40%;
 	}
 	.slider-secondary .slide-content form {
-		width: 50%;
+		width: 40%;
 	    border: 0;
 	    float: left;
 	    display: inline-block;
@@ -3005,7 +3011,23 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 	}
 	.slider-secondary .slide-inner {
 		float: left;
-	    display: block;
+	    display: none;
+	}
+	.filter-secondary .fs-dropdown {
+		max-width: 180px;
+		left: 50%;
+		transform: translateX(-50%);
+		-webkit-transform: translateX(-50%);
+		-moz-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		-o-transform: translateX(-50%);
+	}
+	.slider-secondary .video-item {
+		width: 100%;
+		height: 350px !important;
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
 	}
 	.slider-secondary .breadcrumbs {
 		color:#333;

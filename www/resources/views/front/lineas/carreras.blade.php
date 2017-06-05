@@ -120,7 +120,7 @@
 						@foreach( $slider as $item )
 						@if($item->is_show_img_video)
 							<li class="slide fullscreen">
-								<embed  width="100%" height="100%" src="<?php echo $item->video_url; ?>">
+								<embed  class="video-item" src="<?php echo $item->video_url; ?>">
 							</li>
 						@else
 							<li class="slide" style="background-image: url({{ $item->imagen }})">
@@ -140,15 +140,13 @@
 												 </form>
 											 @endif
 
-											 	<h3>
+											 	<!--<h3>
 											 		@if( isset( $sucursal_info->nombre ) )
 
 											 			{{ $sucursal_info->nombre }}
 
 											 		@endif
-											 	</h3>
-
-
+											 	</h3>-->
 
 										@if( isset( $sucursales ) && count( $sucursales ) )
 
