@@ -30,19 +30,19 @@
 									<div class="slide-body">
 										<div class="shell">
 											<div class="slide-content">
-
-												@if(isset($item->texto_boton))
-													<form action="{{$item->link}}" target="{{$item->is_new_tab}}">
-														<input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
-													</form>
-												@endif
-												<h5  style="color: #fff;"><?php
+												<h1  style="color: #fff;"><?php
 													if(isset($item->titulo)){
 														echo html_entity_decode($item->titulo);
 													}
 													?>
 
-												</h5>
+												</h1>
+												@if(isset($item->texto_boton))
+													<form action="{{$item->link}}" target="{{$item->is_new_tab}}">
+														<input class="btn  btn-red  btn-slider" type="submit" value="{{$item->texto_boton}}">
+													</form>
+												@endif
+
 												<h5 style="color: #fff;">
 													@if( isset( $sucursal_info->nombre ) )
 
@@ -96,7 +96,7 @@
 
 
 	<div class="main ">
-		
+
 		@if( isset( $promociones ) && count( $promociones ) && 1 == 2 )
 
 			<section class="section-slider">
@@ -105,12 +105,12 @@
 						<div class="slider-games reset-margin">
 							<h2>Promociones y Eventos</h2>
 							<div class="slider-clip">
-								<ul class="slides">								
+								<ul class="slides">
 
-										@foreach( $promociones as $item )	
+										@foreach( $promociones as $item )
 
-											<li class="slide"> 			
-																		
+											<li class="slide">
+
 												<a href="/promociones/detalle/{{ $item->slug }}">
 													<div class="slide-content" style="background-image: url('{{ $item->thumb === null && !empty($item->thumb) ? $item->imagen : $item->thumb}}'); ">
 														<div class="gradient-black"></div>
@@ -127,7 +127,7 @@
 								</ul><!-- /.slides -->
 							</div><!-- /.slider-clip -->
 						</div><!-- /.slider-games -->
-					</div><!-- /.section-body --> 
+					</div><!-- /.section-body -->
 				</div><!-- /.shell -->
 			</section><!-- /.section-slider -->
 
@@ -173,7 +173,7 @@
 
 						@endif
 
-						
+
 		 			</ul><!-- /.section-filter -->
 		 		</div><!-- /.section-head -->
 
@@ -186,8 +186,8 @@
 				 			@foreach( $promociones as $item )
 
 				 				@if( $count == 1 )
-  
-			 					
+
+
 
 									<div class="col col-1of2 item-{{ $item->id_linea }}">
 										<a href="/promociones/detalle/{{ $item->slug }}">
@@ -240,7 +240,7 @@
 													</div><!-- /.box-current-promotions -->
 												</a>
 											</div><!-- /.col col-1of2 -->
-										</div><!-- /.cols --> 
+										</div><!-- /.cols -->
 									</div><!-- /.col col-1of2 -->
 
 
@@ -270,10 +270,10 @@
 			 				@endif
 
 			 				@if( $count == 5 )
-			 				
+
 						 			<div class="col col-1of2 item-{{ $item->id_linea }}">
 										<a href="/promociones/detalle/{{ $item->slug }}">
-											<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
+											<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')">
 												{{--<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">--}}
 													{{--Conoce más--}}
 												{{--</a>--}}
@@ -285,7 +285,7 @@
 											</div><!-- /.box-current-promotions -->
 										</a>
 										</div><!-- /.col col-1of2 -->
-									</div><!-- /.cols --> 
+									</div><!-- /.cols -->
 				 				</div><!-- /.col col-1of2 -->
 
 			 				@endif
@@ -293,7 +293,7 @@
 			 				@if( $count == 6 )
 
 								 	<div class="col col-1of2 item-{{ $item->id_linea }}"> <!-- modificar-->
-					 					<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')"> 
+					 					<div class="box-current-promotions" style="background-image: url('{{ $item->thumb !== null && !empty($item->thumb) ? $item->thumb : $item->imagen }}')">
 											{{--<a href="/promociones/detalle/{{ $item->slug }}" class="btn btn-red btn-small">--}}
 												{{--Conoce más--}}
 											{{--</a>--}}
@@ -302,7 +302,7 @@
 													<input type="submit" value="{!!$item->button_text!!}" style="width: 9em;padding: 1em;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;right: 1em;position: absolute;bottom: 1em;">
 												</form>
 											@endif
-										</div><!-- /.box-current-promotions -->	 				
+										</div><!-- /.box-current-promotions -->
 					 				</div><!-- /.col col-1of2 -->
 					 			</div><!-- /.row -->
 
@@ -310,9 +310,9 @@
 
 			 				@endif
 
-			 				<?php 
+			 				<?php
 
-			 					$count++; 
+			 					$count++;
 
 			 					if( $count == 6 )
 			 						$count = 1;
@@ -352,9 +352,9 @@
 							<div class="subscribe-body-hidden">
 								<div class="subscribe-inner">
 									<label for="mail" class="hidden">Email</label>
-									
+
 									<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
-									
+
 									<input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
 								</div><!-- /.subscribe-inner -->
 
@@ -363,7 +363,7 @@
 										<li>
 											<!--<div class="checkbox">
 												<input type="checkbox" name="field-notifications" id="field-notifications">
-												
+
 												<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
 											</div> /.checkbox -->
 										</li>
@@ -374,7 +374,7 @@
 					</form>
 				</div><!-- /.subscribe -->
 			</div><!-- /.shell -->
-		</section><!-- /.section-gray --> 
+		</section><!-- /.section-gray -->
 	</div><!-- /.main -->
 
 
