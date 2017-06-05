@@ -213,7 +213,7 @@
 										<h1><?php echo html_entity_decode($s->titulo); ?></h1>
 										@if(isset($s->texto_boton))
 											<form action="{{$s->link}}" target="{{$s->is_new_tab}}">
-												<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+												<input  class="btn  btn-red  btn-slider" type="submit" value="{{$s->texto_boton}}">
 											</form>
 										@endif
 								</div><!-- /.slide-content -->

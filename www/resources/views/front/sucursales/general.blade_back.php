@@ -165,7 +165,7 @@
 										<div class="content-game">
 											<i class="ico-game-gray"></i>
 											<h6>Oferta de juego</h6>
-											<p>Lorem Ipsum</p>
+											<p>Lorem Ipsum</p> 
 										</div>
 									</div>
 								</article> -->
@@ -174,7 +174,7 @@
 
 						<!--<li>
 							<i class="ico-map-gray"></i>
-							<h6>Dirección</h6>
+							<h6>Dirección</h6>	
 							<p>{!!$item->direccion!!}</p>
 
 							<i class="ico-phone-gray"></i>
@@ -231,9 +231,9 @@
 								<div class="subscribe-body-hidden">
 									<div class="subscribe-inner">
 										<label for="mail" class="hidden">Email</label>
-
+										
 										<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
-
+										
 										<input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
 									</div><!-- /.subscribe-inner -->
 
@@ -242,7 +242,7 @@
 											<li>
 												<!--<div class="checkbox">
 													<input type="checkbox" name="field-notifications" id="field-notifications">
-
+													
 													<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
 												</div> /.checkbox -->
 											</li>

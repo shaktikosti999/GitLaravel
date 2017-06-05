@@ -34,26 +34,26 @@
 	@stop
 
 	@section('js')
-		
+
 		<!--Muestra las fechas activas de los programas en el calendario-->
 		<script>
 
-			var dates = [];   
-    
+			var dates = [];
+
 		    <?php if( isset($programas) && count($programas) ){ ?>
-		    
-			    var arrayJS=<?php echo json_encode($programas); ?>;    
-			    
+
+			    var arrayJS=<?php echo json_encode($programas); ?>;
+
 			    for(var i=0; i<arrayJS.length; i++){
 
 			    	var valores = new Array();
-		      		var fech = arrayJS[i]['fecha']; 		          
+		      		var fech = arrayJS[i]['fecha'];
 		          	var separada = fech.split("-");
-		          	valores[0] = separada[1]+'/'+separada[2]+'/'+separada[0];		          
+		          	valores[0] = separada[1]+'/'+separada[2]+'/'+separada[0];
 		          	dates.push(valores);
 			    }
 
-		   	<?php } ?> 
+		   	<?php } ?>
 
 		   	$(function(){
 		   		$('#vermes').on('click', function(){
@@ -63,14 +63,14 @@
 
 			function activeDays(date) {
 			    for (var i = 0; i < dates.length; i++) {
-			        if (new Date(dates[i]).toString() == date.toString()) {             
+			        if (new Date(dates[i]).toString() == date.toString()) {
 			            return {
 			                classes: 'active'
 			            };
 			        }
 			    }
 			    return [false,''];
-			 } 
+			 }
 		</script>
 
 		<script>
@@ -96,10 +96,10 @@
 
 		</script>
 	@stop
-	
+
 	@section('contenido')
 		<div class="wrapper">
-	    
+
 	    <div class="stick-nav"><!-- Stick nav -->
 	        <ul>
 	            <li><a href="#promociones"><img src="/assets/images/icon/todas-las-promociones.svg"><span>Promociones</span></a></li>
@@ -125,37 +125,37 @@
 						@else
 							<li class="slide" style="background-image: url({{ $item->imagen }})">
 								<div class="slide-body">
-									<div class="shell"> 		 
+									<div class="shell">
 										 <div class="slide-content">
+											 <h1><?php
+												if(isset($item->titulo)){
+													echo html_entity_decode($item->titulo);
+												}
+												?>
 
+											</h1>
 											 @if(isset($item->texto_boton))
 												 <form action="{{$item->link}}" target="{{$item->is_new_tab}}">
-													 <input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+													 <input  class="btn  btn-red  btn-slider" type="submit" value="{{$item->texto_boton}}">
 												 </form>
 											 @endif
-											 <h1><?php
-												 if(isset($item->titulo)){
-													 echo html_entity_decode($item->titulo);
-												 }
-												 ?>
 
-											 </h1>
 											 	<h3>
 											 		@if( isset( $sucursal_info->nombre ) )
-											 			
+
 											 			{{ $sucursal_info->nombre }}
 
 											 		@endif
 											 	</h3>
-										 	
-										 	
+
+
 
 										@if( isset( $sucursales ) && count( $sucursales ) )
 
 											<div class="filter-secondary">
 												<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
 												<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
-													
+
 													<option value="-1">Selecciona tu casino</option>
 
 													@foreach( $sucursales as $item )
@@ -163,7 +163,7 @@
 														<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
 
 													@endforeach
-													
+
 												</select>
 											</div><!-- /.filter-secondary -->
 
@@ -191,7 +191,7 @@
 			</div><!-- /.slider-label -->
 		</div><!-- /.slider-secondary -->
 
-		<div class="main"> 
+		<div class="main">
 			@if( isset($carreras) )
 				<section class="section-promotions secondary">
 					<div class="shell">
@@ -206,14 +206,14 @@
 							</a>
 						</header><!-- /.section-head -->
 
-						<div class="calendar-content">	
+						<div class="calendar-content">
 							<div class="list-btn">
 								<ul class="section-btn">
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
 										<?php $urlBell = url(\Request::path() . '?game=' . current($carreras)->slug); ?>
 										<a  href="javascript:void(0);" onclick="countBelling('<?php echo $urlBell ?>','<?php echo current($carreras)->titulo ?>')"  class="btn-carreras">
 											<img src="/assets/images/icon/caballos.png">
-											<span>{{current($carreras)->titulo}}</span> 
+											<span>{{current($carreras)->titulo}}</span>
 										</a>
 									</li>
 										<?php next($carreras); ?>
@@ -221,7 +221,7 @@
 										<?php $urlBell = url(\Request::path() . '?game=' . current($carreras)->slug); ?>
 											<a  href="javascript:void(0);" onclick="countBelling('<?php echo $urlBell ?>','<?php echo current($carreras)->titulo ?>')"  class="btn-carreras">
 											<img src="/assets/images/icon/galgos.png">
-											<span>{{current($carreras)->titulo}}</span> 
+											<span>{{current($carreras)->titulo}}</span>
 										</a>
 									</li>
 										<?php next($carreras); ?>
@@ -229,7 +229,7 @@
 										<?php $urlBell = url(\Request::path() . '?game=' . current($carreras)->slug); ?>
 											<a  href="javascript:void(0);" onclick="countBelling('<?php echo $urlBell ?>','<?php echo current($carreras)->titulo ?>')"  class="btn-carreras">
 											<img src="/assets/images/icon/canodromo.png">
-											<span>{{current($carreras)->titulo}}</span> 
+											<span>{{current($carreras)->titulo}}</span>
 										</a>
 									</li>
 								</ul>
@@ -248,11 +248,11 @@
 						</h2>
 					</div><!-- /.section-head -->
 
-					<section class="content programas">	
+					<section class="content programas">
 
 						<div class="left-item"> <!-- calendario -->
 							<div id="datepicker" class="calendar-module" data-date="{{date('m/d/Y')}}">
-							
+
 							</div>
 							<div class="indications">
 								<ul>
@@ -277,23 +277,23 @@
 										<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
 										No hemos encontrado eventos para esta fecha, pero te podrían interesar los siguientes
 									</div>
-								<ul>	
+								<ul>
 								@foreach($programas as $item)
 									<li class="txt-left" data-fecha="{{$item->fecha}}">
 										<h5>{{$item->titulo}}</h5>
 											@if( trim($item->archivo) !== "" )
-												<a href="{{$item->archivo}}" target="_blank"> 
+												<a href="{{$item->archivo}}" target="_blank">
 													<img src="css/images/icons/download.png">
 													Descargar programa
 												</a>
 											@endif
 									</li>
-										
+
 								@endforeach
 								</ul>
 							@endif
 						</div>
-					</section>	
+					</section>
 				</div><!-- /.shell -->
 			</section><!-- /.section-games-available -->
 
@@ -318,16 +318,16 @@
 								@foreach( $torneos as $item )
 
 									<div class="col col-1of2">
-										<article class="article-tournament" style="background-image: url('{{ $item->archivo }}')"> 
+										<article class="article-tournament" style="background-image: url('{{ $item->archivo }}')">
 											<span class="article-title">
 												{{ ( strtotime( $item->fecha_inicio ) > time() ) ? 'Próximos Eventos' : 'Experiencias pasadas' }}
-											</span><!-- /.article-title -->	
+											</span><!-- /.article-title -->
 
 											<div class="article-content">
 												<span class="article-label">
 													{{ $item->tipo }}
 												</span><!-- /.article-label -->
-												
+
 												<h5>
 													{{ $item->titulo }}
 												</h5>
@@ -398,7 +398,7 @@
 										</div>
 									</li>
 									@endforeach
-									
+
 								</ul>
 							</div>
 						</div>
@@ -422,9 +422,9 @@
 								<div class="subscribe-body-hidden">
 									<div class="subscribe-inner">
 										<label for="mail" class="hidden">Email</label>
-										
+
 										<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
-										
+
 										<input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
 									</div><!-- /.subscribe-inner -->
 
@@ -433,7 +433,7 @@
 											<li>
 												<!--<div class="checkbox">
 													<input type="checkbox" name="field-notifications" id="field-notifications">
-													
+
 													<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
 												</div> /.checkbox -->
 											</li>
@@ -448,52 +448,52 @@
 
 			@if( isset( $sucursal_info ) && $sucursal_info )
 
-				<section class="section-map no-top-padding"> 
+				<section class="section-map no-top-padding">
 					<div class="section-body">
-						<div id="googlemap" data-lng="-97.727616" data-lat="18.884188"></div><!-- /#googlemap --> 
-					
+						<div id="googlemap" data-lng="-97.727616" data-lat="18.884188"></div><!-- /#googlemap -->
+
 						<div class="section-content">
 							<div class="shell">
 								<div class="section-content-head">
 									<div class="stick--point" id="sucursales"></div>
 									<p>Sucursal</p>
-									
+
 									<h2>{{ $sucursal_info->nombre }}</h2>
 								</div><!-- /.section-content-head -->
-										
+
 								<div class="section-content-body">
 									<ul class="list-contacts">
 										<li>
 											<i class="ico-map"></i>
-										
+
 											<p>
 												{!! $sucursal_info->direccion !!}
 											</p>
 										</li>
-										
+
 										<li>
 											<i class="ico-phone"></i>
-										
+
 											<p>
 												{!! $sucursal_info->telefono !!}
 											</p>
 										</li>
-										
+
 										<li>
 											<i class="ico-clock"></i>
-										
+
 											{!! $sucursal_info->horario !!}
 										</li>
-										
+
 										<li>
 											<i class="ico-car"></i>
-										
+
 											{!! $sucursal_info->instrucciones !!}
 										</li>
 									</ul><!-- /.list-contacts -->
 								</div><!-- /.section-content-body -->
 							</div><!-- /.shell -->
-							
+
 							<div class="section-actions">
 								<a target="_blank" href="http://www.google.com/maps/place/{{ $sucursal_info->latitud . "," . $sucursal_info->longitud }}" class="btn btn-red btn-red-small">
 									<i class="ico-human"></i>
@@ -501,20 +501,20 @@
 									Cómo llegar aquí
 								</a>
 							</div><!-- /.section-actions -->
-						</div><!-- /.section-content --> 
+						</div><!-- /.section-content -->
 					</div><!-- /.section-body -->
 				</section><!-- /.section-map -->
 
 				<section class="section-gallery secondary">
 					<div class="shell">
-						
+
 						@if( isset( $sucursal_info->galeria ) && is_array( $sucursal_info->galeria ) && count( $sucursal_info->galeria ) )
 
 							<div class="slider-gallery">
 								<div class="slider-clip">
-									
+
 									<ul class="slides">
-										
+
 										@foreach( $sucursal_info->galeria as $g )
 
 											<li class="slide">
@@ -524,9 +524,9 @@
 											</li><!-- /.slide -->
 
 										@endforeach
-									
+
 									</ul><!-- /.slides -->
-								
+
 								</div><!-- /.slider-clip -->
 							</div><!-- /.slider-gallery -->
 
@@ -551,7 +551,7 @@
 
 						<div class="section-content">
 							<div class="cols">
-								
+
 								@foreach( $otras as $item )
 
 									<div class="col col-1of3">
@@ -560,7 +560,7 @@
 												<strong>
 													<label style="color: black;"> {{$item->slug}}</label>
 													{{ $item->linea }}
-													<span>{{ $item->slogan }}</span>	
+													<span>{{ $item->slogan }}</span>
 												</strong>
 											</a>
 										</article>
@@ -574,7 +574,7 @@
 				</section><!-- /.section-entry -->
 
 			@endif
-		
+
 		</div><!-- /.main -->
 
 		<script type="text/javascript">
