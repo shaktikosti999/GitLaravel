@@ -1044,10 +1044,15 @@ input:-webkit-autofill { -webkit-text-fill-color: inherit; -webkit-box-shadow: 0
 /* Mobile */
 @media (max-width: 767px) {
 	.list-filters { text-align: center; }
+
+	.slider-clip .slide-body.slide-body--home {padding-bottom: 0;}
+	.slider-clip .slide-body.slide-body--home form {width: 100%;}
 }
 .list-links { list-style: none; margin: 0; }
 .list-links:after { content: ''; line-height: 0; display: table; clear: both; }
 .list-links li { display: block; width: 50%; float: left; }
+
+
 /* ------------------------------------------------------------ *\
 	List Buttons
 \* ------------------------------------------------------------ */
@@ -1657,6 +1662,8 @@ li:first-child {margin: 0;margin-left: 0;}
 	.slider-intro .slick-next {top: 210px;}
 	.slider-secondary .slick-prev {top: 160px; z-index: 999;}
 	.slider-secondary .slick-next {top: 220px;}
+	.slider-clip .slide-body--home {padding-bottom: 0 !important;}
+	.slider-clip .slide-body	.slide-content form {width: 100%;}
 
 }
 /* Mobile */
@@ -2951,6 +2958,8 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 .slide-body	.slide-content form {width: 27%; padding: 0 0 20px 0; border-bottom: 1px solid rgba(152, 152, 152, .5);}
 .slider-clip .slide-body--filter {position: absolute; bottom: 0; left: 0; width: 100%; padding: 0; height: auto; padding-bottom: 50px;}
 .slider-clip .slide-body--filter .slide-inner {position: relative; z-index: 30; float: right; width: 50%; margin-top: -19px;}
+.slider-clip .slide-body--home {padding-bottom: 260px;}
+.slide-body--home .slide-content form {border: 0;}
 .slider-secondary .video-item {width: 100%; height: 725px; background-size: cover; background-position: center center; background-repeat: no-repeat;}
 
 /* ------------------------------------------------------------ *\
@@ -2999,7 +3008,7 @@ th.datepicker-switch::after {margin-bottom: 30px; content: "Programa del mes"; d
 		float: right;
 		width: 40%;
 	}
-	.slider-secondary .slide-content form {
+	.slider-secondary .slide-content form  {
 		width: 40%;
 	    border: 0;
 	    float: left;
