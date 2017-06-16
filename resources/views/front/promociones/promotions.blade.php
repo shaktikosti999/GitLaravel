@@ -8,15 +8,29 @@
 		@if( isset($slider) && count($slider) )
 			<div class="slider-secondary">
 				<div class="slider-clip">
-					<ul class="slides">
+					@if( isset( $slider ) && count( $slider ) > 1 )
+						<ul class="slides">
+					@endif
 						@foreach($slider as $item)
+								@if($item->is_show_img_video)
+									<li class="slide fullscreen">
+										<embed  width="100%" height="100%" src="<?php echo $item->video_url; ?>">
+									</li>
+								@else
 							<li class="slide" style="background-image: url({{ asset($item->imagen) }})">
 								<div class="slide-body">
 									<div class="shell"> 		 
 										 <div class="slide-content">
-										 	<h1>
-										 		{{$item->titulo}}
-										 	</h1>
+										 	{{--<h1>--}}
+										 		{{--{{$item->titulo}}--}}
+										 	{{--</h1>--}}
+											 @if(isset($item->texto_boton))
+												 <form action="{{$item->link}}" target="{{$item->is_new_tab}}">
+													 <input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+												 </form>
+											 @endif
+
+											 <h1><?php if(isset($item->titulo)){ echo html_entity_decode($item->titulo); } ?></h1>
 
 										 	<!-- <h3>
 										 		Sucursal Tecamachalco
@@ -35,32 +49,16 @@
 									</div><!-- /.shell -->
 								</div><!-- /.slide-body -->
 							</li><!-- /.slide -->
+								@endif
 						@endforeach
-					</ul><!-- /.slides -->
+					@if( isset( $slider ) && count( $slider ) > 1 )
+								</ul>
+					@endif
 				</div><!-- /.slider-clip --> 
 			</div><!-- /.slider-secondary -->
 		@endif
 
 		<div class="main"> 
-			<?php /*<section class="section-secondary section-gray">
-				<div class="shell">
-					<header class="section-head">
-						<h2>
-							$promocion->titulo}}
-						</h2>
-
-						<p>
-							Válido en sucursal @if(isset($suc_validas) && count($suc_validas) ) @foreach($suc_validas as $item) <a href="{{url('/sucursal/' . $item->slug)}}">{{$item->nombre}}</a> @endforeach @endif
-						</p>
-					</header><!-- /.section-head -->
-
-					<div class="section-body">
-						<p>
-							$promocion->descripcion}}
-						</p>
-					</div><!-- /.section-body -->
-				</div><!-- /.shell -->
-			</section><!-- /.section-gray --> */ ?>
 
 			<section>
 				<div class="shell">
@@ -76,78 +74,83 @@
 					</header>
 				</div>
 			</section>
-			@if( isset($promocion) && count($promocion) )
-				@foreach($promocion as $dinamica)
-					<section class="section-listings" data-sucursal="{{current($dinamica)->id_categoria}}">
-						<div class="shell">
-							<h4 style="color:rgb(0,0,0)" class="title-calendar">
-										Calendario
-							</h4>
-							<header class="section-head">
-								<h2>
-									{{current($dinamica)->categoria}}
-								</h2>
 
-								<!-- <div class="section-head-entry">
-									<h2>
-										Marzo, 2016
-									</h2>
+			{{--@if(isset($promocion))--}}
+				{{--@foreach($promocion as $dinamica)--}}
+					{{--<section class="section-listings" data-sucursal="{{current($dinamica)->id_categoria}}">--}}
+						{{--<div class="shell">--}}
+							{{--<h4 style="color:rgb(0,0,0)" class="title-calendar">--}}
+										{{--Calendario--}}
+							{{--</h4>--}}
+							{{--<header class="section-head">--}}
+								{{--<h2>--}}
+									{{--{{current($dinamica)->categoria}}--}}
+									{{--</h2>--}}
 
-								</div> --><!-- /.section-head-entry -->
-							</header><!-- /.section-head -->
+								{{--<!-- <div class="section-head-entry">--}}
+									{{--<h2>--}}
+										{{--Marzo, 2016--}}
+									{{--</h2>--}}
 
-							@if( isset($dinamica) && count($dinamica) )
-							<div class="section-body">
-								<div class="section-inner green">
-									
+								{{--</div> --><!-- /.section-head-entry -->--}}
+							{{--</header><!-- /.section-head -->--}}
 
-									<ul class="promotions">
-										@foreach( $dinamica as $item )
-										<li class="promotion">
-											<div class="promotion-date promotion--day">
-												<strong>
-													@if( (int)$item->id_categoria == 1 )
-														<span>
-															{{date('d',strtotime($item->inicio))}}
-														</span>
+							{{--@if( isset($dinamica) && count($dinamica) )--}}
+							{{--<div class="section-body">--}}
+								{{--<div class="section-inner green">--}}
 
-														<small>
-															{{date('M',strtotime($item->inicio))}}
-														</small>
-													@else
-														<small>Todos los</small>
-														<span>{{$item->dia}}</span>
-													@endif
-												</strong>
-											</div><!-- /.promotion-date -->
 
-											<div class="promotion-info">
-												<strong class="promotion-title">
-													{{$item->titulo}}
-												</strong>
+									{{--<ul class="promotions">--}}
+										{{--@foreach( $dinamica as $item )--}}
+										{{--<li class="promotion">--}}
+											{{--<div class="promotion-date promotion--day">--}}
+												{{--<strong>--}}
+													{{--@if( (int)$item->id_categoria == 1 )--}}
+														{{--<span>--}}
+															{{--{{date('d',strtotime($item->inicio))}}--}}
+														{{--</span>--}}
 
-												<strong class="promotion-entry">
-													<span>
-														{!!$item->descripcion!!}
-													</span>
-												</strong>
-											</div><!-- /.promotion-info -->
-										</li>
-										@endforeach
-									</ul><!-- /.promotion -->
+														{{--<small>--}}
+															{{--{{date('M',strtotime($item->inicio))}}--}}
+														{{--</small>--}}
+													{{--@else--}}
+														{{--<small>Todos los</small>--}}
+														{{--<span>{{$item->dia}}</span>--}}
+													{{--@endif--}}
+												{{--</strong>--}}
+											{{--</div><!-- /.promotion-date -->--}}
 
-									<!-- <div class="section-actions">
-										<a href="#" class="btn btn-border">
-											Cargar más 
-										</a>
-									</div> --><!-- /.section-actions -->
-								</div><!-- /.section-inner -->
-							</div><!-- /.section-body -->
-							@endif
-						</div><!-- /.shell -->
-					</section><!-- /.section-listing -->
-				@endforeach
-			@endif
+											{{--<div class="promotion-info">--}}
+												{{--<strong class="promotion-title">--}}
+													{{--{{$item->titulo}}--}}
+												{{--</strong>--}}
+
+												{{--<strong class="promotion-entry">--}}
+													{{--<span>--}}
+														{{--{!!$item->descripcion!!}--}}
+													{{--</span>--}}
+												{{--</strong>--}}
+											{{--</div><!-- /.promotion-info -->--}}
+										{{--</li>--}}
+										{{--@endforeach--}}
+									{{--</ul><!-- /.promotion -->--}}
+
+									{{--<!-- <div class="section-actions">--}}
+										{{--<a href="#" class="btn btn-border">--}}
+											{{--Cargar más--}}
+										{{--</a>--}}
+									{{--</div> --><!-- /.section-actions -->--}}
+								{{--</div><!-- /.section-inner -->--}}
+							{{--</div><!-- /.section-body -->--}}
+							{{--@endif--}}
+						{{--</div><!-- /.shell -->--}}
+					{{--</section><!-- /.section-listing -->--}}
+				{{--@endforeach--}}
+			{{--@endif--}}
+
+			{{--@if(isset($promociones)){--}}
+				{{--@include('front.includes.promotions',['promociones' => $promociones,'sucursal'=>$sucursal_info])--}}
+			{{--@endif--}}
 
 			<section class="section-gray">
 				<div class="shell">

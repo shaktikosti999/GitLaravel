@@ -58,6 +58,7 @@
           <img src="{{asset('/assets/img/logo.png')}}" alt="logo" data-src="{{asset('/assets/img/logo.png')}}" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
           <p class="p-t-35">Iniciar Sesión</p>
           <!-- START Login Form -->
+
           <form id="form-login" class="p-t-15" role="form" action="{{url('validar/session.html')}}" method="post">
             {{csrf_field()}}
             <input type="hidden" name="_method" value="put">

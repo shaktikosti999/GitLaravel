@@ -13,6 +13,7 @@ use App\Models\front\sucursal_model as sucursal;
 use App\Models\front\slider_model as slider;
 use App\Models\front\promocion_model as promocion;
 use App\Models\front\juego_model as juego;
+use App\Models\front\configuracion_model as configuracion;
 use SoapClient;
 
 class lineasController extends Controller
@@ -32,8 +33,7 @@ class lineasController extends Controller
 
         //-----> Obtenemos los sliders
         //$data["slider"] = linea::find_gallery( 1 );
-        $data["slider"] = slider::find_all(6);
-
+        $data["slider"] = slider::find_all(['tipo' => 1 , 'id_sucursal' => $id_sucursal]);
 
         //-----> Obtenemos promociones
         $data["promociones"] = promocion::find_all( [ "linea" => 1, "id_sucursal" => $id_sucursal ] );
@@ -59,6 +59,8 @@ class lineasController extends Controller
 
         $data['pagados'] = sucursal::get_paid(['id_sucursal' => $id_sucursal]);
         $data['acumulado'] = sucursal::get_accumulated(['id_sucursal' => $id_sucursal]);
+
+        $data['configuracion'] = configuracion::find_all();
 
         return view('front.lineas.maquinas',$data);
     }
@@ -122,7 +124,7 @@ class lineasController extends Controller
 
         //-----> Obtenemos los sliders
         //$data["slider"] = linea::find_gallery( 2 );
-        $data["slider"] = slider::find_all( 7 );
+        $data["slider"] = slider::find_all(['tipo' => 2 , 'id_sucursal' => $id_sucursal]);
 
         //-----> Obtenemos promociones
         $data["promociones"] = promocion::find_all( [ "linea" => 2, "id_sucursal" => $id_sucursal ] );
@@ -160,7 +162,7 @@ class lineasController extends Controller
         $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
 
         //-----> Obtenemos los sliders
-        $data["slider"] = slider::find_all( 9 );
+        $data["slider"] = slider::find_all(['tipo' => 4 , 'id_sucursal' => $id_sucursal] );
 
         //-----> Obtenemos mesas de juego
         $data["carreras"] = linea::get_races();
@@ -184,7 +186,9 @@ class lineasController extends Controller
         $data['acumulado'] = linea::accumulated(['id_sucursal' => $id_sucursal,'linea' => 4]);
 
         $data['game'] = ( isset($request['game']) ) ? $request['game'] : null;
-        // dd($data);
+
+        $data['promociones'] = promocion::find_all( [ "linea" => 4, "id_sucursal" => $id_sucursal ] ); //Obtener promociones
+
 
         return view('front.lineas.carreras',$data);
     }
@@ -216,15 +220,20 @@ class lineasController extends Controller
     }
 
     public function deportivas( $sucursal = null){
-		$data["sucursales"] = sucursal::find_all();
-        $this->soapLoggin();
+
+//        dd($sucursal);
+
+        if(url() == 'http://calientecasino.com.mx') {
+            $this->soapLoggin();
+        }
         $data["sucursal"] = $sucursal;
 
         //-----> Obtenemos detalle de sucursal seleccionada
         $data["sucursal_info"] = sucursal::find_by_slug( $sucursal );
         $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
-
-        $data['slider'] = slider::find_all( 8 ); //Obtener Sliders
+        //dd($id_sucursal);
+        $data["sucursales"] = sucursal::find_all();
+        $data['slider'] = slider::find_all( ['tipo'=>3,'id_sucursal'=>$id_sucursal] ); //Obtener Sliders
         $data['promociones'] = promocion::find_all( [ "linea" => 3, "id_sucursal" => $id_sucursal ] ); //Obtener promociones
         $data["otras"] = linea::find_all( [ "not_in" => [ 3 ] ] ); // Obtenemos otras opciones de diversión
         $data['quinielas'] = slider::football_pools();// Obtenemos las quinielas
@@ -238,7 +247,8 @@ class lineasController extends Controller
 
         }
 
-        // Lista de deportes
+        if(url() == 'http://calientecasino.com.mx') {
+//             Lista de deportes
         $soap = new SoapClient('http://10.88.6.9:8080/ApuestaRemotaESB/ebws/Deportes/ListaDeportes?wsdl&amp');
         $res = $soap->__soapCall('ListaDeportesOp',[[
             'sesion' => session('soapSession')->sesion,
@@ -390,6 +400,7 @@ class lineasController extends Controller
         }
         // dd($data);
         $data['ofertas'] = $ofertas;
+        }
 
          return view('front.lineas.deportiva',$data);
     }

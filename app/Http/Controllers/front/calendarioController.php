@@ -17,7 +17,7 @@ class calendarioController extends Controller
     public function show(){
 
         $data=[
-            'slider' => \App\Models\front\slider_model::find_all(5),
+            'slider' => \App\Models\front\slider_model::find_all(['tipo'=>10]),
         ];
         return view('front.calendario.show',$data);
         //

@@ -36,7 +36,7 @@
 						</div>
 						<div class="pull-right">
 							<div class="col-xs-12">
-		                    	<a href="{{url('/administrador/agregar/pagina_de_contenido.html')}}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Agregar</a>
+		                    		<a href="{{url('/administrador/agregar/pagina_de_contenido.html')}}" class="btn btn-primary btn-cons"><i class="fa fa-plus"></i> Agregar</a>
 			              	</div>
 		                </div>
 					</div>

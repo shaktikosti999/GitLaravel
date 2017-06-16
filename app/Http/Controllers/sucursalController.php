@@ -335,18 +335,25 @@ class sucursalController extends Controller
     }
 
     public function add_pay(Request $request){
+
         $this->validate($request,[
             'pay_sucursal' => 'required|integer|min:1',
             'pay_tipo' => 'required|integer|min:1',
             'pay_titulo' => 'required|string',
             'pay_cantidad' => 'required|integer|min:1'
         ]);
+        $is_new_tab = "_self";
+        if($request->input('is_new_tab') == "on") {
+            $is_new_tab = "_blank";
+        }
         \DB::table('sucursal_pago')
             ->insert([
                 'id_tipo' => $request->input('pay_tipo'),
                 'id_sucursal' => $request->input('pay_sucursal'),
                 'titulo' => $request->input('pay_titulo'),
-                'cantidad' => $request->input('pay_cantidad')
+                'cantidad' => $request->input('pay_cantidad'),
+                'url' => $request->input('url'),
+                'is_new_tab' => $is_new_tab
             ]);
         return redirect()->back();
     }

@@ -35,42 +35,108 @@
 	@stop
 
 	@section('contenido')
-		<div class="intro" style="background-image: url(css/images/temp/intro-contact-bg.jpg);">
-			<div class="intro-content">
-				<div class="shell">
-					<h1 class="intro-title">Contacto</h1>
-					<p>Nulla sem justo, maximus in mattis ac, sodales a orci. Vivamus aliquet dolor ut sem consectetur porta. Aliquam vel elementum enim, nec feugiat sem. Mauris a consectetur nisl. Pellentesque tellus ex, maximus sit amet cursus vel, elementum ut mi. Etiam sed risus turpis. Etiam vitae dui dolor. Integer sed mauris ligula. </p>	
-					
-					{{isset($sucursal) ? '<h2>Sucursal Tecamachalco</h2>' :''}}
-					
-					@if( isset( $sucursales ) && count( $sucursales ) && 1==2)
 
-					<div class="intro-content-actions">
-						<div class="cols">
-							<div class="col col-1of2"> 
-								<div class="filter-secondary">
-									<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
-									<select name="field-filter-secondary1" id="field-filter-secondary1" class="select">
-										@foreach( $sucursales as $item )
+		<div class="slider-secondary">
+			<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
+			<img src="css/images/btn-menu@2x.png" alt="">
+		</a>
+ -->
+			<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
+			<img src="css/images/btn-menu@2x.png" alt="">
+		</a>
+ -->
+			<div class="slider-clip">
+				@if( isset( $slider ) && count( $slider ) > 1 )
+					<ul class="slides">
+				@endif
+					@if( isset( $slider ) && count( $slider ) )
 
-										<option value="{{$item->id_sucursal}}">{{$item->nombre}}</option>
+						<div class="slider-intro anchor">
+							<!-- <a href="#" class="btn-scroll">
+                                <i class="ico-mouse"></i>
+                            </a> -->
 
-										@endforeach
-									</select>
-								</div><!-- /.filter-secondary -->
-							</div><!-- /.col col-1of2 -->
-							
-							<div class="col col-1of2">
-								@include('front.includes.breadcrumbs')
-							</div><!-- /.col col-1of2 -->
-						</div><!-- /.cols -->
-					</div><!-- /.intro-content-actions -->
+							<div class="slider-clip">
+								<ul class="slides">
+									@foreach( $slider as $s )
+										@if($s->is_show_img_video)
+											<li class="slide fullscreen">
+												<embed  width="100%" height="100%" src="<?php echo $s->video_url; ?>">
+											</li>
+										@else
+										<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
+											<div class="slide-content ">
+												<!--<div class="shell"-->
+												@if(isset($s->texto_boton))
+													<form action="{{$s->link}}" target="{{$s->is_new_tab}}">
+														<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+													</form>
+												@endif
+												<h1><?php echo html_entity_decode($s->titulo); ?></h1>
+												{{--<h1>{{ $s->titulo }}</h1>--}}
+												<!--h1>
+                                                    Navidad Excepcional
+                                                </h1-->
 
+												<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
+
+												<!--</div> /.shell -->
+											</div><!-- /.slide-content -->
+										</li><!-- /.slide -->
+										@endif
+									@endforeach
+										@if( isset( $slider ) && count( $slider ) > 1 )
+									</ul>
+								@endif
+							</div><!-- /.slider-clip -->
+						</div><!-- /.slider-intro -->
 					@endif
 
-				</div><!-- /.shell -->
-			</div><!-- /.intro-content -->
-		</div><!-- /.intro -->
+
+				</ul><!-- /.slides -->
+			</div><!-- /.slider-clip -->
+
+			<div class="slider-label red-label large">
+				<i class="ico-slot"></i>
+			</div><!-- /.slider-label -->
+		</div><!-- /.slider-secondary -->
+
+		{{--<div class="intro" style="background-image: url(css/images/temp/intro-contact-bg.jpg);">--}}
+			{{--<div class="intro-content">--}}
+				{{--<div class="shell">--}}
+					{{--<h1 class="intro-title">Contacto</h1>--}}
+					{{--<p>Nulla sem justo, maximus in mattis ac, sodales a orci. Vivamus aliquet dolor ut sem consectetur porta. Aliquam vel elementum enim, nec feugiat sem. Mauris a consectetur nisl. Pellentesque tellus ex, maximus sit amet cursus vel, elementum ut mi. Etiam sed risus turpis. Etiam vitae dui dolor. Integer sed mauris ligula. </p>	--}}
+					{{----}}
+					{{--{{isset($sucursal) ? '<h2>Sucursal Tecamachalco</h2>' :''}}--}}
+					{{----}}
+					{{--@if( isset( $sucursales ) && count( $sucursales ) && 1==2)--}}
+
+					{{--<div class="intro-content-actions">--}}
+						{{--<div class="cols">--}}
+							{{--<div class="col col-1of2"> --}}
+								{{--<div class="filter-secondary">--}}
+									{{--<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>--}}
+									{{--<select name="field-filter-secondary1" id="field-filter-secondary1" class="select">--}}
+										{{--@foreach( $sucursales as $item )--}}
+
+										{{--<option value="{{$item->id_sucursal}}">{{$item->nombre}}</option>--}}
+
+										{{--@endforeach--}}
+									{{--</select>--}}
+								{{--</div><!-- /.filter-secondary -->--}}
+							{{--</div><!-- /.col col-1of2 -->--}}
+							{{----}}
+							{{--<div class="col col-1of2">--}}
+								{{--@include('front.includes.breadcrumbs')--}}
+							{{--</div><!-- /.col col-1of2 -->--}}
+						{{--</div><!-- /.cols -->--}}
+					{{--</div><!-- /.intro-content-actions -->--}}
+
+					{{--@endif--}}
+
+				{{--</div><!-- /.shell -->--}}
+			{{--</div><!-- /.intro-content -->--}}
+		{{--</div><!-- /.intro -->--}}
 		<div class="main">
 			<section class="section-contacts">
 				<div class="shell">

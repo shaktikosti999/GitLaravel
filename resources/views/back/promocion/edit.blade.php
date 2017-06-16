@@ -3,6 +3,8 @@
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="{{asset('/assets/plugins/jquery-validation/js/jquery.validate.min.js')}}" type="text/javascript"></script>
 		<script src="{{asset('/assets/js/promocion/edit.js')}}"></script>
+
+		<script type="text/javascript" src="{{asset('assets/src/js/jquery.tree.js')}}"></script>
 		<script>
 		$(function(){
 			$('#form-agregar').validate();
@@ -10,12 +12,41 @@
 				dateFormat: "yy-mm-dd"
 			});
 		});
+
+		$(document).ready(function() {
+			$( "#accordion" ).accordion({
+				'collapsible': true,
+				'active': null,
+				'heightStyle': 'content'
+			});
+			$('.jquery').each(function() {
+				eval($(this).html());
+			});
+
+			$('.button').button();
+			$('.list > li a').click(function() {
+				$(this).parent().find('ul').toggle();
+			});
+		});
+
+		$('#example-3 div').tree({
+			onCheck: {
+				node: 'expand'
+			},
+			onUncheck: {
+				node: 'collapse'
+			}
+		});
+
+		$('#example-3 div').tree('uncheckAll');
 		</script>
 	@stop
 
 	@section('css')
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css')}}">
+
+		<link rel="stylesheet" type="text/css" href="{{asset('assets/src/css/jquery.tree.css')}}"/>
 	@stop
 
 	@section('contenido')
@@ -40,15 +71,58 @@
 			      	<div class="row clearfix">
 			        	<div class="col-sm-12">
 			          		<div class="form-group form-group-default" aria-required="true">
-			            		<label for="juego">Juego</label>
-			            		<select id="juego" class="form-control required" name="juego" required="required" aria-required="true" aria-invalid="true">
-			            			@foreach( $juegos as $item )
-			            			<option value="{{$item->id}}" {{$promocion->id_juego == $item->id ? 'selected' : ''}}>{{$item->nombre}}</option>
-			            			@endforeach
-			            		</select>
+			            		{{--<label for="juego">Juego</label>--}}
+			            		{{--<select id="juego" class="form-control required" name="juego" required="required" aria-required="true" aria-invalid="true">--}}
+			            			{{--@foreach( $juegos as $item )--}}
+			            			{{--<option value="{{$item->id}}" {{$promocion->id_juego == $item->id ? 'selected' : ''}}>{{$item->nombre}}</option>--}}
+			            			{{--@endforeach--}}
+			            		{{--</select>--}}
+								<label for="juego">Juego</label>
+								{{--<div id="example-3">--}}
+
+								<style>
+									ul li ul {
+										display: none;
+									}
+								</style>
+
+
+								<ul class="list">
+										@foreach( $juegos as $indexKey => $item )
+											@if($item->id !=9)
+												<li>
+													<a><input type="checkbox" name="juego[]" value="{{$item->id}}" style="display:{{$item->id==10 || $item->id==13?'none':''}}" <?php if(in_array($item->id,$linea)){ echo 'checked'; } ?> ><span>{{$item->nombre}}</span></a>
+													@foreach( $sucursales[$indexKey] as $item1 )
+														<ul>
+															<li class="collapsed"><label><input type="checkbox" <?php if(isset($selectedSucursales[$item->id]) && (in_array($item1->id_sucursal,$selectedSucursales[$item->id]))){ echo 'checked'; } ?> name="juegoSub[{{$item->id}}][]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span></label>
+														</ul>
+													@endforeach
+												</li>
+											@endif
+										@endforeach
+
+								</ul>
+
+								{{--<div class="list">--}}
+									{{--<div style="background-color:transparent;" >--}}
+										{{--<ul>--}}
+											{{--@foreach( $juegos as $indexKey => $item )--}}
+												{{--<li class="collapsed collapsed1"><input type="checkbox" name="juego[]" value="{{$item->id}}" ><span>{{$item->nombre}}</span>--}}
+													{{--<input type="hidden" name="juegoSub{{$item->id}}[]" >--}}
+													{{--@foreach( $sucursales[$indexKey] as $item1 )--}}
+														{{--<ul>--}}
+															{{--<li class="collapsed"><input type="checkbox" name="juegoSub{{$item->id}}[]" value="{{$item1->id_sucursal}}" ><span>{{$item1->nombre}}</span>--}}
+														{{--</ul>--}}
+													{{--@endforeach--}}
+											{{--@endforeach--}}
+										{{--</ul>--}}
+									{{--</div>--}}
+								{{--</div>--}}
 			          		</div>
 			        	</div>
 			      	</div>
+
+
 
 			      	<div class="row">
 	        			<div class="col-sm-12">
@@ -76,6 +150,41 @@
 	                    	</div>
 	                	</div>
 	                </div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
+								<label><input type="checkbox" name="is_active_btn" {{$promocion->is_active_btn ? 'checked' : ''}}><span>Botón de URL externo activo</span></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
+								<label for="button_text">botón de Texto</label>
+								<input type="text" id="button_text" class="form-control" name="button_text" value="{{$promocion->button_text}}" aria-required="true" aria-invalid="true">
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default">
+								<label for="link">URL Externa</label>
+								<textarea id="link" class="form-control" name="link" aria-invalid="true">{{$promocion->link}}</textarea>
+								{{--<input type="text" id="link" class="form-control " name="link" aria-required="true" aria-invalid="true">--}}
+							</div>
+						</div>
+					</div>
+
+					<div class="row clearfix">
+						<div class="col-sm-12">
+							<div class="form-group form-group-default" >
+								<label><input type="checkbox" name="is_new_tab"  {{$promocion->is_new_tab ? 'checked' : ''}} ><span> URL Open New Tab</span></label>
+							</div>
+						</div>
+					</div>
 
 	                <div class="row">
 	        			<div class="col-sm-12">

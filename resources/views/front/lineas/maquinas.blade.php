@@ -3,103 +3,13 @@
 @section('js')
 	<script src="js/front/maquinas.js"></script>
 	<script>
-		var acumuladoslimit=4;
-     $("#seeMoreAcumulados").click(function(e){
-
-         e.preventDefault();
-         $.ajax({
-             type:'get',
-             url:'/getAllDataAcumulados/null/'+acumuladoslimit,
-			 dataType:'json',
-             success: function(data){
-
-				 console.log(data['acumulado']);
-                   $.each(data['acumulado'], function(k , v) {
-                  		var html='';
-                 		html+='<div class="col col-1of2">';
-                          html+='<article class="article-jackpot">';
-                          	html+='<div class="article-content">';
-                          		html+='<h6>';
-									html+=data['acumulado'][k].titulo;
-								html+='</h6>';
-
-                          		html+='<div class="fake-div">';
-                          				html+='<div id="counter">';
-                          					html+='<div class="counter-value" ><p>$'+data['acumulado'][k].cantidad.toLocaleString('ja-JP')+'<em> MN</em></p></div>';
-                      			html+='</div>';
-
-                      			html+='<div class="fake-div">';
-
-                      			html+='</div>';
-                      		html+='</div>';
-						 	// </div><!-- /.article-content -->
-					      html+='</article>';
-					    html+='</div>';
-
-             		$("#seeMoreDataAcumulados").append(html);
-                  });
-                 acumuladoslimit=acumuladoslimit+4;
-
-				 if(data['acumulado'].length < 4){
-                     $("#seeMoreAcumulados").css('display','none');
-				 }
-             },
-             error: function () {
-                 $('#seeMoreAcumulados').hide();
-                 return false
-             }
-         });
-	 });
-
-
-     var pagadoslimit=4;
-     $("#seeMorePagados").click(function(e){
-
-         e.preventDefault();
-         $.ajax({
-             type:'get',
-             url:'/getAllDataPagados/null/'+pagadoslimit,
-             dataType:'json',
-             success: function(data){
-
-                 console.log(data['pagados']);
-                 $.each(data['pagados'], function(k , v) {
-                     var html='';
-                     html+='<div class="col col-1of2">';
-                     html+='<article class="article-jackpot">';
-                     html+='<div class="article-content">';
-                     html+='<h6>';
-                     html+=data['pagados'][k].titulo;
-                     html+='</h6>';
-
-                     html+='<div class="fake-div">';
-                     html+='<div id="counter">';
-                     html+='<div class="counter-value" ><p>$'+data['pagados'][k].cantidad.toLocaleString('ja-JP')+'<em> MN</em></p></div>';
-                     html+='</div>';
-
-                     html+='<div class="fake-div">';
-
-                     html+='</div>';
-                     html+='</div>';
-                     // </div><!-- /.article-content -->
-                     html+='</article>';
-                     html+='</div>';
-
-                     $("#seeMoreDataPagados").append(html);
-                 });
-
-                 pagadoslimit=pagadoslimit+4;
-
-                 if(data['pagados'].length < 4){
-                     $("#seeMorePagados").css('display','none');
-                 }
-             },
-             error: function () {
-                 $('#seeMorePagados').hide();
-                 return false
-             }
-         });
-     });
+		function redirectPage(url,target) {
+			if(target == "_blank"){
+				window.open(url);
+			} else {
+				window.location.href = url;
+			}
+		}
 	</script>
 @stop
 
@@ -116,86 +26,83 @@
     
     <div class="stick-nav"><!-- Stick nav -->
         <ul>
-            <li><a href="#promociones" onclick="dataLayer.push ({'event': 'drilldown','txtLink': 'Promociones'});"><img src="/assets/images/icon/todas-las-promociones.svg"><span>Promociones</span></a></li>
-            <li><a href="#maquinas" onclick="dataLayer.push ({'event': 'drilldown','txtLink': 'Máquinas'});"><img src="/assets/images/icon/maquinas-de-juego.svg"><span>Máquinas</span></a></li>
+            <li><a href="#promociones"><img src="/assets/images/icon/todas-las-promociones.svg"><span>Promociones</span></a></li>
+            <li><a href="#maquinas"><img src="/assets/images/icon/maquinas-de-juego.svg"><span>Máquinas</span></a></li>
             <!--<li><a href="#proveedores"><img src="/assets/images/icon/marcas-de-juego.svg"><span>Marcas de Juego</span></a></li>-->
-            <li><a href="#jackpot" onclick="dataLayer.push ({'event': 'drilldown','txtLink': 'Jackpot'});"><img src="/assets/images/icon/jackpot.svg"><span>Jackpot</span></a></li>
+            <li><a href="#jackpot"><img src="/assets/images/icon/jackpot.svg"><span>Jackpot</span></a></li>
             <!--<li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Ubicación</span></a></li>-->
-            <li><a href="#diversion" onclick="dataLayer.push ({'event': 'drilldown','txtLink': 'Diversión'});"><img src="/assets/images/icon/diversion.svg"><span>Diversión</span></a></li>
+            <li><a href="#diversion"><img src="/assets/images/icon/diversion.svg"><span>Diversión</span></a></li>
         </ul>
     </div>
 
-	<div class="slider-secondary">
-<!-- 		<a href="/alimentos-y-bebidas" class="btn-menu">
-			<img src="css/images/btn-menu@2x.png" alt="">
-		</a>
- -->
-		<div class="slider-clip">
-			<ul class="slides">
-				
-				@if( isset( $slider ) && count( $slider ) )
+		@if( isset( $slider ) && count( $slider ) )
 
-					@foreach( $slider as $item )
+			<div class=" slider-intro anchor">
+				<!-- <a href="#" class="btn-scroll">
+                    <i class="ico-mouse"></i>
+                </a> -->
+				<div class="slider-clip">
+					@if( isset( $slider ) && count( $slider ) > 1 )
+						<ul class="slides">
+							@endif
+							@foreach( $slider as $s )
+								@if($s->is_show_img_video)
+									<li class="slide fullscreen">
+										{{--<embed  width="100%" height="100%" src="https://www.youtube.com/embed/E21unYOt2u8">--}}
+										<embed  width="100%" height="100%" src="{{$s->video_url}}">
+									</li>
 
-						<li class="slide" style="background-image: url({{ $item->imagen }})">
-							<div class="slide-body">
-								<div class="shell"> 		 
-									 <div class="slide-content">
-									 	<h1>
-									 		mÁquinas de juego
-									 	</h1>
-										 	
-										 	<h3>
-										 		@if( isset( $sucursal_info->nombre ) )
-										 			
-										 			{{ $sucursal_info->nombre }}
+								@else
+									<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
+										<div class="slide-body">
+											<div class="shell">
+												<div class="slide-content"  >
+													@if(isset($s->texto_boton) && $s->texto_boton != "")
+														<form action="{{$s->link}}" target="{{$s->is_new_tab}}" >
+															<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+														</form>
+													@endif
+													<h2>
+														{{$s->titulo}}
+													</h2>
 
-										 		@endif
-										 	</h3>
-									 	
-									 	
+													@if( isset( $sucursales ) && count( $sucursales ) )
 
-									@if( isset( $sucursales ) && count( $sucursales ) )
+														<div class="filter-secondary">
+															<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+															<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
 
-										<div class="filter-secondary">
-											<label for="sucursales" class="form-label hidden">filter-secondary1</label>
-											<select name="sucursales" id="sucursales" class="select branch-filter">
-												
-												<option value="-1">Selecciona tu casino</option>
+																<option value="-1">Selecciona tu casino</option>
 
-												@foreach( $sucursales as $item )
+																@foreach( $sucursales as $item )
 
-													<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
+																	<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
 
-												@endforeach
-												
-											</select>
-										</div><!-- /.filter-secondary -->
+																@endforeach
 
-									@endif
+															</select>
+														</div><!-- /.filter-secondary -->
+
+													@endif
 
 
-									 </div><!-- /.slide-content -->
+												</div><!-- /.slide-content -->
 
-									@include('front.includes.breadcrumbs')
-								</div><!-- /.shell -->
-							</div><!-- /.slide-body -->
-						</li><!-- /.slide -->
+												@include('front.includes.breadcrumbs')
+											</div><!-- /.shell -->
+										</div><!-- /.slide-body -->
+									</li><!-- /.slide -->
+								@endif
+							@endforeach
+							@if( isset( $slider ) && count( $slider ) > 1 )
+						</ul><!-- /.slides -->
+					@endif
+				</div><!-- /.slider-clip -->
+			</div><!-- /.slider-intro -->
 
-					@endforeach
+		@endif
 
-				@endif
-
-				
-			</ul><!-- /.slides -->
-		</div><!-- /.slider-clip -->
-
-		<div class="slider-label red-label large">
-			<i class="ico-slot"></i>
-		</div><!-- /.slider-label -->
-	</div><!-- /.slider-secondary -->
-
-	<div class="main">
+		<div class="main">
 
 		@if( isset( $promociones ) && count( $promociones ) )
 
@@ -280,99 +187,154 @@
 						<div class="cols" id="seeMoreDataAcumulados">
 							
 							@foreach ($acumulado as $item)
-								<div class="col col-1of2">
-									<article class="article-jackpot">
-										<div class="article-content">
-											<h6>
-												{{$item->titulo}} 
-											</h6>
 
-											<div class="fake-div">
-												<div id="counter">
-												    <div class="counter-value" ><p>${{number_format($item->cantidad)}} <em>MN</em></p></div>
-												    <!--<div class="counter-value" data-count="400">$100</div>
-												    <div class="counter-value" data-count="1500">$500</div>-->
-												</div>
+									<div class="col col-1of2" onClick="redirectPage('{{$item->url}}','{{$item->is_new_tab}}')" style="cursor: pointer;">
+										<article class="article-jackpot">
+											<div class="article-content">
+												<h6>
+													{{$item->titulo}}
+												</h6>
+
 												<div class="fake-div">
-											<!--<p>
+													<div id="counter">
+														<div class="counter-value" ><p>${{number_format($item->cantidad)}} <em>MN</em></p></div>
+														<!--<div class="counter-value" data-count="400">$100</div>
+                                                        <div class="counter-value" data-count="1500">$500</div>-->
+													</div>
+													<div class="fake-div">
+														<!--<p>
 												${{$item->cantidad}}
-											</p>-->
+																</p>-->
+													</div>
 												</div>
-											</div>
-										</div><!-- /.article-content -->
-									</article><!-- /.article-jackpot -->
-								</div><!-- /.col col-1of2 -->
-					
-								
+											</div><!-- /.article-content -->
+										</article><!-- /.article-jackpot -->
+									</div><!-- /.col col-1of2 -->
 							@endforeach
-							
+
 						</div><!-- /.cols -->
 					@endif
 
 					<div class="btn-more">
-						<a href="#" class="btn btn-border" id="seeMoreAcumulados" onclick="dataLayer.push ({'event': 'vermas', 'section': 'Acumulados por pagar'});">
+						<a href="#" class="btn btn-border view_more" id="seeMoreAcumulados">
 							Ver más
 						</a>
 					</div>
 
-						@if( isset($pagados) && count($pagados) )
-							<div class="section-entry">
-								<p>
-									<span>
-										Pagados
-									</span>
+						{{--@if( isset($pagados) && count($pagados) )--}}
+							{{--<div class="section-entry">--}}
+								{{--<p>--}}
+									{{--<span>--}}
+										{{--Pagados--}}
+									{{--</span>--}}
 
-									<!--<a href="{{url('/pagados')}}">
-										Conoce los pagados
-									</a>-->
+									{{--<!--<a href="{{url('/pagados')}}">--}}
+										{{--Conoce los pagados--}}
+									{{--</a>-->--}}
 
-									<a class="btn btn-red btn-small" href="{{url('/pagados')}}">
-										Miles de pesos repartidos
-									</a>
+									{{--<a class="btn btn-red btn-small" href="{{url('/pagados')}}">--}}
+										{{--Miles de pesos repartidos--}}
+									{{--</a>--}}
 
-								
-								</p>
-							</div><!-- /.section-entry -->
+								{{----}}
+								{{--</p>--}}
+							{{--</div><!-- /.section-entry -->--}}
 
 
-							<div class="cols" id="seeMoreDataPagados">
-								@foreach($pagados as $pagado)
-								<div class="col col-1of2">
-									<article class="article-jackpot">
-										<div class="article-content">
-											<h6>
-												{{ucfirst($pagado->titulo)}} 
-											</h6>
+							{{--<div class="cols" id="seeMoreDataPagados" >--}}
+								{{--@foreach($pagados as $pagado)--}}
 
-											<div class="fake-div">
-												<div id="counter">
-												    <div class="counter-value"><p>${{number_format($pagado->cantidad)}} <em>MN</em></p></div>
-												    <!--<div class="counter-value" data-count="400">$100</div>
-												    <div class="counter-value" data-count="1500">$500</div>-->
-												</div>
-												<div class="fake-div">
-											<!--<p>
-												${{$pagado->cantidad}}
-											</p>-->
-												</div>
-											</div>
-										</div><!-- /.article-content -->
-									</article><!-- /.article-jackpot -->
-								</div><!-- /.col col-1of2 -->
-								@endforeach
-							</div><!-- /.cols -->
-							<div class="btn-more">
-								<a href="#" class="btn btn-border " id="seeMorePagados" onclick="dataLayer.push ({'event': 'vermas', 'section': 'Acumulados Pagados'});">
-									Ver más
-								</a>
-							</div>
-						@endif
+										{{--<div class="col col-1of2" onClick="redirectPage('{{$item->url}}','{{$item->is_new_tab}}')" style="cursor: pointer;">--}}
+											{{--<article class="article-jackpot">--}}
+												{{--<div class="article-content">--}}
+													{{--<h6>--}}
+														{{--{{ucfirst($pagado->titulo)}}--}}
+													{{--</h6>--}}
+
+													{{--<div class="fake-div">--}}
+														{{--<div id="counter">--}}
+															{{--<div class="counter-value"><p>${{number_format($pagado->cantidad)}} <em>MN</em></p></div>--}}
+															{{--<!--<div class="counter-value" data-count="400">$100</div>--}}
+                                                            {{--<div class="counter-value" data-count="1500">$500</div>-->--}}
+														{{--</div>--}}
+														{{--<div class="fake-div">--}}
+															{{--<!--<p>--}}
+												{{--${{$pagado->cantidad}}--}}
+																	{{--</p>-->--}}
+														{{--</div>--}}
+													{{--</div>--}}
+												{{--</div><!-- /.article-content -->--}}
+											{{--</article><!-- /.article-jackpot -->--}}
+										{{--</div><!-- /.col col-1of2 -->--}}
+
+								{{--@endforeach--}}
+							{{--</div><!-- /.cols -->--}}
+							{{--<div class="btn-more">--}}
+								{{--<a href="#" class="btn btn-border view_more" id="seeMorePagados" >--}}
+									{{--Ver más--}}
+								{{--</a>--}}
+							{{--</div>--}}
+						{{--@endif--}}
 					</div><!-- /.section-content --> 
 				</div><!-- /.shell -->
 			</section><!-- /.section-jackpots -->
 
 
-		<section class="section-gray">
+			@if( isset($configuracion) && count($configuracion) )
+					<section class="section-jackpots secondary">
+						<div class="shell">
+							<header class="section-head">
+								{{--<div class="stick--point" id="jackpot"></div>--}}
+								<h2>
+									{{--<small>{{$item->titulo}}</small>--}}
+									Configuración
+								</h2>
+
+								<a class="btn btn-red btn-small" href="{{url('/pagados')}}" style="float: right;height: 2.5em;line-height: 2.5em;margin-top: -1em;">
+									Miles de pesos repartidos
+								</a>
+							</header><!-- /.section-head -->
+
+                                <div class="section-content">
+                                    <div class="section-entry">
+                                        <p>
+                                            <span>
+                                                Por pagar
+                                            </span>
+
+                                            {{-- <a href="#">
+                                                Ver más
+                                            </a> --}}
+									</p>
+								</div><!-- /.section-entry -->
+
+								@foreach($configuracion as $item)
+									<div class="cols" onClick="redirectPage('{{$item->url}}','{{$item->is_new_tab}}')" style="cursor: pointer;">
+										<div class="col col-1of1">
+											<article class="article-jackpot">
+												<div class="article-content">
+													<h6>
+														{{ucfirst($item->titulo)}}
+													</h6>
+
+													<div class="fake-div">
+														<div id="counter">
+															<div class="counter-value">${{number_format($item->cantidad)}} <em>MN</em></div>
+														</div>
+													</div>
+												</div><!-- /.article-content -->
+											</article><!-- /.article-jackpot -->
+										</div><!-- /.col col-1of1 -->
+									</div><!-- /.cols -->
+								@endforeach
+							</div><!-- /.section-content -->
+						</div><!-- /.shell -->
+					</section><!-- /.section-jackpots -->
+			@endif
+
+
+
+			<section class="section-gray">
 			<div class="shell">
 				<div class="subscribe">
 					<form action="?" method="post">
@@ -458,7 +420,7 @@
 						</div><!-- /.shell -->
 						
 						<div class="section-actions">
-							<a target="_blank" href="http://www.google.com/maps/place/{{ $sucursal_info->latitud . "," . $sucursal_info->longitud }}" class="btn btn-red btn-red-small" onclick="dataLayer.push ({ 'event': 'llegaraqui', 'casino': '{{$sucursal_info->nombre}}' });">
+							<a target="_blank" href="http://www.google.com/maps/place/{{ $sucursal_info->latitud . "," . $sucursal_info->longitud }}" class="btn btn-red btn-red-small">
 								<i class="ico-human"></i>
 
 								Cómo llegar aquí
@@ -574,7 +536,9 @@
 			// 	  }
 
 			// 	});
+
 	</script>
 
 
 @stop
+

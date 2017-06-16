@@ -1,6 +1,8 @@
 <?php
 namespace App\Models\front;
 
+use App\promocion;
+
 class sucursal_model{
 
 
@@ -38,11 +40,11 @@ class sucursal_model{
             if( (int)$args['linea_id_linea'] > 0)
                 $data = $data->where('j.id_linea',$args['linea_id_linea']);
         }
-
+        //echo $args['linea_id_linea'];
         $data = $data->orderBy('s.nombre')
         ->get();
-
-        // dd($data);
+//->tosql();
+//         dd($data);
 
         //-----> Obtenemos la galeria de la sucursal
         //self::get_branch_gallery( $data );
@@ -166,14 +168,15 @@ class sucursal_model{
     static function get_paid($args = []){
         $data = \DB::table('sucursal_pago')
             ->where('id_tipo',2)
-			->limit(4);
+            ->limit(4);
+
         if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
             $data = $data->where('id_sucursal',$args['id_sucursal']);
         $data = $data->get();
         return $data;
     }
-	
-	static function get_all_accumulated($args = []){
+
+    static function get_all_accumulated($args = []){
         $data = \DB::table('sucursal_pago')
             ->where('id_tipo',1)
             ->limit(4)->offset($args['limit']);
@@ -187,16 +190,17 @@ class sucursal_model{
         $data = \DB::table('sucursal_pago')
             ->where('id_tipo',2)
             ->limit(4)->offset($args['limit']);
-           if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
+        if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
             $data = $data->where('id_sucursal',$args['id_sucursal']);
         $data = $data->get();
         return $data;
     }
 
     static function get_accumulated($args = []){
+
         $data = \DB::table('sucursal_pago')
             ->where('id_tipo',1)
-			->limit(4);
+            ->limit(4);
         if( isset($args['id_sucursal']) && !empty($args['id_sucursal']))
             $data = $data->where('id_sucursal',$args['id_sucursal']);
         $data = $data->get();

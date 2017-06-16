@@ -41,14 +41,14 @@
 	                        </div>
 
 	                        <div class="texto">
-	                        <a href="#" class="btn secundary etb">Cancelar</a> 
+	                        <a href="#" class="btn secundary etb">Cancelar</a>
 	                        </div>
 
 	                </form>
 
 	                <button type="button" class="close  js-close-lightbox">
 	                    <i class="fa fa-times" aria-hidden="true"></i>
-	                </button> 
+	                </button>
 	            </section>
 	        </section>
 	<!--END: LIGHTBOX UBICACION CIUDAD -->
@@ -64,7 +64,7 @@
 										@if( isset($ciudades) && count($ciudades) )
 			                        		@foreach($ciudades as $ciudad)
 												<option value="{{$ciudad->ciudad}}" data-id="{{$ciudad->id_ciudad}}">{{$ciudad->ciudad}}</option>
-											@endforeach 
+											@endforeach
 										@endif
 									</select>
 								</div>
@@ -88,22 +88,22 @@
 									</select>
 								</div>
 	                        </div>
-							
+
 							<div id="message"></div>
-							
+
 	                        <div class="texto">
 	                           <a role="button" class="btn  btn-red medium" id="establecimiento_go2" data-sucursal=""><span>Continuar</span></a>
 	                        </div>
 
 	                        <div class="texto">
-	                        <a class="btn secundary etb modal_ciudad_btn_cancelar">Cancelar</a> 
+	                        <a class="btn secundary etb modal_ciudad_btn_cancelar">Cancelar</a>
 	                        </div>
 
 	                </form>
 
 	                <button type="button" class="close  js-close-lightbox">
 	                    <i class="fa fa-times" aria-hidden="true"></i>
-	                </button> 
+	                </button>
 	            </section>
 	        </section>
 	<!--END: LIGHTBOX UBICACION CIUDAD -->
@@ -145,20 +145,20 @@
 									</select>
 								</div>
 	                        </div>
-	                      
+
 	                        <div class="texto">
 	                           <a role="button" class="btn  btn-red medium" id="establecimiento_go" data-sucursal=""><span>Continuar</span></a>
 	                        </div>
 
 	                        <div class="texto">
-	                        <a class="btn secundary etb modal_establecimiento_btn_cancelar">Cancelar</a> 
+	                        <a class="btn secundary etb modal_establecimiento_btn_cancelar">Cancelar</a>
 	                        </div>
 
 	                </form>
 
 	                <button type="button" class="close  js-close-lightbox">
 	                    <i class="fa fa-times" aria-hidden="true"></i>
-	                </button> 
+	                </button>
 	            </section>
 	        </section>
 	<!-- END: LIGHTBOX ESTABLECIMIENTOS -->
@@ -176,7 +176,7 @@
 	                        </div>
 
 	                        <div class="texto">
-	                        	<a href="#" class="btn secundary">No activar</a> 
+	                        	<a href="#" class="btn secundary">No activar</a>
 	                        </div>
 
 	                        <div class="texto">
@@ -186,7 +186,7 @@
 
 	                <button type="button" class="close  js-close-lightbox">
 	                    <i class="fa fa-times" aria-hidden="true"></i>
-	                </button> 
+	                </button>
 	            </section>
 	        </section>
 	END: LIGHTBOX ATENCIÓN -->
@@ -197,40 +197,40 @@
 			<!-- <a href="#" class="btn-scroll">
 				<i class="ico-mouse"></i>
 			</a> -->
-
 			<div class="slider-clip">
-				<ul class="slides">
-					
+				@if( isset( $slider ) && count( $slider ) > 1 )
+					<ul class="slides">
+				@endif
 					@foreach( $slider as $s )
-					
-						
-						
-						<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-							<div class="slide-content ">
-								<!--<div class="shell"-->
-									<h1>{{ $s->titulo }}</h1>
-									<!--h1>
-										Navidad Excepcional
-									</h1-->
-									
-									<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
-
-								<!--</div> /.shell -->
-							</div><!-- /.slide-content -->
-						</li><!-- /.slide -->
-
+						@if($s->is_show_img_video)
+							<li class="slide fullscreen">
+								{{--<iframe width="100%" height="100%" src="https://www.youtube.com/embed/NNqhURzgEOY" frameborder="0" allowfullscreen></iframe>--}}
+								<embed  width="100%" height="100%" src="{{$s->video_url}}">
+							</li>
+						@else
+							<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
+								<div class="slide-content ">
+									@if(isset($s->texto_boton))
+										<form action="{{$s->link}}" target="{{$s->is_new_tab}}">
+											<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+										</form>
+									@endif
+									<h1><?php echo html_entity_decode($s->titulo); ?></h1>
+								</div><!-- /.slide-content -->
+							</li><!-- /.slide -->
+						@endif
 					@endforeach
-
-					
-				</ul><!-- /.slides -->
+						@if( isset( $slider ) && count( $slider ) > 1 )
+					</ul><!-- /.slides -->
+				@endif
 			</div><!-- /.slider-clip -->
 		</div><!-- /.slider-intro -->
 
 	@endif
 
-	
+
 	<div class="main anchor">
-		
+
 		@if( isset( $lineas ) && count( $lineas ) )
 
 				<section class="button-section">
@@ -239,18 +239,20 @@
 
 							@foreach( $lineas as $linea )
 
-								<li>
-									<a href="{{ '/lineas-de-juego/' . $linea->slug }}" class="btn btn-features"><!-- data-href class=modal_linea"> -->
-										<i class="{{ $linea->icono }}"></i>
-										
-										<span>{{ $linea->linea }}</span> 
-									</a>
-								</li>
+								@if($linea->id_linea < 7)
+									<li>
+										<a href="{{ '/lineas-de-juego/' . $linea->slug }}" class="btn btn-features"><!-- data-href class=modal_linea"> -->
+											<i class="{{ $linea->icono }}"></i>
+
+											<span>{{ $linea->linea }}</span>
+										</a>
+									</li>
+								@endif
 
 							@endforeach
 
 						</ul><!-- /.list-buttons -->
-					</div><!-- /.shell -->	
+					</div><!-- /.shell -->
 				</section><!-- /.button-section -->
 
 		@endif
@@ -258,7 +260,7 @@
 		<section class="section-slider">
 			<div class="shell">
 
-				
+
 				@if( isset( $promociones ) && count( $promociones ) )
 
 
@@ -266,23 +268,40 @@
 						<div class="slider-games sldr-top">
 							<div class="section-head">
 								<h2>Promociones y Eventos</h2>
-							
+
 								<div class="slider-clip">
 									<ul class="slides">
-										
+
 										@foreach( $promociones as $p )
 
-										<a href="{{url('/promociones/detalle/' . $p->slug)}}">
-											<li class="slide"> 									
-												<div class="slide-content" style="background-image: url({{ $p->thumb !== null && !empty($p->thumb) ? $p->thumb : $p->imagen }}); ">
-													
-												</div><!-- /.slide-content -->
+											<li class="slide">
+												<a href="{{url('/promociones/detalle/' . $p->slug)}}">
+													<div class="slide-content" style="background-image: url({{ $p->thumb !== null && !empty($p->thumb) ? $p->thumb : $p->imagen }}); ">
+
+														@if($p->fecha_inicio !== null || $p->fecha_fin !== null)
+															{{--<span class="slide-label" style="background: #ed1c24;color: #fff;min-width: 140px;display: inline-block;font-size: 15px;padding: 7px 10px;line-height: 1;position: absolute;top: 20px;left: 30px;right: 0px;">--}}
+																{{--Válido {{'del'.$p->fecha_inicio}}<br>{{' al' . $p->fecha_fin}}--}}
+															{{--</span>--}}
+														@endif
+
+														@if($p->is_active_btn==1)
+															<button>
+																<span class="" style="position: absolute;bottom: 1em;left: 0em;text-align: center;width: 100%;" >
+																	<center>
+																		<form action="{{$p->url}}" target="{{$p->is_new_tab}}">
+																			<input type="submit" value="{!!$p->button_text!!}" style="width: 9em;padding: 1em;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+																		</form>
+																	</center>
+																</span>
+															</button>
+														@endif
+													</div><!-- /.slide-content -->
+												</a>
 											</li><!-- /.slide -->
-										</a>
 
 										@endforeach
 
-										
+
 									</ul><!-- /.slides -->
 								</div><!-- /.slider-clip -->
 							</div>
@@ -308,31 +327,31 @@
 					<div class="section-head">
 						<h2>Selecciona tu línea de juego</h2>
 					</div><!-- /.section-head -->
-					
+
 					<div class="section-body">
 						<ul class="features">
-							
+
 							@foreach( $lineas as $linea )
 
 								<li class="feature">
-									<a class="modal_linea" data-href="{{ '/lineas-de-juego/' . $linea->slug }}"> 		
+									<a class="modal_linea" data-href="{{ '/lineas-de-juego/' . $linea->slug }}">
 										<span class="feature-image" style="background-image: url({{ $linea->imagen }});"></span><!-- /.feature-image -->
-										
+
 										<span class="feature-content">
 											<span class="icon-wrapper">
 												<i class="{{ $linea->icono }}"></i>
 											</span><!-- /.icon-wrapper -->
-											
+
 											<small>{{ $linea->linea }}</small>
-											
+
 											<strong>{{ $linea->slogan }}</strong>
-										</span><!-- /.feature-content --> 
+										</span><!-- /.feature-content -->
 									</a>
 								</li><!-- /.feature -->
 
 							@endforeach
-							
-							
+
+
 						</ul><!-- /.features -->
 					</div><!-- /.section-body -->
 				</div><!-- /.shell -->
@@ -354,9 +373,9 @@
 							<div class="subscribe-body-hidden">
 								<div class="subscribe-inner">
 									<label for="mail" class="hidden">Email</label>
-									
+
 									<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
-									
+
 									<input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
 								</div><!-- /.subscribe-inner -->
 
@@ -365,7 +384,7 @@
 										<li>
 											<!--<div class="checkbox">
 												<input type="checkbox" name="field-notifications" id="field-notifications">
-												
+
 												<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
 											</div> /.checkbox -->
 										</li>
@@ -386,15 +405,15 @@
 						<h2>Selecciona el casino de tu preferencia</h2>
 					</div><!-- /.shell -->
 				</div><!-- /.section-head -->
-				
+
 				<div class="section-body">
-					<div id="googlemap" data-lng="{{$rand_sucursal->longitud}}" data-lat="{{$rand_sucursal->latitud}}"></div><!-- /#googlemap --> 
-				
+					<div id="googlemap" data-lng="{{$rand_sucursal->longitud}}" data-lat="{{$rand_sucursal->latitud}}"></div><!-- /#googlemap -->
+
 					<div class="section-content">
 						<div class="shell">
 							<div class="section-content-head">
 								<p>Sucursal</p>
-								
+
 								<h2>{{ $rand_sucursal->nombre }}</h2>
 
 								<div class="select btn-ubn select_ciudad_mapa"> <!-- BEGIN boton sucursal -->
@@ -403,31 +422,31 @@
 										@if( isset($ciudades) && count($ciudades) )
 			                        		@foreach($ciudades as $ciudad)
 												<option data-id="{{$ciudad->id_ciudad}}" data-ciudad="{{$ciudad->ciudad}}">{{$ciudad->ciudad}}</option>
-											@endforeach 
+											@endforeach
 										@endif
 									</select> <!-- END boton sucursal -->
 								</div>
 
 							</div><!-- /.section-content-head -->
-									
+
 							<div class="section-content-body">
 								<ul class="list-contacts">
 									<li>
 										<i class="ico-map"></i>
-									
+
 										<p>
 											{!! $rand_sucursal->direccion !!}
 										</p>
 									</li>
-									
+
 									<li>
 										<i class="ico-phone"></i>
-									
+
 										<p>
 											{!! $rand_sucursal->telefono !!}
 										</p>
 									</li>
-									
+
 									<li>
 										<i class="ico-clock"></i>
 
@@ -435,7 +454,7 @@
 											{!! $rand_sucursal->horario !!}
 										</p>
 									</li>
-									
+
 									<li>
 										<i class="ico-car"></i>
 
@@ -454,9 +473,26 @@
 								</ul><!-- /.list-contacts -->
 							</div><!-- /.section-content-body -->
 						</div><!-- /.shell -->
-						
+						<script>
+
+							function Directions(url, data){
+								dataLayer.push ({
+									'event': 'llegaraqui',                 //Dato estático
+									'casino': data	     //Dato dinámico
+								});
+								window.open(url);
+							//	window.location.href = url;
+							}
+
+						</script>
 						<div class="section-actions">
-							<a href="http://www.google.com/maps/place/{{ $rand_sucursal->latitud . "," . $rand_sucursal->longitud }}" target="_blank" class="btn btn-red btn-red-small" onclick="dataLayer.push ({ 'event': 'llegaraqui', 'casino': '{{$rand_sucursal->nombre}}' });">
+
+							<?php
+								$directionUrl = "http://www.google.com/maps/place/".$rand_sucursal->latitud . "," . $rand_sucursal->longitud;
+							?>
+
+								<a target="_blank" class="btn btn-red btn-red-small"  href="javascript:void(0);" onclick="Directions('<?php echo $directionUrl; ?>','<?php echo $rand_sucursal->nombre; ?>')">
+							{{--<a href="http://www.google.com/maps/place/{{ $rand_sucursal->latitud . "," . $rand_sucursal->longitud }}" target="_blank" class="btn btn-red btn-red-small">--}}
 								<i class="ico-human"></i>
 
 								Cómo llegar aquí
@@ -471,14 +507,14 @@
 
 		<section class="section-gallery">
 			<div class="shell">
-				
+
 				@if( isset( $rand_sucursal->galeria ) && is_array( $rand_sucursal->galeria ) && count( $rand_sucursal->galeria ) )
 
 					<div class="slider-gallery">
 						<div class="slider-clip">
-							
+
 							<ul class="slides">
-								
+
 								@foreach( $rand_sucursal->galeria as $g )
 
 									<li class="slide">
@@ -488,9 +524,9 @@
 									</li><!-- /.slide -->
 
 								@endforeach
-							
+
 							</ul><!-- /.slides -->
-						
+
 						</div><!-- /.slider-clip -->
 					</div><!-- /.slider-gallery -->
 

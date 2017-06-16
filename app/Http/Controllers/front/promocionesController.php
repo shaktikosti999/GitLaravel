@@ -40,7 +40,7 @@ class promocionesController extends Controller
 
         //-----> Obtenemos todas las sucursales
         $data["sucursales"] = sucursal::find_all(["promo_id_linea" => $data["id_linea"]]);
-        $data['slider'] = \App\Models\front\slider_model::find_all(2);
+        $data['slider'] = \App\Models\front\slider_model::find_all(['tipo' => 9,'id_sucursal'=>$id_sucursal]);
 
         // dd($data);
 
@@ -96,18 +96,27 @@ class promocionesController extends Controller
     }
 
     public function show($slug){
-        $promocion = calendario::find(['slug' => $slug]);
-        $promos = [];
-        $categorias = [];
-        if(count($promocion)){
-            foreach($promocion as $item){
-                $item->dia = $this->dia(date('N',strtotime($item->inicio)));
-                $promos[$item->id_categoria][] = $item;
-            }
-        }
+        $data["sucursal_info"] = sucursal::find_by_slug( $slug );
+        $id_sucursal = ( $data["sucursal_info"] ) ? $data["sucursal_info"]->id_sucursal : null;
+
+//        $promocion = calendario::find(['slug' => $slug]);
+//        $promos = [];
+//        $categorias = [];
+//        if(count($promocion)){
+//            foreach($promocion as $item){
+//                $item->dia = $this->dia(date('N',strtotime($item->inicio)));
+//                $promos[$item->id_categoria][] = $item;
+//            }
+//        }
+//        $data = [
+//            'promocion' => $promos,
+//            'slider' => slider::find_all(['tipo'=>10,'id_sucursal'=>$id_sucursal] )
+//        ];
+
         $data = [
-            'promocion' => $promos,
-            'slider' => slider::find_all( 5 )
+            'sucursal_info' => sucursal::find_by_slug( $slug ),
+            'promociones' => promocion::find_all( [ "linea" => 10, "id_sucursal" => $id_sucursal ] ),
+            'slider' => slider::find_all(['tipo'=>10,'id_sucursal'=>$id_sucursal] )
         ];
         // dd($data);
 

@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\slider_model as slider;
+use App\Models\front\sucursal_model as sucursal;
+
 
 class sliderController extends Controller
 {
@@ -20,6 +22,7 @@ class sliderController extends Controller
         $data = [
             'sliders' => slider::all()
         ];
+
         return view('back.slider.index',$data);
     }
 
@@ -31,8 +34,19 @@ class sliderController extends Controller
     public function create(){
 
         $sliderData = [
-            'sliderType' => slider::getAllSliderType()
+            'juegos' => \App\Models\linea_model::all(),
         ];
+
+        $index = 0;
+        foreach($sliderData['juegos'] as $value){
+            //$sliderData['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
+            $sliderData['sucursales'][$index] = [];
+            if($value->id != '7' && $value->id != '8' && $value->id != '11' && $value->id != '12') {
+                $sliderData['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+            }
+            $index++;
+
+        }
 
         return view('back.slider.create',$sliderData);
     }
@@ -44,15 +58,29 @@ class sliderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        $this->validate($request,[
-           // 'tipo' => 'required|integer|min:0',
-            "titulo" => 'required|string|max:100|min:3',
+
+        if ($request->input('showImageVideo')  == "showImage") {
+            $this->validate($request,[
+                // 'tipo' => 'required|integer|min:0',
+//            "titulo" => 'required|string|max:100|min:3',
 //            'subtitulo'=>'string',
 //            'texto' => 'string',
-            //"texto_boton" => 'required|string|max:100|min:2',
+                //"texto_boton" => 'required|string|max:100|min:2',
 //            "link" => 'string|max:100|min:3',
-            "imagen" => 'required|image'
-        ]);
+                "imagen" => 'required|image'
+            ]);
+        } else {
+            $this->validate($request,[
+                // 'tipo' => 'required|integer|min:0',
+//            "titulo" => 'required|string|max:100|min:3',
+//            'subtitulo'=>'string',
+//            'texto' => 'string',
+                //"texto_boton" => 'required|string|max:100|min:2',
+//            "link" => 'string|max:100|min:3',
+                "video_url" => 'required'
+            ]);
+        }
+        //dd($request->all());
         if($request->hasFile('imagen')){
             $archivo = $request->file('imagen');
             $ext = strtolower($archivo->getClientOriginalExtension());
@@ -72,7 +100,6 @@ class sliderController extends Controller
                 $nombre .= '.' . $ext;
                 if($archivo->move(public_path() . '/' . $carpeta , $nombre)){
                     $archivo = '/' . $carpeta . $nombre;
-
                     $evento = slider::store($request,$archivo);
                     $evento = $evento[0];
                     if(!$evento){
@@ -83,6 +110,15 @@ class sliderController extends Controller
                     }
                 }
             }                    
+        } else {
+//            dd($request->all());
+            $evento = slider::store($request,"");
+            if(!$evento){
+                return redirect(url('/administrador/slider.html'))->with('success','Slider agregado correctamente');
+            }
+            else{
+                return redirect(url('/administrador/slider.html'))->with('error',$evento);
+            }
         }
     }
 
@@ -101,11 +137,39 @@ class sliderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id){
-        $data = [
+
+        $sliderData = [
             'id' => $id,
-            'slider' => \App\slider::find($id)
+            'slider' => \App\slider::find($id),
+            'juegos' => \App\Models\linea_model::all()
         ];
-        return view('back.slider.edit',$data);
+
+        $index = 0;
+        foreach($sliderData['juegos'] as $value){
+           // $sliderData['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
+            $sliderData['sucursales'][$index] = [];
+            if($value->id != '7' && $value->id != '8' && $value->id != '11' && $value->id != '12') {
+                $sliderData['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+            }
+            $index++;
+        }
+
+        $branchIds = \DB::select('select id,tipo,isParentShow from slider where branch_group_id = (SELECT branch_group_id FROM slider where id ='.$id.')');
+
+        $linea = array();
+        foreach ($branchIds as $value) {
+            $temp = \DB::select('select * from slider_sucursal where id_slider ='.$value->id);
+            if ( $value->isParentShow == 1 ){
+                $linea[] = $value->tipo;
+            }
+            foreach($temp as $value1){
+                $sliderData['selectedSucursales'][$value->tipo][] = $value1->id_sucursal;
+            }
+        }
+
+        $sliderData['linea'] = $linea;
+//        dd($sliderData);
+        return view('back.slider.edit',$sliderData);
     }
 
     /**
@@ -116,12 +180,13 @@ class sliderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
+//        dd($request->all());
         $this->validate($request,[
-            "titulo" => 'required|string|max:100|min:3',
+//            "titulo" => 'required|string|max:100|min:3',
             'subtitulo'=>'string',
             'texto' => 'string',
-            "texto_boton" => 'required|string|max:100|min:2',
-            "link" => 'string|max:100|min:3',
+//            "texto_boton" => 'required|string|max:100|min:2',
+//            "link" => 'string|max:100|min:3',
             "imagen" => 'image'
         ]);
         if($request->hasFile('imagen')){

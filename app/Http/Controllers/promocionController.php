@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\promocion_model as promocion;
+use App\Models\front\sucursal_model as sucursal;
 
 class promocionController extends Controller
 {
@@ -32,8 +33,27 @@ class promocionController extends Controller
      */
     public function create(){
         $data = [
-        'juegos' => \App\Models\linea_model::all()
+            'juegos' => \App\Models\linea_model::all()
+//            'sucursales' => sucursal::find_all(['linea_id_linea' => 2])
         ];
+
+//        $index = 0;
+//        foreach($data['juegos'] as $value){
+//            $data['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
+//            $index++;
+//
+//        }
+
+        $index = 0;
+        foreach($data['juegos'] as $value){
+            $data['sucursales'][$index] = [];
+            if($value->id != '7' && $value->id != '8' && $value->id != '11' && $value->id != '12') {
+                $data['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+            }
+            $index++;
+        }
+
+//        dd($data);
         return view('back.promocion.create',$data);
     }
 
@@ -44,9 +64,10 @@ class promocionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
+//        dd($request->all());
         $this->validate($request,[
             "nombre" => 'required|string',
-            "juego" => 'required|integer|min:1',
+//            "juego" => 'required|integer|min:1',
             "slug" => 'string',
             "resumen" => 'required|string',
             "descripcion" => 'required|string',
@@ -135,7 +156,38 @@ class promocionController extends Controller
             'promocion' => \App\promocion::find($id),
             'juegos' => \App\Models\linea_model::all()
         ];
-        // dd($data);
+//         dd($data);
+        $index = 0;
+       /* foreach($data['juegos'] as $value){
+            $data['sucursales'][$index] = sucursal::find_all(['linea_id_linea' => $value->id]);
+            $index++;
+
+        }*/
+         foreach($data['juegos'] as $value){
+             $data['sucursales'][$index] = [];
+             if($value->id != '7' && $value->id != '8' && $value->id != '11' && $value->id != '12') {
+                 $data['sucursales'][$index] = \DB::table('sucursal')->orderby('nombre')->get();
+             }
+                $index++;
+
+        }
+
+
+        $branchIds = \DB::select('select id_promocion,id_juego,isParentShow from promocion where branch_group_id = (SELECT branch_group_id FROM promocion where id_promocion='.$id.')');
+
+        $linea = array();
+        foreach ($branchIds as $value) {
+            $temp = \DB::select('select * from promocion_sucursal where id_promocion ='.$value->id_promocion);
+            if ( $value->isParentShow == 1 ){
+                $linea[] = $value->id_juego;
+            }
+            foreach($temp as $value1){
+                $data['selectedSucursales'][$value->id_juego][] = $value1->id_sucursal;
+                $data['promocion']->link = $value1->link;
+            }
+        }
+//        dd($linea);
+        $data['linea'] = $linea;
         return view('back.promocion.edit',$data);
     }
 
@@ -147,9 +199,10 @@ class promocionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
+//        dd($request->all());
         $this->validate($request,[
             "nombre" => 'string',
-            "juego" => 'required|integer|min:1',
+//            "juego" => 'required|integer|min:1',
             "slug" => 'string',
             "resumen" => 'required|string',
             "descripcion" => 'required|string',
@@ -253,7 +306,7 @@ class promocionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addPromotion(Request $request){
-        // dd($request->all());
+//      // dd($request->all());
         $this->validate($request,[
             "add_promocion" => 'required|integer|min:1',
             "add_sucursal" => 'required',

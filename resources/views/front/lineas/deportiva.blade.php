@@ -1,6 +1,7 @@
 @extends('layout.front')
 
 	@section('js')
+	{{--<script src="js/front/maquinas.js"></script>--}}
 		<script>
 			$('#date_select').on('change', function(){
 				$('[data-date]').show();
@@ -9,7 +10,11 @@
 				$('.dateHide').hide();
 				$('[data-date]').removeClass('dateHide');
 			});
-			ofertas = {!!json_encode($ofertas)!!};
+			@if(url() == 'http://calientecasino.com.mx')
+				@if(isset($ofertas))
+					ofertas = {!!json_encode($ofertas)!!};
+				@endif
+			@endif
 			$('#liga_select').on('change', function(){
 				$('#lista_oferta').html('<option>Seleccione oferta</option>');
 				$.each(ofertas[$(this).val()]['data'], function(index,item){
@@ -131,6 +136,22 @@
 				});
 			});
 
+
+
+			$(".branch-filter").change( function(){
+
+				var $value = $( this ).val();
+				var $url   = "/lineas-de-juego/apuesta-deportiva";
+
+				if( $value != -1 ){
+
+					$url = "/lineas-de-juego/apuesta-deportiva/" + $value;
+
+				}
+
+				$( location ).attr("href", $url);
+
+			} );
 		</script>
 	@stop
 
@@ -138,69 +159,74 @@
 		<div class="slider-secondary secondary-margin">
 			<!--<a href="#" class="btn-menu">
 				<img src="css/images/btn-menu@2x.png" alt="">-->
-			</a>
+			{{--</a>--}}
 
 			<div class="slider-clip">
-				<ul class="slides">
+				@if( isset( $slider ) && count( $slider ) > 1 )
+					<ul class="slides">
+				@endif
 					@if( isset( $slider ) && count( $slider ) )
 
 						@foreach( $slider as $item )
-
+								@if($item->is_show_img_video)
+									<li class="slide fullscreen">
+										<embed  width="100%" height="100%" src="<?php echo $item->video_url; ?>">
+									</li>
+								@else
 							<li class="slide" style="background-image: url({{ $item->imagen }})">
 								<div class="slide-body">
 									<div class="shell">
-										 <div class="slide-content">
-										 	<h1>
-										 		Apuesta Deportiva
-										 	</h1>
+										<div class="slide-content">
+											@if(isset($item->texto_boton) && $item->texto_boton != "")
+												<form action="{{$item->link}}" target="{{$item->is_new_tab}}">
+													<input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+												</form>
+											@endif
+											<h1>
+												{{$item->titulo}}
+											</h1>
 
-											 	<h3>
-											 		@if( isset( $sucursal_info->nombre ) )
+											@if( isset( $sucursales ) && count( $sucursales ) )
 
-											 			{{ $sucursal_info->nombre }}
+												<div class="filter-secondary">
+													<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+													<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
 
-											 		@endif
-											 	</h3>
+														<option value="-1">Selecciona tu casino</option>
 
+														@foreach( $sucursales as $item )
 
+															<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
 
-										@if( isset( $sucursales ) && count( $sucursales ) )
+														@endforeach
 
-											<div class="filter-secondary">
-												<label for="sucursales" class="form-label hidden">filter-secondary1</label>
-												<select name="sucursales" id="sucursales" class="select branch-filter">
+													</select>
+												</div><!-- /.filter-secondary -->
 
-													<option value="-1">Selecciona tu casino</option>
-
-													@foreach( $sucursales as $item )
-
-														<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
-
-													@endforeach
-
-												</select>
-											</div><!-- /.filter-secondary -->
-
-										@endif
+											@endif
 
 
-										 </div><!-- /.slide-content -->
+										</div><!-- /.slide-content -->
 
 										@include('front.includes.breadcrumbs')
 									</div><!-- /.shell -->
 								</div><!-- /.slide-body -->
 							</li><!-- /.slide -->
-
+						@endif
 						@endforeach
 
 					@endif
-				</ul><!-- /.slides -->
+				@if( isset( $slider ) && count( $slider ) > 1 )
+							</ul>
+				@endif
 			</div><!-- /.slider-clip -->
 
 			<div class="slider-label red-label large">
 				<i class="ico-deportiva"></i>
 			</div><!-- /.slider-label -->
 		</div><!-- /.slider-secondary -->
+
+
 
 		<div class="gray-sport">
 			<div class="shell">
@@ -219,7 +245,7 @@
 					@if( isset($deportes) && count($deportes) )
 					    @foreach($deportes as $item)
 				            <div class="list-calendar {{$item->numDeporte == $dep ? 'active' : ''}}">
-				                <a href="/lineas-de-juego/apuesta-deportiva?dep={{$item->numDeporte}}" tabindex="0"  onclick="dataLayer.push ({ 'event': 'apuesta' , 'txtApuesta': '{{$item->nombre}}' });">
+				                <a href="/lineas-de-juego/apuesta-deportiva?dep={{$item->numDeporte}}" tabindex="0">
 				                	<?php
 				                	$imagen = $item->nombre;
 				                	$imagen = str_replace(" ", "_", $imagen);
@@ -624,6 +650,8 @@
 							@include('front.includes.promotions',['promociones' => $promociones,'sucursal'=>$sucursal_info])
 
 						@endif
+
+
 						@if( isset($quinielas) && count($quinielas) )
 						<header class="section-head">
 							<div class="stick--point" id="promociones"></div>
@@ -638,9 +666,9 @@
 											<h2>{{$item->titulo}}</h2>
 											{!! isset($item->subtitulo) && !empty($item->subtitulo) ? '<h6>' . $item->subtitulo . '</h6>' : '' !!}
 											<p>{{$item->texto}}</p>
-											<a href="{{$item->link}}" {{$item->in_newtab == 1 ? 'target="_blank"' : ''}} class="btn btn-red btn-red-small btn-red-medium">
+											<a href="{{$item->link}}" class="btn btn-red btn-red-small btn-red-medium">
 												{{$item->texto_boton}}
-											</a>
+											</a>		</a>
 										</div>
 										<img src="{{$item->imagen}}" class="image-back">
 									</div>

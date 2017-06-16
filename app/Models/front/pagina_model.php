@@ -21,6 +21,7 @@ class pagina_model{
 
 	static function get_page($slug){
 
+//		dd($slug);
 		$get = \DB::table('contenido_simple')
 			->where('slug',$slug)
 			->first();

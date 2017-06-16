@@ -86,25 +86,25 @@ class carrerapdfController extends Controller
     }
 
     public function storemassive(Request $request){
-        // dd($_FILES);
+        // print_r($_FILES);
 
 
         $carpeta = 'assets/carreras/';
-        // dd(public_path() . '/' . $carpeta);
         if(!file_exists(public_path() . '/' . $carpeta)) {
             mkdir(public_path() . '/' . $carpeta, 0777, true);
         }
 
         $timestamp='';//time();
 
-        if( $request->hasFile('pdf') ){
+        if(isset($_FILES['pdf']) && count($_FILES['pdf'])){
             for($i=0;$i<count($_FILES['pdf']['name']);$i++) {
                 move_uploaded_file($_FILES['pdf']['tmp_name'][$i] , public_path() . '/' . $carpeta . '/' .$timestamp.$_FILES['pdf']['name'][$i]);
             }
         }
 
-        if( $request->hasFile('csv') ){ 
+        if( isset($_Files['csv']) ){ 
             $fp = fopen($_FILES['csv']['tmp_name'],'r');
+    //        dd($_FILES['csv']);
             fgetcsv($fp);
             $data = [];
             $branchs = [];
@@ -149,7 +149,7 @@ class carrerapdfController extends Controller
 
                     // Método con todas las sucursales
                     if( count($ids) ){
-                        $sucursales = \App\Models\sucursal_model::all();
+                        $sucursales = \App\Models\sucursales_model::all();
 
                         if( count($sucursales) ){
                             $data = [];

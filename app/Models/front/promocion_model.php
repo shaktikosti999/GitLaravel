@@ -5,6 +5,9 @@ class promocion_model{
 
     static function find_all( $parameters = [] ){
 
+//        dd($parameters);
+        $ldate = date('Y-m-d');
+
         $data = [];
 
         $data = \DB::table('promocion as p')
@@ -12,7 +15,9 @@ class promocion_model{
                         ->join('linea as l', 'p.id_juego', '=', 'l.id_linea')
                         ->select("p.*", "l.id_linea")
                         ->where('p.estatus',1)
-                        ->where('p.eliminado',0);
+                        ->where('p.eliminado',0)
+                        ->where('fecha_inicio','<=',$ldate)
+                        ->where('fecha_fin','>=',$ldate);
 
         //-----> Aplicamos filtros
 
@@ -30,12 +35,28 @@ class promocion_model{
 
         if( isset( $parameters["id_sucursal"] ) && ! empty( $parameters["id_sucursal"] ) ){
 
-            $data = $data->join("promocion_sucursal as ps", "p.id_promocion", "=", "ps.id_promocion");
+            $data = $data->select("p.*", "l.id_linea","ps.*")
+                        ->join("promocion_sucursal as ps", "p.id_promocion", "=", "ps.id_promocion");
             $data = $data->where( "ps.id_sucursal", "=", $parameters["id_sucursal"] );
 
+        } else {
+            $data->where( "isParentShow", "=", 1);
         }
 
-        $data = $data->get();
+
+
+        $data = $data->groupBy('branch_group_id')
+                        ->get();
+
+        $getdata = [];
+        foreach($data as $value){
+            if($value->button_text == null || $value->is_active_btn==0 ){
+                $value->is_active_btn = 0;
+            }
+            array_push($getdata,$value);
+        }
+//        ->tosql();
+//        print_r($getdata);dd();
 
         return $data;
 

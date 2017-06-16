@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
+use Excel;
+use Input;
 
 use App\Models\contacto_model as contacto;
 
@@ -46,6 +49,24 @@ class contactoController extends Controller
         }
         return redirect()->back();
     }
+
+    /***** export the csv file *****/
+    public function exportCSV(){
+
+        $results = contacto::all();
+        $data = array();
+        foreach ($results as $result) {
+            $data[] = (array)$result;
+        }
+        $type ="csv";
+        return Excel::create('itsolutionstuff_example', function($excel) use ($data) {
+            $excel->sheet('mySheet', function($sheet) use ($data)
+            {
+                $sheet->fromArray($data);
+            });
+        })->export($type);
+    }
+    /***** end export the csv file *****/
 
     /**
      * Store a newly created resource in storage.

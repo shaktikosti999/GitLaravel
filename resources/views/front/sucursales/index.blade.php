@@ -1,180 +1,7 @@
 @extends('layout.front')
 
 @section('js')
-	<script src="js/front/mesas.js"></script>
-	<script>
-		option_data = function(id_categoria, slug_sucursal, ids_maquinas = null, linea = null){
-
-		ids_maquinas != null ? limit = 2 : limit = 4;
-
-		$.ajax({
-			type:'post',
-			url:'/filtro-maquinas',
-			data:{
-				_method:'PATCH',
-				id_categoria:id_categoria,
-				slug_sucursal:slug_sucursal,
-				ids_maquinas:ids_maquinas,
-				limit:limit,
-				linea:linea
-			},
-			success: function(data){
-				
-				if(data.length > 2){					
-					data = JSON.parse(data);
-					size = data.length;
-					maquinas = '';
-					if (ids_maquinas == null)
-						$("#games").empty();	
-
-					var imagen = "";
-					$.each(data, function(index, val){
-						imagen = val.thumb != null ? val.thumb : val.imagen;
-
-						maquinas += '<li class="game posts-data" data-id="'+val.id+'">'
-										+'<a href="/maquinas-de-juego/detalle/'+val.slug+'" style="background-image: url('+imagen+')">' 
-											// +'<span class="jackpot">'
-											// 	+'<small>JACKPOT</small>'
-											// 	+'<strong>'
-											// 		+"$"+val.acumulado
-											// 	+'</strong>'
-											+'</span>'
-											+'<span class="game-title">'
-												+'<strong>'
-													+val.nombre
-												+'</strong>'
-												+'<span>'
-													+val.resumen
-												+'</span>'
-											+'</span>'
-										+'</a>'
-									+'</li>';
-					});
-					$("#games").append(maquinas);
-					$('#mas').show();
-				}else{ 
-					$('#mas').hide();					
-					if (ids_maquinas == null)
-						$("#games").empty();
-				}
-			},
-			error: function () {									
-				$('#mas').hide();					
-				return false
-			  }
-		});
-	}
-
-	$(".view_more").click(function(e){
-		e.preventDefault();
-		getposts();
-	});
-
-	getposts = function(){
-
-		slug_sucursal = "{{isset($sucursal) ? $sucursal->slug : ''}}"; 
-		id_categoria = $('#categorias').val();
-		linea = $('#linea').val(); 
-		var ids_maquinas = [];
-
-		var num_posts = $('.posts-data').size();
-		$(".posts-data").each(function(){
-			ids_maquinas.push($(this).data('id'));
-		}); 
-
-		option_data(id_categoria, slug_sucursal, ids_maquinas, linea);
-	}
-	
-	$(".ver-mesa").click(function(e){
-		e.preventDefault();
-		id_mesa = $(this).attr('data-id');
-		id_sucursal = $(this).attr('data-sucursal');
-
-		$.ajax({
-			type:'post',
-			url:'/get-mesa-juego',
-			data:{
-				_method:'PATCH',
-				id_mesa:id_mesa,
-				id_sucursal:id_sucursal
-			},
-			success: function(data){
-				
-				if(data.length > 2){					
-					data = JSON.parse(data);
-					size = data.length;
-					mesa = '';
-					apuesta = '';
-					descripcion = '';
-					$(".article-content").remove();
-
-					$.each(data, function(index, val){
-
-						if (val.archivo != null && val.archivo.trim() != "" )
-							imagen = val.archivo;
-						else
-							imagen = val.imagen;
-
-						if (val.apuesta_minima != null) {
-							apuesta += '<div class="article-label">'
-						 						+'<span> Apuesta Mínima DESDE </span>'
-						 						+'<strong> '+val.apuesta_minima+' </strong>'
-						 				+'</div>';
-						}
-
-						if ($.trim(val.descripcion) != "")
-							descripcion = val.descripcion;
-						else
-							descripcion = val.resumen;
-
-						mesa = '<div class="article-content">'
-					 				+'<div class="article-image" style="background-image: url('+imagen+')">'  
-					 					+apuesta
-					 					+'<div class="article-max-price">'
-					 						+'CONSULTA MONTOS MÁXIMOS DE APUESTA EN EL CASINO'
-					 					+'</div>'
-					 				+'</div>'
-
-					 				+'<div class="article-entry">'
-					 					+'<h4 class="article-title">'
-					 						+val.nombre
-					 						+'<small>'
-					 							+val.disponibles+' mesas'
-					 						+'</small>'
-					 					+'</h4>'
-
-										+'<p>'
-											+descripcion
-										+'</p>'
-
-										+'<ul class="list-links">'
-											+'<li>'
-												+'<a href="/aprende_a_jugar/'+val.slug+'" class="btn btn-border">'
-													+'Aprende a jugar'
-												+'</a>'
-											+'</li>'
-
-											+'<li>'
-												+'<a href="/reglas/'+val.slug+'" class="btn btn-border btn-border-grey">'
-													+'Reglas'
-												+'</a>'
-											+'</li>'
-										+'</ul>'
-					 				+'</div>'
-						 		+'</div>';
-					});
-					$("#article-mesa").append(mesa);
-				}else{ 
-					$(".article-content").remove();
-				}
-			},
-			error: function () {						
-				return false
-			  }
-		});
-
-	});
-	</script>
+<script src="js/front/mesas.js"></script>
 @stop
 
 @section('contenido')
@@ -188,30 +15,65 @@
 					<img src="css/images/btn-menu@2x.png" alt="">
 				</a> -->
 
-				<div class="slider-clip">
+			<div class="slider-clip">
+				@if( isset( $slider ) && count( $slider ) > 1 )
 					<ul class="slides">
-						@if( isset( $slider ) && count( $slider ) )
-							<div class="slider-intro anchor">
-								<div class="slider-clip">
-									<ul class="slides">
-										@foreach( $slider as $s )
-											<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-												<div class="slide-content ">
-													<!--<div class="shell"-->
-													<?php /*
-													<h1>{{ $s->titulo }}</h1>
-													<!-- <a href="{{ $s->link }}" class="btn btn-white">{{ $s->texto_boton }} <i class="ico-arrow-right"></i></a> -->
-													*/?>
-													<!--</div> /.shell -->
-												</div><!-- /.slide-content -->
-											</li><!-- /.slide -->
-										@endforeach
-									</ul><!-- /.slides -->
-								</div><!-- /.slider-clip -->
-							</div><!-- /.slider-intro -->
 						@endif
+						@if( isset( $slider ) && count( $slider ) )
+
+							@foreach( $slider as $item )
+								@if($item->is_show_img_video)
+									<li class="slide fullscreen">
+										<embed  width="100%" height="100%" src="<?php echo $item->video_url; ?>">
+									</li>
+								@else
+								<li class="slide" style="background-image: url({{ $item->imagen }})">
+									<div class="slide-body">
+										<div class="shell">
+											<div class="slide-content">
+												@if(isset($item->texto_boton) && $item->texto_boton != "")
+													<form action="{{$item->link}}" target="{{$item->is_new_tab}}">
+														<input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+													</form>
+												@endif
+												<h1>
+													{{$item->titulo}}
+												</h1>
+
+												@if( isset( $sucursales ) && count( $sucursales ) )
+
+													<div class="filter-secondary">
+														<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+														<select name="field-filter-secondary1" id="field-filter-secondary1" class="select branch-filter">
+
+															<option value="-1">Selecciona tu casino</option>
+
+															@foreach( $sucursales as $item )
+
+																<option value="{{ $item->slug }}" <?php ( $sucursal && $sucursal == $item->slug ) ? print "selected" : print "" ?>>{{ $item->nombre }}</option>
+
+															@endforeach
+
+														</select>
+													</div><!-- /.filter-secondary -->
+
+												@endif
+
+
+											</div><!-- /.slide-content -->
+
+											@include('front.includes.breadcrumbs')
+										</div><!-- /.shell -->
+									</div><!-- /.slide-body -->
+								</li><!-- /.slide -->
+@endif
+							@endforeach
+
+						@endif
+						@if( isset( $slider ) && count( $slider ) > 1 )
 					</ul><!-- /.slides -->
-				</div><!-- /.slider-clip -->
+				@endif
+			</div><!-- /.slider-clip -->
 
 				<!--<div class="slider-label red-label large">
 					<i class="ico-slot"></i>
@@ -255,10 +117,10 @@
 							</a>
 						</p>
 					</div> --><!-- /.section-entry -->
-					@if( isset($acumulado) && count($acumulado) )
+
 					<div class="cols">
 						<div class="shell">
-							
+							@foreach ($maquinas_acumulado as $maquina)
 							<header class="section-head" >
 								{!!isset($sucursal) ? '<h2 class="jackpot_line"> <small>' . $sucursal->nombre . '</h2></small>' : ''!!}
 								<div class="stick--point" id="jackpot"></div>
@@ -274,35 +136,22 @@
 								</p>
 							</div>
 						</div>
-						@foreach ($acumulado as $item)
-						<div class="col col-1of2">
-							<article class="article-jackpot">
-								<div class="article-content">
-									<h6>
-										{{$item->titulo}} 
-									</h6>
+							<div class="col col-1of2">
+								<article class="article-jackpot">
+									<div class="article-content">
+										<h6>
+											{{$maquina->nombre}}
+										</h6>
 
-									<div class="fake-div">
-										<div id="counter">
-											<div class="counter-value" ><p>${{number_format($item->cantidad)}} <em>MN</em></p></div>
-											<!--<div class="counter-value" data-count="400">$100</div>
-											<div class="counter-value" data-count="1500">$500</div>-->
-										</div>
-										<div class="fake-div">
-									<!--<p>
-										${{$item->cantidad}}
-									</p>-->
-										</div>
-									</div>
-								</div><!-- /.article-content -->
-							</article><!-- /.article-jackpot -->
-						</div><!-- /.col col-1of2 -->
-							
+										<p>
+											${{$maquina->acumulado}}
+										</p>
+									</div><!-- /.article-content -->
+								</article><!-- /.article-jackpot -->
+							</div><!-- /.col col-1of2 -->
 						@endforeach
-						
 
-					</div>
-					@endif<!-- /.cols -->
+					</div><!-- /.cols -->
 
 					<!-- <div class="section-entry">
 						<p>
@@ -425,7 +274,7 @@
 													 	<div class="slide-content">
 														 	<div class="cols">
 												@endif
-																<a class="link-more ver-mesa" data-id="{{$mesa->id}}" data-sucursal="{{isset($mesa->id_sucursal) && !empty($mesa->id_sucursal) ? $mesa->id_sucursal : "0"}}" onclick="dataLayer.push ({ 'event': 'juegosMesa', 'juegoM': '{{$mesa->nombre}}' });">
+																<a class="link-more ver-mesa" data-id="{{$mesa->id}}" data-sucursal="{{isset($mesa->id_sucursal) && !empty($mesa->id_sucursal) ? $mesa->id_sucursal : "0"}}">
 																	<div class="col col-1of2">
 																		<article class="article-game-available small">
 																			<h6>
@@ -590,7 +439,7 @@
 						</div><!-- /.shell -->
 
 						<div class="section-actions">
-							<a href="http://www.google.com/maps/place/{{$sucursal->latitud}},{{$sucursal->longitud}}" class="btn btn-red btn-red-small" target="_blank" onclick="dataLayer.push ({ 'event': 'llegaraqui', 'casino': '{{$sucursal->nombre}}' });">
+							<a href="http://www.google.com/maps/place/{{$sucursal->latitud}},{{$sucursal->longitud}}" class="btn btn-red btn-red-small" target="_blank">
 								<i class="ico-human"></i>
 
 								Cómo llegar aquí

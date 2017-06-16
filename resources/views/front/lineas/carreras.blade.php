@@ -1,4 +1,4 @@
-@extends('layout.front')
+	@extends('layout.front')
 	@section('css')
 		<style type="text/css">
 			.active{
@@ -21,6 +21,16 @@
 			    cursor: pointer;
 			}
 		</style>
+
+		<script>
+			function countBelling(url,data){
+				dataLayer.push ({
+					'event': 'apuesta' ,                  //Dato estático
+					'txtApuesta': data //Dato dinámico
+				});
+				window.location.href = url;
+			}
+		</script>
 	@stop
 
 	@section('js')
@@ -92,29 +102,44 @@
 	    
 	    <div class="stick-nav"><!-- Stick nav -->
 	        <ul>
-	            <li><a href="#promociones" onclick="dataLayer.push ({'event': 'drilldown','txtLink': 'Promociones'});"><img src="/assets/images/icon/todas-las-promociones.svg"><span>Promociones</span></a></li>
-	            <li><a href="#juegos" onclick="dataLayer.push ({'event': 'drilldown','txtLink': 'Calendario'});"><img src="/assets/images/icon/apuesta-de-carreras.svg"><span>Calendario</span></a></li>
+	            <li><a href="#promociones"><img src="/assets/images/icon/todas-las-promociones.svg"><span>Promociones</span></a></li>
+	            <li><a href="#juegos"><img src="/assets/images/icon/apuesta-de-carreras.svg"><span>Calendario</span></a></li>
 	            <!--<li><a href="#jackpot"><img src="css/images/icons/icon-4.png"><span>Jackpot</span></a></li>-->
-	            <li><a href="#torneos" onclick="dataLayer.push ({'event': 'drilldown','txtLink': 'Eventos'});"><img src="/assets/images/icon/torneos.svg"><span>Eventos</span></a></li>
+	            <li><a href="#torneos"><img src="/assets/images/icon/torneos.svg"><span>Eventos</span></a></li>
 	            <!--<li><a href="#sucursales"><img src="css/images/icons/icon-5.png"><span>Ubicación</span></a></li>-->
-	            <li><a href="#diversion" onclick="dataLayer.push ({'event': 'drilldown','txtLink': 'Diversión'});"><img src="/assets/images/icon/diversion.svg"><span>Diversión</span></a></li>
+	            <li><a href="#diversion"><img src="/assets/images/icon/diversion.svg"><span>Diversión</span></a></li>
 	        </ul>
 	    </div>
 		<div class="slider-secondary">
 			<div class="slider-clip">
-				<ul class="slides">
+				@if( isset( $slider ) && count( $slider ) > 1 )
+					<ul class="slides">
+						@endif
 					@if( count( $slider ) )
 
 						@foreach( $slider as $item )
-
+						@if($item->is_show_img_video)
+							<li class="slide fullscreen">
+								<embed  width="100%" height="100%" src="<?php echo $item->video_url; ?>">
+							</li>
+						@else
 							<li class="slide" style="background-image: url({{ $item->imagen }})">
 								<div class="slide-body">
 									<div class="shell"> 		 
 										 <div class="slide-content">
-										 	<h1>
-										 		Apuestas de Carreras
-										 	</h1>
-											 	
+
+											 @if(isset($item->texto_boton))
+												 <form action="{{$item->link}}" target="{{$item->is_new_tab}}">
+													 <input type="submit" value="{{$item->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
+												 </form>
+											 @endif
+											 <h1><?php
+												 if(isset($item->titulo)){
+													 echo html_entity_decode($item->titulo);
+												 }
+												 ?>
+
+											 </h1>
 											 	<h3>
 											 		@if( isset( $sucursal_info->nombre ) )
 											 			
@@ -151,12 +176,14 @@
 									</div><!-- /.shell -->
 								</div><!-- /.slide-body -->
 							</li><!-- /.slide -->
-
+								@endif
 						@endforeach
 
 					@endif
 
-				</ul><!-- /.slides -->
+						@if( isset( $slider ) && count( $slider ) > 1 )
+							</ul>
+				@endif
 			</div><!-- /.slider-clip -->
 
 			<div class="slider-label red-label second">
@@ -178,26 +205,29 @@
 								Cómo apostar
 							</a>
 						</header><!-- /.section-head -->
-					
+
 						<div class="calendar-content">	
 							<div class="list-btn">
 								<ul class="section-btn">
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
-										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" onclick="dataLayer.push ({ 'event': 'apuesta' , 'txtApuesta': 'Caballos' });">
+										<?php $urlBell = url(\Request::path() . '?game=' . current($carreras)->slug); ?>
+										<a  href="javascript:void(0);" onclick="countBelling('<?php echo $urlBell ?>','<?php echo current($carreras)->titulo ?>')"  class="btn-carreras">
 											<img src="/assets/images/icon/caballos.png">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
 										<?php next($carreras); ?>
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
-										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" class="btn-carreras" onclick="dataLayer.push ({ 'event': 'apuesta' , 'txtApuesta': 'Galgos' });">
+										<?php $urlBell = url(\Request::path() . '?game=' . current($carreras)->slug); ?>
+											<a  href="javascript:void(0);" onclick="countBelling('<?php echo $urlBell ?>','<?php echo current($carreras)->titulo ?>')"  class="btn-carreras">
 											<img src="/assets/images/icon/galgos.png">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
 									</li>
 										<?php next($carreras); ?>
 									<li class="{{isset($game) && $game == current($carreras)->slug ? 'btn-carreras active' : ''}}">
-										<a href="{{url(\Request::path() . '?game=' . current($carreras)->slug)}}" class="btn-carreras" onclick="dataLayer.push ({ 'event': 'apuesta' , 'txtApuesta': 'Canódromo' });">
+										<?php $urlBell = url(\Request::path() . '?game=' . current($carreras)->slug); ?>
+											<a  href="javascript:void(0);" onclick="countBelling('<?php echo $urlBell ?>','<?php echo current($carreras)->titulo ?>')"  class="btn-carreras">
 											<img src="/assets/images/icon/canodromo.png">
 											<span>{{current($carreras)->titulo}}</span> 
 										</a>
@@ -252,7 +282,7 @@
 									<li class="txt-left" data-fecha="{{$item->fecha}}">
 										<h5>{{$item->titulo}}</h5>
 											@if( trim($item->archivo) !== "" )
-												<a href="{{$item->archivo}}" target="_blank" onclick="dataLayer.push ({ 'event': 'pdf', 'pdf': '{{$item->titulo}}' });"> 
+												<a href="{{$item->archivo}}" target="_blank"> 
 													<img src="css/images/icons/download.png">
 													Descargar programa
 												</a>
@@ -266,6 +296,10 @@
 					</section>	
 				</div><!-- /.shell -->
 			</section><!-- /.section-games-available -->
+
+			@if(isset($promociones)){
+				@include('front.includes.promotions',['promociones' => $promociones,'sucursal'=>$sucursal_info])
+			@endif
 
 			@if( isset( $torneos ) && count($torneos) )
 
@@ -461,7 +495,7 @@
 							</div><!-- /.shell -->
 							
 							<div class="section-actions">
-								<a target="_blank" href="http://www.google.com/maps/place/{{ $sucursal_info->latitud . "," . $sucursal_info->longitud }}" class="btn btn-red btn-red-small" onclick="dataLayer.push ({ 'event': 'llegaraqui', 'casino': '{{$sucursal_info->nombre}}' });">
+								<a target="_blank" href="http://www.google.com/maps/place/{{ $sucursal_info->latitud . "," . $sucursal_info->longitud }}" class="btn btn-red btn-red-small">
 									<i class="ico-human"></i>
 
 									Cómo llegar aquí
@@ -522,8 +556,9 @@
 
 									<div class="col col-1of3">
 										<article class="article-fun">
-											<a href="{{ url('/lineas-de-juego/' . $item->slug) }}" style="background-image: url('{{ $item->imagen }}')"> 
+											<a href="{{ url('/lineas-de-juego/'.$item->slug) }}" style="background-image: url('{{ $item->imagen }}')">
 												<strong>
+													<label style="color: black;"> {{$item->slug}}</label>
 													{{ $item->linea }}
 													<span>{{ $item->slogan }}</span>	
 												</strong>

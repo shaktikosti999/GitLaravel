@@ -6,3 +6,4 @@ Route::post('/administrador/modificar/contacto{id}.html','contactoController@edi
 Route::patch('/administrador/modificar/contacto{id}.html','contactoController@update');
 Route::put('/administrador/agregar/contacto.html','contactoController@store');
 Route::delete('/administrador/eliminar/contacto{id}.html','contactoController@destroy');
+Route::get('/administrador/contactoCSV.html','contactoController@exportCSV');

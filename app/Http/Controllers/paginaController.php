@@ -88,6 +88,7 @@ class paginaController extends Controller
             }                    
         }
 
+
         $evento = pagina::store($request,$archivo);
         $evento = $evento[0];
         if(!$evento){
@@ -130,6 +131,7 @@ class paginaController extends Controller
             'paginas' => pagina::paginas($id),
             'pagina' => pagina::edit($id)
         );
+
         return view('back.pagina_contenido.edit',$data);
     }
 

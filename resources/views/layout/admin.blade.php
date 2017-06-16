@@ -47,6 +47,7 @@ foreach($privs as $key => $priv){
     <link href="{{asset('/assets/plugins/switchery/css/switchery.min.css')}}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{{asset('/pages/css/pages-icons.css')}}" rel="stylesheet" type="text/css">
     <link class="main-stylesheet" href="{{asset('/pages/css/pages.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('/assets/css/sumoselect.min.css')}}" rel="stylesheet">
     <!--Carga de imagenes-->
     <link href="{{asset('/assets/css/uploadfile.css')}}" rel="stylesheet">
     <!--[if lte IE 9]>
@@ -54,7 +55,21 @@ foreach($privs as $key => $priv){
   <![endif]-->
   <!--Textarea de Texto enriquecido-->
   <link href="{{asset('/assets/plugins/summernote/css/summernote.css')}}" rel="stylesheet" type="text/css" media="screen">
+
   @yield('css')
+
+
+    <style>
+      .ui-widget-content{
+        /*//background:transparent;*/
+        border:0px;
+      }
+
+      .ui-widget.ui-widget-content{
+        /*//background:transparent;*/
+        border:0px;
+      }
+    </style>
   </head>
   <body class="fixed-header">
     <!-- BEGIN SIDEBPANEL-->
@@ -1742,6 +1757,7 @@ foreach($privs as $key => $priv){
     <script type="text/javascript" src="{{asset('/assets/plugins/bootstrap-select2/select2.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('/assets/plugins/classie/classie.js')}}"></script>
     <script src="{{asset('/assets/plugins/switchery/js/switchery.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('/assets/js/jquery.sumoselect.min.js')}}" type="text/javascript"></script>
     <!-- END VENDOR JS -->
     <!-- BEGIN CORE TEMPLATE JS -->
     <script src="{{asset('/pages/js/pages.min.js')}}"></script>
@@ -1813,5 +1829,17 @@ foreach($privs as $key => $priv){
           });
         </script>
     @endif
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            window.asd = $('.SlectBox').SumoSelect({ csvDispCount: 3, selectAll:false, captionFormatAllSelected: "Yeah, OK, so everything." });
+
+
+            $('.SlectBox').on('sumo:opened', function(o) {
+                console.log("dropdown opened", o)
+            });
+
+        });
+    </script>
   </body>
 </html>

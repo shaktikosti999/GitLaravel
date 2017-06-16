@@ -22,7 +22,7 @@
 		<!-- Vendor JS -->
 		<script src="vendor/jquery-1.12.4.min.js"></script>
 		<script type="text/javascript" src="vendor/slick-1.6.0/slick/slick.min.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjMKk2fFZkL4_23v3fI7o7yYlIfDLcHWY&sensor=false&amp;language=en"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;language=en"></script>
 		<script src="vendor/formstone/core.js"></script>
 		<script src="vendor/formstone/touch.js"></script>
 		<script src="vendor/formstone/dropdown.js"></script>
@@ -30,33 +30,32 @@
 
 		<!-- App JS -->
 		<script src="js/functions.js"></script>
+
+		<script>
+			function goToUrl($url){
+				//$window.open($url,'_blank');
+				window.location.href = $url;
+				e.preventDefault();
+			}
+		</script>
+
+
 		<!-- Google Tag Manager -->
 		<script>
-		  dataLayer = [];
-		</script>
-		<script>
-		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NDPWXX8');
+			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+					new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+					j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+					'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','GTM-NDPWXX8');
 		</script>
 		<!-- End Google Tag Manager -->
 
-		<!-- Código nuevo -->
-		<script>
- 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-			ga('create', 'UA-74525196-1', 'auto');
-			ga('send', 'pageview');
-		</script>
-		<!-- Fin nuevo código -->
 	</head>
 
 	<body>
-		<!-- Google Tag Manager (noscript) -->
-		<noscript>
-			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDPWXX8" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-		</noscript>
-		<!-- End Google Tag Manager (noscript) -->
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NDPWXX8"
+	  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 		{{ csrf_field() }}
 
@@ -480,6 +479,17 @@
 			</footer><!-- /.footer -->
 		</div><!-- /.wrapper -->
 		
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-74525196-1', 'auto');
+		  ga('send', 'pageview');
+
+		</script>
+
 		@yield('js')
 	</body>
 </html>
