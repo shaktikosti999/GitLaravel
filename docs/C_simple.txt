@@ -1,0 +1,1 @@
+ALTER TABLE `contenido_simple` ADD `is_show_title` BOOLEAN NULL DEFAULT FALSE AFTER `updated_at`;

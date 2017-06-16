@@ -1,0 +1,49 @@
+<wsdl:definitions targetNamespace='http://soa.jboss.org/SignOn' xmlns:esbns1='http://www.caliente.com.mx/ApuestaRemota' xmlns:esbns2='http://www.caliente.com.mx/ApuestaRemota' xmlns:esbns3='http://www.caliente.com.mx/ApuestaRemota' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://soa.jboss.org/SignOn' xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'>
+ <wsdl:types>
+  <xs:schema targetNamespace='http://www.caliente.com.mx/ApuestaRemota' version='1.0' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:include schemaLocation='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl&amp;resource=tipos/req-signon-sitio-type.xsd'/>
+  </xs:schema>
+  <xs:schema targetNamespace='http://www.caliente.com.mx/ApuestaRemota' version='1.0' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:include schemaLocation='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl&amp;resource=tipos/resp-signon-sitio-type.xsd'/>
+  </xs:schema>
+  <xs:schema targetNamespace='http://www.caliente.com.mx/ApuestaRemota' version='1.0' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:include schemaLocation='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio?wsdl&amp;resource=fault.xsd'/>
+  </xs:schema>
+ </wsdl:types>
+ <wsdl:message name='SignOnSitioReq'>
+  <wsdl:part element='esbns3:signOnSitio' name='in'></wsdl:part>
+ </wsdl:message>
+ <wsdl:message name='SignOnSitioRes'>
+  <wsdl:part element='esbns3:respSignOnSitio' name='out'></wsdl:part>
+ </wsdl:message>
+ <wsdl:message name='SignOnSitioFault1'>
+  <wsdl:part element='esbns3:aprFalla' name='fault1'></wsdl:part>
+ </wsdl:message>
+ <wsdl:portType name='SignOnSitioPortType'>
+  <wsdl:operation name='SignOnSitioOp'>
+   <wsdl:input message='tns:SignOnSitioReq' name='SignOnSitioReq'></wsdl:input>
+   <wsdl:output message='tns:SignOnSitioRes' name='SignOnSitioRes'></wsdl:output>
+   <wsdl:fault message='tns:SignOnSitioFault1' name='fault1'></wsdl:fault>
+  </wsdl:operation>
+ </wsdl:portType>
+ <wsdl:binding name='SignOnSitioBinding' type='tns:SignOnSitioPortType'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <wsdl:operation name='SignOnSitioOp'>
+   <soap:operation soapAction='http://soa.jboss.org/SignOn/SignOnSitioOp'/>
+   <wsdl:input name='SignOnSitioReq'>
+    <soap:body use='literal'/>
+   </wsdl:input>
+   <wsdl:output name='SignOnSitioRes'>
+    <soap:body use='literal'/>
+   </wsdl:output>
+   <wsdl:fault name='fault1'>
+    <soap:fault name='fault1' use='literal'/>
+   </wsdl:fault>
+  </wsdl:operation>
+ </wsdl:binding>
+ <wsdl:service name='SignOnSitioService'>
+  <wsdl:port binding='tns:SignOnSitioBinding' name='SignOnSitioPortType'>
+   <soap:address location='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/SignOn/SignOnSitio'/>
+  </wsdl:port>
+ </wsdl:service>
+</wsdl:definitions>

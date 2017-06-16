@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta charset="utf-8" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Casino Caliente</title>
+
+	<link rel="shortcut icon" type="image/x-icon" href="css/images/favicon.ico" />
+
+	<!-- Vendor Styles -->
+	<link rel="stylesheet" type="text/css" href="vendor/slick-1.6.0/slick/slick.css"/>
+	<link rel="stylesheet" href="vendor/font-awesome-4.6.3/css/font-awesome.min.css" type="text/css" media="all" />
+	<link rel="stylesheet" href="vendor/formstone/dropdown.css" />
+
+	<!-- App Styles -->
+	<link rel="stylesheet" href="css/style.css" />
+
+	<!-- Vendor JS -->
+	<script src="vendor/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="vendor/slick-1.6.0/slick/slick.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false&amp;language=en"></script>
+	<script src="vendor/formstone/core.js"></script>
+	<script src="vendor/formstone/touch.js"></script>
+	<script src="vendor/formstone/dropdown.js"></script>
+
+	<!-- App JS -->
+	<script src="js/functions.js"></script>
+</head>
+
+<body>
+<div class="wrapper">
+	<header class="header">
+		<div class="shell">
+			<div class="nav-trigger-wrapper">
+				<a href="#" class="nav-trigger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</a>
+			</div><!-- /.nav-trigger-wrapper -->
+
+			<nav class="nav-access">
+				<ul>
+					<li>
+						<a href="#">Quíenes somos</a>
+					</li>
+					
+					<li>
+						<a href="#">Contacto</a>
+					</li>
+				</ul>
+			</nav><!-- /.nav-access -->
+
+			<div class="header-content">
+				<a href="#" class="logo">casino caliente</a>
+				
+				<nav class="nav">
+					<ul>
+						<li>
+							<a href="#">Home</a>
+						</li>
+						
+						<li class="has-dropdown">
+							<a href="#">opciones De Diversión</a>
+
+							<ul class="dropdown">
+								<li>
+									<a href="#">promociones Y Eventos</a>
+								</li>
+								
+								<li>
+									<a href="#">ubicaciones</a>
+								</li>
+								
+								<li>
+									<a href="#">caliente Club</a>
+								</li>		
+							</ul><!-- /.dropdown --> 
+						</li>
+						
+						<li>
+							<a href="#">promociones Y Eventos</a>
+						</li>
+						
+						<li>
+							<a href="#">ubicaciones</a>
+						</li>
+						
+						<li>
+							<a href="#">caliente Club</a>
+						</li>
+
+						<li class="desktop-hidden">
+							<a href="#">Quíenes somos</a>
+						</li>
+						
+						<li class="desktop-hidden">
+							<a href="#">Contacto</a>
+						</li>
+
+						<li class="desktop-hidden tablet-hidden">
+							<a href="#">
+								<i class="fa fa-facebook" aria-hidden="true"></i>
+							</a>
+						</li>
+						
+						<li class="desktop-hidden tablet-hidden">
+							<a href="#">
+								<i class="fa fa-twitter" aria-hidden="true"></i>
+							</a>
+						</li>
+						
+						<li class="desktop-hidden tablet-hidden">
+							<a href="#">
+								<i class="fa fa-youtube-play" aria-hidden="true"></i>
+							</a>
+						</li>
+					</ul>
+				</nav><!-- /.nav -->
+
+				<div class="socials">
+					<ul>
+						<li>
+							<a href="#">
+								<i class="fa fa-facebook" aria-hidden="true"></i>
+							</a>
+						</li>
+						
+						<li>
+							<a href="#">
+								<i class="fa fa-twitter" aria-hidden="true"></i>
+							</a>
+						</li>
+						
+						<li>
+							<a href="#">
+								<i class="fa fa-youtube-play" aria-hidden="true"></i>
+							</a>
+						</li>
+					</ul>
+				</div><!-- /.socials -->
+			</div><!-- /.header-content --> 
+
+			<a href="#" class="btn-search"> 
+				<i class="ico-search"></i>	
+
+				<span></span>
+			</a>
+
+			<div class="search">
+				<form action="?" method="get"> 
+					<div class="search-actions">
+						<label for="q" class="hidden">Search</label> 
+
+						<input type="search" name="q" id="q" value="" placeholder="Search" class="search-field">
+
+						<button class="search-btn">
+							<i class="ico-search"></i>	
+						</button> 
+					</div><!-- /.search-actions -->
+					
+				</form>
+			</div><!-- /.search -->
+		</div><!-- /.shell -->
+	</header><!-- /.header -->
+	<div class="slider-intro  slider-intro-secondary"> 
+		<div class="slider-clip">
+			<ul class="slides">
+				<li class="slide fullscreen" style="background-image: url(css/images/temp/slider-intro-secondary.jpg);">
+					<div class="slide-content">
+						<div class="shell">
+							<h2>
+								PROMOCIONES Y EVENTOS
+							</h2>
+
+							<h3>
+								Sucursal Tecamachalco
+							</h3>
+ 							
+ 							<div class="filter-secondary">
+								<label for="field-filter-secondary1" class="form-label hidden">filter-secondary1</label>
+								<select name="field-filter-secondary1" id="field-filter-secondary1" class="select">
+									<option value="">Cambiar sucursal</option>
+									<option value="">Cambiar sucursal 1</option>
+									<option value="">Cambiar sucursal 2 </option>
+								</select>
+							</div><!-- /.filter-secondary -->
+						</div><!-- /.shell -->
+					</div><!-- /.slide-content -->
+				</li><!-- /.slide --> 
+			</ul><!-- /.slides -->
+		</div><!-- /.slider-clip -->
+	</div><!-- /.slider-intro -->
+
+	<div class="main ">
+		<section class="section-slider">
+			<div class="shell">
+				<div class="section-body">
+					<div class="slider-games reset-margin">
+						<div class="slider-clip">
+							<ul class="slides">
+								<li class="slide"> 									
+									<div class="slide-content" style="background-image: url(css/images/temp/game1.jpg); ">
+										<div class="slide-caption">
+											<p>Caliente</p>
+											
+											<span>Club&reg;</span>
+										</div><!-- /.slide-caption -->
+									</div><!-- /.slide-content -->
+								</li><!-- /.slide -->
+
+								<li class="slide"> 									
+									<div class="slide-content" style="background-image: url(css/images/temp/game2.jpg); ">
+										<div class="slide-caption">
+											<p>Liga MX,</p>
+											
+											<span>Clausura 2016</span>
+										</div><!-- /.slide-caption -->
+									</div><!-- /.slide-content -->
+								</li><!-- /.slide -->
+
+								<li class="slide"> 									
+									<div class="slide-content" style="background-image: url(css/images/temp/game3.jpg); ">
+										<div class="slide-caption">
+											<p>&iexcl;Coronemos</p>
+											
+											<span>a Mamá!</span>
+										</div><!-- /.slide-caption -->
+									</div><!-- /.slide-content -->
+								</li><!-- /.slide -->
+
+								<li class="slide"> 									
+									<div class="slide-content" style="background-image: url(css/images/temp/game4.jpg); ">
+										<div class="slide-caption">
+											<p>Torneo</p>
+											
+											<span>2016</span>
+										</div><!-- /.slide-caption -->
+									</div><!-- /.slide-content -->
+								</li><!-- /.slide -->
+
+								<li class="slide"> 									
+									<div class="slide-content" style="background-image: url(css/images/temp/game1.jpg); ">
+										<div class="slide-caption">
+											<p>Caliente</p>
+											
+											<span>Club&reg;</span>
+										</div><!-- /.slide-caption -->
+									</div><!-- /.slide-content -->
+								</li><!-- /.slide -->
+							</ul><!-- /.slides -->
+						</div><!-- /.slider-clip -->
+					</div><!-- /.slider-games -->
+				</div><!-- /.section-body --> 
+			</div><!-- /.shell -->
+		</section><!-- /.section-slider -->
+
+		 <section class="section-teritary">
+		 	<div class="shell">
+		 		<div class="section-head">
+		 			<h2>
+		 				Selecciona tu promoción
+		 			</h2>
+
+		 			<ul class="section-filters">
+						<li class="section-filter active">
+							 <a href="#">
+							 	<i class="ico-ticket"></i>
+
+							 	<span>
+							 		Todas las promociones
+							 	</span>
+							 </a>
+						</li>
+
+						<li class="section-filter">
+							 <a href="#">
+							 	<i class="ico-robot"></i>
+
+							 	<span>
+							 		Máquinas de Juego
+							 	</span>
+							 </a>
+						</li>
+
+						<li class="section-filter">
+							 <a href="#">
+							 	<i class="ico-die"></i>
+
+							 	<span>
+							 		mesas de juego
+							 	</span>
+							 </a>
+						</li>
+
+						<li class="section-filter">
+							 <a href="#">
+							 	<i class="ico-ball"></i>
+
+							 	<span>
+							 		Apuesta deportiva
+							 	</span>
+							 </a>
+						</li>
+
+						<li class="section-filter">
+							 <a href="#">
+							 	<i class="ico-horse"></i>
+
+							 	<span>
+							 		apuesta de carreras
+							 	</span>
+							 </a>
+						</li>
+		 			</ul><!-- /.section-filter -->
+		 		</div><!-- /.section-head -->
+
+		 		<div class="section-body">
+		 			<div class="row">
+						<div class="col col-1of2">
+							<div class="box-current-promotions" style="background-image: url(css/images/temp/current-promotion1.jpg)"> 
+								<a href="#" class="btn btn-red btn-small">
+									Conoce más
+								</a>
+							</div><!-- /.box-current-promotions -->	 				
+						</div><!-- /.col col-1of2 -->
+
+						<div class="col col-1of2">
+							<div class="cols">
+								<div class="col col-1of2">
+									<div class="box-current-promotions" style="background-image: url(css/images/temp/current-promotion2.jpg)"> 
+										<a href="#" class="btn btn-red btn-small">
+											Conoce más
+										</a>
+									</div><!-- /.box-current-promotions -->	 				
+								</div><!-- /.col col-1of2 -->
+
+								<div class="col col-1of2">
+									<div class="box-current-promotions" style="background-image: url(css/images/temp/current-promotion3.jpg)"> 
+										<a href="#" class="btn btn-red btn-small">
+											Conoce más
+										</a>
+									</div><!-- /.box-current-promotions -->	 				
+								</div><!-- /.col col-1of2 -->
+							</div><!-- /.cols --> 
+						</div><!-- /.col col-1of2 -->
+		 			</div><!-- /.row -->
+
+		 			<div class="row">
+		 				<div class="col col-1of2">
+		 					<div class="cols">
+								<div class="col col-1of2">
+									<div class="box-current-promotions" style="background-image: url(css/images/temp/current-promotion4.jpg)"> 
+										<a href="#" class="btn btn-red btn-small">
+											Conoce más
+										</a>
+									</div><!-- /.box-current-promotions -->	 				
+								</div><!-- /.col col-1of2 -->
+
+								<div class="col col-1of2">
+									<div class="box-current-promotions" style="background-image: url(css/images/temp/current-promotion5.jpg)"> 
+										<a href="#" class="btn btn-red btn-small">
+											Conoce más
+										</a>
+									</div><!-- /.box-current-promotions -->	 				
+								</div><!-- /.col col-1of2 -->
+							</div><!-- /.cols --> 
+		 				</div><!-- /.col col-1of2 -->
+
+		 				<div class="col col-1of2">
+		 					<div class="box-current-promotions" style="background-image: url(css/images/temp/current-promotion6.jpg)"> 
+								<a href="#" class="btn btn-red btn-small">
+									Conoce más
+								</a>
+							</div><!-- /.box-current-promotions -->	 				
+		 				</div><!-- /.col col-1of2 -->
+		 			</div><!-- /.row -->
+		 		</div><!-- /.section-body -->
+
+		 		<div class="section-actions">
+		 			<a href="#" class="btn btn-border">
+		 				Cargar más promociones
+		 			</a>
+		 		</div><!-- /.section-actions -->
+		 	</div><!-- /.shell -->
+		 </section><!-- /.section-teritary -->
+
+		<section class="section-gray">
+			<div class="shell">
+				<div class="subscribe">
+					<form action="?" method="post">
+						<div class="subscribe-head">
+							<h2>Regístrate a nuestro newsletter</h2>
+						</div><!-- /.subscribe-head -->
+
+						<div class="subscribe-wrapper">
+							<a href="#" class="btn btn-red btn-form">Deseo recibir noticaciones</a>
+
+							<div class="subscribe-body-hidden">
+								<div class="subscribe-inner">
+									<label for="mail" class="hidden">Email</label>
+									
+									<input type="email" id="mail" name="mail" value="" placeholder="Email" class="subscribe-field">
+									
+									<input type="submit" value="Enviar" class="subscribe-btn btn btn-red">
+								</div><!-- /.subscribe-inner -->
+
+								<div class="subscribe-actions">
+									<ul class="list-checkboxes">
+										<li>
+											<div class="checkbox">
+												<input type="checkbox" name="field-notifications" id="field-notifications">
+												
+												<label class="form-label" for="field-notifications">Deseo recibir notificaciones</label>
+											</div><!-- /.checkbox -->
+										</li>
+									</ul><!-- /.list-checkboxes -->
+								</div><!-- /.subscribe-actions -->
+							</div><!-- /.subscribe-body-hidden -->
+						</div><!-- /.subscribe-wrapper -->
+					</form>
+				</div><!-- /.subscribe -->
+			</div><!-- /.shell -->
+		</section><!-- /.section-gray --> 
+	</div><!-- /.main -->
+	<footer class="footer">
+		<div class="shell">
+			<a href="#" class="btn-top"></a>
+
+			<div class="cols">
+				<div class="col col-size1">
+					<a href="#" class="logo"></a>
+
+					<ul class="list-partners">
+						<li>
+							<a href="http://www.caliente.mx">www.caliente.mx</a>
+						</li>
+						
+						<li>
+							<a href="http://www.xolos.com.mx">www.xolos.com.mx</a>
+						</li>
+						
+						<li>
+							<a href="http://www.grupocaliente.com.mx">www.grupocaliente.com.mx</a>
+						</li>
+					</ul><!-- /.list-partners -->
+				</div><!-- /.col col-size1 -->
+				
+				<div class="col col-size2">
+					<nav class="nav-footer">
+						<ul>
+							<li>
+								<a href="#">Líneas De Juego</a>
+							</li>
+							
+							<li>
+								<a href="#">Sucursales</a>
+							</li>
+							
+							<li>
+								<a href="#">Promociones Y Eventos</a>
+							</li>
+							
+							<li>
+								<a href="#">Opciones De Diversión</a>
+							</li>
+							
+							<li>
+								<a href="#">Alimentos Y Bebidas</a>
+							</li>
+							
+							<li>
+								<a href="#">Juego Responsable</a>
+							</li>
+						</ul>
+					</nav><!-- /.nav-footer -->
+				</div><!-- /.col col-size2 -->
+				
+				<div class="col col-size3">
+					<nav class="nav-footer">
+						<ul>
+							<li>
+								<a href="#">Quiénes Somos</a>
+							</li>
+							
+							<li>
+								<a href="#">Contacto</a>
+							</li>
+							
+							<li>
+								<a href="#">Aviso De Privacidad</a>
+							</li>
+							
+							<li>
+								<a href="#">Bolsa De Trabajo</a>
+							</li>
+							
+							<li>
+								<a href="#">Ubicaciones</a>
+							</li>
+						</ul>
+					</nav><!-- /.nav-footer -->
+				</div><!-- /.col col-size3 -->
+				
+				<div class="col col-size4">
+					<div class="socials-footer">
+						<h4>Síguenos</h4>
+
+						<ul>
+							<li>
+								<a href="#">
+									<i class="fa fa-facebook" aria-hidden="true"></i>
+								</a>
+
+								<ul class="socials-dropdown">
+									<li>
+										<a href="#">Lorem ipsum dolor.</a>
+									</li>
+									
+									<li>
+										<a href="#">Lorem ipsum dolor.</a>
+									</li>
+									
+									<li>
+										<a href="#">Lorem ipsum dolor.</a>
+									</li>
+								</ul><!-- /.socials-dropdown -->
+							</li>
+							
+							<li>
+								<a href="#">
+									<i class="fa fa-twitter" aria-hidden="true"></i>
+								</a>
+
+								<ul class="socials-dropdown">
+									<li>
+										<a href="#">Lorem ipsum dolor.</a>
+									</li>
+									
+									<li>
+										<a href="#">Lorem ipsum dolor.</a>
+									</li>
+									
+									<li>
+										<a href="#">Lorem ipsum dolor.</a>
+									</li>
+								</ul><!-- /.socials-dropdown -->
+							</li>
+							
+							<li>
+								<a href="#">
+									<i class="fa fa-youtube-play" aria-hidden="true"></i>
+								</a>
+
+								<ul class="socials-dropdown">
+									<li>
+										<a href="#">Lorem ipsum dolor.</a>
+									</li>
+									
+									<li>
+										<a href="#">Lorem ipsum dolor.</a>
+									</li>
+									
+									<li>
+										<a href="#">Lorem ipsum dolor.</a>
+									</li>
+								</ul><!-- /.socials-dropdown -->
+							</li>
+						</ul>
+					</div><!-- /.socials-footer -->
+				</div><!-- /.col col-size4 -->
+			</div><!-- /.cols -->
+
+			<p class="copyright"><strong>&copy; 2016 Casino Caliente</strong> | Todos los Derechos Reservados | <a href="#"><strong>Aviso de Privacidad</strong></a></p><!-- /.copyright -->
+		</div><!-- /.shell -->
+	</footer><!-- /.footer -->
+</div><!-- /.wrapper -->
+</body>
+</html>
+

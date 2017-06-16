@@ -1,0 +1,13 @@
+CREATE TABLE `casinocaliente`.`slider_type` ( `id` INT(10) NOT NULL AUTO_INCREMENT , `type_name` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+
+INSERT INTO `slider_type` (`id`, `type_name`) VALUES (0, 'Quiniela');
+INSERT INTO `slider_type` (`id`, `type_name`) VALUES (1, 'Home');
+INSERT INTO `slider_type` (`id`, `type_name`) VALUES (2, 'Promociones y eventos');
+INSERT INTO `slider_type` (`id`, `type_name`) VALUES (3, 'Ubicaciones');
+INSERT INTO `slider_type` (`id`, `type_name`) VALUES (4, 'Contacto');
+INSERT INTO `slider_type` (`id`, `type_name`) VALUES (5, 'Calendario');
+INSERT INTO `slider_type` (`id`, `type_name`) VALUES (6, 'Maquinas de juego');
+INSERT INTO `slider_type` (`id`, `type_name`) VALUES (7, 'Juegos de mesa');
+INSERT INTO `slider_type` (`id`, `type_name`) VALUES (8, 'Apuesta deportes');
+INSERT INTO `slider_type` (`id`, `type_name`) VALUES (9, 'Apuesta de carreras');

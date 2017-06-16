@@ -1,0 +1,51 @@
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for pagina_contenido
+-- ----------------------------
+DROP TABLE IF EXISTS `pagina_contenido`;
+CREATE TABLE `pagina_contenido` (
+  `id_pagina` int(11) NOT NULL AUTO_INCREMENT,
+  `id_padre` int(11) DEFAULT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `imagen_principal` varchar(100) DEFAULT NULL,
+  `contenido` text,
+  `menu_principal` tinyint(4) NOT NULL,
+  `menu_inferior` tinyint(4) NOT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `orden` int(4) NOT NULL DEFAULT '0',
+  `estatus` tinyint(1) NOT NULL DEFAULT '1',
+  `eliminado` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id_pagina`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `casinocaliente`.`sys_modulo` (
+	`id_modulo`,
+	`id_seccion`,
+	`nombre`,
+	`slug`,
+	`tabla`,
+	`descripcion`,
+	`estatus`,
+	`eliminado`,
+	`created_at`,
+	`updated_at`
+)
+VALUES
+	(
+		'32',
+		'1',
+		'Páginas de contenido simple',
+		'pagina_de_contenido',
+		'pagina_contenido',
+		'',
+		'1',
+		'0',
+		'2016-12-19 11:38:33',
+		'2016-12-19 11:38:33'
+	);
+

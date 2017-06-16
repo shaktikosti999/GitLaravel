@@ -1,0 +1,49 @@
+<wsdl:definitions targetNamespace='http://soa.jboss.org/Deportes' xmlns:esbns1='http://www.caliente.com.mx/ApuestaRemota' xmlns:esbns2='http://www.caliente.com.mx/ApuestaRemota' xmlns:esbns3='http://www.caliente.com.mx/ApuestaRemota' xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/' xmlns:tns='http://soa.jboss.org/Deportes' xmlns:wsdl='http://schemas.xmlsoap.org/wsdl/'>
+ <wsdl:types>
+  <xs:schema targetNamespace='http://www.caliente.com.mx/ApuestaRemota' version='1.0' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:include schemaLocation='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl&amp;resource=tipos/req-lista-agrupadores-deportes-type.xsd'/>
+  </xs:schema>
+  <xs:schema targetNamespace='http://www.caliente.com.mx/ApuestaRemota' version='1.0' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:include schemaLocation='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl&amp;resource=tipos/resp-lista-agrupadores-deportes-type.xsd'/>
+  </xs:schema>
+  <xs:schema targetNamespace='http://www.caliente.com.mx/ApuestaRemota' version='1.0' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+   <xs:include schemaLocation='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes?wsdl&amp;resource=fault.xsd'/>
+  </xs:schema>
+ </wsdl:types>
+ <wsdl:message name='ListaAgrupadoresDeportesRes'>
+  <wsdl:part element='esbns3:respListaAgrupadoresDeportes' name='out'></wsdl:part>
+ </wsdl:message>
+ <wsdl:message name='ListaAgrupadoresDeportesReq'>
+  <wsdl:part element='esbns3:listaAgrupadoresDeportes' name='in'></wsdl:part>
+ </wsdl:message>
+ <wsdl:message name='ListaAgrupadoresDeportesFault1'>
+  <wsdl:part element='esbns3:aprFalla' name='fault1'></wsdl:part>
+ </wsdl:message>
+ <wsdl:portType name='ListaAgrupadoresDeportesPortType'>
+  <wsdl:operation name='ListaAgrupadoresDeportesOp'>
+   <wsdl:input message='tns:ListaAgrupadoresDeportesReq' name='ListaAgrupadoresDeportesReq'></wsdl:input>
+   <wsdl:output message='tns:ListaAgrupadoresDeportesRes' name='ListaAgrupadoresDeportesRes'></wsdl:output>
+   <wsdl:fault message='tns:ListaAgrupadoresDeportesFault1' name='fault1'></wsdl:fault>
+  </wsdl:operation>
+ </wsdl:portType>
+ <wsdl:binding name='ListaAgrupadoresDeportesBinding' type='tns:ListaAgrupadoresDeportesPortType'>
+  <soap:binding style='document' transport='http://schemas.xmlsoap.org/soap/http'/>
+  <wsdl:operation name='ListaAgrupadoresDeportesOp'>
+   <soap:operation soapAction='http://soa.jboss.org/Deportes/ListaAgrupadoresDeportesOp'/>
+   <wsdl:input name='ListaAgrupadoresDeportesReq'>
+    <soap:body use='literal'/>
+   </wsdl:input>
+   <wsdl:output name='ListaAgrupadoresDeportesRes'>
+    <soap:body use='literal'/>
+   </wsdl:output>
+   <wsdl:fault name='fault1'>
+    <soap:fault name='fault1' use='literal'/>
+   </wsdl:fault>
+  </wsdl:operation>
+ </wsdl:binding>
+ <wsdl:service name='ListaAgrupadoresDeportesService'>
+  <wsdl:port binding='tns:ListaAgrupadoresDeportesBinding' name='ListaAgrupadoresDeportesPortType'>
+   <soap:address location='http://10.70.251.28:8080/ApuestaRemotaESB/ebws/Deportes/ListaAgrupadoresDeportes'/>
+  </wsdl:port>
+ </wsdl:service>
+</wsdl:definitions>

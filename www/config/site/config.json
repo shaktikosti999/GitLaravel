@@ -1,0 +1,14 @@
+{
+	"login":{
+		"title":"Iniciar Sesi\u00f3n | Casino Caliente",
+		"background":"\/assets\/images\/back.jpg",
+		"principal_text":{
+			"primary":"Casino Caliente!",
+			"secondary":""
+		},
+		"form_footer":{
+			"text":"Casino Caliente",
+			"logo":""
+		}
+	}
+}
