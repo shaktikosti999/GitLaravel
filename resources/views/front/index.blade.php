@@ -209,14 +209,16 @@
 							</li>
 						@else
 							<li class="slide fullscreen" style="background-image: url({{ $s->imagen }});">
-								<div class="slide-content ">
-									@if(isset($s->texto_boton))
-										<form action="{{$s->link}}" target="{{$s->is_new_tab}}">
-											<input type="submit" value="{{$s->texto_boton}}" style="min-width: 7em;padding-left: 5px;padding-right: 5px; font-size: 30px;background-color: red;box-shadow: 1px 1px 1px 1px black;border-radius: 10px;color: white;">
-										</form>
-									@endif
-									<h1><?php echo html_entity_decode($s->titulo); ?></h1>
-								</div><!-- /.slide-content -->
+								<div class="slide-body slide-body--filter slide-body--home">
+									<div class="slide-content ">
+											<h1><?php echo html_entity_decode($s->titulo); ?></h1>
+											@if(isset($s->texto_boton))
+												<form action="{{$s->link}}" target="{{$s->is_new_tab}}">
+													<input  class="btn  btn-red  btn-slider" type="submit" value="{{$s->texto_boton}}">
+												</form>
+											@endif
+									</div><!-- /.slide-content -->
+								</div>
 							</li><!-- /.slide -->
 						@endif
 					@endforeach

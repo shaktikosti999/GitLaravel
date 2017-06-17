@@ -221,7 +221,6 @@ class lineasController extends Controller
 
     public function deportivas( $sucursal = null){
 
-//        dd($sucursal);
 
         if(url() == 'http://calientecasino.com.mx') {
             $this->soapLoggin();

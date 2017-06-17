@@ -136,22 +136,6 @@
 				});
 			});
 
-
-
-			$(".branch-filter").change( function(){
-
-				var $value = $( this ).val();
-				var $url   = "/lineas-de-juego/apuesta-deportiva";
-
-				if( $value != -1 ){
-
-					$url = "/lineas-de-juego/apuesta-deportiva/" + $value;
-
-				}
-
-				$( location ).attr("href", $url);
-
-			} );
 		</script>
 	@stop
 

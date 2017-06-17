@@ -48,6 +48,7 @@ class sliderController extends Controller
 
         }
 
+//        dd($sliderData);
         return view('back.slider.create',$sliderData);
     }
 
